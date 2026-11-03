@@ -174,9 +174,9 @@ Plan: [docs/plans/2026-11-02-m1-thin-slice.md](plans/2026-11-02-m1-thin-slice.md
 | Python tests | 374 pass; `ruff check` and `ruff format --check` are clean | MEASURED |
 | Guard | A test fails a build that opens a file outside the allow-list, writes outside the output folder, or starts a process. It is a tripwire and not a sandbox | MEASURED |
 | Smoke test | Playwright on the fixture pack: add two items, see groups and an unlock line, open a recipe, see the source link, revision and licence, and no off-origin request. Passes locally | MEASURED |
-| Search latency | `answer()` in headless Chromium with a 6x CPU throttle, dev server, real pack: overall p95 69 to 84 ms over three runs. Pantries of 3 items had p95 up to 117 ms in one run. Load time about 0.6 s | MEASURED ([results/m1_latency.json](../results/m1_latency.json) holds the latest run) |
+| Search latency | `answer()` in headless Chromium with a 6x CPU throttle, dev server, real pack: 160 calls, pantries of 3, 5, 8 and 12 items from the 120 most common ingredients, first 3 calls per size dropped as warm-up: overall p95 69.2 ms, max 85.7 ms, p95 75 ms for 3-item pantries. Load time about 0.6 s | MEASURED, one run ([results/m1_latency.json](../results/m1_latency.json)) |
 
-Latency verdict: under 100 ms overall on this profile, but small pantries came close to or over the limit in one run. The Web Worker plan is recorded in `results/m1_latency.json`. A run on the production bundle is still to do. The 6x throttle is a model of a low-end phone and not a measurement of one (HYPOTHESIS).
+Latency verdict: under 100 ms in that one run. Run-to-run spread is not measured, the cold first call is not reported, and the dev server serves unminified code. The Web Worker plan is recorded in `results/m1_latency.json` in case a later run goes over. A repeated run on the production bundle is still to do. The 6x throttle is a model of a low-end phone and not a measurement of one (HYPOTHESIS).
 
 Not done:
 

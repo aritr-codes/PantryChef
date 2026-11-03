@@ -96,7 +96,7 @@ try {
         bySize[size] = stats(times);
         all.push(...times);
       }
-      return { loadMs, bySize, overall: stats(all), recipes: engine.recipeCount ?? null };
+      return { loadMs, bySize, overall: stats(all) };
     },
     { runs: RUNS, seed: SEED, sizes: SIZES, packUrl: `http://127.0.0.1:${PACK_PORT}/` },
   );

@@ -21,7 +21,8 @@ test("pantry to results to recipe, with no off-origin requests", async ({ page }
     return { csp, script };
   });
   expect(order.csp).toBeGreaterThanOrEqual(0);
-  if (order.script >= 0) expect(order.csp).toBeLessThan(order.script);
+  expect(order.script).toBeGreaterThanOrEqual(0);
+  expect(order.csp).toBeLessThan(order.script);
 
   const input = page.getByLabel("Type an ingredient");
   await input.fill("flour");

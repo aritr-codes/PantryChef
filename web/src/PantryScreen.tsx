@@ -48,7 +48,9 @@ export function PantryScreen(p: Props) {
     } else if (e.key === "Enter") {
       e.preventDefault();
       const pick = suggestions[active];
-      if (pick) addId(pick.id);
+      const exact = suggestions.find((s) => s.name.toLowerCase() === text.trim().toLowerCase());
+      const take = pick ?? (exact ? undefined : suggestions[0]);
+      if (take) addId(take.id);
       else addText(text);
     } else if (e.key === "Escape") {
       setText("");
