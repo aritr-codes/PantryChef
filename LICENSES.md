@@ -12,6 +12,7 @@ reasons, read [ADR 0003](docs/decisions/0003-licence-clean-recipe-corpus.md).
 | `data/eval/curated_subs.json`, `data/eval/curated_diets.json` | MIT | Hand-written evaluation lists |
 | `data/nutrition/dietary_labels.json` | MIT | Hand-written labels |
 | `data/nutrition/aliases.json` | MIT, origin under review | Hand-written map to USDA ids, chosen by frequency in RecipeNLG. Unused in v1. Review at M9 |
+| `tests/fixtures/wikibooks/` | CC BY-SA 4.0 | Whole Wikibooks Cookbook pages and lines, copied unchanged for parser tests. See the `NOTICE.md` in that folder |
 | `docs/research/2026-10-stage1/` | MIT | Audit record. It holds counts, metrics and short ingredient phrases from RecipeNLG, and no recipes. `evidence/subs_out.json` is withheld, and git ignores it |
 
 ## Not in git
