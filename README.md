@@ -14,14 +14,14 @@ in [LICENSES.md](LICENSES.md).
 
 | Capability | Built | Planned |
 | --- | --- | --- |
-| Ingredient parser | Rules plus vocabulary match: [`pantrychef/ingredients/parser.py`](pantrychef/ingredients/parser.py) | Unicode fractions, and tests on real lines (M1). A hand-labelled gold set (M2) |
-| Search | Set-overlap baseline and the `cook` command: [`pantrychef/retrieval/`](pantrychef/retrieval/), [`pantrychef/cli.py`](pantrychef/cli.py) | One `answer()` function, with groups by missing items and top unlocking items (M1) |
+| Ingredient parser | Rules plus vocabulary match: [`pantrychef/ingredients/parser.py`](pantrychef/ingredients/parser.py) | Unicode fractions are handled for Wikibooks lines (M1). A hand-labelled gold set (M2) |
+| Search | Set-overlap baseline and the `cook` command: [`pantrychef/retrieval/`](pantrychef/retrieval/), [`pantrychef/cli.py`](pantrychef/cli.py) | Built (M1): `answer()` in [`pantrychef/engine.py`](pantrychef/engine.py) gives groups by missing items, top unlocks and blockers, and `cook --pack` prints it. A TypeScript copy is in [`web/src/engine.ts`](web/src/engine.ts), checked against golden cases | Hand-judged quality evaluation (M2) |
 | Ranking | Research only. A candidate pool and a LambdaMART ranker: [`pantrychef/recommender/`](pantrychef/recommender/). Only tests call its runtime | Ships only if it beats an IDF rule on hand-judged pantries (M4, [ADR 0005](docs/decisions/0005-honest-claims-and-eval-reset.md)) |
 | Substitution | Graph and embedding arms, and the `substitute` command: [`pantrychef/substitution/`](pantrychef/substitution/). Mined from RecipeNLG, so it cannot ship | A curated table, and swaps mined from Open Recipes if they pass a blind rating (M5) |
 | Dietary filter | Built, but not safe to rely on: [`pantrychef/dietary/`](pantrychef/dietary/). See [audit C2](docs/TECHNICAL_AUDIT.md#c2-the-dietary-filter-is-unsafe-and-its-metric-cannot-fail-verified) | Three-state preference flags from a curated table, with no allergen claim (M5) |
 | Nutrition | Built, not fit to show: [`pantrychef/nutrition/`](pantrychef/nutrition/). See [audit C3](docs/TECHNICAL_AUDIT.md#c3-nutrition-output-is-not-fit-to-show-verified) | Stays out unless USDA FNDDS validation passes (M9) |
-| Web app | None | A static site on GitHub Pages with a browser engine (M1, M6, [ADR 0004](docs/decisions/0004-static-first-browser-engine.md)) |
-| Recipes for display | None. The research corpus is RecipeNLG, which never ships | Wikibooks Cookbook, CC BY-SA 4.0 (M1, [ADR 0003](docs/decisions/0003-licence-clean-recipe-corpus.md)) |
+| Web app | Built, not deployed (M1): Preact app in [`web/`](web/) with a pantry screen, a results screen and a recipe view. A manual workflow, `pages.yml`, deploys it after the owner approves | Deploy to GitHub Pages after the owner confirms. Polish and saved pantry (M6, [ADR 0004](docs/decisions/0004-static-first-browser-engine.md)) |
+| Recipes for display | Built (M1): a pack of 3,712 Wikibooks Cookbook recipes, CC BY-SA 4.0, from [`pantrychef/pack/`](pantrychef/pack/). The pack is not in git. It goes to a GitHub Release when the owner approves ([ADR 0003](docs/decisions/0003-licence-clean-recipe-corpus.md)) | A held-out check of how well lines are read (M3) |
 | Photo input | None | Tested later, and ships only if it passes a gate (M8) |
 | Ingredient and recipe knowledge graph with ML on top | None | Proposed, not accepted ([ADR 0006](docs/decisions/0006-hybrid-graph-knowledge-base.md)) |
 

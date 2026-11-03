@@ -36,7 +36,7 @@ Git ignores `data/raw/`, `data/processed/` and `models/`.
 
 ## Planned release artifacts
 
-The pack builder writes `core` and `text` and `manifest` into `build/pack` (git ignores it). No release exists yet. Each file appears in the manifest with its hash and licence.
+The pack builder writes `core` and `text` and `manifest` into `build/pack` (git ignores it). No release exists yet. The Pages workflow reads the pack from the GitHub Release `pack-v1` and checks it against the hashes in `web/pack-hashes.json`. The hosted site then serves the pack files under CC BY-SA 4.0. Each file appears in the manifest with its hash and licence.
 
 | Artifact | Licence | Note |
 | --- | --- | --- |

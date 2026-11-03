@@ -1,6 +1,6 @@
 # PantryChef: project state
 
-Date: 2026-10-30. Audited commit: `d49f02c`. Updated for M0, merged in PR #6 (section 3).
+Date: 2026-10-30. Audited commit: `d49f02c`. Updated for M0, merged in PR #6 (section 3), and for M1 on branch `feat/m1-thin-slice` (section 10, 2026-11-03).
 Sources: ADRs [0003](decisions/0003-licence-clean-recipe-corpus.md), [0004](decisions/0004-static-first-browser-engine.md), [0005](decisions/0005-honest-claims-and-eval-reset.md); the [Stage 1 synthesis](research/2026-10-stage1/README.md) and its [review](research/2026-10-stage1/REVIEW.md); the repo itself. For findings and fixes, read [TECHNICAL_AUDIT.md](TECHNICAL_AUDIT.md).
 
 Labels: MEASURED (a run or a log shows it), ESTIMATE (a calculation), HYPOTHESIS (a test must confirm it).
@@ -21,11 +21,11 @@ PantryChef is meant to be a pantry-first recipe app. A user lists what they have
 | Nutrition estimate | Built, not fit to show | Wrong matches and masses. See audit C3 |
 | Computer vision ("by photo") | Planned, gated (M8) | No code. M0 deleted the empty stub |
 | Two-tower model, FAISS, NER, ONNX | Not built | No code, no dependency. M0 removed the claims and the unused Hydra configs and MLflow |
-| API server, web app, Docker path | Not built | M0 deleted the Docker placeholders, the `serving` stub and `make serve` |
+| API server, Docker path | Not built | M0 deleted the Docker placeholders, the `serving` stub and `make serve` |
 | Production recommender bundle | Does not exist | Disk bundle holds 1,000 recipes. M0 corrected the docs that said otherwise |
-| Static web app with browser engine (ADR 0004) | Planned | No code yet |
-| Wikibooks display pack, Open Recipes statistics (ADR 0003) | Planned | Measured in research only |
-| Rebuilt ingredient table and vocabulary | Planned | Current `vocab.json` comes from RecipeNLG |
+| Static web app with browser engine (ADR 0004) | Built on branch `feat/m1-thin-slice`, not deployed | `web/`; Vitest parity on golden cases; Playwright smoke test on the fixture pack (section 10) |
+| Wikibooks display pack (ADR 0003) | Built (M1) | 3,712 recipes; `build/pack` is not in git (section 10). Open Recipes statistics: planned |
+| Rebuilt ingredient table | Built (M1), 337 rows | `data/ingredients/ingredients.csv`. The old `vocab.json` still comes from RecipeNLG and the new table never reads it |
 | New evaluation with hand-judged pantries (ADR 0005) | Planned | Not started |
 
 ## 3. Git state
@@ -159,3 +159,28 @@ Full ledger: 43 claims. 14 FALSE, 11 UNSUPPORTED, 11 STALE, 7 TRUE ([report 07](
 - OS: Windows 10. Shell: PowerShell or Git Bash.
 - Kaggle: use `uvx kaggle` for heavy jobs.
 - Python 3.11 in CI on Linux and Windows (`.github/workflows/ci.yml`). Locked with `uv.lock`.
+
+## 10. M1 thin slice (2026-11-03, branch `feat/m1-thin-slice`, not merged)
+
+Plan: [docs/plans/2026-11-02-m1-thin-slice.md](plans/2026-11-02-m1-thin-slice.md).
+
+| Item | Result | Label |
+| --- | --- | --- |
+| Pack | 3,712 recipes, 337 ingredients, 32,746 lines, 2,242 unread lines. `core.v1.json.gz` 476,092 bytes, `text.v1.json.gz` 870,411 bytes | MEASURED (`build/pack/manifest.v1.json`) |
+| Core download | `core` 0.48 MB plus the app bundle 11 KB gzip. The text pack loads when a recipe opens. The limit is 3 MB | MEASURED |
+| Ingredient coverage | 92.7% of required lines read, 60.3% of recipes fully read. In-sample, so it shows cost and not quality. A wrong read is not a missing read | MEASURED, in-sample ([coverage.md](research/2026-11-m1/coverage.md)) |
+| Wrong-read rate | About 2 in 90 in one sample and about 6 in 25 in the review sample before the fixes | ESTIMATE; M3 measures it on held-out data |
+| Parity | TypeScript matches Python on 202 golden cases plus token and name cases: scores within 1e-9, order exact. Vitest: 237 tests pass | MEASURED |
+| Python tests | 374 pass; `ruff check` and `ruff format --check` are clean | MEASURED |
+| Guard | A test fails a build that opens a file outside the allow-list, writes outside the output folder, or starts a process. It is a tripwire and not a sandbox | MEASURED |
+| Smoke test | Playwright on the fixture pack: add two items, see groups and an unlock line, open a recipe, see the source link, revision and licence, and no off-origin request. Passes locally | MEASURED |
+| Search latency | `answer()` in headless Chromium with a 6x CPU throttle, dev server, real pack: overall p95 69 to 84 ms over three runs. Pantries of 3 items had p95 up to 117 ms in one run. Load time about 0.6 s | MEASURED ([results/m1_latency.json](../results/m1_latency.json) holds the latest run) |
+
+Latency verdict: under 100 ms overall on this profile, but small pantries came close to or over the limit in one run. The Web Worker plan is recorded in `results/m1_latency.json`. A run on the production bundle is still to do. The 6x throttle is a model of a low-end phone and not a measurement of one (HYPOTHESIS).
+
+Not done:
+
+- Deploy. `.github/workflows/pages.yml` is manual. It needs the pack in the GitHub Release `pack-v1` and the hashes in `web/pack-hashes.json`. The owner has to approve the upload and the run.
+- The Playwright and `web` CI jobs have not run on GitHub yet.
+- No held-out evaluation of recipe quality. Do not read the coverage numbers as quality (ADR 0005).
+- Bare "pepper" is read as black pepper only when the line also names salt or says "to taste". This is provisional until M3.

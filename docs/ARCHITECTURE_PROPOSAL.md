@@ -1,6 +1,7 @@
 # Architecture proposal
 
-Status: proposed on 2026-10-30. Nothing in this document is built unless it says so.
+Status: proposed on 2026-10-30. Parts built in M1 (2026-11-03) are marked Built in section 3
+and in the diagram. Nothing else is built.
 Decisions: [ADR 0003](decisions/0003-licence-clean-recipe-corpus.md),
 [ADR 0004](decisions/0004-static-first-browser-engine.md),
 [ADR 0005](decisions/0005-honest-claims-and-eval-reset.md).
@@ -50,9 +51,9 @@ flowchart TB
   ART["GitHub Release:<br/>recipe pack, ingredient index,<br/>substitution table, manifest"]
 
   subgraph Browser["Visitor's browser"]
-    UI["App on GitHub Pages"]
-    WORKER["Engine module"]
-    STORE["localStorage: pantry and settings"]
+    UI["App on GitHub Pages: built, not deployed"]
+    WORKER["Engine module: runs on the main thread in M1"]
+    STORE["Planned: saved pantry. M1 stores nothing"]
     VISION["Planned: vision model, on demand"]
   end
 
@@ -76,7 +77,7 @@ flowchart TB
   TEST --> DEPLOY
   DEPLOY --> UI
   UI --> WORKER
-  UI --> STORE
+  UI -.-> STORE
   UI -.-> VISION
   CDN -.-> VISION
   WORKER -.-> API
@@ -86,16 +87,16 @@ flowchart TB
 
 | Component | Location | Input | Output | Status |
 | --- | --- | --- | --- | --- |
-| Source adapters | `pantrychef/sources/` | Snapshot file | `SourceRecipe` records with provenance | Planned |
-| Line parser | `pantrychef/ingredients/` | Ingredient line | Quantity, unit, ingredient text | Built; needs Unicode fractions and tests against real lines |
-| Ingredient table | `data/ingredients/ingredients.csv` | Hand curation | Ids, names, synonyms, roles, diet flags | Planned |
-| Resolver | `pantrychef/ingredients/resolve.py` | Text | Ingredient id or "unknown" | Planned |
-| Pack builder | `pantrychef/pack/` | Records and table | Recipe pack and manifest | Planned |
-| Reference engine | `pantrychef/engine.py` | Pantry ids, settings | `Answer` | Planned |
+| Source adapters | `pantrychef/sources/` | Snapshot file | `SourceRecipe` records with provenance | Built (M1): Wikibooks fetch and parse |
+| Line parser | `pantrychef/ingredients/` | Ingredient line | Quantity, unit, ingredient text | Built; Unicode fractions added in M1 |
+| Ingredient table | `data/ingredients/ingredients.csv` | Hand curation | Ids, names, synonyms, staple flag | Built (M1): 337 rows. No roles or diet flags yet |
+| Resolver | `pantrychef/ingredients/resolve.py` | Text | Lines with option ids, or "unread" | Built (M1) |
+| Pack builder | `pantrychef/pack/` | Records and table | Recipe pack and manifest | Built (M1): hash allow-list and input guard |
+| Reference engine | `pantrychef/engine.py` | Pantry ids, settings | `Answer` | Built (M1) |
 | Substitution mining | `pantrychef/substitution/` | Open Recipes as ingredient sets | Top-k table with evidence | Built for RecipeNLG; needs retraining and table export |
 | Evaluation | `pantrychef/eval/` | Engine, gold sets | `results/*.json` | Partly built; new protocols planned |
-| Browser engine | `web/src/engine.ts` | Pack, pantry | `Answer` | Planned |
-| App | `web/src/` | Engine module | Screens | Planned |
+| Browser engine | `web/src/engine.ts` | Pack, pantry | `Answer` | Built (M1): matches Python on 202 golden cases |
+| App | `web/src/` | Engine module | Screens | Built (M1): pantry, results and recipe screens. Not deployed |
 
 Rules:
 
