@@ -101,7 +101,9 @@ def _to_float(token: str) -> float:
 
 
 def parse_quantity(text: str) -> tuple[float | None, str]:
-    text = replace_unicode_fractions(text).replace("⁄", "/")  # NFKC fraction slash
+    text = replace_unicode_fractions(text)
+    # NFKC fraction slash; en and em dash as a range dash
+    text = text.replace("⁄", "/").replace("–", "-").replace("—", "-")
     m = _NUM.match(text)
     if not m:
         return None, text.strip()
