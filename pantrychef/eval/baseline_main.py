@@ -11,8 +11,8 @@ import argparse
 import sys
 from pathlib import Path
 
-from pantrychef.engine import GROUPS, AnswerRequest, answer, load_pack
-from pantrychef.eval.arms import ARMS, candidates, order
+from pantrychef.engine import load_pack
+from pantrychef.eval.arms import ARMS, CandidateIndex, order, visible_ids
 from pantrychef.eval.metrics import hit_rate, makeable_at_k, mrr_at_k, recall_at_k
 from pantrychef.eval.pantries import build_pantries
 from pantrychef.eval.stats import paired_cluster_bootstrap
@@ -54,6 +54,7 @@ def run(
     d_values = d_values if d_values is not None else [0, 3, 6]
     pack = load_pack(pack_dir)
     staples = set(pack.default_staples)
+    index = CandidateIndex(pack, staples)
     metrics: list[dict] = []
     comparisons: list[dict] = []
     for sampler, d in [(s, d) for d in d_values for s in samplers if d > 0 or s == samplers[0]]:
@@ -64,15 +65,13 @@ def run(
         clusters: dict[str, list[str]] = {}
         visible: dict[str, list[float]] = {}
         for p in pantries:
-            cands = candidates(pack, set(p.pantry), staples)
-            by_id = {c.recipe_id: c for c in cands}
+            cands = index.candidates(set(p.pantry))
             clusters.setdefault(p.split, []).append(p.gold_id)
-            ans = answer(pack, AnswerRequest(pantry=list(p.pantry), staples=sorted(staples)))
-            shown = {it.recipe_id for g in GROUPS for it in ans.groups[g].items}
-            visible.setdefault(p.split, []).append(float(p.gold_id in shown))
+            visible.setdefault(p.split, []).append(float(p.gold_id in visible_ids(cands)))
             for arm in ARMS:
-                ranked = [c.recipe_id for c in order(arm, cands, f"{seed}:{p.gold_id}:{p.draw}")]
-                ht = [(by_id[i].have, by_id[i].total) for i in ranked]
+                scored = order(arm, cands, f"{seed}:{p.gold_id}:{p.draw}")
+                ranked = [c.recipe_id for c in scored]
+                ht = [(c.have, c.total) for c in scored]
                 vals = {
                     "recall_at_10": recall_at_k(ranked, p.gold_id, K),
                     "mrr_at_10": mrr_at_k(ranked, p.gold_id, K),

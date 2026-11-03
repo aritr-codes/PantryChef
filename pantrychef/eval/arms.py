@@ -43,6 +43,67 @@ def candidates(pack: Pack, pantry: set[str], staples: set[str]) -> list[Scored]:
     return out
 
 
+class CandidateIndex:
+    """Fast ``candidates`` for many pantries. Same results as ``candidates``, bit for bit.
+
+    It precomputes the needed lines and weights of every recipe once, and an inverted map from
+    an ingredient id to the lines that list it. A pantry then touches only the recipes that
+    share an id with it. Scores add the weights in line order, as ``answer()`` does.
+    """
+
+    def __init__(self, pack: Pack, staples: set[str]):
+        self.pack = pack
+        self.staples = set(staples)
+        self.ids: list[str] = []
+        self.weights: list[list[float]] = []
+        self.total: list[int] = []
+        self.den: list[float] = []
+        self.by_id: dict[str, list[tuple[int, int]]] = {}
+        for recipe in pack.recipes:
+            needed = _needed(recipe, self.staples)
+            if not needed:
+                continue
+            r = len(self.ids)
+            w = [_weight(pack, ln) for ln in needed]
+            self.ids.append(recipe.recipe_id)
+            self.weights.append(w)
+            self.total.append(len(needed))
+            self.den.append(sum(w))
+            for li, ln in enumerate(needed):
+                for o in set(ln.options):
+                    self.by_id.setdefault(o, []).append((r, li))
+
+    def candidates(self, pantry: set[str]) -> list[Scored]:
+        held = {i for i in pantry if i in self.pack.ingredients} - self.staples
+        hit: dict[int, set[int]] = {}
+        for i in held:
+            for r, li in self.by_id.get(i, ()):
+                hit.setdefault(r, set()).add(li)
+        out = []
+        for r in sorted(hit):  # pack order
+            lines = sorted(hit[r])
+            num = sum(self.weights[r][li] for li in lines)
+            den = self.den[r]
+            out.append(
+                Scored(
+                    self.ids[r], len(lines), self.total[r], num / math.sqrt(den) if den > 0 else 0.0
+                )
+            )
+        return out
+
+
+def visible_ids(cands: list[Scored], limit: int = 10) -> set[str]:
+    """Recipe ids that ``answer()`` shows: at most 2 missing lines, top ``limit`` in each group."""
+    shown: set[str] = set()
+    for missing in (0, 1, 2):
+        group = sorted(
+            (c for c in cands if c.total - c.have == missing),
+            key=lambda c: (-c.score, c.total, c.recipe_id),
+        )
+        shown.update(c.recipe_id for c in group[:limit])
+    return shown
+
+
 def order(arm: str, cands: list[Scored], seed_key: str = "") -> list[Scored]:
     """Order keys: ``random`` (seeded by seed_key), ``overlap`` (-have, total, id),
     ``idf_flat`` (-score, total, id), ``shipped`` (missing, -score, total, id)."""

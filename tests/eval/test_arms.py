@@ -18,7 +18,7 @@ from pantrychef.engine import (
     answer,
     load_pack,
 )
-from pantrychef.eval.arms import candidates, order
+from pantrychef.eval.arms import CandidateIndex, candidates, order, visible_ids
 
 ROOT = Path(__file__).resolve().parents[2]
 
@@ -101,3 +101,21 @@ def test_shipped_order_matches_answer_order_on_golden_cases():
         assert keep <= set(ranked)
         checked += len(expected)
     assert checked > 0
+
+
+def test_candidate_index_equals_reference_and_visible_ids_equals_answer():
+    """The index returns the same Scored list as ``candidates`` (same floats), and
+    ``visible_ids`` returns the ids that ``answer()`` shows with its default limit."""
+    pack = load_pack(ROOT / "tests" / "fixtures" / "pack", "v1")
+    cases = json.loads((ROOT / "tests" / "golden" / "answer_cases.json").read_text("utf8"))["cases"]
+    indexes: dict[tuple, CandidateIndex] = {}
+    for case in cases:
+        req = case["request"]
+        staples = set(req["staples"])
+        idx = indexes.setdefault(tuple(sorted(staples)), CandidateIndex(pack, staples))
+        pantry = set(req["pantry"])
+        ref = candidates(pack, pantry, staples)
+        assert idx.candidates(pantry) == ref, case["name"]
+        ans = answer(pack, AnswerRequest(pantry=list(pantry), staples=sorted(staples)))
+        shown = {it.recipe_id for g in GROUPS for it in ans.groups[g].items}
+        assert visible_ids(ref) == shown, case["name"]

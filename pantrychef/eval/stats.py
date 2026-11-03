@@ -1,9 +1,10 @@
-"""Paired cluster bootstrap (M2). Standard library only, so it runs on Kaggle with --no-deps."""
+"""Paired cluster bootstrap (M2). Uses numpy, which pandas already requires and Kaggle provides."""
 
 from __future__ import annotations
 
-import random
 from dataclasses import dataclass
+
+import numpy as np
 
 
 @dataclass(frozen=True)
@@ -53,13 +54,16 @@ def paired_cluster_bootstrap(
     n = [counts[k] for k in keys]
     m = len(keys)
     mean = sum(s) / sum(n)
-    rng = random.Random(seed)
-    means = []
-    for _ in range(resamples):
-        picks = rng.choices(range(m), k=m)
-        means.append(sum(s[i] for i in picks) / sum(n[i] for i in picks))
+    rng = np.random.default_rng(seed)
+    s_arr, n_arr = np.array(s, dtype=float), np.array(n, dtype=float)
+    means = np.empty(resamples)
+    chunk = max(1, 1_000_000 // m)  # keeps the index matrix small
+    for start in range(0, resamples, chunk):
+        stop = min(resamples, start + chunk)
+        idx = rng.integers(0, m, size=(stop - start, m))
+        means[start:stop] = s_arr[idx].sum(axis=1) / n_arr[idx].sum(axis=1)
     means.sort()
     alpha = 1.0 - level
-    lo = means[int(alpha / 2 * resamples)]
-    hi = means[min(resamples - 1, int((1 - alpha / 2) * resamples))]
+    lo = float(means[int(alpha / 2 * resamples)])
+    hi = float(means[min(resamples - 1, int((1 - alpha / 2) * resamples))])
     return Interval(mean=mean, lo=lo, hi=hi, level=level, n_clusters=m)
