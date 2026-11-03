@@ -1,0 +1,78 @@
+{
+  "label": "MEASURED",
+  "what": "answer() latency, Chromium headless, Vite dev server, real pack, CPU throttled",
+  "commit": "223f55e2952286c63e5dc0dab4e1c25aeddc18a5",
+  "dirty": true,
+  "config": {
+    "cpu_throttle_rate": 6,
+    "runs_per_size": 40,
+    "pantry_sizes": [
+      3,
+      5,
+      8,
+      12
+    ],
+    "limit": 10,
+    "warmup": 3,
+    "pool": "120 most common ingredients"
+  },
+  "pack": {
+    "corpus_fingerprint": "a1a076ab0aee385c4e01cdc904342214dfaa6b01dc35d80d32519ea625c597d2",
+    "files": [
+      {
+        "name": "core.v1.json.gz",
+        "sha256": "133b6449b715139acf1d47d188a18e39bbc138da53004bd99392a194364610ea",
+        "size": 476092
+      },
+      {
+        "name": "text.v1.json.gz",
+        "sha256": "c1021eee2dd4dcde676c63b1aa900d61e9beab35de8ba6e2539d71af712f9b0b",
+        "size": 870411
+      }
+    ],
+    "recipes": 3712
+  },
+  "seed": 1,
+  "metrics": {
+    "loadMs": 357.29999999981374,
+    "coldFirstCallMs": 126.59999999962747,
+    "bySize": {
+      "3": {
+        "n": 40,
+        "p50": 44,
+        "p95": 69.1000000005588,
+        "max": 76.09999999962747
+      },
+      "5": {
+        "n": 40,
+        "p50": 48.299999999813735,
+        "p95": 68.80000000074506,
+        "max": 70.30000000074506
+      },
+      "8": {
+        "n": 40,
+        "p50": 43,
+        "p95": 57.799999999813735,
+        "max": 57.89999999944121
+      },
+      "12": {
+        "n": 40,
+        "p50": 29.59999999962747,
+        "p95": 41.200000000186265,
+        "max": 130.20000000018626
+      }
+    },
+    "overall": {
+      "n": 160,
+      "p50": 41.799999999813735,
+      "p95": 65.20000000018626,
+      "max": 130.20000000018626
+    },
+    "threshold_ms": 100,
+    "p95_under_threshold": true,
+    "sizes_over_threshold": []
+  },
+  "worker_plan": "Small pantries match many recipes and are the slowest. If a production-bundle run still shows p95 >= 100 ms, move Engine into a Web Worker (module worker, same origin, loads the pack itself) and post AnswerRequest/Answer messages. The Answer type is plain JSON, so no code change in the engine is needed. Until then answer() runs on the main thread.",
+  "limits": "Covers answer() at limit 10 only, not rendering. Pantries come from the 120 most common ingredients. The dev server serves unminified code. One run: run-to-run spread is not measured. The first call after load is reported separately as coldFirstCallMs.",
+  "command": "node web/scripts/latency.mjs --rate 6 --runs 40 --seed 1 --out m1_latency_run2.json"
+}
