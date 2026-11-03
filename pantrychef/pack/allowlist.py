@@ -46,15 +46,24 @@ def load_allowlist(allowlist_path: Path, repo_root: Path) -> tuple[dict[str, Inp
     return inputs, raw
 
 
-def verify(inputs: dict[str, Input]) -> None:
+def read_verified(inputs: dict[str, Input]) -> dict[str, bytes]:
+    """Read each input once and check the hash of the bytes that were read.
+
+    The build parses these bytes and never opens the files again, so a file cannot change
+    between the check and the use.
+    """
+    out = {}
     for inp in inputs.values():
         if not inp.path.is_file():
             raise AllowlistError(f"input {inp.name!r} not found: {inp.path}")
-        actual = sha256_file(inp.path)
+        data = inp.path.read_bytes()
+        actual = hashlib.sha256(data).hexdigest()
         if actual != inp.sha256:
             raise AllowlistError(
                 f"input {inp.name!r} hash changed: pinned {inp.sha256[:12]}, found {actual[:12]}"
             )
+        out[inp.name] = data
+    return out
 
 
 def pin(allowlist_path: Path, repo_root: Path) -> None:

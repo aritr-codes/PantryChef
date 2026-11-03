@@ -49,6 +49,9 @@ def http_transport(params: dict, headers: dict) -> dict:
             data = json.load(resp)
             retry = resp.headers.get("Retry-After")
     except urllib.error.HTTPError as exc:
+        if exc.code in (429, 503):  # rate limit or overload: wait and retry like a lagged server
+            wait = exc.headers.get("Retry-After") if exc.headers else None
+            return {"error": {"code": "maxlag"}, "_retry_after": float(wait) if wait else 30.0}
         raise FetchError(f"HTTP {exc.code} from {API_URL}") from exc
     if retry:
         data["_retry_after"] = float(retry)

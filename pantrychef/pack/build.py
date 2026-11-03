@@ -16,6 +16,7 @@ from __future__ import annotations
 
 import gzip
 import hashlib
+import io
 import json
 import math
 from pathlib import Path
@@ -23,7 +24,7 @@ from urllib.parse import urlparse
 
 from pantrychef.ingredients.resolve import resolve_lines
 from pantrychef.ingredients.table import IngredientTable
-from pantrychef.pack.allowlist import load_allowlist, verify
+from pantrychef.pack.allowlist import load_allowlist, read_verified
 from pantrychef.pack.guard import guarded_build
 from pantrychef.sources.types import SourceRecipe
 from pantrychef.sources.wikibooks import parse_page
@@ -79,8 +80,8 @@ def _core_recipe(r: SourceRecipe, table: IngredientTable) -> dict | None:
     }
 
 
-def _read_snapshot(path: Path) -> list[dict]:
-    with gzip.open(path, "rt", encoding="utf8") as fh:
+def _read_snapshot(data: bytes) -> list[dict]:
+    with gzip.open(io.BytesIO(data), "rt", encoding="utf8") as fh:
         return [json.loads(line) for line in fh]
 
 
@@ -99,16 +100,14 @@ def build_pack(
     """
     repo_root, out = Path(repo_root), Path(out_dir)
     inputs, raw = load_allowlist(Path(allowlist_path), repo_root)
-    verify(inputs)
+    data = read_verified(inputs)
     retrieved_on = raw["inputs"]["snapshot"]["retrieved_on"]
     out.mkdir(parents=True, exist_ok=True)
 
     with guarded_build([i.path for i in inputs.values()], out, [_CODE_ROOT]):
-        table = IngredientTable.load(inputs["table"].path)
+        table = IngredientTable.from_text(data["table"].decode("utf8"))
         sources = [
-            r
-            for rec in _read_snapshot(inputs["snapshot"].path)
-            if (r := parse_page(rec, retrieved_on))
+            r for rec in _read_snapshot(data["snapshot"]) if (r := parse_page(rec, retrieved_on))
         ]
         for r in sources:
             check_source_url(r.url)

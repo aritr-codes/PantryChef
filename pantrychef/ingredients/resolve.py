@@ -53,7 +53,9 @@ class ResolvedLine:
 
 
 def _is_prep(token: str) -> bool:
-    return token in _PREP or (token.endswith("ed") and len(token) > 4)
+    return token in _PREP or (
+        token.endswith("ed") and len(token) > 4 and not token.endswith("seed")
+    )
 
 
 def _spans(toks: tuple[str, ...], table: IngredientTable) -> list[tuple[int, int, str]]:
@@ -118,7 +120,9 @@ def resolve_lines(text: str, table: IngredientTable) -> list[ResolvedLine]:
                 ids = [i for _, _, i in o_spans]
                 plain = plain and all(_is_prep(t) for t in o_toks) and not ids
                 if ids:
-                    alts.append(ids[-1:])  # head noun: the last match
+                    # Head noun: the last match, but a staple never hides a real ingredient.
+                    real = [i for i in ids if i not in table.staples]
+                    alts.append((real or ids)[-1:])
                 else:
                     alts.append([])
             if sep == "comma" and a_toks[:1] == ("or",):

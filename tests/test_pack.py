@@ -13,7 +13,7 @@ from pathlib import Path
 
 import pytest
 
-from pantrychef.ingredients.table import DEFAULT_TABLE_PATH, IngredientTable
+from pantrychef.ingredients.table import DEFAULT_TABLE_PATH
 from pantrychef.pack.allowlist import AllowlistError, sha256_file
 from pantrychef.pack.build import BuildError, build_pack, check_source_url
 from pantrychef.pack.guard import GuardViolation, guarded_build
@@ -193,21 +193,61 @@ def test_guard_blocks_processes_and_sockets(tmp_path):
 
 
 def test_a_builder_that_reads_a_stray_file_fails(tmp_path, monkeypatch):
-    """A change to the table loader that reads another data file must fail the build."""
+    """A change to the build code that reads another data file must fail the build."""
+    import pantrychef.pack.build as build_mod
+
     stray = tmp_path / "vocab.json"
     stray.write_text("[]")
-    real_load = IngredientTable.load
+    real = build_mod.resolve_lines
 
-    def sneaky(path=DEFAULT_TABLE_PATH):
+    def sneaky(text, table):
         stray.read_text()
-        return real_load(path)
+        return real(text, table)
 
     snap = tmp_path / "snap.jsonl.gz"
     _snapshot(snap, json.loads(PAGES.read_text(encoding="utf8")))
     al = _allowlist(tmp_path, snap)
-    monkeypatch.setattr(IngredientTable, "load", staticmethod(sneaky))
+    monkeypatch.setattr(build_mod, "resolve_lines", sneaky)
     with pytest.raises(GuardViolation):
         build_pack(al, tmp_path / "o", repo_root=ROOT, commit="c", dirty=False)
+
+
+def test_guard_allows_bytecode_in_pycache_but_not_other_pyc_files(tmp_path):
+    with guarded_build([], tmp_path / "out", [ROOT / "pantrychef"]):
+        with pytest.raises(GuardViolation):
+            (tmp_path / "evil.pyc").write_bytes(b"x")
+        with pytest.raises(GuardViolation):
+            (tmp_path / "__pycache__x" / "m.pyc").parent.mkdir()
+    cache = tmp_path / "__pycache__"
+    cache.mkdir()
+    with guarded_build([], tmp_path / "out", [ROOT / "pantrychef"]):
+        (cache / "m.cpython-311.pyc.123").write_bytes(b"x")  # what Python writes on import
+
+
+def test_output_folder_may_not_contain_inputs_or_code(tmp_path):
+    inp = tmp_path / "in.txt"
+    inp.write_text("x")
+    with (
+        pytest.raises(GuardViolation, match="would contain"),
+        guarded_build([inp], tmp_path, [ROOT / "pantrychef"]),
+    ):
+        pass
+    with (
+        pytest.raises(GuardViolation, match="would contain"),
+        guarded_build([], ROOT, [ROOT / "pantrychef"]),
+    ):
+        pass
+
+
+def test_guard_blocks_deleting_and_renaming_outside_the_output_folder(tmp_path):
+    victim = tmp_path / "victim.txt"
+    victim.write_text("x")
+    with guarded_build([], tmp_path / "out", [ROOT / "pantrychef"]):
+        with pytest.raises(GuardViolation, match="change files"):
+            victim.unlink()
+        with pytest.raises(GuardViolation, match="change files"):
+            victim.rename(tmp_path / "moved.txt")
+    assert victim.exists()
 
 
 @pytest.mark.parametrize(

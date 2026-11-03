@@ -8,6 +8,7 @@ simple so that M3 can add ``is_a`` and ``form_of`` (ADR 0006).
 from __future__ import annotations
 
 import csv
+import io
 import re
 import unicodedata
 from dataclasses import dataclass
@@ -66,17 +67,21 @@ class IngredientTable:
 
     @classmethod
     def load(cls, path: str | Path = DEFAULT_TABLE_PATH) -> IngredientTable:
-        rows = []
         with open(path, encoding="utf8", newline="") as fh:
-            for rec in csv.DictReader(fh):
-                syn = tuple(s.strip() for s in rec["synonyms"].split("|") if s.strip())
-                rows.append(
-                    Row(
-                        id=rec["id"].strip(),
-                        name=rec["name"].strip(),
-                        synonyms=syn,
-                        staple=rec["staple"].strip() == "1",
-                        provenance=rec["provenance"].strip(),
-                    )
+            return cls.from_text(fh.read())
+
+    @classmethod
+    def from_text(cls, text: str) -> IngredientTable:
+        rows = []
+        for rec in csv.DictReader(io.StringIO(text, newline="")):
+            syn = tuple(s.strip() for s in rec["synonyms"].split("|") if s.strip())
+            rows.append(
+                Row(
+                    id=rec["id"].strip(),
+                    name=rec["name"].strip(),
+                    synonyms=syn,
+                    staple=rec["staple"].strip() == "1",
+                    provenance=rec["provenance"].strip(),
                 )
+            )
         return cls(rows)

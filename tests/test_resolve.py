@@ -132,3 +132,20 @@ def test_boneless_skinless_commas_do_not_hide_the_ingredient(table):
 
 def test_lone_clove_unit_means_the_spice(table):
     assert _one(table, "4 cloves").options == ("cloves",)
+
+
+def test_a_staple_never_hides_a_real_ingredient(table):
+    assert _one(table, "Cornstarch mixed with 1/2 cup cold water").options == ("cornstarch",)
+    assert _one(table, "1 tsp chile oil").options == ("chili_pepper",)
+    assert _one(table, "1 tbsp oil").options == ("vegetable_oil",)
+
+
+def test_seed_words_are_not_preparation_words(table):
+    line = _one(table, "2 cups flour and flaxseed")
+    assert not line.read  # flaxseed is unknown, and "-seed" words are not "-ed" verbs
+
+
+def test_compound_names_beat_their_last_word(table):
+    assert _one(table, "1 cup pepper jack cheese").options == ("monterey_jack",)
+    assert _one(table, "2 tbsp cashew butter").options == ("cashew_butter",)
+    assert _one(table, "1 can cream of mushroom soup").options == ("condensed_soup",)

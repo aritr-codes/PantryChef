@@ -161,7 +161,7 @@ bulgur,bulgur,bulgur wheat|cracked wheat,0,hand
 barley,barley,pearl barley,0,hand
 bread,bread,white bread|sandwich bread|bread slice|slice of bread|whole wheat bread|wholemeal bread|stale bread|day-old bread|sourdough|toast|loaf of bread|french bread|italian bread|baguette,0,hand
 breadcrumbs,breadcrumbs,bread crumb|panko|dry bread crumb|dried breadcrumb|fresh breadcrumb|panko bread crumb,0,hand
-tortilla,tortilla,flour tortilla|corn tortilla|wrap,0,hand
+tortilla,tortilla,flour tortilla|corn tortilla,0,hand
 cracker,cracker,graham cracker|saltine|saltine cracker|cracker crumb|graham cracker crumb,0,hand
 pita,pita,pita bread|pitta bread|pitta,0,hand
 lentil,lentil,red lentil|green lentil|brown lentil|dried lentil|puy lentil|split red lentil,0,hand
@@ -207,7 +207,7 @@ ricotta,ricotta,ricotta cheese,0,hand
 cottage_cheese,cottage cheese,,0,hand
 swiss_cheese,swiss cheese,gruyere|gruy re|emmental|emmenthal|jarlsberg|gruyere cheese,0,hand
 blue_cheese,blue cheese,gorgonzola|roquefort|bleu cheese|stilton,0,hand
-monterey_jack,monterey jack,monterey jack cheese|pepper jack|colby jack|colby,0,hand
+monterey_jack,monterey jack,monterey jack cheese|pepper jack|pepper jack cheese|colby jack|colby,0,hand
 egg,egg,large egg|eggs|egg white|egg yolk|beaten egg|hard-boiled egg|boiled egg|hard boiled egg|soft-boiled egg|whole egg|medium egg|free range egg|extra large egg|egg wash|white of egg|yolk,0,hand
 condensed_milk,condensed milk,sweetened condensed milk,0,hand
 evaporated_milk,evaporated milk,,0,hand
@@ -226,7 +226,7 @@ turkey,turkey,turkey breast|ground turkey|whole turkey|turkey meat|turkey leg|tu
 duck,duck,duck breast|duck leg,0,hand
 salmon,salmon,salmon fillet|smoked salmon|canned salmon|salmon steak,0,hand
 tuna,tuna,canned tuna|tuna fish|tuna steak|tinned tuna|tuna in oil|albacore,0,hand
-white_fish,white fish,cod|haddock|tilapia|halibut|sole|snapper|sea bass|bass|fish fillet|whitefish|pollock|trout|mackerel|catfish|flounder|fish,0,hand
+white_fish,white fish,cod|haddock|tilapia|halibut|sole|snapper|sea bass|bass|fish fillet|whitefish|pollock|catfish|flounder,0,hand
 shrimp,shrimp,prawn|large shrimp|king prawn|jumbo shrimp|cooked shrimp|raw shrimp|tiger prawn,0,hand
 crab,crab,crab meat|crabmeat|lump crab meat|imitation crab,0,hand
 lobster,lobster,lobster tail,0,hand
@@ -313,7 +313,7 @@ meat,meat,assorted meat|ground meat|cooked meat|leftover meat,0,wikibooks-rule
 plantain,plantain,ripe plantain|green plantain,0,wikibooks-rule
 cassava,cassava,yuca|manioc|grated cassava|tapioca,0,wikibooks-rule
 tapioca_starch,tapioca starch,tapioca flour,0,wikibooks-rule
-hamburger_bun,hamburger bun,bun|burger bun|hot dog bun|roll,0,wikibooks-rule
+hamburger_bun,hamburger bun,bun|burger bun|hot dog bun,0,wikibooks-rule
 pizza_sauce,pizza sauce,,0,wikibooks-rule
 marzipan,marzipan,almond paste,0,wikibooks-rule
 applesauce,applesauce,apple sauce,0,wikibooks-rule
@@ -332,3 +332,7 @@ collard_greens,collard greens,collard green|collards,0,wikibooks-rule
 lemongrass,lemongrass,stalk lemongrass|lemon grass,0,wikibooks-rule
 xanthan_gum,xanthan gum,,0,wikibooks-rule
 pandan_leaf,pandan leaf,pandan leave|pandan,0,wikibooks-rule
+oily_fish,oily fish,mackerel|trout|herring|sprat|smoked mackerel|smoked trout,0,hand
+cashew_butter,cashew butter,,0,hand
+almond_butter,almond butter,,0,hand
+condensed_soup,condensed soup,cream of mushroom soup|cream of chicken soup|cream of celery soup|canned soup|soup,0,hand

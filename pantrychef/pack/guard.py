@@ -9,8 +9,11 @@ While it is on, the build may read only:
 - files it wrote itself into ``write_dir``.
 
 It may write only into ``write_dir`` (and ``__pycache__``). It may not start a process, open
-a network socket or load a native library. This is a tripwire for mistakes, not a sandbox: a
-C library that calls ``fopen`` directly does not raise an audit event and escapes it.
+a network socket or load a native library. The output folder must not contain inputs or code.
+
+This is a tripwire for mistakes, not a sandbox. These escape it: a C library that calls
+``fopen`` directly (``sqlite3`` for example), a thread started inside the guard, directory
+listings, and a file opened before the guard starts.
 
 Python audit hooks cannot be removed. The module installs one hook for the process, and a
 ``ContextVar`` switches it on and off.
@@ -39,6 +42,16 @@ _DENIED_EVENTS = {
     "socket.bind",
     "ctypes.dlopen",
     "ctypes.cdata",
+    "os.startfile",
+}
+# Events that change files. Every path they name must sit inside the output folder.
+_MUTATING_EVENTS = {
+    "os.remove",
+    "os.rename",
+    "os.rmdir",
+    "os.mkdir",
+    "os.truncate",
+    "shutil.rmtree",
 }
 
 
@@ -86,7 +99,8 @@ def _check_open(state: _State, path: object, mode: object, flags: object) -> Non
         return
     p = _norm(path)
     if _wants_write(mode, flags):
-        if _under(p, state.write_dir) or p.endswith(".pyc"):
+        # Python writes bytecode to a temporary file inside __pycache__.
+        if _under(p, state.write_dir) or os.path.basename(os.path.dirname(p)) == "__pycache__":
             return
         raise GuardViolation(f"build may not write outside the output folder: {p}")
     if (
@@ -109,6 +123,10 @@ def _hook(event: str, args: tuple) -> None:
         )
     elif event in _DENIED_EVENTS:
         raise GuardViolation(f"build may not use {event}")
+    elif event in _MUTATING_EVENTS:
+        for a in args[:2]:
+            if isinstance(a, str | bytes | os.PathLike) and not _under(_norm(a), state.write_dir):
+                raise GuardViolation(f"build may not change files outside the output folder: {a!r}")
 
 
 @contextmanager
@@ -119,10 +137,16 @@ def guarded_build(
     if not _installed:
         sys.addaudithook(_hook)
         _installed = True
+    reads = frozenset(_norm(p) for p in allowed_reads)
+    roots = tuple(_norm(r) for r in code_roots)
+    out = _norm(write_dir)
+    # Files under the output folder are readable, so it must not contain inputs or code.
+    if any(_under(x, out) for x in (*reads, *roots)):
+        raise GuardViolation(f"output folder {out} would contain build inputs or code")
     state = _State(
-        allowed_reads=frozenset(_norm(p) for p in allowed_reads),
-        write_dir=_norm(write_dir),
-        code_roots=tuple(_norm(r) for r in code_roots),
+        allowed_reads=reads,
+        write_dir=out,
+        code_roots=roots,
         system_roots=_system_roots(),
     )
     token = _state.set(state)
