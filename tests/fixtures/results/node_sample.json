@@ -1,0 +1,39 @@
+{
+  "arms": [],
+  "command": "npm test (web/tests/result.test.ts)",
+  "commit": "31ec88f0d6814cf06436a02f0e85ef6add06a7ae",
+  "comparisons": [],
+  "config": {
+    "note": "fixed sample"
+  },
+  "corpus_fingerprint": "none",
+  "dirty": true,
+  "dirty_paths": [
+    "pantrychef/eval/results.py",
+    "tests/eval/test_results.py",
+    "web/scripts/result.mjs",
+    "web/tests/result.test.ts"
+  ],
+  "environment": {
+    "node": "v24.14.0",
+    "platform": "Windows_NT 10.0.19045 (win32)"
+  },
+  "label": "MEASURED",
+  "metrics": [
+    {
+      "arm": null,
+      "depends_on": [],
+      "group": {
+        "pantry_size": 3
+      },
+      "n": 3,
+      "name": "latency_p50_ms",
+      "role": "latency",
+      "split": "all",
+      "value": 12.5
+    }
+  ],
+  "schema": 1,
+  "seed": 1,
+  "what": "sample written by result.mjs"
+}
