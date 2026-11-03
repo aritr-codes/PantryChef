@@ -1,3 +1,4 @@
+import { useEffect, useRef } from "preact/hooks";
 import type { Engine } from "./engine";
 import type { Answer, RecipeResult } from "./types";
 
@@ -43,16 +44,33 @@ function Section(props: {
   collapsed?: boolean;
 }) {
   const { group } = props;
+  const list = useRef<HTMLUListElement>(null);
+  const shownBefore = useRef(group.items.length);
+  const asked = useRef(false);
+  // After "Show more", move focus to the first new card, so the button's removal does not drop focus.
+  useEffect(() => {
+    if (asked.current && group.items.length > shownBefore.current) {
+      list.current?.querySelectorAll<HTMLElement>(".card-link")[shownBefore.current]?.focus();
+      asked.current = false;
+    }
+    shownBefore.current = group.items.length;
+  }, [group.items.length]);
   if (group.count === 0) return null;
   const body = (
     <>
-      <ul class="cards">
+      <ul class="cards" ref={list}>
         {group.items.map((r) => (
           <Card key={r.recipe_id} r={r} engine={props.engine} onOpen={props.onOpen} />
         ))}
       </ul>
       {group.items.length < group.count && (
-        <button type="button" onClick={props.onMore}>
+        <button
+          type="button"
+          onClick={() => {
+            asked.current = true;
+            props.onMore();
+          }}
+        >
           Show more ({group.count - group.items.length} left)
         </button>
       )}

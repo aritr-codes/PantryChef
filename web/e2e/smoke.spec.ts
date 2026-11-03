@@ -1,3 +1,5 @@
+import { readFileSync } from "node:fs";
+import { gzipSync } from "node:zlib";
 import { expect, test } from "@playwright/test";
 
 test("pantry to results to recipe, with no off-origin requests", async ({ page }) => {
@@ -89,4 +91,38 @@ test("one item shows singular wording and a hint", async ({ page }) => {
   await page.getByRole("button", { name: /See recipes/ }).click();
   await expect(page.getByRole("heading", { name: "Results for 1 item" })).toBeVisible();
   await expect(page.getByText("Add more items for better matches.")).toBeVisible();
+});
+
+test("Show more adds cards and keeps focus on a card", async ({ page }) => {
+  await page.goto("/");
+  const input = page.getByLabel("Type an ingredient");
+  for (const n of ["flour", "egg", "milk", "sugar"]) {
+    await input.fill(n);
+    await input.press("Enter");
+  }
+  await page.getByRole("button", { name: /See recipes/ }).click();
+  const more = page.getByRole("button", { name: /Show more/ }).first();
+  await expect(more).toBeVisible();
+  const before = await page.locator(".card").count();
+  await more.click();
+  await expect.poll(() => page.locator(".card").count()).toBeGreaterThan(before);
+  await expect(page.locator(".card-link:focus")).toHaveCount(1);
+});
+
+test("a CC BY-SA recipe shows the licence text link", async ({ page }) => {
+  // The fixture says "Synthetic test fixture (MIT)". Serve a copy that says CC BY-SA 4.0.
+  const text = JSON.parse(readFileSync("../tests/fixtures/pack/text.v1.json", "utf8"));
+  for (const r of Object.values<{ licence: string }>(text.recipes)) r.licence = "CC BY-SA 4.0";
+  await page.route("**/pack/text.v1.json.gz", (route) =>
+    route.fulfill({ contentType: "application/gzip", body: gzipSync(JSON.stringify(text)) }),
+  );
+  await page.goto("/");
+  const input = page.getByLabel("Type an ingredient");
+  await input.fill("flour");
+  await input.press("Enter");
+  await page.getByRole("button", { name: /See recipes/ }).click();
+  await page.locator(".card-link").first().click();
+  const link = page.getByRole("link", { name: "licence text" });
+  await expect(link).toHaveAttribute("href", "https://creativecommons.org/licenses/by-sa/4.0/");
+  await expect(page.locator("footer.attribution")).toContainText("Licence: CC BY-SA 4.0");
 });
