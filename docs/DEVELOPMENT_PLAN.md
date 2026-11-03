@@ -85,6 +85,8 @@ lines, under a CC BY-SA notice. A Playwright smoke test of the journey. Parity t
 
 ## M2: Evaluation baseline (about 1 week)
 
+**Status, 2026-11-03:** in progress on `feat/m2-eval-baseline`. Built: results helper, rule baselines with paired intervals, splits, gold sheet tools, judging tools, Kaggle kernel (not run). Open: your labels, the pilot, the Kaggle run. See [PROJECT_STATE section 11](PROJECT_STATE.md).
+
 **Objective:** measure before changing anything.
 
 - Add the results-file helper. Link existing claims to it.
