@@ -48,8 +48,8 @@
       "type": "array",
       "items": {
         "type": "object",
-        "required": ["metric", "a", "b", "split", "diff", "ci"],
-        "properties": {"metric": {"type": "string"}, "a": {"type": "string"}, "b": {"type": "string"}, "split": {"enum": ["dev", "test", "all"]}, "diff": {"type": "number"}, "ci": {"type": "object"}, "group": {"type": "object"}}
+        "required": ["metric", "role", "a", "b", "split", "diff", "ci"],
+        "properties": {"metric": {"type": "string"}, "role": {"enum": ["selection", "sanity", "product", "latency"]}, "a": {"type": "string"}, "b": {"type": "string"}, "split": {"enum": ["dev", "test", "all"]}, "diff": {"type": "number"}, "ci": {"type": "object"}, "group": {"type": "object"}}
       }
     },
     "environment": {"type": "object"},

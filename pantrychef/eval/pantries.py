@@ -52,6 +52,10 @@ def _title_key(title: str) -> str:
     return " ".join(re.sub(r"[^a-z0-9]+", " ", t).split())
 
 
+def _group_key(r: Recipe) -> str:
+    return _title_key(r.title) or f"id:{r.recipe_id}"  # a title with no ASCII stays alone
+
+
 def assign_splits(recipes: list[Recipe], seed: int = 42) -> dict[str, str]:
     """recipe_id to "dev" or "test".
 
@@ -60,7 +64,7 @@ def assign_splits(recipes: list[Recipe], seed: int = 42) -> dict[str, str]:
     """
     groups: dict[str, list[str]] = {}
     for r in recipes:
-        groups.setdefault(_title_key(r.title), []).append(r.recipe_id)
+        groups.setdefault(_group_key(r), []).append(r.recipe_id)
     ordered = sorted(groups, key=lambda k: hashlib.sha256(f"{seed}:{k}".encode()).hexdigest())
     cut = len(ordered) // 2
     return {
@@ -78,7 +82,12 @@ def document_frequency(pack: Pack) -> dict[str, int]:
 
 
 def sample_distractors(
-    sampler: str, pack: Pack, exclude: set[str], d: int, rng: random.Random
+    sampler: str,
+    pack: Pack,
+    exclude: set[str],
+    d: int,
+    rng: random.Random,
+    df: dict[str, int] | None = None,
 ) -> tuple[str, ...]:
     """``uniform``: even over non-staple ids.
 
@@ -90,7 +99,7 @@ def sample_distractors(
         raise ValueError(f"unknown sampler {sampler!r}")
     pool = sorted(i for i, ing in pack.ingredients.items() if not ing.staple and i not in exclude)
     if sampler == "popularity":
-        df = document_frequency(pack)
+        df = df if df is not None else document_frequency(pack)
         pool = [i for i in pool if df.get(i, 0) > 0]
     if d > len(pool):
         raise ValueError(f"cannot draw {d} distractors from {len(pool)} ids")
@@ -119,6 +128,7 @@ def build_pantries(
         raise ValueError(f"sampler must be one of {SAMPLERS} when d > 0, got {sampler!r}")
     recorded = sampler if d > 0 else "none"
     staples = set(pack.default_staples)
+    df = document_frequency(pack) if sampler == "popularity" and d > 0 else None
     splits = assign_splits(list(pack.recipes), seed)
     out: list[EvalPantry] = []
     for recipe in pack.recipes:
@@ -135,7 +145,7 @@ def build_pantries(
             # Mask ingredients, not only lines: if a masked line shares an id with a kept line,
             # the person still lacks that ingredient. Remove every option id of a masked line.
             kept -= {o for i in masked_idx for o in maskable[i].options}
-            dis = sample_distractors(sampler, pack, gold_ids, d, rng) if d > 0 else ()
+            dis = sample_distractors(sampler, pack, gold_ids, d, rng, df) if d > 0 else ()
             out.append(
                 EvalPantry(
                     gold_id=recipe.recipe_id,

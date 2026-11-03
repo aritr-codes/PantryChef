@@ -18,6 +18,7 @@ from pantrychef.eval.results import (
     write_result,
 )
 
+ROOT = Path(__file__).resolve().parents[2]
 SHA = "a" * 40
 
 
@@ -38,7 +39,7 @@ def doc():
             {
                 "name": "recall_at_10",
                 "role": "sanity",
-                "depends_on": ["gold_recipe_lines"],
+                "depends_on": ["gold_recipe_lines", "have", "total", "idf"],
                 "arm": "overlap",
                 "split": "test",
                 "n": 10,
@@ -86,21 +87,26 @@ def test_git_tracked_change_is_dirty(repo):
 def test_git_untracked_is_dirty_but_ignored_is_not(repo):
     (repo / "ignored.txt").write_text("x")
     assert git_facts(repo)[1] is False
-    (repo / "new.txt").write_text("x")
-    assert git_facts(repo)[1:] == (True, ["new.txt"])
+    (repo / "new.txt").write_text("x")  # scratch file outside the code folders: not dirty
+    assert git_facts(repo)[1] is False
+    (repo / "scripts").mkdir()
+    (repo / "scripts" / "new.py").write_text("x")
+    assert git_facts(repo)[1:] == (True, ["scripts/new.py"])
 
 
 def test_git_exclude_and_results_dir(repo):
-    (repo / "out.json").write_text("{}")
+    (repo / "scripts").mkdir()
+    (repo / "scripts" / "out.json").write_text("{}")
     (repo / "results").mkdir()
     (repo / "results" / "other.json").write_text("{}")
-    assert git_facts(repo, exclude=(repo / "out.json",))[1:] == (False, [])
-    assert git_facts(repo)[2] == ["out.json"]
+    assert git_facts(repo, exclude=(repo / "scripts" / "out.json",))[1:] == (False, [])
+    assert git_facts(repo)[2] == ["scripts/out.json"]
 
 
 def test_git_dirty_paths_capped_at_20(repo):
     for i in range(25):
-        (repo / f"f{i:02}.txt").write_text("x")
+        (repo / "scripts").mkdir(exist_ok=True)
+        (repo / "scripts" / f"f{i:02}.txt").write_text("x")
     _, dirty, paths = git_facts(repo)
     assert dirty and len(paths) == 20
 
@@ -222,10 +228,19 @@ def test_registry_checks():
 def test_comparison_checks():
     d = doc()
     d["comparisons"] = [
-        {"metric": "recall_at_10", "a": "shipped", "b": "overlap", "split": "test", "diff": 0.1,
-         "ci": {}}
+        {"metric": "recall_at_10", "role": "sanity", "a": "shipped", "b": "overlap",
+         "split": "test", "diff": 0.1,
+         "ci": {"lo": 0.0, "hi": 0.2, "level": 0.95, "method": "m", "n_clusters": 3}}
     ]  # fmt: skip
     validate(d)
+    bad = copy.deepcopy(d)
+    bad["comparisons"][0]["role"] = "selection"
+    with pytest.raises(ValueError, match="role"):
+        validate(bad)
+    bad = copy.deepcopy(d)
+    bad["comparisons"][0]["ci"] = {}
+    with pytest.raises(ValueError, match="lo"):
+        validate(bad)
     bad = copy.deepcopy(d)
     bad["comparisons"][0]["metric"] = "nope"
     with pytest.raises(ValueError, match="nope"):
@@ -291,10 +306,10 @@ def test_registry_contents():
         "shipped": ("idf", "have", "total", "group"),
     }
     assert METRICS["recall_at_10"].role == "sanity"
-    assert METRICS["mrr_at_10"].depends_on == ("gold_recipe_lines",)
+    assert METRICS["mrr_at_10"].depends_on == ("gold_recipe_lines", "have", "total", "idf")
     assert METRICS["makeable_at_10"].role == "product"
     assert METRICS["hit_rate"].role == "product"
-    assert METRICS["visible_rate"].depends_on == ("lines", "idf")
+    assert METRICS["visible_rate"].depends_on == ("have", "total", "idf", "group")
     assert METRICS["pairwise_win_rate"].role == "selection"
     assert METRICS["pairwise_win_rate"].depends_on == ()
     for n in ("latency_p50_ms", "latency_p95_ms", "latency_max_ms"):
@@ -331,3 +346,32 @@ def test_unknown_names_raise():
         assert_selectable("nope", ["random"])
     with pytest.raises(ValueError):
         assert_selectable("pairwise_win_rate", ["nope"])
+
+
+def test_product_and_sanity_metrics_share_features_with_arms():
+    """Review fix R1: if a product or sanity metric were used to select, the dependency check
+    must fail, because the metric reads the same features (have, total, idf) as the arms."""
+    from pantrychef.eval import results as r
+
+    for name in ("makeable_at_10", "hit_rate", "recall_at_10", "mrr_at_10", "visible_rate"):
+        spec = r.METRICS[name]
+        assert {"have", "total"} <= set(spec.depends_on), name
+        promoted = r.MetricSpec("selection", spec.depends_on, "test only")
+        old = r.METRICS[name]
+        r.METRICS[name] = promoted
+        try:
+            with pytest.raises(r.NotSelectable):
+                r.assert_selectable(name, ["overlap", "random"])
+        finally:
+            r.METRICS[name] = old
+
+
+def test_every_results_file_validates():
+    """Every committed results file passes the Python validator (the Node writer is not checked
+    against the registry, so this is the one place that does it)."""
+    from pantrychef.eval import results as r
+
+    files = [p for p in (ROOT / "results").glob("*.json") if p.name != "schema.v1.json"]
+    assert files
+    for p in files:
+        r.load_result(p)

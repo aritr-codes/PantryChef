@@ -24,6 +24,16 @@ LABELS = ("MEASURED", "ESTIMATE", "HYPOTHESIS")
 ROLES = ("selection", "sanity", "product", "latency")
 SPLITS = ("dev", "test", "all")
 MAX_DIRTY_PATHS = 20
+CODE_DIRS = (
+    "pantrychef/",
+    "scripts/",
+    "tests/",
+    "web/src/",
+    "web/scripts/",
+    "data/eval/",
+    "data/ingredients/",
+    "kaggle/",
+)
 
 
 @dataclass(frozen=True)
@@ -34,11 +44,13 @@ class MetricSpec:
 
 
 METRICS: dict[str, MetricSpec] = {
-    "recall_at_10": MetricSpec("sanity", ("gold_recipe_lines",)),
-    "mrr_at_10": MetricSpec("sanity", ("gold_recipe_lines",)),
-    "makeable_at_10": MetricSpec("product", ("lines", "idf")),
-    "hit_rate": MetricSpec("product", ("lines", "idf")),
-    "visible_rate": MetricSpec("product", ("lines", "idf")),
+    # Same words as the arm features below. The pantry of a sanity metric is built from the
+    # gold lines. A product metric counts have == total. Each reads the features that arms use.
+    "recall_at_10": MetricSpec("sanity", ("gold_recipe_lines", "have", "total", "idf")),
+    "mrr_at_10": MetricSpec("sanity", ("gold_recipe_lines", "have", "total", "idf")),
+    "makeable_at_10": MetricSpec("product", ("have", "total", "idf")),
+    "hit_rate": MetricSpec("product", ("have", "total", "idf")),
+    "visible_rate": MetricSpec("product", ("have", "total", "idf", "group")),
     "pairwise_win_rate": MetricSpec("selection", (), "hand judgement, uses no model feature"),
     "latency_p50_ms": MetricSpec("latency", ()),
     "latency_p95_ms": MetricSpec("latency", ()),
@@ -55,6 +67,14 @@ ARMS: dict[str, tuple[str, ...]] = {
 
 class NotSelectable(ValueError):
     """Raised when a metric may not choose between arms."""
+
+
+def _numpy_version() -> str:
+    try:
+        import numpy
+    except ImportError:
+        return "none"
+    return numpy.__version__
 
 
 def _git(root: Path, *args: str) -> str:
@@ -85,6 +105,8 @@ def git_facts(root: Path, exclude: tuple[Path, ...] = ()) -> tuple[str, bool, li
         p = e[3:]
         if (root / p).resolve() in skip or p.startswith("results/"):
             continue
+        if e[:2] == "??" and not p.startswith(CODE_DIRS):
+            continue  # scratch files outside the code folders do not change the result
         paths.append(p)
     return commit, bool(paths), paths[:MAX_DIRTY_PATHS]
 
@@ -190,7 +212,12 @@ def validate(doc: dict[str, Any]) -> None:
             _check(c[k] in ARMS, "comparison", f"unknown arm {c[k]!r}")
         _check(c["split"] in SPLITS, "comparison", f"split must be one of {SPLITS}")
         _check(_is_num(c["diff"]), "comparison", "diff must be a number")
-        _check(isinstance(c["ci"], dict), "comparison", "ci must be an object")
+        _validate_ci(c["ci"], "comparison ci")
+        _check(
+            c.get("role") == METRICS[c["metric"]].role,
+            "comparison",
+            f"role must be {METRICS[c['metric']].role!r}",
+        )
         _check(isinstance(c.get("group", {}), dict), "comparison", "group must be an object")
 
 
@@ -236,6 +263,10 @@ def write_result(path: Path, doc: dict[str, Any], root: Path | None = None) -> d
         else m
         for m in doc.get("metrics", [])
     ]
+    out["comparisons"] = [
+        {**c, "role": METRICS[c["metric"]].role} if c.get("metric") in METRICS else c
+        for c in doc.get("comparisons", [])
+    ]
     names = list(doc.get("arms", [])) or [
         {"name": a} for a in sorted({m["arm"] for m in out["metrics"] if m.get("arm")})
     ]
@@ -246,6 +277,7 @@ def write_result(path: Path, doc: dict[str, Any], root: Path | None = None) -> d
     out["environment"] = {
         **doc.get("environment", {}),
         "python": platform.python_version(),
+        "numpy": _numpy_version(),
         "platform": f"{platform.system()} {platform.release()} ({sys.platform})",
     }
     dump_result(path, out)

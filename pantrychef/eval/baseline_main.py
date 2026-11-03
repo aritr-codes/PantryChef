@@ -8,6 +8,7 @@ sees. ``n`` is the number of pantries behind each number.
 from __future__ import annotations
 
 import argparse
+import shlex
 import sys
 from pathlib import Path
 
@@ -69,7 +70,7 @@ def run(
             clusters.setdefault(p.split, []).append(p.gold_id)
             visible.setdefault(p.split, []).append(float(p.gold_id in visible_ids(cands)))
             for arm in ARMS:
-                scored = order(arm, cands, f"{seed}:{p.gold_id}:{p.draw}")
+                scored = order(arm, cands, f"random-arm:{seed}:{p.gold_id}:{p.draw}")
                 ranked = [c.recipe_id for c in scored]
                 ht = [(c.have, c.total) for c in scored]
                 vals = {
@@ -167,7 +168,7 @@ def main(argv: list[str] | None = None) -> int:
     doc = {
         "label": "MEASURED",
         "what": "M2 rule baselines (random, overlap, idf_flat, shipped), masked pantries",
-        "command": "python -m pantrychef.eval.baseline_main " + " ".join(argv or sys.argv[1:]),
+        "command": "python -m pantrychef.eval.baseline_main " + shlex.join(argv or sys.argv[1:]),
         **out,
     }
     write_result(Path(args.out), doc)
