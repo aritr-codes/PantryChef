@@ -11,6 +11,7 @@ import { mkdirSync, writeFileSync } from "node:fs";
 import { dirname, join, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 import { chromium } from "@playwright/test";
+import { latencyMetrics, writeResult } from "./result.mjs";
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), "..", "..");
 const arg = (n, d) => {
@@ -21,7 +22,7 @@ const URL_ = arg("url", "https://aritr-codes.github.io/PantryChef/");
 const RUNS = Number(arg("runs", 15));
 const SEED = Number(arg("seed", 1));
 const PORT = Number(arg("port", 9222));
-const OUT = arg("out", "m1_latency_device.raw.json");
+const OUT = arg("out", "m1_latency_device.json");
 const ADB = process.env.ADB ?? "adb";
 const SIZES = [3, 5, 8, 12];
 const WARMUP = 2;
@@ -70,14 +71,27 @@ const bySize = {};
 const raw = {};
 const loads = [];
 const perRunFacts = [];
+let retries = 0;
 for (const size of SIZES) {
   const times = [];
   const all = [];
   for (let r = 0; r < RUNS; r++) {
     const t0 = Date.now();
-    await page.goto(URL_, { waitUntil: "load" });
     const input = page.getByLabel("Type an ingredient");
-    await input.waitFor();
+    // The phone screen can sleep, which stalls the page. Wake it and retry. Count each retry.
+    for (let attempt = 0; ; attempt++) {
+      try {
+        await page.goto(URL_, { waitUntil: "load" });
+        await input.waitFor({ timeout: 15000 });
+        break;
+      } catch (e) {
+        retries++;
+        console.error(`size ${size} run ${r}: load failed (attempt ${attempt + 1}), waking the screen`);
+        if (attempt >= 3) throw e;
+        adb("shell", "input", "keyevent", "KEYCODE_WAKEUP");
+        await page.bringToFront();
+      }
+    }
     loads.push(Date.now() - t0);
     const pick = [...NAMES].sort(() => rnd() - 0.5).slice(0, size);
     for (const n of pick) {
@@ -112,22 +126,19 @@ for (const size of SIZES) {
 const after = facts();
 adb("forward", "--remove", `tcp:${PORT}`);
 
-const out = {
-  device,
-  chrome: version,
-  before,
-  after,
-  per_size_facts: perRunFacts,
-  url: URL_,
-  commit: git("rev-parse", "HEAD"),
-  config: { runs_per_size: RUNS, warmup_runs: WARMUP, pantry_sizes: SIZES, cache: "disabled", cpu_throttle: "none", pool: NAMES },
-  seed: SEED,
-  bySize,
-  raw_ms: raw,
-  page_ready_ms: stats(loads),
+const doc = {
+  label: "MEASURED",
+  what: "Click on 'See recipes' to results painted, deployed production bundle, real Android phone in Chrome, no CPU throttle",
   command: `node web/scripts/latency-device.mjs --url ${URL_} --runs ${RUNS} --seed ${SEED} --port ${PORT} --out ${OUT}`,
+  config: { url: URL_, runs_per_size: RUNS, warmup_runs: WARMUP, pantry_sizes: SIZES, cache: "disabled", cpu_throttle: "none", pool: NAMES, input: "CDP fill and press, not touch" },
+  seed: SEED,
+  corpus_fingerprint: `deployed bundle: ${URL_}`,
+  arms: [],
+  metrics: latencyMetrics(bySize),
+  comparisons: [],
+  environment: { device, chrome: version },
+  raw: { before, after, per_size_facts: perRunFacts, raw_ms: raw, load_retries: retries, page_ready_ms: stats(loads) },
 };
-mkdirSync(join(root, "results"), { recursive: true });
-writeFileSync(join(root, "results", OUT), JSON.stringify(out, null, 2) + "\n");
-console.log(JSON.stringify({ device, chrome: version, before, after, bySize, page_ready_ms: out.page_ready_ms }, null, 2));
+writeResult(join(root, "results", OUT), doc, root);
+console.log(JSON.stringify({ device, chrome: version, before, after, bySize, page_ready_ms: stats(loads), load_retries: retries }, null, 2));
 process.exit(0);
