@@ -1,0 +1,13 @@
+{
+  "inputs": {
+    "snapshot": {
+      "path": "data/raw/wikibooks/snapshot.2026-11-03.jsonl.gz",
+      "sha256": "a1a076ab0aee385c4e01cdc904342214dfaa6b01dc35d80d32519ea625c597d2",
+      "retrieved_on": "2026-11-03"
+    },
+    "table": {
+      "path": "data/ingredients/ingredients.csv",
+      "sha256": "a896631e5b1f3bd738e15aff1460f8874347006307d8ea1270fdb709bb95ed01"
+    }
+  }
+}

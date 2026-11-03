@@ -1,25 +1,34 @@
+from pathlib import Path
+
 from pantrychef.cli import cook_command
-from pantrychef.data.clean import clean_recipes
-from pantrychef.data.store import save_recipes
-from pantrychef.ingredients.vocab import build_vocabulary
+
+FIXTURE = str(Path(__file__).parent / "fixtures" / "pack")
 
 
-def test_cook_command_outputs_ranked(tmp_path, sample_raws, capsys) -> None:
-    vocab = build_vocabulary(sample_raws, min_count=1)
-    recipes = list(clean_recipes(sample_raws, vocab))
-    store = tmp_path / "recipes.jsonl"
-    save_recipes(recipes, store)
-
-    rc = cook_command(have="flour,egg,milk,sugar", k=3, recipes_path=str(store))
+def test_cook_shows_groups_and_unlocks(capsys) -> None:
+    rc = cook_command(have="flour,eggs,milk", k=3, pack_dir=FIXTURE)
     out = capsys.readouterr().out
-
     assert rc == 0
-    assert "Pancakes" in out
-    assert "%" in out  # coverage percentage rendered
+    assert "MAKE NOW" in out and "ONE ITEM AWAY" in out
+    assert "Top unlocks:" in out and "to move" in out
+    assert "(you have" in out
 
 
-def test_cook_command_missing_store_errors(tmp_path, capsys) -> None:
-    rc = cook_command(have="flour", k=3, recipes_path=str(tmp_path / "nope.jsonl"))
+def test_cook_reports_unrecognised_names(capsys) -> None:
+    rc = cook_command(have="flour,xylophone", k=3, pack_dir=FIXTURE)
+    assert rc == 0
+    assert "Not recognised (not used): xylophone" in capsys.readouterr().out
+
+
+def test_cook_missing_pack_errors(tmp_path, capsys) -> None:
+    rc = cook_command(have="flour", k=3, pack_dir=str(tmp_path / "nope"))
     out = capsys.readouterr().out
     assert rc == 1
     assert "not found" in out.lower()
+
+
+def test_cook_says_so_when_nothing_matches(capsys) -> None:
+    rc = cook_command(have="xylophone", k=3, pack_dir=FIXTURE)
+    out = capsys.readouterr().out
+    assert rc == 0
+    assert "No matching recipes." in out

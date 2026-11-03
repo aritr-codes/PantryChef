@@ -1,0 +1,2209 @@
+{
+ "format": 1,
+ "info": {
+  "version": "fixture",
+  "commit": "fixture",
+  "corpus_fingerprint": "fixture",
+  "recipes": 47
+ },
+ "ingredients": [
+  {
+   "id": "water",
+   "name": "water",
+   "staple": true,
+   "idf": 1.6625477377480486
+  },
+  {
+   "id": "salt",
+   "name": "salt",
+   "staple": true,
+   "idf": 1.2840155119994725
+  },
+  {
+   "id": "black_pepper",
+   "name": "black pepper",
+   "staple": true,
+   "idf": 3.1986731175506815
+  },
+  {
+   "id": "vegetable_oil",
+   "name": "vegetable oil",
+   "staple": true,
+   "idf": 2.1785324443240666
+  },
+  {
+   "id": "flour",
+   "name": "flour",
+   "staple": false,
+   "idf": 1.4718165345580527
+  },
+  {
+   "id": "sugar",
+   "name": "sugar",
+   "staple": false,
+   "idf": 1.8281271133989299
+  },
+  {
+   "id": "butter",
+   "name": "butter",
+   "staple": false,
+   "idf": 1.3705460041517514
+  },
+  {
+   "id": "margarine",
+   "name": "margarine",
+   "staple": false,
+   "idf": 2.8134107167600364
+  },
+  {
+   "id": "egg",
+   "name": "egg",
+   "staple": false,
+   "idf": 1.4190841839428814
+  },
+  {
+   "id": "milk",
+   "name": "milk",
+   "staple": false,
+   "idf": 1.5926307941177191
+  },
+  {
+   "id": "onion",
+   "name": "onion",
+   "staple": false,
+   "idf": 1.5926307941177191
+  },
+  {
+   "id": "garlic",
+   "name": "garlic",
+   "staple": false,
+   "idf": 1.8281271133989299
+  },
+  {
+   "id": "tomato",
+   "name": "tomato",
+   "staple": false,
+   "idf": 2.8134107167600364
+  },
+  {
+   "id": "pasta",
+   "name": "pasta",
+   "staple": false,
+   "idf": 2.545531271604435
+  },
+  {
+   "id": "cheese",
+   "name": "cheese",
+   "staple": false,
+   "idf": 2.545531271604435
+  },
+  {
+   "id": "rice",
+   "name": "rice",
+   "staple": false,
+   "idf": 2.1785324443240666
+  },
+  {
+   "id": "chicken",
+   "name": "chicken",
+   "staple": false,
+   "idf": 2.545531271604435
+  },
+  {
+   "id": "potato",
+   "name": "potato",
+   "staple": false,
+   "idf": 2.1785324443240666
+  },
+  {
+   "id": "parsley",
+   "name": "parsley",
+   "staple": false,
+   "idf": 2.341805806147327
+  },
+  {
+   "id": "basil",
+   "name": "basil",
+   "staple": false,
+   "idf": 2.8134107167600364
+  },
+  {
+   "id": "lemon",
+   "name": "lemon",
+   "staple": false,
+   "idf": 2.1785324443240666
+  },
+  {
+   "id": "honey",
+   "name": "honey",
+   "staple": false,
+   "idf": 2.545531271604435
+  },
+  {
+   "id": "oats",
+   "name": "oats",
+   "staple": false,
+   "idf": 2.8134107167600364
+  },
+  {
+   "id": "banana",
+   "name": "banana",
+   "staple": false,
+   "idf": 3.1986731175506815
+  },
+  {
+   "id": "yeast",
+   "name": "yeast",
+   "staple": false,
+   "idf": 3.1986731175506815
+  },
+  {
+   "id": "bread",
+   "name": "bread",
+   "staple": false,
+   "idf": 2.8134107167600364
+  },
+  {
+   "id": "beef",
+   "name": "beef",
+   "staple": false,
+   "idf": 2.8134107167600364
+  },
+  {
+   "id": "carrot",
+   "name": "carrot",
+   "staple": false,
+   "idf": 2.043073897508961
+  },
+  {
+   "id": "celery",
+   "name": "celery",
+   "staple": false,
+   "idf": 2.545531271604435
+  },
+  {
+   "id": "olive_oil",
+   "name": "olive oil",
+   "staple": false,
+   "idf": 1.927891643552635
+  }
+ ],
+ "keys": {
+  "water": "water",
+  "salt": "salt",
+  "black pepper": "black_pepper",
+  "vegetable oil": "vegetable_oil",
+  "flour": "flour",
+  "sugar": "sugar",
+  "butter": "butter",
+  "margarine": "margarine",
+  "egg": "egg",
+  "milk": "milk",
+  "onion": "onion",
+  "garlic": "garlic",
+  "tomato": "tomato",
+  "pasta": "pasta",
+  "cheese": "cheese",
+  "rice": "rice",
+  "chicken": "chicken",
+  "potato": "potato",
+  "parsley": "parsley",
+  "basil": "basil",
+  "lemon": "lemon",
+  "honey": "honey",
+  "oats": "oats",
+  "banana": "banana",
+  "yeast": "yeast",
+  "bread": "bread",
+  "beef": "beef",
+  "carrot": "carrot",
+  "celery": "celery",
+  "olive oil": "olive_oil"
+ },
+ "recipes": [
+  {
+   "id": "fx-001",
+   "title": "Pancakes",
+   "page": "Cookbook:Pancakes",
+   "rev": 1001,
+   "lines": [
+    {
+     "t": "flour",
+     "o": [
+      "flour"
+     ],
+     "opt": false,
+     "r": true
+    },
+    {
+     "t": "egg",
+     "o": [
+      "egg"
+     ],
+     "opt": false,
+     "r": true
+    },
+    {
+     "t": "milk",
+     "o": [
+      "milk"
+     ],
+     "opt": false,
+     "r": true
+    },
+    {
+     "t": "sugar",
+     "o": [
+      "sugar"
+     ],
+     "opt": false,
+     "r": true
+    },
+    {
+     "t": "butter",
+     "o": [
+      "butter"
+     ],
+     "opt": false,
+     "r": true
+    },
+    {
+     "t": "salt",
+     "o": [
+      "salt"
+     ],
+     "opt": false,
+     "r": true
+    }
+   ]
+  },
+  {
+   "id": "fx-002",
+   "title": "Omelette",
+   "page": "Cookbook:Omelette",
+   "rev": 1002,
+   "lines": [
+    {
+     "t": "egg",
+     "o": [
+      "egg"
+     ],
+     "opt": false,
+     "r": true
+    },
+    {
+     "t": "milk",
+     "o": [
+      "milk"
+     ],
+     "opt": false,
+     "r": true
+    },
+    {
+     "t": "salt",
+     "o": [
+      "salt"
+     ],
+     "opt": false,
+     "r": true
+    },
+    {
+     "t": "parsley",
+     "o": [
+      "parsley"
+     ],
+     "opt": true,
+     "r": true
+    }
+   ]
+  },
+  {
+   "id": "fx-003",
+   "title": "Plain Bread",
+   "page": "Cookbook:Plain Bread",
+   "rev": 1003,
+   "lines": [
+    {
+     "t": "flour",
+     "o": [
+      "flour"
+     ],
+     "opt": false,
+     "r": true
+    },
+    {
+     "t": "yeast",
+     "o": [
+      "yeast"
+     ],
+     "opt": false,
+     "r": true
+    },
+    {
+     "t": "water",
+     "o": [
+      "water"
+     ],
+     "opt": false,
+     "r": true
+    },
+    {
+     "t": "salt",
+     "o": [
+      "salt"
+     ],
+     "opt": false,
+     "r": true
+    }
+   ]
+  },
+  {
+   "id": "fx-004",
+   "title": "Butter Cookies",
+   "page": "Cookbook:Butter Cookies",
+   "rev": 1004,
+   "lines": [
+    {
+     "t": "flour",
+     "o": [
+      "flour"
+     ],
+     "opt": false,
+     "r": true
+    },
+    {
+     "t": "sugar",
+     "o": [
+      "sugar"
+     ],
+     "opt": false,
+     "r": true
+    },
+    {
+     "t": "butter|margarine",
+     "o": [
+      "butter",
+      "margarine"
+     ],
+     "opt": false,
+     "r": true
+    },
+    {
+     "t": "egg",
+     "o": [
+      "egg"
+     ],
+     "opt": false,
+     "r": true
+    }
+   ]
+  },
+  {
+   "id": "fx-005",
+   "title": "Margarine Cake",
+   "page": "Cookbook:Margarine Cake",
+   "rev": 1005,
+   "lines": [
+    {
+     "t": "flour",
+     "o": [
+      "flour"
+     ],
+     "opt": false,
+     "r": true
+    },
+    {
+     "t": "sugar",
+     "o": [
+      "sugar"
+     ],
+     "opt": false,
+     "r": true
+    },
+    {
+     "t": "margarine",
+     "o": [
+      "margarine"
+     ],
+     "opt": false,
+     "r": true
+    },
+    {
+     "t": "egg",
+     "o": [
+      "egg"
+     ],
+     "opt": false,
+     "r": true
+    },
+    {
+     "t": "milk",
+     "o": [
+      "milk"
+     ],
+     "opt": false,
+     "r": true
+    }
+   ]
+  },
+  {
+   "id": "fx-006",
+   "title": "Tomato Pasta",
+   "page": "Cookbook:Tomato Pasta",
+   "rev": 1006,
+   "lines": [
+    {
+     "t": "pasta",
+     "o": [
+      "pasta"
+     ],
+     "opt": false,
+     "r": true
+    },
+    {
+     "t": "tomato",
+     "o": [
+      "tomato"
+     ],
+     "opt": false,
+     "r": true
+    },
+    {
+     "t": "garlic",
+     "o": [
+      "garlic"
+     ],
+     "opt": false,
+     "r": true
+    },
+    {
+     "t": "olive_oil",
+     "o": [
+      "olive_oil"
+     ],
+     "opt": false,
+     "r": true
+    },
+    {
+     "t": "basil",
+     "o": [
+      "basil"
+     ],
+     "opt": true,
+     "r": true
+    },
+    {
+     "t": "salt",
+     "o": [
+      "salt"
+     ],
+     "opt": false,
+     "r": true
+    }
+   ]
+  },
+  {
+   "id": "fx-007",
+   "title": "Garlic Pasta",
+   "page": "Cookbook:Garlic Pasta",
+   "rev": 1007,
+   "lines": [
+    {
+     "t": "pasta",
+     "o": [
+      "pasta"
+     ],
+     "opt": false,
+     "r": true
+    },
+    {
+     "t": "garlic",
+     "o": [
+      "garlic"
+     ],
+     "opt": false,
+     "r": true
+    },
+    {
+     "t": "vegetable_oil|olive_oil",
+     "o": [
+      "vegetable_oil",
+      "olive_oil"
+     ],
+     "opt": false,
+     "r": true
+    },
+    {
+     "t": "parsley",
+     "o": [
+      "parsley"
+     ],
+     "opt": true,
+     "r": true
+    }
+   ]
+  },
+  {
+   "id": "fx-008",
+   "title": "Cheese Pasta",
+   "page": "Cookbook:Cheese Pasta",
+   "rev": 1008,
+   "lines": [
+    {
+     "t": "pasta",
+     "o": [
+      "pasta"
+     ],
+     "opt": false,
+     "r": true
+    },
+    {
+     "t": "cheese",
+     "o": [
+      "cheese"
+     ],
+     "opt": false,
+     "r": true
+    },
+    {
+     "t": "butter",
+     "o": [
+      "butter"
+     ],
+     "opt": false,
+     "r": true
+    },
+    {
+     "t": "black_pepper",
+     "o": [
+      "black_pepper"
+     ],
+     "opt": false,
+     "r": true
+    }
+   ]
+  },
+  {
+   "id": "fx-009",
+   "title": "Fried Rice",
+   "page": "Cookbook:Fried Rice",
+   "rev": 1009,
+   "lines": [
+    {
+     "t": "rice",
+     "o": [
+      "rice"
+     ],
+     "opt": false,
+     "r": true
+    },
+    {
+     "t": "egg",
+     "o": [
+      "egg"
+     ],
+     "opt": false,
+     "r": true
+    },
+    {
+     "t": "onion",
+     "o": [
+      "onion"
+     ],
+     "opt": false,
+     "r": true
+    },
+    {
+     "t": "carrot",
+     "o": [
+      "carrot"
+     ],
+     "opt": false,
+     "r": true
+    },
+    {
+     "t": "vegetable_oil",
+     "o": [
+      "vegetable_oil"
+     ],
+     "opt": false,
+     "r": true
+    },
+    {
+     "t": "salt",
+     "o": [
+      "salt"
+     ],
+     "opt": false,
+     "r": true
+    }
+   ]
+  },
+  {
+   "id": "fx-010",
+   "title": "Chicken Rice",
+   "page": "Cookbook:Chicken Rice",
+   "rev": 1010,
+   "lines": [
+    {
+     "t": "chicken",
+     "o": [
+      "chicken"
+     ],
+     "opt": false,
+     "r": true
+    },
+    {
+     "t": "rice",
+     "o": [
+      "rice"
+     ],
+     "opt": false,
+     "r": true
+    },
+    {
+     "t": "onion",
+     "o": [
+      "onion"
+     ],
+     "opt": false,
+     "r": true
+    },
+    {
+     "t": "garlic",
+     "o": [
+      "garlic"
+     ],
+     "opt": false,
+     "r": true
+    },
+    {
+     "t": "salt",
+     "o": [
+      "salt"
+     ],
+     "opt": false,
+     "r": true
+    }
+   ]
+  },
+  {
+   "id": "fx-011",
+   "title": "Roast Chicken",
+   "page": "Cookbook:Roast Chicken",
+   "rev": 1011,
+   "lines": [
+    {
+     "t": "chicken",
+     "o": [
+      "chicken"
+     ],
+     "opt": false,
+     "r": true
+    },
+    {
+     "t": "lemon",
+     "o": [
+      "lemon"
+     ],
+     "opt": false,
+     "r": true
+    },
+    {
+     "t": "garlic",
+     "o": [
+      "garlic"
+     ],
+     "opt": false,
+     "r": true
+    },
+    {
+     "t": "butter",
+     "o": [
+      "butter"
+     ],
+     "opt": false,
+     "r": true
+    },
+    {
+     "t": "salt",
+     "o": [
+      "salt"
+     ],
+     "opt": false,
+     "r": true
+    },
+    {
+     "t": "black_pepper",
+     "o": [
+      "black_pepper"
+     ],
+     "opt": false,
+     "r": true
+    }
+   ]
+  },
+  {
+   "id": "fx-012",
+   "title": "Mashed Potato",
+   "page": "Cookbook:Mashed Potato",
+   "rev": 1012,
+   "lines": [
+    {
+     "t": "potato",
+     "o": [
+      "potato"
+     ],
+     "opt": false,
+     "r": true
+    },
+    {
+     "t": "butter",
+     "o": [
+      "butter"
+     ],
+     "opt": false,
+     "r": true
+    },
+    {
+     "t": "milk",
+     "o": [
+      "milk"
+     ],
+     "opt": false,
+     "r": true
+    },
+    {
+     "t": "salt",
+     "o": [
+      "salt"
+     ],
+     "opt": false,
+     "r": true
+    }
+   ]
+  },
+  {
+   "id": "fx-013",
+   "title": "Potato Soup",
+   "page": "Cookbook:Potato Soup",
+   "rev": 1013,
+   "lines": [
+    {
+     "t": "potato",
+     "o": [
+      "potato"
+     ],
+     "opt": false,
+     "r": true
+    },
+    {
+     "t": "onion",
+     "o": [
+      "onion"
+     ],
+     "opt": false,
+     "r": true
+    },
+    {
+     "t": "celery",
+     "o": [
+      "celery"
+     ],
+     "opt": false,
+     "r": true
+    },
+    {
+     "t": "milk",
+     "o": [
+      "milk"
+     ],
+     "opt": false,
+     "r": true
+    },
+    {
+     "t": "butter",
+     "o": [
+      "butter"
+     ],
+     "opt": false,
+     "r": true
+    }
+   ]
+  },
+  {
+   "id": "fx-014",
+   "title": "Potato Omelette",
+   "page": "Cookbook:Potato Omelette",
+   "rev": 1014,
+   "lines": [
+    {
+     "t": "potato",
+     "o": [
+      "potato"
+     ],
+     "opt": false,
+     "r": true
+    },
+    {
+     "t": "egg",
+     "o": [
+      "egg"
+     ],
+     "opt": false,
+     "r": true
+    },
+    {
+     "t": "onion",
+     "o": [
+      "onion"
+     ],
+     "opt": false,
+     "r": true
+    },
+    {
+     "t": "olive_oil",
+     "o": [
+      "olive_oil"
+     ],
+     "opt": false,
+     "r": true
+    }
+   ]
+  },
+  {
+   "id": "fx-015",
+   "title": "Beef Stew",
+   "page": "Cookbook:Beef Stew",
+   "rev": 1015,
+   "lines": [
+    {
+     "t": "beef",
+     "o": [
+      "beef"
+     ],
+     "opt": false,
+     "r": true
+    },
+    {
+     "t": "potato",
+     "o": [
+      "potato"
+     ],
+     "opt": false,
+     "r": true
+    },
+    {
+     "t": "carrot",
+     "o": [
+      "carrot"
+     ],
+     "opt": false,
+     "r": true
+    },
+    {
+     "t": "onion",
+     "o": [
+      "onion"
+     ],
+     "opt": false,
+     "r": true
+    },
+    {
+     "t": "celery",
+     "o": [
+      "celery"
+     ],
+     "opt": false,
+     "r": true
+    },
+    {
+     "t": "water",
+     "o": [
+      "water"
+     ],
+     "opt": false,
+     "r": true
+    },
+    {
+     "t": "salt",
+     "o": [
+      "salt"
+     ],
+     "opt": false,
+     "r": true
+    }
+   ]
+  },
+  {
+   "id": "fx-016",
+   "title": "Beef Rice",
+   "page": "Cookbook:Beef Rice",
+   "rev": 1016,
+   "lines": [
+    {
+     "t": "beef",
+     "o": [
+      "beef"
+     ],
+     "opt": false,
+     "r": true
+    },
+    {
+     "t": "rice",
+     "o": [
+      "rice"
+     ],
+     "opt": false,
+     "r": true
+    },
+    {
+     "t": "onion",
+     "o": [
+      "onion"
+     ],
+     "opt": false,
+     "r": true
+    }
+   ]
+  },
+  {
+   "id": "fx-017",
+   "title": "Banana Pancakes",
+   "page": "Cookbook:Banana Pancakes",
+   "rev": 1017,
+   "lines": [
+    {
+     "t": "banana",
+     "o": [
+      "banana"
+     ],
+     "opt": false,
+     "r": true
+    },
+    {
+     "t": "flour",
+     "o": [
+      "flour"
+     ],
+     "opt": false,
+     "r": true
+    },
+    {
+     "t": "egg",
+     "o": [
+      "egg"
+     ],
+     "opt": false,
+     "r": true
+    },
+    {
+     "t": "milk",
+     "o": [
+      "milk"
+     ],
+     "opt": false,
+     "r": true
+    }
+   ]
+  },
+  {
+   "id": "fx-018",
+   "title": "Banana Oats",
+   "page": "Cookbook:Banana Oats",
+   "rev": 1018,
+   "lines": [
+    {
+     "t": "banana",
+     "o": [
+      "banana"
+     ],
+     "opt": false,
+     "r": true
+    },
+    {
+     "t": "oats",
+     "o": [
+      "oats"
+     ],
+     "opt": false,
+     "r": true
+    },
+    {
+     "t": "milk",
+     "o": [
+      "milk"
+     ],
+     "opt": false,
+     "r": true
+    },
+    {
+     "t": "honey",
+     "o": [
+      "honey"
+     ],
+     "opt": false,
+     "r": true
+    }
+   ]
+  },
+  {
+   "id": "fx-019",
+   "title": "Honey Oats",
+   "page": "Cookbook:Honey Oats",
+   "rev": 1019,
+   "lines": [
+    {
+     "t": "oats",
+     "o": [
+      "oats"
+     ],
+     "opt": false,
+     "r": true
+    },
+    {
+     "t": "honey",
+     "o": [
+      "honey"
+     ],
+     "opt": false,
+     "r": true
+    },
+    {
+     "t": "milk",
+     "o": [
+      "milk"
+     ],
+     "opt": false,
+     "r": true
+    }
+   ]
+  },
+  {
+   "id": "fx-020",
+   "title": "Lemon Cake",
+   "page": "Cookbook:Lemon Cake",
+   "rev": 1020,
+   "lines": [
+    {
+     "t": "flour",
+     "o": [
+      "flour"
+     ],
+     "opt": false,
+     "r": true
+    },
+    {
+     "t": "sugar",
+     "o": [
+      "sugar"
+     ],
+     "opt": false,
+     "r": true
+    },
+    {
+     "t": "lemon",
+     "o": [
+      "lemon"
+     ],
+     "opt": false,
+     "r": true
+    },
+    {
+     "t": "egg",
+     "o": [
+      "egg"
+     ],
+     "opt": false,
+     "r": true
+    },
+    {
+     "t": "butter",
+     "o": [
+      "butter"
+     ],
+     "opt": false,
+     "r": true
+    }
+   ]
+  },
+  {
+   "id": "fx-021",
+   "title": "Lemonade",
+   "page": "Cookbook:Lemonade",
+   "rev": 1021,
+   "lines": [
+    {
+     "t": "lemon",
+     "o": [
+      "lemon"
+     ],
+     "opt": false,
+     "r": true
+    },
+    {
+     "t": "sugar",
+     "o": [
+      "sugar"
+     ],
+     "opt": false,
+     "r": true
+    },
+    {
+     "t": "water",
+     "o": [
+      "water"
+     ],
+     "opt": false,
+     "r": true
+    }
+   ]
+  },
+  {
+   "id": "fx-022",
+   "title": "Garlic Bread",
+   "page": "Cookbook:Garlic Bread",
+   "rev": 1022,
+   "lines": [
+    {
+     "t": "bread",
+     "o": [
+      "bread"
+     ],
+     "opt": false,
+     "r": true
+    },
+    {
+     "t": "garlic",
+     "o": [
+      "garlic"
+     ],
+     "opt": false,
+     "r": true
+    },
+    {
+     "t": "butter",
+     "o": [
+      "butter"
+     ],
+     "opt": false,
+     "r": true
+    },
+    {
+     "t": "parsley",
+     "o": [
+      "parsley"
+     ],
+     "opt": true,
+     "r": true
+    }
+   ]
+  },
+  {
+   "id": "fx-023",
+   "title": "Cheese Toast",
+   "page": "Cookbook:Cheese Toast",
+   "rev": 1023,
+   "lines": [
+    {
+     "t": "bread",
+     "o": [
+      "bread"
+     ],
+     "opt": false,
+     "r": true
+    },
+    {
+     "t": "cheese",
+     "o": [
+      "cheese"
+     ],
+     "opt": false,
+     "r": true
+    }
+   ]
+  },
+  {
+   "id": "fx-024",
+   "title": "Egg Toast",
+   "page": "Cookbook:Egg Toast",
+   "rev": 1024,
+   "lines": [
+    {
+     "t": "bread",
+     "o": [
+      "bread"
+     ],
+     "opt": false,
+     "r": true
+    },
+    {
+     "t": "egg",
+     "o": [
+      "egg"
+     ],
+     "opt": false,
+     "r": true
+    },
+    {
+     "t": "butter",
+     "o": [
+      "butter"
+     ],
+     "opt": false,
+     "r": true
+    }
+   ]
+  },
+  {
+   "id": "fx-025",
+   "title": "Tomato Salad",
+   "page": "Cookbook:Tomato Salad",
+   "rev": 1025,
+   "lines": [
+    {
+     "t": "tomato",
+     "o": [
+      "tomato"
+     ],
+     "opt": false,
+     "r": true
+    },
+    {
+     "t": "onion",
+     "o": [
+      "onion"
+     ],
+     "opt": false,
+     "r": true
+    },
+    {
+     "t": "olive_oil",
+     "o": [
+      "olive_oil"
+     ],
+     "opt": false,
+     "r": true
+    },
+    {
+     "t": "basil",
+     "o": [
+      "basil"
+     ],
+     "opt": true,
+     "r": true
+    },
+    {
+     "t": "salt",
+     "o": [
+      "salt"
+     ],
+     "opt": false,
+     "r": true
+    }
+   ]
+  },
+  {
+   "id": "fx-026",
+   "title": "Tomato Soup",
+   "page": "Cookbook:Tomato Soup",
+   "rev": 1026,
+   "lines": [
+    {
+     "t": "tomato",
+     "o": [
+      "tomato"
+     ],
+     "opt": false,
+     "r": true
+    },
+    {
+     "t": "onion",
+     "o": [
+      "onion"
+     ],
+     "opt": false,
+     "r": true
+    },
+    {
+     "t": "garlic",
+     "o": [
+      "garlic"
+     ],
+     "opt": false,
+     "r": true
+    },
+    {
+     "t": "butter|olive_oil",
+     "o": [
+      "butter",
+      "olive_oil"
+     ],
+     "opt": false,
+     "r": true
+    },
+    {
+     "t": "water",
+     "o": [
+      "water"
+     ],
+     "opt": false,
+     "r": true
+    },
+    {
+     "t": "salt",
+     "o": [
+      "salt"
+     ],
+     "opt": false,
+     "r": true
+    }
+   ]
+  },
+  {
+   "id": "fx-027",
+   "title": "Mystery Stew",
+   "page": "Cookbook:Mystery Stew",
+   "rev": 1027,
+   "lines": [
+    {
+     "t": "beef",
+     "o": [
+      "beef"
+     ],
+     "opt": false,
+     "r": true
+    },
+    {
+     "t": "secret spice mix",
+     "o": [],
+     "opt": false,
+     "r": false
+    },
+    {
+     "t": "onion",
+     "o": [
+      "onion"
+     ],
+     "opt": false,
+     "r": true
+    },
+    {
+     "t": "carrot",
+     "o": [
+      "carrot"
+     ],
+     "opt": false,
+     "r": true
+    }
+   ]
+  },
+  {
+   "id": "fx-028",
+   "title": "Mystery Cake",
+   "page": "Cookbook:Mystery Cake",
+   "rev": 1028,
+   "lines": [
+    {
+     "t": "flour",
+     "o": [
+      "flour"
+     ],
+     "opt": false,
+     "r": true
+    },
+    {
+     "t": "sugar",
+     "o": [
+      "sugar"
+     ],
+     "opt": false,
+     "r": true
+    },
+    {
+     "t": "special glaze",
+     "o": [],
+     "opt": false,
+     "r": false
+    },
+    {
+     "t": "egg",
+     "o": [
+      "egg"
+     ],
+     "opt": false,
+     "r": true
+    }
+   ]
+  },
+  {
+   "id": "fx-029",
+   "title": "Carrot Soup",
+   "page": "Cookbook:Carrot Soup",
+   "rev": 1029,
+   "lines": [
+    {
+     "t": "carrot",
+     "o": [
+      "carrot"
+     ],
+     "opt": false,
+     "r": true
+    },
+    {
+     "t": "onion",
+     "o": [
+      "onion"
+     ],
+     "opt": false,
+     "r": true
+    },
+    {
+     "t": "water",
+     "o": [
+      "water"
+     ],
+     "opt": false,
+     "r": true
+    },
+    {
+     "t": "salt",
+     "o": [
+      "salt"
+     ],
+     "opt": false,
+     "r": true
+    },
+    {
+     "t": "bouillon of some kind",
+     "o": [],
+     "opt": false,
+     "r": false
+    }
+   ]
+  },
+  {
+   "id": "fx-030",
+   "title": "Cheese Omelette",
+   "page": "Cookbook:Cheese Omelette",
+   "rev": 1030,
+   "lines": [
+    {
+     "t": "egg",
+     "o": [
+      "egg"
+     ],
+     "opt": false,
+     "r": true
+    },
+    {
+     "t": "cheese",
+     "o": [
+      "cheese"
+     ],
+     "opt": false,
+     "r": true
+    },
+    {
+     "t": "milk",
+     "o": [
+      "milk"
+     ],
+     "opt": false,
+     "r": true
+    },
+    {
+     "t": "butter",
+     "o": [
+      "butter"
+     ],
+     "opt": false,
+     "r": true
+    }
+   ]
+  },
+  {
+   "id": "fx-031",
+   "title": "Cheese Sauce",
+   "page": "Cookbook:Cheese Sauce",
+   "rev": 1031,
+   "lines": [
+    {
+     "t": "cheese",
+     "o": [
+      "cheese"
+     ],
+     "opt": false,
+     "r": true
+    },
+    {
+     "t": "milk",
+     "o": [
+      "milk"
+     ],
+     "opt": false,
+     "r": true
+    },
+    {
+     "t": "butter",
+     "o": [
+      "butter"
+     ],
+     "opt": false,
+     "r": true
+    },
+    {
+     "t": "flour",
+     "o": [
+      "flour"
+     ],
+     "opt": false,
+     "r": true
+    }
+   ]
+  },
+  {
+   "id": "fx-032",
+   "title": "Rice Pudding",
+   "page": "Cookbook:Rice Pudding",
+   "rev": 1032,
+   "lines": [
+    {
+     "t": "rice",
+     "o": [
+      "rice"
+     ],
+     "opt": false,
+     "r": true
+    },
+    {
+     "t": "milk",
+     "o": [
+      "milk"
+     ],
+     "opt": false,
+     "r": true
+    },
+    {
+     "t": "sugar",
+     "o": [
+      "sugar"
+     ],
+     "opt": false,
+     "r": true
+    },
+    {
+     "t": "lemon",
+     "o": [
+      "lemon"
+     ],
+     "opt": true,
+     "r": true
+    }
+   ]
+  },
+  {
+   "id": "fx-033",
+   "title": "Oat Cookies",
+   "page": "Cookbook:Oat Cookies",
+   "rev": 1033,
+   "lines": [
+    {
+     "t": "oats",
+     "o": [
+      "oats"
+     ],
+     "opt": false,
+     "r": true
+    },
+    {
+     "t": "flour",
+     "o": [
+      "flour"
+     ],
+     "opt": false,
+     "r": true
+    },
+    {
+     "t": "sugar",
+     "o": [
+      "sugar"
+     ],
+     "opt": false,
+     "r": true
+    },
+    {
+     "t": "butter",
+     "o": [
+      "butter"
+     ],
+     "opt": false,
+     "r": true
+    },
+    {
+     "t": "egg",
+     "o": [
+      "egg"
+     ],
+     "opt": false,
+     "r": true
+    }
+   ]
+  },
+  {
+   "id": "fx-034",
+   "title": "Honey Bread",
+   "page": "Cookbook:Honey Bread",
+   "rev": 1034,
+   "lines": [
+    {
+     "t": "flour",
+     "o": [
+      "flour"
+     ],
+     "opt": false,
+     "r": true
+    },
+    {
+     "t": "yeast",
+     "o": [
+      "yeast"
+     ],
+     "opt": false,
+     "r": true
+    },
+    {
+     "t": "honey",
+     "o": [
+      "honey"
+     ],
+     "opt": false,
+     "r": true
+    },
+    {
+     "t": "water",
+     "o": [
+      "water"
+     ],
+     "opt": false,
+     "r": true
+    },
+    {
+     "t": "salt",
+     "o": [
+      "salt"
+     ],
+     "opt": false,
+     "r": true
+    }
+   ]
+  },
+  {
+   "id": "fx-035",
+   "title": "Plain Pasta",
+   "page": "Cookbook:Plain Pasta",
+   "rev": 1035,
+   "lines": [
+    {
+     "t": "pasta",
+     "o": [
+      "pasta"
+     ],
+     "opt": false,
+     "r": true
+    },
+    {
+     "t": "salt",
+     "o": [
+      "salt"
+     ],
+     "opt": false,
+     "r": true
+    },
+    {
+     "t": "water",
+     "o": [
+      "water"
+     ],
+     "opt": false,
+     "r": true
+    }
+   ]
+  },
+  {
+   "id": "fx-036",
+   "title": "Flour Paste",
+   "page": "Cookbook:Flour Paste",
+   "rev": 1036,
+   "lines": [
+    {
+     "t": "flour",
+     "o": [
+      "flour"
+     ],
+     "opt": false,
+     "r": true
+    },
+    {
+     "t": "water",
+     "o": [
+      "water"
+     ],
+     "opt": false,
+     "r": true
+    }
+   ]
+  },
+  {
+   "id": "fx-037",
+   "title": "Salt Dough",
+   "page": "Cookbook:Salt Dough",
+   "rev": 1037,
+   "lines": [
+    {
+     "t": "flour",
+     "o": [
+      "flour"
+     ],
+     "opt": false,
+     "r": true
+    },
+    {
+     "t": "water",
+     "o": [
+      "water"
+     ],
+     "opt": false,
+     "r": true
+    },
+    {
+     "t": "salt",
+     "o": [
+      "salt"
+     ],
+     "opt": false,
+     "r": true
+    },
+    {
+     "t": "vegetable_oil",
+     "o": [
+      "vegetable_oil"
+     ],
+     "opt": false,
+     "r": true
+    }
+   ]
+  },
+  {
+   "id": "fx-038",
+   "title": "Basil Chicken",
+   "page": "Cookbook:Basil Chicken",
+   "rev": 1038,
+   "lines": [
+    {
+     "t": "chicken",
+     "o": [
+      "chicken"
+     ],
+     "opt": false,
+     "r": true
+    },
+    {
+     "t": "basil",
+     "o": [
+      "basil"
+     ],
+     "opt": false,
+     "r": true
+    },
+    {
+     "t": "garlic",
+     "o": [
+      "garlic"
+     ],
+     "opt": false,
+     "r": true
+    },
+    {
+     "t": "olive_oil",
+     "o": [
+      "olive_oil"
+     ],
+     "opt": false,
+     "r": true
+    },
+    {
+     "t": "lemon",
+     "o": [
+      "lemon"
+     ],
+     "opt": true,
+     "r": true
+    }
+   ]
+  },
+  {
+   "id": "fx-039",
+   "title": "Celery Salad",
+   "page": "Cookbook:Celery Salad",
+   "rev": 1039,
+   "lines": [
+    {
+     "t": "celery",
+     "o": [
+      "celery"
+     ],
+     "opt": false,
+     "r": true
+    },
+    {
+     "t": "carrot",
+     "o": [
+      "carrot"
+     ],
+     "opt": false,
+     "r": true
+    },
+    {
+     "t": "lemon|honey",
+     "o": [
+      "lemon",
+      "honey"
+     ],
+     "opt": false,
+     "r": true
+    },
+    {
+     "t": "olive_oil",
+     "o": [
+      "olive_oil"
+     ],
+     "opt": false,
+     "r": true
+    }
+   ]
+  },
+  {
+   "id": "fx-040",
+   "title": "Carrot Cake",
+   "page": "Cookbook:Carrot Cake",
+   "rev": 1040,
+   "lines": [
+    {
+     "t": "carrot",
+     "o": [
+      "carrot"
+     ],
+     "opt": false,
+     "r": true
+    },
+    {
+     "t": "flour",
+     "o": [
+      "flour"
+     ],
+     "opt": false,
+     "r": true
+    },
+    {
+     "t": "sugar",
+     "o": [
+      "sugar"
+     ],
+     "opt": false,
+     "r": true
+    },
+    {
+     "t": "egg",
+     "o": [
+      "egg"
+     ],
+     "opt": false,
+     "r": true
+    },
+    {
+     "t": "vegetable_oil",
+     "o": [
+      "vegetable_oil"
+     ],
+     "opt": false,
+     "r": true
+    }
+   ]
+  },
+  {
+   "id": "fx-041",
+   "title": "Onion Rings",
+   "page": "Cookbook:Onion Rings",
+   "rev": 1041,
+   "lines": [
+    {
+     "t": "onion",
+     "o": [
+      "onion"
+     ],
+     "opt": false,
+     "r": true
+    },
+    {
+     "t": "flour",
+     "o": [
+      "flour"
+     ],
+     "opt": false,
+     "r": true
+    },
+    {
+     "t": "egg",
+     "o": [
+      "egg"
+     ],
+     "opt": false,
+     "r": true
+    },
+    {
+     "t": "milk",
+     "o": [
+      "milk"
+     ],
+     "opt": false,
+     "r": true
+    },
+    {
+     "t": "vegetable_oil",
+     "o": [
+      "vegetable_oil"
+     ],
+     "opt": false,
+     "r": true
+    }
+   ]
+  },
+  {
+   "id": "fx-042",
+   "title": "Chicken Soup",
+   "page": "Cookbook:Chicken Soup",
+   "rev": 1042,
+   "lines": [
+    {
+     "t": "chicken",
+     "o": [
+      "chicken"
+     ],
+     "opt": false,
+     "r": true
+    },
+    {
+     "t": "carrot",
+     "o": [
+      "carrot"
+     ],
+     "opt": false,
+     "r": true
+    },
+    {
+     "t": "celery",
+     "o": [
+      "celery"
+     ],
+     "opt": false,
+     "r": true
+    },
+    {
+     "t": "onion",
+     "o": [
+      "onion"
+     ],
+     "opt": false,
+     "r": true
+    },
+    {
+     "t": "water",
+     "o": [
+      "water"
+     ],
+     "opt": false,
+     "r": true
+    },
+    {
+     "t": "salt",
+     "o": [
+      "salt"
+     ],
+     "opt": false,
+     "r": true
+    }
+   ]
+  },
+  {
+   "id": "fx-043",
+   "title": "Garlic Potatoes",
+   "page": "Cookbook:Garlic Potatoes",
+   "rev": 1043,
+   "lines": [
+    {
+     "t": "potato",
+     "o": [
+      "potato"
+     ],
+     "opt": false,
+     "r": true
+    },
+    {
+     "t": "garlic",
+     "o": [
+      "garlic"
+     ],
+     "opt": false,
+     "r": true
+    },
+    {
+     "t": "butter|margarine|olive_oil",
+     "o": [
+      "butter",
+      "margarine",
+      "olive_oil"
+     ],
+     "opt": false,
+     "r": true
+    },
+    {
+     "t": "parsley",
+     "o": [
+      "parsley"
+     ],
+     "opt": true,
+     "r": true
+    }
+   ]
+  },
+  {
+   "id": "fx-044",
+   "title": "Egg Fried Potato",
+   "page": "Cookbook:Egg Fried Potato",
+   "rev": 1044,
+   "lines": [
+    {
+     "t": "potato",
+     "o": [
+      "potato"
+     ],
+     "opt": false,
+     "r": true
+    },
+    {
+     "t": "egg",
+     "o": [
+      "egg"
+     ],
+     "opt": false,
+     "r": true
+    },
+    {
+     "t": "vegetable_oil",
+     "o": [
+      "vegetable_oil"
+     ],
+     "opt": false,
+     "r": true
+    },
+    {
+     "t": "salt",
+     "o": [
+      "salt"
+     ],
+     "opt": false,
+     "r": true
+    }
+   ]
+  },
+  {
+   "id": "fx-045",
+   "title": "Parsley Butter",
+   "page": "Cookbook:Parsley Butter",
+   "rev": 1045,
+   "lines": [
+    {
+     "t": "butter",
+     "o": [
+      "butter"
+     ],
+     "opt": false,
+     "r": true
+    },
+    {
+     "t": "parsley",
+     "o": [
+      "parsley"
+     ],
+     "opt": false,
+     "r": true
+    },
+    {
+     "t": "garlic",
+     "o": [
+      "garlic"
+     ],
+     "opt": false,
+     "r": true
+    }
+   ]
+  },
+  {
+   "id": "fx-046",
+   "title": "Simple Rice",
+   "page": "Cookbook:Simple Rice",
+   "rev": 1046,
+   "lines": [
+    {
+     "t": "rice",
+     "o": [
+      "rice"
+     ],
+     "opt": false,
+     "r": true
+    },
+    {
+     "t": "water",
+     "o": [
+      "water"
+     ],
+     "opt": false,
+     "r": true
+    },
+    {
+     "t": "salt",
+     "o": [
+      "salt"
+     ],
+     "opt": false,
+     "r": true
+    }
+   ]
+  },
+  {
+   "id": "fx-047",
+   "title": "Buttered Rice",
+   "page": "Cookbook:Buttered Rice",
+   "rev": 1047,
+   "lines": [
+    {
+     "t": "rice",
+     "o": [
+      "rice"
+     ],
+     "opt": false,
+     "r": true
+    },
+    {
+     "t": "butter",
+     "o": [
+      "butter"
+     ],
+     "opt": false,
+     "r": true
+    }
+   ]
+  }
+ ]
+}

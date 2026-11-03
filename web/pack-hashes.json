@@ -1,0 +1,14 @@
+{
+  "release": "pack-v1",
+  "note": "Expected hashes of the pack files. The Pages workflow refuses any other bytes.",
+  "files": {
+    "core.v1.json.gz": {
+      "sha256": "133b6449b715139acf1d47d188a18e39bbc138da53004bd99392a194364610ea",
+      "size": 476092
+    },
+    "text.v1.json.gz": {
+      "sha256": "c1021eee2dd4dcde676c63b1aa900d61e9beab35de8ba6e2539d71af712f9b0b",
+      "size": 870411
+    }
+  }
+}

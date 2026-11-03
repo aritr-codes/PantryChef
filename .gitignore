@@ -31,6 +31,8 @@ data/processed/usda.json
 !data/**/.gitkeep
 datasets/
 *.csv
+# Hand-curated ingredient table (MIT) is source, not data
+!data/ingredients/*.csv
 *.parquet
 *.jsonl
 *.npy
