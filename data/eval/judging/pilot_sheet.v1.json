@@ -1,0 +1,2950 @@
+{
+  "version": 1,
+  "items": [
+    {
+      "item_id": "item01",
+      "pantry": [
+        "arborio rice",
+        "beef",
+        "bell pepper",
+        "canned tomato",
+        "chili powder",
+        "cumin",
+        "ground beef",
+        "oregano",
+        "potato",
+        "thyme"
+      ],
+      "left": [
+        {
+          "title": "Picadillo (Beef with Potatoes and Tomatoes)",
+          "missing": [
+            "1 large yellow onion, chopped",
+            "4 cloves of garlic, chopped",
+            "29 oz beef broth",
+            "Black pepper, cumin, oregano and garlic powder to taste (about 2-2½ tablespoons total)"
+          ]
+        },
+        {
+          "title": "Maffé (West African Peanut Stew) I",
+          "missing": [
+            "1 large onion, finely chopped",
+            "3 garlic cloves, minced",
+            "1 cup smooth peanut butter",
+            "1 teaspoon paprika",
+            "2 carrots, diced",
+            "1 cup sliced okra",
+            "1 cup chopped leafy greens (such as spinach or kale)"
+          ]
+        },
+        {
+          "title": "Gambian Caldo (Seafood soup)",
+          "missing": [
+            "1 onion, finely chopped",
+            "3 cloves garlic, minced",
+            "2 carrots, peeled and sliced",
+            "1 celery stalk, sliced",
+            "2 tomatoes, diced"
+          ]
+        },
+        {
+          "title": "Pasta, Meat and Cheese Casserole (Mostaccioli)",
+          "missing": [
+            "1 cup uncooked mostaccioli pasta",
+            "2 Italian sausages, removed from casings",
+            "2 tablespoons chopped onion",
+            "1 clove minced garlic",
+            "3 ounces tomato paste",
+            "1 teaspoon dried basil leaves",
+            "1 dash of sugar",
+            "1 egg, slightly beaten",
+            "8 ounces ricotta cheese",
+            "¼ cup Parmesan cheese"
+          ]
+        },
+        {
+          "title": "Chili Cornbread Casserole",
+          "missing": [
+            "4 strips bacon, cut in small pieces",
+            "1½ tablespoons brown sugar",
+            "1 teaspoon instant coffee",
+            "1 tablespoon diced jalapeños (canned)",
+            "1½ teaspoons paprika",
+            "1 large onion, diced",
+            "2 tablespoons (¼ stick) butter",
+            "½ cup corn meal",
+            "½ cup flour",
+            "1 teaspoon baking powder",
+            "½ teaspoon baking soda",
+            "1 egg",
+            "½ cup milk"
+          ]
+        }
+      ],
+      "right": [
+        {
+          "title": "Bulgarian Fresh Sausage (Kebapcheta)",
+          "missing": []
+        },
+        {
+          "title": "Pan-fried Beef Steak",
+          "missing": []
+        },
+        {
+          "title": "French Fries",
+          "missing": []
+        },
+        {
+          "title": "Rosti (Swiss Potato Patties)",
+          "missing": []
+        },
+        {
+          "title": "Fast Food French Fries",
+          "missing": []
+        }
+      ]
+    },
+    {
+      "item_id": "item02",
+      "pantry": [
+        "baking soda",
+        "basmati rice",
+        "bell pepper",
+        "butter",
+        "chicken",
+        "cranberry",
+        "saffron",
+        "soy sauce"
+      ],
+      "left": [
+        {
+          "title": "Zereshk Palau (Iranian Rice with Barberries) II",
+          "missing": [
+            "1 medium onion, chopped",
+            "½ cup sugar"
+          ]
+        },
+        {
+          "title": "Paella Roja",
+          "missing": [
+            "225 grams (½ pound) of any of the following: frozen seafood mix, fish heads, whole crabs, shrimp heads, smelts",
+            "1 medium onion",
+            "3 garlic cloves",
+            "2 bay leaves",
+            "Olive oil",
+            "6 large garlic cloves, minced",
+            "225 grams (8 ounces) onion, diced",
+            "450 grams (1 pound) tomatoes, diced",
+            "1 tablespoon sweet paprika",
+            "720 milliliters (2½ cups) Valencian rice",
+            "1½ tablespoons food coloring for yellow rice (see notes)",
+            "340 grams (12 ounces) squid mantles, diced or cut into rings, shrimp",
+            "340 grams (12 ounces) scallops",
+            "24 live mussels, cleaned with beards removed"
+          ]
+        },
+        {
+          "title": "Katchi Biryani",
+          "missing": [
+            "4 large onions, finely sliced and fried in ghee or butter",
+            "2 cups yoghurt",
+            "3 green chiles, chopped",
+            "1 bunch mint leaves, chopped",
+            "1 tsp garam masala",
+            "1 Tbsp ginger-garlic paste",
+            "Black cardamom pods",
+            "Black cumin seeds (kala zeera)",
+            "2 ¾ cups uncooked rice",
+            "Lemon juice",
+            "Milk",
+            "2 green chillies, whole",
+            "1 bunch coriander leaves, chopped",
+            "Fried onions",
+            "Garam masala powder"
+          ]
+        },
+        {
+          "title": "Zambian Vegetable Stir-Fry",
+          "missing": [
+            "1 onion, thinly sliced",
+            "2 cloves of garlic, minced",
+            "1 carrot, julienned",
+            "1 cup shredded cabbage",
+            "1 cup chibwabwa (pumpkin leaves), chopped (or other indigenous greens)"
+          ]
+        },
+        {
+          "title": "Ayam Goreng Mentega (Fried Chicken in Sweet Butter Sauce)",
+          "missing": [
+            "Juice of 2 lemons",
+            "4 cloves garlic, thinly sliced",
+            "1 small onion, thinly sliced",
+            "2 tbsp Worcestershire sauce",
+            "2 tbsp Chinese cooking wine",
+            "Slices of 2 limes"
+          ]
+        }
+      ],
+      "right": [
+        {
+          "title": "Microwaved Basmati Rice",
+          "missing": []
+        },
+        {
+          "title": "Chicken Cockaigne",
+          "missing": []
+        },
+        {
+          "title": "Ghee I",
+          "missing": []
+        },
+        {
+          "title": "Steamed Basmati Rice",
+          "missing": [
+            "2 tsp lemon juice"
+          ]
+        },
+        {
+          "title": "Tahdiq (Crisped Persian Rice)",
+          "missing": [
+            "2 medium size potatoes"
+          ]
+        }
+      ]
+    },
+    {
+      "item_id": "item03",
+      "pantry": [
+        "chocolate",
+        "cinnamon",
+        "heavy cream",
+        "honey",
+        "milk",
+        "pandan leaf"
+      ],
+      "left": [
+        {
+          "title": "Indulgent Chocolate Torte",
+          "missing": [
+            "1 cup semi-sweet chocolate chips",
+            "½ cup margarine or butter",
+            "½ cup all-purpose flour",
+            "4 eggs, separated",
+            "½ cup white granulated sugar",
+            "1 teaspoon margarine or butter",
+            "1 cup powdered sugar",
+            "1 cup packed brown sugar",
+            "¼ cup corn syrup",
+            "1 tablespoon margarine or butter",
+            "Caramel sauce",
+            "½ cup chopped pecans"
+          ]
+        },
+        {
+          "title": "Chocolate Cake with Coconut Topping (Vegan)",
+          "missing": [
+            "200 g margarine, very soft",
+            "400 g white granulated sugar",
+            "75 g dried grated coconut",
+            "Zest of a lemon or grated ginger",
+            "750 g flour",
+            "150 g soy flour",
+            "2 sachets (40 g) baking powder",
+            "6 pinches vanilla powder",
+            "100 g unsweetened cocoa powder",
+            "2 glasses (500 g) cranberries or lingonberries",
+            "2 small apples, cut into small pieces",
+            "Grated coconut"
+          ]
+        },
+        {
+          "title": "20-Ingredient Brownies",
+          "missing": [
+            "1½ cups (275 g / 10 oz) brown sugar",
+            "1 cup (200 g / 7 oz) white granulated sugar",
+            "3 sticks (375 g / 13 oz) butter, melted",
+            "4 ea. (200 g) eggs",
+            "1 tablespoon vanilla extract",
+            "1½ cups (200 g / 7 oz) all-purpose flour",
+            "½ cup (60 g / 2 oz) dutch processed cocoa powder",
+            "16 oz (450 g) cream cheese",
+            "1 cup (300 g / 10.5 oz) mascarpone cheese",
+            "½ cup (110 g / 4 oz) white granulated sugar",
+            "1 teaspoon vanilla extract",
+            "1 ea. (50 g) egg"
+          ]
+        },
+        {
+          "title": "French Toast",
+          "missing": [
+            "1 egg",
+            "2–3 slices bread (see notes)",
+            "½ teaspoon vanilla extract or similar",
+            "¼–1 teaspoon nutmeg, cinnamon or other powdered spices suitable for sweet foods",
+            "¼ teaspoon pepper",
+            "Maple syrup",
+            "Jam, jelly, fruit syrup",
+            "Powdered sugar",
+            "Nuts",
+            "Bacon",
+            "Raspberries, strawberries, blueberries, and/or bananas",
+            "Raspberries, strawberries, blueberries, and/or bananas",
+            "Raspberries, strawberries, blueberries, and/or bananas",
+            "Raspberries, strawberries, blueberries, and/or bananas"
+          ]
+        },
+        {
+          "title": "Crêpes I",
+          "missing": [
+            "220 g (1 cup / 8 oz) plain flour",
+            "2 eggs",
+            "Sugar and lemon",
+            "Sugar and lemon",
+            "Raspberry jam and chocolate sauce",
+            "Nutella and sliced banana",
+            "Nutella and chopped hazelnuts",
+            "Frangipane",
+            "Peanut butter",
+            "Sugar and butter, possibly with lemon or cinnamon",
+            "Sugar and butter, possibly with lemon or cinnamon",
+            "Strawberries (fresh or frozen)",
+            "Cream cheese and brown sugar",
+            "Cream cheese and brown sugar",
+            "Slivers of chicken, broccoli, and cheese sauce",
+            "Slivers of chicken, broccoli, and cheese sauce",
+            "Slivers of chicken, broccoli, and cheese sauce"
+          ]
+        }
+      ],
+      "right": [
+        {
+          "title": "Chocolate Milk",
+          "missing": []
+        },
+        {
+          "title": "Basic Whipped Cream",
+          "missing": []
+        },
+        {
+          "title": "Victorian Butter",
+          "missing": []
+        },
+        {
+          "title": "Chocolate Milkshake",
+          "missing": [
+            "3 cups vanilla ice cream"
+          ]
+        },
+        {
+          "title": "Asida (Sudanese Porridge)",
+          "missing": [
+            "2 cups wheat flour or sorghum flour"
+          ]
+        }
+      ]
+    },
+    {
+      "item_id": "item04",
+      "pantry": [
+        "cabbage",
+        "chili pepper",
+        "coriander",
+        "corn",
+        "cumin",
+        "garlic",
+        "okra",
+        "tomato",
+        "turmeric",
+        "zucchini"
+      ],
+      "left": [
+        {
+          "title": "Murgh Musallam (Indian Stewed Spiced Chicken)",
+          "missing": [
+            "600 g chicken",
+            "1 tbsp lemon juice",
+            "¼ tsp pepper powder",
+            "2-inch piece cinnamon",
+            "2 green cardamom pods",
+            "4 cloves",
+            "¼ tsp grated nutmeg (jayaphala)",
+            "1 medium mace javitri",
+            "1 black cardamom (moti elachi)",
+            "8 almonds",
+            "10 cashews or 1 tbsp poppy seeds",
+            "2 cups (2 ea.) chopped onions",
+            "2 tbsp chopped mint leaves"
+          ]
+        },
+        {
+          "title": "Chicken Curry",
+          "missing": [
+            "4 lb chicken",
+            "100 ml coconut yogurt",
+            "1½ teaspoon ginger paste",
+            "1 teaspoon chile powder",
+            "1 teaspoon garam masala",
+            "1 teaspoon paprika",
+            "1 teaspoon cinnamon",
+            "1 teaspoon fenugreek leaves",
+            "1 teaspoon curry powder",
+            "Juice of ½ lemon",
+            "½ teaspoon mint",
+            "1 tablespoon coconut oil",
+            "150 ml coconut yogurt",
+            "200 g potatoes",
+            "2 teaspoons curry powder",
+            "1 medium onion",
+            "1 teaspoon ginger paste",
+            "1 teaspoon mustard seeds",
+            "1 teaspoon fennel seeds",
+            "2 teaspoons curry powder"
+          ]
+        },
+        {
+          "title": "Lumanda (Zambian Okra Stew)",
+          "missing": [
+            "1 onion, finely chopped",
+            "1 teaspoon ground paprika"
+          ]
+        },
+        {
+          "title": "Masyaura Curry",
+          "missing": [
+            "1 ½ cups masyaura",
+            "½ tsp fenugreek seeds",
+            "2 tbsp finely-chopped cilantro"
+          ]
+        },
+        {
+          "title": "Chickpea Stew",
+          "missing": [
+            "150 g of dry or 500 g of cooked chickpeas",
+            "2–3 ea. (2–3 cups) chopped medium onions",
+            "2 cups of vegetable broth",
+            "1 green bell pepper, chopped",
+            "4 Tbsp crunchy, unsweetened peanut butter"
+          ]
+        }
+      ],
+      "right": [
+        {
+          "title": "Shitha",
+          "missing": []
+        },
+        {
+          "title": "Spicy Garlic Oil",
+          "missing": []
+        },
+        {
+          "title": "Sauerkraut II",
+          "missing": []
+        },
+        {
+          "title": "Sauerkraut I",
+          "missing": []
+        },
+        {
+          "title": "Corn on the Cob with Husks",
+          "missing": []
+        }
+      ]
+    },
+    {
+      "item_id": "item05",
+      "pantry": [
+        "baking powder",
+        "basil",
+        "cardamom",
+        "chili pepper",
+        "egg",
+        "garlic",
+        "hoisin sauce",
+        "lettuce",
+        "peanut",
+        "raisin",
+        "rice",
+        "sausage"
+      ],
+      "left": [
+        {
+          "title": "Bò bía",
+          "missing": [
+            "4 tbsps dried small shrimps",
+            "400 g jicama, peeled and cut into matchsticks",
+            "Crushed peanuts, fried shallot",
+            "Salt, pepper, sugar",
+            "1 tbsp peanut butter",
+            "1 tbsp sugar",
+            "Pickled carrots and daikon"
+          ]
+        },
+        {
+          "title": "Murgh Musallam (Indian Stewed Spiced Chicken)",
+          "missing": [
+            "600 g chicken",
+            "1 tbsp lemon juice",
+            "¼ tsp pepper powder",
+            "½ tsp turmeric powder",
+            "1 tbsp coriander seeds",
+            "1 tsp cumin seeds",
+            "2-inch piece cinnamon",
+            "4 cloves",
+            "¼ tsp grated nutmeg (jayaphala)",
+            "1 medium mace javitri",
+            "8 almonds",
+            "10 cashews or 1 tbsp poppy seeds",
+            "2 cups (2 ea.) chopped onions",
+            "1 large tomato, puréed",
+            "2 tbsp chopped mint leaves"
+          ]
+        },
+        {
+          "title": "8 Desserts in 1 Pan",
+          "missing": [
+            "1¼ sticks (150 g) butter, softened",
+            "½ cup (90 g) light brown sugar",
+            "½ cup (90 g) golden superfine sugar",
+            "1 teaspoon vanilla extract",
+            "2 cups (240 g) all-purpose flour, more if needed",
+            "½ teaspoon baking soda",
+            "1½ cups (180 g) chocolate chips",
+            "1 small bag (approximately ⅓ cup / 40 g) M&Ms",
+            "115 g chocolate",
+            "1 cup (60 g) mini marshmallows",
+            "1 package (15 oz / 425 g) brownie mix",
+            "1 ea. (approximately 260 g) Bramley or green cooking apple",
+            "4 tablespoons golden superfine sugar",
+            "½ teaspoon ground cinnamon",
+            "1 tablespoon all-purpose flour",
+            "¼ cup (55 g) superfine sugar",
+            "¼ cup (45 g) light brown sugar",
+            "1 cup (250 g) pumpkin purée",
+            "⅓ cup (80 ml) heavy cream",
+            "1 teaspoon vanilla extract",
+            "1 heaped teaspoon mixed spice",
+            "½ stick (60 g) butter, softened",
+            "⅓ cup (70 g) sugar",
+            "½ cup (70 g) self-rising flour",
+            "1 banana, mashed",
+            "125 g mascarpone",
+            "1¼ cup (300 g) cream cheese",
+            "4 tablespoons all-purpose flour",
+            "½ cup (110 g) superfine sugar",
+            "8 graham crackers",
+            "2 sheets shortcrust pastry"
+          ]
+        },
+        {
+          "title": "Spaghetti and Meatballs",
+          "missing": [
+            "1 pound (454 g) dry spaghetti",
+            "2 pounds (907 g) ground chuck",
+            "2 pounds (907 g) ground pork shoulder",
+            "12 oz (340 g) seasoned bread crumbs",
+            "1 cup (240 ml) grated Parmesan cheese or Romano cheese",
+            "¾ cup (180 ml) fresh parsley, minced",
+            "½ tsp onion powder",
+            "Olive oil",
+            "½ tsp crushed red pepper flakes",
+            "1 small onion, finely chopped",
+            "1 cup (240 ml) beef stock",
+            "28 oz (794 g) crushed tomatoes",
+            "1 handful chopped flat-leaf parsley"
+          ]
+        },
+        {
+          "title": "Bibimbap",
+          "missing": [
+            "2 small carrots",
+            "2 tbsp sesame oil",
+            "2 tbsp ground sesame seeds",
+            "10 oz fresh spinach",
+            "1 tbsp sesame oil",
+            "2 tsp ground sesame seeds",
+            "8 oz bean sprouts, with beans attached",
+            "8 oz bean sprouts, with beans attached",
+            "2 tsp sesame oil",
+            "1 tsp ground sesame seeds",
+            "1 lb steak",
+            "¼ cup soy sauce",
+            "1 tbsp sesame oil",
+            "1 tbsp ground sesame seeds",
+            "¾ cup kimchi",
+            "1 cucumber, cut into strips",
+            "Gochujang"
+          ]
+        }
+      ],
+      "right": [
+        {
+          "title": "Scrambled Eggs with Sausage",
+          "missing": []
+        },
+        {
+          "title": "Peanut Milk",
+          "missing": []
+        },
+        {
+          "title": "Homemade Peanut Butter",
+          "missing": []
+        },
+        {
+          "title": "Spicy Garlic Oil",
+          "missing": []
+        },
+        {
+          "title": "Steamed Rice",
+          "missing": []
+        }
+      ]
+    },
+    {
+      "item_id": "item06",
+      "pantry": [
+        "apple cider vinegar",
+        "chicken",
+        "chicken stock",
+        "powdered sugar",
+        "soy sauce",
+        "turmeric",
+        "worcestershire sauce"
+      ],
+      "left": [
+        {
+          "title": "Cola BBQ Chicken",
+          "missing": [
+            "1 cup Cola BBQ Sauce"
+          ]
+        },
+        {
+          "title": "Nigerian Caramelized Coconut",
+          "missing": [
+            "Whole fresh coconut"
+          ]
+        },
+        {
+          "title": "Candied Almonds (Brända mandlar)",
+          "missing": [
+            "100 g blanched almonds"
+          ]
+        },
+        {
+          "title": "Breaded Chicken Livers",
+          "missing": [
+            "Flour"
+          ]
+        },
+        {
+          "title": "Chicken Cockaigne",
+          "missing": [
+            "Olive oil or butter"
+          ]
+        }
+      ],
+      "right": [
+        {
+          "title": "Whiskey Barbecue Sauce",
+          "missing": [
+            "2 cups whiskey",
+            "1 cup ketchup"
+          ]
+        },
+        {
+          "title": "Ayam Goreng Mentega (Fried Chicken in Sweet Butter Sauce)",
+          "missing": [
+            "Juice of 2 lemons",
+            "4 cloves garlic, thinly sliced",
+            "1 small onion, thinly sliced",
+            "4 tbsp butter",
+            "2 tbsp Chinese cooking wine",
+            "Slices of 2 limes"
+          ]
+        },
+        {
+          "title": "Indonesian-style Fried Rice",
+          "missing": [
+            "3 eggs, beaten",
+            "3 cloves garlic, crushed",
+            "3 red chillies, chopped",
+            "100 grams beansprouts, washed",
+            "75 grams green peas, washed",
+            "3 pieces spring onion, cut into 1 cm pieces",
+            "½ kg plain cooked white rice",
+            "¾ tsp pepper",
+            "2 shrimp crackers",
+            "3 tsp mixed pickles",
+            "1 fried egg, cooked sunny-side up"
+          ]
+        },
+        {
+          "title": "Cola BBQ Sauce",
+          "missing": [
+            "1 bottle ketchup",
+            "1 ½ cans good cola (Pepsi is recommended)",
+            "Hot sauce, to taste"
+          ]
+        },
+        {
+          "title": "Kansas City Barbecue Sauce",
+          "missing": [
+            "4 cups ketchup",
+            "¾ cup molasses",
+            "2 tbsp cayenne pepper"
+          ]
+        }
+      ]
+    },
+    {
+      "item_id": "item07",
+      "pantry": [
+        "baking soda",
+        "bell pepper",
+        "egg",
+        "feta",
+        "lemon",
+        "olive",
+        "onion",
+        "oregano",
+        "stock",
+        "tomato"
+      ],
+      "left": [
+        {
+          "title": "Greek Salad",
+          "missing": [
+            "Cucumber, sliced into rounds",
+            "Extra-virgin or virgin olive oil"
+          ]
+        },
+        {
+          "title": "8 Desserts in 1 Pan",
+          "missing": [
+            "1¼ sticks (150 g) butter, softened",
+            "½ cup (90 g) light brown sugar",
+            "½ cup (90 g) golden superfine sugar",
+            "1 teaspoon vanilla extract",
+            "2 cups (240 g) all-purpose flour, more if needed",
+            "1½ cups (180 g) chocolate chips",
+            "1 small bag (approximately ⅓ cup / 40 g) M&Ms",
+            "115 g chocolate",
+            "1 cup (60 g) mini marshmallows",
+            "1 package (15 oz / 425 g) brownie mix",
+            "1 ea. (approximately 260 g) Bramley or green cooking apple",
+            "4 tablespoons golden superfine sugar",
+            "½ teaspoon ground cinnamon",
+            "1 tablespoon all-purpose flour",
+            "¼ cup (55 g) superfine sugar",
+            "¼ cup (45 g) light brown sugar",
+            "1 cup (250 g) pumpkin purée",
+            "⅓ cup (80 ml) heavy cream",
+            "1 teaspoon vanilla extract",
+            "1 heaped teaspoon mixed spice",
+            "½ stick (60 g) butter, softened",
+            "⅓ cup (70 g) sugar",
+            "½ cup (70 g) self-rising flour",
+            "1 teaspoon baking powder",
+            "1 banana, mashed",
+            "125 g mascarpone",
+            "1¼ cup (300 g) cream cheese",
+            "4 tablespoons all-purpose flour",
+            "½ cup (110 g) superfine sugar",
+            "8 graham crackers",
+            "2 sheets shortcrust pastry"
+          ]
+        },
+        {
+          "title": "Hallaca (Venezuelan Stuffed Corn Dough)",
+          "missing": [
+            "Olive oil",
+            "1 tsp annatto seeds (also called \"achiote\" or \"onoto\")",
+            "1 tsp cumin seeds",
+            "1 tsp coriander seeds",
+            "1 vegetable stock cube",
+            "1 tsp marmite",
+            "2 leeks, green and white parts cut in 1-inch chunks",
+            "1 large bunch of fresh herbs (coriander leaf, thyme, parsley, celery)",
+            "2 packets of spring onions, chopped",
+            "1 head of garlic, halved",
+            "1 jar of capers",
+            "1 kg instant polenta meal (coarse corn meal)",
+            "500 g cooked and mashed new potatoes",
+            "Olive oil",
+            "2 carrots, shredded",
+            "6 Brussels sprouts, shredded",
+            "1 handful of green beans, chopped",
+            "100 g mixed vine fruit",
+            "Cooking wine",
+            "20 prunes",
+            "1 can of chickpeas",
+            "1 jar of mixed pickles in mustard sauce",
+            "50 g almonds",
+            "1 can of mock duck or 1 packet of marinated tofu pieces",
+            "1 can of artichoke hearts",
+            "1 can of asparagus",
+            "Olive oil",
+            "2 red onions, sliced",
+            "1 leek, white part chopped",
+            "Soy sauce",
+            "Chili sauce",
+            "Ground cumin",
+            "Wheat flour or cornstarch"
+          ]
+        },
+        {
+          "title": "Salată de Boeuf (Romanian Beef Salad)",
+          "missing": [
+            "1 kg (2 lb 3 oz) potatoes (any variety, though some prefer red)",
+            "350 g (12 oz) carrots, peeled and diced in 1 cm cubes",
+            "350 g boiled beef, cut in 1 cm cubes",
+            "1 can of peas or 300 g (10.5 oz) fresh peas",
+            "350 g pickled dill gherkins (not too sweet and very firm), diced in 1 cm cubes",
+            "1 tsp (5 ml) French mustard",
+            "Gherkins, sliced into long thin strips"
+          ]
+        },
+        {
+          "title": "Pasta Casserole (Pastitsio)",
+          "missing": [
+            "2 tablespoons olive oil",
+            "750 g minced meat",
+            "⅓ cup tomato paste",
+            "¼ cup dry white wine",
+            "1 tablespoon beef stock powder",
+            "½ teaspoon cinnamon powder",
+            "100 g butter",
+            "½ cup plain flour",
+            "3½ cups milk",
+            "1 cup grated fresh Parmesan cheese",
+            "250 g macaroni pasta (or Greek pastitsio noodles)",
+            "2 tablespoons stale breadcrumbs"
+          ]
+        }
+      ],
+      "right": [
+        {
+          "title": "Zambian Tomato and Onion Salad",
+          "missing": []
+        },
+        {
+          "title": "Homemade Tomato Paste",
+          "missing": []
+        },
+        {
+          "title": "Stracciatella II",
+          "missing": []
+        },
+        {
+          "title": "Tomato Concassé",
+          "missing": []
+        },
+        {
+          "title": "Preserved Lemon",
+          "missing": []
+        }
+      ]
+    },
+    {
+      "item_id": "item08",
+      "pantry": [
+        "cheese",
+        "coriander",
+        "corn",
+        "jalapeno",
+        "miso",
+        "red pepper flakes",
+        "sour cream"
+      ],
+      "left": [
+        {
+          "title": "Nuked Nachos",
+          "missing": []
+        },
+        {
+          "title": "Chilli Oil",
+          "missing": []
+        },
+        {
+          "title": "Corn on the Cob with Husks",
+          "missing": []
+        },
+        {
+          "title": "Nigerian Pito",
+          "missing": []
+        },
+        {
+          "title": "Tuwon Dawa (Nigerian Sorghum Swallow)",
+          "missing": []
+        }
+      ],
+      "right": [
+        {
+          "title": "Frito Pie (No-bake)",
+          "missing": [
+            "1 recipe of home-made Frito Pie Chili, hot"
+          ]
+        },
+        {
+          "title": "Potato Gratin",
+          "missing": [
+            "5 medium sized waxy potatoes, peeled or unpeeled",
+            "4 cloves of garlic, chopped (smoked garlic is good for this dish if you can get it)",
+            "1 lemon"
+          ]
+        },
+        {
+          "title": "Cheese Tart",
+          "missing": [
+            "½ cup white granulated sugar",
+            "½ cup unsalted butter, melted",
+            "½ dough from Classic American Apple Pie, made with mascarpone cheese instead of applejack"
+          ]
+        },
+        {
+          "title": "Macho Nachos",
+          "missing": [
+            "Cayenne pepper sauce",
+            "1 can (9 oz) prepared bean dip",
+            "Tortilla chips",
+            "Guacamole (ready-made)"
+          ]
+        },
+        {
+          "title": "Bagel Toast",
+          "missing": [
+            "1 or more slices of bagel with sesame seeds, sized to fit your grill",
+            "Sliced green olives",
+            "1 sliced tomato",
+            "1 sliced onion",
+            "Ketchup",
+            "Thousand Island dressing"
+          ]
+        }
+      ]
+    },
+    {
+      "item_id": "item09",
+      "pantry": [
+        "bell pepper",
+        "breadcrumbs",
+        "garlic",
+        "meat",
+        "milk",
+        "rice",
+        "sausage",
+        "semolina"
+      ],
+      "left": [
+        {
+          "title": "Paella Roja",
+          "missing": [
+            "225 grams (½ pound) chicken wings",
+            "225 grams (½ pound) of any of the following: frozen seafood mix, fish heads, whole crabs, shrimp heads, smelts",
+            "1 medium onion",
+            "2 bay leaves",
+            "Olive oil",
+            "340 grams (12 ounces) boneless chicken breast or tenderloins",
+            "225 grams (8 ounces) onion, diced",
+            "450 grams (1 pound) tomatoes, diced",
+            "1 tablespoon sweet paprika",
+            "340 grams (12 ounces) squid mantles, diced or cut into rings, shrimp",
+            "340 grams (12 ounces) scallops",
+            "24 live mussels, cleaned with beards removed"
+          ]
+        },
+        {
+          "title": "Bison Loaf",
+          "missing": [
+            "1 egg",
+            "½ cup chopped onion",
+            "½ teaspoon pepper"
+          ]
+        },
+        {
+          "title": "Benechin Kunkujang (Gambian Seasoned Rice and Lamb)",
+          "missing": [
+            "1 onion, finely chopped",
+            "2 tomatoes, chopped",
+            "1 cup tomato paste",
+            "2 teaspoons ground ginger",
+            "1 teaspoon ground coriander",
+            "1 teaspoon ground paprika",
+            "1 teaspoon ground cayenne pepper (adjust according to your spice preference)"
+          ]
+        },
+        {
+          "title": "Field of Dreams Guacamole",
+          "missing": [
+            "4 ounces cream cheese, softened",
+            "1 teaspoon packaged dry buttermilk salad dressing and seasoning mix",
+            "3 large fresh ripe avocados, halved, pitted, and peeled",
+            "3 tablespoons fresh lime juice",
+            "½ cup finely-chopped red onion",
+            "½ cup low-fat sour cream",
+            "Thin wheat crackers",
+            "For dipping: bell pepper strips cut ½ inch wide, tortilla chips and/or crackers",
+            "For dipping: bell pepper strips cut ½ inch wide, tortilla chips and/or crackers"
+          ]
+        },
+        {
+          "title": "Spaghetti and Meatballs",
+          "missing": [
+            "1 pound (454 g) dry spaghetti",
+            "2 pounds (907 g) ground chuck",
+            "2 pounds (907 g) ground pork shoulder",
+            "1 cup (240 ml) grated Parmesan cheese or Romano cheese",
+            "¾ cup (180 ml) fresh parsley, minced",
+            "4 eggs",
+            "½ tsp onion powder",
+            "Olive oil",
+            "½ tsp crushed red pepper flakes",
+            "1 small onion, finely chopped",
+            "1 cup (240 ml) beef stock",
+            "28 oz (794 g) crushed tomatoes",
+            "1 handful chopped flat-leaf parsley",
+            "10 leaves fresh basil, torn or thinly sliced"
+          ]
+        }
+      ],
+      "right": [
+        {
+          "title": "Kesra (Algerian Semolina Flatbread)",
+          "missing": []
+        },
+        {
+          "title": "Oat Rice",
+          "missing": []
+        },
+        {
+          "title": "Steamed Rice",
+          "missing": []
+        },
+        {
+          "title": "Rice Milk",
+          "missing": []
+        },
+        {
+          "title": "Tuwo Shinkafa (Nigerian Mashed Rice)",
+          "missing": []
+        }
+      ]
+    },
+    {
+      "item_id": "item10",
+      "pantry": [
+        "avocado",
+        "basil",
+        "cracker",
+        "cream cheese",
+        "garlic",
+        "lime",
+        "milk",
+        "pumpkin",
+        "red onion",
+        "sour cream"
+      ],
+      "left": [
+        {
+          "title": "Nigerian Fried Cheese Curds (Wara)",
+          "missing": []
+        },
+        {
+          "title": "Victorian Butter",
+          "missing": []
+        },
+        {
+          "title": "Garlic Salt",
+          "missing": []
+        },
+        {
+          "title": "Guacamole II",
+          "missing": [
+            "2–3 whole red chilli peppers, finely chopped"
+          ]
+        },
+        {
+          "title": "Quick Guacamole II",
+          "missing": [
+            "Red pepper flakes to taste"
+          ]
+        }
+      ],
+      "right": [
+        {
+          "title": "Field of Dreams Guacamole",
+          "missing": [
+            "1 teaspoon packaged dry buttermilk salad dressing and seasoning mix",
+            "1 teaspoon red pepper sauce",
+            "½ cup chopped, prepared roasted red bell pepper",
+            "1 red bell pepper",
+            "For dipping: bell pepper strips cut ½ inch wide, tortilla chips and/or crackers",
+            "For dipping: bell pepper strips cut ½ inch wide, tortilla chips and/or crackers"
+          ]
+        },
+        {
+          "title": "Spaghetti and Meatballs",
+          "missing": [
+            "1 pound (454 g) dry spaghetti",
+            "2 pounds (907 g) ground chuck",
+            "2 pounds (907 g) ground pork shoulder",
+            "12 oz (340 g) seasoned bread crumbs",
+            "1 cup (240 ml) grated Parmesan cheese or Romano cheese",
+            "¾ cup (180 ml) fresh parsley, minced",
+            "4 eggs",
+            "½ tsp onion powder",
+            "Olive oil",
+            "½ tsp crushed red pepper flakes",
+            "1 small onion, finely chopped",
+            "1 cup (240 ml) beef stock",
+            "28 oz (794 g) crushed tomatoes",
+            "1 handful chopped flat-leaf parsley"
+          ]
+        },
+        {
+          "title": "Guacamole Dip",
+          "missing": [
+            "¼ regular onion, cut in large pieces",
+            "4 cilantro stems with leaves"
+          ]
+        },
+        {
+          "title": "Guacamole (Chile-Free)",
+          "missing": [
+            "1 small tomato, diced very small",
+            "2 tbsp chopped cilantro (coriander leaves)"
+          ]
+        },
+        {
+          "title": "Island Salsa Salad",
+          "missing": [
+            "1–2 small serrano chilis (2½ inches long) or ½ small jalapeño chili, seeded and very finely minced",
+            "3 tablespoons minced fresh cilantro",
+            "½ teaspoon ground cumin",
+            "1½ cups minced jicama",
+            "1 small ripe mango, diced",
+            "3 tablespoons minced fresh mint",
+            "1½ cups minced fresh pineapple (half a small pineapple)"
+          ]
+        }
+      ]
+    },
+    {
+      "item_id": "item11",
+      "pantry": [
+        "beef",
+        "flour",
+        "ginger",
+        "ketchup",
+        "mayonnaise",
+        "onion",
+        "vinegar"
+      ],
+      "left": [
+        {
+          "title": "Miyan Ridi (Nigerian Sesame Soup)",
+          "missing": [
+            "Seasoning cube",
+            "Tatashe (red bell pepper), blended",
+            "2 cups toasted sesame seeds (ridi)",
+            "2 medium-sized dried smoked fish",
+            "Alayyahu (spinach)",
+            "2 seasoning cubes (e.g., Maggi)",
+            "2 large tatashe (red bell pepper), blended",
+            "2 cups toasted sesame seeds (ridi), blended into a paste",
+            "2 medium-sized dried smoked fish, cleaned and deboned",
+            "1 chopped alayyahu (spinach)"
+          ]
+        },
+        {
+          "title": "Brazilian Feijoada",
+          "missing": [
+            "½ lb pork ribs",
+            "2 filet mignon medallions",
+            "1 smoked sausage",
+            "¼ lb ham steak",
+            "1 package smoked pork chops (such as Hormell)",
+            "Parsley, chopped",
+            "Chives, minced",
+            "2–3 cans pre-cooked black beans",
+            "3 cups uncooked rice",
+            "2 cloves garlic, minced",
+            "Collard greens",
+            "1 pinch sugar",
+            "1 cup sliced bacon",
+            "¼ cup black olives",
+            "¼ cup olive oil",
+            "2 tsp chicken flavor bouillon",
+            "Cilantro",
+            "Chives",
+            "Olive oil",
+            "1 red hot finger pepper, finely chopped",
+            "Sliced oranges (1 orange for each person)",
+            "Tabasco sauce"
+          ]
+        },
+        {
+          "title": "Haggis",
+          "missing": [
+            "½ pound (225 g) lamb stew meat, cut in 1-inch cubes",
+            "4 tablespoons Scotch whiskey",
+            "1 tablespoon eggnog",
+            "2 cups oatmeal, toasted in a 375°F (200°C) oven for 10 minutes",
+            "1 teaspoon dried thyme, whole",
+            "½ teaspoon dried rosemary",
+            "¼ teaspoon freshly grated nutmeg"
+          ]
+        },
+        {
+          "title": "Tuna Salad",
+          "missing": [
+            "1 large can (12 oz) tuna",
+            "1 can water chestnuts, drained and chopped",
+            "1–2 stalks celery, chopped",
+            "½ cup carrot, shredded",
+            "1 tablespoon Dijon mustard",
+            "1 teaspoon soy sauce",
+            "1 can tuna, drained",
+            "1 large can (12 oz) tuna",
+            "1 large bag shredded cheddar cheese",
+            "3 grapes, chopped",
+            "4/3 hot dogs, roughly chopped",
+            "4 bags tater-tots, just barely defrosted"
+          ]
+        },
+        {
+          "title": "Phở Bò (Vietnamese Beef Noodle Soup)",
+          "missing": [
+            "1 small cinnamon stick",
+            "2 whole cardamom pods",
+            "4 whole cloves",
+            "1 star anise pod",
+            "Phở noodles (thin, flat rice noodles), soaked in hot water until soft and drained",
+            "Finely sliced scallions",
+            "Chopped coriander leaf",
+            "Whole chile peppers",
+            "Bean sprouts",
+            "Limes, cut into wedges",
+            "Thai basil",
+            "Nước mắm",
+            "Hot sauce",
+            "Hoisin sauce"
+          ]
+        }
+      ],
+      "right": [
+        {
+          "title": "Fry Sauce",
+          "missing": []
+        },
+        {
+          "title": "Buuz (Mongolian Meat Dumplings)",
+          "missing": []
+        },
+        {
+          "title": "Pain au Levain Naturel",
+          "missing": []
+        },
+        {
+          "title": "Kunun kanwa",
+          "missing": []
+        },
+        {
+          "title": "Obuwunga (Ugandan Traditional Bread)",
+          "missing": []
+        }
+      ]
+    },
+    {
+      "item_id": "item12",
+      "pantry": [
+        "brown sugar",
+        "butter",
+        "dry mustard",
+        "egg",
+        "onion",
+        "vanilla",
+        "white bean",
+        "worcestershire sauce"
+      ],
+      "left": [
+        {
+          "title": "8 Desserts in 1 Pan",
+          "missing": [
+            "½ cup (90 g) golden superfine sugar",
+            "2 cups (240 g) all-purpose flour, more if needed",
+            "½ teaspoon baking soda",
+            "1½ cups (180 g) chocolate chips",
+            "1 small bag (approximately ⅓ cup / 40 g) M&Ms",
+            "115 g chocolate",
+            "1 cup (60 g) mini marshmallows",
+            "1 package (15 oz / 425 g) brownie mix",
+            "1 ea. (approximately 260 g) Bramley or green cooking apple",
+            "4 tablespoons golden superfine sugar",
+            "½ teaspoon ground cinnamon",
+            "1 tablespoon all-purpose flour",
+            "¼ cup (55 g) superfine sugar",
+            "1 cup (250 g) pumpkin purée",
+            "⅓ cup (80 ml) heavy cream",
+            "1 heaped teaspoon mixed spice",
+            "⅓ cup (70 g) sugar",
+            "½ cup (70 g) self-rising flour",
+            "1 teaspoon baking powder",
+            "1 banana, mashed",
+            "125 g mascarpone",
+            "1¼ cup (300 g) cream cheese",
+            "4 tablespoons all-purpose flour",
+            "½ cup (110 g) superfine sugar",
+            "8 graham crackers",
+            "2 sheets shortcrust pastry"
+          ]
+        },
+        {
+          "title": "Meatloaf Dinner",
+          "missing": [
+            "½ pound ground sirloin",
+            "½ pound ground chuck",
+            "6 ounces garlic croûtons, coarsely crushed",
+            "¼ cup ketchup",
+            "1 ⅛ tsp red pepper flakes",
+            "2 tsp rosemary, finely chopped",
+            "2 tbsp thyme, finely chopped",
+            "6 cloves garlic, smashed and chopped",
+            "3 carrots, peeled and diced",
+            "½ red bell pepper, diced",
+            "4 strips thick cut bacon, cut into 6 pieces and crisp-cooked",
+            "2 tbsp bacon fat",
+            "1 cup chicken broth",
+            "1 cup heavy cream",
+            "Fond from meatloaf pan",
+            "1 ½ pounds Russet potatoes, peeled and cut into ½-inch dice",
+            "¼ cup heavy cream",
+            "4 large carrots, peeled and cut into 1½-inch pieces",
+            "½ cup olive oil",
+            "6 cloves garlic, smashed and finely chopped",
+            "½ each green bell pepper and red bell pepper, cut into 2½-inch strips"
+          ]
+        },
+        {
+          "title": "Brown Butter Toffee Chocolate Chip Cookies",
+          "missing": [
+            "¾ cup (160 g / 5.5 oz) white granulated sugar",
+            "2 teaspoons espresso powder",
+            "½ teaspoon baking soda",
+            "2½ cups (350 g / 12.5 oz) all-purpose flour",
+            "6 oz (170 g) dark chocolate (50–70% cacao), chopped"
+          ]
+        },
+        {
+          "title": "Germknödel (Plum and Poppy Seed Dumpling)",
+          "missing": [
+            "2 tbsp active dry yeast",
+            "4 cups all-purpose flour",
+            "⅓ cup white sugar",
+            "1 cup lukewarm milk",
+            "1 ¼ cups plum jam",
+            "¾ cup ground poppy seeds",
+            "Powdered sugar"
+          ]
+        },
+        {
+          "title": "Dutch Oven Beans",
+          "missing": [
+            "1 pound bacon",
+            "1 pound lean ground beef",
+            "1 large can (53 ounces) pork and beans",
+            "1 large can (53 ounces) pork and beans",
+            "1 can (15 ounces) pinto beans",
+            "1 can (15 ounces) red beans",
+            "½ cup ketchup",
+            "2 tablespoons molasses",
+            "1 teaspoon liquid smoke"
+          ]
+        }
+      ],
+      "right": [
+        {
+          "title": "Fried Eggs",
+          "missing": []
+        },
+        {
+          "title": "Basic Scrambled Eggs",
+          "missing": []
+        },
+        {
+          "title": "Microwaved Scrambled Egg",
+          "missing": []
+        },
+        {
+          "title": "Egg Butter",
+          "missing": []
+        },
+        {
+          "title": "Shirred Egg",
+          "missing": []
+        }
+      ]
+    },
+    {
+      "item_id": "item13",
+      "pantry": [
+        "apple cider vinegar",
+        "avocado",
+        "butter",
+        "cumin",
+        "garlic",
+        "lime",
+        "red onion"
+      ],
+      "left": [
+        {
+          "title": "Ghee I",
+          "missing": []
+        },
+        {
+          "title": "Garlic Salt",
+          "missing": []
+        },
+        {
+          "title": "Guacamole II",
+          "missing": [
+            "2–3 whole red chilli peppers, finely chopped"
+          ]
+        },
+        {
+          "title": "Quick Guacamole II",
+          "missing": [
+            "Red pepper flakes to taste"
+          ]
+        },
+        {
+          "title": "Chunky Guacamole",
+          "missing": [
+            "1 cup of salsa fresca"
+          ]
+        }
+      ],
+      "right": [
+        {
+          "title": "Island Salsa Salad",
+          "missing": [
+            "1–2 small serrano chilis (2½ inches long) or ½ small jalapeño chili, seeded and very finely minced",
+            "3 tablespoons minced fresh cilantro",
+            "1½ cups minced jicama",
+            "1 small ripe mango, diced",
+            "3 tablespoons minced fresh mint",
+            "1½ cups minced fresh pineapple (half a small pineapple)"
+          ]
+        },
+        {
+          "title": "Roasted Chicken Nachos With Green Chili-Cheese Sauce",
+          "missing": [
+            "4 medium tomatillos, husked and rinsed (or used canned if unavailable)",
+            "2 jalapeños, stemmed",
+            "½ medium onion, peeled and quartered",
+            "1 handful fresh cilantro leaves, coarsely chopped",
+            "¼ cup (60 ml) all-purpose flour",
+            "2 cups (480 ml) chicken stock, at room temperature",
+            "4 cups (950 ml) shredded Monterey Jack cheese",
+            "1 bag (1 pound / 450 g) salted corn tortilla chips",
+            "1 ea. (3 pounds / 1350 g) whole roasted chicken, meat finely shredded, skin and bones discarded",
+            "1 pint (570 ml) cherry tomatoes, halved",
+            "2 green onions, white and green parts, chopped",
+            "1 jalapeño, chopped",
+            "2 handfuls fresh cilantro leaves, hand shredded"
+          ]
+        },
+        {
+          "title": "Katchi Biryani",
+          "missing": [
+            "4 large onions, finely sliced and fried in ghee or butter",
+            "2 cups yoghurt",
+            "3 green chiles, chopped",
+            "1 bunch mint leaves, chopped",
+            "1 tsp garam masala",
+            "2 lbs chicken",
+            "Black cardamom pods",
+            "2 ¾ cups uncooked rice",
+            "Lemon juice",
+            "1 pinch of saffron or a few drops yellow food coloring",
+            "Milk",
+            "2 green chillies, whole",
+            "1 bunch coriander leaves, chopped",
+            "Fried onions",
+            "Garam masala powder"
+          ]
+        },
+        {
+          "title": "Guacamole (Chile-Free)",
+          "missing": [
+            "1 small tomato, diced very small",
+            "2 tbsp chopped cilantro (coriander leaves)"
+          ]
+        },
+        {
+          "title": "Spiced Pumpkin Soup",
+          "missing": [
+            "1 cup chopped onion",
+            "3 tbsp all-purpose flour",
+            "½ tsp curry powder",
+            "¼ tsp ground nutmeg",
+            "1 cup peeled and cubed sweet potato",
+            "2 cans (28 oz) nonfat and low-sodium chicken broth or vegetable stock",
+            "1 can (15 oz) pumpkin purée",
+            "1 cup 1% milk"
+          ]
+        }
+      ]
+    },
+    {
+      "item_id": "item14",
+      "pantry": [
+        "bacon",
+        "butter",
+        "ginger",
+        "honey",
+        "molasses",
+        "red pepper flakes"
+      ],
+      "left": [
+        {
+          "title": "Eastern North Carolina Barbecue Sauce",
+          "missing": [
+            "¾ gallons apple cider vinegar"
+          ]
+        },
+        {
+          "title": "Boston Baked Beans",
+          "missing": [
+            "4 cups canned kidney beans, rinsed and drained",
+            "¼ cup dark brown sugar",
+            "2 tbsp dark rum",
+            "1 tbsp dry mustard"
+          ]
+        },
+        {
+          "title": "Lumberjacks",
+          "missing": [
+            "1 cup caster sugar",
+            "2 eggs",
+            "4 cups sifted flour (not self-raising)",
+            "1 teaspoon of bicarbonate of soda",
+            "2 teaspoons cinnamon"
+          ]
+        },
+        {
+          "title": "Crispy Gingerbread Cookies",
+          "missing": [
+            "⅔ cup (~160 g) packed light brown sugar",
+            "1 teaspoon cinnamon",
+            "1 ½ teaspoon (½ tablespoon) baking soda",
+            "1 egg",
+            "4 cups (1 quart/ 500g) flour"
+          ]
+        },
+        {
+          "title": "Meatballs with Honey Lime Sauce",
+          "missing": [
+            "1 pound ground beef",
+            "½ cup dried breadcrumbs",
+            "1 tsp dried rosemary",
+            "1 tsp dried thyme",
+            "1 egg, beaten",
+            "¼ cup chicken broth",
+            "3 limes, juiced"
+          ]
+        }
+      ],
+      "right": [
+        {
+          "title": "Chilli Oil",
+          "missing": []
+        },
+        {
+          "title": "Ginger Tea",
+          "missing": []
+        },
+        {
+          "title": "Ghee I",
+          "missing": []
+        },
+        {
+          "title": "Eastern North Carolina Barbecue Sauce",
+          "missing": [
+            "¾ gallons apple cider vinegar"
+          ]
+        },
+        {
+          "title": "Asida (Sudanese Porridge)",
+          "missing": [
+            "2 cups wheat flour or sorghum flour"
+          ]
+        }
+      ]
+    },
+    {
+      "item_id": "item15",
+      "pantry": [
+        "butter",
+        "tomato paste",
+        "tuna"
+      ],
+      "left": [
+        {
+          "title": "Nanaimo Bars I",
+          "missing": [
+            "¼ cup white granulated sugar",
+            "5 tbsp cocoa",
+            "1 egg beaten",
+            "1¼ cups graham wafer crumbs",
+            "½ cups finely-chopped almonds",
+            "1 cup coconut",
+            "2 tbsp and 2 tsp cream",
+            "2 tbsp vanilla custard powder",
+            "2 cups icing sugar",
+            "4 squares (4 oz) semi-sweet chocolate"
+          ]
+        },
+        {
+          "title": "Tuna Salad",
+          "missing": [
+            "1 can water chestnuts, drained and chopped",
+            "½ small onion, chopped",
+            "1–2 stalks celery, chopped",
+            "½ cup carrot, shredded",
+            "½ cup mayonnaise",
+            "1 tablespoon Dijon mustard",
+            "1 teaspoon soy sauce",
+            "2 tablespoons mayonnaise",
+            "¼ small onion, chopped",
+            "2 cups mayonnaise",
+            "1 large bag shredded cheddar cheese",
+            "3 grapes, chopped",
+            "4/3 hot dogs, roughly chopped",
+            "4 bags tater-tots, just barely defrosted"
+          ]
+        },
+        {
+          "title": "Indulgent Chocolate Torte",
+          "missing": [
+            "1 cup semi-sweet chocolate chips",
+            "½ cup all-purpose flour",
+            "4 eggs, separated",
+            "½ cup white granulated sugar",
+            "1 ounce unsweetened chocolate",
+            "1 cup powdered sugar",
+            "1 cup packed brown sugar",
+            "½ cup heavy whipping cream",
+            "¼ cup corn syrup",
+            "2 teaspoon ground cinnamon",
+            "1 bar chocolate",
+            "Chocolate glaze",
+            "Caramel sauce",
+            "Chocolate curls, if desired",
+            "½ cup chopped pecans"
+          ]
+        },
+        {
+          "title": "Katchi Biryani",
+          "missing": [
+            "4 large onions, finely sliced and fried in ghee or butter",
+            "2 cups yoghurt",
+            "3 green chiles, chopped",
+            "1 bunch mint leaves, chopped",
+            "1 tsp garam masala",
+            "1 Tbsp ginger-garlic paste",
+            "2 lbs chicken",
+            "Black cardamom pods",
+            "Black cumin seeds (kala zeera)",
+            "2 ¾ cups uncooked rice",
+            "Lemon juice",
+            "1 pinch of saffron or a few drops yellow food coloring",
+            "Milk",
+            "2 green chillies, whole",
+            "1 bunch coriander leaves, chopped",
+            "Fried onions",
+            "Garam masala powder"
+          ]
+        },
+        {
+          "title": "Ham Sauce (Modern)",
+          "missing": [
+            "3–4 oz ham or prosciutto, cut into strips",
+            "2 cups vegetable or meat stock"
+          ]
+        }
+      ],
+      "right": [
+        {
+          "title": "Ghee I",
+          "missing": []
+        },
+        {
+          "title": "Hominy Grits",
+          "missing": [
+            "1 cup hominy grits"
+          ]
+        },
+        {
+          "title": "Popcorn",
+          "missing": [
+            "½ cup unpopped popcorn kernels"
+          ]
+        },
+        {
+          "title": "Cannabutter",
+          "missing": [
+            "2 g cannabis (or more, depending on desired potency)"
+          ]
+        },
+        {
+          "title": "Buttered Popcorn",
+          "missing": [
+            "1 bowl of popped popcorn"
+          ]
+        }
+      ]
+    },
+    {
+      "item_id": "item16",
+      "pantry": [
+        "brown sugar",
+        "butter",
+        "dry mustard",
+        "egg",
+        "onion",
+        "vanilla",
+        "white bean",
+        "worcestershire sauce"
+      ],
+      "left": [
+        {
+          "title": "Fried Eggs",
+          "missing": []
+        },
+        {
+          "title": "Basic Scrambled Eggs",
+          "missing": []
+        },
+        {
+          "title": "Microwaved Scrambled Egg",
+          "missing": []
+        },
+        {
+          "title": "Egg Butter",
+          "missing": []
+        },
+        {
+          "title": "Shirred Egg",
+          "missing": []
+        }
+      ],
+      "right": [
+        {
+          "title": "8 Desserts in 1 Pan",
+          "missing": [
+            "½ cup (90 g) golden superfine sugar",
+            "2 cups (240 g) all-purpose flour, more if needed",
+            "½ teaspoon baking soda",
+            "1½ cups (180 g) chocolate chips",
+            "1 small bag (approximately ⅓ cup / 40 g) M&Ms",
+            "115 g chocolate",
+            "1 cup (60 g) mini marshmallows",
+            "1 package (15 oz / 425 g) brownie mix",
+            "1 ea. (approximately 260 g) Bramley or green cooking apple",
+            "4 tablespoons golden superfine sugar",
+            "½ teaspoon ground cinnamon",
+            "1 tablespoon all-purpose flour",
+            "¼ cup (55 g) superfine sugar",
+            "1 cup (250 g) pumpkin purée",
+            "⅓ cup (80 ml) heavy cream",
+            "1 heaped teaspoon mixed spice",
+            "⅓ cup (70 g) sugar",
+            "½ cup (70 g) self-rising flour",
+            "1 teaspoon baking powder",
+            "1 banana, mashed",
+            "125 g mascarpone",
+            "1¼ cup (300 g) cream cheese",
+            "4 tablespoons all-purpose flour",
+            "½ cup (110 g) superfine sugar",
+            "8 graham crackers",
+            "2 sheets shortcrust pastry"
+          ]
+        },
+        {
+          "title": "Meatloaf Dinner",
+          "missing": [
+            "½ pound ground sirloin",
+            "½ pound ground chuck",
+            "6 ounces garlic croûtons, coarsely crushed",
+            "¼ cup ketchup",
+            "1 ⅛ tsp red pepper flakes",
+            "2 tsp rosemary, finely chopped",
+            "2 tbsp thyme, finely chopped",
+            "6 cloves garlic, smashed and chopped",
+            "3 carrots, peeled and diced",
+            "½ red bell pepper, diced",
+            "4 strips thick cut bacon, cut into 6 pieces and crisp-cooked",
+            "2 tbsp bacon fat",
+            "1 cup chicken broth",
+            "1 cup heavy cream",
+            "Fond from meatloaf pan",
+            "1 ½ pounds Russet potatoes, peeled and cut into ½-inch dice",
+            "¼ cup heavy cream",
+            "4 large carrots, peeled and cut into 1½-inch pieces",
+            "½ cup olive oil",
+            "6 cloves garlic, smashed and finely chopped",
+            "½ each green bell pepper and red bell pepper, cut into 2½-inch strips"
+          ]
+        },
+        {
+          "title": "Brown Butter Toffee Chocolate Chip Cookies",
+          "missing": [
+            "¾ cup (160 g / 5.5 oz) white granulated sugar",
+            "2 teaspoons espresso powder",
+            "½ teaspoon baking soda",
+            "2½ cups (350 g / 12.5 oz) all-purpose flour",
+            "6 oz (170 g) dark chocolate (50–70% cacao), chopped"
+          ]
+        },
+        {
+          "title": "Germknödel (Plum and Poppy Seed Dumpling)",
+          "missing": [
+            "2 tbsp active dry yeast",
+            "4 cups all-purpose flour",
+            "⅓ cup white sugar",
+            "1 cup lukewarm milk",
+            "1 ¼ cups plum jam",
+            "¾ cup ground poppy seeds",
+            "Powdered sugar"
+          ]
+        },
+        {
+          "title": "Dutch Oven Beans",
+          "missing": [
+            "1 pound bacon",
+            "1 pound lean ground beef",
+            "1 large can (53 ounces) pork and beans",
+            "1 large can (53 ounces) pork and beans",
+            "1 can (15 ounces) pinto beans",
+            "1 can (15 ounces) red beans",
+            "½ cup ketchup",
+            "2 tablespoons molasses",
+            "1 teaspoon liquid smoke"
+          ]
+        }
+      ]
+    },
+    {
+      "item_id": "item17",
+      "pantry": [
+        "allspice",
+        "chicken stock",
+        "honey",
+        "onion",
+        "sugar",
+        "tomato"
+      ],
+      "left": [
+        {
+          "title": "Tomato Concassé",
+          "missing": []
+        },
+        {
+          "title": "Vietnamese Caramel Sauce (Nước Maøu)",
+          "missing": []
+        },
+        {
+          "title": "Simple Syrup",
+          "missing": []
+        },
+        {
+          "title": "Caramel Sauce I",
+          "missing": []
+        },
+        {
+          "title": "Oral Rehydration Solution",
+          "missing": []
+        }
+      ],
+      "right": [
+        {
+          "title": "Prekmurska Gibanica (Slovenian Layered Strudel Cake)",
+          "missing": [
+            "500 g flour",
+            "40 g sunflower seed oil",
+            "150 g flour",
+            "100 g solid fat (e.g. butter or margarine)",
+            "1 egg yolk",
+            "50 g icing sugar",
+            "250 g ground walnuts",
+            "Ground cinnamon",
+            "Grated lemon peel",
+            "80 g raisins",
+            "Rum",
+            "1000 g full-fat curd cheese (e.g. quark, pot cheese, or farmer cheese)",
+            "1 egg",
+            "150 g ground poppy seeds",
+            "Ground cinnamon",
+            "Grated lemon peel",
+            "1 kg apples",
+            "Ground cinnamon",
+            "700 ml sour cream",
+            "2 eggs or 3 egg yolks, mixed well",
+            "250 g butter, cut in very small cubes"
+          ]
+        },
+        {
+          "title": "Brazilian Feijoada",
+          "missing": [
+            "½ lb pork ribs",
+            "2 filet mignon medallions",
+            "1 smoked sausage",
+            "¼ lb ham steak",
+            "1 package smoked pork chops (such as Hormell)",
+            "Parsley, chopped",
+            "Chives, minced",
+            "2–3 cans pre-cooked black beans",
+            "3 cups uncooked rice",
+            "2 cloves garlic, minced",
+            "Collard greens",
+            "1 cup sliced bacon",
+            "¼ cup black olives",
+            "¼ cup olive oil",
+            "2 cups white toasted cassava flour",
+            "2 tsp chicken flavor bouillon",
+            "Cilantro",
+            "Chives",
+            "Olive oil",
+            "A little bit of vinegar",
+            "1 red hot finger pepper, finely chopped",
+            "Sliced oranges (1 orange for each person)",
+            "Tabasco sauce"
+          ]
+        },
+        {
+          "title": "8 Desserts in 1 Pan",
+          "missing": [
+            "1¼ sticks (150 g) butter, softened",
+            "½ cup (90 g) light brown sugar",
+            "1 US large / UK standard egg",
+            "1 teaspoon vanilla extract",
+            "2 cups (240 g) all-purpose flour, more if needed",
+            "½ teaspoon baking soda",
+            "1½ cups (180 g) chocolate chips",
+            "1 small bag (approximately ⅓ cup / 40 g) M&Ms",
+            "115 g chocolate",
+            "1 cup (60 g) mini marshmallows",
+            "1 package (15 oz / 425 g) brownie mix",
+            "1 egg",
+            "1 ea. (approximately 260 g) Bramley or green cooking apple",
+            "½ teaspoon ground cinnamon",
+            "1 tablespoon all-purpose flour",
+            "1 egg",
+            "¼ cup (45 g) light brown sugar",
+            "1 cup (250 g) pumpkin purée",
+            "⅓ cup (80 ml) heavy cream",
+            "1 teaspoon vanilla extract",
+            "1 heaped teaspoon mixed spice",
+            "½ stick (60 g) butter, softened",
+            "1 egg",
+            "½ cup (70 g) self-rising flour",
+            "1 teaspoon baking powder",
+            "1 banana, mashed",
+            "125 g mascarpone",
+            "1¼ cup (300 g) cream cheese",
+            "1 egg",
+            "1 egg yolk",
+            "4 tablespoons all-purpose flour",
+            "8 graham crackers",
+            "2 sheets shortcrust pastry"
+          ]
+        },
+        {
+          "title": "Babi Panggang Sauce",
+          "missing": [
+            "1 clove of garlic",
+            "1 tablespoon of sherry"
+          ]
+        },
+        {
+          "title": "Jamaican Jerk Spice I",
+          "missing": [
+            "2 tablespoons cayenne pepper",
+            "1 teaspoon cinnamon, ground",
+            "1 teaspoon nutmeg, ground",
+            "2 teaspoons dried thyme"
+          ]
+        }
+      ]
+    },
+    {
+      "item_id": "item18",
+      "pantry": [
+        "beef stock",
+        "flour",
+        "milk",
+        "molasses",
+        "mustard",
+        "parsley",
+        "pickle",
+        "sugar",
+        "vinegar",
+        "wine"
+      ],
+      "left": [
+        {
+          "title": "Prekmurska Gibanica (Slovenian Layered Strudel Cake)",
+          "missing": [
+            "40 g sunflower seed oil",
+            "100 g solid fat (e.g. butter or margarine)",
+            "1 egg yolk",
+            "50 g icing sugar",
+            "250 g ground walnuts",
+            "Ground cinnamon",
+            "Grated lemon peel",
+            "80 g raisins",
+            "Rum",
+            "1000 g full-fat curd cheese (e.g. quark, pot cheese, or farmer cheese)",
+            "1 egg",
+            "150 g ground poppy seeds",
+            "Ground cinnamon",
+            "Grated lemon peel",
+            "1 kg apples",
+            "Ground cinnamon",
+            "700 ml sour cream",
+            "2 eggs or 3 egg yolks, mixed well",
+            "250 g butter, cut in very small cubes"
+          ]
+        },
+        {
+          "title": "8 Desserts in 1 Pan",
+          "missing": [
+            "1¼ sticks (150 g) butter, softened",
+            "½ cup (90 g) light brown sugar",
+            "1 US large / UK standard egg",
+            "1 teaspoon vanilla extract",
+            "½ teaspoon baking soda",
+            "1½ cups (180 g) chocolate chips",
+            "1 small bag (approximately ⅓ cup / 40 g) M&Ms",
+            "115 g chocolate",
+            "1 cup (60 g) mini marshmallows",
+            "1 package (15 oz / 425 g) brownie mix",
+            "1 egg",
+            "1 ea. (approximately 260 g) Bramley or green cooking apple",
+            "½ teaspoon ground cinnamon",
+            "1 egg",
+            "¼ cup (45 g) light brown sugar",
+            "1 cup (250 g) pumpkin purée",
+            "⅓ cup (80 ml) heavy cream",
+            "1 teaspoon vanilla extract",
+            "1 heaped teaspoon mixed spice",
+            "½ stick (60 g) butter, softened",
+            "1 egg",
+            "½ cup (70 g) self-rising flour",
+            "1 teaspoon baking powder",
+            "1 banana, mashed",
+            "125 g mascarpone",
+            "1¼ cup (300 g) cream cheese",
+            "1 egg",
+            "1 egg yolk",
+            "8 graham crackers",
+            "2 sheets shortcrust pastry"
+          ]
+        },
+        {
+          "title": "Wow-Wow Sauce",
+          "missing": [
+            "Butter",
+            "1 tbsp mushroom ketchup and/or port wine"
+          ]
+        },
+        {
+          "title": "Jigarthanda Milk",
+          "missing": [
+            "2 tbsp badam pisin (almond gum)",
+            "25 g Indian sarsaparilla root",
+            "3 tbsp khova (milk solids)",
+            "½ cup cream"
+          ]
+        },
+        {
+          "title": "Chocolate Mousse Cake (Vegan)",
+          "missing": [
+            "⅓ cup (40 g / 1.4 oz) unsweetened baking cocoa powder",
+            "1 teaspoon baking powder",
+            "2 teaspoons vanilla extract",
+            "1 pinch of shredded coconut",
+            "chocolate chips",
+            "tofu",
+            "½ tablespoon vanilla extract",
+            "¼ cup (60 g / 2.1 oz) margarine",
+            "¼ cup (30 g / 1.1 oz) cocoa powder or carob powder",
+            "1 teaspoon vanilla extract"
+          ]
+        }
+      ],
+      "right": [
+        {
+          "title": "Homemade Paneer",
+          "missing": []
+        },
+        {
+          "title": "Ayib (Ethiopian Fresh Cheese)",
+          "missing": []
+        },
+        {
+          "title": "Pain au Levain Naturel",
+          "missing": []
+        },
+        {
+          "title": "Genfo (Ethiopian Porridge)",
+          "missing": []
+        },
+        {
+          "title": "Obuwunga (Ugandan Traditional Bread)",
+          "missing": []
+        }
+      ]
+    },
+    {
+      "item_id": "item19",
+      "pantry": [
+        "bell pepper",
+        "brandy",
+        "stock",
+        "turkey",
+        "turmeric"
+      ],
+      "left": [
+        {
+          "title": "Deep Fried Turkey",
+          "missing": []
+        },
+        {
+          "title": "Stracciatella II",
+          "missing": [
+            "Eggs"
+          ]
+        },
+        {
+          "title": "Homemade Tomato Paste",
+          "missing": [
+            "1 gallon (4 litres) tomato pulp"
+          ]
+        },
+        {
+          "title": "Balangu (Nigerian Spiced Ram Meat)",
+          "missing": [
+            "2 large chunks of mutton",
+            "2 onions"
+          ]
+        },
+        {
+          "title": "Grilled Filet Mignon with a Cognac Reduction",
+          "missing": [
+            "4 filet mignons, 1½ in (4 cm) thick",
+            "2 tbsp Dijon mustard"
+          ]
+        }
+      ],
+      "right": [
+        {
+          "title": "Field of Dreams Guacamole",
+          "missing": [
+            "4 ounces cream cheese, softened",
+            "1 teaspoon packaged dry buttermilk salad dressing and seasoning mix",
+            "3 large fresh ripe avocados, halved, pitted, and peeled",
+            "3 tablespoons fresh lime juice",
+            "2 teaspoons coarsely-ground garlic powder",
+            "½ cup finely-chopped red onion",
+            "½ cup low-fat sour cream",
+            "Thin wheat crackers",
+            "For dipping: bell pepper strips cut ½ inch wide, tortilla chips and/or crackers",
+            "For dipping: bell pepper strips cut ½ inch wide, tortilla chips and/or crackers"
+          ]
+        },
+        {
+          "title": "Hallaca (Venezuelan Stuffed Corn Dough)",
+          "missing": [
+            "Olive oil",
+            "1 tsp annatto seeds (also called \"achiote\" or \"onoto\")",
+            "1 tsp cumin seeds",
+            "1 tsp coriander seeds",
+            "4 white onions, sliced",
+            "1 vegetable stock cube",
+            "1 tsp marmite",
+            "2 leeks, green and white parts cut in 1-inch chunks",
+            "1 large bunch of fresh herbs (coriander leaf, thyme, parsley, celery)",
+            "2 packets of spring onions, chopped",
+            "1 head of garlic, halved",
+            "1 jar of green olives",
+            "1 jar of capers",
+            "1 kg instant polenta meal (coarse corn meal)",
+            "500 g cooked and mashed new potatoes",
+            "Olive oil",
+            "2 carrots, shredded",
+            "6 Brussels sprouts, shredded",
+            "1 handful of green beans, chopped",
+            "100 g mixed vine fruit",
+            "Cooking wine",
+            "20 prunes",
+            "1 can of chickpeas",
+            "1 jar of mixed pickles in mustard sauce",
+            "50 g almonds",
+            "1 can of mock duck or 1 packet of marinated tofu pieces",
+            "1 can of artichoke hearts",
+            "1 can of asparagus",
+            "Olive oil",
+            "2 red onions, sliced",
+            "1 leek, white part chopped",
+            "1 packet of mi-cuit (half dried) tomatoes or 1 tube of tomato paste",
+            "Soy sauce",
+            "Chili sauce",
+            "Ground cumin",
+            "Wheat flour or cornstarch"
+          ]
+        },
+        {
+          "title": "Nigerian Peppered Turkey Wings",
+          "missing": [
+            "2 small onions, peeled",
+            "½ teaspoon ginger",
+            "1 teaspoon dried thyme"
+          ]
+        },
+        {
+          "title": "White Bean and Pumpkin Leaf Soup",
+          "missing": [
+            "6 cups dried white beans",
+            "1 bunch of fluted pumpkin leaves (ugwu)",
+            "1 teaspoon chile powder",
+            "7 cloves garlic, minced",
+            "1 cup (or 1 handful) crayfish, finely-chopped or ground",
+            "1½ large onions, diced"
+          ]
+        },
+        {
+          "title": "Zambian Vegetable Stir-Fry",
+          "missing": [
+            "1 onion, thinly sliced",
+            "2 cloves of garlic, minced",
+            "1 carrot, julienned",
+            "1 cup shredded cabbage",
+            "1 cup chibwabwa (pumpkin leaves), chopped (or other indigenous greens)",
+            "1 tablespoon soy sauce"
+          ]
+        }
+      ]
+    },
+    {
+      "item_id": "item20",
+      "pantry": [
+        "green onion",
+        "ground beef",
+        "olive oil",
+        "parsley",
+        "thyme"
+      ],
+      "left": [
+        {
+          "title": "Fried Potato Wedges",
+          "missing": [
+            "4 medium/fair sized potatoes (Russets are preferable)"
+          ]
+        },
+        {
+          "title": "Oven-Roasted Potatoes",
+          "missing": [
+            "2 large potatoes"
+          ]
+        },
+        {
+          "title": "Bulgarian Fresh Sausage (Kebapcheta)",
+          "missing": [
+            "½ teaspoon cumin"
+          ]
+        },
+        {
+          "title": "Christmas Mince Pies (Meat-Free)",
+          "missing": [
+            "Shortcrust pastry dough, either homemade or shop bought"
+          ]
+        },
+        {
+          "title": "Hamburger",
+          "missing": [
+            "1 hamburger bun per burger"
+          ]
+        }
+      ],
+      "right": [
+        {
+          "title": "Steakhouse Dinner",
+          "missing": [
+            "4 ea. (24–32 ounces) strip steaks",
+            "1 ¼ tsp rosemary, finely chopped",
+            "4 tbsp unsalted butter, divided",
+            "2 pounds redskin potatoes, cut into 2-inch cubes but left unpeeled",
+            "1 tbsp minced garlic",
+            "1 ½ tsp dried rosemary",
+            "4 assorted bell peppers, sliced into 3-inch strips",
+            "½ cup red wine",
+            "Few glasses red wine or cognac",
+            "Nice salad for an appetizer (hopefully with a homemade dressing)"
+          ]
+        },
+        {
+          "title": "Spaghetti and Meatballs",
+          "missing": [
+            "1 pound (454 g) dry spaghetti",
+            "2 pounds (907 g) ground pork shoulder",
+            "12 oz (340 g) seasoned bread crumbs",
+            "1 cup (240 ml) grated Parmesan cheese or Romano cheese",
+            "4 eggs",
+            "1 ½ tbsp finely-minced garlic",
+            "½ tsp garlic powder",
+            "½ tsp onion powder",
+            "3 garlic cloves",
+            "½ tsp crushed red pepper flakes",
+            "4 cloves garlic, crushed or chopped",
+            "1 small onion, finely chopped",
+            "1 cup (240 ml) beef stock",
+            "28 oz (794 g) crushed tomatoes",
+            "10 leaves fresh basil, torn or thinly sliced"
+          ]
+        },
+        {
+          "title": "Greek Moussaka",
+          "missing": [
+            "1 large eggplant (aubergine)",
+            "1 large onion, chopped",
+            "6 cloves of garlic, chopped",
+            "1 large tin (28 oz/800 g) diced tomatoes",
+            "1 cup (250 ml) red wine",
+            "2 bay leaves",
+            "1 teaspoon sugar",
+            "1 cinnamon stick",
+            "2 tablespoons tomato paste",
+            "3 tablespoons butter",
+            "4 tablespoons plain flour",
+            "2 cups (½ L) milk",
+            "Sprinkle of nutmeg, cinnamon, and black pepper",
+            "Sprinkle of nutmeg, cinnamon, and black pepper",
+            "½ cup (120 ml) freshly-grated Parmesan cheese",
+            "1 cup (250 ml) grated cheese (e.g. Edam, etc.)",
+            "1 egg"
+          ]
+        },
+        {
+          "title": "Empanada",
+          "missing": [
+            "1 kg (about 8 cups) flour",
+            "2 eggs",
+            "200 g (about 1 cup) butter or margarine",
+            "Cornstarch",
+            "1 large onion",
+            "2 tbsp sugar",
+            "1 ½ tsp paprika",
+            "½ tsp ground cinnamon",
+            "¼ tsp nutmeg",
+            "¼ tsp cloves",
+            "½ cup raisins",
+            "2 cloves garlic",
+            "3 large onion",
+            "1 tbsp sugar",
+            "1 ½ tsp paprika",
+            "½ tsp ground cumin (comino)",
+            "1 bay leaf",
+            "½ cup raisins",
+            "Black olives",
+            "Diced hard-boiled egg"
+          ]
+        },
+        {
+          "title": "Hallaca (Venezuelan Stuffed Corn Dough)",
+          "missing": [
+            "1 tsp annatto seeds (also called \"achiote\" or \"onoto\")",
+            "1 tsp cumin seeds",
+            "1 tsp coriander seeds",
+            "4 white onions, sliced",
+            "1 vegetable stock cube",
+            "1 mushroom stock cube",
+            "1 tsp marmite",
+            "2 leeks, green and white parts cut in 1-inch chunks",
+            "1 large bunch of fresh herbs (coriander leaf, thyme, parsley, celery)",
+            "1 head of garlic, halved",
+            "1 jar of green olives",
+            "1 jar of capers",
+            "1 kg instant polenta meal (coarse corn meal)",
+            "500 g cooked and mashed new potatoes",
+            "2 red bell peppers",
+            "2 carrots, shredded",
+            "6 Brussels sprouts, shredded",
+            "1 handful of green beans, chopped",
+            "100 g mixed vine fruit",
+            "Cooking wine",
+            "20 prunes",
+            "1 can of chickpeas",
+            "1 jar of mixed pickles in mustard sauce",
+            "50 g almonds",
+            "1 can of mock duck or 1 packet of marinated tofu pieces",
+            "1 can of artichoke hearts",
+            "1 can of asparagus",
+            "2 red onions, sliced",
+            "1 leek, white part chopped",
+            "1 packet of mi-cuit (half dried) tomatoes or 1 tube of tomato paste",
+            "2 red bell peppers",
+            "2 green bell peppers",
+            "Soy sauce",
+            "Chili sauce",
+            "Ground cumin",
+            "Wheat flour or cornstarch"
+          ]
+        }
+      ]
+    },
+    {
+      "item_id": "item21",
+      "pantry": [
+        "butter",
+        "egg",
+        "molasses",
+        "monterey jack",
+        "oregano",
+        "potato"
+      ],
+      "left": [
+        {
+          "title": "8 Desserts in 1 Pan",
+          "missing": [
+            "½ cup (90 g) light brown sugar",
+            "½ cup (90 g) golden superfine sugar",
+            "1 teaspoon vanilla extract",
+            "2 cups (240 g) all-purpose flour, more if needed",
+            "½ teaspoon baking soda",
+            "1½ cups (180 g) chocolate chips",
+            "1 small bag (approximately ⅓ cup / 40 g) M&Ms",
+            "115 g chocolate",
+            "1 cup (60 g) mini marshmallows",
+            "1 package (15 oz / 425 g) brownie mix",
+            "1 ea. (approximately 260 g) Bramley or green cooking apple",
+            "4 tablespoons golden superfine sugar",
+            "½ teaspoon ground cinnamon",
+            "1 tablespoon all-purpose flour",
+            "¼ cup (55 g) superfine sugar",
+            "¼ cup (45 g) light brown sugar",
+            "1 cup (250 g) pumpkin purée",
+            "⅓ cup (80 ml) heavy cream",
+            "1 teaspoon vanilla extract",
+            "1 heaped teaspoon mixed spice",
+            "⅓ cup (70 g) sugar",
+            "½ cup (70 g) self-rising flour",
+            "1 teaspoon baking powder",
+            "1 banana, mashed",
+            "125 g mascarpone",
+            "1¼ cup (300 g) cream cheese",
+            "4 tablespoons all-purpose flour",
+            "½ cup (110 g) superfine sugar",
+            "8 graham crackers",
+            "2 sheets shortcrust pastry"
+          ]
+        },
+        {
+          "title": "Qarabagħli Mimli (Maltese Stuffed Summer Squash)",
+          "missing": [
+            "½ ea. small onion, finely chopped",
+            "500 g minced lean pork",
+            "2 rashers rindless smoked back bacon, finely chopped",
+            "2 heaped tbsp grated salt-cured cheese (e.g. sheep or goat's milk, or Parmigiano-Reggiano)",
+            "1 slice of day old bread, soaked in milk and wrung out",
+            "1 tbsp chopped flat-leaf parsley leaves",
+            "Pepper",
+            "450 g well-drained fresh sheep's milk ricotta",
+            "100 g grated Pecorino cheese (Romano type or with peppercorns)",
+            "2 tbsp chopped fresh flat-leaf parsley or marjoram",
+            "Pepper",
+            "2 cloves garlic, minced",
+            "1 cup uncooked round or long-grain rice",
+            "1 cup Bolognese-type meat sauce",
+            "½ tsp mixed spice",
+            "Pepper",
+            "1 kg zucchini or other firm, large squash",
+            "1 kg zucchini or other firm, large squash",
+            "1 cup fresh tomato sauce",
+            "Dry breadcrumbs or medium-coarse semolina",
+            "Grated cheese",
+            "Onions, sliced",
+            "Pepper",
+            "Caraway seed"
+          ]
+        },
+        {
+          "title": "Nanaimo Bars I",
+          "missing": [
+            "¼ cup white granulated sugar",
+            "5 tbsp cocoa",
+            "1¼ cups graham wafer crumbs",
+            "½ cups finely-chopped almonds",
+            "1 cup coconut",
+            "2 tbsp and 2 tsp cream",
+            "2 tbsp vanilla custard powder",
+            "2 cups icing sugar",
+            "4 squares (4 oz) semi-sweet chocolate"
+          ]
+        },
+        {
+          "title": "Salată de Boeuf (Romanian Beef Salad)",
+          "missing": [
+            "350 g (12 oz) carrots, peeled and diced in 1 cm cubes",
+            "350 g boiled beef, cut in 1 cm cubes",
+            "1 can of peas or 300 g (10.5 oz) fresh peas",
+            "350 g pickled dill gherkins (not too sweet and very firm), diced in 1 cm cubes",
+            "1 lemon, juiced",
+            "1 tsp (5 ml) French mustard",
+            "Gherkins, sliced into long thin strips",
+            "Pickled red peppers, sliced into long thin strips",
+            "Sliced black olives"
+          ]
+        },
+        {
+          "title": "Germknödel (Plum and Poppy Seed Dumpling)",
+          "missing": [
+            "2 tbsp active dry yeast",
+            "4 cups all-purpose flour",
+            "⅓ cup white sugar",
+            "1 cup lukewarm milk",
+            "1 package vanilla sugar or 1 tbsp vanilla extract",
+            "1 ¼ cups plum jam",
+            "¾ cup ground poppy seeds",
+            "Powdered sugar",
+            "Vanilla custard sauce"
+          ]
+        }
+      ],
+      "right": [
+        {
+          "title": "Hash Browns",
+          "missing": []
+        },
+        {
+          "title": "Spanish Omelet",
+          "missing": []
+        },
+        {
+          "title": "Potatoes Anna",
+          "missing": []
+        },
+        {
+          "title": "Fried Eggs",
+          "missing": []
+        },
+        {
+          "title": "Basic Scrambled Eggs",
+          "missing": []
+        }
+      ]
+    },
+    {
+      "item_id": "item22",
+      "pantry": [
+        "butter",
+        "tomato paste",
+        "tuna"
+      ],
+      "left": [
+        {
+          "title": "Ghee I",
+          "missing": []
+        },
+        {
+          "title": "Hominy Grits",
+          "missing": [
+            "1 cup hominy grits"
+          ]
+        },
+        {
+          "title": "Popcorn",
+          "missing": [
+            "½ cup unpopped popcorn kernels"
+          ]
+        },
+        {
+          "title": "Cannabutter",
+          "missing": [
+            "2 g cannabis (or more, depending on desired potency)"
+          ]
+        },
+        {
+          "title": "Buttered Popcorn",
+          "missing": [
+            "1 bowl of popped popcorn"
+          ]
+        }
+      ],
+      "right": [
+        {
+          "title": "Nanaimo Bars I",
+          "missing": [
+            "¼ cup white granulated sugar",
+            "5 tbsp cocoa",
+            "1 egg beaten",
+            "1¼ cups graham wafer crumbs",
+            "½ cups finely-chopped almonds",
+            "1 cup coconut",
+            "2 tbsp and 2 tsp cream",
+            "2 tbsp vanilla custard powder",
+            "2 cups icing sugar",
+            "4 squares (4 oz) semi-sweet chocolate"
+          ]
+        },
+        {
+          "title": "Tuna Salad",
+          "missing": [
+            "1 can water chestnuts, drained and chopped",
+            "½ small onion, chopped",
+            "1–2 stalks celery, chopped",
+            "½ cup carrot, shredded",
+            "½ cup mayonnaise",
+            "1 tablespoon Dijon mustard",
+            "1 teaspoon soy sauce",
+            "2 tablespoons mayonnaise",
+            "¼ small onion, chopped",
+            "2 cups mayonnaise",
+            "1 large bag shredded cheddar cheese",
+            "3 grapes, chopped",
+            "4/3 hot dogs, roughly chopped",
+            "4 bags tater-tots, just barely defrosted"
+          ]
+        },
+        {
+          "title": "Indulgent Chocolate Torte",
+          "missing": [
+            "1 cup semi-sweet chocolate chips",
+            "½ cup all-purpose flour",
+            "4 eggs, separated",
+            "½ cup white granulated sugar",
+            "1 ounce unsweetened chocolate",
+            "1 cup powdered sugar",
+            "1 cup packed brown sugar",
+            "½ cup heavy whipping cream",
+            "¼ cup corn syrup",
+            "2 teaspoon ground cinnamon",
+            "1 bar chocolate",
+            "Chocolate glaze",
+            "Caramel sauce",
+            "Chocolate curls, if desired",
+            "½ cup chopped pecans"
+          ]
+        },
+        {
+          "title": "Katchi Biryani",
+          "missing": [
+            "4 large onions, finely sliced and fried in ghee or butter",
+            "2 cups yoghurt",
+            "3 green chiles, chopped",
+            "1 bunch mint leaves, chopped",
+            "1 tsp garam masala",
+            "1 Tbsp ginger-garlic paste",
+            "2 lbs chicken",
+            "Black cardamom pods",
+            "Black cumin seeds (kala zeera)",
+            "2 ¾ cups uncooked rice",
+            "Lemon juice",
+            "1 pinch of saffron or a few drops yellow food coloring",
+            "Milk",
+            "2 green chillies, whole",
+            "1 bunch coriander leaves, chopped",
+            "Fried onions",
+            "Garam masala powder"
+          ]
+        },
+        {
+          "title": "Ham Sauce (Modern)",
+          "missing": [
+            "3–4 oz ham or prosciutto, cut into strips",
+            "2 cups vegetable or meat stock"
+          ]
+        }
+      ]
+    },
+    {
+      "item_id": "item23",
+      "pantry": [
+        "bell pepper",
+        "brandy",
+        "stock",
+        "turkey",
+        "turmeric"
+      ],
+      "left": [
+        {
+          "title": "Field of Dreams Guacamole",
+          "missing": [
+            "4 ounces cream cheese, softened",
+            "1 teaspoon packaged dry buttermilk salad dressing and seasoning mix",
+            "3 large fresh ripe avocados, halved, pitted, and peeled",
+            "3 tablespoons fresh lime juice",
+            "2 teaspoons coarsely-ground garlic powder",
+            "½ cup finely-chopped red onion",
+            "½ cup low-fat sour cream",
+            "Thin wheat crackers",
+            "For dipping: bell pepper strips cut ½ inch wide, tortilla chips and/or crackers",
+            "For dipping: bell pepper strips cut ½ inch wide, tortilla chips and/or crackers"
+          ]
+        },
+        {
+          "title": "Hallaca (Venezuelan Stuffed Corn Dough)",
+          "missing": [
+            "Olive oil",
+            "1 tsp annatto seeds (also called \"achiote\" or \"onoto\")",
+            "1 tsp cumin seeds",
+            "1 tsp coriander seeds",
+            "4 white onions, sliced",
+            "1 vegetable stock cube",
+            "1 tsp marmite",
+            "2 leeks, green and white parts cut in 1-inch chunks",
+            "1 large bunch of fresh herbs (coriander leaf, thyme, parsley, celery)",
+            "2 packets of spring onions, chopped",
+            "1 head of garlic, halved",
+            "1 jar of green olives",
+            "1 jar of capers",
+            "1 kg instant polenta meal (coarse corn meal)",
+            "500 g cooked and mashed new potatoes",
+            "Olive oil",
+            "2 carrots, shredded",
+            "6 Brussels sprouts, shredded",
+            "1 handful of green beans, chopped",
+            "100 g mixed vine fruit",
+            "Cooking wine",
+            "20 prunes",
+            "1 can of chickpeas",
+            "1 jar of mixed pickles in mustard sauce",
+            "50 g almonds",
+            "1 can of mock duck or 1 packet of marinated tofu pieces",
+            "1 can of artichoke hearts",
+            "1 can of asparagus",
+            "Olive oil",
+            "2 red onions, sliced",
+            "1 leek, white part chopped",
+            "1 packet of mi-cuit (half dried) tomatoes or 1 tube of tomato paste",
+            "Soy sauce",
+            "Chili sauce",
+            "Ground cumin",
+            "Wheat flour or cornstarch"
+          ]
+        },
+        {
+          "title": "Nigerian Peppered Turkey Wings",
+          "missing": [
+            "2 small onions, peeled",
+            "½ teaspoon ginger",
+            "1 teaspoon dried thyme"
+          ]
+        },
+        {
+          "title": "White Bean and Pumpkin Leaf Soup",
+          "missing": [
+            "6 cups dried white beans",
+            "1 bunch of fluted pumpkin leaves (ugwu)",
+            "1 teaspoon chile powder",
+            "7 cloves garlic, minced",
+            "1 cup (or 1 handful) crayfish, finely-chopped or ground",
+            "1½ large onions, diced"
+          ]
+        },
+        {
+          "title": "Zambian Vegetable Stir-Fry",
+          "missing": [
+            "1 onion, thinly sliced",
+            "2 cloves of garlic, minced",
+            "1 carrot, julienned",
+            "1 cup shredded cabbage",
+            "1 cup chibwabwa (pumpkin leaves), chopped (or other indigenous greens)",
+            "1 tablespoon soy sauce"
+          ]
+        }
+      ],
+      "right": [
+        {
+          "title": "Deep Fried Turkey",
+          "missing": []
+        },
+        {
+          "title": "Stracciatella II",
+          "missing": [
+            "Eggs"
+          ]
+        },
+        {
+          "title": "Homemade Tomato Paste",
+          "missing": [
+            "1 gallon (4 litres) tomato pulp"
+          ]
+        },
+        {
+          "title": "Balangu (Nigerian Spiced Ram Meat)",
+          "missing": [
+            "2 large chunks of mutton",
+            "2 onions"
+          ]
+        },
+        {
+          "title": "Grilled Filet Mignon with a Cognac Reduction",
+          "missing": [
+            "4 filet mignons, 1½ in (4 cm) thick",
+            "2 tbsp Dijon mustard"
+          ]
+        }
+      ]
+    },
+    {
+      "item_id": "item24",
+      "pantry": [
+        "baking soda",
+        "bell pepper",
+        "egg",
+        "feta",
+        "lemon",
+        "olive",
+        "onion",
+        "oregano",
+        "stock",
+        "tomato"
+      ],
+      "left": [
+        {
+          "title": "Greek Salad",
+          "missing": [
+            "Cucumber, sliced into rounds",
+            "Extra-virgin or virgin olive oil"
+          ]
+        },
+        {
+          "title": "8 Desserts in 1 Pan",
+          "missing": [
+            "1¼ sticks (150 g) butter, softened",
+            "½ cup (90 g) light brown sugar",
+            "½ cup (90 g) golden superfine sugar",
+            "1 teaspoon vanilla extract",
+            "2 cups (240 g) all-purpose flour, more if needed",
+            "1½ cups (180 g) chocolate chips",
+            "1 small bag (approximately ⅓ cup / 40 g) M&Ms",
+            "115 g chocolate",
+            "1 cup (60 g) mini marshmallows",
+            "1 package (15 oz / 425 g) brownie mix",
+            "1 ea. (approximately 260 g) Bramley or green cooking apple",
+            "4 tablespoons golden superfine sugar",
+            "½ teaspoon ground cinnamon",
+            "1 tablespoon all-purpose flour",
+            "¼ cup (55 g) superfine sugar",
+            "¼ cup (45 g) light brown sugar",
+            "1 cup (250 g) pumpkin purée",
+            "⅓ cup (80 ml) heavy cream",
+            "1 teaspoon vanilla extract",
+            "1 heaped teaspoon mixed spice",
+            "½ stick (60 g) butter, softened",
+            "⅓ cup (70 g) sugar",
+            "½ cup (70 g) self-rising flour",
+            "1 teaspoon baking powder",
+            "1 banana, mashed",
+            "125 g mascarpone",
+            "1¼ cup (300 g) cream cheese",
+            "4 tablespoons all-purpose flour",
+            "½ cup (110 g) superfine sugar",
+            "8 graham crackers",
+            "2 sheets shortcrust pastry"
+          ]
+        },
+        {
+          "title": "Hallaca (Venezuelan Stuffed Corn Dough)",
+          "missing": [
+            "Olive oil",
+            "1 tsp annatto seeds (also called \"achiote\" or \"onoto\")",
+            "1 tsp cumin seeds",
+            "1 tsp coriander seeds",
+            "1 vegetable stock cube",
+            "1 tsp marmite",
+            "2 leeks, green and white parts cut in 1-inch chunks",
+            "1 large bunch of fresh herbs (coriander leaf, thyme, parsley, celery)",
+            "2 packets of spring onions, chopped",
+            "1 head of garlic, halved",
+            "1 jar of capers",
+            "1 kg instant polenta meal (coarse corn meal)",
+            "500 g cooked and mashed new potatoes",
+            "Olive oil",
+            "2 carrots, shredded",
+            "6 Brussels sprouts, shredded",
+            "1 handful of green beans, chopped",
+            "100 g mixed vine fruit",
+            "Cooking wine",
+            "20 prunes",
+            "1 can of chickpeas",
+            "1 jar of mixed pickles in mustard sauce",
+            "50 g almonds",
+            "1 can of mock duck or 1 packet of marinated tofu pieces",
+            "1 can of artichoke hearts",
+            "1 can of asparagus",
+            "Olive oil",
+            "2 red onions, sliced",
+            "1 leek, white part chopped",
+            "Soy sauce",
+            "Chili sauce",
+            "Ground cumin",
+            "Wheat flour or cornstarch"
+          ]
+        },
+        {
+          "title": "Salată de Boeuf (Romanian Beef Salad)",
+          "missing": [
+            "1 kg (2 lb 3 oz) potatoes (any variety, though some prefer red)",
+            "350 g (12 oz) carrots, peeled and diced in 1 cm cubes",
+            "350 g boiled beef, cut in 1 cm cubes",
+            "1 can of peas or 300 g (10.5 oz) fresh peas",
+            "350 g pickled dill gherkins (not too sweet and very firm), diced in 1 cm cubes",
+            "1 tsp (5 ml) French mustard",
+            "Gherkins, sliced into long thin strips"
+          ]
+        },
+        {
+          "title": "Pasta Casserole (Pastitsio)",
+          "missing": [
+            "2 tablespoons olive oil",
+            "750 g minced meat",
+            "⅓ cup tomato paste",
+            "¼ cup dry white wine",
+            "1 tablespoon beef stock powder",
+            "½ teaspoon cinnamon powder",
+            "100 g butter",
+            "½ cup plain flour",
+            "3½ cups milk",
+            "1 cup grated fresh Parmesan cheese",
+            "250 g macaroni pasta (or Greek pastitsio noodles)",
+            "2 tablespoons stale breadcrumbs"
+          ]
+        }
+      ],
+      "right": [
+        {
+          "title": "Zambian Tomato and Onion Salad",
+          "missing": []
+        },
+        {
+          "title": "Homemade Tomato Paste",
+          "missing": []
+        },
+        {
+          "title": "Stracciatella II",
+          "missing": []
+        },
+        {
+          "title": "Tomato Concassé",
+          "missing": []
+        },
+        {
+          "title": "Preserved Lemon",
+          "missing": []
+        }
+      ]
+    }
+  ]
+}
