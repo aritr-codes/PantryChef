@@ -1,78 +1,255 @@
 {
-  "label": "MEASURED",
-  "what": "answer() latency, Chromium headless, Vite dev server, real pack, CPU throttled",
+  "arms": [],
+  "command": "node web/scripts/latency.mjs --rate 6 --runs 40 --seed 1 --out m1_latency_run1.json",
   "commit": "223f55e2952286c63e5dc0dab4e1c25aeddc18a5",
-  "dirty": true,
+  "comparisons": [],
   "config": {
     "cpu_throttle_rate": 6,
-    "runs_per_size": 40,
+    "limit": 10,
     "pantry_sizes": [
       3,
       5,
       8,
       12
     ],
-    "limit": 10,
-    "warmup": 3,
-    "pool": "120 most common ingredients"
+    "pool": "120 most common ingredients",
+    "runs_per_size": 40,
+    "warmup": 3
   },
-  "pack": {
-    "corpus_fingerprint": "a1a076ab0aee385c4e01cdc904342214dfaa6b01dc35d80d32519ea625c597d2",
-    "files": [
-      {
-        "name": "core.v1.json.gz",
-        "sha256": "133b6449b715139acf1d47d188a18e39bbc138da53004bd99392a194364610ea",
-        "size": 476092
+  "corpus_fingerprint": "a1a076ab0aee385c4e01cdc904342214dfaa6b01dc35d80d32519ea625c597d2",
+  "dirty": true,
+  "dirty_paths": [
+    "results/m1_latency.json"
+  ],
+  "environment": {
+    "note": "converted from the pre-schema file by scripts/convert_m1_latency.py; environment not recorded"
+  },
+  "label": "MEASURED",
+  "metrics": [
+    {
+      "arm": null,
+      "depends_on": [],
+      "group": {
+        "pantry_size": 3
       },
-      {
-        "name": "text.v1.json.gz",
-        "sha256": "c1021eee2dd4dcde676c63b1aa900d61e9beab35de8ba6e2539d71af712f9b0b",
-        "size": 870411
-      }
-    ],
-    "recipes": 3712
+      "n": 40,
+      "name": "latency_p50_ms",
+      "role": "latency",
+      "split": "all",
+      "value": 50.40000000037253
+    },
+    {
+      "arm": null,
+      "depends_on": [],
+      "group": {
+        "pantry_size": 3
+      },
+      "n": 40,
+      "name": "latency_p95_ms",
+      "role": "latency",
+      "split": "all",
+      "value": 84
+    },
+    {
+      "arm": null,
+      "depends_on": [],
+      "group": {
+        "pantry_size": 3
+      },
+      "n": 40,
+      "name": "latency_max_ms",
+      "role": "latency",
+      "split": "all",
+      "value": 98.90000000037253
+    },
+    {
+      "arm": null,
+      "depends_on": [],
+      "group": {
+        "pantry_size": 5
+      },
+      "n": 40,
+      "name": "latency_p50_ms",
+      "role": "latency",
+      "split": "all",
+      "value": 44.59999999962747
+    },
+    {
+      "arm": null,
+      "depends_on": [],
+      "group": {
+        "pantry_size": 5
+      },
+      "n": 40,
+      "name": "latency_p95_ms",
+      "role": "latency",
+      "split": "all",
+      "value": 54.39999999944121
+    },
+    {
+      "arm": null,
+      "depends_on": [],
+      "group": {
+        "pantry_size": 5
+      },
+      "n": 40,
+      "name": "latency_max_ms",
+      "role": "latency",
+      "split": "all",
+      "value": 60.200000000186265
+    },
+    {
+      "arm": null,
+      "depends_on": [],
+      "group": {
+        "pantry_size": 8
+      },
+      "n": 40,
+      "name": "latency_p50_ms",
+      "role": "latency",
+      "split": "all",
+      "value": 51.19999999925494
+    },
+    {
+      "arm": null,
+      "depends_on": [],
+      "group": {
+        "pantry_size": 8
+      },
+      "n": 40,
+      "name": "latency_p95_ms",
+      "role": "latency",
+      "split": "all",
+      "value": 88.20000000018626
+    },
+    {
+      "arm": null,
+      "depends_on": [],
+      "group": {
+        "pantry_size": 8
+      },
+      "n": 40,
+      "name": "latency_max_ms",
+      "role": "latency",
+      "split": "all",
+      "value": 126.09999999962747
+    },
+    {
+      "arm": null,
+      "depends_on": [],
+      "group": {
+        "pantry_size": 12
+      },
+      "n": 40,
+      "name": "latency_p50_ms",
+      "role": "latency",
+      "split": "all",
+      "value": 32.39999999944121
+    },
+    {
+      "arm": null,
+      "depends_on": [],
+      "group": {
+        "pantry_size": 12
+      },
+      "n": 40,
+      "name": "latency_p95_ms",
+      "role": "latency",
+      "split": "all",
+      "value": 58.89999999944121
+    },
+    {
+      "arm": null,
+      "depends_on": [],
+      "group": {
+        "pantry_size": 12
+      },
+      "n": 40,
+      "name": "latency_max_ms",
+      "role": "latency",
+      "split": "all",
+      "value": 78.09999999962747
+    }
+  ],
+  "raw": {
+    "command": "node web/scripts/latency.mjs --rate 6 --runs 40 --seed 1 --out m1_latency_run1.json",
+    "commit": "223f55e2952286c63e5dc0dab4e1c25aeddc18a5",
+    "config": {
+      "cpu_throttle_rate": 6,
+      "limit": 10,
+      "pantry_sizes": [
+        3,
+        5,
+        8,
+        12
+      ],
+      "pool": "120 most common ingredients",
+      "runs_per_size": 40,
+      "warmup": 3
+    },
+    "dirty": true,
+    "label": "MEASURED",
+    "limits": "Covers answer() at limit 10 only, not rendering. Pantries come from the 120 most common ingredients. The dev server serves unminified code. One run: run-to-run spread is not measured. The first call after load is reported separately as coldFirstCallMs.",
+    "metrics": {
+      "bySize": {
+        "12": {
+          "max": 78.09999999962747,
+          "n": 40,
+          "p50": 32.39999999944121,
+          "p95": 58.89999999944121
+        },
+        "3": {
+          "max": 98.90000000037253,
+          "n": 40,
+          "p50": 50.40000000037253,
+          "p95": 84
+        },
+        "5": {
+          "max": 60.200000000186265,
+          "n": 40,
+          "p50": 44.59999999962747,
+          "p95": 54.39999999944121
+        },
+        "8": {
+          "max": 126.09999999962747,
+          "n": 40,
+          "p50": 51.19999999925494,
+          "p95": 88.20000000018626
+        }
+      },
+      "coldFirstCallMs": 96.79999999981374,
+      "loadMs": 678.6000000005588,
+      "overall": {
+        "max": 126.09999999962747,
+        "n": 160,
+        "p50": 43.299999999813735,
+        "p95": 78.09999999962747
+      },
+      "p95_under_threshold": true,
+      "sizes_over_threshold": [],
+      "threshold_ms": 100
+    },
+    "pack": {
+      "corpus_fingerprint": "a1a076ab0aee385c4e01cdc904342214dfaa6b01dc35d80d32519ea625c597d2",
+      "files": [
+        {
+          "name": "core.v1.json.gz",
+          "sha256": "133b6449b715139acf1d47d188a18e39bbc138da53004bd99392a194364610ea",
+          "size": 476092
+        },
+        {
+          "name": "text.v1.json.gz",
+          "sha256": "c1021eee2dd4dcde676c63b1aa900d61e9beab35de8ba6e2539d71af712f9b0b",
+          "size": 870411
+        }
+      ],
+      "recipes": 3712
+    },
+    "seed": 1,
+    "what": "answer() latency, Chromium headless, Vite dev server, real pack, CPU throttled",
+    "worker_plan": "Small pantries match many recipes and are the slowest. If a production-bundle run still shows p95 >= 100 ms, move Engine into a Web Worker (module worker, same origin, loads the pack itself) and post AnswerRequest/Answer messages. The Answer type is plain JSON, so no code change in the engine is needed. Until then answer() runs on the main thread."
   },
+  "schema": 1,
   "seed": 1,
-  "metrics": {
-    "loadMs": 678.6000000005588,
-    "coldFirstCallMs": 96.79999999981374,
-    "bySize": {
-      "3": {
-        "n": 40,
-        "p50": 50.40000000037253,
-        "p95": 84,
-        "max": 98.90000000037253
-      },
-      "5": {
-        "n": 40,
-        "p50": 44.59999999962747,
-        "p95": 54.39999999944121,
-        "max": 60.200000000186265
-      },
-      "8": {
-        "n": 40,
-        "p50": 51.19999999925494,
-        "p95": 88.20000000018626,
-        "max": 126.09999999962747
-      },
-      "12": {
-        "n": 40,
-        "p50": 32.39999999944121,
-        "p95": 58.89999999944121,
-        "max": 78.09999999962747
-      }
-    },
-    "overall": {
-      "n": 160,
-      "p50": 43.299999999813735,
-      "p95": 78.09999999962747,
-      "max": 126.09999999962747
-    },
-    "threshold_ms": 100,
-    "p95_under_threshold": true,
-    "sizes_over_threshold": []
-  },
-  "worker_plan": "Small pantries match many recipes and are the slowest. If a production-bundle run still shows p95 >= 100 ms, move Engine into a Web Worker (module worker, same origin, loads the pack itself) and post AnswerRequest/Answer messages. The Answer type is plain JSON, so no code change in the engine is needed. Until then answer() runs on the main thread.",
-  "limits": "Covers answer() at limit 10 only, not rendering. Pantries come from the 120 most common ingredients. The dev server serves unminified code. One run: run-to-run spread is not measured. The first call after load is reported separately as coldFirstCallMs.",
-  "command": "node web/scripts/latency.mjs --rate 6 --runs 40 --seed 1 --out m1_latency_run1.json"
+  "what": "answer() latency, Chromium headless, Vite dev server, real pack, CPU throttled"
 }
