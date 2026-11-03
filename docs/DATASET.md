@@ -17,6 +17,7 @@ Git ignores these files. The sha256 values below were computed from the files on
 | File under `data/raw/` | Source | Size in bytes | sha256 |
 | --- | --- | --- | --- |
 | `wikibooks_cookbook/recipes_parsed.mini.json` | `gossminn/wikibooks-cookbook` on Hugging Face. Third-party scrape, dated 2024-07-31, with no revision ids. Measurement only. M1 replaces it | 10008463 | `67fd704a6d9280742d2f217ad9f9e4f50921b84fcdefdff9bac749a518c4d46b` |
+| `wikibooks/snapshot.2026-11-03.jsonl.gz` | Official MediaWiki API, built by `scripts/fetch_wikibooks.py` on 2026-11-03. 3,865 Cookbook pages, with a revision id and timestamp for each. CC BY-SA 4.0. This is the display corpus snapshot. The release copy is not published yet | 2501026 | `a1a076ab0aee385c4e01cdc904342214dfaa6b01dc35d80d32519ea625c597d2` |
 | `openrecipes/20170107-061401-recipeitems.json.gz` | `napsternxg/openrecipes-20170107-061401-recipeitems` on Hugging Face. The original S3 URLs now return 403 | 30795953 | `6e40a82e0bd83468f8020b461924d9d6cf8bdba822642c5276868104acb6d682` |
 | `full_dataset.csv` | RecipeNLG, manual download. Research only | 2294981083 | `f376ee0bb9f99f323761abf6270d453f4eff2002c3625d04cabcf8b57dca0803` |
 | `dataset.zip` | RecipeNLG source archive. Research only | 620612136 | `1428b7e0029e3b74c63810e4a2fca1533baabd662bb024b57ca517d71b8f895e` |
@@ -25,8 +26,8 @@ Git ignores these files. The sha256 values below were computed from the files on
 
 ### Wikibooks Cookbook  (planned display corpus)
 - **Licence:** CC BY-SA 4.0. **Size:** about 3,800 recipes with an ingredient list.
-- **Status:** the snapshot above is for measurement. M1 fetches a new snapshot from the
-  official MediaWiki API, with a revision id for each page.
+- **Status:** M1 fetched an official snapshot on 2026-11-03 (see the table above). 3,713 of its
+  3,865 pages have an ingredient list. The third-party scrape stays for measurement only.
 
 ### Open Recipes  (planned statistics corpus)
 - **Licence:** CC BY 3.0 for the database. **Size:** 173,276 recipes with ingredients. It

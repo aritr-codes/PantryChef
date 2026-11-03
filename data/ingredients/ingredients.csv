@@ -1,0 +1,334 @@
+id,name,synonyms,staple,provenance
+water,water,cold water|warm water|hot water|boiling water|ice water|tap water|lukewarm water|ice,1,hand
+salt,salt,sea salt|kosher salt|table salt|coarse salt|fine salt|iodized salt|rock salt|flaky salt,1,hand
+black_pepper,black pepper,ground black pepper|freshly ground black pepper|cracked pepper|ground pepper|freshly ground pepper|fresh ground pepper|black peppercorn|peppercorn|cracked black pepper,1,hand
+vegetable_oil,vegetable oil,oil|cooking oil|canola oil|sunflower oil|rapeseed oil|corn oil|salad oil|peanut oil|safflower oil,1,hand
+olive_oil,olive oil,extra virgin olive oil|extra-virgin olive oil|virgin olive oil|evoo,0,hand
+sesame_oil,sesame oil,toasted sesame oil,0,hand
+coconut_oil,coconut oil,,0,hand
+cooking_spray,cooking spray,nonstick cooking spray|non-stick cooking spray|nonstick spray|vegetable oil spray,0,hand
+onion,onion,yellow onion|white onion|brown onion|spanish onion|cooking onion|sweet onion,0,hand
+red_onion,red onion,purple onion,0,hand
+green_onion,green onion,scallion|spring onion|salad onion,0,hand
+shallot,shallot,,0,hand
+leek,leek,,0,hand
+garlic,garlic,garlic clove|fresh garlic|garlic bulb|garlic powder|garlic salt|minced garlic,0,hand
+ginger,ginger,fresh ginger|ginger root|root ginger|gingerroot,0,hand
+ground_ginger,ground ginger,powdered ginger|dried ginger|ginger powder,0,hand
+potato,potato,white potato|russet potato|baking potato|idaho potato|yukon gold potato|new potato|red potato|waxy potato|mashed potato,0,hand
+sweet_potato,sweet potato,yam,0,hand
+carrot,carrot,baby carrot,0,hand
+celery,celery,celery stalk|celery rib|celery stick,0,hand
+celery_seed,celery seed,,0,hand
+tomato,tomato,roma tomato|plum tomato|cherry tomato|grape tomato|beefsteak tomato|ripe tomato|fresh tomato|tomatoes,0,hand
+canned_tomato,canned tomato,crushed tomato|diced tomato|tinned tomato|whole peeled tomato|stewed tomato|canned diced tomato|canned crushed tomato|tomato can,0,hand
+tomato_paste,tomato paste,tomato puree|concentrated tomato paste,0,hand
+tomato_sauce,tomato sauce,passata|marinara sauce|pasta sauce|spaghetti sauce,0,hand
+cucumber,cucumber,english cucumber|pickling cucumber,0,hand
+lettuce,lettuce,romaine lettuce|iceberg lettuce|romaine|butter lettuce|salad green|mixed green|leaf lettuce|cos lettuce,0,hand
+spinach,spinach,baby spinach|fresh spinach|frozen spinach,0,hand
+kale,kale,,0,hand
+cabbage,cabbage,green cabbage|napa cabbage|white cabbage|savoy cabbage|chinese cabbage,0,hand
+red_cabbage,red cabbage,purple cabbage,0,hand
+broccoli,broccoli,broccoli floret,0,hand
+cauliflower,cauliflower,cauliflower floret,0,hand
+zucchini,zucchini,courgette,0,hand
+eggplant,eggplant,aubergine,0,hand
+bell_pepper,bell pepper,red bell pepper|green bell pepper|yellow bell pepper|orange bell pepper|sweet pepper|capsicum|red pepper|green pepper|yellow pepper|orange pepper|sweet red pepper,0,hand
+chili_pepper,chili pepper,chili|chile|chilli|green chili|red chili|hot pepper|chile pepper|green chile|red chile|chilli pepper|hot chili pepper|fresh chili,0,hand
+jalapeno,jalapeno,jalapeno pepper|jalape o|jalape o pepper,0,hand
+serrano,serrano,serrano pepper|serrano chili,0,hand
+mushroom,mushroom,button mushroom|cremini|portobello|white mushroom|portabella|baby bella|sliced mushroom|champignon|shiitake|shiitake mushroom|oyster mushroom,0,hand
+corn,corn,sweetcorn|corn kernel|corn on the cob|sweet corn|frozen corn|canned corn|ear of corn|corn cob,0,hand
+pea,pea,green pea|frozen pea|garden pea|snow pea|sugar snap pea|petit pois,0,hand
+green_bean,green bean,string bean|french bean|snap bean|haricot vert|runner bean,0,hand
+asparagus,asparagus,asparagus spear,0,hand
+beet,beet,beetroot,0,hand
+radish,radish,,0,hand
+turnip,turnip,,0,hand
+parsnip,parsnip,,0,hand
+pumpkin,pumpkin,pumpkin puree|canned pumpkin|pumpkin pie filling,0,hand
+butternut_squash,butternut squash,winter squash|acorn squash|squash|butternut pumpkin,0,hand
+avocado,avocado,ripe avocado,0,hand
+olive,olive,black olive|green olive|kalamata olive|kalamata|pitted olive|stuffed olive,0,hand
+lemon,lemon,lemon juice|lemon zest|lemon peel|lemon rind|lemon wedge|lemon slice|juice of lemon|fresh lemon juice,0,hand
+lime,lime,lime juice|lime zest|lime peel|lime wedge|juice of lime|fresh lime juice,0,hand
+orange,orange,orange zest|orange peel|orange rind|navel orange|orange segment,0,hand
+orange_juice,orange juice,,0,hand
+apple,apple,baking apple|granny smith apple|granny smith|green apple|red apple|cooking apple|tart apple|golden delicious apple,0,hand
+banana,banana,ripe banana|overripe banana,0,hand
+strawberry,strawberry,fresh strawberry|frozen strawberry,0,hand
+blueberry,blueberry,fresh blueberry|frozen blueberry,0,hand
+raspberry,raspberry,fresh raspberry|frozen raspberry,0,hand
+cranberry,cranberry,fresh cranberry|dried cranberry|cranberry sauce,0,hand
+grape,grape,seedless grape|red grape|green grape,0,hand
+peach,peach,fresh peach|canned peach|peach slice,0,hand
+pear,pear,,0,hand
+pineapple,pineapple,pineapple chunk|crushed pineapple|pineapple juice|canned pineapple,0,hand
+mango,mango,ripe mango,0,hand
+coconut,coconut,shredded coconut|desiccated coconut|coconut flake|flaked coconut|grated coconut|dried coconut|unsweetened coconut,0,hand
+raisin,raisin,golden raisin|sultana|currant,0,hand
+date,date,medjool date|pitted date,0,hand
+fig,fig,dried fig|fresh fig,0,hand
+prune,prune,dried plum,0,hand
+apricot,apricot,dried apricot|fresh apricot,0,hand
+cherry,cherry,maraschino cherry|sour cherry|fresh cherry|dried cherry,0,hand
+plum,plum,,0,hand
+watermelon,watermelon,,0,hand
+melon,melon,cantaloupe|honeydew,0,hand
+fennel,fennel,fennel bulb,0,hand
+artichoke,artichoke,artichoke heart|artichoke bottom,0,hand
+okra,okra,,0,hand
+bok_choy,bok choy,pak choi|baby bok choy|bok choi,0,hand
+bean_sprout,bean sprout,mung bean sprout|sprout,0,hand
+watercress,watercress,,0,hand
+arugula,arugula,rocket|rocket leaf,0,hand
+parsley,parsley,fresh parsley|flat leaf parsley|flat-leaf parsley|italian parsley|curly parsley|dried parsley|parsley leaf,0,hand
+cilantro,cilantro,fresh coriander|coriander leaf|cilantro leaf|fresh cilantro|chinese parsley,0,hand
+basil,basil,fresh basil|dried basil|basil leaf|sweet basil|thai basil,0,hand
+oregano,oregano,dried oregano|fresh oregano,0,hand
+thyme,thyme,fresh thyme|dried thyme|thyme leaf|thyme sprig,0,hand
+rosemary,rosemary,fresh rosemary|dried rosemary|rosemary sprig,0,hand
+sage,sage,fresh sage|dried sage|ground sage|rubbed sage|sage leaf,0,hand
+mint,mint,fresh mint|mint leaf|dried mint|spearmint|peppermint,0,hand
+dill,dill,fresh dill|dill weed|dried dill|dill sprig,0,hand
+chive,chive,fresh chive|chopped chive,0,hand
+bay_leaf,bay leaf,bay|bay leave,0,hand
+tarragon,tarragon,fresh tarragon|dried tarragon,0,hand
+marjoram,marjoram,,0,hand
+cayenne,cayenne,cayenne pepper|ground red pepper|ground cayenne|ground cayenne pepper,0,hand
+chili_powder,chili powder,chile powder|chilli powder,0,hand
+red_pepper_flakes,red pepper flakes,crushed red pepper|chili flake|chilli flake|red pepper flake|crushed chili|dried chili flake|chile flake|crushed red pepper flake,0,hand
+paprika,paprika,sweet paprika|hungarian paprika,0,hand
+smoked_paprika,smoked paprika,spanish paprika|pimenton,0,hand
+cumin,cumin,ground cumin|cumin seed|cumin powder|whole cumin,0,hand
+coriander,coriander,ground coriander|coriander seed|coriander powder,0,hand
+turmeric,turmeric,ground turmeric|turmeric powder,0,hand
+cinnamon,cinnamon,ground cinnamon|cinnamon stick|cinnamon powder,0,hand
+nutmeg,nutmeg,ground nutmeg|grated nutmeg,0,hand
+cloves,whole cloves,ground cloves|ground clove|clove spice|whole clove|clove,0,hand
+cardamom,cardamom,cardamom pod|ground cardamom|green cardamom,0,hand
+allspice,allspice,ground allspice,0,hand
+mustard_seed,mustard seed,yellow mustard seed|black mustard seed,0,hand
+mustard,mustard,dijon mustard|yellow mustard|prepared mustard|whole grain mustard|wholegrain mustard|english mustard|dijon,0,hand
+dry_mustard,dry mustard,mustard powder|ground mustard,0,hand
+curry_powder,curry powder,madras curry powder|yellow curry powder|mild curry powder|hot curry powder,0,hand
+curry_paste,curry paste,red curry paste|green curry paste|thai curry paste|yellow curry paste,0,hand
+garam_masala,garam masala,,0,hand
+italian_seasoning,italian seasoning,italian herb|mixed herb|herbes de provence|dried mixed herb,0,hand
+chinese_five_spice,chinese five spice,five spice|five-spice|five spice powder,0,hand
+vanilla,vanilla,vanilla extract|vanilla essence|vanilla bean|pure vanilla extract|vanilla pod,0,hand
+saffron,saffron,saffron thread,0,hand
+star_anise,star anise,,0,hand
+fennel_seed,fennel seed,,0,hand
+caraway,caraway,caraway seed,0,hand
+sesame_seed,sesame seed,toasted sesame seed|white sesame seed|sesame,0,hand
+poppy_seed,poppy seed,,0,hand
+baking_powder,baking powder,,0,hand
+baking_soda,baking soda,bicarbonate of soda|bicarb|sodium bicarbonate|bicarb soda|bicarbonate soda,0,hand
+yeast,yeast,dry yeast|active dry yeast|instant yeast|fresh yeast|dried yeast|rapid rise yeast|bread machine yeast,0,hand
+cornstarch,cornstarch,corn starch|cornflour|corn flour|maize starch,0,hand
+cream_of_tartar,cream of tartar,,0,hand
+gelatin,gelatin,gelatine|powdered gelatin|unflavored gelatin,0,hand
+flour,flour,all-purpose flour|all purpose flour|plain flour|white flour|ap flour|unbleached flour|wheat flour|sifted flour|flour for dusting,0,hand
+bread_flour,bread flour,strong flour|strong white flour|high gluten flour,0,hand
+whole_wheat_flour,whole wheat flour,wholemeal flour|whole-wheat flour|wholewheat flour|graham flour|whole meal flour,0,hand
+self_rising_flour,self-rising flour,self-raising flour|self rising flour|self raising flour,0,hand
+cake_flour,cake flour,,0,hand
+rye_flour,rye flour,,0,hand
+cornmeal,cornmeal,corn meal|polenta|yellow cornmeal,0,hand
+semolina,semolina,,0,hand
+sugar,sugar,white sugar|granulated sugar|caster sugar|superfine sugar|white granulated sugar|granulated white sugar|castor sugar|cane sugar|fine sugar,0,hand
+brown_sugar,brown sugar,light brown sugar|dark brown sugar|packed brown sugar|demerara sugar|muscovado sugar|soft brown sugar|turbinado sugar,0,hand
+powdered_sugar,powdered sugar,confectioners sugar|icing sugar|confectioner s sugar|confectioners' sugar|sifted powdered sugar|icing,0,hand
+honey,honey,,0,hand
+maple_syrup,maple syrup,pure maple syrup,0,hand
+molasses,molasses,treacle|blackstrap molasses,0,hand
+corn_syrup,corn syrup,light corn syrup|golden syrup|dark corn syrup|glucose syrup,0,hand
+rice,rice,white rice|long grain rice|long-grain rice|cooked rice|uncooked rice|short grain rice|medium grain rice|steamed rice,0,hand
+basmati_rice,basmati rice,basmati,0,hand
+jasmine_rice,jasmine rice,,0,hand
+brown_rice,brown rice,,0,hand
+arborio_rice,arborio rice,risotto rice,0,hand
+wild_rice,wild rice,,0,hand
+pasta,pasta,spaghetti|penne|macaroni|fettuccine|linguine|rigatoni|fusilli|tagliatelle|rotini|farfalle|vermicelli|angel hair|elbow macaroni|lasagna noodle|lasagne sheet|lasagna sheet|ziti|orzo|shell pasta|noodle,0,hand
+egg_noodle,egg noodle,,0,hand
+rice_noodle,rice noodle,rice vermicelli|rice stick,0,hand
+couscous,couscous,,0,hand
+quinoa,quinoa,,0,hand
+oats,oats,rolled oat|oatmeal|old fashioned oat|old-fashioned oat|quick oat|quick-cooking oat|porridge oat|steel cut oat,0,hand
+bulgur,bulgur,bulgur wheat|cracked wheat,0,hand
+barley,barley,pearl barley,0,hand
+bread,bread,white bread|sandwich bread|bread slice|slice of bread|whole wheat bread|wholemeal bread|stale bread|day-old bread|sourdough|toast|loaf of bread|french bread|italian bread|baguette,0,hand
+breadcrumbs,breadcrumbs,bread crumb|panko|dry bread crumb|dried breadcrumb|fresh breadcrumb|panko bread crumb,0,hand
+tortilla,tortilla,flour tortilla|corn tortilla|wrap,0,hand
+cracker,cracker,graham cracker|saltine|saltine cracker|cracker crumb|graham cracker crumb,0,hand
+pita,pita,pita bread|pitta bread|pitta,0,hand
+lentil,lentil,red lentil|green lentil|brown lentil|dried lentil|puy lentil|split red lentil,0,hand
+chickpea,chickpea,garbanzo bean|garbanzo|chick pea|canned chickpea|cooked chickpea,0,hand
+black_bean,black bean,canned black bean|black turtle bean,0,hand
+kidney_bean,kidney bean,red kidney bean|canned kidney bean,0,hand
+white_bean,white bean,cannellini bean|navy bean|great northern bean|haricot bean|butter bean|lima bean|cannellini,0,hand
+pinto_bean,pinto bean,,0,hand
+split_pea,split pea,dried split pea|yellow split pea,0,hand
+refried_beans,refried beans,refried bean,0,hand
+peanut,peanut,roasted peanut|salted peanut|dry roasted peanut|unsalted peanut,0,hand
+peanut_butter,peanut butter,creamy peanut butter|crunchy peanut butter|smooth peanut butter|chunky peanut butter,0,hand
+almond,almond,sliced almond|slivered almond|ground almond|almond meal|whole almond|flaked almond|blanched almond|almond flour,0,hand
+almond_extract,almond extract,almond essence,0,hand
+walnut,walnut,chopped walnut|walnut half|walnut piece,0,hand
+pecan,pecan,chopped pecan|pecan half,0,hand
+cashew,cashew,cashew nut,0,hand
+pistachio,pistachio,,0,hand
+hazelnut,hazelnut,filbert,0,hand
+pine_nut,pine nut,pinenut|pignoli,0,hand
+chocolate,chocolate,baking chocolate|semisweet chocolate|dark chocolate|bittersweet chocolate|semi-sweet chocolate|unsweetened chocolate|milk chocolate|white chocolate|chocolate bar|plain chocolate,0,hand
+chocolate_chips,chocolate chips,chocolate chip|semisweet chocolate chip|semi-sweet chocolate chip|chocolate morsel|choc chip|dark chocolate chip,0,hand
+cocoa,cocoa,cocoa powder|unsweetened cocoa|cacao powder|unsweetened cocoa powder|dutch process cocoa,0,hand
+marshmallow,marshmallow,mini marshmallow|miniature marshmallow,0,hand
+jam,jam,jelly|preserves|strawberry jam|raspberry jam|fruit preserve|marmalade|apricot jam,0,hand
+milk,milk,whole milk|skim milk|2% milk|semi-skimmed milk|full fat milk|low fat milk|lowfat milk|fresh milk|cold milk|warm milk|skimmed milk|nonfat milk|full-fat milk|dairy milk,0,hand
+buttermilk,buttermilk,,0,hand
+heavy_cream,heavy cream,double cream|whipping cream|heavy whipping cream|whipped cream|thickened cream|cream for whipping|double  cream,0,hand
+cream,cream,single cream|light cream|table cream|pouring cream|fresh cream,0,hand
+sour_cream,sour cream,soured cream|creme fraiche|cr me fra che,0,hand
+half_and_half,half and half,half & half|half-and-half,0,hand
+cream_cheese,cream cheese,philadelphia|soft cheese|neufchatel,0,hand
+butter,butter,unsalted butter|salted butter|melted butter|softened butter|cold butter|stick of butter|butter stick|clarified butter|ghee,0,hand
+margarine,margarine,,0,hand
+yogurt,yogurt,yoghurt|plain yogurt|greek yogurt|natural yogurt|plain yoghurt|greek yoghurt|plain greek yogurt|vanilla yogurt,0,hand
+cheese,cheese,grated cheese|shredded cheese|sliced cheese,0,hand
+cheddar,cheddar,cheddar cheese|sharp cheddar|mild cheddar|sharp cheddar cheese|shredded cheddar|grated cheddar|extra sharp cheddar,0,hand
+mozzarella,mozzarella,mozzarella cheese|fresh mozzarella|shredded mozzarella|buffalo mozzarella,0,hand
+parmesan,parmesan,parmesan cheese|parmigiano reggiano|parmigiano-reggiano|grated parmesan|parmigiano|romano cheese|pecorino romano|pecorino|romano|grated parmesan cheese|freshly grated parmesan,0,hand
+feta,feta,feta cheese|crumbled feta,0,hand
+goat_cheese,goat cheese,chevre|goat s cheese|goats cheese|goat's cheese,0,hand
+ricotta,ricotta,ricotta cheese,0,hand
+cottage_cheese,cottage cheese,,0,hand
+swiss_cheese,swiss cheese,gruyere|gruy re|emmental|emmenthal|jarlsberg|gruyere cheese,0,hand
+blue_cheese,blue cheese,gorgonzola|roquefort|bleu cheese|stilton,0,hand
+monterey_jack,monterey jack,monterey jack cheese|pepper jack|colby jack|colby,0,hand
+egg,egg,large egg|eggs|egg white|egg yolk|beaten egg|hard-boiled egg|boiled egg|hard boiled egg|soft-boiled egg|whole egg|medium egg|free range egg|extra large egg|egg wash|white of egg|yolk,0,hand
+condensed_milk,condensed milk,sweetened condensed milk,0,hand
+evaporated_milk,evaporated milk,,0,hand
+powdered_milk,powdered milk,milk powder|dry milk|dry milk powder|nonfat dry milk,0,hand
+coconut_milk,coconut milk,canned coconut milk|coconut cream|light coconut milk,0,hand
+ice_cream,ice cream,vanilla ice cream,0,hand
+chicken,chicken,chicken breast|chicken thigh|chicken leg|chicken wing|whole chicken|chicken piece|boneless chicken|chicken drumstick|chicken tender|cooked chicken|roast chicken|rotisserie chicken|chicken fillet|skinless chicken breast|boneless skinless chicken breast|chicken meat|chicken pieces,0,hand
+ground_beef,ground beef,minced beef|beef mince|hamburger meat|ground chuck|lean ground beef|minced meat|mince|beef mince meat,0,hand
+beef,beef,beef steak|steak|beef roast|stewing beef|beef chuck|sirloin|ribeye|flank steak|roast beef|beef brisket|brisket|chuck roast|beef stew meat|rump steak|beef tenderloin|beef strip|skirt steak,0,hand
+pork,pork,pork chop|pork loin|pork shoulder|pork tenderloin|pork roast|pork belly|pork rib|spare rib|pork steak|boneless pork|pork butt|ground pork|minced pork,0,hand
+bacon,bacon,bacon slice|bacon strip|streaky bacon|back bacon|bacon bit|bacon rasher|rasher,0,hand
+ham,ham,cooked ham|smoked ham|ham steak|diced ham|gammon,0,hand
+sausage,sausage,italian sausage|pork sausage|breakfast sausage|smoked sausage|chorizo|kielbasa|bratwurst|sausage link|hot dog|frankfurter,0,hand
+lamb,lamb,lamb chop|leg of lamb|ground lamb|lamb shoulder|lamb shank|minced lamb|lamb mince|rack of lamb,0,hand
+turkey,turkey,turkey breast|ground turkey|whole turkey|turkey meat|turkey leg|turkey thigh|minced turkey,0,hand
+duck,duck,duck breast|duck leg,0,hand
+salmon,salmon,salmon fillet|smoked salmon|canned salmon|salmon steak,0,hand
+tuna,tuna,canned tuna|tuna fish|tuna steak|tinned tuna|tuna in oil|albacore,0,hand
+white_fish,white fish,cod|haddock|tilapia|halibut|sole|snapper|sea bass|bass|fish fillet|whitefish|pollock|trout|mackerel|catfish|flounder|fish,0,hand
+shrimp,shrimp,prawn|large shrimp|king prawn|jumbo shrimp|cooked shrimp|raw shrimp|tiger prawn,0,hand
+crab,crab,crab meat|crabmeat|lump crab meat|imitation crab,0,hand
+lobster,lobster,lobster tail,0,hand
+clam,clam,canned clam|clam juice,0,hand
+mussel,mussel,,0,hand
+oyster,oyster,,0,hand
+scallop,scallop,sea scallop|bay scallop,0,hand
+anchovy,anchovy,anchovy fillet|anchovy paste|salted anchovy,0,hand
+sardine,sardine,,0,hand
+tofu,tofu,firm tofu|silken tofu|extra firm tofu|bean curd,0,hand
+tempeh,tempeh,,0,hand
+vinegar,vinegar,white vinegar|distilled vinegar|distilled white vinegar|malt vinegar,0,hand
+apple_cider_vinegar,apple cider vinegar,cider vinegar|apple vinegar,0,hand
+balsamic_vinegar,balsamic vinegar,balsamic,0,hand
+red_wine_vinegar,red wine vinegar,,0,hand
+white_wine_vinegar,white wine vinegar,,0,hand
+rice_vinegar,rice vinegar,rice wine vinegar|seasoned rice vinegar,0,hand
+red_wine,red wine,dry red wine,0,hand
+white_wine,white wine,dry white wine,0,hand
+wine,wine,cooking wine,0,hand
+beer,beer,lager|ale|stout|dark beer,0,hand
+rum,rum,dark rum|white rum,0,hand
+brandy,brandy,cognac,0,hand
+vodka,vodka,,0,hand
+whiskey,whiskey,whisky|bourbon,0,hand
+sherry,sherry,dry sherry|cooking sherry,0,hand
+liqueur,liqueur,amaretto|kahlua|triple sec|grand marnier|cointreau,0,hand
+soy_sauce,soy sauce,soya sauce|shoyu|light soy sauce|dark soy sauce|tamari|low sodium soy sauce,0,hand
+worcestershire_sauce,worcestershire sauce,worcester sauce|worcestershire,0,hand
+hot_sauce,hot sauce,tabasco|sriracha|chili sauce|chilli sauce|louisiana hot sauce|tabasco sauce|pepper sauce|sweet chili sauce,0,hand
+ketchup,ketchup,catsup|tomato ketchup,0,hand
+mayonnaise,mayonnaise,mayo,0,hand
+bbq_sauce,bbq sauce,barbecue sauce|barbeque sauce|bar-b-q sauce,0,hand
+fish_sauce,fish sauce,nam pla,0,hand
+oyster_sauce,oyster sauce,,0,hand
+hoisin_sauce,hoisin sauce,hoisin,0,hand
+salsa,salsa,salsa verde|pico de gallo,0,hand
+pesto,pesto,basil pesto,0,hand
+tahini,tahini,sesame paste,0,hand
+hummus,hummus,,0,hand
+miso,miso,miso paste|white miso|red miso,0,hand
+pickle,pickle,dill pickle|pickled cucumber|gherkin|sweet pickle|pickle relish|relish,0,hand
+capers,capers,caper,0,hand
+chicken_stock,chicken stock,chicken broth|chicken bouillon|chicken stock cube|chicken bouillon cube|chicken bouillon granule|chicken consomme|chicken base,0,hand
+beef_stock,beef stock,beef broth|beef bouillon|beef stock cube|beef bouillon cube|beef consomme|beef base,0,hand
+vegetable_stock,vegetable stock,vegetable broth|veg stock|vegetable bouillon|vegetable stock cube|vegetable bouillon cube|veggie broth|veggie stock,0,hand
+stock,stock,broth|bouillon|bouillon cube|stock cube|bouillon granule|stock powder|fish stock|fish broth,0,hand
+coffee,coffee,instant coffee|brewed coffee|espresso|strong coffee|ground coffee|coffee granule|instant espresso,0,hand
+tea,tea,tea bag|green tea|black tea,0,hand
+lemonade,lemonade,,0,hand
+apple_juice,apple juice,apple cider,0,hand
+club_soda,club soda,soda water|sparkling water|seltzer|carbonated water|tonic water|ginger ale|lemon-lime soda|cola,0,hand
+sprinkles,sprinkles,,0,hand
+food_coloring,food coloring,food colouring|food dye|red food coloring|green food coloring,0,hand
+water_chestnut,water chestnut,,0,hand
+rice_flour,rice flour,glutinous rice flour,0,hand
+lemon_pepper,lemon pepper,lemon pepper seasoning,0,hand
+wonton_wrapper,wonton wrapper,egg roll wrapper|spring roll wrapper|dumpling wrapper|gyoza wrapper|wonton skin,0,hand
+pie_crust,pie crust,pie shell|pastry shell|pie dough|unbaked pie crust|graham cracker crust|pastry crust|piecrust,0,hand
+puff_pastry,puff pastry,filo|phyllo|filo pastry|phyllo dough|pastry dough|shortcrust pastry|pastry|filo dough,0,hand
+white_pepper,white pepper,ground white pepper,0,wikibooks-rule
+shortening,shortening,vegetable shortening|solid fat|crisco,0,wikibooks-rule
+lard,lard,pork fat|bacon fat|bacon grease|dripping,0,wikibooks-rule
+mirin,mirin,rice wine,0,wikibooks-rule
+sake,sake,,0,wikibooks-rule
+tequila,tequila,,0,wikibooks-rule
+gin,gin,,0,wikibooks-rule
+curry_leaf,curry leaf,fresh curry leaf|curry leave,0,wikibooks-rule
+asafoetida,asafoetida,hing|asafoetida powder,0,wikibooks-rule
+fenugreek,fenugreek,fenugreek seed|fenugreek leaf|kasuri methi|methi,0,wikibooks-rule
+mace,mace,ground mace,0,wikibooks-rule
+mixed_spice,mixed spice,pumpkin pie spice|apple pie spice,0,wikibooks-rule
+citric_acid,citric acid,,0,wikibooks-rule
+tamarind,tamarind,tamarind paste|tamarind pulp,0,wikibooks-rule
+jaggery,jaggery,gula jawa|palm sugar|piloncillo,0,wikibooks-rule
+dal,dal,toor dal|urad dal|moong dal|chana dal|dhal|masoor dal|split lentil,0,wikibooks-rule
+chipotle,chipotle,chipotle powder|chipotle pepper|chipotle in adobo|adobo sauce|chipotle chile,0,wikibooks-rule
+seasoning_cube,seasoning cube,maggi cube|knorr cube|maggi,0,wikibooks-rule
+crayfish,crayfish,ground crayfish|dried crayfish,0,wikibooks-rule
+bean,bean,dried bean|cooked bean|canned bean|mixed bean,0,wikibooks-rule
+nuts,nuts,chopped nut|mixed nut|nut|ground nut|crushed nut,0,wikibooks-rule
+mixed_vegetables,mixed vegetables,mixed vegetable|frozen mixed vegetable|vegetable|stir fry vegetable,0,wikibooks-rule
+meat,meat,assorted meat|ground meat|cooked meat|leftover meat,0,wikibooks-rule
+plantain,plantain,ripe plantain|green plantain,0,wikibooks-rule
+cassava,cassava,yuca|manioc|grated cassava|tapioca,0,wikibooks-rule
+tapioca_starch,tapioca starch,tapioca flour,0,wikibooks-rule
+hamburger_bun,hamburger bun,bun|burger bun|hot dog bun|roll,0,wikibooks-rule
+pizza_sauce,pizza sauce,,0,wikibooks-rule
+marzipan,marzipan,almond paste,0,wikibooks-rule
+applesauce,applesauce,apple sauce,0,wikibooks-rule
+gravy,gravy,,0,wikibooks-rule
+crouton,crouton,garlic crouton,0,wikibooks-rule
+pepperoni,pepperoni,,0,wikibooks-rule
+guacamole,guacamole,,0,wikibooks-rule
+dashi,dashi,dashi stock|dashi powder|bonito flake,0,wikibooks-rule
+bouquet_garni,bouquet garni,,0,wikibooks-rule
+sunflower_seed,sunflower seed,,0,wikibooks-rule
+juniper_berry,juniper berry,,0,wikibooks-rule
+rosewater,rosewater,rose water,0,wikibooks-rule
+wheat_germ,wheat germ,,0,wikibooks-rule
+cajun_seasoning,cajun seasoning,creole seasoning,0,wikibooks-rule
+collard_greens,collard greens,collard green|collards,0,wikibooks-rule
+lemongrass,lemongrass,stalk lemongrass|lemon grass,0,wikibooks-rule
+xanthan_gum,xanthan gum,,0,wikibooks-rule
+pandan_leaf,pandan leaf,pandan leave|pandan,0,wikibooks-rule
