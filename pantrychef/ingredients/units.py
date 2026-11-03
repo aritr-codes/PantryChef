@@ -101,7 +101,7 @@ def _to_float(token: str) -> float:
 
 
 def parse_quantity(text: str) -> tuple[float | None, str]:
-    text = replace_unicode_fractions(text)
+    text = replace_unicode_fractions(text).replace("⁄", "/")  # NFKC fraction slash
     m = _NUM.match(text)
     if not m:
         return None, text.strip()
@@ -111,7 +111,16 @@ def parse_quantity(text: str) -> tuple[float | None, str]:
     return qty, rest.strip()
 
 
+_SIZE_PAREN = re.compile(r"^\s*\([^)]*\)\s*")
+
+
 def parse_unit(text: str) -> tuple[str | None, str]:
+    """Split a leading unit off ``text``. A size note such as "(14 oz) can" is skipped."""
+    sized = _SIZE_PAREN.sub("", text, count=1)
+    if sized != text:
+        unit, rest = parse_unit(sized)
+        if unit:
+            return unit, rest
     parts = text.strip().split()
     if not parts:
         return None, ""
