@@ -365,3 +365,219 @@ medical, clinical, or allergen-safety use.**
 ### Phase 5 — Detection
 
 Not started. Vision is gated in M8 of [DEVELOPMENT_PLAN.md](DEVELOPMENT_PLAN.md).
+
+## M2 leaderboard (Wikibooks pack)
+
+These tables come from `results/*.json` on the test split. Do not edit them by hand.
+
+<!-- BEGIN table:m2-wikibooks -->
+### sampler=none, d=0
+
+**Table 1. Recovery sanity check (role: sanity, never selects a model). Test split.**
+
+| Arm | recall@10 | MRR@10 | n |
+| --- | --- | --- | --- |
+| random | 0.0235 | 0.0070 | 4935 |
+| overlap | 0.8588 | 0.5519 | 4935 |
+| idf_flat | 0.9439 | 0.8011 | 4935 |
+| shipped | 0.2549 | 0.0977 | 4935 |
+
+*Label: MEASURED. Commit: 185ae8c8. Dirty: yes. Results: [m2_baseline_wikibooks.json](../results/m2_baseline_wikibooks.json). Rebuild: `python -m pantrychef.eval.baseline_main --pack build/pack --out results/m2_baseline_wikibooks.json`.*
+
+**Table 2. Paired comparisons, a minus b. Test split.**
+
+| a | b | Metric | Diff | 95% interval | Holds |
+| --- | --- | --- | --- | --- | --- |
+| overlap | random | mrr_at_10 | +0.5449 | [0.5276, 0.5624] | HOLDS |
+| overlap | random | recall_at_10 | +0.8353 | [0.8199, 0.8507] | HOLDS |
+| idf_flat | overlap | mrr_at_10 | +0.2493 | [0.2364, 0.2621] | HOLDS |
+| idf_flat | overlap | recall_at_10 | +0.0851 | [0.0746, 0.0958] | HOLDS |
+| shipped | idf_flat | mrr_at_10 | -0.7034 | [-0.7202, -0.6863] | HOLDS |
+| shipped | idf_flat | recall_at_10 | -0.6890 | [-0.7096, -0.6677] | HOLDS |
+| shipped | overlap | mrr_at_10 | -0.4541 | [-0.4740, -0.4344] | HOLDS |
+| shipped | overlap | recall_at_10 | -0.6039 | [-0.6280, -0.5797] | HOLDS |
+
+HOLDS means the interval excludes 0. Clusters: 1645.
+
+*Label: MEASURED. Commit: 185ae8c8. Dirty: yes. Results: [m2_baseline_wikibooks.json](../results/m2_baseline_wikibooks.json). Rebuild: `python -m pantrychef.eval.baseline_main --pack build/pack --out results/m2_baseline_wikibooks.json`.*
+
+**Table 3. Product metrics. Test split.**
+
+| Metric | Arm | Value | n |
+| --- | --- | --- | --- |
+| makeable_at_10 | shipped | 0.5040 | 4935 |
+| hit_rate | all arms | 0.8740 | 4935 |
+| visible_rate | all arms | 0.5299 | 4935 |
+
+makeable_at_10 is high for `shipped` by construction: the shipped order lists recipes you can make now first.
+
+*Label: MEASURED. Commit: 185ae8c8. Dirty: yes. Results: [m2_baseline_wikibooks.json](../results/m2_baseline_wikibooks.json). Rebuild: `python -m pantrychef.eval.baseline_main --pack build/pack --out results/m2_baseline_wikibooks.json`.*
+
+### sampler=uniform, d=3
+
+**Table 1. Recovery sanity check (role: sanity, never selects a model). Test split.**
+
+| Arm | recall@10 | MRR@10 | n |
+| --- | --- | --- | --- |
+| random | 0.0083 | 0.0024 | 4935 |
+| overlap | 0.8132 | 0.4879 | 4935 |
+| idf_flat | 0.8987 | 0.7193 | 4935 |
+| shipped | 0.2020 | 0.0619 | 4935 |
+
+*Label: MEASURED. Commit: 185ae8c8. Dirty: yes. Results: [m2_baseline_wikibooks.json](../results/m2_baseline_wikibooks.json). Rebuild: `python -m pantrychef.eval.baseline_main --pack build/pack --out results/m2_baseline_wikibooks.json`.*
+
+**Table 2. Paired comparisons, a minus b. Test split.**
+
+| a | b | Metric | Diff | 95% interval | Holds |
+| --- | --- | --- | --- | --- | --- |
+| overlap | random | mrr_at_10 | +0.4854 | [0.4688, 0.5029] | HOLDS |
+| overlap | random | recall_at_10 | +0.8049 | [0.7887, 0.8215] | HOLDS |
+| idf_flat | overlap | mrr_at_10 | +0.2315 | [0.2200, 0.2431] | HOLDS |
+| idf_flat | overlap | recall_at_10 | +0.0855 | [0.0748, 0.0963] | HOLDS |
+| shipped | idf_flat | mrr_at_10 | -0.6574 | [-0.6747, -0.6400] | HOLDS |
+| shipped | idf_flat | recall_at_10 | -0.6967 | [-0.7177, -0.6756] | HOLDS |
+| shipped | overlap | mrr_at_10 | -0.4260 | [-0.4449, -0.4077] | HOLDS |
+| shipped | overlap | recall_at_10 | -0.6111 | [-0.6359, -0.5864] | HOLDS |
+
+HOLDS means the interval excludes 0. Clusters: 1645.
+
+*Label: MEASURED. Commit: 185ae8c8. Dirty: yes. Results: [m2_baseline_wikibooks.json](../results/m2_baseline_wikibooks.json). Rebuild: `python -m pantrychef.eval.baseline_main --pack build/pack --out results/m2_baseline_wikibooks.json`.*
+
+**Table 3. Product metrics. Test split.**
+
+| Metric | Arm | Value | n |
+| --- | --- | --- | --- |
+| makeable_at_10 | shipped | 0.5779 | 4935 |
+| hit_rate | all arms | 0.9303 | 4935 |
+| visible_rate | all arms | 0.5242 | 4935 |
+
+makeable_at_10 is high for `shipped` by construction: the shipped order lists recipes you can make now first.
+
+*Label: MEASURED. Commit: 185ae8c8. Dirty: yes. Results: [m2_baseline_wikibooks.json](../results/m2_baseline_wikibooks.json). Rebuild: `python -m pantrychef.eval.baseline_main --pack build/pack --out results/m2_baseline_wikibooks.json`.*
+
+### sampler=popularity, d=3
+
+**Table 1. Recovery sanity check (role: sanity, never selects a model). Test split.**
+
+| Arm | recall@10 | MRR@10 | n |
+| --- | --- | --- | --- |
+| random | 0.0069 | 0.0020 | 4935 |
+| overlap | 0.6578 | 0.3410 | 4935 |
+| idf_flat | 0.8829 | 0.6945 | 4935 |
+| shipped | 0.1246 | 0.0323 | 4935 |
+
+*Label: MEASURED. Commit: 185ae8c8. Dirty: yes. Results: [m2_baseline_wikibooks.json](../results/m2_baseline_wikibooks.json). Rebuild: `python -m pantrychef.eval.baseline_main --pack build/pack --out results/m2_baseline_wikibooks.json`.*
+
+**Table 2. Paired comparisons, a minus b. Test split.**
+
+| a | b | Metric | Diff | 95% interval | Holds |
+| --- | --- | --- | --- | --- | --- |
+| overlap | random | mrr_at_10 | +0.3391 | [0.3229, 0.3554] | HOLDS |
+| overlap | random | recall_at_10 | +0.6509 | [0.6310, 0.6707] | HOLDS |
+| idf_flat | overlap | mrr_at_10 | +0.3535 | [0.3411, 0.3658] | HOLDS |
+| idf_flat | overlap | recall_at_10 | +0.2251 | [0.2099, 0.2407] | HOLDS |
+| shipped | idf_flat | mrr_at_10 | -0.6622 | [-0.6793, -0.6457] | HOLDS |
+| shipped | idf_flat | recall_at_10 | -0.7583 | [-0.7753, -0.7406] | HOLDS |
+| shipped | overlap | mrr_at_10 | -0.3087 | [-0.3260, -0.2916] | HOLDS |
+| shipped | overlap | recall_at_10 | -0.5331 | [-0.5583, -0.5076] | HOLDS |
+
+HOLDS means the interval excludes 0. Clusters: 1645.
+
+*Label: MEASURED. Commit: 185ae8c8. Dirty: yes. Results: [m2_baseline_wikibooks.json](../results/m2_baseline_wikibooks.json). Rebuild: `python -m pantrychef.eval.baseline_main --pack build/pack --out results/m2_baseline_wikibooks.json`.*
+
+**Table 3. Product metrics. Test split.**
+
+| Metric | Arm | Value | n |
+| --- | --- | --- | --- |
+| makeable_at_10 | shipped | 0.7229 | 4935 |
+| hit_rate | all arms | 0.9761 | 4935 |
+| visible_rate | all arms | 0.5147 | 4935 |
+
+makeable_at_10 is high for `shipped` by construction: the shipped order lists recipes you can make now first.
+
+*Label: MEASURED. Commit: 185ae8c8. Dirty: yes. Results: [m2_baseline_wikibooks.json](../results/m2_baseline_wikibooks.json). Rebuild: `python -m pantrychef.eval.baseline_main --pack build/pack --out results/m2_baseline_wikibooks.json`.*
+
+### sampler=uniform, d=6
+
+**Table 1. Recovery sanity check (role: sanity, never selects a model). Test split.**
+
+| Arm | recall@10 | MRR@10 | n |
+| --- | --- | --- | --- |
+| random | 0.0105 | 0.0031 | 4935 |
+| overlap | 0.7574 | 0.4295 | 4935 |
+| idf_flat | 0.8626 | 0.6564 | 4935 |
+| shipped | 0.1645 | 0.0444 | 4935 |
+
+*Label: MEASURED. Commit: 185ae8c8. Dirty: yes. Results: [m2_baseline_wikibooks.json](../results/m2_baseline_wikibooks.json). Rebuild: `python -m pantrychef.eval.baseline_main --pack build/pack --out results/m2_baseline_wikibooks.json`.*
+
+**Table 2. Paired comparisons, a minus b. Test split.**
+
+| a | b | Metric | Diff | 95% interval | Holds |
+| --- | --- | --- | --- | --- | --- |
+| overlap | random | mrr_at_10 | +0.4264 | [0.4097, 0.4435] | HOLDS |
+| overlap | random | recall_at_10 | +0.7469 | [0.7289, 0.7651] | HOLDS |
+| idf_flat | overlap | mrr_at_10 | +0.2269 | [0.2159, 0.2383] | HOLDS |
+| idf_flat | overlap | recall_at_10 | +0.1052 | [0.0940, 0.1165] | HOLDS |
+| shipped | idf_flat | mrr_at_10 | -0.6120 | [-0.6295, -0.5944] | HOLDS |
+| shipped | idf_flat | recall_at_10 | -0.6981 | [-0.7183, -0.6776] | HOLDS |
+| shipped | overlap | mrr_at_10 | -0.3851 | [-0.4038, -0.3673] | HOLDS |
+| shipped | overlap | recall_at_10 | -0.5929 | [-0.6178, -0.5678] | HOLDS |
+
+HOLDS means the interval excludes 0. Clusters: 1645.
+
+*Label: MEASURED. Commit: 185ae8c8. Dirty: yes. Results: [m2_baseline_wikibooks.json](../results/m2_baseline_wikibooks.json). Rebuild: `python -m pantrychef.eval.baseline_main --pack build/pack --out results/m2_baseline_wikibooks.json`.*
+
+**Table 3. Product metrics. Test split.**
+
+| Metric | Arm | Value | n |
+| --- | --- | --- | --- |
+| makeable_at_10 | shipped | 0.6431 | 4935 |
+| hit_rate | all arms | 0.9574 | 4935 |
+| visible_rate | all arms | 0.5187 | 4935 |
+
+makeable_at_10 is high for `shipped` by construction: the shipped order lists recipes you can make now first.
+
+*Label: MEASURED. Commit: 185ae8c8. Dirty: yes. Results: [m2_baseline_wikibooks.json](../results/m2_baseline_wikibooks.json). Rebuild: `python -m pantrychef.eval.baseline_main --pack build/pack --out results/m2_baseline_wikibooks.json`.*
+
+### sampler=popularity, d=6
+
+**Table 1. Recovery sanity check (role: sanity, never selects a model). Test split.**
+
+| Arm | recall@10 | MRR@10 | n |
+| --- | --- | --- | --- |
+| random | 0.0036 | 0.0014 | 4935 |
+| overlap | 0.4883 | 0.2215 | 4935 |
+| idf_flat | 0.8107 | 0.5966 | 4935 |
+| shipped | 0.0671 | 0.0139 | 4935 |
+
+*Label: MEASURED. Commit: 185ae8c8. Dirty: yes. Results: [m2_baseline_wikibooks.json](../results/m2_baseline_wikibooks.json). Rebuild: `python -m pantrychef.eval.baseline_main --pack build/pack --out results/m2_baseline_wikibooks.json`.*
+
+**Table 2. Paired comparisons, a minus b. Test split.**
+
+| a | b | Metric | Diff | 95% interval | Holds |
+| --- | --- | --- | --- | --- | --- |
+| overlap | random | mrr_at_10 | +0.2201 | [0.2064, 0.2339] | HOLDS |
+| overlap | random | recall_at_10 | +0.4847 | [0.4636, 0.5056] | HOLDS |
+| idf_flat | overlap | mrr_at_10 | +0.3751 | [0.3621, 0.3880] | HOLDS |
+| idf_flat | overlap | recall_at_10 | +0.3224 | [0.3058, 0.3394] | HOLDS |
+| shipped | idf_flat | mrr_at_10 | -0.5827 | [-0.6004, -0.5653] | HOLDS |
+| shipped | idf_flat | recall_at_10 | -0.7437 | [-0.7615, -0.7256] | HOLDS |
+| shipped | overlap | mrr_at_10 | -0.2076 | [-0.2218, -0.1934] | HOLDS |
+| shipped | overlap | recall_at_10 | -0.4213 | [-0.4458, -0.3966] | HOLDS |
+
+HOLDS means the interval excludes 0. Clusters: 1645.
+
+*Label: MEASURED. Commit: 185ae8c8. Dirty: yes. Results: [m2_baseline_wikibooks.json](../results/m2_baseline_wikibooks.json). Rebuild: `python -m pantrychef.eval.baseline_main --pack build/pack --out results/m2_baseline_wikibooks.json`.*
+
+**Table 3. Product metrics. Test split.**
+
+| Metric | Arm | Value | n |
+| --- | --- | --- | --- |
+| makeable_at_10 | shipped | 0.8526 | 4935 |
+| hit_rate | all arms | 0.9964 | 4935 |
+| visible_rate | all arms | 0.4950 | 4935 |
+
+makeable_at_10 is high for `shipped` by construction: the shipped order lists recipes you can make now first.
+
+*Label: MEASURED. Commit: 185ae8c8. Dirty: yes. Results: [m2_baseline_wikibooks.json](../results/m2_baseline_wikibooks.json). Rebuild: `python -m pantrychef.eval.baseline_main --pack build/pack --out results/m2_baseline_wikibooks.json`.*
+<!-- END table:m2-wikibooks -->
