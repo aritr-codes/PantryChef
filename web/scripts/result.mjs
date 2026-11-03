@@ -14,6 +14,8 @@ const SPLITS = ["dev", "test", "all"];
 const git = (root, ...args) => execFileSync("git", args, { cwd: root, encoding: "utf8" });
 
 // Returns { commit, dirty, dirty_paths }. Paths in `exclude` and files under results/ do not count.
+const CODE_DIRS = ["pantrychef/", "scripts/", "tests/", "web/src/", "web/scripts/", "data/eval/", "data/ingredients/", "kaggle/"]; // same list as results.py
+
 export function gitFacts(root, exclude = []) {
   const commit = git(root, "rev-parse", "HEAD").trim();
   const skip = new Set(exclude.map((p) => resolve(p).toLowerCase()));
@@ -25,6 +27,7 @@ export function gitFacts(root, exclude = []) {
     if (e[0] === "R" || e[0] === "C") i++; // the next entry is the old name
     const p = e.slice(3);
     if (skip.has(resolve(root, p).toLowerCase()) || p.startsWith("results/")) continue;
+    if (e.startsWith("??") && !CODE_DIRS.some((d) => p.startsWith(d))) continue; // scratch files outside the code folders
     paths.push(p);
   }
   return { commit, dirty: paths.length > 0, dirty_paths: paths.slice(0, MAX_DIRTY_PATHS) };
