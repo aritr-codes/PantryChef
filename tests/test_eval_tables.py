@@ -54,6 +54,11 @@ FOOT = (
     "Rebuild: `python -m x --out results/t.json`.*"
 )
 
+BYCON = (
+    "makeable_at_10 is high for `shipped` by construction: "
+    "the shipped order lists recipes you can make now first."
+)
+
 EXPECTED = f"""### sampler=popularity, d=3
 
 **Table 1. Recovery sanity check (role: sanity, never selects a model). Test split.**
@@ -84,7 +89,7 @@ HOLDS means the interval excludes 0. Clusters: 4.
 | hit_rate | all arms | 0.8000 | 10 |
 | visible_rate | all arms | 0.6000 | 10 |
 
-makeable_at_10 is high for `shipped` by construction: the shipped order lists recipes you can make now first.
+{BYCON}
 
 {FOOT}
 """
