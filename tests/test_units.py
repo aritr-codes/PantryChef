@@ -31,10 +31,7 @@ def test_parse_unit_known_and_unknown() -> None:
 
 
 def test_parse_quantity_fraction_slash_and_range_with_fraction() -> None:
-    assert (
-        parse_quantity("1 \u20442 cups milk")[0] == 1.5
-        or parse_quantity("1\u20442 cup milk")[0] == 0.5
-    )
+    assert parse_quantity("1\u20442 cup milk") == (0.5, "cup milk")
     assert parse_quantity("1 1\u20442 cups milk") == (1.5, "cups milk")
     qty, rest = parse_quantity("\u00bd-1 tsp salt")
     assert qty == 0.5 and rest == "tsp salt"
