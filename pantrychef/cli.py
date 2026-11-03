@@ -1,7 +1,8 @@
 """Command-line entrypoint.
 
-`pantrychef cook --have eggs,flour,milk --k 5` ranks recipes by how much of
-each recipe your pantry covers, listing what you're missing.
+`pantrychef cook --have eggs,flour,milk` shows what you can make now, what is one item
+away, and the items that unlock the most recipes. It reads a recipe pack built by
+`scripts/build_pack.py`.
 """
 
 from __future__ import annotations
@@ -14,29 +15,50 @@ from zipfile import BadZipFile
 
 from pantrychef import __version__
 from pantrychef.config import get_settings
-from pantrychef.data.store import load_recipes
-from pantrychef.retrieval.baseline import recommend
-from pantrychef.retrieval.index import InvertedIndex
+from pantrychef.engine import AnswerRequest, answer, load_pack, resolve_names
+
+DEFAULT_PACK_DIR = "build/pack"
+_TITLES = {"make_now": "MAKE NOW", "one_away": "ONE ITEM AWAY", "two_away": "TWO ITEMS AWAY"}
 
 
-def _default_recipes_path() -> str:
-    return str(get_settings().processed_dir / "recipes.jsonl")
-
-
-def cook_command(have: str, k: int, recipes_path: str | None = None) -> int:
-    path = Path(recipes_path or _default_recipes_path())
-    if not path.exists():
-        print(f"Recipe store not found at {path}. Run `make data` first.")
+def cook_command(have: str, k: int, pack_dir: str | None = None, staples: str | None = None) -> int:
+    folder = Path(pack_dir or DEFAULT_PACK_DIR)
+    try:
+        pack = load_pack(folder)
+    except FileNotFoundError:
+        print(f"Recipe pack not found in {folder}. Run `uv run python scripts/build_pack.py`.")
         return 1
-    pantry = [p.strip() for p in have.split(",") if p.strip()]
-    index = InvertedIndex.build(load_recipes(path))
-    ranked = recommend(index, pantry, k=max(k, 0))
-    if not ranked:
-        print("No matching recipes. Try more/different ingredients.")
-        return 0
-    for r in ranked:
-        miss = ", ".join(r.missing) if r.missing else "nothing — you can make this!"
-        print(f"[{r.score * 100:5.1f}%] {r.title}  (missing: {miss})")
+    names = [p.strip() for p in have.split(",") if p.strip()]
+    ids, unknown = resolve_names(pack, names)
+    if staples is None:
+        staple_ids = pack.default_staples
+    else:
+        staple_ids, _ = resolve_names(pack, [p.strip() for p in staples.split(",") if p.strip()])
+    ans = answer(pack, AnswerRequest(ids, staple_ids, limit=max(k, 0), unknown_names=unknown))
+    if unknown:
+        print(f"Not recognised (not used): {', '.join(unknown)}")
+    shown = False
+    for key, group in ans.groups.items():
+        if key == "two_away" and ans.groups["make_now"].count + ans.groups["one_away"].count >= 5:
+            continue
+        if not group.count:
+            continue
+        shown = True
+        print(f"{_TITLES[key]} ({group.count})")
+        for r in group.items:
+            miss = ", ".join(
+                "/".join(m.options) if m.options else "check this line" for m in r.missing
+            )
+            tail = f"  missing: {miss}" if miss else ""
+            print(f"  {r.title}  (you have {r.have} of {r.total}){tail}")
+    if ans.unlocks:
+        print("Top unlocks:")
+        for u in ans.unlocks[:5]:
+            print(f"  Add {u.name} to move {u.recipes} recipes to make now")
+    if not shown:
+        print("No matching recipes.")
+        for b in ans.blockers[:3]:
+            print(f"  Add {b.name} to get {b.recipes} recipes")
     return 0
 
 
@@ -80,8 +102,13 @@ def main(argv: list[str] | None = None) -> int:
 
     cook = sub.add_parser("cook", help="Find recipes you can make.")
     cook.add_argument("--have", required=True, help="Comma-separated pantry ingredients.")
-    cook.add_argument("--k", type=int, default=5, help="How many recipes to show.")
-    cook.add_argument("--recipes", default=None, help="Path to recipes.jsonl.")
+    cook.add_argument("--k", type=int, default=5, help="How many recipes to show per group.")
+    cook.add_argument(
+        "--pack", default=None, help="Folder with core.v1.json.gz (default build/pack)."
+    )
+    cook.add_argument(
+        "--staples", default=None, help="Comma-separated staples (default: the pack's)."
+    )
 
     sub_p = sub.add_parser("substitute", help="Find ingredient substitutes.")
     sub_p.add_argument("ingredient", help="Ingredient to replace.")
@@ -97,7 +124,7 @@ def main(argv: list[str] | None = None) -> int:
     args = parser.parse_args(argv if argv is not None else sys.argv[1:])
 
     if args.command == "cook":
-        return cook_command(have=args.have, k=args.k, recipes_path=args.recipes)
+        return cook_command(have=args.have, k=args.k, pack_dir=args.pack, staples=args.staples)
 
     if args.command == "substitute":
         return substitute_command(
