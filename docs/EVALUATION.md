@@ -21,6 +21,60 @@
 > | sub_fill null | STANDS, on the same leaked task |
 > | Phase 4 nutrition coverage | RETRACTED. First 5,000 rows only. A random sample gives 0.710 and 0.439. No log exists |
 
+## M2 evaluation baseline (2026-11-03)
+
+M2 measures the ranking rules before any model changes them. Plan: [docs/plans/2026-11-03-m2-eval-baseline.md](plans/2026-11-03-m2-eval-baseline.md).
+
+### What the metrics are for
+
+| Role | Metric | May select a model? |
+| --- | --- | --- |
+| `selection` | Hand-judged pairwise win rate (M4) | Yes. It uses no model feature |
+| `sanity` | Masked recovery: recall@10 and MRR@10 of the source recipe | **No.** The query comes from the gold recipe, so the task leaks (ADR 0005) |
+| `product` | Makeable at 10, hit rate, visible rate | **No.** They read the same lines as the rules |
+
+`pantrychef/eval/results.py` holds a fixed registry of roles and dependencies. `assert_selectable` fails when a metric has another role than `selection`, or shares a dependency with the features of an arm. The tests prove both failures. The check guards declarations. It cannot prove that a declaration is complete, so a review reads the metric code.
+
+### Task and arms
+
+MEASURED setup. A gold recipe has at least 3 required lines. The task masks `floor(0.25 × total + 0.5)` of them and removes every ingredient of a masked line from the pantry. It adds 0, 3 or 6 distractor ingredients. Two samplers pick the distractors: `uniform` (even over the ingredients) and `popularity` (by the number of recipes that list the ingredient). Each gold recipe gives 3 pantries. Gold recipes split 50/50 into dev and test by a hash of the normalised title. All numbers below use the test half.
+
+Every arm ranks the same candidate set: all recipes with at least one required line in the pantry. Arms differ only in order.
+
+| Arm | Order | Role in the study |
+| --- | --- | --- |
+| `random` | seeded shuffle | Floor |
+| `overlap` | most lines held, then fewer lines, then id | The no-ML baseline |
+| `idf_flat` | IDF score (rare ingredients weigh more), no groups | The shipped score without grouping |
+| `shipped` | missing lines (0, 1, 2, more), then IDF score | The product order |
+
+### How to read the first results
+
+The table block at the end of this file is generated. Do not edit it by hand. Run `uv run python scripts/eval_tables.py` to rebuild it, and `--check` to test it. The raw file is [results/m2_baseline_wikibooks.json](../results/m2_baseline_wikibooks.json).
+
+- MEASURED: `idf_flat` beats `overlap`, and `overlap` beats `random`, in all five (sampler, distractor) groups. Every paired 95% interval excludes 0. On the test half, the MRR gain of `idf_flat` over `overlap` runs from +0.227 to +0.375.
+- MEASURED: `shipped` ranks the masked gold recipe low (MRR@10 from 0.014 to 0.098). This is a property of the task. The masked gold always misses at least one line, and `shipped` lists recipes you can make now first. The task does not measure what the product promises. The judged pilot (Task 7) is the test that can.
+- MEASURED: `answer()` would show the masked gold recipe for about half of the pantries (`visible_rate` 0.50 to 0.53). The other half has more than 2 missing lines or falls outside the 10 shown per group.
+- HYPOTHESIS: the `popularity` sampler hurts `overlap` more than `idf_flat` because it draws common ingredients, and IDF gives them little weight. The sampler and the rule share one quantity (document frequency). So read the `overlap` versus `idf_flat` gap for each sampler. Do not read it as one number.
+- Not a quality claim: nothing here says a person prefers one list. That needs the hand-judged pairs.
+
+### Sanity check: old recovery results, with the rule beside them
+
+| Old result | Task | Rule beside it |
+| --- | --- | --- |
+| P3 recall@10 0.980 (learned) vs 0.746 (overlap), RecipeNLG 50k, n=9,354 | Masked recovery, leaks | Audit: a different no-ML rule ("subset, then closeness to 30% missing") scores 0.975 on a 1,404-query set ([report 01](research/2026-10-stage1/01_recommender.md)). The M2 rules on RecipeNLG at 1.27M recipes are written and not yet run (see the Kaggle section below) |
+| P1 retrieval recall@10 0.873 | Leave one ingredient out | UNSUPPORTED. No log exists |
+
+The new task differs from the old one (Wikibooks pack, ingredient ids, distractors, a candidate set with no cap). Do not compare the old and new numbers.
+
+### Reproduce
+
+| Table or file | Command |
+| --- | --- |
+| `results/m2_baseline_wikibooks.json` | `uv run python -m pantrychef.eval.baseline_main --pack build/pack --out results/m2_baseline_wikibooks.json` (about 8 minutes on the laptop, after `uv run python scripts/build_pack.py`) |
+| Table block below | `uv run python scripts/eval_tables.py` |
+| CI floors | `uv run python scripts/make_floors.py` (only for a reviewed change) |
+
 ## Protocol principles
 
 - Fixed held-out splits (seed recorded in [DATASET.md](DATASET.md)).

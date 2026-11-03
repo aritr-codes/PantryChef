@@ -43,7 +43,7 @@ and the details are in [docs/TECHNICAL_AUDIT.md](docs/TECHNICAL_AUDIT.md).
 | Parser F1 and retrieval recall | Unsupported. No log exists ([PROJECT_STATE, section 7](docs/PROJECT_STATE.md#7-published-numbers)) |
 | A production recommender bundle | False. The only bundle on disk holds 1,000 recipes ([audit H4](docs/TECHNICAL_AUDIT.md#h4-the-production-bundle-does-not-exist-verified)) |
 
-New evaluation starts in M2. Each new number will link to a results file.
+M2 starts the new evaluation. The rule baselines and their intervals are in [docs/EVALUATION.md](docs/EVALUATION.md). Each new number links to a file in [`results/`](results/).
 
 ## Quickstart
 
