@@ -10,7 +10,7 @@ import argparse
 
 from pantrychef.sources.wikibooks_fetch import fetch_snapshot
 
-DEFAULT_UA = "PantryChef/0.4 (https://github.com/aritr-codes/PantryChef-; recipe research)"
+DEFAULT_UA = "PantryChef/0.4 (https://github.com/aritr-codes/PantryChef; recipe research)"
 
 
 def main() -> int:
