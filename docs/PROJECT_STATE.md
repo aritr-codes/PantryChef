@@ -1,6 +1,6 @@
 # PantryChef: project state
 
-Date: 2026-10-30. Audited commit: `d49f02c`. Updated for M0, merged in PR #6 (section 3), and for M1 on branch `feat/m1-thin-slice` (section 10, 2026-11-03).
+Date: 2026-10-30. Audited commit: `d49f02c`. Updated for M0, merged in PR #6 (section 3), and for M1, merged in PR #7 and deployed (section 10, 2026-11-03).
 Sources: ADRs [0003](decisions/0003-licence-clean-recipe-corpus.md), [0004](decisions/0004-static-first-browser-engine.md), [0005](decisions/0005-honest-claims-and-eval-reset.md); the [Stage 1 synthesis](research/2026-10-stage1/README.md) and its [review](research/2026-10-stage1/REVIEW.md); the repo itself. For findings and fixes, read [TECHNICAL_AUDIT.md](TECHNICAL_AUDIT.md).
 
 Labels: MEASURED (a run or a log shows it), ESTIMATE (a calculation), HYPOTHESIS (a test must confirm it).
@@ -23,7 +23,7 @@ PantryChef is meant to be a pantry-first recipe app. A user lists what they have
 | Two-tower model, FAISS, NER, ONNX | Not built | No code, no dependency. M0 removed the claims and the unused Hydra configs and MLflow |
 | API server, Docker path | Not built | M0 deleted the Docker placeholders, the `serving` stub and `make serve` |
 | Production recommender bundle | Does not exist | Disk bundle holds 1,000 recipes. M0 corrected the docs that said otherwise |
-| Static web app with browser engine (ADR 0004) | Built on branch `feat/m1-thin-slice`, not deployed | `web/`; Vitest parity on golden cases; Playwright smoke test on the fixture pack (section 10) |
+| Static web app with browser engine (ADR 0004) | Built, merged (PR #7) and live at <https://aritr-codes.github.io/PantryChef/> | `web/`; Vitest parity on golden cases; Playwright smoke test on the fixture pack (section 10) |
 | Wikibooks display pack (ADR 0003) | Built (M1) | 3,712 recipes; `build/pack` is not in git (section 10). Open Recipes statistics: planned |
 | Rebuilt ingredient table | Built (M1), 337 rows | `data/ingredients/ingredients.csv`. The old `vocab.json` still comes from RecipeNLG and the new table never reads it |
 | New evaluation with hand-judged pantries (ADR 0005) | Planned | Not started |
@@ -47,7 +47,7 @@ MEASURED on Windows, in a fresh clone of commit `8acc63c`:
 - `uv sync --all-extras`, then `uv run pytest`: 246 passed. `ruff check` and `ruff format --check` are clean. `uv run pantrychef --help` works.
 - `pip-audit` on the locked packages after removing MLflow and upgrading the lock: no known vulnerabilities. The old 16 flagged packages needed no reachability review, because none remains flagged.
 
-MEASURED in CI on PR #6 ([run 41092251895](https://github.com/aritr-codes/PantryChef-/actions/runs/41092251895)), on Linux and Windows: 246 passed, 91% coverage, `ruff` clean, `uv run pantrychef --help` works, and `pip-audit` found no known vulnerabilities.
+MEASURED in CI on PR #6 ([run 41092251895](https://github.com/aritr-codes/PantryChef/actions/runs/41092251895)), on Linux and Windows: 246 passed, 91% coverage, `ruff` clean, `uv run pantrychef --help` works, and `pip-audit` found no known vulnerabilities.
 
 Major upgrades in the lock: pandas 2 to 3, ruff 0.15 to 0.17, python-dateutil 2 to 3, smart-open 7 to 9, filelock 3 to 4. All tests pass. No full-corpus job ran on the new versions.
 
@@ -160,7 +160,9 @@ Full ledger: 43 claims. 14 FALSE, 11 UNSUPPORTED, 11 STALE, 7 TRUE ([report 07](
 - Kaggle: use `uvx kaggle` for heavy jobs.
 - Python 3.11 in CI on Linux and Windows (`.github/workflows/ci.yml`). Locked with `uv.lock`.
 
-## 10. M1 thin slice (2026-11-03, branch `feat/m1-thin-slice`, not merged)
+## 10. M1 thin slice (2026-11-03, merged in PR #7, deployed)
+
+The repository was renamed from `PantryChef-` to `PantryChef` on 2026-11-03. GitHub redirects the old git URL, but the old Pages URL gives 404.
 
 Plan: [docs/plans/2026-11-02-m1-thin-slice.md](plans/2026-11-02-m1-thin-slice.md).
 
@@ -173,14 +175,16 @@ Plan: [docs/plans/2026-11-02-m1-thin-slice.md](plans/2026-11-02-m1-thin-slice.md
 | Parity | TypeScript matches Python on 202 golden cases plus token and name cases: scores within 1e-9, order exact. Vitest: 237 tests pass | MEASURED |
 | Python tests | 374 pass; `ruff check` and `ruff format --check` are clean | MEASURED |
 | Guard | A test fails a build that opens a file outside the allow-list, writes outside the output folder, or starts a process. It is a tripwire and not a sandbox | MEASURED |
-| Smoke test | Playwright on the fixture pack: add two items, see groups and an unlock line, open a recipe, see the source link, revision and licence, and no off-origin request. Passes locally | MEASURED |
+| Smoke test | Playwright on the fixture pack (5 tests): add items, see groups and an unlock line, open a recipe, see the source link, revision and licence, no off-origin request, focus and unknown-name cases. Passes locally and in CI (PR #7). The same flow on the live site gave 89 make-now, 175 one-away and an unlock line for a 5-item pantry, with no off-origin request | MEASURED |
 | Search latency | `answer()` in headless Chromium with a 6x CPU throttle, dev server, real pack: Three runs of 160 calls each (pantries of 3, 5, 8 and 12 items from the 120 most common ingredients; first 3 calls per size dropped). Overall p50 42 to 43 ms. Overall p95 78, 65 and 62 ms. Worst single call 85 to 130 ms. Worst per-size p95 88 ms. First call after load 97 to 127 ms. Pack load 0.4 to 0.7 s. Under heavy memory pressure an earlier run reached p95 156 to 173 ms | MEASURED ([run 1](../results/m1_latency_run1.json), [run 2](../results/m1_latency_run2.json), [run 3](../results/m1_latency_run3.json)). The `dirty` flag in these files is true only because the old `m1_latency.json` was deleted in the same change |
 
 Latency verdict: the p95 is under 100 ms in these three runs, but single calls and the first call can pass 100 ms, and the laptop's low free RAM made two earlier runs go over (p95 156 and 173 ms; those result files were not kept). The dev server serves unminified code. The Web Worker plan is recorded in each result file. Moving the engine to a Worker is the planned fix if the production bundle shows p95 over 100 ms on a normal machine. A run on the production bundle is still to do. The 6x throttle is a model of a low-end phone and not a measurement of one (HYPOTHESIS).
 
+Deployed bundle, end to end (MEASURED, one run, [results/m1_latency_live.json](../results/m1_latency_live.json)): from the click on "See recipes" to the results painted, headless Chromium, 6x CPU throttle after load, cache off, 13 timed runs per pantry size. Median 425 to 499 ms and p95 529 to 674 ms for pantries of 3, 5, 8 and 12 items. Without the throttle the same click takes about 57 ms (two animation frames included). Page ready (unthrottled, real network) had a median of 0.57 s and p95 1.16 s. This is far above 100 ms. It includes rendering and two frames and not only `answer()`, so it does not contradict the `answer()` figures above, but a person on a slow device would feel it. A Web Worker would not help, because the cost is mostly rendering (HYPOTHESIS: a profile has not been taken). The fix is a follow-up: profile, then render fewer cards at first.
+
 Not done:
 
-- Deploy. `.github/workflows/pages.yml` is manual. It needs the pack in the GitHub Release `pack-v1` and the hashes in `web/pack-hashes.json`. The owner has to approve the upload and the run.
-- The Playwright and `web` CI jobs have not run on GitHub yet.
 - No held-out evaluation of recipe quality. Do not read the coverage numbers as quality (ADR 0005).
+- Results screen is slow on a throttled device (above).
+- Focus is not restored after "Show more", and the smoke test does not cover "Show more" or the licence-text link.
 - Bare "pepper" is read as black pepper only when the line also names salt or says "to taste". This is provisional until M3.

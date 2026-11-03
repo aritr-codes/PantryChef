@@ -1,0 +1,83 @@
+{
+  "label": "MEASURED",
+  "what": "Click on 'See recipes' to results painted, deployed production bundle, headless Chromium, CPU throttled",
+  "url": "https://aritr-codes.github.io/PantryChef/",
+  "commit": "bf3476ef436fb169f65fcfe07bdc118ee6d47b83",
+  "dirty": false,
+  "config": {
+    "cpu_throttle_rate": 6,
+    "runs_per_size": 15,
+    "warmup_runs": 2,
+    "pantry_sizes": [
+      3,
+      5,
+      8,
+      12
+    ],
+    "cache": "disabled",
+    "pool": [
+      "egg",
+      "flour",
+      "milk",
+      "butter",
+      "sugar",
+      "onion",
+      "garlic",
+      "tomato",
+      "chicken",
+      "rice",
+      "potato",
+      "cheese",
+      "carrot",
+      "lemon",
+      "beef",
+      "pasta",
+      "apple",
+      "honey"
+    ]
+  },
+  "seed": 1,
+  "metrics": {
+    "bySize": {
+      "3": {
+        "n": 13,
+        "p50": 425.09999999962747,
+        "p95": 601.8000000007451,
+        "max": 601.8000000007451
+      },
+      "5": {
+        "n": 13,
+        "p50": 424.59999999962747,
+        "p95": 528.6999999992549,
+        "max": 528.6999999992549
+      },
+      "8": {
+        "n": 13,
+        "p50": 499.30000000074506,
+        "p95": 674,
+        "max": 674
+      },
+      "12": {
+        "n": 13,
+        "p50": 480,
+        "p95": 581.6999999992549,
+        "max": 581.6999999992549
+      }
+    },
+    "pack_page_ready_ms": {
+      "n": 60,
+      "p50": 571,
+      "p95": 1164,
+      "max": 1570
+    },
+    "threshold_ms": 100,
+    "sizes_over_threshold": [
+      3,
+      5,
+      8,
+      12
+    ]
+  },
+  "limits": "Page-ready time is unthrottled. Network time is real, so page-ready time varies with the connection. Includes render time and two animation frames, which is more than answer() alone. One run.",
+  "command": "node web/scripts/latency-live.mjs --url https://aritr-codes.github.io/PantryChef/ --rate 6 --runs 15 --seed 1 --out m1_latency_live.json"
+}
