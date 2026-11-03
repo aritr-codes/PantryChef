@@ -18,6 +18,7 @@ const arg = (name, dflt) => {
 const RATE = arg("rate", 6);
 const RUNS = arg("runs", 40);
 const SEED = arg("seed", 1);
+const OUT = process.argv.includes("--out") ? process.argv[process.argv.indexOf("--out") + 1] : "m1_latency.json";
 const PORT = 5199;
 const PACK_PORT = 5198;
 const SIZES = [3, 5, 8, 12];
@@ -130,10 +131,10 @@ try {
     worker_plan:
       "Small pantries match many recipes and are the slowest. If a production-bundle run still shows p95 >= 100 ms, move Engine into a Web Worker (module worker, same origin, loads the pack itself) and post AnswerRequest/Answer messages. The Answer type is plain JSON, so no code change in the engine is needed. Until then answer() runs on the main thread.",
     limits: "Covers answer() at limit 10 only, not rendering. Pantries come from the 120 most common ingredients. The dev server serves unminified code. One run: run-to-run spread is not measured. The first call after load is reported separately as coldFirstCallMs.",
-    command: `node web/scripts/latency.mjs --rate ${RATE} --runs ${RUNS} --seed ${SEED}`,
+    command: `node web/scripts/latency.mjs --rate ${RATE} --runs ${RUNS} --seed ${SEED} --out ${OUT}`,
   };
   mkdirSync(join(root, "results"), { recursive: true });
-  writeFileSync(join(root, "results", "m1_latency.json"), JSON.stringify(out, null, 2) + "\n");
+  writeFileSync(join(root, "results", OUT), JSON.stringify(out, null, 2) + "\n");
   console.log(JSON.stringify({ overall: metrics.overall, bySize: metrics.bySize, loadMs: metrics.loadMs }, null, 2));
 } finally {
   stop();
