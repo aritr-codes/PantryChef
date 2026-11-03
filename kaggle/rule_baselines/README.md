@@ -22,7 +22,13 @@ at least one pantry ingredient. Code: `pantrychef/eval/rule_baselines_main.py`.
 - CPU kernel, internet off, no GPU.
 - Cleaning: two passes over the 2.2M-row CSV. The earlier full clean took 31 to 42 minutes
   on the laptop. Expect 1 to 2 hours for both passes.
-- Scoring: 300,000 pantries (20,000 golds x 3 draws x 5 configs). A synthetic benchmark of
+- Query count: the kernel asks for 6,000 golds (3,000 per split), not 20,000. At 20,000 the
+  extrapolated run is 4 to 8 hours, and this project does not start an unmeasured multi-hour job.
+  Step 1 is a smoke run with `--n-queries 200`: it measures the real time per pantry at 1.27M
+  recipes. Step 2 is the full run, with the count set from that measurement. The owner approves
+  both. The plan section 2 (D1) named 20,000 golds. This is a recorded change.
+- Scoring at 20,000 golds: 300,000 pantries (20,000 golds x 3 draws x 5 configs). At 6,000 golds:
+  90,000 pantries, about a third of the time. A synthetic benchmark of
   300,000 invented recipes (Zipf ingredient use) gave 14 ms per pantry with 140k mean
   candidates. Scaling linearly to 1.27M gives about 60 ms per pantry, so about 5 hours.
   Real postings may be longer. Total ESTIMATE: 4 to 8 hours. Kaggle's CPU limit is 12 hours.

@@ -6,6 +6,7 @@ Steps: check CSV hash, install wheel(s) offline, clean, run, write results and m
 """
 
 import hashlib
+import os
 import subprocess
 import sys
 from pathlib import Path
@@ -16,6 +17,7 @@ CLEANED = Path(
     "/tmp/recipes.cleaned.jsonl"
 )  # outside /kaggle/working: recipe text is never an output
 EXPECTED_CSV_SHA256 = "f376ee0bb9f99f323761abf6270d453f4eff2002c3625d04cabcf8b57dca0803"
+N_QUERIES = os.environ.get("PC_N_QUERIES", "6000")  # smoke run: set to 200 first (README)
 RESULT = WORKING / "m2_rule_baselines_recipenlg.json"
 
 
@@ -69,7 +71,7 @@ def main() -> None:
     n = rb.clean_csv(csvs[0], CLEANED)
     print(f"cleaned {n} recipes", flush=True)
     rb.main(["--corpus", str(CLEANED), "--out", str(RESULT), "--csv-sha256", csv_sha,
-             "--commit", commit])  # fmt: skip
+             "--commit", commit, "--n-queries", N_QUERIES])  # fmt: skip
     CLEANED.unlink()
 
     manifest = WORKING / "manifest.sha256"
