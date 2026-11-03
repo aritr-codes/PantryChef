@@ -132,6 +132,9 @@ def build_pantries(
             masked_idx = set(rng.sample(range(len(maskable)), m))
             masked = tuple(min(maskable[i].options) for i in sorted(masked_idx))
             kept = {min(ln.options) for i, ln in enumerate(maskable) if i not in masked_idx}
+            # Mask ingredients, not only lines: if a masked line shares an id with a kept line,
+            # the person still lacks that ingredient. Remove every option id of a masked line.
+            kept -= {o for i in masked_idx for o in maskable[i].options}
             dis = sample_distractors(sampler, pack, gold_ids, d, rng) if d > 0 else ()
             out.append(
                 EvalPantry(

@@ -16,7 +16,7 @@ from __future__ import annotations
 import json
 from pathlib import Path
 
-from pantrychef.eval.baseline_main import run
+from pantrychef.eval.baseline_main import group_label, run
 
 ROOT = Path(__file__).resolve().parents[2]
 
@@ -32,7 +32,7 @@ def test_fixture_metrics_stay_above_floors():
         draws=cfg["draws"],
         resamples=100,
     )
-    got = {(m["group"], m["split"], m["arm"], m["name"]): m for m in out["metrics"]}
+    got = {(group_label(m["group"]), m["split"], m["arm"], m["name"]): m for m in out["metrics"]}
     assert doc["floors"]
     for f in doc["floors"]:
         m = got[(f["group"], f["split"], f["arm"], f["name"])]

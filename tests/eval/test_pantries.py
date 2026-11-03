@@ -202,3 +202,15 @@ def test_dev_test_disjoint_and_balanced_on_fixture_pack():
     dev = {p.gold_id for p in ps if p.split == "dev"}
     test = {p.gold_id for p in ps if p.split == "test"}
     assert dev and test and dev.isdisjoint(test)
+
+
+def test_masked_ingredient_is_removed_even_when_another_line_lists_it():
+    # Lines 1 and 4 both list "a". Masking line 4 (options a, d) must remove "a" and "d" from the
+    # pantry, because the person still lacks that ingredient. Otherwise the mask would not hide it.
+    pack = make_pack([R("g", "Gold", L("a"), L("b"), L("c"), L("a", "d"))])
+    pantries = build_pantries(pack, "uniform", 0, draws=40)
+    assert pantries
+    for p in pantries:
+        assert len(p.masked) == 1
+        if p.masked == ("a",):  # first option of line 4, or of line 1
+            assert "a" not in p.pantry and "d" not in p.pantry

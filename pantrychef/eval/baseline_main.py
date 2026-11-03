@@ -37,6 +37,10 @@ def _mean(xs: list[float]) -> float:
     return sum(xs) / len(xs)
 
 
+def group_label(group: dict) -> str:
+    return f"sampler={group['sampler']},d={group['d']}"
+
+
 def run(
     pack_dir,
     samplers: list[str] | None = None,
@@ -53,7 +57,7 @@ def run(
     metrics: list[dict] = []
     comparisons: list[dict] = []
     for sampler, d in [(s, d) for d in d_values for s in samplers if d > 0 or s == samplers[0]]:
-        group = f"sampler={sampler if d > 0 else 'none'},d={d}"
+        group = {"sampler": sampler if d > 0 else "none", "d": d}
         pantries = build_pantries(pack, sampler, d, seed, draws)
         # per[(split, arm, metric)] = list of per-pantry values; clusters[split] = gold ids
         per: dict[tuple[str, str, str], list[float]] = {}
@@ -80,7 +84,7 @@ def run(
         for split in sorted(clusters):
             n = len(clusters[split])
             for arm in ARMS:
-                for name in ("recall_at_10", "mrr_at_10", "makeable_at_10", "hit_rate"):
+                for name in ("recall_at_10", "mrr_at_10", "makeable_at_10"):
                     metrics.append(
                         {
                             "name": name,
@@ -91,10 +95,21 @@ def run(
                             "value": _mean(per[(split, arm, name)]),
                         }
                     )
+            # hit_rate does not depend on the order (all arms rank the same set), so report it once.
+            metrics.append(
+                {
+                    "name": "hit_rate",
+                    "arm": None,
+                    "split": split,
+                    "group": group,
+                    "n": n,
+                    "value": _mean(per[(split, "overlap", "hit_rate")]),
+                }
+            )
             metrics.append(
                 {
                     "name": "visible_rate",
-                    "arm": "shipped",
+                    "arm": None,
                     "split": split,
                     "group": group,
                     "n": n,

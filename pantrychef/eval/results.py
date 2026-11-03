@@ -229,6 +229,20 @@ def write_result(path: Path, doc: dict[str, Any], root: Path | None = None) -> d
     commit, dirty, dirty_paths = git_facts(root, exclude=(Path(path),))
     out = dict(doc)
     out.update(schema=SCHEMA_VERSION, commit=commit, dirty=dirty, dirty_paths=dirty_paths)
+    # Only the registries set role, dependencies and features. Callers cannot.
+    out["metrics"] = [
+        {**m, "role": METRICS[m["name"]].role, "depends_on": list(METRICS[m["name"]].depends_on)}
+        if m.get("name") in METRICS
+        else m
+        for m in doc.get("metrics", [])
+    ]
+    names = list(doc.get("arms", [])) or [
+        {"name": a} for a in sorted({m["arm"] for m in out["metrics"] if m.get("arm")})
+    ]
+    out["arms"] = [
+        {"name": a["name"], "features_used": list(ARMS[a["name"]])} if a["name"] in ARMS else a
+        for a in names
+    ]
     out["environment"] = {
         **doc.get("environment", {}),
         "python": platform.python_version(),

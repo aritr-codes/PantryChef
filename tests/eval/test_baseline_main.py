@@ -7,7 +7,7 @@ from pathlib import Path
 
 import pytest
 
-from pantrychef.eval.baseline_main import main, run
+from pantrychef.eval.baseline_main import group_label, main, run
 
 FIXTURE = Path(__file__).resolve().parents[1] / "fixtures" / "pack"
 
@@ -57,11 +57,12 @@ def test_hand_case_on_tiny_pack(tmp_path):
             ("recall_at_10", 1.0),
             ("mrr_at_10", 1.0),
             ("makeable_at_10", 0.0),
-            ("hit_rate", 0.0),
         ):
             m = got[(split, "overlap", name)]
-            assert m["value"] == v and m["n"] == 3 and m["group"] == "sampler=none,d=0"
-        assert got[(split, "shipped", "visible_rate")]["value"] == 1.0
+            assert m["value"] == v and m["n"] == 3
+            assert m["group"] == {"sampler": "none", "d": 0}
+        assert got[(split, None, "hit_rate")]["value"] == 0.0
+        assert got[(split, None, "visible_rate")]["value"] == 1.0
     assert out["corpus_fingerprint"] == "tiny-fp"
     assert {c["metric"] for c in out["comparisons"]} == {"mrr_at_10", "recall_at_10"}
     assert all(c["ci"]["n_clusters"] == 1 and c["n"] == 3 for c in out["comparisons"])
@@ -69,11 +70,11 @@ def test_hand_case_on_tiny_pack(tmp_path):
 
 def test_run_structure_on_fixture_pack():
     out = run(FIXTURE, d_values=[0, 3], resamples=100)
-    groups = {m["group"] for m in out["metrics"]}
+    groups = {group_label(m["group"]) for m in out["metrics"]}
     # d = 0 appears once (sampler "none"); d = 3 appears for each sampler
     assert groups == {"sampler=none,d=0", "sampler=uniform,d=3", "sampler=popularity,d=3"}
-    # 3 groups x 2 splits x (4 arms x 4 metrics + visible_rate)
-    assert len(out["metrics"]) == 3 * 2 * 17
+    # 3 groups x 2 splits x (4 arms x 3 metrics + hit_rate + visible_rate)
+    assert len(out["metrics"]) == 3 * 2 * 14
     # 3 groups x 2 splits x 4 pairs x 2 metrics
     assert len(out["comparisons"]) == 3 * 2 * 4 * 2
     assert all(m["n"] > 0 and 0.0 <= m["value"] <= 1.0 for m in out["metrics"])
