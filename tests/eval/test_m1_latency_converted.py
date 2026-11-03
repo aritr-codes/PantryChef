@@ -5,6 +5,7 @@ import pytest
 from pantrychef.eval.results import load_result
 
 FILES = sorted((Path(__file__).resolve().parents[2] / "results").glob("m1_latency_*.json"))
+FILES = [p for p in FILES if p.name != "m1_latency_device.json"]  # new in M2: a different shape
 
 
 def test_four_files_found():

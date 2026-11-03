@@ -135,7 +135,7 @@ The protocol limits the other biases:
 Open limits:
 
 - A recipe title may reveal an arm by style. The sheet does not hide this.
-- The `shipped` list often shows make-now recipes with an empty missing list. A judge may notice that pattern and guess the arm. The key stays closed, but the guess may still colour the answers.
+- Both lists use the same candidate set: recipes with at most 2 missing lines. A first draft used all recipes. Then the `overlap` list showed recipes with 2 to 36 missing lines and the `shipped` list showed 0 to 2, so the judge could name the arm on every item (found by the branch review). With the same set, only the order differs. A judge may still guess the arm from the order. The key stays closed, but a guess may colour the answers.
 - The pilot has 20 pantries. Its intervals are wide. We report the interval with the rate.
 - A second judge, such as one friend, may help in M4. That is a HYPOTHESIS. We do not claim it until we measure agreement.
 

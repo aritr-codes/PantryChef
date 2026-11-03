@@ -10,5 +10,5 @@ revision id. The revision link is `https://en.wikibooks.org/w/index.php?oldid=<r
   The sha256 of the snapshot is in `sheet.v1.json` and in `docs/DATASET.md`.
 - Changes: markup was removed as the source adapter does it (links, templates, emphasis). The words are
   unchanged. The lines are a selection.
-- The labels in `labels.dev.v1.json` and `labels.test.v1.json` are hand-written by the project owner.
-  They are MIT, like the rest of the repository.
+- The labels in `labels.dev.v1.json` and `labels.test.v1.json` will be hand-written by the project owner.
+  They do not exist yet. They will be MIT, like the rest of the repository.

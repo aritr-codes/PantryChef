@@ -26,6 +26,7 @@ KEY = ROOT / "data/interim/judging_key.pilot.v1.json"
 KEY_SHA = ROOT / "data/eval/judging/pilot_key_sha256.txt"
 ARM_LEFT_RIGHT = ("shipped", "overlap")
 TOP = 5
+MAX_MISSING = 2  # the product shows at most two missing lines, so both lists use that set
 MIN_GAP = 3  # a repeat sits at least this many places from its original
 
 
@@ -55,7 +56,9 @@ def build_sheet(
     for p in build_pantries(pack, "popularity", d, seed):
         if p.split != "test" or p.draw != 0:
             continue
-        cands = index.candidates(set(p.pantry))
+        cands = [
+            c for c in index.candidates(set(p.pantry)) if c.total - c.have <= MAX_MISSING
+        ]  # same set for both arms: only the order differs
         tops = {a: order(a, cands)[:TOP] for a in ARM_LEFT_RIGHT}
         ids = {a: [c.recipe_id for c in t] for a, t in tops.items()}
         # Identical lists cannot be compared, so they carry no information.
