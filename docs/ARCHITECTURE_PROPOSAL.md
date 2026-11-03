@@ -144,13 +144,14 @@ Python dataclasses in `pantrychef/engine.py` and hand-written types in
 catch drift, so we use no code generation.
 
 ```text
-AnswerRequest   pantry: ingredient_id[], staples: ingredient_id[], diet: Diet | null, limit: int
-Answer          groups: { make_now, one_away, two_away }, unlocks: Unlock[], blockers: Blocker[],
-                unknown_pantry: string[], pack: PackInfo
+AnswerRequest   pantry: ingredient_id[], staples: ingredient_id[], diet: Diet | null, limit: int,
+                unknown_names: string[]    (typed names that did not resolve; echoed in unknown_pantry)
+Answer          groups: { make_now, one_away, two_away }, each group = { count: int, items: RecipeResult[] },
+                unlocks: Unlock[], blockers: Blocker[], unknown_pantry: string[], pack: PackInfo
 Unlock          ingredient_id, name, recipes: int    (items that would move the most recipes to make now)
 Blocker         kind: clear_diet | add_item, ingredient_id: ingredient_id | null, name, recipes: int
                 (shown on zero results)
-RecipeResult    recipe_id, title, have: int, total: int, missing: Missing[], unread: int,
+RecipeResult    recipe_id, title, have: int, total: int, score: float, missing: Missing[], unread: int,
                 diet_state, reasons: string[]
 Missing         options: ingredient_id[], text, swap: SwapHint | null
 SwapHint        ingredient_id, name, source: curated | mined, ratio: string | null, note: string | null
@@ -171,10 +172,11 @@ module changes. We add a Web Worker only if latency measurements need one.
 The display corpus has about 3,800 recipes. An exact scan is possible, so approximate
 search and the old candidate ceiling do not apply to the product.
 
-1. Treat staple lines as satisfied.
-2. For each recipe that shares at least one ingredient with the pantry, count missing
+1. Treat staple-covered lines as satisfied. A line is staple-covered when any of its options is a staple.
+2. For each recipe with a pantry id on a required, non-staple-covered line, count missing
    required lines. A line is satisfied if the pantry holds any id in its set. An unread
-   line counts as missing. An optional line never counts.
+   line counts as missing. An optional line never counts. A recipe with no required,
+   non-staple-covered line never appears.
 3. Group by missing count: 0, 1, 2.
 4. Inside each group, sort by length-normalised IDF cosine, then by fewer total lines,
    then by recipe id. IDF means inverse document frequency. It gives rare ingredients
@@ -182,7 +184,7 @@ search and the old candidate ceiling do not apply to the product.
 5. Compute `unlocks`: for each ingredient missing from a one-away recipe, count the
    recipes it completes. Show the top items. This is the core promise, "the one item
    that unlocks more". Sort by count, then by ingredient id.
-6. If all groups are empty, compute `blockers`: the single change that returns the most
+6. If all groups are empty and the pantry is not empty, compute `blockers`: the single change that returns the most
    results. A change is either clearing the diet filter or adding one item. Removing a pantry
    item never helps, because it cannot reduce a missing count. Until diet flags land in M5,
    only `add_item` applies. Sort by count, with `clear_diet` first on a tie, then by ingredient
@@ -192,12 +194,39 @@ The score in step 4 is `sum(w(line) for lines the pantry satisfies) / sqrt(sum(w
 lines))`. The name "IDF cosine" is shorthand, because this is not a true cosine.
 
 - `w(line)` is the largest IDF among the line's options. It is 0 for an optional line, an
-  unread line and a line satisfied only by a staple.
+  unread line and a staple-covered line (any option is a staple).
 - `idf(i) = log(1 + N / df(i))`, where `N` is the number of recipes in the pack and `df(i)` is
   the number of recipes with a line that lists `i`.
 - If the denominator is 0, the score is 0.
 
 M4 may change this, and the Python and TypeScript engines change together.
+
+### Rules fixed while building M1 (2026-11-03)
+
+The reference engine is `pantrychef/engine.py`. Building it showed gaps in the text above.
+These rules are now part of the contract, and the TypeScript engine follows them.
+
+1. **IDF in the pack.** The pack stores `idf(i) = log(1 + N/df(i))` per ingredient. Neither engine
+   calls `log`. Both sum in line order, so scores agree bit for bit in practice.
+2. **Staple-covered lines.** A line with any staple option is satisfied and weighs 0. Section 6 first
+   said "satisfied only by a staple", which depends on the pantry. The new rule keeps the
+   denominator independent of the pantry.
+3. **`have` and `total`.** `total` counts required lines that are not staple-covered. `have` counts
+   the ones the pantry satisfies. "Fewer total lines" in step 4 means this `total`. An unread line
+   counts in `total` and never in `have`.
+4. **Pantry.** The pantry is the given ids minus the request's staples. Ids unknown to the pack go to
+   `unknown_pantry` and never reach scoring.
+5. **Candidates.** A candidate has `have >= 1`. Optional and staple-covered lines do not make a
+   candidate. The pack builder also rejects recipes with `total == 0` under the default staples.
+6. **Unlocks.** For each one-away recipe, each option id of its missing line gets +1. An unread
+   missing line adds nothing. The count covers all one-away recipes, not only the listed ones.
+   Sort by count, then id. The list holds the top 10.
+7. **Blockers.** Only `add_item` exists in M1. For each pack ingredient not in the pantry or the
+   staples, count the recipes that would have `have >= 1` and at most 2 missing lines after adding
+   it. Sort by count, then id. The list holds the top 5.
+8. **Group counts.** Each group holds the full `count`. `items` is cut to `limit`.
+9. **Ids.** `recipe_id` is ASCII (`[a-z0-9_-]`) and compares bytewise.
+10. **Reasons.** `reasons` stays empty in M1. The card builds its text from `have`, `total` and `missing`.
 
 The diet filter runs before step 3. It removes only `does_not_fit` recipes. When a diet is set,
 `fits` sorts before `unknown` inside each group, ahead of the keys in step 4. `groups`, `unlocks`
