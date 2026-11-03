@@ -1,0 +1,78 @@
+{
+  "label": "MEASURED",
+  "what": "answer() latency, Chromium headless, Vite dev server, real pack, CPU throttled",
+  "commit": "57414db05dadec2587f04f0c74c0a195dac3d61c",
+  "dirty": false,
+  "config": {
+    "cpu_throttle_rate": 6,
+    "runs_per_size": 40,
+    "pantry_sizes": [
+      3,
+      5,
+      8,
+      12
+    ],
+    "limit": 10,
+    "warmup": 3,
+    "pool": "120 most common ingredients"
+  },
+  "pack": {
+    "corpus_fingerprint": "a1a076ab0aee385c4e01cdc904342214dfaa6b01dc35d80d32519ea625c597d2",
+    "files": [
+      {
+        "name": "core.v1.json.gz",
+        "sha256": "133b6449b715139acf1d47d188a18e39bbc138da53004bd99392a194364610ea",
+        "size": 476092
+      },
+      {
+        "name": "text.v1.json.gz",
+        "sha256": "c1021eee2dd4dcde676c63b1aa900d61e9beab35de8ba6e2539d71af712f9b0b",
+        "size": 870411
+      }
+    ],
+    "recipes": 3712
+  },
+  "seed": 1,
+  "metrics": {
+    "loadMs": 616.9000000001397,
+    "bySize": {
+      "3": {
+        "n": 40,
+        "p50": 48.60000000009313,
+        "p95": 75.0999999998603,
+        "max": 85.70000000018626
+      },
+      "5": {
+        "n": 40,
+        "p50": 46.5,
+        "p95": 62.89999999990687,
+        "max": 72.19999999995343
+      },
+      "8": {
+        "n": 40,
+        "p50": 50,
+        "p95": 76.89999999990687,
+        "max": 77.30000000004657
+      },
+      "12": {
+        "n": 40,
+        "p50": 32.700000000186265,
+        "p95": 46,
+        "max": 55.5
+      }
+    },
+    "overall": {
+      "n": 160,
+      "p50": 43.5999999998603,
+      "p95": 69.20000000018626,
+      "max": 85.70000000018626
+    },
+    "recipes": null,
+    "threshold_ms": 100,
+    "p95_under_threshold": true,
+    "sizes_over_threshold": []
+  },
+  "worker_plan": "Small pantries match many recipes and are the slowest. If a production-bundle run still shows p95 >= 100 ms, move Engine into a Web Worker (module worker, same origin, loads the pack itself) and post AnswerRequest/Answer messages. The Answer type is plain JSON, so no code change in the engine is needed. Until then answer() runs on the main thread.",
+  "note": "Dev server build is unminified, so these numbers are pessimistic for the production bundle.",
+  "command": "node web/scripts/latency.mjs --rate 6 --runs 40 --seed 1"
+}
