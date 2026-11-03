@@ -222,8 +222,11 @@ async function readJson<T>(url: string, gz: boolean, doFetch: typeof fetch): Pro
   const res = await doFetch(url);
   if (!res.ok) throw new Error(`${url}: ${res.status}`);
   if (!gz) return (await res.json()) as T;
-  const stream = res.body?.pipeThrough(new DecompressionStream("gzip"));
-  if (!stream) throw new Error(`${url}: no body`);
+  // Some servers send .gz files with "Content-Encoding: gzip", and the browser then decodes them.
+  // Check the gzip magic bytes so both cases work.
+  const bytes = new Uint8Array(await res.arrayBuffer());
+  if (bytes[0] !== 0x1f || bytes[1] !== 0x8b) return JSON.parse(new TextDecoder().decode(bytes)) as T;
+  const stream = new Blob([bytes]).stream().pipeThrough(new DecompressionStream("gzip"));
   return JSON.parse(await new Response(stream).text()) as T;
 }
 

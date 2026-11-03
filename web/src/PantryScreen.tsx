@@ -64,7 +64,7 @@ export function PantryScreen(p: Props) {
 
   return (
     <section aria-labelledby="pantry-h">
-      <h2 id="pantry-h">What do you have?</h2>
+      <h2 id="pantry-h" tabIndex={-1}>What do you have?</h2>
       <label for="ingredient">Type an ingredient</label>
       <div class="row">
         <input
@@ -108,10 +108,14 @@ export function PantryScreen(p: Props) {
         {p.ids.map((id) => (
           <li key={id}>
             {p.engine.name(id)}
+            {p.staples.includes(id) && " (staple: always assumed)"}
             <button
               type="button"
               aria-label={`Remove ${p.engine.name(id)}`}
-              onClick={() => p.setIds(p.ids.filter((x) => x !== id))}
+              onClick={() => {
+                p.setIds(p.ids.filter((x) => x !== id));
+                document.getElementById("ingredient")?.focus();
+              }}
             >
               ×
             </button>
@@ -169,8 +173,8 @@ export function PantryScreen(p: Props) {
         {count === 0
           ? "Add an item to start."
           : count < 3
-            ? "Add more items for better matches."
-            : ""}
+            ? `${count} in your pantry. Add more items for better matches.`
+            : `${count} in your pantry.`}
       </p>
       <button type="button" class="primary" disabled={count === 0} onClick={p.onSee}>
         {count === 0 ? "See recipes (add an item first)" : `See recipes: ${now} now, ${one} one away`}

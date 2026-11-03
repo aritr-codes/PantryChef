@@ -44,7 +44,7 @@ export function RecipeScreen({ recipeId, pantry, staples, onBack }: Props) {
       <button type="button" onClick={onBack}>
         ← Results
       </button>
-      <h2 id="recipe-h">{detail.title}</h2>
+      <h2 id="recipe-h" tabIndex={-1}>{detail.title}</h2>
       {meta.length > 0 && <p>{meta.join(" | ")}</p>}
       <h3>Ingredients</h3>
       <ul class="lines">

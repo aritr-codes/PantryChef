@@ -43,6 +43,9 @@ ul.cards { list-style: none; padding: 0; }
 .hint, .unknown { color: var(--muted); }
 .tag { font-size: 0.85rem; font-weight: 700; }
 .tag-missing, .tag-check { color: #b3261e; }
+@media (prefers-color-scheme: dark) {
+  .tag-missing, .tag-check { color: #ff8a80; }
+}
 .attribution { border-top: 2px solid var(--line); margin-top: 1.5rem; padding-top: 0.5rem; color: var(--muted); }
 a { color: var(--accent); }
 footer { margin-top: 2rem; color: var(--muted); font-size: 0.9rem; }

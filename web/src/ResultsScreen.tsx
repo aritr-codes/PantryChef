@@ -88,7 +88,7 @@ export function ResultsScreen({ engine, answer, itemCount, onBack, onMore, onOpe
       <button type="button" onClick={onBack}>
         ← Pantry
       </button>
-      <h2 id="results-h">Results for {itemCount} {itemCount === 1 ? "item" : "items"}</h2>
+      <h2 id="results-h" tabIndex={-1}>Results for {itemCount} {itemCount === 1 ? "item" : "items"}</h2>
       {itemCount < 3 && <p>Add more items for better matches.</p>}
       {answer.unknown_pantry.length > 0 && (
         <p>Not used for matching: {answer.unknown_pantry.join(", ")}</p>

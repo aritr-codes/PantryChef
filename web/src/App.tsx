@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "preact/hooks";
+import { useEffect, useMemo, useRef, useState } from "preact/hooks";
 import { PantryScreen } from "./PantryScreen";
 import { RecipeScreen } from "./RecipeScreen";
 import { ResultsScreen } from "./ResultsScreen";
@@ -17,6 +17,18 @@ export function App() {
   const [unknown, setUnknown] = useState<string[]>([]);
   const [staples, setStaples] = useState<string[]>([]);
   const [shown, setShown] = useState(PAGE);
+  const first = useRef(true);
+  const screenName = screen.name === "recipe" ? `recipe:${screen.id}` : screen.name;
+
+  // Move focus to the new screen's heading, so keyboard and screen-reader users know it changed.
+  useEffect(() => {
+    if (first.current) {
+      first.current = false;
+      return;
+    }
+    window.scrollTo(0, 0);
+    document.querySelector<HTMLElement>("main h2")?.focus();
+  }, [screenName]);
 
   useEffect(() => {
     ready(PACK_URL)

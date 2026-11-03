@@ -20,6 +20,8 @@ const csp = (): Plugin => ({
 // The site is served from a GitHub Pages sub-path, so asset URLs stay relative.
 export default defineConfig({
   base: "./",
+  // The e2e run sets PANTRY_PUBLIC so it never touches the real pack in public/pack.
+  publicDir: process.env.PANTRY_PUBLIC ?? "public",
   plugins: [preact(), csp()],
   test: { include: ["tests/**/*.test.ts"], environment: "node" },
 });

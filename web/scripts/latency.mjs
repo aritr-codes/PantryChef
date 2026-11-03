@@ -68,6 +68,10 @@ try {
       const t0 = performance.now();
       const engine = await mod.ready(packUrl);
       const loadMs = performance.now() - t0;
+      const coldPantry = engine.popular(3).map((x) => x.id);
+      const c0 = performance.now();
+      engine.answer({ pantry: coldPantry, staples: engine.defaultStaples, diet: null, limit: 10, unknown_names: [] });
+      const coldFirstCallMs = performance.now() - c0;
       // Small seeded generator so the pantries are the same on every run.
       let s = seed >>> 0;
       const rnd = () => ((s = (Math.imul(s, 1664525) + 1013904223) >>> 0) / 2 ** 32);
@@ -96,7 +100,7 @@ try {
         bySize[size] = stats(times);
         all.push(...times);
       }
-      return { loadMs, bySize, overall: stats(all) };
+      return { loadMs, coldFirstCallMs, bySize, overall: stats(all) };
     },
     { runs: RUNS, seed: SEED, sizes: SIZES, packUrl: `http://127.0.0.1:${PACK_PORT}/` },
   );
@@ -125,7 +129,7 @@ try {
     },
     worker_plan:
       "Small pantries match many recipes and are the slowest. If a production-bundle run still shows p95 >= 100 ms, move Engine into a Web Worker (module worker, same origin, loads the pack itself) and post AnswerRequest/Answer messages. The Answer type is plain JSON, so no code change in the engine is needed. Until then answer() runs on the main thread.",
-    note: "Dev server build is unminified, so these numbers are pessimistic for the production bundle.",
+    limits: "Covers answer() at limit 10 only, not rendering. Pantries come from the 120 most common ingredients. The dev server serves unminified code. One run: run-to-run spread is not measured. The first call after load is reported separately as coldFirstCallMs.",
     command: `node web/scripts/latency.mjs --rate ${RATE} --runs ${RUNS} --seed ${SEED}`,
   };
   mkdirSync(join(root, "results"), { recursive: true });

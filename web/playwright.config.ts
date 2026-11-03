@@ -11,6 +11,8 @@ export default defineConfig({
     command: "npm run pack:fixture && npm run build && npm run preview -- --host 127.0.0.1 --port 4173 --strictPort",
     url: "http://127.0.0.1:4173/",
     reuseExistingServer: false,
+    // A separate public folder keeps the e2e run from deleting the real pack in public/pack.
+    env: { PANTRY_PUBLIC: "public-e2e" },
     timeout: 120_000,
   },
 });

@@ -51,3 +51,42 @@ test("pantry to results to recipe, with no off-origin requests", async ({ page }
   expect(offOrigin).toEqual([]);
   expect(violations).toEqual([]);
 });
+
+test("Enter takes the top suggestion for a partial word", async ({ page }) => {
+  await page.goto("/");
+  const input = page.getByLabel("Type an ingredient");
+  await input.fill("flou");
+  await expect(page.getByRole("listbox", { name: "Suggestions" })).toBeVisible();
+  await input.press("Enter");
+  await expect(page.getByRole("heading", { name: "Your pantry (1)" })).toBeVisible();
+  await expect(page.locator(".unknown")).toHaveCount(0);
+});
+
+test("an unknown name is shown as not used, and removable", async ({ page }) => {
+  await page.goto("/");
+  const input = page.getByLabel("Type an ingredient");
+  await input.fill("zzqxw");
+  await input.press("Enter");
+  await expect(page.getByText("Not recognised: “zzqxw”")).toBeVisible();
+  await page.getByRole("button", { name: "Remove “zzqxw”" }).click();
+  await expect(page.locator(".unknown")).toHaveCount(0);
+});
+
+test("focus moves to the heading when the screen changes", async ({ page }) => {
+  await page.goto("/");
+  const input = page.getByLabel("Type an ingredient");
+  await input.fill("flour");
+  await input.press("Enter");
+  await page.getByRole("button", { name: /See recipes/ }).click();
+  await expect(page.locator("#results-h")).toBeFocused();
+});
+
+test("one item shows singular wording and a hint", async ({ page }) => {
+  await page.goto("/");
+  const input = page.getByLabel("Type an ingredient");
+  await input.fill("flour");
+  await input.press("Enter");
+  await page.getByRole("button", { name: /See recipes/ }).click();
+  await expect(page.getByRole("heading", { name: "Results for 1 item" })).toBeVisible();
+  await expect(page.getByText("Add more items for better matches.")).toBeVisible();
+});
