@@ -30,7 +30,7 @@
     }
   ],
   "command": "python -m pantrychef.eval.baseline_main --pack build/pack --out results/m2_baseline_wikibooks.json",
-  "commit": "185ae8c80b4fd5de2011a40ad80b99e6dbc3108a",
+  "commit": "2ca53e4643c68491ec4ce7c1fd8a1a19068089e7",
   "comparisons": [
     {
       "a": "overlap",
@@ -1648,10 +1648,8 @@
     ]
   },
   "corpus_fingerprint": "a1a076ab0aee385c4e01cdc904342214dfaa6b01dc35d80d32519ea625c597d2",
-  "dirty": true,
-  "dirty_paths": [
-    "web/scripts/latency-device.mjs"
-  ],
+  "dirty": false,
+  "dirty_paths": [],
   "environment": {
     "numpy": "2.4.6",
     "platform": "Windows 10 (win32)",

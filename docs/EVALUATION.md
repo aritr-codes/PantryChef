@@ -436,7 +436,7 @@ These tables come from `results/*.json` on the test split. Do not edit them by h
 | idf_flat | 0.9439 | 0.8011 | 4935 |
 | shipped | 0.2549 | 0.0977 | 4935 |
 
-*Label: MEASURED. Commit: 185ae8c8. Dirty: yes. Results: [m2_baseline_wikibooks.json](../results/m2_baseline_wikibooks.json). Rebuild: `python -m pantrychef.eval.baseline_main --pack build/pack --out results/m2_baseline_wikibooks.json`.*
+*Label: MEASURED. Commit: 2ca53e46. Dirty: no. Results: [m2_baseline_wikibooks.json](../results/m2_baseline_wikibooks.json). Rebuild: `python -m pantrychef.eval.baseline_main --pack build/pack --out results/m2_baseline_wikibooks.json`.*
 
 **Table 2. Paired comparisons, a minus b. Test split.**
 
@@ -453,7 +453,7 @@ These tables come from `results/*.json` on the test split. Do not edit them by h
 
 HOLDS means the interval excludes 0. Clusters: 1645.
 
-*Label: MEASURED. Commit: 185ae8c8. Dirty: yes. Results: [m2_baseline_wikibooks.json](../results/m2_baseline_wikibooks.json). Rebuild: `python -m pantrychef.eval.baseline_main --pack build/pack --out results/m2_baseline_wikibooks.json`.*
+*Label: MEASURED. Commit: 2ca53e46. Dirty: no. Results: [m2_baseline_wikibooks.json](../results/m2_baseline_wikibooks.json). Rebuild: `python -m pantrychef.eval.baseline_main --pack build/pack --out results/m2_baseline_wikibooks.json`.*
 
 **Table 3. Product metrics. Test split.**
 
@@ -465,7 +465,7 @@ HOLDS means the interval excludes 0. Clusters: 1645.
 
 makeable_at_10 is high for `shipped` by construction: the shipped order lists recipes you can make now first.
 
-*Label: MEASURED. Commit: 185ae8c8. Dirty: yes. Results: [m2_baseline_wikibooks.json](../results/m2_baseline_wikibooks.json). Rebuild: `python -m pantrychef.eval.baseline_main --pack build/pack --out results/m2_baseline_wikibooks.json`.*
+*Label: MEASURED. Commit: 2ca53e46. Dirty: no. Results: [m2_baseline_wikibooks.json](../results/m2_baseline_wikibooks.json). Rebuild: `python -m pantrychef.eval.baseline_main --pack build/pack --out results/m2_baseline_wikibooks.json`.*
 
 ### sampler=uniform, d=3
 
@@ -478,7 +478,7 @@ makeable_at_10 is high for `shipped` by construction: the shipped order lists re
 | idf_flat | 0.8987 | 0.7193 | 4935 |
 | shipped | 0.2020 | 0.0619 | 4935 |
 
-*Label: MEASURED. Commit: 185ae8c8. Dirty: yes. Results: [m2_baseline_wikibooks.json](../results/m2_baseline_wikibooks.json). Rebuild: `python -m pantrychef.eval.baseline_main --pack build/pack --out results/m2_baseline_wikibooks.json`.*
+*Label: MEASURED. Commit: 2ca53e46. Dirty: no. Results: [m2_baseline_wikibooks.json](../results/m2_baseline_wikibooks.json). Rebuild: `python -m pantrychef.eval.baseline_main --pack build/pack --out results/m2_baseline_wikibooks.json`.*
 
 **Table 2. Paired comparisons, a minus b. Test split.**
 
@@ -495,7 +495,7 @@ makeable_at_10 is high for `shipped` by construction: the shipped order lists re
 
 HOLDS means the interval excludes 0. Clusters: 1645.
 
-*Label: MEASURED. Commit: 185ae8c8. Dirty: yes. Results: [m2_baseline_wikibooks.json](../results/m2_baseline_wikibooks.json). Rebuild: `python -m pantrychef.eval.baseline_main --pack build/pack --out results/m2_baseline_wikibooks.json`.*
+*Label: MEASURED. Commit: 2ca53e46. Dirty: no. Results: [m2_baseline_wikibooks.json](../results/m2_baseline_wikibooks.json). Rebuild: `python -m pantrychef.eval.baseline_main --pack build/pack --out results/m2_baseline_wikibooks.json`.*
 
 **Table 3. Product metrics. Test split.**
 
@@ -507,7 +507,7 @@ HOLDS means the interval excludes 0. Clusters: 1645.
 
 makeable_at_10 is high for `shipped` by construction: the shipped order lists recipes you can make now first.
 
-*Label: MEASURED. Commit: 185ae8c8. Dirty: yes. Results: [m2_baseline_wikibooks.json](../results/m2_baseline_wikibooks.json). Rebuild: `python -m pantrychef.eval.baseline_main --pack build/pack --out results/m2_baseline_wikibooks.json`.*
+*Label: MEASURED. Commit: 2ca53e46. Dirty: no. Results: [m2_baseline_wikibooks.json](../results/m2_baseline_wikibooks.json). Rebuild: `python -m pantrychef.eval.baseline_main --pack build/pack --out results/m2_baseline_wikibooks.json`.*
 
 ### sampler=popularity, d=3
 
@@ -520,7 +520,7 @@ makeable_at_10 is high for `shipped` by construction: the shipped order lists re
 | idf_flat | 0.8829 | 0.6945 | 4935 |
 | shipped | 0.1246 | 0.0323 | 4935 |
 
-*Label: MEASURED. Commit: 185ae8c8. Dirty: yes. Results: [m2_baseline_wikibooks.json](../results/m2_baseline_wikibooks.json). Rebuild: `python -m pantrychef.eval.baseline_main --pack build/pack --out results/m2_baseline_wikibooks.json`.*
+*Label: MEASURED. Commit: 2ca53e46. Dirty: no. Results: [m2_baseline_wikibooks.json](../results/m2_baseline_wikibooks.json). Rebuild: `python -m pantrychef.eval.baseline_main --pack build/pack --out results/m2_baseline_wikibooks.json`.*
 
 **Table 2. Paired comparisons, a minus b. Test split.**
 
@@ -537,7 +537,7 @@ makeable_at_10 is high for `shipped` by construction: the shipped order lists re
 
 HOLDS means the interval excludes 0. Clusters: 1645.
 
-*Label: MEASURED. Commit: 185ae8c8. Dirty: yes. Results: [m2_baseline_wikibooks.json](../results/m2_baseline_wikibooks.json). Rebuild: `python -m pantrychef.eval.baseline_main --pack build/pack --out results/m2_baseline_wikibooks.json`.*
+*Label: MEASURED. Commit: 2ca53e46. Dirty: no. Results: [m2_baseline_wikibooks.json](../results/m2_baseline_wikibooks.json). Rebuild: `python -m pantrychef.eval.baseline_main --pack build/pack --out results/m2_baseline_wikibooks.json`.*
 
 **Table 3. Product metrics. Test split.**
 
@@ -549,7 +549,7 @@ HOLDS means the interval excludes 0. Clusters: 1645.
 
 makeable_at_10 is high for `shipped` by construction: the shipped order lists recipes you can make now first.
 
-*Label: MEASURED. Commit: 185ae8c8. Dirty: yes. Results: [m2_baseline_wikibooks.json](../results/m2_baseline_wikibooks.json). Rebuild: `python -m pantrychef.eval.baseline_main --pack build/pack --out results/m2_baseline_wikibooks.json`.*
+*Label: MEASURED. Commit: 2ca53e46. Dirty: no. Results: [m2_baseline_wikibooks.json](../results/m2_baseline_wikibooks.json). Rebuild: `python -m pantrychef.eval.baseline_main --pack build/pack --out results/m2_baseline_wikibooks.json`.*
 
 ### sampler=uniform, d=6
 
@@ -562,7 +562,7 @@ makeable_at_10 is high for `shipped` by construction: the shipped order lists re
 | idf_flat | 0.8626 | 0.6564 | 4935 |
 | shipped | 0.1645 | 0.0444 | 4935 |
 
-*Label: MEASURED. Commit: 185ae8c8. Dirty: yes. Results: [m2_baseline_wikibooks.json](../results/m2_baseline_wikibooks.json). Rebuild: `python -m pantrychef.eval.baseline_main --pack build/pack --out results/m2_baseline_wikibooks.json`.*
+*Label: MEASURED. Commit: 2ca53e46. Dirty: no. Results: [m2_baseline_wikibooks.json](../results/m2_baseline_wikibooks.json). Rebuild: `python -m pantrychef.eval.baseline_main --pack build/pack --out results/m2_baseline_wikibooks.json`.*
 
 **Table 2. Paired comparisons, a minus b. Test split.**
 
@@ -579,7 +579,7 @@ makeable_at_10 is high for `shipped` by construction: the shipped order lists re
 
 HOLDS means the interval excludes 0. Clusters: 1645.
 
-*Label: MEASURED. Commit: 185ae8c8. Dirty: yes. Results: [m2_baseline_wikibooks.json](../results/m2_baseline_wikibooks.json). Rebuild: `python -m pantrychef.eval.baseline_main --pack build/pack --out results/m2_baseline_wikibooks.json`.*
+*Label: MEASURED. Commit: 2ca53e46. Dirty: no. Results: [m2_baseline_wikibooks.json](../results/m2_baseline_wikibooks.json). Rebuild: `python -m pantrychef.eval.baseline_main --pack build/pack --out results/m2_baseline_wikibooks.json`.*
 
 **Table 3. Product metrics. Test split.**
 
@@ -591,7 +591,7 @@ HOLDS means the interval excludes 0. Clusters: 1645.
 
 makeable_at_10 is high for `shipped` by construction: the shipped order lists recipes you can make now first.
 
-*Label: MEASURED. Commit: 185ae8c8. Dirty: yes. Results: [m2_baseline_wikibooks.json](../results/m2_baseline_wikibooks.json). Rebuild: `python -m pantrychef.eval.baseline_main --pack build/pack --out results/m2_baseline_wikibooks.json`.*
+*Label: MEASURED. Commit: 2ca53e46. Dirty: no. Results: [m2_baseline_wikibooks.json](../results/m2_baseline_wikibooks.json). Rebuild: `python -m pantrychef.eval.baseline_main --pack build/pack --out results/m2_baseline_wikibooks.json`.*
 
 ### sampler=popularity, d=6
 
@@ -604,7 +604,7 @@ makeable_at_10 is high for `shipped` by construction: the shipped order lists re
 | idf_flat | 0.8107 | 0.5966 | 4935 |
 | shipped | 0.0671 | 0.0139 | 4935 |
 
-*Label: MEASURED. Commit: 185ae8c8. Dirty: yes. Results: [m2_baseline_wikibooks.json](../results/m2_baseline_wikibooks.json). Rebuild: `python -m pantrychef.eval.baseline_main --pack build/pack --out results/m2_baseline_wikibooks.json`.*
+*Label: MEASURED. Commit: 2ca53e46. Dirty: no. Results: [m2_baseline_wikibooks.json](../results/m2_baseline_wikibooks.json). Rebuild: `python -m pantrychef.eval.baseline_main --pack build/pack --out results/m2_baseline_wikibooks.json`.*
 
 **Table 2. Paired comparisons, a minus b. Test split.**
 
@@ -621,7 +621,7 @@ makeable_at_10 is high for `shipped` by construction: the shipped order lists re
 
 HOLDS means the interval excludes 0. Clusters: 1645.
 
-*Label: MEASURED. Commit: 185ae8c8. Dirty: yes. Results: [m2_baseline_wikibooks.json](../results/m2_baseline_wikibooks.json). Rebuild: `python -m pantrychef.eval.baseline_main --pack build/pack --out results/m2_baseline_wikibooks.json`.*
+*Label: MEASURED. Commit: 2ca53e46. Dirty: no. Results: [m2_baseline_wikibooks.json](../results/m2_baseline_wikibooks.json). Rebuild: `python -m pantrychef.eval.baseline_main --pack build/pack --out results/m2_baseline_wikibooks.json`.*
 
 **Table 3. Product metrics. Test split.**
 
@@ -633,5 +633,5 @@ HOLDS means the interval excludes 0. Clusters: 1645.
 
 makeable_at_10 is high for `shipped` by construction: the shipped order lists recipes you can make now first.
 
-*Label: MEASURED. Commit: 185ae8c8. Dirty: yes. Results: [m2_baseline_wikibooks.json](../results/m2_baseline_wikibooks.json). Rebuild: `python -m pantrychef.eval.baseline_main --pack build/pack --out results/m2_baseline_wikibooks.json`.*
+*Label: MEASURED. Commit: 2ca53e46. Dirty: no. Results: [m2_baseline_wikibooks.json](../results/m2_baseline_wikibooks.json). Rebuild: `python -m pantrychef.eval.baseline_main --pack build/pack --out results/m2_baseline_wikibooks.json`.*
 <!-- END table:m2-wikibooks -->
