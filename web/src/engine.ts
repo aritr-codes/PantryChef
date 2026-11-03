@@ -68,6 +68,15 @@ export class Engine {
     return this.names.get(id) ?? id;
   }
 
+  /** The most common non-staple ingredients, for the quick-add grid (lowest idf first). */
+  popular(n: number): Suggestion[] {
+    return this.core.ingredients
+      .filter((i) => !i.staple && i.idf > 0)
+      .sort((a, b) => a.idf - b.idf || (a.id < b.id ? -1 : 1))
+      .slice(0, n)
+      .map((i) => ({ id: i.id, name: i.name }));
+  }
+
   /** Map typed names to ids by exact canonical key. Mirrors `resolve_names` in Python. */
   resolve(names: string[]): { ids: IngredientId[]; unknown: string[] } {
     const ids: IngredientId[] = [];
@@ -246,6 +255,7 @@ export const suggest = (text: string, limit?: number): Suggestion[] =>
   engine().suggest(text, limit);
 export const answer = (req: AnswerRequest): Answer => engine().answer(req);
 export const resolve = (names: string[]) => engine().resolve(names);
+export const popular = (n: number): Suggestion[] => engine().popular(n);
 export const defaultStaples = (): IngredientId[] => engine().defaultStaples;
 export const ingredientName = (id: IngredientId): string => engine().name(id);
 

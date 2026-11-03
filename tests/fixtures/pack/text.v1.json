@@ -1,0 +1,710 @@
+{
+ "format": 1,
+ "recipes": {
+  "fx-001": {
+   "steps": [
+    "Prepare the ingredients for Pancakes.",
+    "Combine them and cook."
+   ],
+   "servings": null,
+   "time": null,
+   "category": "Fixture recipes",
+   "url": "https://en.wikibooks.org/wiki/Cookbook:Pancakes",
+   "revision_url": "https://en.wikibooks.org/w/index.php?oldid=1001",
+   "revision_id": 1001,
+   "licence": "Synthetic test fixture (MIT)",
+   "retrieved_on": "2026-11-02",
+   "changes": "Invented for tests. Not a Wikibooks page."
+  },
+  "fx-002": {
+   "steps": [
+    "Prepare the ingredients for Omelette.",
+    "Combine them and cook."
+   ],
+   "servings": null,
+   "time": null,
+   "category": "Fixture recipes",
+   "url": "https://en.wikibooks.org/wiki/Cookbook:Omelette",
+   "revision_url": "https://en.wikibooks.org/w/index.php?oldid=1002",
+   "revision_id": 1002,
+   "licence": "Synthetic test fixture (MIT)",
+   "retrieved_on": "2026-11-02",
+   "changes": "Invented for tests. Not a Wikibooks page."
+  },
+  "fx-003": {
+   "steps": [
+    "Prepare the ingredients for Plain Bread.",
+    "Combine them and cook."
+   ],
+   "servings": null,
+   "time": null,
+   "category": "Fixture recipes",
+   "url": "https://en.wikibooks.org/wiki/Cookbook:Plain_Bread",
+   "revision_url": "https://en.wikibooks.org/w/index.php?oldid=1003",
+   "revision_id": 1003,
+   "licence": "Synthetic test fixture (MIT)",
+   "retrieved_on": "2026-11-02",
+   "changes": "Invented for tests. Not a Wikibooks page."
+  },
+  "fx-004": {
+   "steps": [
+    "Prepare the ingredients for Butter Cookies.",
+    "Combine them and cook."
+   ],
+   "servings": null,
+   "time": null,
+   "category": "Fixture recipes",
+   "url": "https://en.wikibooks.org/wiki/Cookbook:Butter_Cookies",
+   "revision_url": "https://en.wikibooks.org/w/index.php?oldid=1004",
+   "revision_id": 1004,
+   "licence": "Synthetic test fixture (MIT)",
+   "retrieved_on": "2026-11-02",
+   "changes": "Invented for tests. Not a Wikibooks page."
+  },
+  "fx-005": {
+   "steps": [
+    "Prepare the ingredients for Margarine Cake.",
+    "Combine them and cook."
+   ],
+   "servings": null,
+   "time": null,
+   "category": "Fixture recipes",
+   "url": "https://en.wikibooks.org/wiki/Cookbook:Margarine_Cake",
+   "revision_url": "https://en.wikibooks.org/w/index.php?oldid=1005",
+   "revision_id": 1005,
+   "licence": "Synthetic test fixture (MIT)",
+   "retrieved_on": "2026-11-02",
+   "changes": "Invented for tests. Not a Wikibooks page."
+  },
+  "fx-006": {
+   "steps": [
+    "Prepare the ingredients for Tomato Pasta.",
+    "Combine them and cook."
+   ],
+   "servings": null,
+   "time": null,
+   "category": "Fixture recipes",
+   "url": "https://en.wikibooks.org/wiki/Cookbook:Tomato_Pasta",
+   "revision_url": "https://en.wikibooks.org/w/index.php?oldid=1006",
+   "revision_id": 1006,
+   "licence": "Synthetic test fixture (MIT)",
+   "retrieved_on": "2026-11-02",
+   "changes": "Invented for tests. Not a Wikibooks page."
+  },
+  "fx-007": {
+   "steps": [
+    "Prepare the ingredients for Garlic Pasta.",
+    "Combine them and cook."
+   ],
+   "servings": null,
+   "time": null,
+   "category": "Fixture recipes",
+   "url": "https://en.wikibooks.org/wiki/Cookbook:Garlic_Pasta",
+   "revision_url": "https://en.wikibooks.org/w/index.php?oldid=1007",
+   "revision_id": 1007,
+   "licence": "Synthetic test fixture (MIT)",
+   "retrieved_on": "2026-11-02",
+   "changes": "Invented for tests. Not a Wikibooks page."
+  },
+  "fx-008": {
+   "steps": [
+    "Prepare the ingredients for Cheese Pasta.",
+    "Combine them and cook."
+   ],
+   "servings": null,
+   "time": null,
+   "category": "Fixture recipes",
+   "url": "https://en.wikibooks.org/wiki/Cookbook:Cheese_Pasta",
+   "revision_url": "https://en.wikibooks.org/w/index.php?oldid=1008",
+   "revision_id": 1008,
+   "licence": "Synthetic test fixture (MIT)",
+   "retrieved_on": "2026-11-02",
+   "changes": "Invented for tests. Not a Wikibooks page."
+  },
+  "fx-009": {
+   "steps": [
+    "Prepare the ingredients for Fried Rice.",
+    "Combine them and cook."
+   ],
+   "servings": null,
+   "time": null,
+   "category": "Fixture recipes",
+   "url": "https://en.wikibooks.org/wiki/Cookbook:Fried_Rice",
+   "revision_url": "https://en.wikibooks.org/w/index.php?oldid=1009",
+   "revision_id": 1009,
+   "licence": "Synthetic test fixture (MIT)",
+   "retrieved_on": "2026-11-02",
+   "changes": "Invented for tests. Not a Wikibooks page."
+  },
+  "fx-010": {
+   "steps": [
+    "Prepare the ingredients for Chicken Rice.",
+    "Combine them and cook."
+   ],
+   "servings": null,
+   "time": null,
+   "category": "Fixture recipes",
+   "url": "https://en.wikibooks.org/wiki/Cookbook:Chicken_Rice",
+   "revision_url": "https://en.wikibooks.org/w/index.php?oldid=1010",
+   "revision_id": 1010,
+   "licence": "Synthetic test fixture (MIT)",
+   "retrieved_on": "2026-11-02",
+   "changes": "Invented for tests. Not a Wikibooks page."
+  },
+  "fx-011": {
+   "steps": [
+    "Prepare the ingredients for Roast Chicken.",
+    "Combine them and cook."
+   ],
+   "servings": null,
+   "time": null,
+   "category": "Fixture recipes",
+   "url": "https://en.wikibooks.org/wiki/Cookbook:Roast_Chicken",
+   "revision_url": "https://en.wikibooks.org/w/index.php?oldid=1011",
+   "revision_id": 1011,
+   "licence": "Synthetic test fixture (MIT)",
+   "retrieved_on": "2026-11-02",
+   "changes": "Invented for tests. Not a Wikibooks page."
+  },
+  "fx-012": {
+   "steps": [
+    "Prepare the ingredients for Mashed Potato.",
+    "Combine them and cook."
+   ],
+   "servings": null,
+   "time": null,
+   "category": "Fixture recipes",
+   "url": "https://en.wikibooks.org/wiki/Cookbook:Mashed_Potato",
+   "revision_url": "https://en.wikibooks.org/w/index.php?oldid=1012",
+   "revision_id": 1012,
+   "licence": "Synthetic test fixture (MIT)",
+   "retrieved_on": "2026-11-02",
+   "changes": "Invented for tests. Not a Wikibooks page."
+  },
+  "fx-013": {
+   "steps": [
+    "Prepare the ingredients for Potato Soup.",
+    "Combine them and cook."
+   ],
+   "servings": null,
+   "time": null,
+   "category": "Fixture recipes",
+   "url": "https://en.wikibooks.org/wiki/Cookbook:Potato_Soup",
+   "revision_url": "https://en.wikibooks.org/w/index.php?oldid=1013",
+   "revision_id": 1013,
+   "licence": "Synthetic test fixture (MIT)",
+   "retrieved_on": "2026-11-02",
+   "changes": "Invented for tests. Not a Wikibooks page."
+  },
+  "fx-014": {
+   "steps": [
+    "Prepare the ingredients for Potato Omelette.",
+    "Combine them and cook."
+   ],
+   "servings": null,
+   "time": null,
+   "category": "Fixture recipes",
+   "url": "https://en.wikibooks.org/wiki/Cookbook:Potato_Omelette",
+   "revision_url": "https://en.wikibooks.org/w/index.php?oldid=1014",
+   "revision_id": 1014,
+   "licence": "Synthetic test fixture (MIT)",
+   "retrieved_on": "2026-11-02",
+   "changes": "Invented for tests. Not a Wikibooks page."
+  },
+  "fx-015": {
+   "steps": [
+    "Prepare the ingredients for Beef Stew.",
+    "Combine them and cook."
+   ],
+   "servings": null,
+   "time": null,
+   "category": "Fixture recipes",
+   "url": "https://en.wikibooks.org/wiki/Cookbook:Beef_Stew",
+   "revision_url": "https://en.wikibooks.org/w/index.php?oldid=1015",
+   "revision_id": 1015,
+   "licence": "Synthetic test fixture (MIT)",
+   "retrieved_on": "2026-11-02",
+   "changes": "Invented for tests. Not a Wikibooks page."
+  },
+  "fx-016": {
+   "steps": [
+    "Prepare the ingredients for Beef Rice.",
+    "Combine them and cook."
+   ],
+   "servings": null,
+   "time": null,
+   "category": "Fixture recipes",
+   "url": "https://en.wikibooks.org/wiki/Cookbook:Beef_Rice",
+   "revision_url": "https://en.wikibooks.org/w/index.php?oldid=1016",
+   "revision_id": 1016,
+   "licence": "Synthetic test fixture (MIT)",
+   "retrieved_on": "2026-11-02",
+   "changes": "Invented for tests. Not a Wikibooks page."
+  },
+  "fx-017": {
+   "steps": [
+    "Prepare the ingredients for Banana Pancakes.",
+    "Combine them and cook."
+   ],
+   "servings": null,
+   "time": null,
+   "category": "Fixture recipes",
+   "url": "https://en.wikibooks.org/wiki/Cookbook:Banana_Pancakes",
+   "revision_url": "https://en.wikibooks.org/w/index.php?oldid=1017",
+   "revision_id": 1017,
+   "licence": "Synthetic test fixture (MIT)",
+   "retrieved_on": "2026-11-02",
+   "changes": "Invented for tests. Not a Wikibooks page."
+  },
+  "fx-018": {
+   "steps": [
+    "Prepare the ingredients for Banana Oats.",
+    "Combine them and cook."
+   ],
+   "servings": null,
+   "time": null,
+   "category": "Fixture recipes",
+   "url": "https://en.wikibooks.org/wiki/Cookbook:Banana_Oats",
+   "revision_url": "https://en.wikibooks.org/w/index.php?oldid=1018",
+   "revision_id": 1018,
+   "licence": "Synthetic test fixture (MIT)",
+   "retrieved_on": "2026-11-02",
+   "changes": "Invented for tests. Not a Wikibooks page."
+  },
+  "fx-019": {
+   "steps": [
+    "Prepare the ingredients for Honey Oats.",
+    "Combine them and cook."
+   ],
+   "servings": null,
+   "time": null,
+   "category": "Fixture recipes",
+   "url": "https://en.wikibooks.org/wiki/Cookbook:Honey_Oats",
+   "revision_url": "https://en.wikibooks.org/w/index.php?oldid=1019",
+   "revision_id": 1019,
+   "licence": "Synthetic test fixture (MIT)",
+   "retrieved_on": "2026-11-02",
+   "changes": "Invented for tests. Not a Wikibooks page."
+  },
+  "fx-020": {
+   "steps": [
+    "Prepare the ingredients for Lemon Cake.",
+    "Combine them and cook."
+   ],
+   "servings": null,
+   "time": null,
+   "category": "Fixture recipes",
+   "url": "https://en.wikibooks.org/wiki/Cookbook:Lemon_Cake",
+   "revision_url": "https://en.wikibooks.org/w/index.php?oldid=1020",
+   "revision_id": 1020,
+   "licence": "Synthetic test fixture (MIT)",
+   "retrieved_on": "2026-11-02",
+   "changes": "Invented for tests. Not a Wikibooks page."
+  },
+  "fx-021": {
+   "steps": [
+    "Prepare the ingredients for Lemonade.",
+    "Combine them and cook."
+   ],
+   "servings": null,
+   "time": null,
+   "category": "Fixture recipes",
+   "url": "https://en.wikibooks.org/wiki/Cookbook:Lemonade",
+   "revision_url": "https://en.wikibooks.org/w/index.php?oldid=1021",
+   "revision_id": 1021,
+   "licence": "Synthetic test fixture (MIT)",
+   "retrieved_on": "2026-11-02",
+   "changes": "Invented for tests. Not a Wikibooks page."
+  },
+  "fx-022": {
+   "steps": [
+    "Prepare the ingredients for Garlic Bread.",
+    "Combine them and cook."
+   ],
+   "servings": null,
+   "time": null,
+   "category": "Fixture recipes",
+   "url": "https://en.wikibooks.org/wiki/Cookbook:Garlic_Bread",
+   "revision_url": "https://en.wikibooks.org/w/index.php?oldid=1022",
+   "revision_id": 1022,
+   "licence": "Synthetic test fixture (MIT)",
+   "retrieved_on": "2026-11-02",
+   "changes": "Invented for tests. Not a Wikibooks page."
+  },
+  "fx-023": {
+   "steps": [
+    "Prepare the ingredients for Cheese Toast.",
+    "Combine them and cook."
+   ],
+   "servings": null,
+   "time": null,
+   "category": "Fixture recipes",
+   "url": "https://en.wikibooks.org/wiki/Cookbook:Cheese_Toast",
+   "revision_url": "https://en.wikibooks.org/w/index.php?oldid=1023",
+   "revision_id": 1023,
+   "licence": "Synthetic test fixture (MIT)",
+   "retrieved_on": "2026-11-02",
+   "changes": "Invented for tests. Not a Wikibooks page."
+  },
+  "fx-024": {
+   "steps": [
+    "Prepare the ingredients for Egg Toast.",
+    "Combine them and cook."
+   ],
+   "servings": null,
+   "time": null,
+   "category": "Fixture recipes",
+   "url": "https://en.wikibooks.org/wiki/Cookbook:Egg_Toast",
+   "revision_url": "https://en.wikibooks.org/w/index.php?oldid=1024",
+   "revision_id": 1024,
+   "licence": "Synthetic test fixture (MIT)",
+   "retrieved_on": "2026-11-02",
+   "changes": "Invented for tests. Not a Wikibooks page."
+  },
+  "fx-025": {
+   "steps": [
+    "Prepare the ingredients for Tomato Salad.",
+    "Combine them and cook."
+   ],
+   "servings": null,
+   "time": null,
+   "category": "Fixture recipes",
+   "url": "https://en.wikibooks.org/wiki/Cookbook:Tomato_Salad",
+   "revision_url": "https://en.wikibooks.org/w/index.php?oldid=1025",
+   "revision_id": 1025,
+   "licence": "Synthetic test fixture (MIT)",
+   "retrieved_on": "2026-11-02",
+   "changes": "Invented for tests. Not a Wikibooks page."
+  },
+  "fx-026": {
+   "steps": [
+    "Prepare the ingredients for Tomato Soup.",
+    "Combine them and cook."
+   ],
+   "servings": null,
+   "time": null,
+   "category": "Fixture recipes",
+   "url": "https://en.wikibooks.org/wiki/Cookbook:Tomato_Soup",
+   "revision_url": "https://en.wikibooks.org/w/index.php?oldid=1026",
+   "revision_id": 1026,
+   "licence": "Synthetic test fixture (MIT)",
+   "retrieved_on": "2026-11-02",
+   "changes": "Invented for tests. Not a Wikibooks page."
+  },
+  "fx-027": {
+   "steps": [
+    "Prepare the ingredients for Mystery Stew.",
+    "Combine them and cook."
+   ],
+   "servings": null,
+   "time": null,
+   "category": "Fixture recipes",
+   "url": "https://en.wikibooks.org/wiki/Cookbook:Mystery_Stew",
+   "revision_url": "https://en.wikibooks.org/w/index.php?oldid=1027",
+   "revision_id": 1027,
+   "licence": "Synthetic test fixture (MIT)",
+   "retrieved_on": "2026-11-02",
+   "changes": "Invented for tests. Not a Wikibooks page."
+  },
+  "fx-028": {
+   "steps": [
+    "Prepare the ingredients for Mystery Cake.",
+    "Combine them and cook."
+   ],
+   "servings": null,
+   "time": null,
+   "category": "Fixture recipes",
+   "url": "https://en.wikibooks.org/wiki/Cookbook:Mystery_Cake",
+   "revision_url": "https://en.wikibooks.org/w/index.php?oldid=1028",
+   "revision_id": 1028,
+   "licence": "Synthetic test fixture (MIT)",
+   "retrieved_on": "2026-11-02",
+   "changes": "Invented for tests. Not a Wikibooks page."
+  },
+  "fx-029": {
+   "steps": [
+    "Prepare the ingredients for Carrot Soup.",
+    "Combine them and cook."
+   ],
+   "servings": null,
+   "time": null,
+   "category": "Fixture recipes",
+   "url": "https://en.wikibooks.org/wiki/Cookbook:Carrot_Soup",
+   "revision_url": "https://en.wikibooks.org/w/index.php?oldid=1029",
+   "revision_id": 1029,
+   "licence": "Synthetic test fixture (MIT)",
+   "retrieved_on": "2026-11-02",
+   "changes": "Invented for tests. Not a Wikibooks page."
+  },
+  "fx-030": {
+   "steps": [
+    "Prepare the ingredients for Cheese Omelette.",
+    "Combine them and cook."
+   ],
+   "servings": null,
+   "time": null,
+   "category": "Fixture recipes",
+   "url": "https://en.wikibooks.org/wiki/Cookbook:Cheese_Omelette",
+   "revision_url": "https://en.wikibooks.org/w/index.php?oldid=1030",
+   "revision_id": 1030,
+   "licence": "Synthetic test fixture (MIT)",
+   "retrieved_on": "2026-11-02",
+   "changes": "Invented for tests. Not a Wikibooks page."
+  },
+  "fx-031": {
+   "steps": [
+    "Prepare the ingredients for Cheese Sauce.",
+    "Combine them and cook."
+   ],
+   "servings": null,
+   "time": null,
+   "category": "Fixture recipes",
+   "url": "https://en.wikibooks.org/wiki/Cookbook:Cheese_Sauce",
+   "revision_url": "https://en.wikibooks.org/w/index.php?oldid=1031",
+   "revision_id": 1031,
+   "licence": "Synthetic test fixture (MIT)",
+   "retrieved_on": "2026-11-02",
+   "changes": "Invented for tests. Not a Wikibooks page."
+  },
+  "fx-032": {
+   "steps": [
+    "Prepare the ingredients for Rice Pudding.",
+    "Combine them and cook."
+   ],
+   "servings": null,
+   "time": null,
+   "category": "Fixture recipes",
+   "url": "https://en.wikibooks.org/wiki/Cookbook:Rice_Pudding",
+   "revision_url": "https://en.wikibooks.org/w/index.php?oldid=1032",
+   "revision_id": 1032,
+   "licence": "Synthetic test fixture (MIT)",
+   "retrieved_on": "2026-11-02",
+   "changes": "Invented for tests. Not a Wikibooks page."
+  },
+  "fx-033": {
+   "steps": [
+    "Prepare the ingredients for Oat Cookies.",
+    "Combine them and cook."
+   ],
+   "servings": null,
+   "time": null,
+   "category": "Fixture recipes",
+   "url": "https://en.wikibooks.org/wiki/Cookbook:Oat_Cookies",
+   "revision_url": "https://en.wikibooks.org/w/index.php?oldid=1033",
+   "revision_id": 1033,
+   "licence": "Synthetic test fixture (MIT)",
+   "retrieved_on": "2026-11-02",
+   "changes": "Invented for tests. Not a Wikibooks page."
+  },
+  "fx-034": {
+   "steps": [
+    "Prepare the ingredients for Honey Bread.",
+    "Combine them and cook."
+   ],
+   "servings": null,
+   "time": null,
+   "category": "Fixture recipes",
+   "url": "https://en.wikibooks.org/wiki/Cookbook:Honey_Bread",
+   "revision_url": "https://en.wikibooks.org/w/index.php?oldid=1034",
+   "revision_id": 1034,
+   "licence": "Synthetic test fixture (MIT)",
+   "retrieved_on": "2026-11-02",
+   "changes": "Invented for tests. Not a Wikibooks page."
+  },
+  "fx-035": {
+   "steps": [
+    "Prepare the ingredients for Plain Pasta.",
+    "Combine them and cook."
+   ],
+   "servings": null,
+   "time": null,
+   "category": "Fixture recipes",
+   "url": "https://en.wikibooks.org/wiki/Cookbook:Plain_Pasta",
+   "revision_url": "https://en.wikibooks.org/w/index.php?oldid=1035",
+   "revision_id": 1035,
+   "licence": "Synthetic test fixture (MIT)",
+   "retrieved_on": "2026-11-02",
+   "changes": "Invented for tests. Not a Wikibooks page."
+  },
+  "fx-036": {
+   "steps": [
+    "Prepare the ingredients for Flour Paste.",
+    "Combine them and cook."
+   ],
+   "servings": null,
+   "time": null,
+   "category": "Fixture recipes",
+   "url": "https://en.wikibooks.org/wiki/Cookbook:Flour_Paste",
+   "revision_url": "https://en.wikibooks.org/w/index.php?oldid=1036",
+   "revision_id": 1036,
+   "licence": "Synthetic test fixture (MIT)",
+   "retrieved_on": "2026-11-02",
+   "changes": "Invented for tests. Not a Wikibooks page."
+  },
+  "fx-037": {
+   "steps": [
+    "Prepare the ingredients for Salt Dough.",
+    "Combine them and cook."
+   ],
+   "servings": null,
+   "time": null,
+   "category": "Fixture recipes",
+   "url": "https://en.wikibooks.org/wiki/Cookbook:Salt_Dough",
+   "revision_url": "https://en.wikibooks.org/w/index.php?oldid=1037",
+   "revision_id": 1037,
+   "licence": "Synthetic test fixture (MIT)",
+   "retrieved_on": "2026-11-02",
+   "changes": "Invented for tests. Not a Wikibooks page."
+  },
+  "fx-038": {
+   "steps": [
+    "Prepare the ingredients for Basil Chicken.",
+    "Combine them and cook."
+   ],
+   "servings": null,
+   "time": null,
+   "category": "Fixture recipes",
+   "url": "https://en.wikibooks.org/wiki/Cookbook:Basil_Chicken",
+   "revision_url": "https://en.wikibooks.org/w/index.php?oldid=1038",
+   "revision_id": 1038,
+   "licence": "Synthetic test fixture (MIT)",
+   "retrieved_on": "2026-11-02",
+   "changes": "Invented for tests. Not a Wikibooks page."
+  },
+  "fx-039": {
+   "steps": [
+    "Prepare the ingredients for Celery Salad.",
+    "Combine them and cook."
+   ],
+   "servings": null,
+   "time": null,
+   "category": "Fixture recipes",
+   "url": "https://en.wikibooks.org/wiki/Cookbook:Celery_Salad",
+   "revision_url": "https://en.wikibooks.org/w/index.php?oldid=1039",
+   "revision_id": 1039,
+   "licence": "Synthetic test fixture (MIT)",
+   "retrieved_on": "2026-11-02",
+   "changes": "Invented for tests. Not a Wikibooks page."
+  },
+  "fx-040": {
+   "steps": [
+    "Prepare the ingredients for Carrot Cake.",
+    "Combine them and cook."
+   ],
+   "servings": null,
+   "time": null,
+   "category": "Fixture recipes",
+   "url": "https://en.wikibooks.org/wiki/Cookbook:Carrot_Cake",
+   "revision_url": "https://en.wikibooks.org/w/index.php?oldid=1040",
+   "revision_id": 1040,
+   "licence": "Synthetic test fixture (MIT)",
+   "retrieved_on": "2026-11-02",
+   "changes": "Invented for tests. Not a Wikibooks page."
+  },
+  "fx-041": {
+   "steps": [
+    "Prepare the ingredients for Onion Rings.",
+    "Combine them and cook."
+   ],
+   "servings": null,
+   "time": null,
+   "category": "Fixture recipes",
+   "url": "https://en.wikibooks.org/wiki/Cookbook:Onion_Rings",
+   "revision_url": "https://en.wikibooks.org/w/index.php?oldid=1041",
+   "revision_id": 1041,
+   "licence": "Synthetic test fixture (MIT)",
+   "retrieved_on": "2026-11-02",
+   "changes": "Invented for tests. Not a Wikibooks page."
+  },
+  "fx-042": {
+   "steps": [
+    "Prepare the ingredients for Chicken Soup.",
+    "Combine them and cook."
+   ],
+   "servings": null,
+   "time": null,
+   "category": "Fixture recipes",
+   "url": "https://en.wikibooks.org/wiki/Cookbook:Chicken_Soup",
+   "revision_url": "https://en.wikibooks.org/w/index.php?oldid=1042",
+   "revision_id": 1042,
+   "licence": "Synthetic test fixture (MIT)",
+   "retrieved_on": "2026-11-02",
+   "changes": "Invented for tests. Not a Wikibooks page."
+  },
+  "fx-043": {
+   "steps": [
+    "Prepare the ingredients for Garlic Potatoes.",
+    "Combine them and cook."
+   ],
+   "servings": null,
+   "time": null,
+   "category": "Fixture recipes",
+   "url": "https://en.wikibooks.org/wiki/Cookbook:Garlic_Potatoes",
+   "revision_url": "https://en.wikibooks.org/w/index.php?oldid=1043",
+   "revision_id": 1043,
+   "licence": "Synthetic test fixture (MIT)",
+   "retrieved_on": "2026-11-02",
+   "changes": "Invented for tests. Not a Wikibooks page."
+  },
+  "fx-044": {
+   "steps": [
+    "Prepare the ingredients for Egg Fried Potato.",
+    "Combine them and cook."
+   ],
+   "servings": null,
+   "time": null,
+   "category": "Fixture recipes",
+   "url": "https://en.wikibooks.org/wiki/Cookbook:Egg_Fried_Potato",
+   "revision_url": "https://en.wikibooks.org/w/index.php?oldid=1044",
+   "revision_id": 1044,
+   "licence": "Synthetic test fixture (MIT)",
+   "retrieved_on": "2026-11-02",
+   "changes": "Invented for tests. Not a Wikibooks page."
+  },
+  "fx-045": {
+   "steps": [
+    "Prepare the ingredients for Parsley Butter.",
+    "Combine them and cook."
+   ],
+   "servings": null,
+   "time": null,
+   "category": "Fixture recipes",
+   "url": "https://en.wikibooks.org/wiki/Cookbook:Parsley_Butter",
+   "revision_url": "https://en.wikibooks.org/w/index.php?oldid=1045",
+   "revision_id": 1045,
+   "licence": "Synthetic test fixture (MIT)",
+   "retrieved_on": "2026-11-02",
+   "changes": "Invented for tests. Not a Wikibooks page."
+  },
+  "fx-046": {
+   "steps": [
+    "Prepare the ingredients for Simple Rice.",
+    "Combine them and cook."
+   ],
+   "servings": null,
+   "time": null,
+   "category": "Fixture recipes",
+   "url": "https://en.wikibooks.org/wiki/Cookbook:Simple_Rice",
+   "revision_url": "https://en.wikibooks.org/w/index.php?oldid=1046",
+   "revision_id": 1046,
+   "licence": "Synthetic test fixture (MIT)",
+   "retrieved_on": "2026-11-02",
+   "changes": "Invented for tests. Not a Wikibooks page."
+  },
+  "fx-047": {
+   "steps": [
+    "Prepare the ingredients for Buttered Rice.",
+    "Combine them and cook."
+   ],
+   "servings": null,
+   "time": null,
+   "category": "Fixture recipes",
+   "url": "https://en.wikibooks.org/wiki/Cookbook:Buttered_Rice",
+   "revision_url": "https://en.wikibooks.org/w/index.php?oldid=1047",
+   "revision_id": 1047,
+   "licence": "Synthetic test fixture (MIT)",
+   "retrieved_on": "2026-11-02",
+   "changes": "Invented for tests. Not a Wikibooks page."
+  }
+ }
+}

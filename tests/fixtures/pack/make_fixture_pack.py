@@ -150,8 +150,30 @@ def build() -> dict:
     }
 
 
+def build_text(core: dict) -> dict:
+    """Invented steps and placeholder attribution. The links are placeholders for tests only."""
+    recipes = {}
+    for r in core["recipes"]:
+        slug = r["title"].replace(" ", "_")
+        recipes[r["id"]] = {
+            "steps": [f"Prepare the ingredients for {r['title']}.", "Combine them and cook."],
+            "servings": None,
+            "time": None,
+            "category": "Fixture recipes",
+            "url": f"https://en.wikibooks.org/wiki/Cookbook:{slug}",
+            "revision_url": f"https://en.wikibooks.org/w/index.php?oldid={r['rev']}",
+            "revision_id": r["rev"],
+            "licence": "Synthetic test fixture (MIT)",
+            "retrieved_on": "2026-11-02",
+            "changes": "Invented for tests. Not a Wikibooks page.",
+        }
+    return {"format": 1, "recipes": recipes}
+
+
 if __name__ == "__main__":
-    out = Path(__file__).with_name("core.v1.json")
-    with open(out, "w", encoding="utf8", newline="\n") as fh:
-        fh.write(json.dumps(build(), indent=1) + "\n")
-    print(f"wrote {out}")
+    here = Path(__file__).parent
+    core = build()
+    for name, obj in (("core.v1.json", core), ("text.v1.json", build_text(core))):
+        with open(here / name, "w", encoding="utf8", newline="\n") as fh:
+            fh.write(json.dumps(obj, indent=1) + "\n")
+        print(f"wrote {here / name}")
