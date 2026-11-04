@@ -53,7 +53,7 @@ Every arm ranks the same candidate set: all recipes with at least one required l
 The table block at the end of this file is generated. Do not edit it by hand. Run `uv run python scripts/eval_tables.py` to rebuild it, and `--check` to test it. The raw file is [results/m2_baseline_wikibooks.json](../results/m2_baseline_wikibooks.json).
 
 - MEASURED: `idf_flat` beats `overlap`, and `overlap` beats `random`, in all five (sampler, distractor) groups. Every paired 95% interval excludes 0. On the test half, the MRR gain of `idf_flat` over `overlap` runs from +0.227 to +0.375.
-- MEASURED: `shipped` ranks the masked gold recipe low (MRR@10 from 0.014 to 0.098). This is a property of the task. The masked gold always misses at least one line, and `shipped` lists recipes you can make now first. The task does not measure what the product promises. The judged pilot (Task 7) is the test that can.
+- MEASURED: `shipped` ranks the masked gold recipe low (MRR@10 from 0.014 to 0.098). This is a property of the task. The masked gold always misses at least one line, and `shipped` lists recipes you can make now first. The task does not measure what the product promises. The judged pilot is the test that can. The M2 pilot used model judges and found no preference for the shipped order (see [PROJECT_STATE section 11](PROJECT_STATE.md)). M4 needs a person.
 - MEASURED: `answer()` would show the masked gold recipe for about half of the pantries (`visible_rate` 0.50 to 0.53). The other half has more than 2 missing lines or falls outside the 10 shown per group.
 - HYPOTHESIS: the `popularity` sampler hurts `overlap` more than `idf_flat` because it draws common ingredients, and IDF gives them little weight. The sampler and the rule share one quantity (document frequency). So read the `overlap` versus `idf_flat` gap for each sampler. Do not read it as one number.
 - Not a quality claim: nothing here says a person prefers one list. That needs the hand-judged pairs.
@@ -67,11 +67,31 @@ The table block at the end of this file is generated. Do not edit it by hand. Ru
 
 The new task differs from the old one (Wikibooks pack, ingredient ids, distractors, a candidate set with no cap). Do not compare the old and new numbers.
 
+### How the pieces fit
+
+```mermaid
+flowchart LR
+  P[Wikibooks pack] --> Q[Masked pantries<br/>0, 3, 6 distractors]
+  Q --> A[Arms: random, overlap,<br/>idf_flat, shipped]
+  A --> M[Sanity and product metrics<br/>paired bootstrap]
+  M --> R[results/*.json]
+  R --> T[eval_tables.py<br/>leaderboard block]
+  P --> J[Judging sheet<br/>blind, two lists]
+  J --> H[Judges] --> R
+  K[Kaggle kernel<br/>RecipeNLG, research only] -.planned run.-> R
+```
+
+Solid arrows run today. The dashed arrow is the Kaggle run. Judges are people in M4 and were models in the M2 pilot. Metrics from masked pantries never select a model (`assert_selectable`).
+
 ### Reproduce
 
 | Table or file | Command |
 | --- | --- |
-| `results/m2_baseline_wikibooks.json` | `uv run python -m pantrychef.eval.baseline_main --pack build/pack --out results/m2_baseline_wikibooks.json` (about 8 minutes on the laptop, after `uv run python scripts/build_pack.py`) |
+| `results/m2_baseline_wikibooks.json` | `uv run python -m pantrychef.eval.baseline_main --pack build/pack --out results/m2_baseline_wikibooks.json` (about 8 minutes on the laptop, after `uv run python scripts/build_pack.py --out build/pack`) |
+| `results/m2_parser_gold_dev.json` | `uv run python scripts/parser_gold.py score --split dev --out results/m2_parser_gold_dev.json` |
+| `results/m2_judging_pilot.json` | `uv run python scripts/judging_pilot_result.py --judge NAME=ANSWERS.csv ...` (the key file is private, so only the owner can rerun it) |
+| `results/m1_latency_device.json`, `results/m2_latency_device_saver_off.json` | `node web/scripts/latency-device.mjs --out FILE` (a phone on USB) |
+| `results/m2_device_ui_probe.json` | `node web/scripts/probe-device-ui.mjs` (a phone on USB) |
 | Table block below | `uv run python scripts/eval_tables.py` |
 | CI floors | `uv run python scripts/make_floors.py` (only for a reviewed change) |
 
