@@ -17,7 +17,7 @@ CLEANED = Path(
     "/tmp/recipes.cleaned.jsonl"
 )  # outside /kaggle/working: recipe text is never an output
 EXPECTED_CSV_SHA256 = "f376ee0bb9f99f323761abf6270d453f4eff2002c3625d04cabcf8b57dca0803"
-N_QUERIES = os.environ.get("PC_N_QUERIES", "6000")  # smoke run: set to 200 first (README)
+N_QUERIES = os.environ.get("PC_N_QUERIES", "200")  # smoke run: set to 200 first (README)
 RESULT = WORKING / "m2_rule_baselines_recipenlg.json"
 
 
