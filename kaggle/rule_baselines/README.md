@@ -135,4 +135,7 @@ Do not point `--corpus` at `data/processed/recipes.jsonl` on this laptop (610 MB
 
 | Date | Kernel version | Wheel commit | Queries | Outcome |
 | --- | --- | --- | --- | --- |
-| 2026-11-04 | 1 | 1a315d1 | 200 (smoke) | running |
+| 2026-11-04 | 1 | 1a315d1 | 200 (smoke) | COMPLETE. CSV sha256 matched. Cleaning 2,226 s (1,274,290 recipes). Scoring 141 s for 3,000 pantries (200 golds x 3 draws x 5 configs), so 47 ms per pantry including index build. Output manifest checked. Not a result: n is 200 |
+| 2026-11-04 | 2 | see below | 20,000 (main) | queued |
+
+Decision after the smoke run (MEASURED rate, ESTIMATE total): at 47 ms per pantry, 20,000 golds (300,000 pantries) take about 3.9 hours of scoring plus 0.6 hours of cleaning, about 4.5 hours in all, with the 12 hour limit as margin. The earlier cut to 6,000 golds is undone, and the main run uses the 20,000 golds of plan D1. If it times out or runs out of memory, halve the count and say so.
