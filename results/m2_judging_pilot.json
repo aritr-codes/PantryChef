@@ -1,0 +1,105 @@
+{
+  "arms": [
+    {
+      "features_used": [
+        "idf",
+        "have",
+        "total",
+        "group"
+      ],
+      "name": "shipped"
+    }
+  ],
+  "command": "uv run python scripts/judging_pilot_result.py --judge sonnet=data/interim/judging_answers.sonnet.csv --judge opus=data/interim/judging_answers.opus.csv",
+  "commit": "295590939d6ce99a0bce049cc625e42081107302",
+  "comparisons": [],
+  "config": {
+    "judges": "model, each judge in two separate sessions, blind to arms and key",
+    "key_sha256": "06aae91cbd764fc40369245cf130029563f7cd564f85742fec0239ba1090b060",
+    "outcome_agreement_between_judges": {
+      "sonnet_opus": 0.7
+    },
+    "scores": {
+      "opus": {
+        "median_seconds": null,
+        "n_base": 20,
+        "overlap_wins": 10,
+        "power": {
+          "non_tie_needed": 97,
+          "pantries_needed": 97,
+          "worst_non_tie_needed": 97,
+          "worst_pantries_needed": 97
+        },
+        "repeats_same": 4,
+        "repeats_total": 4,
+        "shipped_wins": 10,
+        "tie_rate": 0.0,
+        "ties": 0,
+        "win_rate_ties_as_half": 0.5,
+        "win_rate_ties_excluded": 0.5,
+        "would_cook_overlap": 0.95,
+        "would_cook_shipped": 0.8
+      },
+      "sonnet": {
+        "median_seconds": null,
+        "n_base": 20,
+        "overlap_wins": 6,
+        "power": {
+          "non_tie_needed": 93,
+          "pantries_needed": 124,
+          "worst_non_tie_needed": 97,
+          "worst_pantries_needed": 130
+        },
+        "repeats_same": 3,
+        "repeats_total": 4,
+        "shipped_wins": 9,
+        "tie_rate": 0.25,
+        "ties": 5,
+        "win_rate_ties_as_half": 0.575,
+        "win_rate_ties_excluded": 0.6,
+        "would_cook_overlap": 0.95,
+        "would_cook_shipped": 0.85
+      }
+    }
+  },
+  "corpus_fingerprint": "data/eval/judging/pilot_sheet.v1.json (Wikibooks pack)",
+  "dirty": false,
+  "dirty_paths": [],
+  "environment": {
+    "numpy": "2.4.6",
+    "platform": "Windows 10 (win32)",
+    "python": "3.11.15"
+  },
+  "label": "MEASURED",
+  "metrics": [
+    {
+      "arm": "shipped",
+      "depends_on": [],
+      "group": {
+        "judge": "sonnet",
+        "kind": "model"
+      },
+      "n": 15,
+      "name": "pairwise_win_rate",
+      "role": "selection",
+      "split": "test",
+      "value": 0.6
+    },
+    {
+      "arm": "shipped",
+      "depends_on": [],
+      "group": {
+        "judge": "opus",
+        "kind": "model"
+      },
+      "n": 20,
+      "name": "pairwise_win_rate",
+      "role": "selection",
+      "split": "test",
+      "value": 0.5
+    }
+  ],
+  "schema": 1,
+  "seed": 42,
+  "what": "Pilot of the judging protocol (20 pantries, 4 repeats): shipped vs overlap lists. The judges were models, not people. This tests the protocol. It is not a result to select a model by"
+}

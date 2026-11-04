@@ -94,7 +94,7 @@ lines, under a CC BY-SA notice. A Playwright smoke test of the journey. Parity t
 - Add distractor pantries with at least 2 samplers, with paired confidence intervals.
 - Add "makeable at k" as a product metric only.
 - Write the judging protocol and pilot it on 20 pantries.
-- Build a 300-line hand-labelled parser gold set. Split it into dev and test.
+- Build a 300-line parser gold set. Split it into dev and test. (Done with model labellers, not people. A human spot-check is open.)
 - Split the 166 realistic inputs into dev and test before any table work.
 - Research on Kaggle (this is the first Kaggle job, and it needs approval): rule baselines on
   RecipeNLG at 1.27M recipes. This replaces the old 7.7 times claim. No output ships.

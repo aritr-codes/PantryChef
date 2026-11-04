@@ -14,7 +14,7 @@ in [LICENSES.md](LICENSES.md).
 
 | Capability | Built | Planned |
 | --- | --- | --- |
-| Ingredient parser | Rules plus vocabulary match: [`pantrychef/ingredients/parser.py`](pantrychef/ingredients/parser.py) | Unicode fractions are handled for Wikibooks lines (M1). A hand-labelled gold set (M2) |
+| Ingredient parser | Rules plus vocabulary match: [`pantrychef/ingredients/parser.py`](pantrychef/ingredients/parser.py) | Unicode fractions are handled for Wikibooks lines (M1). A model-labelled gold set (M2) |
 | Search | Set-overlap baseline and the `cook` command: [`pantrychef/retrieval/`](pantrychef/retrieval/), [`pantrychef/cli.py`](pantrychef/cli.py) | Built (M1): `answer()` in [`pantrychef/engine.py`](pantrychef/engine.py) gives groups by missing items, top unlocks and blockers, and `cook --pack` prints it. A TypeScript copy is in [`web/src/engine.ts`](web/src/engine.ts), checked against golden cases | Hand-judged quality evaluation (M2) |
 | Ranking | Research only. A candidate pool and a LambdaMART ranker: [`pantrychef/recommender/`](pantrychef/recommender/). Only tests call its runtime | Ships only if it beats an IDF rule on hand-judged pantries (M4, [ADR 0005](docs/decisions/0005-honest-claims-and-eval-reset.md)) |
 | Substitution | Graph and embedding arms, and the `substitute` command: [`pantrychef/substitution/`](pantrychef/substitution/). Mined from RecipeNLG, so it cannot ship | A curated table, and swaps mined from Open Recipes if they pass a blind rating (M5) |

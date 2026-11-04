@@ -1,6 +1,6 @@
 # Judging protocol
 
-Status: DRAFT, 2026-11-03. No pilot answer exists yet. This file defines the M2 pilot of 20 pantries.
+Status: 2026-11-04. The M2 pilot of 20 pantries ran with two model judges (Sonnet and Opus), each in two sessions. See [results/m2_judging_pilot.json](../results/m2_judging_pilot.json). A model judge cannot time itself, so check 3 (time) is untested. A person still has to judge the M4 set. This file defines the pilot.
 M4 uses the same protocol on about 100 pantries, if the pilot passes.
 
 Source: [plan](plans/2026-11-03-m2-eval-baseline.md), decision D3, Task 7.
