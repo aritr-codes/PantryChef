@@ -73,6 +73,8 @@ def score(key: dict, rows: list[dict]) -> dict:
         if not k["repeat_of"]:
             cook[k["left"]].append(_yes(r["would_cook_left"]))
             cook[k["right"]].append(_yes(r["would_cook_right"]))
+    if 0 < len(seconds) < len(rows):
+        raise ValueError("seconds is blank for some items and set for others")
     missing = sorted(set(items) - set(outcome))
     if missing:
         raise ValueError(f"no answer for {missing}")

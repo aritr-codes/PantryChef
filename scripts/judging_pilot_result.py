@@ -51,9 +51,9 @@ def main(argv: list[str] | None = None) -> int:
         if decided:
             metrics.append(
                 {
-                    "name": "pairwise_win_rate",
+                    "name": "pilot_pairwise_win_rate",
                     "arm": "shipped",
-                    "split": "test",
+                    "split": "all",
                     "n": decided,
                     "value": s["win_rate_ties_excluded"],
                     "group": {"judge": name, "kind": "model"},

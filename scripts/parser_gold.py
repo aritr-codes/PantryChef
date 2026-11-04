@@ -16,7 +16,7 @@ import argparse
 import json
 from pathlib import Path
 
-from pantrychef.eval.parser_gold import read_labels_csv, score
+from pantrychef.eval.parser_gold import Label, read_labels_csv, score
 from pantrychef.ingredients.table import IngredientTable
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -30,13 +30,28 @@ def _labels() -> tuple[list[dict], dict]:
     return lines, read_labels_csv(CSV, [r["id"] for r in lines])
 
 
+def _committed_labels(split: str) -> dict[str, Label]:
+    """Labels from the committed JSON, so a fresh checkout can score without the work CSV."""
+    path = ROOT / f"data/eval/parser_gold/labels.{split}.v1.json"
+    raw = json.loads(path.read_text(encoding="utf8"))["labels"]
+    return {
+        k: Label(tuple(tuple(g) for g in v["groups"]), v["optional"], v["not_an_ingredient"])
+        for k, v in raw.items()
+    }
+
+
 def _write_result(out: Path, scores: dict) -> None:
     from pantrychef.eval.results import write_result
 
-    n = int(scores["gold_groups"])
     metrics = [
-        {"name": f"parser_{k}", "arm": None, "split": "dev", "n": n, "value": float(scores[v])}
-        for k, v in (("precision", "precision"), ("recall", "recall"), ("f1", "f1"))
+        {
+            "name": f"parser_{k}",
+            "arm": None,
+            "split": "dev",
+            "n": int(scores[d]),
+            "value": float(scores[k]),
+        }
+        for k, d in (("precision", "pred_groups"), ("recall", "gold_groups"), ("f1", "gold_groups"))
     ]
     metrics.append(
         {
@@ -52,7 +67,8 @@ def _write_result(out: Path, scores: dict) -> None:
         {
             "label": "MEASURED",
             "what": "Ingredient parser vs the parser gold set, dev half, group-level micro scores",
-            "command": "uv run python scripts/parser_gold.py score --split dev --out " + out.name,
+            "command": "uv run python scripts/parser_gold.py score --split dev --out "
+            + out.resolve().relative_to(ROOT).as_posix(),
             "config": {
                 "split": "dev",
                 "labels": "model-labelled, see data/eval/parser_gold/NOTICE.md",
@@ -75,7 +91,11 @@ def main() -> None:
     ap.add_argument("--split", choices=["dev", "test"], default="dev")
     ap.add_argument("--out", type=Path, help="write a results file (score only)")
     args = ap.parse_args()
-    lines, labels = _labels()
+    if args.cmd == "score":
+        lines = json.loads(SHEET.read_text(encoding="utf8"))["lines"]
+        labels = _committed_labels(args.split)
+    else:
+        lines, labels = _labels()
     if args.cmd == "check":
         print(f"ok: {len(labels)} labels")
     elif args.cmd == "write":

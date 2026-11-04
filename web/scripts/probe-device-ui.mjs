@@ -34,7 +34,9 @@ const snap = (step) =>
     ([step, MIN]) => {
       const sel = "button, a[href], input, select, textarea, summary, [role=option], [role=button]";
       const seen = [...document.querySelectorAll(sel)].flatMap((el) => {
-        const r = el.getBoundingClientRect();
+        // A check box is tapped through its label, so measure the label.
+        const box = el.type === "checkbox" ? (el.closest("label") ?? el) : el;
+        const r = box.getBoundingClientRect();
         if (r.width === 0 || r.height === 0) return [];
         const text = (el.getAttribute("aria-label") || el.textContent || el.getAttribute("placeholder") || "").trim().slice(0, 40);
         return [{ tag: el.tagName.toLowerCase(), text, w: Math.round(r.width), h: Math.round(r.height) }];

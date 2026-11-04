@@ -62,6 +62,13 @@ def test_blank_seconds_give_no_median():
     assert score(KEY, rows)["median_seconds"] is None
 
 
+def test_partly_blank_seconds_are_refused():
+    rows = [dict(r) for r in ROWS]
+    rows[0]["seconds"] = ""
+    with pytest.raises(ValueError):
+        score(KEY, rows)
+
+
 def test_power_estimate_hand_computed():
     # p = 1/3: 1.96^2 * (2/9) / 0.1^2 = 85.37 -> 86 non-tie pantries; 86 / 0.75 = 114.7 -> 115.
     # Worst case p = 0.5: 1.96^2 * 0.25 / 0.01 = 96.04 -> 97 non-tie; 97 / 0.75 = 129.3 -> 130.

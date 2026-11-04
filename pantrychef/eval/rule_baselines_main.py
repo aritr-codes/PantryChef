@@ -399,8 +399,8 @@ def main(argv: list[str] | None = None) -> int:
     ap.add_argument("--quiet", action="store_true")
     args = ap.parse_args(argv)
 
-    if args.commit and not args.tree:
-        ap.error("--commit needs --tree clean|dirty")
+    if bool(args.commit) != bool(args.tree):
+        ap.error("--commit and --tree go together")
     from pantrychef.eval import results
 
     body = run(
