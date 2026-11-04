@@ -1,6 +1,6 @@
 # Kaggle kernel: rule baselines on RecipeNLG (M2, Lane D)
 
-Status: owner approved the smoke run and the main run on 2026-11-04. See "Run log" at the end.
+Status: owner approved the smoke run and the main run on 2026-11-04. See "Run log" at the end (added after each run).
 Plan: `docs/plans/2026-11-03-m2-eval-baseline.md`, section 7.
 
 ## Purpose
@@ -95,12 +95,12 @@ These are on purpose. They keep the Kaggle numbers and the Wikibooks numbers apa
   in the result notes. Do not retry in a loop.
 - A number may enter a public doc only when the owner says so.
 
-## Commands (written, NOT run)
+## Commands
 
 Build the wheel from a clean tree at the pinned commit (run from the repo root):
 
 ```bash
-git status --porcelain            # must print nothing
+git status --porcelain -- pantrychef scripts tests web kaggle data/eval data/ingredients   # must print nothing; same rule as git_facts
 uv build --wheel --out-dir dist
 printf '%s clean
 ' "$(git rev-parse HEAD)" > dist/commit.txt   # write 'dirty' if porcelain printed anything
@@ -130,3 +130,9 @@ uv run pytest tests/eval/test_rule_baselines.py -q
 The test writes a result on 40 invented recipes and validates it with `load_result`.
 Do not point `--corpus` at `data/processed/recipes.jsonl` on this laptop (610 MB, about
 1 GB free RAM).
+
+## Run log
+
+| Date | Kernel version | Wheel commit | Queries | Outcome |
+| --- | --- | --- | --- | --- |
+| 2026-11-04 | 1 | 1a315d1 | 200 (smoke) | running |

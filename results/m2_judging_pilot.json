@@ -11,7 +11,7 @@
     }
   ],
   "command": "uv run python scripts/judging_pilot_result.py --judge sonnet=data/interim/judging_answers.sonnet.csv --judge opus=data/interim/judging_answers.opus.csv",
-  "commit": "295590939d6ce99a0bce049cc625e42081107302",
+  "commit": "1ea1a6f165aff8201fdc139a4290d21f123b7764",
   "comparisons": [],
   "config": {
     "judges": "model, each judge in two separate sessions, blind to arms and key",
@@ -74,28 +74,32 @@
   "metrics": [
     {
       "arm": "shipped",
-      "depends_on": [],
+      "depends_on": [
+        "judge_model"
+      ],
       "group": {
         "judge": "sonnet",
         "kind": "model"
       },
       "n": 15,
-      "name": "pairwise_win_rate",
-      "role": "selection",
-      "split": "test",
+      "name": "pilot_pairwise_win_rate",
+      "role": "sanity",
+      "split": "all",
       "value": 0.6
     },
     {
       "arm": "shipped",
-      "depends_on": [],
+      "depends_on": [
+        "judge_model"
+      ],
       "group": {
         "judge": "opus",
         "kind": "model"
       },
       "n": 20,
-      "name": "pairwise_win_rate",
-      "role": "selection",
-      "split": "test",
+      "name": "pilot_pairwise_win_rate",
+      "role": "sanity",
+      "split": "all",
       "value": 0.5
     }
   ],

@@ -76,6 +76,7 @@ flowchart LR
   A --> M[Sanity and product metrics<br/>paired bootstrap]
   M --> R[results/*.json]
   R --> T[eval_tables.py<br/>leaderboard block]
+  P --> G[Parser gold set<br/>model labels] --> R
   P --> J[Judging sheet<br/>blind, two lists]
   J --> H[Judges] --> R
   K[Kaggle kernel<br/>RecipeNLG, research only] -.planned run.-> R

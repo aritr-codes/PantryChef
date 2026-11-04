@@ -1,7 +1,7 @@
 {
   "arms": [],
   "command": "node web/scripts/probe-device-ui.mjs --url https://aritr-codes.github.io/PantryChef/ --port 9222 --out m2_device_ui_probe.json",
-  "commit": "0909194229fedd61ca79806e6c7931fad05a363c",
+  "commit": "1ea1a6f165aff8201fdc139a4290d21f123b7764",
   "comparisons": [],
   "config": {
     "input": "CDP fill and press, taps not used",
@@ -29,40 +29,9 @@
     "steps": [
       {
         "active": "body",
-        "active_text": "PantryChefWhat do you have?Type an ingre",
-        "below_min": [
-          {
-            "h": 24,
-            "tag": "summary",
-            "text": "Staples assumed (4)",
-            "w": 352
-          },
-          {
-            "h": 16,
-            "tag": "input",
-            "text": "",
-            "w": 16
-          },
-          {
-            "h": 16,
-            "tag": "input",
-            "text": "",
-            "w": 16
-          },
-          {
-            "h": 16,
-            "tag": "input",
-            "text": "",
-            "w": 16
-          },
-          {
-            "h": 16,
-            "tag": "input",
-            "text": "",
-            "w": 16
-          }
-        ],
-        "controls": 32,
+        "active_text": "Loading recipes…",
+        "below_min": [],
+        "controls": 0,
         "dpr": 2.8125,
         "sideways_scroll_px": 0,
         "step": "pantry_empty",
@@ -77,30 +46,6 @@
             "tag": "summary",
             "text": "Staples assumed (4)",
             "w": 352
-          },
-          {
-            "h": 16,
-            "tag": "input",
-            "text": "",
-            "w": 16
-          },
-          {
-            "h": 16,
-            "tag": "input",
-            "text": "",
-            "w": 16
-          },
-          {
-            "h": 16,
-            "tag": "input",
-            "text": "",
-            "w": 16
-          },
-          {
-            "h": 16,
-            "tag": "input",
-            "text": "",
-            "w": 16
           }
         ],
         "controls": 32,
@@ -118,30 +63,6 @@
             "tag": "summary",
             "text": "Staples assumed (4)",
             "w": 352
-          },
-          {
-            "h": 16,
-            "tag": "input",
-            "text": "",
-            "w": 16
-          },
-          {
-            "h": 16,
-            "tag": "input",
-            "text": "",
-            "w": 16
-          },
-          {
-            "h": 16,
-            "tag": "input",
-            "text": "",
-            "w": 16
-          },
-          {
-            "h": 16,
-            "tag": "input",
-            "text": "",
-            "w": 16
           }
         ],
         "controls": 40,
@@ -216,30 +137,6 @@
             "tag": "summary",
             "text": "Staples assumed (4)",
             "w": 352
-          },
-          {
-            "h": 16,
-            "tag": "input",
-            "text": "",
-            "w": 16
-          },
-          {
-            "h": 16,
-            "tag": "input",
-            "text": "",
-            "w": 16
-          },
-          {
-            "h": 16,
-            "tag": "input",
-            "text": "",
-            "w": 16
-          },
-          {
-            "h": 16,
-            "tag": "input",
-            "text": "",
-            "w": 16
           }
         ],
         "controls": 32,

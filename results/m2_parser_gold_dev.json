@@ -1,7 +1,7 @@
 {
   "arms": [],
-  "command": "uv run python scripts/parser_gold.py score --split dev --out m2_parser_gold_dev.json",
-  "commit": "295590939d6ce99a0bce049cc625e42081107302",
+  "command": "uv run python scripts/parser_gold.py score --split dev --out results/m2_parser_gold_dev.json",
+  "commit": "1ea1a6f165aff8201fdc139a4290d21f123b7764",
   "comparisons": [],
   "config": {
     "f1": 0.8508490913730049,
@@ -34,7 +34,7 @@
         "ingredient_table",
         "parser_rules"
       ],
-      "n": 151,
+      "n": 137,
       "name": "parser_precision",
       "role": "sanity",
       "split": "dev",
