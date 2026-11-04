@@ -12,7 +12,7 @@ reasons, read [ADR 0003](docs/decisions/0003-licence-clean-recipe-corpus.md).
 | `data/eval/curated_subs.json`, `data/eval/curated_diets.json` | MIT | Hand-written evaluation lists |
 | `data/eval/realistic_inputs.v1.json`, `data/eval/realistic_inputs.split.v1.json` | MIT | 166 short pantry phrases from the audit, with a seeded dev/test split. They hold no recipes |
 | `data/eval/parser_gold/sheet.v1.json` | CC BY-SA 4.0 | 300 ingredient lines copied from Wikibooks, with page and revision. See the `NOTICE.md` in that folder |
-| `data/eval/parser_gold/labels.*.v1.json` (not written yet), `data/eval/floors.v1.json`, `data/eval/judging/pilot_key_sha256.txt` | MIT | Hand-written labels, CI floors and one hash |
+| `data/eval/parser_gold/labels.*.v1.json`, `data/eval/parser_gold/adjudication.v1.json`, `data/eval/floors.v1.json`, `data/eval/judging/pilot_key_sha256.txt` | MIT | Model-written labels (not human), CI floors and one hash |
 | `data/eval/judging/pilot_sheet.v1.json` | CC BY-SA 4.0 | Wikibooks titles and ingredient lines for the judging pilot. See the `NOTICE.md` in that folder |
 | `results/*.json` | MIT | Aggregate numbers with provenance. They hold no recipe text |
 | `data/nutrition/dietary_labels.json` | MIT | Hand-written labels |

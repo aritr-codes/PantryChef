@@ -1,4 +1,4 @@
-"""Hand-labelled parser gold set: label checks and scoring (M2).
+"""Parser gold set: label checks and scoring (M2).
 
 A label has ``names``: ingredient groups separated by ``;``. Inside a group, alternatives are
 separated by ``|``. Example: ``bulgur|cracked wheat`` is one group with two alternatives, and

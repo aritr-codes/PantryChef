@@ -52,6 +52,11 @@ METRICS: dict[str, MetricSpec] = {
     "hit_rate": MetricSpec("product", ("have", "total", "idf")),
     "visible_rate": MetricSpec("product", ("have", "total", "idf", "group")),
     "pairwise_win_rate": MetricSpec("selection", (), "hand judgement, uses no model feature"),
+    # Parser gold set (M2). These read the ingredient table and the parser rules, not recipe arms.
+    "parser_precision": MetricSpec("sanity", ("ingredient_table", "parser_rules")),
+    "parser_recall": MetricSpec("sanity", ("ingredient_table", "parser_rules")),
+    "parser_f1": MetricSpec("sanity", ("ingredient_table", "parser_rules")),
+    "parser_optional_accuracy": MetricSpec("sanity", ("ingredient_table", "parser_rules")),
     "latency_p50_ms": MetricSpec("latency", ()),
     "latency_p95_ms": MetricSpec("latency", ()),
     "latency_max_ms": MetricSpec("latency", ()),

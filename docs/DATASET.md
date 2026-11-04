@@ -61,7 +61,7 @@ Git ignores these files. The sha256 values below were computed from the files on
 | --- | --- | --- | --- |
 | `data/eval/realistic_inputs.v1.json` | 166 pantry phrases from the audit script `b_parser.py` (inputs only; the old acceptance sets are dropped) | MIT | Frozen before M3 table work |
 | `data/eval/realistic_inputs.split.v1.json` | Dev/test split, 83 and 83. Seed 42. Sorted by sha256 inside each category, then alternating. Records the sha256 of the input list (`c69c0a04e54a094ef51038033ad6e33e656e5dfabf94501b9aa7e4654f2d89e0`) | MIT | Test stays unread until M3 acceptance. The M1 table has seen the inputs (it lists `evoo`) |
-| `data/eval/parser_gold/sheet.v1.json` | 300 Wikibooks ingredient lines. Strata `random`, `hard`, `rare`, 100 each. Dev 150, test 150. Built from `wikibooks/snapshot.2026-11-03.jsonl.gz` | CC BY-SA 4.0 | Labels come from the owner. Test labels stay unscored until M3 acceptance |
+| `data/eval/parser_gold/sheet.v1.json` | 300 Wikibooks ingredient lines. Strata `random`, `hard`, `rare`, 100 each. Dev 150, test 150. Built from `wikibooks/snapshot.2026-11-03.jsonl.gz` | CC BY-SA 4.0 | Labels are model-written (Sonnet and Opus, adjudicated), not human. Test labels stay unscored until M3 acceptance |
 | `data/eval/floors.v1.json` | CI floors on the fixture pack | MIT | A guard against code regressions. Not a quality claim |
 
 Rebuild: `uv run python scripts/extract_realistic_inputs.py`, `uv run python scripts/make_parser_gold_sheet.py`, `uv run python scripts/make_floors.py`.

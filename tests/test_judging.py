@@ -57,6 +57,11 @@ def test_score_hand_computed():
     assert r["would_cook_overlap"] == pytest.approx(0.25)
 
 
+def test_blank_seconds_give_no_median():
+    rows = [{**r, "seconds": ""} for r in ROWS]
+    assert score(KEY, rows)["median_seconds"] is None
+
+
 def test_power_estimate_hand_computed():
     # p = 1/3: 1.96^2 * (2/9) / 0.1^2 = 85.37 -> 86 non-tie pantries; 86 / 0.75 = 114.7 -> 115.
     # Worst case p = 0.5: 1.96^2 * 0.25 / 0.01 = 96.04 -> 97 non-tie; 97 / 0.75 = 129.3 -> 130.

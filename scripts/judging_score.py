@@ -68,7 +68,8 @@ def score(key: dict, rows: list[dict]) -> dict:
         if choice not in ("A", "B", "tie"):
             raise ValueError(f"choice must be A, B or tie, got {choice!r}")
         outcome[iid] = {"A": k["left"], "B": k["right"], "tie": "tie"}[choice]
-        seconds.append(float(r["seconds"]))
+        if r["seconds"].strip():  # a model judge cannot time itself, so blank is allowed
+            seconds.append(float(r["seconds"]))
         if not k["repeat_of"]:
             cook[k["left"]].append(_yes(r["would_cook_left"]))
             cook[k["right"]].append(_yes(r["would_cook_right"]))
@@ -92,7 +93,7 @@ def score(key: dict, rows: list[dict]) -> dict:
         "tie_rate": tie_rate,
         "repeats_same": sum(outcome[a] == outcome[b] for a, b in reps),
         "repeats_total": len(reps),
-        "median_seconds": statistics.median(seconds),
+        "median_seconds": statistics.median(seconds) if seconds else None,
         "would_cook_shipped": sum(cook["shipped"]) / len(cook["shipped"]),
         "would_cook_overlap": sum(cook["overlap"]) / len(cook["overlap"]),
         "power": power_estimate(rate, tie_rate) if rate is not None else None,

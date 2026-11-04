@@ -30,10 +30,50 @@ def _labels() -> tuple[list[dict], dict]:
     return lines, read_labels_csv(CSV, [r["id"] for r in lines])
 
 
+def _write_result(out: Path, scores: dict) -> None:
+    from pantrychef.eval.results import write_result
+
+    n = int(scores["gold_groups"])
+    metrics = [
+        {"name": f"parser_{k}", "arm": None, "split": "dev", "n": n, "value": float(scores[v])}
+        for k, v in (("precision", "precision"), ("recall", "recall"), ("f1", "f1"))
+    ]
+    metrics.append(
+        {
+            "name": "parser_optional_accuracy",
+            "arm": None,
+            "split": "dev",
+            "n": int(scores["optional_n"]),
+            "value": float(scores["optional_accuracy"]),
+        }
+    )
+    write_result(
+        out,
+        {
+            "label": "MEASURED",
+            "what": "Ingredient parser vs the parser gold set, dev half, group-level micro scores",
+            "command": "uv run python scripts/parser_gold.py score --split dev --out " + out.name,
+            "config": {
+                "split": "dev",
+                "labels": "model-labelled, see data/eval/parser_gold/NOTICE.md",
+                **scores,
+            },
+            "seed": 0,
+            "corpus_fingerprint": json.loads(SHEET.read_text(encoding="utf8"))["snapshot_sha256"],
+            "arms": [],
+            "metrics": metrics,
+            "comparisons": [],
+            "environment": {},
+        },
+        ROOT,
+    )
+
+
 def main() -> None:
     ap = argparse.ArgumentParser()
     ap.add_argument("cmd", choices=["check", "write", "score"])
     ap.add_argument("--split", choices=["dev", "test"], default="dev")
+    ap.add_argument("--out", type=Path, help="write a results file (score only)")
     args = ap.parse_args()
     lines, labels = _labels()
     if args.cmd == "check":
@@ -61,7 +101,10 @@ def main() -> None:
             raise SystemExit("test labels stay unscored until M3 acceptance")
         table = IngredientTable.load(TABLE)
         sub = [r for r in lines if r["split"] == "dev"]
-        print(json.dumps(score(sub, labels, table), indent=2))
+        scores = score(sub, labels, table)
+        print(json.dumps(scores, indent=2))
+        if args.out:
+            _write_result(args.out, scores)
 
 
 if __name__ == "__main__":

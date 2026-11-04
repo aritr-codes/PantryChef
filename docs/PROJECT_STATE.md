@@ -13,7 +13,7 @@ PantryChef is meant to be a pantry-first recipe app. A user lists what they have
 
 | Capability | Status | Evidence |
 | --- | --- | --- |
-| Ingredient parser (rules plus vocabulary match) | Built and tested | `pantrychef/ingredients/parser.py`; unit tests pass. Accuracy on a hand-labelled gold set: not measured |
+| Ingredient parser (rules plus vocabulary match) | Built and tested | `pantrychef/ingredients/parser.py`; unit tests pass. Dev-half score on a model-labelled gold set: [results/m2_parser_gold_dev.json](../results/m2_parser_gold_dev.json) |
 | Set-overlap baseline retrieval and `cook` command | Built and tested | `pantrychef/retrieval/`, `pantrychef/cli.py:26` |
 | Recommender: candidate pool plus LambdaMART (a learned ranking model) | Built, not usable by a person | Only tests call `RecommenderRuntime`. `cook` does not use it |
 | Substitution model (graph and embedding arms) | Built and tested | `pantrychef/substitution/`; `substitute` command loads the 123 MB bundle (not run in this audit) |

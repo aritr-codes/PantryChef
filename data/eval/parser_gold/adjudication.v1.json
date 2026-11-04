@@ -1,0 +1,218 @@
+{
+  "labellers": [
+    "Claude Sonnet 5.5 (independent)",
+    "Claude Opus (independent)"
+  ],
+  "lines": 300,
+  "exact_agreement": 274,
+  "disagreements": [
+    {
+      "id": "wb-170967#13",
+      "text": "Chopped green celery leaves (Maltese krafes)",
+      "sonnet": "celery leaf",
+      "opus": "celery leaves",
+      "chosen": "celery leaf",
+      "reason": "plural to singular"
+    },
+    {
+      "id": "wb-452001#4",
+      "text": "1 cup (2 sticks / 250 g / 9 oz) unsalted butter",
+      "sonnet": "butter",
+      "opus": "unsalted butter",
+      "chosen": "butter",
+      "reason": "unsalted does not change the food"
+    },
+    {
+      "id": "wb-457120#3",
+      "text": "A few pieces of dried pepper",
+      "sonnet": "chili pepper",
+      "opus": "dried chili pepper",
+      "chosen": "dried chili pepper",
+      "reason": "most natural reading is a dried chili"
+    },
+    {
+      "id": "wb-462357#2",
+      "text": "100 g dried figs, finely chopped",
+      "sonnet": "fig",
+      "opus": "dried fig",
+      "chosen": "dried fig",
+      "reason": "dried form is a distinct shop item"
+    },
+    {
+      "id": "wb-404200#8",
+      "text": "1 cup cooked black quinoa, cooled",
+      "sonnet": "quinoa",
+      "opus": "black quinoa",
+      "chosen": "black quinoa",
+      "reason": "colour variety is a distinct shop item"
+    },
+    {
+      "id": "wb-52334#2",
+      "text": "Oat flakes",
+      "sonnet": "oat",
+      "opus": "rolled oats",
+      "chosen": "rolled oats",
+      "reason": "common English name"
+    },
+    {
+      "id": "wb-139301#7",
+      "text": "2 pounds dried figs, ground or finely chopped",
+      "sonnet": "fig",
+      "opus": "dried fig",
+      "chosen": "dried fig",
+      "reason": "dried form is a distinct shop item"
+    },
+    {
+      "id": "wb-109334#14",
+      "text": "1 serrano or jalapeño chile, very finely diced",
+      "sonnet": "serrano pepper|jalapeno pepper",
+      "opus": "serrano pepper|jalapeño",
+      "chosen": "serrano pepper|jalapeno pepper",
+      "reason": "ASCII form; both are peppers"
+    },
+    {
+      "id": "wb-474356#9",
+      "text": "1–2 teaspoons ground chile pepper (to taste)",
+      "sonnet": "chili pepper",
+      "opus": "chili powder",
+      "chosen": "chili powder",
+      "reason": "ground form is chili powder"
+    },
+    {
+      "id": "wb-20265#19",
+      "text": "Jalapeños, serranos, or other chilli peppers",
+      "sonnet": "jalapeno pepper|serrano pepper|chili pepper",
+      "opus": "jalapeño|serrano pepper|chili pepper",
+      "chosen": "jalapeno pepper|serrano pepper|chili pepper",
+      "reason": "ASCII form"
+    },
+    {
+      "id": "wb-54215#12",
+      "text": "Finely-chopped coriander leaves for garnishing",
+      "sonnet": "coriander",
+      "opus": "cilantro",
+      "chosen": "cilantro|coriander",
+      "reason": "two names for one food"
+    },
+    {
+      "id": "wb-102314#3",
+      "text": "125 g dark (semi-sweet or bittersweet) eating chocolate, melted",
+      "sonnet": "dark chocolate|semi-sweet chocolate|bittersweet chocolate",
+      "opus": "dark chocolate",
+      "chosen": "dark chocolate|semi-sweet chocolate|bittersweet chocolate",
+      "reason": "parenthetical lists the allowed kinds"
+    },
+    {
+      "id": "wb-404206#3",
+      "text": "6 ounces baby bok choy, trimmed and quartered",
+      "sonnet": "bok choy",
+      "opus": "baby bok choy",
+      "chosen": "bok choy",
+      "reason": "baby is a size word"
+    },
+    {
+      "id": "wb-136629#3",
+      "text": "6 tablespoons oil or ghee",
+      "sonnet": "oil|ghee",
+      "opus": "vegetable oil|ghee",
+      "chosen": "oil|ghee",
+      "reason": "the line says oil"
+    },
+    {
+      "id": "wb-11572#4",
+      "text": "1 ½ tsp vanilla",
+      "sonnet": "vanilla",
+      "opus": "vanilla extract",
+      "chosen": "vanilla extract",
+      "reason": "vanilla by the teaspoon is extract"
+    },
+    {
+      "id": "wb-447305#2",
+      "text": "Pepper, blended",
+      "sonnet": "pepper",
+      "opus": "chili pepper",
+      "chosen": "black pepper|chili pepper",
+      "reason": "line is ambiguous; both readings kept"
+    },
+    {
+      "id": "wb-211843#2",
+      "text": "optional sweeteners may include fireweed, camas bulb (Camassia quamash) or sweet berries such as salal berries (Gaultheria shallon), or thimbleberries. Nowadays many people sweeten it with sugar.",
+      "sonnet": "(not an ingredient)",
+      "opus": "fireweed|camas bulb|salal berry|thimbleberry|sugar",
+      "chosen": "(not an ingredient)",
+      "reason": "prose sentence, not an ingredient line"
+    },
+    {
+      "id": "wb-7478#8",
+      "text": "¼ cup soft tofu (mashed), stirred until smooth",
+      "sonnet": "tofu",
+      "opus": "soft tofu",
+      "chosen": "soft tofu",
+      "reason": "texture type is a distinct shop item"
+    },
+    {
+      "id": "wb-8324#5",
+      "text": "¼–1 teaspoon nutmeg, cinnamon or other powdered spices suitable for sweet foods",
+      "sonnet": "nutmeg|cinnamon|spice",
+      "opus": "nutmeg|cinnamon",
+      "chosen": "nutmeg|cinnamon",
+      "reason": "a generic 'spice' is not an ingredient name"
+    },
+    {
+      "id": "wb-484816#0",
+      "text": "½ cup (80 g) steel-cut oats, also called Irish oats",
+      "sonnet": "steel-cut oat",
+      "opus": "steel-cut oats",
+      "chosen": "steel-cut oat",
+      "reason": "plural to singular"
+    },
+    {
+      "id": "wb-22344#3",
+      "text": "Dried sardines or anchovies (niboshi)",
+      "sonnet": "sardine|anchovy",
+      "opus": "dried sardine|dried anchovy",
+      "chosen": "dried sardine|dried anchovy",
+      "reason": "dried form is a distinct shop item"
+    },
+    {
+      "id": "wb-18884#2",
+      "text": "1 cup (240 g) finely-grated dried figs",
+      "sonnet": "fig",
+      "opus": "dried fig",
+      "chosen": "dried fig",
+      "reason": "dried form is a distinct shop item"
+    },
+    {
+      "id": "wb-88902#1",
+      "text": "1 cleaned lobster tail shell",
+      "sonnet": "lobster shell",
+      "opus": "lobster tail",
+      "chosen": "lobster shell",
+      "reason": "the shell is the item"
+    },
+    {
+      "id": "wb-108436#5",
+      "text": "⅔ cup coarsely crushed saltines (14 crackers)",
+      "sonnet": "saltine cracker",
+      "opus": "saltine",
+      "chosen": "saltine cracker",
+      "reason": "name the food, not the brand-type"
+    },
+    {
+      "id": "wb-41709#3",
+      "text": "1 pound (450 g) fettuccine egg noodles",
+      "sonnet": "egg noodle",
+      "opus": "fettuccine",
+      "chosen": "egg noodle",
+      "reason": "fettuccine is the shape, egg noodle is the food"
+    },
+    {
+      "id": "wb-30449#1",
+      "text": "1 packet of dry winemaker's yeast (Lalvin EC1118, K1V1116 or similar) as well as yeast nutrient",
+      "sonnet": "yeast;yeast nutrient",
+      "opus": "wine yeast;yeast nutrient",
+      "chosen": "wine yeast;yeast nutrient",
+      "reason": "wine yeast is the specific food"
+    }
+  ]
+}

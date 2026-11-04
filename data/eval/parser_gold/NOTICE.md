@@ -10,5 +10,7 @@ revision id. The revision link is `https://en.wikibooks.org/w/index.php?oldid=<r
   The sha256 of the snapshot is in `sheet.v1.json` and in `docs/DATASET.md`.
 - Changes: markup was removed as the source adapter does it (links, templates, emphasis). The words are
   unchanged. The lines are a selection.
-- The labels in `labels.dev.v1.json` and `labels.test.v1.json` will be hand-written by the project owner.
-  They do not exist yet. They will be MIT, like the rest of the repository.
+- The labels in `labels.dev.v1.json` and `labels.test.v1.json` were written by two models (Claude Sonnet and
+  Claude Opus). Each model labelled all 300 lines alone, with `docs/PARSER_GOLD_GUIDE.md` and no parser output.
+  The implementer settled the 26 disagreements. They are in `adjudication.v1.json`. No human labelled these
+  lines. The labels are MIT, like the rest of the repository.
