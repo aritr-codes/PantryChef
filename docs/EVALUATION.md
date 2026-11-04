@@ -15,7 +15,7 @@
 > | Phase 2 dietary 100% | RETRACTED. The tagger checks itself, so the metric cannot fail |
 > | Phase 2 GISMo table | UNSUPPORTED. Pre-fix, never rerun. GISMo's model was never run |
 > | Phase 3 50k table | Sanity test only. The task leaks the answer. A no-ML rule scores 0.975 on a 1,404-query set |
-> | Phase 3 full corpus (7.7×, ceiling 0.706) | RETRACTED. Pre-fix. The post-fix run ended in `MemoryError` |
+> | Phase 3 full corpus (7.7×, ceiling 0.706) | RETRACTED. Pre-fix. The post-fix run ended in `MemoryError`. The M2 rule baselines on 1.27M recipes supersede it as the full-corpus reference (see "RecipeNLG rule baselines") |
 > | "Saturates at 10k" and "~25 minutes" | RETRACTED. The metric sees only the gold slot, and no full production run completed |
 > | "What ships" (production bundle) | FALSE. The only bundle on disk has 1,000 recipes, 3 models and an older commit |
 > | sub_fill null | STANDS, on the same leaked task |
@@ -79,10 +79,39 @@ flowchart LR
   P --> G[Parser gold set<br/>model labels] --> R
   P --> J[Judging sheet<br/>blind, two lists]
   J --> H[Judges] --> R
-  K[Kaggle kernel<br/>RecipeNLG, research only] -.planned run.-> R
+  K[Kaggle kernel<br/>RecipeNLG, research only] --> R
 ```
 
-Solid arrows run today. The dashed arrow is the Kaggle run. Judges are people in M4 and were models in the M2 pilot. Metrics from masked pantries never select a model (`assert_selectable`).
+All arrows run today. Judges are people in M4 and were models in the M2 pilot. Metrics from masked pantries never select a model (`assert_selectable`).
+
+## RecipeNLG rule baselines (MEASURED, research only)
+
+Source: [`results/m2_rule_baselines_recipenlg.json`](../results/m2_rule_baselines_recipenlg.json).
+Kaggle kernel `retr0sm06/pantrychef-rule-baselines`, wheel at commit `73720c3`, clean tree, seed 42.
+RecipeNLG after title deduplication has 1,274,290 recipes. The run used 20,000 gold recipes with
+3 draws each, so n = 30,000 pantries per row (test half of a 50/50 split). Index build, scoring and bootstrap (`raw.seconds`) took 12,728 s. Cleaning is not counted.
+Nothing from RecipeNLG ships. Only the numbers are kept. Intervals are paired cluster-bootstrap 95%
+(10,000 resamples). These are sanity metrics. The task shows the answer slot (ADR 0005), so they
+do not select a model and they do not measure recommendation quality.
+
+recall@10 on the test half. `d` is the number of distractor ingredients added to the pantry.
+
+| Sampler | d | random | overlap | idf_flat | idf_flat minus overlap (95% CI) |
+| --- | --- | --- | --- | --- | --- |
+| none | 0 | 0.0005 | 0.9839 | 0.9725 | -0.0114 [-0.0130, -0.0098] |
+| uniform | 3 | 0.0003 | 0.9831 | 0.9680 | -0.0151 [-0.0169, -0.0134] |
+| uniform | 6 | 0.0003 | 0.9825 | 0.9650 | -0.0175 [-0.0194, -0.0157] |
+| popularity | 3 | 0.0001 | 0.9249 | 0.9594 | +0.0345 [+0.0315, +0.0376] |
+| popularity | 6 | 0.0000 | 0.8345 | 0.9452 | +0.1107 [+0.1058, +0.1155] |
+
+What this says:
+
+- Both rules beat random by more than 0.8 in recall@10 at every setting.
+- With no distractors or uniform distractors, plain overlap is best. The IDF rule is 1 to 2 points lower.
+- With popular distractors the order flips. Overlap falls to 0.835 at d = 6. The IDF rule falls to 0.945.
+- At 1.27M recipes the no-ML overlap rule is strong. This run has no learned arm, so it does not refute the retracted "7.7 times" claim. It gives that claim no support. Do not quote it.
+- A learned model must beat the best rule on the same pantries. None has run at this scale.
+- The kernel README lists the differences from the Wikibooks baseline (no `shipped` arm, deduplicated corpus, different split). Do not compare the two tables row by row.
 
 ### Reproduce
 

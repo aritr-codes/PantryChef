@@ -17,7 +17,9 @@ reports the test half. Mask `m = (n + 2) // 4`. Distractors 0, 3, 6 with `unifor
 `popularity` samplers. 3 draws per gold. Every arm ranks the exact set of recipes that share
 at least one pantry ingredient. Code: `pantrychef/eval/rule_baselines_main.py`.
 
-## Resources (ESTIMATE)
+## Resources (ESTIMATE, written before the runs)
+
+Superseded by the run log below: the smoke run measured 47 ms per pantry, and the main run used 20,000 golds.
 
 - CPU kernel, internet off, no GPU.
 - Cleaning: two passes over the 2.2M-row CSV. The earlier full clean took 31 to 42 minutes
@@ -136,6 +138,6 @@ Do not point `--corpus` at `data/processed/recipes.jsonl` on this laptop (610 MB
 | Date | Kernel version | Wheel commit | Queries | Outcome |
 | --- | --- | --- | --- | --- |
 | 2026-11-04 | 1 | 1a315d1 | 200 (smoke) | COMPLETE. CSV sha256 matched. Cleaning 2,226 s (1,274,290 recipes). Scoring 141 s for 3,000 pantries (200 golds x 3 draws x 5 configs), so 47 ms per pantry including index build. Output manifest checked. Not a result: n is 200 |
-| 2026-11-04 | 2 | see below | 20,000 (main) | queued |
+| 2026-11-04 | 2 | 73720c3 | 20,000 (main) | COMPLETE. CSV sha256 matched, manifest checked, tree clean, commit equals wheel commit. `raw.seconds` 12,728 (excludes cleaning). Result in `results/m2_rule_baselines_recipenlg.json` |
 
 Decision after the smoke run (MEASURED rate, ESTIMATE total): at 47 ms per pantry, 20,000 golds (300,000 pantries) take about 3.9 hours of scoring plus 0.6 hours of cleaning, about 4.5 hours in all, with the 12 hour limit as margin. The earlier cut to 6,000 golds is undone, and the main run uses the 20,000 golds of plan D1. If it times out or runs out of memory, halve the count and say so.

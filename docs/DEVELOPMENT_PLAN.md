@@ -85,7 +85,7 @@ lines, under a CC BY-SA notice. A Playwright smoke test of the journey. Parity t
 
 ## M2: Evaluation baseline (about 1 week)
 
-**Status, 2026-11-03:** in progress on `feat/m2-eval-baseline`. Built: results helper, rule baselines with paired intervals, splits, gold sheet tools, judging tools, Kaggle kernel (not run). Open: your labels, the pilot, the Kaggle run. See [PROJECT_STATE section 11](PROJECT_STATE.md).
+**Status, 2026-11-04:** in progress on `feat/m2-eval-baseline`. Built: results helper, rule baselines with paired intervals, splits, gold sheet tools, judging tools, Kaggle kernel (run 2026-11-04, MEASURED). Open: owner spot-check of the model-written parser labels and a human judging pass for M4. See [PROJECT_STATE section 11](PROJECT_STATE.md).
 
 **Objective:** measure before changing anything.
 
