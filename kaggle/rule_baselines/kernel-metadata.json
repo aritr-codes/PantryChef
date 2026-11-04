@@ -1,5 +1,5 @@
 {
-  "id": "TO-CONFIRM-KAGGLE-USERNAME/pantrychef-rule-baselines",
+  "id": "retr0sm06/pantrychef-rule-baselines",
   "title": "pantrychef-rule-baselines",
   "code_file": "kernel.py",
   "language": "python",
@@ -8,8 +8,8 @@
   "enable_gpu": "false",
   "enable_internet": "false",
   "dataset_sources": [
-    "TO-CONFIRM-OWNER/recipenlg-hosted-slug",
-    "TO-CONFIRM-KAGGLE-USERNAME/pantrychef-wheel"
+    "saldenisov/recipenlg",
+    "retr0sm06/pantrychef-wheel"
   ],
   "competition_sources": [],
   "kernel_sources": []

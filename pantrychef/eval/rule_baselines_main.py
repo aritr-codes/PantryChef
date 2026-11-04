@@ -391,9 +391,16 @@ def main(argv: list[str] | None = None) -> int:
     ap.add_argument("--resamples", type=int, default=10_000)
     ap.add_argument("--csv-sha256", default="", help="sha256 of the source CSV (the fingerprint)")
     ap.add_argument("--commit", default="", help="40-hex commit when no git checkout exists")
+    ap.add_argument(
+        "--tree",
+        choices=["clean", "dirty"],
+        help="state of the build tree at --commit, from the build host (required with --commit)",
+    )
     ap.add_argument("--quiet", action="store_true")
     args = ap.parse_args(argv)
 
+    if args.commit and not args.tree:
+        ap.error("--commit needs --tree clean|dirty")
     from pantrychef.eval import results
 
     body = run(
@@ -414,9 +421,11 @@ def main(argv: list[str] | None = None) -> int:
         **body,
     }
     if args.commit:  # no git checkout (Kaggle): the caller states the commit the wheel was built at
-        body["raw"]["commit_source"] = "supplied by caller, not verified; dirty is not known"
+        body["raw"]["commit_source"] = "supplied by caller from the build host, not verified here"
+        dirty = args.tree == "dirty"
+        paths = ["(build host tree was dirty; paths not recorded)"] if dirty else []
         real = results.git_facts
-        results.git_facts = lambda root, exclude=(): (args.commit, False, [])  # type: ignore[assignment]
+        results.git_facts = lambda root, exclude=(): (args.commit, dirty, paths)  # type: ignore[assignment]
         try:
             results.write_result(Path(args.out), doc)
         finally:

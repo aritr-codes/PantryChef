@@ -49,7 +49,10 @@ def main() -> None:
         die("pantrychef wheel not found under /kaggle/input.")
     if not commits:
         die("commit.txt (git rev-parse HEAD at build time) not found next to the wheel.")
-    commit = commits[0].read_text().strip()
+    lines = commits[0].read_text().split()
+    if len(lines) != 2 or lines[1] not in ("clean", "dirty"):
+        die("commit.txt must hold two words: the commit and clean|dirty (see README).")
+    commit, tree = lines
     subprocess.run(
         [sys.executable, "-m", "pip", "install", "--no-deps", "--no-index", "--quiet",
          *map(str, wheels)],
@@ -71,7 +74,7 @@ def main() -> None:
     n = rb.clean_csv(csvs[0], CLEANED)
     print(f"cleaned {n} recipes", flush=True)
     rb.main(["--corpus", str(CLEANED), "--out", str(RESULT), "--csv-sha256", csv_sha,
-             "--commit", commit, "--n-queries", N_QUERIES])  # fmt: skip
+             "--commit", commit, "--tree", tree, "--n-queries", N_QUERIES])  # fmt: skip
     CLEANED.unlink()
 
     manifest = WORKING / "manifest.sha256"

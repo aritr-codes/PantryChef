@@ -151,3 +151,21 @@ def test_output_validates_and_is_deterministic(tmp_path):
     }
     assert len(doc["comparisons"]) == 5 * 2 * 2  # configs x pairs x metrics
     assert len(doc["raw"]["query_ids_sha256"]) == 64
+
+
+def test_supplied_commit_records_the_tree_state(tmp_path):
+    corpus = tmp_path / "c.jsonl"
+    _write_corpus(corpus)
+    sha = "a" * 40
+    base = [sys.executable, "-m", "pantrychef.eval.rule_baselines_main", "--corpus", str(corpus),
+            "--n-queries", "30", "--resamples", "200", "--quiet", "--commit", sha]  # fmt: skip
+    # --commit without --tree is refused
+    bad = subprocess.run([*base, "--out", str(tmp_path / "x.json")], cwd=ROOT, capture_output=True)
+    assert bad.returncode != 0 and not (tmp_path / "x.json").exists()
+    for tree in ("clean", "dirty"):
+        out = tmp_path / f"{tree}.json"
+        subprocess.run([*base, "--tree", tree, "--out", str(out)], cwd=ROOT, check=True,
+                       capture_output=True)  # fmt: skip
+        doc = load_result(out)
+        assert doc["commit"] == sha and doc["dirty"] == (tree == "dirty")
+        assert bool(doc["dirty_paths"]) == (tree == "dirty")

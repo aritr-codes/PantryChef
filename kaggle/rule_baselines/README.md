@@ -1,7 +1,7 @@
 # Kaggle kernel: rule baselines on RecipeNLG (M2, Lane D)
 
-Status: written, NOT run. Nothing here runs before the owner approves
-(plan `docs/plans/2026-11-03-m2-eval-baseline.md`, section 7).
+Status: owner approved the smoke run and the main run on 2026-11-04. See "Run log" at the end.
+Plan: `docs/plans/2026-11-03-m2-eval-baseline.md`, section 7.
 
 ## Purpose
 
@@ -43,12 +43,12 @@ at least one pantry ingredient. Code: `pantrychef/eval/rule_baselines_main.py`.
 
 ## Inputs
 
-1. Kaggle-hosted RecipeNLG dataset containing `full_dataset.csv`. Slug: TO-CONFIRM.
-   The kernel checks its sha256 equals
+1. Kaggle-hosted RecipeNLG dataset containing `full_dataset.csv`. Slug: `saldenisov/recipenlg` (file `dataset/full_dataset.csv`, 2,294,981,083 bytes, the same size as the
+   local copy). The kernel checks its sha256 equals
    `f376ee0bb9f99f323761abf6270d453f4eff2002c3625d04cabcf8b57dca0803` (docs/DATASET.md)
    and stops with exit code 2 otherwise. We never upload RecipeNLG.
-2. Private dataset holding the wheel `pantrychef-*.whl` and `commit.txt` (the build commit).
-   Slug: TO-CONFIRM.
+2. Private dataset holding the wheel `pantrychef-*.whl` and `commit.txt` (two words: the build commit and `clean` or `dirty`).
+   Slug: `retr0sm06/pantrychef-wheel`.
 
 ## Packages the Kaggle image must have
 
@@ -74,6 +74,20 @@ holds `csv_sha256`, `cleaned_sha256`, `query_ids_sha256`, counts and dev numbers
 debug only. `corpus_fingerprint` is the CSV sha256. The commit comes from `commit.txt` and
 is recorded as caller-supplied (the kernel has no git).
 
+## Recorded differences from the Wikibooks baseline
+
+These are on purpose. They keep the Kaggle numbers and the Wikibooks numbers apart.
+
+- **Split rule.** The Wikibooks baseline splits gold recipes by normalised title groups (sha256 order,
+  50/50). RecipeNLG was already deduplicated by title in the cleaning step, so the Kaggle run cuts
+  the sha256 order of recipe ids 50/50 and does not group again.
+- **Uniform sampler.** `uniform` draws from the whole ingredient vocabulary of the corpus (about 30k
+  names). On Wikibooks it draws from the pack vocabulary. The two vocabularies differ, so compare
+  the direction of the gaps, not the levels.
+- **No `shipped` arm.** RecipeNLG has no group structure, so only `random`, `overlap` and `idf_flat` run.
+- **Dry run.** The only local run is the 40-recipe synthetic test (`tests/eval/test_rule_baselines.py`).
+  It checks the code path and not the speed. The smoke run on Kaggle measures the speed.
+
 ## Failure plan
 
 - Hash mismatch, missing CSV, missing wheel or missing package: the kernel stops, exit 2.
@@ -87,8 +101,9 @@ Build the wheel from a clean tree at the pinned commit (run from the repo root):
 
 ```bash
 git status --porcelain            # must print nothing
-git rev-parse HEAD > dist/commit.txt
-uv build --wheel
+uv build --wheel --out-dir dist
+printf '%s clean
+' "$(git rev-parse HEAD)" > dist/commit.txt   # write 'dirty' if porcelain printed anything
 ```
 
 Create the wheel dataset. Needs a `dataset-metadata.json` in `dist/` with the slug. Known
