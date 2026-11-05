@@ -270,7 +270,7 @@
     "wb-104638#2": {
       "groups": [
         [
-          "gravy base"
+          "pork-flavored gravy base"
         ]
       ],
       "optional": false,
@@ -860,9 +860,16 @@
       "not_an_ingredient": false
     },
     "wb-211843#2": {
-      "groups": [],
-      "optional": false,
-      "not_an_ingredient": true
+      "groups": [
+        [
+          "fireweed",
+          "camas bulb",
+          "salal berries",
+          "thimbleberries"
+        ]
+      ],
+      "optional": true,
+      "not_an_ingredient": false
     },
     "wb-210636#5": {
       "groups": [
