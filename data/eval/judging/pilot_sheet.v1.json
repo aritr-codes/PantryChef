@@ -1,0 +1,1692 @@
+{
+  "version": 1,
+  "items": [
+    {
+      "item_id": "item01",
+      "pantry": [
+        "arborio rice",
+        "beef",
+        "bell pepper",
+        "canned tomato",
+        "chili powder",
+        "cumin",
+        "ground beef",
+        "oregano",
+        "potato",
+        "thyme"
+      ],
+      "left": [
+        {
+          "title": "Easy Chili",
+          "missing": [
+            "30 oz medium or dark red kidney beans"
+          ]
+        },
+        {
+          "title": "Bulgarian Fresh Sausage (Kebapcheta)",
+          "missing": []
+        },
+        {
+          "title": "Fried Chicken and Fried Potatoes",
+          "missing": [
+            "2 ½ lbs chicken, cut into small pieces"
+          ]
+        },
+        {
+          "title": "Oven-Roasted Potatoes",
+          "missing": [
+            "2 tablespoons olive oil"
+          ]
+        },
+        {
+          "title": "Spaghetti Sauce",
+          "missing": [
+            "2 teaspoons dried basil"
+          ]
+        }
+      ],
+      "right": [
+        {
+          "title": "Bulgarian Fresh Sausage (Kebapcheta)",
+          "missing": []
+        },
+        {
+          "title": "Pan-fried Beef Steak",
+          "missing": []
+        },
+        {
+          "title": "French Fries",
+          "missing": []
+        },
+        {
+          "title": "Rosti (Swiss Potato Patties)",
+          "missing": []
+        },
+        {
+          "title": "Fast Food French Fries",
+          "missing": []
+        }
+      ]
+    },
+    {
+      "item_id": "item02",
+      "pantry": [
+        "baking soda",
+        "basmati rice",
+        "bell pepper",
+        "butter",
+        "chicken",
+        "cranberry",
+        "saffron",
+        "soy sauce"
+      ],
+      "left": [
+        {
+          "title": "Zereshk Palau (Iranian Rice with Barberries) II",
+          "missing": [
+            "1 medium onion, chopped",
+            "½ cup sugar"
+          ]
+        },
+        {
+          "title": "Smoky Chipotle Glazed Hot Wings",
+          "missing": [
+            "6 tbsp Smoky Chipotle Hot Sauce",
+            "3 cloves garlic, minced"
+          ]
+        },
+        {
+          "title": "Chicken Cockaigne",
+          "missing": []
+        },
+        {
+          "title": "Cola BBQ Chicken",
+          "missing": [
+            "1 cup Cola BBQ Sauce"
+          ]
+        },
+        {
+          "title": "Crunchy Baked Chicken",
+          "missing": [
+            "½ cup Italian breadcrumbs",
+            "¼ cup grated Parmesan cheese"
+          ]
+        }
+      ],
+      "right": [
+        {
+          "title": "Microwaved Basmati Rice",
+          "missing": []
+        },
+        {
+          "title": "Chicken Cockaigne",
+          "missing": []
+        },
+        {
+          "title": "Ghee I",
+          "missing": []
+        },
+        {
+          "title": "Steamed Basmati Rice",
+          "missing": [
+            "2 tsp lemon juice"
+          ]
+        },
+        {
+          "title": "Tahdiq (Crisped Persian Rice)",
+          "missing": [
+            "2 medium size potatoes"
+          ]
+        }
+      ]
+    },
+    {
+      "item_id": "item03",
+      "pantry": [
+        "chocolate",
+        "cinnamon",
+        "heavy cream",
+        "honey",
+        "milk",
+        "pandan leaf"
+      ],
+      "left": [
+        {
+          "title": "Chocolate Milkshake",
+          "missing": [
+            "3 cups vanilla ice cream"
+          ]
+        },
+        {
+          "title": "Hot Chocolate (Orange)",
+          "missing": [
+            "½ tsp orange extract",
+            "¼ tsp vanilla extract"
+          ]
+        },
+        {
+          "title": "Chocolate Milk",
+          "missing": []
+        },
+        {
+          "title": "Chocolate Sauce",
+          "missing": [
+            "1½ oz butter",
+            "1½ oz caster sugar"
+          ]
+        },
+        {
+          "title": "Albanian Stewed Fig Pudding",
+          "missing": [
+            "1 cup (240 g) white granulated sugar",
+            "1 cup (240 g) finely-grated dried figs"
+          ]
+        }
+      ],
+      "right": [
+        {
+          "title": "Chocolate Milk",
+          "missing": []
+        },
+        {
+          "title": "Basic Whipped Cream",
+          "missing": []
+        },
+        {
+          "title": "Victorian Butter",
+          "missing": []
+        },
+        {
+          "title": "Chocolate Milkshake",
+          "missing": [
+            "3 cups vanilla ice cream"
+          ]
+        },
+        {
+          "title": "Asida (Sudanese Porridge)",
+          "missing": [
+            "2 cups wheat flour or sorghum flour"
+          ]
+        }
+      ]
+    },
+    {
+      "item_id": "item04",
+      "pantry": [
+        "cabbage",
+        "chili pepper",
+        "coriander",
+        "corn",
+        "cumin",
+        "garlic",
+        "okra",
+        "tomato",
+        "turmeric",
+        "zucchini"
+      ],
+      "left": [
+        {
+          "title": "Lumanda (Zambian Okra Stew)",
+          "missing": [
+            "1 onion, finely chopped",
+            "1 teaspoon ground paprika"
+          ]
+        },
+        {
+          "title": "Chili Powder I",
+          "missing": [
+            "1 tbsp dried oregano"
+          ]
+        },
+        {
+          "title": "Shitha",
+          "missing": []
+        },
+        {
+          "title": "Sylheti Tangy Curry",
+          "missing": [
+            "½ cup onion paste"
+          ]
+        },
+        {
+          "title": "Tamil Spice Mix (Milagai Podi)",
+          "missing": [
+            "3 spoons ghee, melted"
+          ]
+        }
+      ],
+      "right": [
+        {
+          "title": "Shitha",
+          "missing": []
+        },
+        {
+          "title": "Spicy Garlic Oil",
+          "missing": []
+        },
+        {
+          "title": "Sauerkraut II",
+          "missing": []
+        },
+        {
+          "title": "Sauerkraut I",
+          "missing": []
+        },
+        {
+          "title": "Corn on the Cob with Husks",
+          "missing": []
+        }
+      ]
+    },
+    {
+      "item_id": "item05",
+      "pantry": [
+        "baking powder",
+        "basil",
+        "cardamom",
+        "chili pepper",
+        "egg",
+        "garlic",
+        "hoisin sauce",
+        "lettuce",
+        "peanut",
+        "raisin",
+        "rice",
+        "sausage"
+      ],
+      "left": [
+        {
+          "title": "Foithong (Egg Threads in Syrup)",
+          "missing": [
+            "1 kilogram white granulated sugar",
+            "2 pandan leaves"
+          ]
+        },
+        {
+          "title": "Chili Powder I",
+          "missing": [
+            "1 tbsp dried oregano",
+            "2 tbsp whole toasted cumin"
+          ]
+        },
+        {
+          "title": "Spicy Garlic Oil",
+          "missing": []
+        },
+        {
+          "title": "Scrambled Eggs with Sausage",
+          "missing": []
+        },
+        {
+          "title": "Knoephla (Small Flour Dumplings)",
+          "missing": [
+            "2 cups (500 ml) all-purpose flour"
+          ]
+        }
+      ],
+      "right": [
+        {
+          "title": "Scrambled Eggs with Sausage",
+          "missing": []
+        },
+        {
+          "title": "Peanut Milk",
+          "missing": []
+        },
+        {
+          "title": "Homemade Peanut Butter",
+          "missing": []
+        },
+        {
+          "title": "Spicy Garlic Oil",
+          "missing": []
+        },
+        {
+          "title": "Steamed Rice",
+          "missing": []
+        }
+      ]
+    },
+    {
+      "item_id": "item06",
+      "pantry": [
+        "apple cider vinegar",
+        "chicken",
+        "chicken stock",
+        "powdered sugar",
+        "soy sauce",
+        "turmeric",
+        "worcestershire sauce"
+      ],
+      "left": [
+        {
+          "title": "Cola BBQ Chicken",
+          "missing": [
+            "1 cup Cola BBQ Sauce"
+          ]
+        },
+        {
+          "title": "Nigerian Caramelized Coconut",
+          "missing": [
+            "Whole fresh coconut"
+          ]
+        },
+        {
+          "title": "Candied Almonds (Brända mandlar)",
+          "missing": [
+            "100 g blanched almonds"
+          ]
+        },
+        {
+          "title": "Breaded Chicken Livers",
+          "missing": [
+            "Flour"
+          ]
+        },
+        {
+          "title": "Chicken Cockaigne",
+          "missing": [
+            "Olive oil or butter"
+          ]
+        }
+      ],
+      "right": [
+        {
+          "title": "Whiskey Barbecue Sauce",
+          "missing": [
+            "2 cups whiskey",
+            "1 cup ketchup"
+          ]
+        },
+        {
+          "title": "Cola BBQ Chicken",
+          "missing": [
+            "1 cup Cola BBQ Sauce"
+          ]
+        },
+        {
+          "title": "Stuffed Grilled Chicken Breasts",
+          "missing": [
+            "Dijon mustard",
+            "1½ cups poultry stuffing (prepared to a somewhat wet and pipeable state)"
+          ]
+        },
+        {
+          "title": "Honey Bourbon Marinade",
+          "missing": [
+            "¼ cup honey",
+            "¼ cup bourbon"
+          ]
+        },
+        {
+          "title": "Breaded Chicken Livers",
+          "missing": [
+            "Flour"
+          ]
+        }
+      ]
+    },
+    {
+      "item_id": "item07",
+      "pantry": [
+        "baking soda",
+        "bell pepper",
+        "egg",
+        "feta",
+        "lemon",
+        "olive",
+        "onion",
+        "oregano",
+        "stock",
+        "tomato"
+      ],
+      "left": [
+        {
+          "title": "Greek Salad",
+          "missing": [
+            "Cucumber, sliced into rounds",
+            "Extra-virgin or virgin olive oil"
+          ]
+        },
+        {
+          "title": "Moroccan Salad",
+          "missing": [
+            "1 handful of fresh coriander, finely chopped",
+            "1 tsp ground cumin"
+          ]
+        },
+        {
+          "title": "Garden Egg Stew",
+          "missing": [
+            "Nigerian smoked Titus fish, shredded",
+            "6 Thai basil leaves, chopped"
+          ]
+        },
+        {
+          "title": "Asun (Goat in Pepper Sauce)",
+          "missing": [
+            "Goat meat, washed and cut into smaller pieces",
+            "Fresh habanero pepper"
+          ]
+        },
+        {
+          "title": "Zambian Tomato and Onion Salad",
+          "missing": []
+        }
+      ],
+      "right": [
+        {
+          "title": "Zambian Tomato and Onion Salad",
+          "missing": []
+        },
+        {
+          "title": "Homemade Tomato Paste",
+          "missing": []
+        },
+        {
+          "title": "Stracciatella II",
+          "missing": []
+        },
+        {
+          "title": "Tomato Concassé",
+          "missing": []
+        },
+        {
+          "title": "Preserved Lemon",
+          "missing": []
+        }
+      ]
+    },
+    {
+      "item_id": "item08",
+      "pantry": [
+        "cheese",
+        "coriander",
+        "corn",
+        "jalapeno",
+        "miso",
+        "red pepper flakes",
+        "sour cream"
+      ],
+      "left": [
+        {
+          "title": "Nuked Nachos",
+          "missing": []
+        },
+        {
+          "title": "Chilli Oil",
+          "missing": []
+        },
+        {
+          "title": "Corn on the Cob with Husks",
+          "missing": []
+        },
+        {
+          "title": "Nigerian Pito",
+          "missing": []
+        },
+        {
+          "title": "Tuwon Dawa (Nigerian Sorghum Swallow)",
+          "missing": []
+        }
+      ],
+      "right": [
+        {
+          "title": "Frito Pie (No-bake)",
+          "missing": [
+            "1 recipe of home-made Frito Pie Chili, hot"
+          ]
+        },
+        {
+          "title": "Nuked Nachos",
+          "missing": []
+        },
+        {
+          "title": "Frito Pie (Baked)",
+          "missing": [
+            "2 cups (590 ml) chili (homemade or canned)"
+          ]
+        },
+        {
+          "title": "Baked Mac N Cheese",
+          "missing": [
+            "3-4 boxes of shell pasta, with liquid cheese",
+            "Breadcrumbs"
+          ]
+        },
+        {
+          "title": "Corn on the Cob with Husks",
+          "missing": []
+        }
+      ]
+    },
+    {
+      "item_id": "item09",
+      "pantry": [
+        "bell pepper",
+        "breadcrumbs",
+        "garlic",
+        "meat",
+        "milk",
+        "rice",
+        "sausage",
+        "semolina"
+      ],
+      "left": [
+        {
+          "title": "Stuffed Peppers",
+          "missing": [
+            "1 egg",
+            "Salt, pepper, paprika"
+          ]
+        },
+        {
+          "title": "Meat and Rice-Stuffed Bell Peppers",
+          "missing": [
+            "0.5 L (16 ounces) canned tomato sauce",
+            "Pepper"
+          ]
+        },
+        {
+          "title": "Oat Rice",
+          "missing": []
+        },
+        {
+          "title": "Nigerian Cheesy Sausage Masa",
+          "missing": [
+            "Cheese"
+          ]
+        },
+        {
+          "title": "Bangers and Mash",
+          "missing": [
+            "2 medium-to-large potatoes per person (Maris piper potatoes are good.)",
+            "Some butter or margarine"
+          ]
+        }
+      ],
+      "right": [
+        {
+          "title": "Kesra (Algerian Semolina Flatbread)",
+          "missing": []
+        },
+        {
+          "title": "Oat Rice",
+          "missing": []
+        },
+        {
+          "title": "Steamed Rice",
+          "missing": []
+        },
+        {
+          "title": "Rice Milk",
+          "missing": []
+        },
+        {
+          "title": "Tuwo Shinkafa (Nigerian Mashed Rice)",
+          "missing": []
+        }
+      ]
+    },
+    {
+      "item_id": "item10",
+      "pantry": [
+        "avocado",
+        "basil",
+        "cracker",
+        "cream cheese",
+        "garlic",
+        "lime",
+        "milk",
+        "pumpkin",
+        "red onion",
+        "sour cream"
+      ],
+      "left": [
+        {
+          "title": "Nigerian Fried Cheese Curds (Wara)",
+          "missing": []
+        },
+        {
+          "title": "Victorian Butter",
+          "missing": []
+        },
+        {
+          "title": "Garlic Salt",
+          "missing": []
+        },
+        {
+          "title": "Guacamole II",
+          "missing": [
+            "2–3 whole red chilli peppers, finely chopped"
+          ]
+        },
+        {
+          "title": "Quick Guacamole II",
+          "missing": [
+            "Red pepper flakes to taste"
+          ]
+        }
+      ],
+      "right": [
+        {
+          "title": "Guacamole Dip",
+          "missing": [
+            "¼ regular onion, cut in large pieces",
+            "4 cilantro stems with leaves"
+          ]
+        },
+        {
+          "title": "Guacamole (Chile-Free)",
+          "missing": [
+            "1 small tomato, diced very small",
+            "2 tbsp chopped cilantro (coriander leaves)"
+          ]
+        },
+        {
+          "title": "Guacamole II",
+          "missing": [
+            "2–3 whole red chilli peppers, finely chopped"
+          ]
+        },
+        {
+          "title": "Nigerian Fried Cheese Curds (Wara)",
+          "missing": []
+        },
+        {
+          "title": "Chunky Guacamole",
+          "missing": [
+            "1 cup of salsa fresca"
+          ]
+        }
+      ]
+    },
+    {
+      "item_id": "item11",
+      "pantry": [
+        "beef",
+        "flour",
+        "ginger",
+        "ketchup",
+        "mayonnaise",
+        "onion",
+        "vinegar"
+      ],
+      "left": [
+        {
+          "title": "Pain au Levain Naturel",
+          "missing": []
+        },
+        {
+          "title": "Buuz (Mongolian Meat Dumplings)",
+          "missing": []
+        },
+        {
+          "title": "Wheat-Free Baking Mix",
+          "missing": [
+            "2 parts (28.5%) by weight tapioca starch"
+          ]
+        },
+        {
+          "title": "Chili Colorado",
+          "missing": [
+            "9 New Mexico dry chiles, washed, with stems and seeds removed",
+            "3 tablespoons olive oil"
+          ]
+        },
+        {
+          "title": "Faina (Chickpea Flatbread)",
+          "missing": []
+        }
+      ],
+      "right": [
+        {
+          "title": "Fry Sauce",
+          "missing": []
+        },
+        {
+          "title": "Buuz (Mongolian Meat Dumplings)",
+          "missing": []
+        },
+        {
+          "title": "Pain au Levain Naturel",
+          "missing": []
+        },
+        {
+          "title": "Kunun kanwa",
+          "missing": []
+        },
+        {
+          "title": "Obuwunga (Ugandan Traditional Bread)",
+          "missing": []
+        }
+      ]
+    },
+    {
+      "item_id": "item12",
+      "pantry": [
+        "brown sugar",
+        "butter",
+        "dry mustard",
+        "egg",
+        "onion",
+        "vanilla",
+        "white bean",
+        "worcestershire sauce"
+      ],
+      "left": [
+        {
+          "title": "Maple Beans",
+          "missing": [
+            "250 ml (1 cup) maple syrup",
+            "6 slices side bacon OR 60 ml (¼ cup) bacon runoff"
+          ]
+        },
+        {
+          "title": "Microwave Chocolate Chip Cookie",
+          "missing": [
+            "½ cup (70 g / 2.5 oz) all-purpose flour",
+            "½ cup (40 g / 1.5 oz) dark chocolate chips"
+          ]
+        },
+        {
+          "title": "Brown Sugar Icing",
+          "missing": [
+            "⅔ cup (165 ml / 5.6 oz) cream"
+          ]
+        },
+        {
+          "title": "Butterscotch Sauce",
+          "missing": [
+            "300 ml double cream (~48% butterfat)"
+          ]
+        },
+        {
+          "title": "Dirty Desert Fried Eggs",
+          "missing": [
+            "Pepper"
+          ]
+        }
+      ],
+      "right": [
+        {
+          "title": "Fried Eggs",
+          "missing": []
+        },
+        {
+          "title": "Basic Scrambled Eggs",
+          "missing": []
+        },
+        {
+          "title": "Microwaved Scrambled Egg",
+          "missing": []
+        },
+        {
+          "title": "Egg Butter",
+          "missing": []
+        },
+        {
+          "title": "Shirred Egg",
+          "missing": []
+        }
+      ]
+    },
+    {
+      "item_id": "item13",
+      "pantry": [
+        "apple cider vinegar",
+        "avocado",
+        "butter",
+        "cumin",
+        "garlic",
+        "lime",
+        "red onion"
+      ],
+      "left": [
+        {
+          "title": "Ghee I",
+          "missing": []
+        },
+        {
+          "title": "Garlic Salt",
+          "missing": []
+        },
+        {
+          "title": "Guacamole II",
+          "missing": [
+            "2–3 whole red chilli peppers, finely chopped"
+          ]
+        },
+        {
+          "title": "Quick Guacamole II",
+          "missing": [
+            "Red pepper flakes to taste"
+          ]
+        },
+        {
+          "title": "Chunky Guacamole",
+          "missing": [
+            "1 cup of salsa fresca"
+          ]
+        }
+      ],
+      "right": [
+        {
+          "title": "Guacamole (Chile-Free)",
+          "missing": [
+            "1 small tomato, diced very small",
+            "2 tbsp chopped cilantro (coriander leaves)"
+          ]
+        },
+        {
+          "title": "Guacamole II",
+          "missing": [
+            "2–3 whole red chilli peppers, finely chopped"
+          ]
+        },
+        {
+          "title": "Chipotle Lime Hot Wings",
+          "missing": [
+            "24 chicken wingettes",
+            "¼ cup Smoky Chipotle Hot Sauce"
+          ]
+        },
+        {
+          "title": "Chunky Guacamole",
+          "missing": [
+            "1 cup of salsa fresca"
+          ]
+        },
+        {
+          "title": "Garlic Bread",
+          "missing": [
+            "Soft baguette or French bread loaf"
+          ]
+        }
+      ]
+    },
+    {
+      "item_id": "item14",
+      "pantry": [
+        "bacon",
+        "butter",
+        "ginger",
+        "honey",
+        "molasses",
+        "red pepper flakes"
+      ],
+      "left": [
+        {
+          "title": "Eastern North Carolina Barbecue Sauce",
+          "missing": [
+            "¾ gallons apple cider vinegar"
+          ]
+        },
+        {
+          "title": "Sweet Potatoes Sautéed with Honey",
+          "missing": [
+            "1 medium sweet potato"
+          ]
+        },
+        {
+          "title": "Gravy (Vegetarian)",
+          "missing": [
+            "4 tablespoons all-purpose flour",
+            "2 cups milk"
+          ]
+        },
+        {
+          "title": "Bacon Cheese Omelet",
+          "missing": [
+            "3 eggs",
+            "2 slices of American cheese"
+          ]
+        },
+        {
+          "title": "Honey Taffy",
+          "missing": [
+            "2 cups (450 g / 16 oz) white granulated sugar",
+            "2 tablespoons cornstarch"
+          ]
+        }
+      ],
+      "right": [
+        {
+          "title": "Chilli Oil",
+          "missing": []
+        },
+        {
+          "title": "Ginger Tea",
+          "missing": []
+        },
+        {
+          "title": "Ghee I",
+          "missing": []
+        },
+        {
+          "title": "Eastern North Carolina Barbecue Sauce",
+          "missing": [
+            "¾ gallons apple cider vinegar"
+          ]
+        },
+        {
+          "title": "Asida (Sudanese Porridge)",
+          "missing": [
+            "2 cups wheat flour or sorghum flour"
+          ]
+        }
+      ]
+    },
+    {
+      "item_id": "item15",
+      "pantry": [
+        "butter",
+        "tomato paste",
+        "tuna"
+      ],
+      "left": [
+        {
+          "title": "Ham Sauce (Modern)",
+          "missing": [
+            "3–4 oz ham or prosciutto, cut into strips",
+            "2 cups vegetable or meat stock"
+          ]
+        },
+        {
+          "title": "Filo Puff Pastry",
+          "missing": [
+            "2 ⅓ cups plain (non-self-raising) flour",
+            "Additional flour for dusting"
+          ]
+        },
+        {
+          "title": "Ghee I",
+          "missing": []
+        },
+        {
+          "title": "Hominy Grits",
+          "missing": [
+            "1 cup hominy grits"
+          ]
+        },
+        {
+          "title": "Fried Eggs",
+          "missing": [
+            "2–3 large eggs, depending on appetite"
+          ]
+        }
+      ],
+      "right": [
+        {
+          "title": "Ghee I",
+          "missing": []
+        },
+        {
+          "title": "Hominy Grits",
+          "missing": [
+            "1 cup hominy grits"
+          ]
+        },
+        {
+          "title": "Popcorn",
+          "missing": [
+            "½ cup unpopped popcorn kernels"
+          ]
+        },
+        {
+          "title": "Cannabutter",
+          "missing": [
+            "2 g cannabis (or more, depending on desired potency)"
+          ]
+        },
+        {
+          "title": "Buttered Popcorn",
+          "missing": [
+            "1 bowl of popped popcorn"
+          ]
+        }
+      ]
+    },
+    {
+      "item_id": "item16",
+      "pantry": [
+        "brown sugar",
+        "butter",
+        "dry mustard",
+        "egg",
+        "onion",
+        "vanilla",
+        "white bean",
+        "worcestershire sauce"
+      ],
+      "left": [
+        {
+          "title": "Fried Eggs",
+          "missing": []
+        },
+        {
+          "title": "Basic Scrambled Eggs",
+          "missing": []
+        },
+        {
+          "title": "Microwaved Scrambled Egg",
+          "missing": []
+        },
+        {
+          "title": "Egg Butter",
+          "missing": []
+        },
+        {
+          "title": "Shirred Egg",
+          "missing": []
+        }
+      ],
+      "right": [
+        {
+          "title": "Maple Beans",
+          "missing": [
+            "250 ml (1 cup) maple syrup",
+            "6 slices side bacon OR 60 ml (¼ cup) bacon runoff"
+          ]
+        },
+        {
+          "title": "Microwave Chocolate Chip Cookie",
+          "missing": [
+            "½ cup (70 g / 2.5 oz) all-purpose flour",
+            "½ cup (40 g / 1.5 oz) dark chocolate chips"
+          ]
+        },
+        {
+          "title": "Brown Sugar Icing",
+          "missing": [
+            "⅔ cup (165 ml / 5.6 oz) cream"
+          ]
+        },
+        {
+          "title": "Butterscotch Sauce",
+          "missing": [
+            "300 ml double cream (~48% butterfat)"
+          ]
+        },
+        {
+          "title": "Dirty Desert Fried Eggs",
+          "missing": [
+            "Pepper"
+          ]
+        }
+      ]
+    },
+    {
+      "item_id": "item17",
+      "pantry": [
+        "allspice",
+        "chicken stock",
+        "honey",
+        "onion",
+        "sugar",
+        "tomato"
+      ],
+      "left": [
+        {
+          "title": "Tomato Concassé",
+          "missing": []
+        },
+        {
+          "title": "Vietnamese Caramel Sauce (Nước Maøu)",
+          "missing": []
+        },
+        {
+          "title": "Simple Syrup",
+          "missing": []
+        },
+        {
+          "title": "Caramel Sauce I",
+          "missing": []
+        },
+        {
+          "title": "Oral Rehydration Solution",
+          "missing": []
+        }
+      ],
+      "right": [
+        {
+          "title": "Babi Panggang Sauce",
+          "missing": [
+            "1 clove of garlic",
+            "1 tablespoon of sherry"
+          ]
+        },
+        {
+          "title": "Hogao (Colombian Scallion Tomato Sauce)",
+          "missing": [
+            "2 scallions, finely chopped",
+            "Pepper"
+          ]
+        },
+        {
+          "title": "Liberian Potato Greens",
+          "missing": [
+            "3 large bunches of sweet potato greens (see notes)",
+            "2 lbs meat, cut into medium cubes"
+          ]
+        },
+        {
+          "title": "Caramelized Sweet and Sour Onion Marmalade",
+          "missing": [
+            "¼ cup balsamic vinegar"
+          ]
+        },
+        {
+          "title": "Cucumber and Tomato Salad",
+          "missing": [
+            "1 pickling cucumber"
+          ]
+        }
+      ]
+    },
+    {
+      "item_id": "item18",
+      "pantry": [
+        "beef stock",
+        "flour",
+        "milk",
+        "molasses",
+        "mustard",
+        "parsley",
+        "pickle",
+        "sugar",
+        "vinegar",
+        "wine"
+      ],
+      "left": [
+        {
+          "title": "Wow-Wow Sauce",
+          "missing": [
+            "Butter",
+            "1 tbsp mushroom ketchup and/or port wine"
+          ]
+        },
+        {
+          "title": "Rosogulla (Bengali Milk Balls in Syrup)",
+          "missing": [
+            "½ tsp citric acid"
+          ]
+        },
+        {
+          "title": "Shirmal (Persian Saffron Flatbread)",
+          "missing": [
+            "A few saffron strands",
+            "¾ cup ghee"
+          ]
+        },
+        {
+          "title": "Pain au Levain Naturel",
+          "missing": []
+        },
+        {
+          "title": "Serbian Flatbread (Lepinja)",
+          "missing": [
+            "30 g fresh yeast"
+          ]
+        }
+      ],
+      "right": [
+        {
+          "title": "Homemade Paneer",
+          "missing": []
+        },
+        {
+          "title": "Ayib (Ethiopian Fresh Cheese)",
+          "missing": []
+        },
+        {
+          "title": "Pain au Levain Naturel",
+          "missing": []
+        },
+        {
+          "title": "Genfo (Ethiopian Porridge)",
+          "missing": []
+        },
+        {
+          "title": "Obuwunga (Ugandan Traditional Bread)",
+          "missing": []
+        }
+      ]
+    },
+    {
+      "item_id": "item19",
+      "pantry": [
+        "bell pepper",
+        "brandy",
+        "stock",
+        "turkey",
+        "turmeric"
+      ],
+      "left": [
+        {
+          "title": "Deep Fried Turkey",
+          "missing": []
+        },
+        {
+          "title": "Stracciatella II",
+          "missing": [
+            "Eggs"
+          ]
+        },
+        {
+          "title": "Homemade Tomato Paste",
+          "missing": [
+            "1 gallon (4 litres) tomato pulp"
+          ]
+        },
+        {
+          "title": "Balangu (Nigerian Spiced Ram Meat)",
+          "missing": [
+            "2 large chunks of mutton",
+            "2 onions"
+          ]
+        },
+        {
+          "title": "Grilled Filet Mignon with a Cognac Reduction",
+          "missing": [
+            "4 filet mignons, 1½ in (4 cm) thick",
+            "2 tbsp Dijon mustard"
+          ]
+        }
+      ],
+      "right": [
+        {
+          "title": "Balangu (Nigerian Spiced Ram Meat)",
+          "missing": [
+            "2 large chunks of mutton",
+            "2 onions"
+          ]
+        },
+        {
+          "title": "Deep Fried Turkey",
+          "missing": []
+        },
+        {
+          "title": "Homemade Tomato Paste",
+          "missing": [
+            "1 gallon (4 litres) tomato pulp"
+          ]
+        },
+        {
+          "title": "Stracciatella II",
+          "missing": [
+            "Eggs"
+          ]
+        },
+        {
+          "title": "Brandy Butter",
+          "missing": [
+            "75 g unsalted butter",
+            "75 g sieved icing sugar or caster sugar"
+          ]
+        }
+      ]
+    },
+    {
+      "item_id": "item20",
+      "pantry": [
+        "green onion",
+        "ground beef",
+        "olive oil",
+        "parsley",
+        "thyme"
+      ],
+      "left": [
+        {
+          "title": "Fried Potato Wedges",
+          "missing": [
+            "4 medium/fair sized potatoes (Russets are preferable)"
+          ]
+        },
+        {
+          "title": "Oven-Roasted Potatoes",
+          "missing": [
+            "2 large potatoes"
+          ]
+        },
+        {
+          "title": "Bulgarian Fresh Sausage (Kebapcheta)",
+          "missing": [
+            "½ teaspoon cumin"
+          ]
+        },
+        {
+          "title": "Christmas Mince Pies (Meat-Free)",
+          "missing": [
+            "Shortcrust pastry dough, either homemade or shop bought"
+          ]
+        },
+        {
+          "title": "Hamburger",
+          "missing": [
+            "1 hamburger bun per burger"
+          ]
+        }
+      ],
+      "right": [
+        {
+          "title": "Oven-Roasted Potatoes",
+          "missing": [
+            "2 large potatoes"
+          ]
+        },
+        {
+          "title": "Fried Potato Wedges",
+          "missing": [
+            "4 medium/fair sized potatoes (Russets are preferable)"
+          ]
+        },
+        {
+          "title": "Mutton Broth",
+          "missing": [
+            "3 pounds scrag of fresh mutton neck, cut into several pieces",
+            "A few turnips, cut into slices"
+          ]
+        },
+        {
+          "title": "Spaghetti Aglio e Olio",
+          "missing": [
+            "100–150 g spaghetti",
+            "1–2 cloves of garlic"
+          ]
+        },
+        {
+          "title": "Garlic Parsley Dressing",
+          "missing": [
+            "¼ cup vinegar",
+            "2 tsp garlic powder"
+          ]
+        }
+      ]
+    },
+    {
+      "item_id": "item21",
+      "pantry": [
+        "butter",
+        "egg",
+        "molasses",
+        "monterey jack",
+        "oregano",
+        "potato"
+      ],
+      "left": [
+        {
+          "title": "Creamy Cornstarch Scrambled Eggs",
+          "missing": [
+            "1½ tbsp whole milk"
+          ]
+        },
+        {
+          "title": "Pastry Dough (recipe)",
+          "missing": [
+            "2¾ cups (350 g) flour",
+            "1 cup plus 2 tablespoons (220 g) confectioner's sugar"
+          ]
+        },
+        {
+          "title": "Foithong (Egg Threads in Syrup)",
+          "missing": [
+            "1 kilogram white granulated sugar",
+            "2 pandan leaves"
+          ]
+        },
+        {
+          "title": "Potato Balls",
+          "missing": [
+            "Flour",
+            "Breadcrumbs"
+          ]
+        },
+        {
+          "title": "Colcannon (Scottish)",
+          "missing": [
+            "Equal amounts of cooked potato and cabbage",
+            "Pepper"
+          ]
+        }
+      ],
+      "right": [
+        {
+          "title": "Hash Browns",
+          "missing": []
+        },
+        {
+          "title": "Spanish Omelet",
+          "missing": []
+        },
+        {
+          "title": "Potatoes Anna",
+          "missing": []
+        },
+        {
+          "title": "Fried Eggs",
+          "missing": []
+        },
+        {
+          "title": "Basic Scrambled Eggs",
+          "missing": []
+        }
+      ]
+    },
+    {
+      "item_id": "item22",
+      "pantry": [
+        "butter",
+        "tomato paste",
+        "tuna"
+      ],
+      "left": [
+        {
+          "title": "Ghee I",
+          "missing": []
+        },
+        {
+          "title": "Hominy Grits",
+          "missing": [
+            "1 cup hominy grits"
+          ]
+        },
+        {
+          "title": "Popcorn",
+          "missing": [
+            "½ cup unpopped popcorn kernels"
+          ]
+        },
+        {
+          "title": "Cannabutter",
+          "missing": [
+            "2 g cannabis (or more, depending on desired potency)"
+          ]
+        },
+        {
+          "title": "Buttered Popcorn",
+          "missing": [
+            "1 bowl of popped popcorn"
+          ]
+        }
+      ],
+      "right": [
+        {
+          "title": "Ham Sauce (Modern)",
+          "missing": [
+            "3–4 oz ham or prosciutto, cut into strips",
+            "2 cups vegetable or meat stock"
+          ]
+        },
+        {
+          "title": "Filo Puff Pastry",
+          "missing": [
+            "2 ⅓ cups plain (non-self-raising) flour",
+            "Additional flour for dusting"
+          ]
+        },
+        {
+          "title": "Ghee I",
+          "missing": []
+        },
+        {
+          "title": "Hominy Grits",
+          "missing": [
+            "1 cup hominy grits"
+          ]
+        },
+        {
+          "title": "Fried Eggs",
+          "missing": [
+            "2–3 large eggs, depending on appetite"
+          ]
+        }
+      ]
+    },
+    {
+      "item_id": "item23",
+      "pantry": [
+        "bell pepper",
+        "brandy",
+        "stock",
+        "turkey",
+        "turmeric"
+      ],
+      "left": [
+        {
+          "title": "Balangu (Nigerian Spiced Ram Meat)",
+          "missing": [
+            "2 large chunks of mutton",
+            "2 onions"
+          ]
+        },
+        {
+          "title": "Deep Fried Turkey",
+          "missing": []
+        },
+        {
+          "title": "Homemade Tomato Paste",
+          "missing": [
+            "1 gallon (4 litres) tomato pulp"
+          ]
+        },
+        {
+          "title": "Stracciatella II",
+          "missing": [
+            "Eggs"
+          ]
+        },
+        {
+          "title": "Brandy Butter",
+          "missing": [
+            "75 g unsalted butter",
+            "75 g sieved icing sugar or caster sugar"
+          ]
+        }
+      ],
+      "right": [
+        {
+          "title": "Deep Fried Turkey",
+          "missing": []
+        },
+        {
+          "title": "Stracciatella II",
+          "missing": [
+            "Eggs"
+          ]
+        },
+        {
+          "title": "Homemade Tomato Paste",
+          "missing": [
+            "1 gallon (4 litres) tomato pulp"
+          ]
+        },
+        {
+          "title": "Balangu (Nigerian Spiced Ram Meat)",
+          "missing": [
+            "2 large chunks of mutton",
+            "2 onions"
+          ]
+        },
+        {
+          "title": "Grilled Filet Mignon with a Cognac Reduction",
+          "missing": [
+            "4 filet mignons, 1½ in (4 cm) thick",
+            "2 tbsp Dijon mustard"
+          ]
+        }
+      ]
+    },
+    {
+      "item_id": "item24",
+      "pantry": [
+        "baking soda",
+        "bell pepper",
+        "egg",
+        "feta",
+        "lemon",
+        "olive",
+        "onion",
+        "oregano",
+        "stock",
+        "tomato"
+      ],
+      "left": [
+        {
+          "title": "Greek Salad",
+          "missing": [
+            "Cucumber, sliced into rounds",
+            "Extra-virgin or virgin olive oil"
+          ]
+        },
+        {
+          "title": "Moroccan Salad",
+          "missing": [
+            "1 handful of fresh coriander, finely chopped",
+            "1 tsp ground cumin"
+          ]
+        },
+        {
+          "title": "Garden Egg Stew",
+          "missing": [
+            "Nigerian smoked Titus fish, shredded",
+            "6 Thai basil leaves, chopped"
+          ]
+        },
+        {
+          "title": "Asun (Goat in Pepper Sauce)",
+          "missing": [
+            "Goat meat, washed and cut into smaller pieces",
+            "Fresh habanero pepper"
+          ]
+        },
+        {
+          "title": "Zambian Tomato and Onion Salad",
+          "missing": []
+        }
+      ],
+      "right": [
+        {
+          "title": "Zambian Tomato and Onion Salad",
+          "missing": []
+        },
+        {
+          "title": "Homemade Tomato Paste",
+          "missing": []
+        },
+        {
+          "title": "Stracciatella II",
+          "missing": []
+        },
+        {
+          "title": "Tomato Concassé",
+          "missing": []
+        },
+        {
+          "title": "Preserved Lemon",
+          "missing": []
+        }
+      ]
+    }
+  ]
+}

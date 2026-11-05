@@ -85,6 +85,8 @@ lines, under a CC BY-SA notice. A Playwright smoke test of the journey. Parity t
 
 ## M2: Evaluation baseline (about 1 week)
 
+**Status, 2026-11-05:** complete, in PR #9 (`feat/m2-eval-baseline`), waiting for merge. Built: results helper, rule baselines with paired intervals, splits, gold sheet tools, judging tools, Kaggle kernel (run 2026-11-04, MEASURED). The owner spot-checked 30 parser labels (2 fixed). The human judging pass belongs to M4, on the post-M3 pack. See [PROJECT_STATE section 11](PROJECT_STATE.md).
+
 **Objective:** measure before changing anything.
 
 - Add the results-file helper. Link existing claims to it.
@@ -92,7 +94,7 @@ lines, under a CC BY-SA notice. A Playwright smoke test of the journey. Parity t
 - Add distractor pantries with at least 2 samplers, with paired confidence intervals.
 - Add "makeable at k" as a product metric only.
 - Write the judging protocol and pilot it on 20 pantries.
-- Build a 300-line hand-labelled parser gold set. Split it into dev and test.
+- Build a 300-line parser gold set. Split it into dev and test. (Done with model labellers, not people. A human spot-check is open.)
 - Split the 166 realistic inputs into dev and test before any table work.
 - Research on Kaggle (this is the first Kaggle job, and it needs approval): rule baselines on
   RecipeNLG at 1.27M recipes. This replaces the old 7.7 times claim. No output ships.

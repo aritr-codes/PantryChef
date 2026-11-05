@@ -1,0 +1,58 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "PantryChef results file, schema 1",
+  "type": "object",
+  "required": ["schema", "label", "what", "command", "commit", "dirty", "dirty_paths", "config", "seed", "corpus_fingerprint", "arms", "metrics", "comparisons", "environment"],
+  "properties": {
+    "schema": {"const": 1},
+    "label": {"enum": ["MEASURED", "ESTIMATE", "HYPOTHESIS"]},
+    "what": {"type": "string", "minLength": 1},
+    "command": {"type": "string", "minLength": 1},
+    "commit": {"type": "string", "pattern": "^[0-9a-f]{40}$"},
+    "dirty": {"type": "boolean"},
+    "dirty_paths": {"type": "array", "items": {"type": "string"}, "maxItems": 20},
+    "config": {"type": "object"},
+    "seed": {"type": "integer"},
+    "corpus_fingerprint": {"type": "string", "minLength": 1},
+    "arms": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["name", "features_used"],
+        "properties": {"name": {"type": "string"}, "features_used": {"type": "array", "items": {"type": "string"}}}
+      }
+    },
+    "metrics": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["name", "role", "depends_on", "arm", "split", "n", "value"],
+        "properties": {
+          "name": {"type": "string"},
+          "role": {"enum": ["selection", "sanity", "product", "latency"]},
+          "depends_on": {"type": "array", "items": {"type": "string"}},
+          "arm": {"type": ["string", "null"]},
+          "split": {"enum": ["dev", "test", "all"]},
+          "n": {"type": "integer", "minimum": 0},
+          "value": {"type": "number"},
+          "ci": {
+            "type": "object",
+            "required": ["lo", "hi", "level", "method", "n_clusters"],
+            "properties": {"lo": {"type": "number"}, "hi": {"type": "number"}, "level": {"type": "number"}, "method": {"type": "string"}, "n_clusters": {"type": "integer"}}
+          },
+          "group": {"type": "object"}
+        }
+      }
+    },
+    "comparisons": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["metric", "role", "a", "b", "split", "diff", "ci"],
+        "properties": {"metric": {"type": "string"}, "role": {"enum": ["selection", "sanity", "product", "latency"]}, "a": {"type": "string"}, "b": {"type": "string"}, "split": {"enum": ["dev", "test", "all"]}, "diff": {"type": "number"}, "ci": {"type": "object"}, "group": {"type": "object"}}
+      }
+    },
+    "environment": {"type": "object"},
+    "raw": {"type": "object"}
+  }
+}

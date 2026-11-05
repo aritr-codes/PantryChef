@@ -1,0 +1,83 @@
+{
+  "arms": [],
+  "command": "uv run python scripts/parser_gold.py score --split dev --out results/m2_parser_gold_dev.json",
+  "commit": "0d6f964c2b3183b956dad432ffb4dbb9e7c82aea",
+  "comparisons": [],
+  "config": {
+    "f1": 0.8479163723689788,
+    "gold_found": 123,
+    "gold_groups": 152,
+    "gold_out_of_table": 20,
+    "labels": "model-labelled, see data/eval/parser_gold/NOTICE.md",
+    "lines": 150,
+    "optional_accuracy": 0.9852941176470589,
+    "optional_n": 136,
+    "precision": 0.8905109489051095,
+    "pred_correct": 122,
+    "pred_groups": 137,
+    "recall": 0.8092105263157895,
+    "split": "dev"
+  },
+  "corpus_fingerprint": "a1a076ab0aee385c4e01cdc904342214dfaa6b01dc35d80d32519ea625c597d2",
+  "dirty": false,
+  "dirty_paths": [],
+  "environment": {
+    "numpy": "2.4.6",
+    "platform": "Windows 10 (win32)",
+    "python": "3.11.15"
+  },
+  "label": "MEASURED",
+  "metrics": [
+    {
+      "arm": null,
+      "depends_on": [
+        "ingredient_table",
+        "parser_rules"
+      ],
+      "n": 137,
+      "name": "parser_precision",
+      "role": "sanity",
+      "split": "dev",
+      "value": 0.8905109489051095
+    },
+    {
+      "arm": null,
+      "depends_on": [
+        "ingredient_table",
+        "parser_rules"
+      ],
+      "n": 152,
+      "name": "parser_recall",
+      "role": "sanity",
+      "split": "dev",
+      "value": 0.8092105263157895
+    },
+    {
+      "arm": null,
+      "depends_on": [
+        "ingredient_table",
+        "parser_rules"
+      ],
+      "n": 152,
+      "name": "parser_f1",
+      "role": "sanity",
+      "split": "dev",
+      "value": 0.8479163723689788
+    },
+    {
+      "arm": null,
+      "depends_on": [
+        "ingredient_table",
+        "parser_rules"
+      ],
+      "n": 136,
+      "name": "parser_optional_accuracy",
+      "role": "sanity",
+      "split": "dev",
+      "value": 0.9852941176470589
+    }
+  ],
+  "schema": 1,
+  "seed": 0,
+  "what": "Ingredient parser vs the parser gold set, dev half, group-level micro scores"
+}

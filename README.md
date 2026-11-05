@@ -14,7 +14,7 @@ in [LICENSES.md](LICENSES.md).
 
 | Capability | Built | Planned |
 | --- | --- | --- |
-| Ingredient parser | Rules plus vocabulary match: [`pantrychef/ingredients/parser.py`](pantrychef/ingredients/parser.py) | Unicode fractions are handled for Wikibooks lines (M1). A hand-labelled gold set (M2) |
+| Ingredient parser | Rules plus vocabulary match: [`pantrychef/ingredients/parser.py`](pantrychef/ingredients/parser.py) | Unicode fractions are handled for Wikibooks lines (M1). A model-labelled gold set (M2) |
 | Search | Set-overlap baseline and the `cook` command: [`pantrychef/retrieval/`](pantrychef/retrieval/), [`pantrychef/cli.py`](pantrychef/cli.py) | Built (M1): `answer()` in [`pantrychef/engine.py`](pantrychef/engine.py) gives groups by missing items, top unlocks and blockers, and `cook --pack` prints it. A TypeScript copy is in [`web/src/engine.ts`](web/src/engine.ts), checked against golden cases | Hand-judged quality evaluation (M2) |
 | Ranking | Research only. A candidate pool and a LambdaMART ranker: [`pantrychef/recommender/`](pantrychef/recommender/). Only tests call its runtime | Ships only if it beats an IDF rule on hand-judged pantries (M4, [ADR 0005](docs/decisions/0005-honest-claims-and-eval-reset.md)) |
 | Substitution | Graph and embedding arms, and the `substitute` command: [`pantrychef/substitution/`](pantrychef/substitution/). Mined from RecipeNLG, so it cannot ship | A curated table, and swaps mined from Open Recipes if they pass a blind rating (M5) |
@@ -43,7 +43,7 @@ and the details are in [docs/TECHNICAL_AUDIT.md](docs/TECHNICAL_AUDIT.md).
 | Parser F1 and retrieval recall | Unsupported. No log exists ([PROJECT_STATE, section 7](docs/PROJECT_STATE.md#7-published-numbers)) |
 | A production recommender bundle | False. The only bundle on disk holds 1,000 recipes ([audit H4](docs/TECHNICAL_AUDIT.md#h4-the-production-bundle-does-not-exist-verified)) |
 
-New evaluation starts in M2. Each new number will link to a results file.
+M2 starts the new evaluation. The rule baselines and their intervals are in [docs/EVALUATION.md](docs/EVALUATION.md). Each new number links to a file in [`results/`](results/).
 
 ## Quickstart
 

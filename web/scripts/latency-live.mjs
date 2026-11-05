@@ -2,11 +2,10 @@
 // For each run: load the page, add the pantry, click "See recipes", and time the click until the
 // results heading is on screen and the next frame is painted. That covers answer() and rendering.
 // Usage: node scripts/latency-live.mjs [--url URL] [--rate 6] [--runs 15] [--seed 1] [--out FILE]
-import { execFileSync } from "node:child_process";
-import { mkdirSync, writeFileSync } from "node:fs";
 import { dirname, join, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 import { chromium } from "@playwright/test";
+import { latencyMetrics, writeResult } from "./result.mjs";
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), "..", "..");
 const arg = (n, d) => {
@@ -23,7 +22,6 @@ const NAMES = ["egg", "flour", "milk", "butter", "sugar", "onion", "garlic", "to
 
 let s = SEED >>> 0;
 const rnd = () => ((s = (Math.imul(s, 1664525) + 1013904223) >>> 0) / 2 ** 32);
-const git = (...a) => execFileSync("git", a, { cwd: root, encoding: "utf8" }).trim();
 const stats = (xs) => {
   const a = [...xs].sort((x, y) => x - y);
   const at = (q) => a[Math.min(a.length - 1, Math.floor(q * a.length))];
@@ -72,18 +70,27 @@ for (const size of SIZES) {
   bySize[size] = stats(times);
 }
 await browser.close();
-const out = {
-  label: "MEASURED",
-  what: "Click on 'See recipes' to results painted, deployed production bundle, headless Chromium, CPU throttled",
+const config = { cpu_throttle_rate: RATE, runs_per_size: RUNS, warmup_runs: 2, pantry_sizes: SIZES, cache: "disabled", pool: NAMES };
+const raw = {
   url: URL_,
-  commit: git("rev-parse", "HEAD"),
-  dirty: git("status", "--porcelain", "--untracked-files=no") !== "",
-  config: { cpu_throttle_rate: RATE, runs_per_size: RUNS, warmup_runs: 2, pantry_sizes: SIZES, cache: "disabled", pool: NAMES },
-  seed: SEED,
+  config,
   metrics: { bySize, pack_page_ready_ms: stats(loads), threshold_ms: 100, sizes_over_threshold: Object.entries(bySize).filter(([, v]) => v.p95 >= 100).map(([k]) => Number(k)) },
   limits: "Page-ready time is unthrottled. Network time is real, so page-ready time varies with the connection. Includes render time and two animation frames, which is more than answer() alone. One run.",
-  command: `node web/scripts/latency-live.mjs --url ${URL_} --rate ${RATE} --runs ${RUNS} --seed ${SEED} --out ${OUT}`,
 };
-mkdirSync(join(root, "results"), { recursive: true });
-writeFileSync(join(root, "results", OUT), JSON.stringify(out, null, 2) + "\n");
-console.log(JSON.stringify(out.metrics, null, 2));
+writeResult(
+  join(root, "results", OUT),
+  {
+    label: "MEASURED",
+    what: "Click on 'See recipes' to results painted, deployed production bundle, headless Chromium, CPU throttled",
+    command: `node web/scripts/latency-live.mjs --url ${URL_} --rate ${RATE} --runs ${RUNS} --seed ${SEED} --out ${OUT}`,
+    config,
+    seed: SEED,
+    corpus_fingerprint: `none recorded (deployed bundle: ${URL_})`,
+    arms: [],
+    metrics: latencyMetrics(bySize),
+    comparisons: [],
+    raw,
+  },
+  root,
+);
+console.log(JSON.stringify(raw.metrics, null, 2));

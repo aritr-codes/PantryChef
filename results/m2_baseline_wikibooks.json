@@ -1,0 +1,4134 @@
+{
+  "arms": [
+    {
+      "features_used": [],
+      "name": "random"
+    },
+    {
+      "features_used": [
+        "have",
+        "total"
+      ],
+      "name": "overlap"
+    },
+    {
+      "features_used": [
+        "idf",
+        "have",
+        "total"
+      ],
+      "name": "idf_flat"
+    },
+    {
+      "features_used": [
+        "idf",
+        "have",
+        "total",
+        "group"
+      ],
+      "name": "shipped"
+    }
+  ],
+  "command": "python -m pantrychef.eval.baseline_main --pack build/pack --out results/m2_baseline_wikibooks.json",
+  "commit": "2ca53e4643c68491ec4ce7c1fd8a1a19068089e7",
+  "comparisons": [
+    {
+      "a": "overlap",
+      "b": "random",
+      "ci": {
+        "hi": 0.54819370348416,
+        "level": 0.95,
+        "lo": 0.5135835662065656,
+        "method": "cluster-bootstrap-percentile",
+        "n_clusters": 1687
+      },
+      "diff": 0.5309183516652394,
+      "group": {
+        "d": 0,
+        "sampler": "none"
+      },
+      "metric": "mrr_at_10",
+      "n": 5061,
+      "role": "sanity",
+      "split": "dev"
+    },
+    {
+      "a": "overlap",
+      "b": "random",
+      "ci": {
+        "hi": 0.8381742738589212,
+        "level": 0.95,
+        "lo": 0.8063623789764869,
+        "method": "cluster-bootstrap-percentile",
+        "n_clusters": 1687
+      },
+      "diff": 0.8227622999407231,
+      "group": {
+        "d": 0,
+        "sampler": "none"
+      },
+      "metric": "recall_at_10",
+      "n": 5061,
+      "role": "sanity",
+      "split": "dev"
+    },
+    {
+      "a": "idf_flat",
+      "b": "overlap",
+      "ci": {
+        "hi": 0.26063164315979964,
+        "level": 0.95,
+        "lo": 0.2355733856474817,
+        "method": "cluster-bootstrap-percentile",
+        "n_clusters": 1687
+      },
+      "diff": 0.24808299068820713,
+      "group": {
+        "d": 0,
+        "sampler": "none"
+      },
+      "metric": "mrr_at_10",
+      "n": 5061,
+      "role": "sanity",
+      "split": "dev"
+    },
+    {
+      "a": "idf_flat",
+      "b": "overlap",
+      "ci": {
+        "hi": 0.10156095633274057,
+        "level": 0.95,
+        "lo": 0.07844299545544359,
+        "method": "cluster-bootstrap-percentile",
+        "n_clusters": 1687
+      },
+      "diff": 0.08970559178028058,
+      "group": {
+        "d": 0,
+        "sampler": "none"
+      },
+      "metric": "recall_at_10",
+      "n": 5061,
+      "role": "sanity",
+      "split": "dev"
+    },
+    {
+      "a": "shipped",
+      "b": "idf_flat",
+      "ci": {
+        "hi": -0.6757592294640309,
+        "level": 0.95,
+        "lo": -0.7084901503247679,
+        "method": "cluster-bootstrap-percentile",
+        "n_clusters": 1687
+      },
+      "diff": -0.6921931797154087,
+      "group": {
+        "d": 0,
+        "sampler": "none"
+      },
+      "metric": "mrr_at_10",
+      "n": 5061,
+      "role": "sanity",
+      "split": "dev"
+    },
+    {
+      "a": "shipped",
+      "b": "idf_flat",
+      "ci": {
+        "hi": -0.6708160442600276,
+        "level": 0.95,
+        "lo": -0.7107291049199763,
+        "method": "cluster-bootstrap-percentile",
+        "n_clusters": 1687
+      },
+      "diff": -0.690772574590002,
+      "group": {
+        "d": 0,
+        "sampler": "none"
+      },
+      "metric": "recall_at_10",
+      "n": 5061,
+      "role": "sanity",
+      "split": "dev"
+    },
+    {
+      "a": "shipped",
+      "b": "overlap",
+      "ci": {
+        "hi": -0.4251052242012526,
+        "level": 0.95,
+        "lo": -0.4633552406670367,
+        "method": "cluster-bootstrap-percentile",
+        "n_clusters": 1687
+      },
+      "diff": -0.4441101890272008,
+      "group": {
+        "d": 0,
+        "sampler": "none"
+      },
+      "metric": "mrr_at_10",
+      "n": 5061,
+      "role": "sanity",
+      "split": "dev"
+    },
+    {
+      "a": "shipped",
+      "b": "overlap",
+      "ci": {
+        "hi": -0.5773562537048014,
+        "level": 0.95,
+        "lo": -0.624382533096226,
+        "method": "cluster-bootstrap-percentile",
+        "n_clusters": 1687
+      },
+      "diff": -0.6010669828097214,
+      "group": {
+        "d": 0,
+        "sampler": "none"
+      },
+      "metric": "recall_at_10",
+      "n": 5061,
+      "role": "sanity",
+      "split": "dev"
+    },
+    {
+      "a": "overlap",
+      "b": "random",
+      "ci": {
+        "hi": 0.5623634229105353,
+        "level": 0.95,
+        "lo": 0.5275987037841141,
+        "method": "cluster-bootstrap-percentile",
+        "n_clusters": 1645
+      },
+      "diff": 0.5448743989321494,
+      "group": {
+        "d": 0,
+        "sampler": "none"
+      },
+      "metric": "mrr_at_10",
+      "n": 4935,
+      "role": "sanity",
+      "split": "test"
+    },
+    {
+      "a": "overlap",
+      "b": "random",
+      "ci": {
+        "hi": 0.8506585612968591,
+        "level": 0.95,
+        "lo": 0.8198581560283688,
+        "method": "cluster-bootstrap-percentile",
+        "n_clusters": 1645
+      },
+      "diff": 0.835258358662614,
+      "group": {
+        "d": 0,
+        "sampler": "none"
+      },
+      "metric": "recall_at_10",
+      "n": 4935,
+      "role": "sanity",
+      "split": "test"
+    },
+    {
+      "a": "idf_flat",
+      "b": "overlap",
+      "ci": {
+        "hi": 0.26212814203695667,
+        "level": 0.95,
+        "lo": 0.23643998970746694,
+        "method": "cluster-bootstrap-percentile",
+        "n_clusters": 1645
+      },
+      "diff": 0.24928796577732762,
+      "group": {
+        "d": 0,
+        "sampler": "none"
+      },
+      "metric": "mrr_at_10",
+      "n": 4935,
+      "role": "sanity",
+      "split": "test"
+    },
+    {
+      "a": "idf_flat",
+      "b": "overlap",
+      "ci": {
+        "hi": 0.09584599797365755,
+        "level": 0.95,
+        "lo": 0.07456940222897669,
+        "method": "cluster-bootstrap-percentile",
+        "n_clusters": 1645
+      },
+      "diff": 0.0851063829787234,
+      "group": {
+        "d": 0,
+        "sampler": "none"
+      },
+      "metric": "recall_at_10",
+      "n": 4935,
+      "role": "sanity",
+      "split": "test"
+    },
+    {
+      "a": "shipped",
+      "b": "idf_flat",
+      "ci": {
+        "hi": -0.6862958138338078,
+        "level": 0.95,
+        "lo": -0.7202100320033451,
+        "method": "cluster-bootstrap-percentile",
+        "n_clusters": 1645
+      },
+      "diff": -0.7034106077419148,
+      "group": {
+        "d": 0,
+        "sampler": "none"
+      },
+      "metric": "mrr_at_10",
+      "n": 4935,
+      "role": "sanity",
+      "split": "test"
+    },
+    {
+      "a": "shipped",
+      "b": "idf_flat",
+      "ci": {
+        "hi": -0.6676798378926039,
+        "level": 0.95,
+        "lo": -0.7096251266464032,
+        "method": "cluster-bootstrap-percentile",
+        "n_clusters": 1645
+      },
+      "diff": -0.6889564336372846,
+      "group": {
+        "d": 0,
+        "sampler": "none"
+      },
+      "metric": "recall_at_10",
+      "n": 4935,
+      "role": "sanity",
+      "split": "test"
+    },
+    {
+      "a": "shipped",
+      "b": "overlap",
+      "ci": {
+        "hi": -0.4344172657242567,
+        "level": 0.95,
+        "lo": -0.473969218893231,
+        "method": "cluster-bootstrap-percentile",
+        "n_clusters": 1645
+      },
+      "diff": -0.4541226419645872,
+      "group": {
+        "d": 0,
+        "sampler": "none"
+      },
+      "metric": "mrr_at_10",
+      "n": 4935,
+      "role": "sanity",
+      "split": "test"
+    },
+    {
+      "a": "shipped",
+      "b": "overlap",
+      "ci": {
+        "hi": -0.5797365754812563,
+        "level": 0.95,
+        "lo": -0.6279635258358662,
+        "method": "cluster-bootstrap-percentile",
+        "n_clusters": 1645
+      },
+      "diff": -0.6038500506585613,
+      "group": {
+        "d": 0,
+        "sampler": "none"
+      },
+      "metric": "recall_at_10",
+      "n": 4935,
+      "role": "sanity",
+      "split": "test"
+    },
+    {
+      "a": "overlap",
+      "b": "random",
+      "ci": {
+        "hi": 0.48849096577312345,
+        "level": 0.95,
+        "lo": 0.4544873182099027,
+        "method": "cluster-bootstrap-percentile",
+        "n_clusters": 1687
+      },
+      "diff": 0.4713345596422063,
+      "group": {
+        "d": 3,
+        "sampler": "uniform"
+      },
+      "metric": "mrr_at_10",
+      "n": 5061,
+      "role": "sanity",
+      "split": "dev"
+    },
+    {
+      "a": "overlap",
+      "b": "random",
+      "ci": {
+        "hi": 0.7996443390634262,
+        "level": 0.95,
+        "lo": 0.766054139498123,
+        "method": "cluster-bootstrap-percentile",
+        "n_clusters": 1687
+      },
+      "diff": 0.7832444180991899,
+      "group": {
+        "d": 3,
+        "sampler": "uniform"
+      },
+      "metric": "recall_at_10",
+      "n": 5061,
+      "role": "sanity",
+      "split": "dev"
+    },
+    {
+      "a": "idf_flat",
+      "b": "overlap",
+      "ci": {
+        "hi": 0.24131320116797295,
+        "level": 0.95,
+        "lo": 0.21840772731406996,
+        "method": "cluster-bootstrap-percentile",
+        "n_clusters": 1687
+      },
+      "diff": 0.229850035911091,
+      "group": {
+        "d": 3,
+        "sampler": "uniform"
+      },
+      "metric": "mrr_at_10",
+      "n": 5061,
+      "role": "sanity",
+      "split": "dev"
+    },
+    {
+      "a": "idf_flat",
+      "b": "overlap",
+      "ci": {
+        "hi": 0.10985971151946256,
+        "level": 0.95,
+        "lo": 0.08634657182375025,
+        "method": "cluster-bootstrap-percentile",
+        "n_clusters": 1687
+      },
+      "diff": 0.09800434696700257,
+      "group": {
+        "d": 3,
+        "sampler": "uniform"
+      },
+      "metric": "recall_at_10",
+      "n": 5061,
+      "role": "sanity",
+      "split": "dev"
+    },
+    {
+      "a": "shipped",
+      "b": "idf_flat",
+      "ci": {
+        "hi": -0.6270035722910648,
+        "level": 0.95,
+        "lo": -0.6604622808090503,
+        "method": "cluster-bootstrap-percentile",
+        "n_clusters": 1687
+      },
+      "diff": -0.6437524894697407,
+      "group": {
+        "d": 3,
+        "sampler": "uniform"
+      },
+      "metric": "mrr_at_10",
+      "n": 5061,
+      "role": "sanity",
+      "split": "dev"
+    },
+    {
+      "a": "shipped",
+      "b": "idf_flat",
+      "ci": {
+        "hi": -0.6767437265362577,
+        "level": 0.95,
+        "lo": -0.716261608377791,
+        "method": "cluster-bootstrap-percentile",
+        "n_clusters": 1687
+      },
+      "diff": -0.6967002568662319,
+      "group": {
+        "d": 3,
+        "sampler": "uniform"
+      },
+      "metric": "recall_at_10",
+      "n": 5061,
+      "role": "sanity",
+      "split": "dev"
+    },
+    {
+      "a": "shipped",
+      "b": "overlap",
+      "ci": {
+        "hi": -0.3957364596368746,
+        "level": 0.95,
+        "lo": -0.43214897300552313,
+        "method": "cluster-bootstrap-percentile",
+        "n_clusters": 1687
+      },
+      "diff": -0.4139024535586476,
+      "group": {
+        "d": 3,
+        "sampler": "uniform"
+      },
+      "metric": "mrr_at_10",
+      "n": 5061,
+      "role": "sanity",
+      "split": "dev"
+    },
+    {
+      "a": "shipped",
+      "b": "overlap",
+      "ci": {
+        "hi": -0.5749851807943094,
+        "level": 0.95,
+        "lo": -0.622011460185734,
+        "method": "cluster-bootstrap-percentile",
+        "n_clusters": 1687
+      },
+      "diff": -0.5986959098992294,
+      "group": {
+        "d": 3,
+        "sampler": "uniform"
+      },
+      "metric": "recall_at_10",
+      "n": 5061,
+      "role": "sanity",
+      "split": "dev"
+    },
+    {
+      "a": "overlap",
+      "b": "random",
+      "ci": {
+        "hi": 0.5029337739824062,
+        "level": 0.95,
+        "lo": 0.4688466734211415,
+        "method": "cluster-bootstrap-percentile",
+        "n_clusters": 1645
+      },
+      "diff": 0.48544032743120863,
+      "group": {
+        "d": 3,
+        "sampler": "uniform"
+      },
+      "metric": "mrr_at_10",
+      "n": 4935,
+      "role": "sanity",
+      "split": "test"
+    },
+    {
+      "a": "overlap",
+      "b": "random",
+      "ci": {
+        "hi": 0.8214792299898683,
+        "level": 0.95,
+        "lo": 0.7886524822695036,
+        "method": "cluster-bootstrap-percentile",
+        "n_clusters": 1645
+      },
+      "diff": 0.8048632218844984,
+      "group": {
+        "d": 3,
+        "sampler": "uniform"
+      },
+      "metric": "recall_at_10",
+      "n": 4935,
+      "role": "sanity",
+      "split": "test"
+    },
+    {
+      "a": "idf_flat",
+      "b": "overlap",
+      "ci": {
+        "hi": 0.2431458162461202,
+        "level": 0.95,
+        "lo": 0.22002661584728458,
+        "method": "cluster-bootstrap-percentile",
+        "n_clusters": 1645
+      },
+      "diff": 0.2314989305414837,
+      "group": {
+        "d": 3,
+        "sampler": "uniform"
+      },
+      "metric": "mrr_at_10",
+      "n": 4935,
+      "role": "sanity",
+      "split": "test"
+    },
+    {
+      "a": "idf_flat",
+      "b": "overlap",
+      "ci": {
+        "hi": 0.09625126646403243,
+        "level": 0.95,
+        "lo": 0.07477203647416414,
+        "method": "cluster-bootstrap-percentile",
+        "n_clusters": 1645
+      },
+      "diff": 0.08551165146909828,
+      "group": {
+        "d": 3,
+        "sampler": "uniform"
+      },
+      "metric": "recall_at_10",
+      "n": 4935,
+      "role": "sanity",
+      "split": "test"
+    },
+    {
+      "a": "shipped",
+      "b": "idf_flat",
+      "ci": {
+        "hi": -0.6399923610105981,
+        "level": 0.95,
+        "lo": -0.6747455010372944,
+        "method": "cluster-bootstrap-percentile",
+        "n_clusters": 1645
+      },
+      "diff": -0.6574497032855706,
+      "group": {
+        "d": 3,
+        "sampler": "uniform"
+      },
+      "metric": "mrr_at_10",
+      "n": 4935,
+      "role": "sanity",
+      "split": "test"
+    },
+    {
+      "a": "shipped",
+      "b": "idf_flat",
+      "ci": {
+        "hi": -0.6755825734549139,
+        "level": 0.95,
+        "lo": -0.7177304964539007,
+        "method": "cluster-bootstrap-percentile",
+        "n_clusters": 1645
+      },
+      "diff": -0.6966565349544073,
+      "group": {
+        "d": 3,
+        "sampler": "uniform"
+      },
+      "metric": "recall_at_10",
+      "n": 4935,
+      "role": "sanity",
+      "split": "test"
+    },
+    {
+      "a": "shipped",
+      "b": "overlap",
+      "ci": {
+        "hi": -0.40770532799408177,
+        "level": 0.95,
+        "lo": -0.4449326964828485,
+        "method": "cluster-bootstrap-percentile",
+        "n_clusters": 1645
+      },
+      "diff": -0.4259507727440859,
+      "group": {
+        "d": 3,
+        "sampler": "uniform"
+      },
+      "metric": "mrr_at_10",
+      "n": 4935,
+      "role": "sanity",
+      "split": "test"
+    },
+    {
+      "a": "shipped",
+      "b": "overlap",
+      "ci": {
+        "hi": -0.5864235055724417,
+        "level": 0.95,
+        "lo": -0.6358662613981763,
+        "method": "cluster-bootstrap-percentile",
+        "n_clusters": 1645
+      },
+      "diff": -0.611144883485309,
+      "group": {
+        "d": 3,
+        "sampler": "uniform"
+      },
+      "metric": "recall_at_10",
+      "n": 4935,
+      "role": "sanity",
+      "split": "test"
+    },
+    {
+      "a": "overlap",
+      "b": "random",
+      "ci": {
+        "hi": 0.350711478690139,
+        "level": 0.95,
+        "lo": 0.3194348001994712,
+        "method": "cluster-bootstrap-percentile",
+        "n_clusters": 1687
+      },
+      "diff": 0.33512355610755057,
+      "group": {
+        "d": 3,
+        "sampler": "popularity"
+      },
+      "metric": "mrr_at_10",
+      "n": 5061,
+      "role": "sanity",
+      "split": "dev"
+    },
+    {
+      "a": "overlap",
+      "b": "random",
+      "ci": {
+        "hi": 0.6585655008891523,
+        "level": 0.95,
+        "lo": 0.6196403872752421,
+        "method": "cluster-bootstrap-percentile",
+        "n_clusters": 1687
+      },
+      "diff": 0.639201738786801,
+      "group": {
+        "d": 3,
+        "sampler": "popularity"
+      },
+      "metric": "recall_at_10",
+      "n": 5061,
+      "role": "sanity",
+      "split": "dev"
+    },
+    {
+      "a": "idf_flat",
+      "b": "overlap",
+      "ci": {
+        "hi": 0.35603957119961865,
+        "level": 0.95,
+        "lo": 0.33165264722763244,
+        "method": "cluster-bootstrap-percentile",
+        "n_clusters": 1687
+      },
+      "diff": 0.34371297158789826,
+      "group": {
+        "d": 3,
+        "sampler": "popularity"
+      },
+      "metric": "mrr_at_10",
+      "n": 5061,
+      "role": "sanity",
+      "split": "dev"
+    },
+    {
+      "a": "idf_flat",
+      "b": "overlap",
+      "ci": {
+        "hi": 0.2339458605018771,
+        "level": 0.95,
+        "lo": 0.20410985971151946,
+        "method": "cluster-bootstrap-percentile",
+        "n_clusters": 1687
+      },
+      "diff": 0.2191266548113021,
+      "group": {
+        "d": 3,
+        "sampler": "popularity"
+      },
+      "metric": "recall_at_10",
+      "n": 5061,
+      "role": "sanity",
+      "split": "dev"
+    },
+    {
+      "a": "shipped",
+      "b": "idf_flat",
+      "ci": {
+        "hi": -0.631023654274988,
+        "level": 0.95,
+        "lo": -0.664056134210254,
+        "method": "cluster-bootstrap-percentile",
+        "n_clusters": 1687
+      },
+      "diff": -0.6474699146601941,
+      "group": {
+        "d": 3,
+        "sampler": "popularity"
+      },
+      "metric": "mrr_at_10",
+      "n": 5061,
+      "role": "sanity",
+      "split": "dev"
+    },
+    {
+      "a": "shipped",
+      "b": "idf_flat",
+      "ci": {
+        "hi": -0.7184350918790753,
+        "level": 0.95,
+        "lo": -0.7545939537640782,
+        "method": "cluster-bootstrap-percentile",
+        "n_clusters": 1687
+      },
+      "diff": -0.7366133175261806,
+      "group": {
+        "d": 3,
+        "sampler": "popularity"
+      },
+      "metric": "recall_at_10",
+      "n": 5061,
+      "role": "sanity",
+      "split": "dev"
+    },
+    {
+      "a": "shipped",
+      "b": "overlap",
+      "ci": {
+        "hi": -0.2870432313081987,
+        "level": 0.95,
+        "lo": -0.3204574038006166,
+        "method": "cluster-bootstrap-percentile",
+        "n_clusters": 1687
+      },
+      "diff": -0.30375694307229534,
+      "group": {
+        "d": 3,
+        "sampler": "popularity"
+      },
+      "metric": "mrr_at_10",
+      "n": 5061,
+      "role": "sanity",
+      "split": "dev"
+    },
+    {
+      "a": "shipped",
+      "b": "overlap",
+      "ci": {
+        "hi": -0.49239280774550487,
+        "level": 0.95,
+        "lo": -0.5423829282750444,
+        "method": "cluster-bootstrap-percentile",
+        "n_clusters": 1687
+      },
+      "diff": -0.5174866627148785,
+      "group": {
+        "d": 3,
+        "sampler": "popularity"
+      },
+      "metric": "recall_at_10",
+      "n": 5061,
+      "role": "sanity",
+      "split": "dev"
+    },
+    {
+      "a": "overlap",
+      "b": "random",
+      "ci": {
+        "hi": 0.3553895080490825,
+        "level": 0.95,
+        "lo": 0.32291383219954645,
+        "method": "cluster-bootstrap-percentile",
+        "n_clusters": 1645
+      },
+      "diff": 0.33906908862835883,
+      "group": {
+        "d": 3,
+        "sampler": "popularity"
+      },
+      "metric": "mrr_at_10",
+      "n": 4935,
+      "role": "sanity",
+      "split": "test"
+    },
+    {
+      "a": "overlap",
+      "b": "random",
+      "ci": {
+        "hi": 0.6707193515704154,
+        "level": 0.95,
+        "lo": 0.6310030395136779,
+        "method": "cluster-bootstrap-percentile",
+        "n_clusters": 1645
+      },
+      "diff": 0.6508611955420466,
+      "group": {
+        "d": 3,
+        "sampler": "popularity"
+      },
+      "metric": "recall_at_10",
+      "n": 4935,
+      "role": "sanity",
+      "split": "test"
+    },
+    {
+      "a": "idf_flat",
+      "b": "overlap",
+      "ci": {
+        "hi": 0.36580571235586434,
+        "level": 0.95,
+        "lo": 0.3411066081278848,
+        "method": "cluster-bootstrap-percentile",
+        "n_clusters": 1645
+      },
+      "diff": 0.35346343738440983,
+      "group": {
+        "d": 3,
+        "sampler": "popularity"
+      },
+      "metric": "mrr_at_10",
+      "n": 4935,
+      "role": "sanity",
+      "split": "test"
+    },
+    {
+      "a": "idf_flat",
+      "b": "overlap",
+      "ci": {
+        "hi": 0.24072948328267477,
+        "level": 0.95,
+        "lo": 0.2099290780141844,
+        "method": "cluster-bootstrap-percentile",
+        "n_clusters": 1645
+      },
+      "diff": 0.22512664640324215,
+      "group": {
+        "d": 3,
+        "sampler": "popularity"
+      },
+      "metric": "recall_at_10",
+      "n": 4935,
+      "role": "sanity",
+      "split": "test"
+    },
+    {
+      "a": "shipped",
+      "b": "idf_flat",
+      "ci": {
+        "hi": -0.6456578376031264,
+        "level": 0.95,
+        "lo": -0.6792595004905034,
+        "method": "cluster-bootstrap-percentile",
+        "n_clusters": 1645
+      },
+      "diff": -0.6621677039610174,
+      "group": {
+        "d": 3,
+        "sampler": "popularity"
+      },
+      "metric": "mrr_at_10",
+      "n": 4935,
+      "role": "sanity",
+      "split": "test"
+    },
+    {
+      "a": "shipped",
+      "b": "idf_flat",
+      "ci": {
+        "hi": -0.7406281661600811,
+        "level": 0.95,
+        "lo": -0.7752786220871327,
+        "method": "cluster-bootstrap-percentile",
+        "n_clusters": 1645
+      },
+      "diff": -0.758257345491388,
+      "group": {
+        "d": 3,
+        "sampler": "popularity"
+      },
+      "metric": "recall_at_10",
+      "n": 4935,
+      "role": "sanity",
+      "split": "test"
+    },
+    {
+      "a": "shipped",
+      "b": "overlap",
+      "ci": {
+        "hi": -0.2915622939483121,
+        "level": 0.95,
+        "lo": -0.325950049050353,
+        "method": "cluster-bootstrap-percentile",
+        "n_clusters": 1645
+      },
+      "diff": -0.30870426657660716,
+      "group": {
+        "d": 3,
+        "sampler": "popularity"
+      },
+      "metric": "mrr_at_10",
+      "n": 4935,
+      "role": "sanity",
+      "split": "test"
+    },
+    {
+      "a": "shipped",
+      "b": "overlap",
+      "ci": {
+        "hi": -0.5075987841945289,
+        "level": 0.95,
+        "lo": -0.5582573454913881,
+        "method": "cluster-bootstrap-percentile",
+        "n_clusters": 1645
+      },
+      "diff": -0.5331306990881459,
+      "group": {
+        "d": 3,
+        "sampler": "popularity"
+      },
+      "metric": "recall_at_10",
+      "n": 4935,
+      "role": "sanity",
+      "split": "test"
+    },
+    {
+      "a": "overlap",
+      "b": "random",
+      "ci": {
+        "hi": 0.4347042274724551,
+        "level": 0.95,
+        "lo": 0.40140037573351145,
+        "method": "cluster-bootstrap-percentile",
+        "n_clusters": 1687
+      },
+      "diff": 0.41804822436120576,
+      "group": {
+        "d": 6,
+        "sampler": "uniform"
+      },
+      "metric": "mrr_at_10",
+      "n": 5061,
+      "role": "sanity",
+      "split": "dev"
+    },
+    {
+      "a": "overlap",
+      "b": "random",
+      "ci": {
+        "hi": 0.7563722584469472,
+        "level": 0.95,
+        "lo": 0.7215965224263979,
+        "method": "cluster-bootstrap-percentile",
+        "n_clusters": 1687
+      },
+      "diff": 0.7391819798458803,
+      "group": {
+        "d": 6,
+        "sampler": "uniform"
+      },
+      "metric": "recall_at_10",
+      "n": 5061,
+      "role": "sanity",
+      "split": "dev"
+    },
+    {
+      "a": "idf_flat",
+      "b": "overlap",
+      "ci": {
+        "hi": 0.23667933747957456,
+        "level": 0.95,
+        "lo": 0.21475765502143693,
+        "method": "cluster-bootstrap-percentile",
+        "n_clusters": 1687
+      },
+      "diff": 0.2256778414454762,
+      "group": {
+        "d": 6,
+        "sampler": "uniform"
+      },
+      "metric": "mrr_at_10",
+      "n": 5061,
+      "role": "sanity",
+      "split": "dev"
+    },
+    {
+      "a": "idf_flat",
+      "b": "overlap",
+      "ci": {
+        "hi": 0.11736810906935388,
+        "level": 0.95,
+        "lo": 0.09464532701047224,
+        "method": "cluster-bootstrap-percentile",
+        "n_clusters": 1687
+      },
+      "diff": 0.10590792333530923,
+      "group": {
+        "d": 6,
+        "sampler": "uniform"
+      },
+      "metric": "recall_at_10",
+      "n": 5061,
+      "role": "sanity",
+      "split": "dev"
+    },
+    {
+      "a": "shipped",
+      "b": "idf_flat",
+      "ci": {
+        "hi": -0.5857997509746177,
+        "level": 0.95,
+        "lo": -0.6202216294539946,
+        "method": "cluster-bootstrap-percentile",
+        "n_clusters": 1687
+      },
+      "diff": -0.6031482579200431,
+      "group": {
+        "d": 6,
+        "sampler": "uniform"
+      },
+      "metric": "mrr_at_10",
+      "n": 5061,
+      "role": "sanity",
+      "split": "dev"
+    },
+    {
+      "a": "shipped",
+      "b": "idf_flat",
+      "ci": {
+        "hi": -0.6767437265362577,
+        "level": 0.95,
+        "lo": -0.715668840150168,
+        "method": "cluster-bootstrap-percentile",
+        "n_clusters": 1687
+      },
+      "diff": -0.6965026674570243,
+      "group": {
+        "d": 6,
+        "sampler": "uniform"
+      },
+      "metric": "recall_at_10",
+      "n": 5061,
+      "role": "sanity",
+      "split": "dev"
+    },
+    {
+      "a": "shipped",
+      "b": "overlap",
+      "ci": {
+        "hi": -0.3600391885661595,
+        "level": 0.95,
+        "lo": -0.39512738244214235,
+        "method": "cluster-bootstrap-percentile",
+        "n_clusters": 1687
+      },
+      "diff": -0.37747041647456586,
+      "group": {
+        "d": 6,
+        "sampler": "uniform"
+      },
+      "metric": "mrr_at_10",
+      "n": 5061,
+      "role": "sanity",
+      "split": "dev"
+    },
+    {
+      "a": "shipped",
+      "b": "overlap",
+      "ci": {
+        "hi": -0.5670816044260027,
+        "level": 0.95,
+        "lo": -0.6135151155898044,
+        "method": "cluster-bootstrap-percentile",
+        "n_clusters": 1687
+      },
+      "diff": -0.5905947441217151,
+      "group": {
+        "d": 6,
+        "sampler": "uniform"
+      },
+      "metric": "recall_at_10",
+      "n": 5061,
+      "role": "sanity",
+      "split": "dev"
+    },
+    {
+      "a": "overlap",
+      "b": "random",
+      "ci": {
+        "hi": 0.44351779482478565,
+        "level": 0.95,
+        "lo": 0.40971808108586216,
+        "method": "cluster-bootstrap-percentile",
+        "n_clusters": 1645
+      },
+      "diff": 0.4264202891558509,
+      "group": {
+        "d": 6,
+        "sampler": "uniform"
+      },
+      "metric": "mrr_at_10",
+      "n": 4935,
+      "role": "sanity",
+      "split": "test"
+    },
+    {
+      "a": "overlap",
+      "b": "random",
+      "ci": {
+        "hi": 0.7651469098277609,
+        "level": 0.95,
+        "lo": 0.7288753799392097,
+        "method": "cluster-bootstrap-percentile",
+        "n_clusters": 1645
+      },
+      "diff": 0.7469098277608915,
+      "group": {
+        "d": 6,
+        "sampler": "uniform"
+      },
+      "metric": "recall_at_10",
+      "n": 4935,
+      "role": "sanity",
+      "split": "test"
+    },
+    {
+      "a": "idf_flat",
+      "b": "overlap",
+      "ci": {
+        "hi": 0.2382658689953523,
+        "level": 0.95,
+        "lo": 0.2158763127000209,
+        "method": "cluster-bootstrap-percentile",
+        "n_clusters": 1645
+      },
+      "diff": 0.2269227738376672,
+      "group": {
+        "d": 6,
+        "sampler": "uniform"
+      },
+      "metric": "mrr_at_10",
+      "n": 4935,
+      "role": "sanity",
+      "split": "test"
+    },
+    {
+      "a": "idf_flat",
+      "b": "overlap",
+      "ci": {
+        "hi": 0.11651469098277609,
+        "level": 0.95,
+        "lo": 0.09402228976697062,
+        "method": "cluster-bootstrap-percentile",
+        "n_clusters": 1645
+      },
+      "diff": 0.10516717325227963,
+      "group": {
+        "d": 6,
+        "sampler": "uniform"
+      },
+      "metric": "recall_at_10",
+      "n": 4935,
+      "role": "sanity",
+      "split": "test"
+    },
+    {
+      "a": "shipped",
+      "b": "idf_flat",
+      "ci": {
+        "hi": -0.5943897653624097,
+        "level": 0.95,
+        "lo": -0.6295082903137614,
+        "method": "cluster-bootstrap-percentile",
+        "n_clusters": 1645
+      },
+      "diff": -0.612033096926714,
+      "group": {
+        "d": 6,
+        "sampler": "uniform"
+      },
+      "metric": "mrr_at_10",
+      "n": 4935,
+      "role": "sanity",
+      "split": "test"
+    },
+    {
+      "a": "shipped",
+      "b": "idf_flat",
+      "ci": {
+        "hi": -0.6776089159067883,
+        "level": 0.95,
+        "lo": -0.7183383991894631,
+        "method": "cluster-bootstrap-percentile",
+        "n_clusters": 1645
+      },
+      "diff": -0.6980749746707193,
+      "group": {
+        "d": 6,
+        "sampler": "uniform"
+      },
+      "metric": "recall_at_10",
+      "n": 4935,
+      "role": "sanity",
+      "split": "test"
+    },
+    {
+      "a": "shipped",
+      "b": "overlap",
+      "ci": {
+        "hi": -0.36727778581881926,
+        "level": 0.95,
+        "lo": -0.4037613579710844,
+        "method": "cluster-bootstrap-percentile",
+        "n_clusters": 1645
+      },
+      "diff": -0.38511032308904564,
+      "group": {
+        "d": 6,
+        "sampler": "uniform"
+      },
+      "metric": "mrr_at_10",
+      "n": 4935,
+      "role": "sanity",
+      "split": "test"
+    },
+    {
+      "a": "shipped",
+      "b": "overlap",
+      "ci": {
+        "hi": -0.5677811550151975,
+        "level": 0.95,
+        "lo": -0.6178318135764944,
+        "method": "cluster-bootstrap-percentile",
+        "n_clusters": 1645
+      },
+      "diff": -0.5929078014184397,
+      "group": {
+        "d": 6,
+        "sampler": "uniform"
+      },
+      "metric": "recall_at_10",
+      "n": 4935,
+      "role": "sanity",
+      "split": "test"
+    },
+    {
+      "a": "overlap",
+      "b": "random",
+      "ci": {
+        "hi": 0.2248883463020985,
+        "level": 0.95,
+        "lo": 0.19761418629231314,
+        "method": "cluster-bootstrap-percentile",
+        "n_clusters": 1687
+      },
+      "diff": 0.2108805117252069,
+      "group": {
+        "d": 6,
+        "sampler": "popularity"
+      },
+      "metric": "mrr_at_10",
+      "n": 5061,
+      "role": "sanity",
+      "split": "dev"
+    },
+    {
+      "a": "overlap",
+      "b": "random",
+      "ci": {
+        "hi": 0.4833036949219522,
+        "level": 0.95,
+        "lo": 0.4412171507607192,
+        "method": "cluster-bootstrap-percentile",
+        "n_clusters": 1687
+      },
+      "diff": 0.46235921754593956,
+      "group": {
+        "d": 6,
+        "sampler": "popularity"
+      },
+      "metric": "recall_at_10",
+      "n": 5061,
+      "role": "sanity",
+      "split": "dev"
+    },
+    {
+      "a": "idf_flat",
+      "b": "overlap",
+      "ci": {
+        "hi": 0.3866055550851046,
+        "level": 0.95,
+        "lo": 0.36123758401470313,
+        "method": "cluster-bootstrap-percentile",
+        "n_clusters": 1687
+      },
+      "diff": 0.3737808263000916,
+      "group": {
+        "d": 6,
+        "sampler": "popularity"
+      },
+      "metric": "mrr_at_10",
+      "n": 5061,
+      "role": "sanity",
+      "split": "dev"
+    },
+    {
+      "a": "idf_flat",
+      "b": "overlap",
+      "ci": {
+        "hi": 0.34499110847658565,
+        "level": 0.95,
+        "lo": 0.311005730092867,
+        "method": "cluster-bootstrap-percentile",
+        "n_clusters": 1687
+      },
+      "diff": 0.32799841928472634,
+      "group": {
+        "d": 6,
+        "sampler": "popularity"
+      },
+      "metric": "recall_at_10",
+      "n": 5061,
+      "role": "sanity",
+      "split": "dev"
+    },
+    {
+      "a": "shipped",
+      "b": "idf_flat",
+      "ci": {
+        "hi": -0.5572123270700627,
+        "level": 0.95,
+        "lo": -0.5915139269170092,
+        "method": "cluster-bootstrap-percentile",
+        "n_clusters": 1687
+      },
+      "diff": -0.5742621760552991,
+      "group": {
+        "d": 6,
+        "sampler": "popularity"
+      },
+      "metric": "mrr_at_10",
+      "n": 5061,
+      "role": "sanity",
+      "split": "dev"
+    },
+    {
+      "a": "shipped",
+      "b": "idf_flat",
+      "ci": {
+        "hi": -0.7194230389251136,
+        "level": 0.95,
+        "lo": -0.7536060067180399,
+        "method": "cluster-bootstrap-percentile",
+        "n_clusters": 1687
+      },
+      "diff": -0.736415728116973,
+      "group": {
+        "d": 6,
+        "sampler": "popularity"
+      },
+      "metric": "recall_at_10",
+      "n": 5061,
+      "role": "sanity",
+      "split": "dev"
+    },
+    {
+      "a": "shipped",
+      "b": "overlap",
+      "ci": {
+        "hi": -0.18673924157030264,
+        "level": 0.95,
+        "lo": -0.21472260642385121,
+        "method": "cluster-bootstrap-percentile",
+        "n_clusters": 1687
+      },
+      "diff": -0.20048134975520918,
+      "group": {
+        "d": 6,
+        "sampler": "popularity"
+      },
+      "metric": "mrr_at_10",
+      "n": 5061,
+      "role": "sanity",
+      "split": "dev"
+    },
+    {
+      "a": "shipped",
+      "b": "overlap",
+      "ci": {
+        "hi": -0.3849041691365343,
+        "level": 0.95,
+        "lo": -0.4321280379371666,
+        "method": "cluster-bootstrap-percentile",
+        "n_clusters": 1687
+      },
+      "diff": -0.4084173088322466,
+      "group": {
+        "d": 6,
+        "sampler": "popularity"
+      },
+      "metric": "recall_at_10",
+      "n": 5061,
+      "role": "sanity",
+      "split": "dev"
+    },
+    {
+      "a": "overlap",
+      "b": "random",
+      "ci": {
+        "hi": 0.23386372042906994,
+        "level": 0.95,
+        "lo": 0.20640895128737072,
+        "method": "cluster-bootstrap-percentile",
+        "n_clusters": 1645
+      },
+      "diff": 0.22006038822148255,
+      "group": {
+        "d": 6,
+        "sampler": "popularity"
+      },
+      "metric": "mrr_at_10",
+      "n": 4935,
+      "role": "sanity",
+      "split": "test"
+    },
+    {
+      "a": "overlap",
+      "b": "random",
+      "ci": {
+        "hi": 0.5055724417426545,
+        "level": 0.95,
+        "lo": 0.4636271529888551,
+        "method": "cluster-bootstrap-percentile",
+        "n_clusters": 1645
+      },
+      "diff": 0.4847011144883485,
+      "group": {
+        "d": 6,
+        "sampler": "popularity"
+      },
+      "metric": "recall_at_10",
+      "n": 4935,
+      "role": "sanity",
+      "split": "test"
+    },
+    {
+      "a": "idf_flat",
+      "b": "overlap",
+      "ci": {
+        "hi": 0.38804329296730516,
+        "level": 0.95,
+        "lo": 0.3621239606953893,
+        "method": "cluster-bootstrap-percentile",
+        "n_clusters": 1645
+      },
+      "diff": 0.37510356861420696,
+      "group": {
+        "d": 6,
+        "sampler": "popularity"
+      },
+      "metric": "mrr_at_10",
+      "n": 4935,
+      "role": "sanity",
+      "split": "test"
+    },
+    {
+      "a": "idf_flat",
+      "b": "overlap",
+      "ci": {
+        "hi": 0.3394123606889564,
+        "level": 0.95,
+        "lo": 0.3057750759878419,
+        "method": "cluster-bootstrap-percentile",
+        "n_clusters": 1645
+      },
+      "diff": 0.32239108409321177,
+      "group": {
+        "d": 6,
+        "sampler": "popularity"
+      },
+      "metric": "recall_at_10",
+      "n": 4935,
+      "role": "sanity",
+      "split": "test"
+    },
+    {
+      "a": "shipped",
+      "b": "idf_flat",
+      "ci": {
+        "hi": -0.5653230890464933,
+        "level": 0.95,
+        "lo": -0.6004129878901915,
+        "method": "cluster-bootstrap-percentile",
+        "n_clusters": 1645
+      },
+      "diff": -0.5827267975748219,
+      "group": {
+        "d": 6,
+        "sampler": "popularity"
+      },
+      "metric": "mrr_at_10",
+      "n": 4935,
+      "role": "sanity",
+      "split": "test"
+    },
+    {
+      "a": "shipped",
+      "b": "idf_flat",
+      "ci": {
+        "hi": -0.7256332320162108,
+        "level": 0.95,
+        "lo": -0.761499493414387,
+        "method": "cluster-bootstrap-percentile",
+        "n_clusters": 1645
+      },
+      "diff": -0.7436676798378926,
+      "group": {
+        "d": 6,
+        "sampler": "popularity"
+      },
+      "metric": "recall_at_10",
+      "n": 4935,
+      "role": "sanity",
+      "split": "test"
+    },
+    {
+      "a": "shipped",
+      "b": "overlap",
+      "ci": {
+        "hi": -0.19342323217703158,
+        "level": 0.95,
+        "lo": -0.22184212219166627,
+        "method": "cluster-bootstrap-percentile",
+        "n_clusters": 1645
+      },
+      "diff": -0.20762322896061522,
+      "group": {
+        "d": 6,
+        "sampler": "popularity"
+      },
+      "metric": "mrr_at_10",
+      "n": 4935,
+      "role": "sanity",
+      "split": "test"
+    },
+    {
+      "a": "shipped",
+      "b": "overlap",
+      "ci": {
+        "hi": -0.3965552178318136,
+        "level": 0.95,
+        "lo": -0.4457953394123607,
+        "method": "cluster-bootstrap-percentile",
+        "n_clusters": 1645
+      },
+      "diff": -0.42127659574468085,
+      "group": {
+        "d": 6,
+        "sampler": "popularity"
+      },
+      "metric": "recall_at_10",
+      "n": 4935,
+      "role": "sanity",
+      "split": "test"
+    }
+  ],
+  "config": {
+    "d_values": [
+      0,
+      3,
+      6
+    ],
+    "draws": 3,
+    "k": 10,
+    "resamples": 10000,
+    "samplers": [
+      "uniform",
+      "popularity"
+    ]
+  },
+  "corpus_fingerprint": "a1a076ab0aee385c4e01cdc904342214dfaa6b01dc35d80d32519ea625c597d2",
+  "dirty": false,
+  "dirty_paths": [],
+  "environment": {
+    "numpy": "2.4.6",
+    "platform": "Windows 10 (win32)",
+    "python": "3.11.15"
+  },
+  "label": "MEASURED",
+  "metrics": [
+    {
+      "arm": "random",
+      "depends_on": [
+        "gold_recipe_lines",
+        "have",
+        "total",
+        "idf"
+      ],
+      "group": {
+        "d": 0,
+        "sampler": "none"
+      },
+      "n": 5061,
+      "name": "recall_at_10",
+      "role": "sanity",
+      "split": "dev",
+      "value": 0.022130013831258646
+    },
+    {
+      "arm": "random",
+      "depends_on": [
+        "gold_recipe_lines",
+        "have",
+        "total",
+        "idf"
+      ],
+      "group": {
+        "d": 0,
+        "sampler": "none"
+      },
+      "n": 5061,
+      "name": "mrr_at_10",
+      "role": "sanity",
+      "split": "dev",
+      "value": 0.006214735779051132
+    },
+    {
+      "arm": "random",
+      "depends_on": [
+        "have",
+        "total",
+        "idf"
+      ],
+      "group": {
+        "d": 0,
+        "sampler": "none"
+      },
+      "n": 5061,
+      "name": "makeable_at_10",
+      "role": "product",
+      "split": "dev",
+      "value": 0.009266943291839629
+    },
+    {
+      "arm": "overlap",
+      "depends_on": [
+        "gold_recipe_lines",
+        "have",
+        "total",
+        "idf"
+      ],
+      "group": {
+        "d": 0,
+        "sampler": "none"
+      },
+      "n": 5061,
+      "name": "recall_at_10",
+      "role": "sanity",
+      "split": "dev",
+      "value": 0.8448923137719818
+    },
+    {
+      "arm": "overlap",
+      "depends_on": [
+        "gold_recipe_lines",
+        "have",
+        "total",
+        "idf"
+      ],
+      "group": {
+        "d": 0,
+        "sampler": "none"
+      },
+      "n": 5061,
+      "name": "mrr_at_10",
+      "role": "sanity",
+      "split": "dev",
+      "value": 0.5371330874442922
+    },
+    {
+      "arm": "overlap",
+      "depends_on": [
+        "have",
+        "total",
+        "idf"
+      ],
+      "group": {
+        "d": 0,
+        "sampler": "none"
+      },
+      "n": 5061,
+      "name": "makeable_at_10",
+      "role": "product",
+      "split": "dev",
+      "value": 0.014246196403872822
+    },
+    {
+      "arm": "idf_flat",
+      "depends_on": [
+        "gold_recipe_lines",
+        "have",
+        "total",
+        "idf"
+      ],
+      "group": {
+        "d": 0,
+        "sampler": "none"
+      },
+      "n": 5061,
+      "name": "recall_at_10",
+      "role": "sanity",
+      "split": "dev",
+      "value": 0.9345979055522624
+    },
+    {
+      "arm": "idf_flat",
+      "depends_on": [
+        "gold_recipe_lines",
+        "have",
+        "total",
+        "idf"
+      ],
+      "group": {
+        "d": 0,
+        "sampler": "none"
+      },
+      "n": 5061,
+      "name": "mrr_at_10",
+      "role": "sanity",
+      "split": "dev",
+      "value": 0.7852160781325003
+    },
+    {
+      "arm": "idf_flat",
+      "depends_on": [
+        "have",
+        "total",
+        "idf"
+      ],
+      "group": {
+        "d": 0,
+        "sampler": "none"
+      },
+      "n": 5061,
+      "name": "makeable_at_10",
+      "role": "product",
+      "split": "dev",
+      "value": 0.10877296976882271
+    },
+    {
+      "arm": "shipped",
+      "depends_on": [
+        "gold_recipe_lines",
+        "have",
+        "total",
+        "idf"
+      ],
+      "group": {
+        "d": 0,
+        "sampler": "none"
+      },
+      "n": 5061,
+      "name": "recall_at_10",
+      "role": "sanity",
+      "split": "dev",
+      "value": 0.24382533096226042
+    },
+    {
+      "arm": "shipped",
+      "depends_on": [
+        "gold_recipe_lines",
+        "have",
+        "total",
+        "idf"
+      ],
+      "group": {
+        "d": 0,
+        "sampler": "none"
+      },
+      "n": 5061,
+      "name": "mrr_at_10",
+      "role": "sanity",
+      "split": "dev",
+      "value": 0.09302289841708897
+    },
+    {
+      "arm": "shipped",
+      "depends_on": [
+        "have",
+        "total",
+        "idf"
+      ],
+      "group": {
+        "d": 0,
+        "sampler": "none"
+      },
+      "n": 5061,
+      "name": "makeable_at_10",
+      "role": "product",
+      "split": "dev",
+      "value": 0.5174273858921085
+    },
+    {
+      "arm": null,
+      "depends_on": [
+        "have",
+        "total",
+        "idf"
+      ],
+      "group": {
+        "d": 0,
+        "sampler": "none"
+      },
+      "n": 5061,
+      "name": "hit_rate",
+      "role": "product",
+      "split": "dev",
+      "value": 0.8774945662912468
+    },
+    {
+      "arm": null,
+      "depends_on": [
+        "have",
+        "total",
+        "idf",
+        "group"
+      ],
+      "group": {
+        "d": 0,
+        "sampler": "none"
+      },
+      "n": 5061,
+      "name": "visible_rate",
+      "role": "product",
+      "split": "dev",
+      "value": 0.5309227425409998
+    },
+    {
+      "arm": "random",
+      "depends_on": [
+        "gold_recipe_lines",
+        "have",
+        "total",
+        "idf"
+      ],
+      "group": {
+        "d": 0,
+        "sampler": "none"
+      },
+      "n": 4935,
+      "name": "recall_at_10",
+      "role": "sanity",
+      "split": "test",
+      "value": 0.023505572441742655
+    },
+    {
+      "arm": "random",
+      "depends_on": [
+        "gold_recipe_lines",
+        "have",
+        "total",
+        "idf"
+      ],
+      "group": {
+        "d": 0,
+        "sampler": "none"
+      },
+      "n": 4935,
+      "name": "mrr_at_10",
+      "role": "sanity",
+      "split": "test",
+      "value": 0.006980186873803897
+    },
+    {
+      "arm": "random",
+      "depends_on": [
+        "have",
+        "total",
+        "idf"
+      ],
+      "group": {
+        "d": 0,
+        "sampler": "none"
+      },
+      "n": 4935,
+      "name": "makeable_at_10",
+      "role": "product",
+      "split": "test",
+      "value": 0.008247213779128728
+    },
+    {
+      "arm": "overlap",
+      "depends_on": [
+        "gold_recipe_lines",
+        "have",
+        "total",
+        "idf"
+      ],
+      "group": {
+        "d": 0,
+        "sampler": "none"
+      },
+      "n": 4935,
+      "name": "recall_at_10",
+      "role": "sanity",
+      "split": "test",
+      "value": 0.8587639311043567
+    },
+    {
+      "arm": "overlap",
+      "depends_on": [
+        "gold_recipe_lines",
+        "have",
+        "total",
+        "idf"
+      ],
+      "group": {
+        "d": 0,
+        "sampler": "none"
+      },
+      "n": 4935,
+      "name": "mrr_at_10",
+      "role": "sanity",
+      "split": "test",
+      "value": 0.5518545858059544
+    },
+    {
+      "arm": "overlap",
+      "depends_on": [
+        "have",
+        "total",
+        "idf"
+      ],
+      "group": {
+        "d": 0,
+        "sampler": "none"
+      },
+      "n": 4935,
+      "name": "makeable_at_10",
+      "role": "product",
+      "split": "test",
+      "value": 0.014103343465045656
+    },
+    {
+      "arm": "idf_flat",
+      "depends_on": [
+        "gold_recipe_lines",
+        "have",
+        "total",
+        "idf"
+      ],
+      "group": {
+        "d": 0,
+        "sampler": "none"
+      },
+      "n": 4935,
+      "name": "recall_at_10",
+      "role": "sanity",
+      "split": "test",
+      "value": 0.9438703140830801
+    },
+    {
+      "arm": "idf_flat",
+      "depends_on": [
+        "gold_recipe_lines",
+        "have",
+        "total",
+        "idf"
+      ],
+      "group": {
+        "d": 0,
+        "sampler": "none"
+      },
+      "n": 4935,
+      "name": "mrr_at_10",
+      "role": "sanity",
+      "split": "test",
+      "value": 0.8011425515832831
+    },
+    {
+      "arm": "idf_flat",
+      "depends_on": [
+        "have",
+        "total",
+        "idf"
+      ],
+      "group": {
+        "d": 0,
+        "sampler": "none"
+      },
+      "n": 4935,
+      "name": "makeable_at_10",
+      "role": "product",
+      "split": "test",
+      "value": 0.10859169199594917
+    },
+    {
+      "arm": "shipped",
+      "depends_on": [
+        "gold_recipe_lines",
+        "have",
+        "total",
+        "idf"
+      ],
+      "group": {
+        "d": 0,
+        "sampler": "none"
+      },
+      "n": 4935,
+      "name": "recall_at_10",
+      "role": "sanity",
+      "split": "test",
+      "value": 0.2549138804457953
+    },
+    {
+      "arm": "shipped",
+      "depends_on": [
+        "gold_recipe_lines",
+        "have",
+        "total",
+        "idf"
+      ],
+      "group": {
+        "d": 0,
+        "sampler": "none"
+      },
+      "n": 4935,
+      "name": "mrr_at_10",
+      "role": "sanity",
+      "split": "test",
+      "value": 0.09773194384136626
+    },
+    {
+      "arm": "shipped",
+      "depends_on": [
+        "have",
+        "total",
+        "idf"
+      ],
+      "group": {
+        "d": 0,
+        "sampler": "none"
+      },
+      "n": 4935,
+      "name": "makeable_at_10",
+      "role": "product",
+      "split": "test",
+      "value": 0.5040121580547041
+    },
+    {
+      "arm": null,
+      "depends_on": [
+        "have",
+        "total",
+        "idf"
+      ],
+      "group": {
+        "d": 0,
+        "sampler": "none"
+      },
+      "n": 4935,
+      "name": "hit_rate",
+      "role": "product",
+      "split": "test",
+      "value": 0.8739614994934144
+    },
+    {
+      "arm": null,
+      "depends_on": [
+        "have",
+        "total",
+        "idf",
+        "group"
+      ],
+      "group": {
+        "d": 0,
+        "sampler": "none"
+      },
+      "n": 4935,
+      "name": "visible_rate",
+      "role": "product",
+      "split": "test",
+      "value": 0.5298885511651469
+    },
+    {
+      "arm": "random",
+      "depends_on": [
+        "gold_recipe_lines",
+        "have",
+        "total",
+        "idf"
+      ],
+      "group": {
+        "d": 3,
+        "sampler": "uniform"
+      },
+      "n": 5061,
+      "name": "recall_at_10",
+      "role": "sanity",
+      "split": "dev",
+      "value": 0.008496344595929657
+    },
+    {
+      "arm": "random",
+      "depends_on": [
+        "gold_recipe_lines",
+        "have",
+        "total",
+        "idf"
+      ],
+      "group": {
+        "d": 3,
+        "sampler": "uniform"
+      },
+      "n": 5061,
+      "name": "mrr_at_10",
+      "role": "sanity",
+      "split": "dev",
+      "value": 0.002361193440031614
+    },
+    {
+      "arm": "random",
+      "depends_on": [
+        "have",
+        "total",
+        "idf"
+      ],
+      "group": {
+        "d": 3,
+        "sampler": "uniform"
+      },
+      "n": 5061,
+      "name": "makeable_at_10",
+      "role": "product",
+      "split": "dev",
+      "value": 0.009602845287492662
+    },
+    {
+      "arm": "overlap",
+      "depends_on": [
+        "gold_recipe_lines",
+        "have",
+        "total",
+        "idf"
+      ],
+      "group": {
+        "d": 3,
+        "sampler": "uniform"
+      },
+      "n": 5061,
+      "name": "recall_at_10",
+      "role": "sanity",
+      "split": "dev",
+      "value": 0.7917407626951195
+    },
+    {
+      "arm": "overlap",
+      "depends_on": [
+        "gold_recipe_lines",
+        "have",
+        "total",
+        "idf"
+      ],
+      "group": {
+        "d": 3,
+        "sampler": "uniform"
+      },
+      "n": 5061,
+      "name": "mrr_at_10",
+      "role": "sanity",
+      "split": "dev",
+      "value": 0.473695753082238
+    },
+    {
+      "arm": "overlap",
+      "depends_on": [
+        "have",
+        "total",
+        "idf"
+      ],
+      "group": {
+        "d": 3,
+        "sampler": "uniform"
+      },
+      "n": 5061,
+      "name": "makeable_at_10",
+      "role": "product",
+      "split": "dev",
+      "value": 0.011420667852203192
+    },
+    {
+      "arm": "idf_flat",
+      "depends_on": [
+        "gold_recipe_lines",
+        "have",
+        "total",
+        "idf"
+      ],
+      "group": {
+        "d": 3,
+        "sampler": "uniform"
+      },
+      "n": 5061,
+      "name": "recall_at_10",
+      "role": "sanity",
+      "split": "dev",
+      "value": 0.8897451096621221
+    },
+    {
+      "arm": "idf_flat",
+      "depends_on": [
+        "gold_recipe_lines",
+        "have",
+        "total",
+        "idf"
+      ],
+      "group": {
+        "d": 3,
+        "sampler": "uniform"
+      },
+      "n": 5061,
+      "name": "mrr_at_10",
+      "role": "sanity",
+      "split": "dev",
+      "value": 0.7035457889933314
+    },
+    {
+      "arm": "idf_flat",
+      "depends_on": [
+        "have",
+        "total",
+        "idf"
+      ],
+      "group": {
+        "d": 3,
+        "sampler": "uniform"
+      },
+      "n": 5061,
+      "name": "makeable_at_10",
+      "role": "product",
+      "split": "dev",
+      "value": 0.12096423631693663
+    },
+    {
+      "arm": "shipped",
+      "depends_on": [
+        "gold_recipe_lines",
+        "have",
+        "total",
+        "idf"
+      ],
+      "group": {
+        "d": 3,
+        "sampler": "uniform"
+      },
+      "n": 5061,
+      "name": "recall_at_10",
+      "role": "sanity",
+      "split": "dev",
+      "value": 0.19304485279589015
+    },
+    {
+      "arm": "shipped",
+      "depends_on": [
+        "gold_recipe_lines",
+        "have",
+        "total",
+        "idf"
+      ],
+      "group": {
+        "d": 3,
+        "sampler": "uniform"
+      },
+      "n": 5061,
+      "name": "mrr_at_10",
+      "role": "sanity",
+      "split": "dev",
+      "value": 0.05979329952358985
+    },
+    {
+      "arm": "shipped",
+      "depends_on": [
+        "have",
+        "total",
+        "idf"
+      ],
+      "group": {
+        "d": 3,
+        "sampler": "uniform"
+      },
+      "n": 5061,
+      "name": "makeable_at_10",
+      "role": "product",
+      "split": "dev",
+      "value": 0.5955542382928215
+    },
+    {
+      "arm": null,
+      "depends_on": [
+        "have",
+        "total",
+        "idf"
+      ],
+      "group": {
+        "d": 3,
+        "sampler": "uniform"
+      },
+      "n": 5061,
+      "name": "hit_rate",
+      "role": "product",
+      "split": "dev",
+      "value": 0.9324244220509781
+    },
+    {
+      "arm": null,
+      "depends_on": [
+        "have",
+        "total",
+        "idf",
+        "group"
+      ],
+      "group": {
+        "d": 3,
+        "sampler": "uniform"
+      },
+      "n": 5061,
+      "name": "visible_rate",
+      "role": "product",
+      "split": "dev",
+      "value": 0.5263781861292235
+    },
+    {
+      "arm": "random",
+      "depends_on": [
+        "gold_recipe_lines",
+        "have",
+        "total",
+        "idf"
+      ],
+      "group": {
+        "d": 3,
+        "sampler": "uniform"
+      },
+      "n": 4935,
+      "name": "recall_at_10",
+      "role": "sanity",
+      "split": "test",
+      "value": 0.008308004052684904
+    },
+    {
+      "arm": "random",
+      "depends_on": [
+        "gold_recipe_lines",
+        "have",
+        "total",
+        "idf"
+      ],
+      "group": {
+        "d": 3,
+        "sampler": "uniform"
+      },
+      "n": 4935,
+      "name": "mrr_at_10",
+      "role": "sanity",
+      "split": "test",
+      "value": 0.002409739309435358
+    },
+    {
+      "arm": "random",
+      "depends_on": [
+        "have",
+        "total",
+        "idf"
+      ],
+      "group": {
+        "d": 3,
+        "sampler": "uniform"
+      },
+      "n": 4935,
+      "name": "makeable_at_10",
+      "role": "product",
+      "split": "test",
+      "value": 0.009159067882472201
+    },
+    {
+      "arm": "overlap",
+      "depends_on": [
+        "gold_recipe_lines",
+        "have",
+        "total",
+        "idf"
+      ],
+      "group": {
+        "d": 3,
+        "sampler": "uniform"
+      },
+      "n": 4935,
+      "name": "recall_at_10",
+      "role": "sanity",
+      "split": "test",
+      "value": 0.8131712259371834
+    },
+    {
+      "arm": "overlap",
+      "depends_on": [
+        "gold_recipe_lines",
+        "have",
+        "total",
+        "idf"
+      ],
+      "group": {
+        "d": 3,
+        "sampler": "uniform"
+      },
+      "n": 4935,
+      "name": "mrr_at_10",
+      "role": "sanity",
+      "split": "test",
+      "value": 0.4878500667406436
+    },
+    {
+      "arm": "overlap",
+      "depends_on": [
+        "have",
+        "total",
+        "idf"
+      ],
+      "group": {
+        "d": 3,
+        "sampler": "uniform"
+      },
+      "n": 4935,
+      "name": "makeable_at_10",
+      "role": "product",
+      "split": "test",
+      "value": 0.010699088145896722
+    },
+    {
+      "arm": "idf_flat",
+      "depends_on": [
+        "gold_recipe_lines",
+        "have",
+        "total",
+        "idf"
+      ],
+      "group": {
+        "d": 3,
+        "sampler": "uniform"
+      },
+      "n": 4935,
+      "name": "recall_at_10",
+      "role": "sanity",
+      "split": "test",
+      "value": 0.8986828774062816
+    },
+    {
+      "arm": "idf_flat",
+      "depends_on": [
+        "gold_recipe_lines",
+        "have",
+        "total",
+        "idf"
+      ],
+      "group": {
+        "d": 3,
+        "sampler": "uniform"
+      },
+      "n": 4935,
+      "name": "mrr_at_10",
+      "role": "sanity",
+      "split": "test",
+      "value": 0.7193489972821299
+    },
+    {
+      "arm": "idf_flat",
+      "depends_on": [
+        "have",
+        "total",
+        "idf"
+      ],
+      "group": {
+        "d": 3,
+        "sampler": "uniform"
+      },
+      "n": 4935,
+      "name": "makeable_at_10",
+      "role": "product",
+      "split": "test",
+      "value": 0.11876393110435952
+    },
+    {
+      "arm": "shipped",
+      "depends_on": [
+        "gold_recipe_lines",
+        "have",
+        "total",
+        "idf"
+      ],
+      "group": {
+        "d": 3,
+        "sampler": "uniform"
+      },
+      "n": 4935,
+      "name": "recall_at_10",
+      "role": "sanity",
+      "split": "test",
+      "value": 0.20202634245187437
+    },
+    {
+      "arm": "shipped",
+      "depends_on": [
+        "gold_recipe_lines",
+        "have",
+        "total",
+        "idf"
+      ],
+      "group": {
+        "d": 3,
+        "sampler": "uniform"
+      },
+      "n": 4935,
+      "name": "mrr_at_10",
+      "role": "sanity",
+      "split": "test",
+      "value": 0.06189929399655842
+    },
+    {
+      "arm": "shipped",
+      "depends_on": [
+        "have",
+        "total",
+        "idf"
+      ],
+      "group": {
+        "d": 3,
+        "sampler": "uniform"
+      },
+      "n": 4935,
+      "name": "makeable_at_10",
+      "role": "product",
+      "split": "test",
+      "value": 0.5779128672745626
+    },
+    {
+      "arm": null,
+      "depends_on": [
+        "have",
+        "total",
+        "idf"
+      ],
+      "group": {
+        "d": 3,
+        "sampler": "uniform"
+      },
+      "n": 4935,
+      "name": "hit_rate",
+      "role": "product",
+      "split": "test",
+      "value": 0.9302938196555218
+    },
+    {
+      "arm": null,
+      "depends_on": [
+        "have",
+        "total",
+        "idf",
+        "group"
+      ],
+      "group": {
+        "d": 3,
+        "sampler": "uniform"
+      },
+      "n": 4935,
+      "name": "visible_rate",
+      "role": "product",
+      "split": "test",
+      "value": 0.5242147922998986
+    },
+    {
+      "arm": "random",
+      "depends_on": [
+        "gold_recipe_lines",
+        "have",
+        "total",
+        "idf"
+      ],
+      "group": {
+        "d": 3,
+        "sampler": "popularity"
+      },
+      "n": 5061,
+      "name": "recall_at_10",
+      "role": "sanity",
+      "split": "dev",
+      "value": 0.008496344595929657
+    },
+    {
+      "arm": "random",
+      "depends_on": [
+        "gold_recipe_lines",
+        "have",
+        "total",
+        "idf"
+      ],
+      "group": {
+        "d": 3,
+        "sampler": "popularity"
+      },
+      "n": 5061,
+      "name": "mrr_at_10",
+      "role": "sanity",
+      "split": "dev",
+      "value": 0.002286626960604435
+    },
+    {
+      "arm": "random",
+      "depends_on": [
+        "have",
+        "total",
+        "idf"
+      ],
+      "group": {
+        "d": 3,
+        "sampler": "popularity"
+      },
+      "n": 5061,
+      "name": "makeable_at_10",
+      "role": "product",
+      "split": "dev",
+      "value": 0.009622604228413436
+    },
+    {
+      "arm": "overlap",
+      "depends_on": [
+        "gold_recipe_lines",
+        "have",
+        "total",
+        "idf"
+      ],
+      "group": {
+        "d": 3,
+        "sampler": "popularity"
+      },
+      "n": 5061,
+      "name": "recall_at_10",
+      "role": "sanity",
+      "split": "dev",
+      "value": 0.6476980833827307
+    },
+    {
+      "arm": "overlap",
+      "depends_on": [
+        "gold_recipe_lines",
+        "have",
+        "total",
+        "idf"
+      ],
+      "group": {
+        "d": 3,
+        "sampler": "popularity"
+      },
+      "n": 5061,
+      "name": "mrr_at_10",
+      "role": "sanity",
+      "split": "dev",
+      "value": 0.3374101830681546
+    },
+    {
+      "arm": "overlap",
+      "depends_on": [
+        "have",
+        "total",
+        "idf"
+      ],
+      "group": {
+        "d": 3,
+        "sampler": "popularity"
+      },
+      "n": 5061,
+      "name": "makeable_at_10",
+      "role": "product",
+      "split": "dev",
+      "value": 0.007310808140683693
+    },
+    {
+      "arm": "idf_flat",
+      "depends_on": [
+        "gold_recipe_lines",
+        "have",
+        "total",
+        "idf"
+      ],
+      "group": {
+        "d": 3,
+        "sampler": "popularity"
+      },
+      "n": 5061,
+      "name": "recall_at_10",
+      "role": "sanity",
+      "split": "dev",
+      "value": 0.8668247381940328
+    },
+    {
+      "arm": "idf_flat",
+      "depends_on": [
+        "gold_recipe_lines",
+        "have",
+        "total",
+        "idf"
+      ],
+      "group": {
+        "d": 3,
+        "sampler": "popularity"
+      },
+      "n": 5061,
+      "name": "mrr_at_10",
+      "role": "sanity",
+      "split": "dev",
+      "value": 0.6811231546560551
+    },
+    {
+      "arm": "idf_flat",
+      "depends_on": [
+        "have",
+        "total",
+        "idf"
+      ],
+      "group": {
+        "d": 3,
+        "sampler": "popularity"
+      },
+      "n": 5061,
+      "name": "makeable_at_10",
+      "role": "product",
+      "split": "dev",
+      "value": 0.11626160837779369
+    },
+    {
+      "arm": "shipped",
+      "depends_on": [
+        "gold_recipe_lines",
+        "have",
+        "total",
+        "idf"
+      ],
+      "group": {
+        "d": 3,
+        "sampler": "popularity"
+      },
+      "n": 5061,
+      "name": "recall_at_10",
+      "role": "sanity",
+      "split": "dev",
+      "value": 0.1302114206678522
+    },
+    {
+      "arm": "shipped",
+      "depends_on": [
+        "gold_recipe_lines",
+        "have",
+        "total",
+        "idf"
+      ],
+      "group": {
+        "d": 3,
+        "sampler": "popularity"
+      },
+      "n": 5061,
+      "name": "mrr_at_10",
+      "role": "sanity",
+      "split": "dev",
+      "value": 0.03365323999586001
+    },
+    {
+      "arm": "shipped",
+      "depends_on": [
+        "have",
+        "total",
+        "idf"
+      ],
+      "group": {
+        "d": 3,
+        "sampler": "popularity"
+      },
+      "n": 5061,
+      "name": "makeable_at_10",
+      "role": "product",
+      "split": "dev",
+      "value": 0.7285319106895858
+    },
+    {
+      "arm": null,
+      "depends_on": [
+        "have",
+        "total",
+        "idf"
+      ],
+      "group": {
+        "d": 3,
+        "sampler": "popularity"
+      },
+      "n": 5061,
+      "name": "hit_rate",
+      "role": "product",
+      "split": "dev",
+      "value": 0.9764868603042877
+    },
+    {
+      "arm": null,
+      "depends_on": [
+        "have",
+        "total",
+        "idf",
+        "group"
+      ],
+      "group": {
+        "d": 3,
+        "sampler": "popularity"
+      },
+      "n": 5061,
+      "name": "visible_rate",
+      "role": "product",
+      "split": "dev",
+      "value": 0.5184746097609169
+    },
+    {
+      "arm": "random",
+      "depends_on": [
+        "gold_recipe_lines",
+        "have",
+        "total",
+        "idf"
+      ],
+      "group": {
+        "d": 3,
+        "sampler": "popularity"
+      },
+      "n": 4935,
+      "name": "recall_at_10",
+      "role": "sanity",
+      "split": "test",
+      "value": 0.006889564336372847
+    },
+    {
+      "arm": "random",
+      "depends_on": [
+        "gold_recipe_lines",
+        "have",
+        "total",
+        "idf"
+      ],
+      "group": {
+        "d": 3,
+        "sampler": "popularity"
+      },
+      "n": 4935,
+      "name": "mrr_at_10",
+      "role": "sanity",
+      "split": "test",
+      "value": 0.001967321207442788
+    },
+    {
+      "arm": "random",
+      "depends_on": [
+        "have",
+        "total",
+        "idf"
+      ],
+      "group": {
+        "d": 3,
+        "sampler": "popularity"
+      },
+      "n": 4935,
+      "name": "makeable_at_10",
+      "role": "product",
+      "split": "test",
+      "value": 0.010070921985815679
+    },
+    {
+      "arm": "overlap",
+      "depends_on": [
+        "gold_recipe_lines",
+        "have",
+        "total",
+        "idf"
+      ],
+      "group": {
+        "d": 3,
+        "sampler": "popularity"
+      },
+      "n": 4935,
+      "name": "recall_at_10",
+      "role": "sanity",
+      "split": "test",
+      "value": 0.6577507598784195
+    },
+    {
+      "arm": "overlap",
+      "depends_on": [
+        "gold_recipe_lines",
+        "have",
+        "total",
+        "idf"
+      ],
+      "group": {
+        "d": 3,
+        "sampler": "popularity"
+      },
+      "n": 4935,
+      "name": "mrr_at_10",
+      "role": "sanity",
+      "split": "test",
+      "value": 0.34103640983580075
+    },
+    {
+      "arm": "overlap",
+      "depends_on": [
+        "have",
+        "total",
+        "idf"
+      ],
+      "group": {
+        "d": 3,
+        "sampler": "popularity"
+      },
+      "n": 4935,
+      "name": "makeable_at_10",
+      "role": "product",
+      "split": "test",
+      "value": 0.007436676798378958
+    },
+    {
+      "arm": "idf_flat",
+      "depends_on": [
+        "gold_recipe_lines",
+        "have",
+        "total",
+        "idf"
+      ],
+      "group": {
+        "d": 3,
+        "sampler": "popularity"
+      },
+      "n": 4935,
+      "name": "recall_at_10",
+      "role": "sanity",
+      "split": "test",
+      "value": 0.8828774062816616
+    },
+    {
+      "arm": "idf_flat",
+      "depends_on": [
+        "gold_recipe_lines",
+        "have",
+        "total",
+        "idf"
+      ],
+      "group": {
+        "d": 3,
+        "sampler": "popularity"
+      },
+      "n": 4935,
+      "name": "mrr_at_10",
+      "role": "sanity",
+      "split": "test",
+      "value": 0.6944998472202141
+    },
+    {
+      "arm": "idf_flat",
+      "depends_on": [
+        "have",
+        "total",
+        "idf"
+      ],
+      "group": {
+        "d": 3,
+        "sampler": "popularity"
+      },
+      "n": 4935,
+      "name": "makeable_at_10",
+      "role": "product",
+      "split": "test",
+      "value": 0.11645390070922229
+    },
+    {
+      "arm": "shipped",
+      "depends_on": [
+        "gold_recipe_lines",
+        "have",
+        "total",
+        "idf"
+      ],
+      "group": {
+        "d": 3,
+        "sampler": "popularity"
+      },
+      "n": 4935,
+      "name": "recall_at_10",
+      "role": "sanity",
+      "split": "test",
+      "value": 0.12462006079027356
+    },
+    {
+      "arm": "shipped",
+      "depends_on": [
+        "gold_recipe_lines",
+        "have",
+        "total",
+        "idf"
+      ],
+      "group": {
+        "d": 3,
+        "sampler": "popularity"
+      },
+      "n": 4935,
+      "name": "mrr_at_10",
+      "role": "sanity",
+      "split": "test",
+      "value": 0.0323321432591949
+    },
+    {
+      "arm": "shipped",
+      "depends_on": [
+        "have",
+        "total",
+        "idf"
+      ],
+      "group": {
+        "d": 3,
+        "sampler": "popularity"
+      },
+      "n": 4935,
+      "name": "makeable_at_10",
+      "role": "product",
+      "split": "test",
+      "value": 0.7228976697061785
+    },
+    {
+      "arm": null,
+      "depends_on": [
+        "have",
+        "total",
+        "idf"
+      ],
+      "group": {
+        "d": 3,
+        "sampler": "popularity"
+      },
+      "n": 4935,
+      "name": "hit_rate",
+      "role": "product",
+      "split": "test",
+      "value": 0.9760891590678825
+    },
+    {
+      "arm": null,
+      "depends_on": [
+        "have",
+        "total",
+        "idf",
+        "group"
+      ],
+      "group": {
+        "d": 3,
+        "sampler": "popularity"
+      },
+      "n": 4935,
+      "name": "visible_rate",
+      "role": "product",
+      "split": "test",
+      "value": 0.5146909827760892
+    },
+    {
+      "arm": "random",
+      "depends_on": [
+        "gold_recipe_lines",
+        "have",
+        "total",
+        "idf"
+      ],
+      "group": {
+        "d": 6,
+        "sampler": "uniform"
+      },
+      "n": 5061,
+      "name": "recall_at_10",
+      "role": "sanity",
+      "split": "dev",
+      "value": 0.007903576368306658
+    },
+    {
+      "arm": "random",
+      "depends_on": [
+        "gold_recipe_lines",
+        "have",
+        "total",
+        "idf"
+      ],
+      "group": {
+        "d": 6,
+        "sampler": "uniform"
+      },
+      "n": 5061,
+      "name": "mrr_at_10",
+      "role": "sanity",
+      "split": "dev",
+      "value": 0.0017273391606527346
+    },
+    {
+      "arm": "random",
+      "depends_on": [
+        "have",
+        "total",
+        "idf"
+      ],
+      "group": {
+        "d": 6,
+        "sampler": "uniform"
+      },
+      "n": 5061,
+      "name": "makeable_at_10",
+      "role": "product",
+      "split": "dev",
+      "value": 0.009662122110254965
+    },
+    {
+      "arm": "overlap",
+      "depends_on": [
+        "gold_recipe_lines",
+        "have",
+        "total",
+        "idf"
+      ],
+      "group": {
+        "d": 6,
+        "sampler": "uniform"
+      },
+      "n": 5061,
+      "name": "recall_at_10",
+      "role": "sanity",
+      "split": "dev",
+      "value": 0.7470855562141869
+    },
+    {
+      "arm": "overlap",
+      "depends_on": [
+        "gold_recipe_lines",
+        "have",
+        "total",
+        "idf"
+      ],
+      "group": {
+        "d": 6,
+        "sampler": "uniform"
+      },
+      "n": 5061,
+      "name": "mrr_at_10",
+      "role": "sanity",
+      "split": "dev",
+      "value": 0.4197755635218578
+    },
+    {
+      "arm": "overlap",
+      "depends_on": [
+        "have",
+        "total",
+        "idf"
+      ],
+      "group": {
+        "d": 6,
+        "sampler": "uniform"
+      },
+      "n": 5061,
+      "name": "makeable_at_10",
+      "role": "product",
+      "split": "dev",
+      "value": 0.009365737996443451
+    },
+    {
+      "arm": "idf_flat",
+      "depends_on": [
+        "gold_recipe_lines",
+        "have",
+        "total",
+        "idf"
+      ],
+      "group": {
+        "d": 6,
+        "sampler": "uniform"
+      },
+      "n": 5061,
+      "name": "recall_at_10",
+      "role": "sanity",
+      "split": "dev",
+      "value": 0.8529934795494961
+    },
+    {
+      "arm": "idf_flat",
+      "depends_on": [
+        "gold_recipe_lines",
+        "have",
+        "total",
+        "idf"
+      ],
+      "group": {
+        "d": 6,
+        "sampler": "uniform"
+      },
+      "n": 5061,
+      "name": "mrr_at_10",
+      "role": "sanity",
+      "split": "dev",
+      "value": 0.6454534049673357
+    },
+    {
+      "arm": "idf_flat",
+      "depends_on": [
+        "have",
+        "total",
+        "idf"
+      ],
+      "group": {
+        "d": 6,
+        "sampler": "uniform"
+      },
+      "n": 5061,
+      "name": "makeable_at_10",
+      "role": "product",
+      "split": "dev",
+      "value": 0.12234736218139039
+    },
+    {
+      "arm": "shipped",
+      "depends_on": [
+        "gold_recipe_lines",
+        "have",
+        "total",
+        "idf"
+      ],
+      "group": {
+        "d": 6,
+        "sampler": "uniform"
+      },
+      "n": 5061,
+      "name": "recall_at_10",
+      "role": "sanity",
+      "split": "dev",
+      "value": 0.15649081209247184
+    },
+    {
+      "arm": "shipped",
+      "depends_on": [
+        "gold_recipe_lines",
+        "have",
+        "total",
+        "idf"
+      ],
+      "group": {
+        "d": 6,
+        "sampler": "uniform"
+      },
+      "n": 5061,
+      "name": "mrr_at_10",
+      "role": "sanity",
+      "split": "dev",
+      "value": 0.042305147047292796
+    },
+    {
+      "arm": "shipped",
+      "depends_on": [
+        "have",
+        "total",
+        "idf"
+      ],
+      "group": {
+        "d": 6,
+        "sampler": "uniform"
+      },
+      "n": 5061,
+      "name": "makeable_at_10",
+      "role": "product",
+      "split": "dev",
+      "value": 0.6607587433313544
+    },
+    {
+      "arm": null,
+      "depends_on": [
+        "have",
+        "total",
+        "idf"
+      ],
+      "group": {
+        "d": 6,
+        "sampler": "uniform"
+      },
+      "n": 5061,
+      "name": "hit_rate",
+      "role": "product",
+      "split": "dev",
+      "value": 0.9646314957518277
+    },
+    {
+      "arm": null,
+      "depends_on": [
+        "have",
+        "total",
+        "idf",
+        "group"
+      ],
+      "group": {
+        "d": 6,
+        "sampler": "uniform"
+      },
+      "n": 5061,
+      "name": "visible_rate",
+      "role": "product",
+      "split": "dev",
+      "value": 0.5192649673977475
+    },
+    {
+      "arm": "random",
+      "depends_on": [
+        "gold_recipe_lines",
+        "have",
+        "total",
+        "idf"
+      ],
+      "group": {
+        "d": 6,
+        "sampler": "uniform"
+      },
+      "n": 4935,
+      "name": "recall_at_10",
+      "role": "sanity",
+      "split": "test",
+      "value": 0.010536980749746707
+    },
+    {
+      "arm": "random",
+      "depends_on": [
+        "gold_recipe_lines",
+        "have",
+        "total",
+        "idf"
+      ],
+      "group": {
+        "d": 6,
+        "sampler": "uniform"
+      },
+      "n": 4935,
+      "name": "mrr_at_10",
+      "role": "sanity",
+      "split": "test",
+      "value": 0.003066933629243659
+    },
+    {
+      "arm": "random",
+      "depends_on": [
+        "have",
+        "total",
+        "idf"
+      ],
+      "group": {
+        "d": 6,
+        "sampler": "uniform"
+      },
+      "n": 4935,
+      "name": "makeable_at_10",
+      "role": "product",
+      "split": "test",
+      "value": 0.00877406281661607
+    },
+    {
+      "arm": "overlap",
+      "depends_on": [
+        "gold_recipe_lines",
+        "have",
+        "total",
+        "idf"
+      ],
+      "group": {
+        "d": 6,
+        "sampler": "uniform"
+      },
+      "n": 4935,
+      "name": "recall_at_10",
+      "role": "sanity",
+      "split": "test",
+      "value": 0.7574468085106383
+    },
+    {
+      "arm": "overlap",
+      "depends_on": [
+        "gold_recipe_lines",
+        "have",
+        "total",
+        "idf"
+      ],
+      "group": {
+        "d": 6,
+        "sampler": "uniform"
+      },
+      "n": 4935,
+      "name": "mrr_at_10",
+      "role": "sanity",
+      "split": "test",
+      "value": 0.42948722278509344
+    },
+    {
+      "arm": "overlap",
+      "depends_on": [
+        "have",
+        "total",
+        "idf"
+      ],
+      "group": {
+        "d": 6,
+        "sampler": "uniform"
+      },
+      "n": 4935,
+      "name": "makeable_at_10",
+      "role": "product",
+      "split": "test",
+      "value": 0.00778115501519761
+    },
+    {
+      "arm": "idf_flat",
+      "depends_on": [
+        "gold_recipe_lines",
+        "have",
+        "total",
+        "idf"
+      ],
+      "group": {
+        "d": 6,
+        "sampler": "uniform"
+      },
+      "n": 4935,
+      "name": "recall_at_10",
+      "role": "sanity",
+      "split": "test",
+      "value": 0.8626139817629179
+    },
+    {
+      "arm": "idf_flat",
+      "depends_on": [
+        "gold_recipe_lines",
+        "have",
+        "total",
+        "idf"
+      ],
+      "group": {
+        "d": 6,
+        "sampler": "uniform"
+      },
+      "n": 4935,
+      "name": "mrr_at_10",
+      "role": "sanity",
+      "split": "test",
+      "value": 0.6564099966227634
+    },
+    {
+      "arm": "idf_flat",
+      "depends_on": [
+        "have",
+        "total",
+        "idf"
+      ],
+      "group": {
+        "d": 6,
+        "sampler": "uniform"
+      },
+      "n": 4935,
+      "name": "makeable_at_10",
+      "role": "product",
+      "split": "test",
+      "value": 0.1196757852077028
+    },
+    {
+      "arm": "shipped",
+      "depends_on": [
+        "gold_recipe_lines",
+        "have",
+        "total",
+        "idf"
+      ],
+      "group": {
+        "d": 6,
+        "sampler": "uniform"
+      },
+      "n": 4935,
+      "name": "recall_at_10",
+      "role": "sanity",
+      "split": "test",
+      "value": 0.16453900709219857
+    },
+    {
+      "arm": "shipped",
+      "depends_on": [
+        "gold_recipe_lines",
+        "have",
+        "total",
+        "idf"
+      ],
+      "group": {
+        "d": 6,
+        "sampler": "uniform"
+      },
+      "n": 4935,
+      "name": "mrr_at_10",
+      "role": "sanity",
+      "split": "test",
+      "value": 0.044376899696048556
+    },
+    {
+      "arm": "shipped",
+      "depends_on": [
+        "have",
+        "total",
+        "idf"
+      ],
+      "group": {
+        "d": 6,
+        "sampler": "uniform"
+      },
+      "n": 4935,
+      "name": "makeable_at_10",
+      "role": "product",
+      "split": "test",
+      "value": 0.6430597771023278
+    },
+    {
+      "arm": null,
+      "depends_on": [
+        "have",
+        "total",
+        "idf"
+      ],
+      "group": {
+        "d": 6,
+        "sampler": "uniform"
+      },
+      "n": 4935,
+      "name": "hit_rate",
+      "role": "product",
+      "split": "test",
+      "value": 0.9574468085106383
+    },
+    {
+      "arm": null,
+      "depends_on": [
+        "have",
+        "total",
+        "idf",
+        "group"
+      ],
+      "group": {
+        "d": 6,
+        "sampler": "uniform"
+      },
+      "n": 4935,
+      "name": "visible_rate",
+      "role": "product",
+      "split": "test",
+      "value": 0.5187436676798379
+    },
+    {
+      "arm": "random",
+      "depends_on": [
+        "gold_recipe_lines",
+        "have",
+        "total",
+        "idf"
+      ],
+      "group": {
+        "d": 6,
+        "sampler": "popularity"
+      },
+      "n": 5061,
+      "name": "recall_at_10",
+      "role": "sanity",
+      "split": "dev",
+      "value": 0.006915629322268326
+    },
+    {
+      "arm": "random",
+      "depends_on": [
+        "gold_recipe_lines",
+        "have",
+        "total",
+        "idf"
+      ],
+      "group": {
+        "d": 6,
+        "sampler": "popularity"
+      },
+      "n": 5061,
+      "name": "mrr_at_10",
+      "role": "sanity",
+      "split": "dev",
+      "value": 0.0017180085496623734
+    },
+    {
+      "arm": "random",
+      "depends_on": [
+        "have",
+        "total",
+        "idf"
+      ],
+      "group": {
+        "d": 6,
+        "sampler": "popularity"
+      },
+      "n": 5061,
+      "name": "makeable_at_10",
+      "role": "product",
+      "split": "dev",
+      "value": 0.011361391029440924
+    },
+    {
+      "arm": "overlap",
+      "depends_on": [
+        "gold_recipe_lines",
+        "have",
+        "total",
+        "idf"
+      ],
+      "group": {
+        "d": 6,
+        "sampler": "popularity"
+      },
+      "n": 5061,
+      "name": "recall_at_10",
+      "role": "sanity",
+      "split": "dev",
+      "value": 0.46927484686820786
+    },
+    {
+      "arm": "overlap",
+      "depends_on": [
+        "gold_recipe_lines",
+        "have",
+        "total",
+        "idf"
+      ],
+      "group": {
+        "d": 6,
+        "sampler": "popularity"
+      },
+      "n": 5061,
+      "name": "mrr_at_10",
+      "role": "sanity",
+      "split": "dev",
+      "value": 0.21259852027486917
+    },
+    {
+      "arm": "overlap",
+      "depends_on": [
+        "have",
+        "total",
+        "idf"
+      ],
+      "group": {
+        "d": 6,
+        "sampler": "popularity"
+      },
+      "n": 5061,
+      "name": "makeable_at_10",
+      "role": "product",
+      "split": "dev",
+      "value": 0.0034182967792926243
+    },
+    {
+      "arm": "idf_flat",
+      "depends_on": [
+        "gold_recipe_lines",
+        "have",
+        "total",
+        "idf"
+      ],
+      "group": {
+        "d": 6,
+        "sampler": "popularity"
+      },
+      "n": 5061,
+      "name": "recall_at_10",
+      "role": "sanity",
+      "split": "dev",
+      "value": 0.7972732661529343
+    },
+    {
+      "arm": "idf_flat",
+      "depends_on": [
+        "gold_recipe_lines",
+        "have",
+        "total",
+        "idf"
+      ],
+      "group": {
+        "d": 6,
+        "sampler": "popularity"
+      },
+      "n": 5061,
+      "name": "mrr_at_10",
+      "role": "sanity",
+      "split": "dev",
+      "value": 0.5863793465749604
+    },
+    {
+      "arm": "idf_flat",
+      "depends_on": [
+        "have",
+        "total",
+        "idf"
+      ],
+      "group": {
+        "d": 6,
+        "sampler": "popularity"
+      },
+      "n": 5061,
+      "name": "makeable_at_10",
+      "role": "product",
+      "split": "dev",
+      "value": 0.10731080814068618
+    },
+    {
+      "arm": "shipped",
+      "depends_on": [
+        "gold_recipe_lines",
+        "have",
+        "total",
+        "idf"
+      ],
+      "group": {
+        "d": 6,
+        "sampler": "popularity"
+      },
+      "n": 5061,
+      "name": "recall_at_10",
+      "role": "sanity",
+      "split": "dev",
+      "value": 0.06085753803596127
+    },
+    {
+      "arm": "shipped",
+      "depends_on": [
+        "gold_recipe_lines",
+        "have",
+        "total",
+        "idf"
+      ],
+      "group": {
+        "d": 6,
+        "sampler": "popularity"
+      },
+      "n": 5061,
+      "name": "mrr_at_10",
+      "role": "sanity",
+      "split": "dev",
+      "value": 0.01211717051966017
+    },
+    {
+      "arm": "shipped",
+      "depends_on": [
+        "have",
+        "total",
+        "idf"
+      ],
+      "group": {
+        "d": 6,
+        "sampler": "popularity"
+      },
+      "n": 5061,
+      "name": "makeable_at_10",
+      "role": "product",
+      "split": "dev",
+      "value": 0.8609168148587251
+    },
+    {
+      "arm": null,
+      "depends_on": [
+        "have",
+        "total",
+        "idf"
+      ],
+      "group": {
+        "d": 6,
+        "sampler": "popularity"
+      },
+      "n": 5061,
+      "name": "hit_rate",
+      "role": "product",
+      "split": "dev",
+      "value": 0.9968385694526773
+    },
+    {
+      "arm": null,
+      "depends_on": [
+        "have",
+        "total",
+        "idf",
+        "group"
+      ],
+      "group": {
+        "d": 6,
+        "sampler": "popularity"
+      },
+      "n": 5061,
+      "name": "visible_rate",
+      "role": "product",
+      "split": "dev",
+      "value": 0.49950602647698084
+    },
+    {
+      "arm": "random",
+      "depends_on": [
+        "gold_recipe_lines",
+        "have",
+        "total",
+        "idf"
+      ],
+      "group": {
+        "d": 6,
+        "sampler": "popularity"
+      },
+      "n": 4935,
+      "name": "recall_at_10",
+      "role": "sanity",
+      "split": "test",
+      "value": 0.00364741641337386
+    },
+    {
+      "arm": "random",
+      "depends_on": [
+        "gold_recipe_lines",
+        "have",
+        "total",
+        "idf"
+      ],
+      "group": {
+        "d": 6,
+        "sampler": "popularity"
+      },
+      "n": 4935,
+      "name": "mrr_at_10",
+      "role": "sanity",
+      "split": "test",
+      "value": 0.0014160274038693492
+    },
+    {
+      "arm": "random",
+      "depends_on": [
+        "have",
+        "total",
+        "idf"
+      ],
+      "group": {
+        "d": 6,
+        "sampler": "popularity"
+      },
+      "n": 4935,
+      "name": "makeable_at_10",
+      "role": "product",
+      "split": "test",
+      "value": 0.011712259371833943
+    },
+    {
+      "arm": "overlap",
+      "depends_on": [
+        "gold_recipe_lines",
+        "have",
+        "total",
+        "idf"
+      ],
+      "group": {
+        "d": 6,
+        "sampler": "popularity"
+      },
+      "n": 4935,
+      "name": "recall_at_10",
+      "role": "sanity",
+      "split": "test",
+      "value": 0.48834853090172237
+    },
+    {
+      "arm": "overlap",
+      "depends_on": [
+        "gold_recipe_lines",
+        "have",
+        "total",
+        "idf"
+      ],
+      "group": {
+        "d": 6,
+        "sampler": "popularity"
+      },
+      "n": 4935,
+      "name": "mrr_at_10",
+      "role": "sanity",
+      "split": "test",
+      "value": 0.2214764156253522
+    },
+    {
+      "arm": "overlap",
+      "depends_on": [
+        "have",
+        "total",
+        "idf"
+      ],
+      "group": {
+        "d": 6,
+        "sampler": "popularity"
+      },
+      "n": 4935,
+      "name": "makeable_at_10",
+      "role": "product",
+      "split": "test",
+      "value": 0.0034853090172239066
+    },
+    {
+      "arm": "idf_flat",
+      "depends_on": [
+        "gold_recipe_lines",
+        "have",
+        "total",
+        "idf"
+      ],
+      "group": {
+        "d": 6,
+        "sampler": "popularity"
+      },
+      "n": 4935,
+      "name": "recall_at_10",
+      "role": "sanity",
+      "split": "test",
+      "value": 0.8107396149949342
+    },
+    {
+      "arm": "idf_flat",
+      "depends_on": [
+        "gold_recipe_lines",
+        "have",
+        "total",
+        "idf"
+      ],
+      "group": {
+        "d": 6,
+        "sampler": "popularity"
+      },
+      "n": 4935,
+      "name": "mrr_at_10",
+      "role": "sanity",
+      "split": "test",
+      "value": 0.5965799842395597
+    },
+    {
+      "arm": "idf_flat",
+      "depends_on": [
+        "have",
+        "total",
+        "idf"
+      ],
+      "group": {
+        "d": 6,
+        "sampler": "popularity"
+      },
+      "n": 4935,
+      "name": "makeable_at_10",
+      "role": "product",
+      "split": "test",
+      "value": 0.10247213779128843
+    },
+    {
+      "arm": "shipped",
+      "depends_on": [
+        "gold_recipe_lines",
+        "have",
+        "total",
+        "idf"
+      ],
+      "group": {
+        "d": 6,
+        "sampler": "popularity"
+      },
+      "n": 4935,
+      "name": "recall_at_10",
+      "role": "sanity",
+      "split": "test",
+      "value": 0.06707193515704155
+    },
+    {
+      "arm": "shipped",
+      "depends_on": [
+        "gold_recipe_lines",
+        "have",
+        "total",
+        "idf"
+      ],
+      "group": {
+        "d": 6,
+        "sampler": "popularity"
+      },
+      "n": 4935,
+      "name": "mrr_at_10",
+      "role": "sanity",
+      "split": "test",
+      "value": 0.013853186664736856
+    },
+    {
+      "arm": "shipped",
+      "depends_on": [
+        "have",
+        "total",
+        "idf"
+      ],
+      "group": {
+        "d": 6,
+        "sampler": "popularity"
+      },
+      "n": 4935,
+      "name": "makeable_at_10",
+      "role": "product",
+      "split": "test",
+      "value": 0.8526241134751806
+    },
+    {
+      "arm": null,
+      "depends_on": [
+        "have",
+        "total",
+        "idf"
+      ],
+      "group": {
+        "d": 6,
+        "sampler": "popularity"
+      },
+      "n": 4935,
+      "name": "hit_rate",
+      "role": "product",
+      "split": "test",
+      "value": 0.9963525835866262
+    },
+    {
+      "arm": null,
+      "depends_on": [
+        "have",
+        "total",
+        "idf",
+        "group"
+      ],
+      "group": {
+        "d": 6,
+        "sampler": "popularity"
+      },
+      "n": 4935,
+      "name": "visible_rate",
+      "role": "product",
+      "split": "test",
+      "value": 0.4950354609929078
+    }
+  ],
+  "schema": 1,
+  "seed": 42,
+  "what": "M2 rule baselines (random, overlap, idf_flat, shipped), masked pantries"
+}

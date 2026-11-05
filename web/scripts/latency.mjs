@@ -1,12 +1,13 @@
 // Measure answer() latency in Chromium under a CPU throttle, on the real pack.
 // Usage: npm run pack:real && node scripts/latency.mjs [--rate 6] [--runs 40] [--seed 1]
-// Writes ../results/m1_latency.json. The dev server is used so the page can import engine.ts.
-import { execFileSync, spawn } from "node:child_process";
+// Writes ../results/m1_latency.json through result.mjs (schema 1). The dev server is used so the page can import engine.ts.
+import { spawn } from "node:child_process";
 import { createServer } from "node:http";
-import { readFileSync, mkdirSync, writeFileSync } from "node:fs";
+import { readFileSync } from "node:fs";
 import { dirname, join, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 import { chromium } from "@playwright/test";
+import { latencyMetrics, writeResult } from "./result.mjs";
 
 const here = dirname(fileURLToPath(import.meta.url));
 const web = resolve(here, "..");
@@ -23,7 +24,6 @@ const PORT = 5199;
 const PACK_PORT = 5198;
 const SIZES = [3, 5, 8, 12];
 
-const git = (...a) => execFileSync("git", a, { cwd: root, encoding: "utf8" }).trim();
 const manifest = JSON.parse(readFileSync(join(root, "build", "pack", "manifest.v1.json"), "utf8"));
 
 const server = spawn(process.execPath, [join(web, "node_modules", "vite", "bin", "vite.js"), "--port", String(PORT), "--strictPort", "--host", "127.0.0.1"], {
@@ -107,19 +107,14 @@ try {
   );
   await browser.close();
 
-  const dirty = git("status", "--porcelain", "--untracked-files=no") !== "";
-  const out = {
-    label: "MEASURED",
-    what: "answer() latency, Chromium headless, Vite dev server, real pack, CPU throttled",
-    commit: git("rev-parse", "HEAD"),
-    dirty,
-    config: { cpu_throttle_rate: RATE, runs_per_size: RUNS, pantry_sizes: SIZES, limit: 10, warmup: 3, pool: "120 most common ingredients" },
+  const config = { cpu_throttle_rate: RATE, runs_per_size: RUNS, pantry_sizes: SIZES, limit: 10, warmup: 3, pool: "120 most common ingredients" };
+  const raw = {
+    config,
     pack: {
       corpus_fingerprint: manifest.inputs?.snapshot?.sha256 ?? null,
       files: manifest.files.map((f) => ({ name: f.name, sha256: f.sha256, size: f.size })),
       recipes: manifest.counts.recipes,
     },
-    seed: SEED,
     metrics: {
       ...metrics,
       threshold_ms: 100,
@@ -131,10 +126,23 @@ try {
     worker_plan:
       "Small pantries match many recipes and are the slowest. If a production-bundle run still shows p95 >= 100 ms, move Engine into a Web Worker (module worker, same origin, loads the pack itself) and post AnswerRequest/Answer messages. The Answer type is plain JSON, so no code change in the engine is needed. Until then answer() runs on the main thread.",
     limits: "Covers answer() at limit 10 only, not rendering. Pantries come from the 120 most common ingredients. The dev server serves unminified code. One run: run-to-run spread is not measured. The first call after load is reported separately as coldFirstCallMs.",
-    command: `node web/scripts/latency.mjs --rate ${RATE} --runs ${RUNS} --seed ${SEED} --out ${OUT}`,
   };
-  mkdirSync(join(root, "results"), { recursive: true });
-  writeFileSync(join(root, "results", OUT), JSON.stringify(out, null, 2) + "\n");
+  writeResult(
+    join(root, "results", OUT),
+    {
+      label: "MEASURED",
+      what: "answer() latency, Chromium headless, Vite dev server, real pack, CPU throttled",
+      command: `node web/scripts/latency.mjs --rate ${RATE} --runs ${RUNS} --seed ${SEED} --out ${OUT}`,
+      config,
+      seed: SEED,
+      corpus_fingerprint: raw.pack.corpus_fingerprint ?? "none recorded",
+      arms: [],
+      metrics: latencyMetrics(metrics.bySize),
+      comparisons: [],
+      raw,
+    },
+    root,
+  );
   console.log(JSON.stringify({ overall: metrics.overall, bySize: metrics.bySize, loadMs: metrics.loadMs }, null, 2));
 } finally {
   stop();

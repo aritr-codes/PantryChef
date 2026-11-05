@@ -1,0 +1,328 @@
+{
+  "arms": [],
+  "command": "node web/scripts/latency-device.mjs --url https://aritr-codes.github.io/PantryChef/ --runs 15 --seed 1 --port 9222 --out m2_latency_device_saver_off.json",
+  "commit": "a4388c63d328cc88e78799b9869487cedabe771f",
+  "comparisons": [],
+  "config": {
+    "cache": "disabled",
+    "cpu_throttle": "none",
+    "input": "CDP fill and press, not touch",
+    "pantry_sizes": [
+      3,
+      5,
+      8,
+      12
+    ],
+    "pool": [
+      "egg",
+      "flour",
+      "milk",
+      "butter",
+      "sugar",
+      "onion",
+      "garlic",
+      "tomato",
+      "chicken",
+      "rice",
+      "potato",
+      "cheese",
+      "carrot",
+      "lemon",
+      "beef",
+      "pasta",
+      "apple",
+      "honey"
+    ],
+    "runs_per_size": 15,
+    "url": "https://aritr-codes.github.io/PantryChef/",
+    "warmup_runs": 2
+  },
+  "corpus_fingerprint": "deployed bundle: https://aritr-codes.github.io/PantryChef/",
+  "dirty": false,
+  "dirty_paths": [],
+  "environment": {
+    "chrome": "156.0.8078.79",
+    "device": {
+      "android": "16",
+      "density": "Physical density: 450",
+      "manufacturer": "samsung",
+      "model": "SM-A176B",
+      "refresh": "mAmbientLightSensor=SensorData{type= , name= , refreshRateRange: [0.0, Infinity], supportedModes=[]}, mScreenOffBrightne",
+      "screen": "Physical size: 1080x2340",
+      "sdk": "36"
+    },
+    "node": "v24.14.0",
+    "platform": "Windows_NT 10.0.19045 (win32)"
+  },
+  "label": "MEASURED",
+  "metrics": [
+    {
+      "arm": null,
+      "depends_on": [],
+      "group": {
+        "pantry_size": 3
+      },
+      "n": 13,
+      "name": "latency_p50_ms",
+      "role": "latency",
+      "split": "all",
+      "value": 22.300000071525574
+    },
+    {
+      "arm": null,
+      "depends_on": [],
+      "group": {
+        "pantry_size": 3
+      },
+      "n": 13,
+      "name": "latency_p95_ms",
+      "role": "latency",
+      "split": "all",
+      "value": 31.200000047683716
+    },
+    {
+      "arm": null,
+      "depends_on": [],
+      "group": {
+        "pantry_size": 3
+      },
+      "n": 13,
+      "name": "latency_max_ms",
+      "role": "latency",
+      "split": "all",
+      "value": 31.200000047683716
+    },
+    {
+      "arm": null,
+      "depends_on": [],
+      "group": {
+        "pantry_size": 5
+      },
+      "n": 13,
+      "name": "latency_p50_ms",
+      "role": "latency",
+      "split": "all",
+      "value": 30.199999928474426
+    },
+    {
+      "arm": null,
+      "depends_on": [],
+      "group": {
+        "pantry_size": 5
+      },
+      "n": 13,
+      "name": "latency_p95_ms",
+      "role": "latency",
+      "split": "all",
+      "value": 36.800000071525574
+    },
+    {
+      "arm": null,
+      "depends_on": [],
+      "group": {
+        "pantry_size": 5
+      },
+      "n": 13,
+      "name": "latency_max_ms",
+      "role": "latency",
+      "split": "all",
+      "value": 36.800000071525574
+    },
+    {
+      "arm": null,
+      "depends_on": [],
+      "group": {
+        "pantry_size": 8
+      },
+      "n": 13,
+      "name": "latency_p50_ms",
+      "role": "latency",
+      "split": "all",
+      "value": 18.800000071525574
+    },
+    {
+      "arm": null,
+      "depends_on": [],
+      "group": {
+        "pantry_size": 8
+      },
+      "n": 13,
+      "name": "latency_p95_ms",
+      "role": "latency",
+      "split": "all",
+      "value": 30.5
+    },
+    {
+      "arm": null,
+      "depends_on": [],
+      "group": {
+        "pantry_size": 8
+      },
+      "n": 13,
+      "name": "latency_max_ms",
+      "role": "latency",
+      "split": "all",
+      "value": 30.5
+    },
+    {
+      "arm": null,
+      "depends_on": [],
+      "group": {
+        "pantry_size": 12
+      },
+      "n": 13,
+      "name": "latency_p50_ms",
+      "role": "latency",
+      "split": "all",
+      "value": 19.100000023841858
+    },
+    {
+      "arm": null,
+      "depends_on": [],
+      "group": {
+        "pantry_size": 12
+      },
+      "n": 13,
+      "name": "latency_p95_ms",
+      "role": "latency",
+      "split": "all",
+      "value": 30.200000047683716
+    },
+    {
+      "arm": null,
+      "depends_on": [],
+      "group": {
+        "pantry_size": 12
+      },
+      "n": 13,
+      "name": "latency_max_ms",
+      "role": "latency",
+      "split": "all",
+      "value": 30.200000047683716
+    }
+  ],
+  "raw": {
+    "after": {
+      "battery_level": 33,
+      "battery_temp_tenths_c": 321,
+      "low_power_mode": "0",
+      "thermal_status": 0
+    },
+    "before": {
+      "battery_level": 33,
+      "battery_temp_tenths_c": 321,
+      "low_power_mode": "0",
+      "thermal_status": 0
+    },
+    "load_retries": 0,
+    "page_ready_ms": {
+      "max": 1113,
+      "n": 60,
+      "p50": 338,
+      "p95": 599
+    },
+    "per_size_facts": [
+      {
+        "after_size": 3,
+        "battery_level": 33,
+        "battery_temp_tenths_c": 321,
+        "low_power_mode": "0",
+        "thermal_status": 0
+      },
+      {
+        "after_size": 5,
+        "battery_level": 33,
+        "battery_temp_tenths_c": 321,
+        "low_power_mode": "0",
+        "thermal_status": 0
+      },
+      {
+        "after_size": 8,
+        "battery_level": 33,
+        "battery_temp_tenths_c": 321,
+        "low_power_mode": "0",
+        "thermal_status": 0
+      },
+      {
+        "after_size": 12,
+        "battery_level": 33,
+        "battery_temp_tenths_c": 321,
+        "low_power_mode": "0",
+        "thermal_status": 0
+      }
+    ],
+    "raw_ms": {
+      "3": [
+        25.600000023841858,
+        18.800000071525574,
+        31.200000047683716,
+        22.300000071525574,
+        19.59999990463257,
+        19.299999952316284,
+        24.699999928474426,
+        19.600000023841858,
+        23.5,
+        24.200000047683716,
+        22.09999990463257,
+        18.800000071525574,
+        16,
+        25.300000071525574,
+        25
+      ],
+      "5": [
+        28.899999976158142,
+        17.100000023841858,
+        36.800000071525574,
+        29.899999976158142,
+        30.199999928474426,
+        32.40000009536743,
+        30.899999976158142,
+        13.400000095367432,
+        20.600000023841858,
+        24.5,
+        30.700000047683716,
+        30.59999990463257,
+        33.10000002384186,
+        17.399999976158142,
+        15.399999976158142
+      ],
+      "8": [
+        12,
+        15.699999928474426,
+        18.800000071525574,
+        22.300000071525574,
+        30.5,
+        11.600000023841858,
+        21.399999976158142,
+        20.700000047683716,
+        15.600000023841858,
+        13.399999976158142,
+        19.40000009536743,
+        23.199999928474426,
+        12.700000047683716,
+        12.200000047683716,
+        15.799999952316284
+      ],
+      "12": [
+        15,
+        13.299999952316284,
+        14.200000047683716,
+        13.299999952316284,
+        14.299999952316284,
+        10,
+        26,
+        23.800000071525574,
+        12.100000023841858,
+        29.100000023841858,
+        28.399999976158142,
+        19.100000023841858,
+        30,
+        30.200000047683716,
+        12.899999976158142
+      ]
+    }
+  },
+  "schema": 1,
+  "seed": 1,
+  "what": "Click on 'See recipes' to results painted, deployed production bundle, real Android phone in Chrome, no CPU throttle"
+}

@@ -1,0 +1,153 @@
+{
+  "arms": [],
+  "command": "node web/scripts/probe-device-ui.mjs --url https://aritr-codes.github.io/PantryChef/ --port 9222 --out m2_device_ui_probe.json",
+  "commit": "1ea1a6f165aff8201fdc139a4290d21f123b7764",
+  "comparisons": [],
+  "config": {
+    "input": "CDP fill and press, taps not used",
+    "items_added": [
+      "egg",
+      "flour",
+      "milk"
+    ],
+    "limit": "geometry and focus only; no screen reader, no on-screen keyboard",
+    "min_target_css_px": 44,
+    "url": "https://aritr-codes.github.io/PantryChef/"
+  },
+  "corpus_fingerprint": "deployed bundle: https://aritr-codes.github.io/PantryChef/",
+  "dirty": false,
+  "dirty_paths": [],
+  "environment": {
+    "device": "SM-A176B",
+    "node": "v24.14.0",
+    "platform": "Windows_NT 10.0.19045 (win32)",
+    "user_agent": "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Mobile Safari/537.36"
+  },
+  "label": "MEASURED",
+  "metrics": [],
+  "raw": {
+    "steps": [
+      {
+        "active": "body",
+        "active_text": "Loading recipes…",
+        "below_min": [],
+        "controls": 0,
+        "dpr": 2.8125,
+        "sideways_scroll_px": 0,
+        "step": "pantry_empty",
+        "viewport_css_px": 384
+      },
+      {
+        "active": "input#ingredient",
+        "active_text": "",
+        "below_min": [
+          {
+            "h": 24,
+            "tag": "summary",
+            "text": "Staples assumed (4)",
+            "w": 352
+          }
+        ],
+        "controls": 32,
+        "dpr": 2.8125,
+        "sideways_scroll_px": 0,
+        "step": "pantry_3_items",
+        "viewport_css_px": 384
+      },
+      {
+        "active": "input#ingredient",
+        "active_text": "",
+        "below_min": [
+          {
+            "h": 24,
+            "tag": "summary",
+            "text": "Staples assumed (4)",
+            "w": 352
+          }
+        ],
+        "controls": 40,
+        "dpr": 2.8125,
+        "sideways_scroll_px": 0,
+        "step": "suggestions_open",
+        "viewport_css_px": 384
+      },
+      {
+        "active": "h2#results-h",
+        "active_text": "Results for 3 items",
+        "below_min": [],
+        "controls": 23,
+        "dpr": 2.8125,
+        "sideways_scroll_px": 0,
+        "step": "results",
+        "viewport_css_px": 384
+      },
+      {
+        "active": "body",
+        "active_text": "PantryChef← ResultsPalatschinken (Czech/",
+        "below_min": [
+          {
+            "h": 39,
+            "tag": "a",
+            "text": "Palatschinken (Czech/Austrian Crepes) (n",
+            "w": 293
+          },
+          {
+            "h": 17,
+            "tag": "a",
+            "text": "4535125",
+            "w": 57
+          },
+          {
+            "h": 17,
+            "tag": "a",
+            "text": "licence text",
+            "w": 73
+          },
+          {
+            "h": 17,
+            "tag": "a",
+            "text": "page history",
+            "w": 78
+          }
+        ],
+        "clicked": "Palatschinken (Czech/Austrian Crepes)",
+        "controls": 5,
+        "dpr": 2.8125,
+        "ok": true,
+        "sideways_scroll_px": 0,
+        "step": "recipe_open",
+        "viewport_css_px": 384
+      },
+      {
+        "active": "h2#results-h",
+        "active_text": "Results for 3 items",
+        "below_min": [],
+        "controls": 23,
+        "dpr": 2.8125,
+        "sideways_scroll_px": 0,
+        "step": "back_to_results",
+        "viewport_css_px": 384
+      },
+      {
+        "active": "h2#pantry-h",
+        "active_text": "What do you have?",
+        "below_min": [
+          {
+            "h": 24,
+            "tag": "summary",
+            "text": "Staples assumed (4)",
+            "w": 352
+          }
+        ],
+        "controls": 32,
+        "dpr": 2.8125,
+        "sideways_scroll_px": 0,
+        "step": "back_to_pantry",
+        "viewport_css_px": 384
+      }
+    ]
+  },
+  "schema": 1,
+  "seed": 0,
+  "what": "Tap-target size (CSS px, below 44), sideways scroll and focus after each step, deployed app, real Android phone in Chrome"
+}

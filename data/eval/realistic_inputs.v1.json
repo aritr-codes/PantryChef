@@ -1,0 +1,670 @@
+{
+  "version": 1,
+  "n": 166,
+  "inputs": [
+    {
+      "text": "2 cups all-purpose flour",
+      "category": "with_quantity"
+    },
+    {
+      "text": "evoo",
+      "category": "abbreviation"
+    },
+    {
+      "text": "scallions",
+      "category": "uk_us_synonym"
+    },
+    {
+      "text": "green onions",
+      "category": "multiword"
+    },
+    {
+      "text": "tomatos",
+      "category": "typo"
+    },
+    {
+      "text": "chicken thighs, boneless",
+      "category": "multiword"
+    },
+    {
+      "text": "chicken thighs",
+      "category": "multiword"
+    },
+    {
+      "text": "1 (14 oz) can diced tomatoes",
+      "category": "with_quantity"
+    },
+    {
+      "text": "a pinch of salt",
+      "category": "with_quantity"
+    },
+    {
+      "text": "half and half",
+      "category": "multiword"
+    },
+    {
+      "text": "s&p",
+      "category": "abbreviation"
+    },
+    {
+      "text": "garbanzo beans/chickpeas",
+      "category": "slash_or_symbol"
+    },
+    {
+      "text": "cilantro/coriander",
+      "category": "slash_or_symbol"
+    },
+    {
+      "text": "heavy cream",
+      "category": "multiword"
+    },
+    {
+      "text": "powdered sugar",
+      "category": "multiword"
+    },
+    {
+      "text": "icing sugar",
+      "category": "uk_us_synonym"
+    },
+    {
+      "text": "aubergine",
+      "category": "uk_us_synonym"
+    },
+    {
+      "text": "ground beef",
+      "category": "multiword"
+    },
+    {
+      "text": "mince",
+      "category": "uk_us_synonym"
+    },
+    {
+      "text": "courgette",
+      "category": "uk_us_synonym"
+    },
+    {
+      "text": "coriander leaves",
+      "category": "uk_us_synonym"
+    },
+    {
+      "text": "rocket",
+      "category": "uk_us_synonym"
+    },
+    {
+      "text": "capsicum",
+      "category": "uk_us_synonym"
+    },
+    {
+      "text": "caster sugar",
+      "category": "uk_us_synonym"
+    },
+    {
+      "text": "plain flour",
+      "category": "uk_us_synonym"
+    },
+    {
+      "text": "self-raising flour",
+      "category": "uk_us_synonym"
+    },
+    {
+      "text": "bicarbonate of soda",
+      "category": "uk_us_synonym"
+    },
+    {
+      "text": "double cream",
+      "category": "uk_us_synonym"
+    },
+    {
+      "text": "single cream",
+      "category": "uk_us_synonym"
+    },
+    {
+      "text": "spring onions",
+      "category": "uk_us_synonym"
+    },
+    {
+      "text": "swede",
+      "category": "uk_us_synonym"
+    },
+    {
+      "text": "prawns",
+      "category": "uk_us_synonym"
+    },
+    {
+      "text": "minced beef",
+      "category": "uk_us_synonym"
+    },
+    {
+      "text": "cornflour",
+      "category": "uk_us_synonym"
+    },
+    {
+      "text": "coriander",
+      "category": "uk_us_synonym"
+    },
+    {
+      "text": "beetroot",
+      "category": "uk_us_synonym"
+    },
+    {
+      "text": "chips",
+      "category": "uk_us_synonym"
+    },
+    {
+      "text": "eggs",
+      "category": "plural"
+    },
+    {
+      "text": "egg",
+      "category": "plain"
+    },
+    {
+      "text": "milk",
+      "category": "plain"
+    },
+    {
+      "text": "whole milk",
+      "category": "multiword"
+    },
+    {
+      "text": "butter",
+      "category": "plain"
+    },
+    {
+      "text": "unsalted butter",
+      "category": "multiword"
+    },
+    {
+      "text": "garlic",
+      "category": "plain"
+    },
+    {
+      "text": "garlic cloves",
+      "category": "multiword"
+    },
+    {
+      "text": "onion",
+      "category": "plain"
+    },
+    {
+      "text": "onions",
+      "category": "plural"
+    },
+    {
+      "text": "red onion",
+      "category": "multiword"
+    },
+    {
+      "text": "yellow onion",
+      "category": "multiword"
+    },
+    {
+      "text": "potatoes",
+      "category": "plural"
+    },
+    {
+      "text": "sweet potatoes",
+      "category": "multiword"
+    },
+    {
+      "text": "carrots",
+      "category": "plural"
+    },
+    {
+      "text": "bell pepper",
+      "category": "multiword"
+    },
+    {
+      "text": "red bell pepper",
+      "category": "multiword"
+    },
+    {
+      "text": "olive oil",
+      "category": "multiword"
+    },
+    {
+      "text": "extra virgin olive oil",
+      "category": "multiword"
+    },
+    {
+      "text": "vegetable oil",
+      "category": "multiword"
+    },
+    {
+      "text": "canola oil",
+      "category": "multiword"
+    },
+    {
+      "text": "soy sauce",
+      "category": "multiword"
+    },
+    {
+      "text": "rice",
+      "category": "plain"
+    },
+    {
+      "text": "white rice",
+      "category": "multiword"
+    },
+    {
+      "text": "basmati rice",
+      "category": "multiword"
+    },
+    {
+      "text": "pasta",
+      "category": "plain"
+    },
+    {
+      "text": "spaghetti",
+      "category": "plain"
+    },
+    {
+      "text": "parmesan",
+      "category": "plain"
+    },
+    {
+      "text": "parmigiano reggiano",
+      "category": "multiword"
+    },
+    {
+      "text": "mozzarella",
+      "category": "plain"
+    },
+    {
+      "text": "cheddar",
+      "category": "plain"
+    },
+    {
+      "text": "feta",
+      "category": "plain"
+    },
+    {
+      "text": "greek yogurt",
+      "category": "multiword"
+    },
+    {
+      "text": "yoghurt",
+      "category": "uk_us_synonym"
+    },
+    {
+      "text": "sour cream",
+      "category": "multiword"
+    },
+    {
+      "text": "cream cheese",
+      "category": "multiword"
+    },
+    {
+      "text": "baking powder",
+      "category": "multiword"
+    },
+    {
+      "text": "baking soda",
+      "category": "multiword"
+    },
+    {
+      "text": "vanilla extract",
+      "category": "multiword"
+    },
+    {
+      "text": "brown sugar",
+      "category": "multiword"
+    },
+    {
+      "text": "white sugar",
+      "category": "multiword"
+    },
+    {
+      "text": "sugar",
+      "category": "plain"
+    },
+    {
+      "text": "salt",
+      "category": "plain"
+    },
+    {
+      "text": "black pepper",
+      "category": "multiword"
+    },
+    {
+      "text": "freshly ground black pepper",
+      "category": "multiword"
+    },
+    {
+      "text": "kosher salt",
+      "category": "multiword"
+    },
+    {
+      "text": "sea salt",
+      "category": "multiword"
+    },
+    {
+      "text": "paprika",
+      "category": "plain"
+    },
+    {
+      "text": "smoked paprika",
+      "category": "multiword"
+    },
+    {
+      "text": "cumin",
+      "category": "plain"
+    },
+    {
+      "text": "ground cumin",
+      "category": "multiword"
+    },
+    {
+      "text": "chili powder",
+      "category": "multiword"
+    },
+    {
+      "text": "chilli flakes",
+      "category": "uk_us_synonym"
+    },
+    {
+      "text": "red pepper flakes",
+      "category": "multiword"
+    },
+    {
+      "text": "oregano",
+      "category": "plain"
+    },
+    {
+      "text": "basil",
+      "category": "plain"
+    },
+    {
+      "text": "fresh basil",
+      "category": "multiword"
+    },
+    {
+      "text": "parsley",
+      "category": "plain"
+    },
+    {
+      "text": "thyme",
+      "category": "plain"
+    },
+    {
+      "text": "rosemary",
+      "category": "plain"
+    },
+    {
+      "text": "lemon",
+      "category": "plain"
+    },
+    {
+      "text": "lemon juice",
+      "category": "multiword"
+    },
+    {
+      "text": "lime",
+      "category": "plain"
+    },
+    {
+      "text": "chicken breast",
+      "category": "multiword"
+    },
+    {
+      "text": "chicken breasts",
+      "category": "multiword"
+    },
+    {
+      "text": "boneless skinless chicken breast",
+      "category": "multiword"
+    },
+    {
+      "text": "bacon",
+      "category": "plain"
+    },
+    {
+      "text": "ground turkey",
+      "category": "multiword"
+    },
+    {
+      "text": "pork chops",
+      "category": "multiword"
+    },
+    {
+      "text": "salmon",
+      "category": "plain"
+    },
+    {
+      "text": "tuna",
+      "category": "plain"
+    },
+    {
+      "text": "canned tuna",
+      "category": "multiword"
+    },
+    {
+      "text": "shrimp",
+      "category": "plain"
+    },
+    {
+      "text": "tomato paste",
+      "category": "multiword"
+    },
+    {
+      "text": "tomato sauce",
+      "category": "multiword"
+    },
+    {
+      "text": "crushed tomatoes",
+      "category": "multiword"
+    },
+    {
+      "text": "canned tomatoes",
+      "category": "multiword"
+    },
+    {
+      "text": "cherry tomatoes",
+      "category": "multiword"
+    },
+    {
+      "text": "mushrooms",
+      "category": "plural"
+    },
+    {
+      "text": "spinach",
+      "category": "plain"
+    },
+    {
+      "text": "broccoli",
+      "category": "plain"
+    },
+    {
+      "text": "cauliflower",
+      "category": "plain"
+    },
+    {
+      "text": "zucchini",
+      "category": "plain"
+    },
+    {
+      "text": "cucumber",
+      "category": "plain"
+    },
+    {
+      "text": "avocado",
+      "category": "plain"
+    },
+    {
+      "text": "avocados",
+      "category": "plural"
+    },
+    {
+      "text": "peanut butter",
+      "category": "multiword"
+    },
+    {
+      "text": "honey",
+      "category": "plain"
+    },
+    {
+      "text": "maple syrup",
+      "category": "multiword"
+    },
+    {
+      "text": "oats",
+      "category": "plural"
+    },
+    {
+      "text": "rolled oats",
+      "category": "multiword"
+    },
+    {
+      "text": "bread",
+      "category": "plain"
+    },
+    {
+      "text": "tortillas",
+      "category": "plural"
+    },
+    {
+      "text": "black beans",
+      "category": "multiword"
+    },
+    {
+      "text": "kidney beans",
+      "category": "multiword"
+    },
+    {
+      "text": "chickpeas",
+      "category": "plural"
+    },
+    {
+      "text": "lentils",
+      "category": "plural"
+    },
+    {
+      "text": "coconut milk",
+      "category": "multiword"
+    },
+    {
+      "text": "chicken stock",
+      "category": "multiword"
+    },
+    {
+      "text": "chicken broth",
+      "category": "multiword"
+    },
+    {
+      "text": "vegetable broth",
+      "category": "multiword"
+    },
+    {
+      "text": "water",
+      "category": "plain"
+    },
+    {
+      "text": "white wine",
+      "category": "multiword"
+    },
+    {
+      "text": "red wine",
+      "category": "multiword"
+    },
+    {
+      "text": "dijon mustard",
+      "category": "multiword"
+    },
+    {
+      "text": "mayo",
+      "category": "abbreviation"
+    },
+    {
+      "text": "mayonnaise",
+      "category": "plain"
+    },
+    {
+      "text": "ketchup",
+      "category": "plain"
+    },
+    {
+      "text": "ginger",
+      "category": "plain"
+    },
+    {
+      "text": "fresh ginger",
+      "category": "multiword"
+    },
+    {
+      "text": "cinnamon",
+      "category": "plain"
+    },
+    {
+      "text": "nutmeg",
+      "category": "plain"
+    },
+    {
+      "text": "cocoa powder",
+      "category": "multiword"
+    },
+    {
+      "text": "chocolate chips",
+      "category": "multiword"
+    },
+    {
+      "text": "worcestershire",
+      "category": "abbreviation"
+    },
+    {
+      "text": "tabasco",
+      "category": "abbreviation"
+    },
+    {
+      "text": "sriracha",
+      "category": "abbreviation"
+    },
+    {
+      "text": "pb",
+      "category": "abbreviation"
+    },
+    {
+      "text": "OJ",
+      "category": "abbreviation"
+    },
+    {
+      "text": "tomatoe",
+      "category": "typo"
+    },
+    {
+      "text": "potatos",
+      "category": "typo"
+    },
+    {
+      "text": "cheeze",
+      "category": "plain"
+    },
+    {
+      "text": "brocoli",
+      "category": "typo"
+    },
+    {
+      "text": "zuchini",
+      "category": "typo"
+    },
+    {
+      "text": "parmesean",
+      "category": "typo"
+    },
+    {
+      "text": "tumeric",
+      "category": "typo"
+    },
+    {
+      "text": "cilantro",
+      "category": "plain"
+    },
+    {
+      "text": "2 tbsp EVOO",
+      "category": "with_quantity"
+    },
+    {
+      "text": "1 lb ground beef/mince",
+      "category": "with_quantity"
+    }
+  ]
+}

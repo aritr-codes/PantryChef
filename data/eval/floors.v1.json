@@ -1,0 +1,452 @@
+{
+ "schema": 1,
+ "pack": "tests/fixtures/pack",
+ "config": {
+  "d_values": [
+   0,
+   3
+  ],
+  "samplers": [
+   "uniform",
+   "popularity"
+  ],
+  "seed": 42,
+  "draws": 3
+ },
+ "margin": 0.05,
+ "note": "Floors = observed on the first fixture run minus margin. They guard against code regressions. They are not a quality claim.",
+ "floors": [
+  {
+   "group": "sampler=none,d=0",
+   "split": "dev",
+   "arm": "overlap",
+   "name": "recall_at_10",
+   "n": 48,
+   "observed": 1.0,
+   "floor": 0.95
+  },
+  {
+   "group": "sampler=none,d=0",
+   "split": "dev",
+   "arm": "overlap",
+   "name": "mrr_at_10",
+   "n": 48,
+   "observed": 0.90625,
+   "floor": 0.8562
+  },
+  {
+   "group": "sampler=none,d=0",
+   "split": "dev",
+   "arm": "idf_flat",
+   "name": "recall_at_10",
+   "n": 48,
+   "observed": 1.0,
+   "floor": 0.95
+  },
+  {
+   "group": "sampler=none,d=0",
+   "split": "dev",
+   "arm": "idf_flat",
+   "name": "mrr_at_10",
+   "n": 48,
+   "observed": 0.918403,
+   "floor": 0.8684
+  },
+  {
+   "group": "sampler=none,d=0",
+   "split": "dev",
+   "arm": "shipped",
+   "name": "recall_at_10",
+   "n": 48,
+   "observed": 1.0,
+   "floor": 0.95
+  },
+  {
+   "group": "sampler=none,d=0",
+   "split": "dev",
+   "arm": "shipped",
+   "name": "mrr_at_10",
+   "n": 48,
+   "observed": 0.562847,
+   "floor": 0.5128
+  },
+  {
+   "group": "sampler=none,d=0",
+   "split": "dev",
+   "arm": "shipped",
+   "name": "makeable_at_10",
+   "n": 48,
+   "observed": 0.119792,
+   "floor": 0.0698
+  },
+  {
+   "group": "sampler=none,d=0",
+   "split": "dev",
+   "arm": null,
+   "name": "visible_rate",
+   "n": 48,
+   "observed": 1.0,
+   "floor": 0.95
+  },
+  {
+   "group": "sampler=none,d=0",
+   "split": "test",
+   "arm": "overlap",
+   "name": "recall_at_10",
+   "n": 60,
+   "observed": 1.0,
+   "floor": 0.95
+  },
+  {
+   "group": "sampler=none,d=0",
+   "split": "test",
+   "arm": "overlap",
+   "name": "mrr_at_10",
+   "n": 60,
+   "observed": 0.9,
+   "floor": 0.85
+  },
+  {
+   "group": "sampler=none,d=0",
+   "split": "test",
+   "arm": "idf_flat",
+   "name": "recall_at_10",
+   "n": 60,
+   "observed": 1.0,
+   "floor": 0.95
+  },
+  {
+   "group": "sampler=none,d=0",
+   "split": "test",
+   "arm": "idf_flat",
+   "name": "mrr_at_10",
+   "n": 60,
+   "observed": 0.930556,
+   "floor": 0.8806
+  },
+  {
+   "group": "sampler=none,d=0",
+   "split": "test",
+   "arm": "shipped",
+   "name": "recall_at_10",
+   "n": 60,
+   "observed": 1.0,
+   "floor": 0.95
+  },
+  {
+   "group": "sampler=none,d=0",
+   "split": "test",
+   "arm": "shipped",
+   "name": "mrr_at_10",
+   "n": 60,
+   "observed": 0.817222,
+   "floor": 0.7672
+  },
+  {
+   "group": "sampler=none,d=0",
+   "split": "test",
+   "arm": "shipped",
+   "name": "makeable_at_10",
+   "n": 60,
+   "observed": 0.038333,
+   "floor": 0.0
+  },
+  {
+   "group": "sampler=none,d=0",
+   "split": "test",
+   "arm": null,
+   "name": "visible_rate",
+   "n": 60,
+   "observed": 1.0,
+   "floor": 0.95
+  },
+  {
+   "group": "sampler=uniform,d=3",
+   "split": "dev",
+   "arm": "overlap",
+   "name": "recall_at_10",
+   "n": 48,
+   "observed": 1.0,
+   "floor": 0.95
+  },
+  {
+   "group": "sampler=uniform,d=3",
+   "split": "dev",
+   "arm": "overlap",
+   "name": "mrr_at_10",
+   "n": 48,
+   "observed": 0.630233,
+   "floor": 0.5802
+  },
+  {
+   "group": "sampler=uniform,d=3",
+   "split": "dev",
+   "arm": "idf_flat",
+   "name": "recall_at_10",
+   "n": 48,
+   "observed": 1.0,
+   "floor": 0.95
+  },
+  {
+   "group": "sampler=uniform,d=3",
+   "split": "dev",
+   "arm": "idf_flat",
+   "name": "mrr_at_10",
+   "n": 48,
+   "observed": 0.572445,
+   "floor": 0.5224
+  },
+  {
+   "group": "sampler=uniform,d=3",
+   "split": "dev",
+   "arm": "shipped",
+   "name": "recall_at_10",
+   "n": 48,
+   "observed": 0.979167,
+   "floor": 0.9292
+  },
+  {
+   "group": "sampler=uniform,d=3",
+   "split": "dev",
+   "arm": "shipped",
+   "name": "mrr_at_10",
+   "n": 48,
+   "observed": 0.377166,
+   "floor": 0.3272
+  },
+  {
+   "group": "sampler=uniform,d=3",
+   "split": "dev",
+   "arm": "shipped",
+   "name": "makeable_at_10",
+   "n": 48,
+   "observed": 0.2,
+   "floor": 0.15
+  },
+  {
+   "group": "sampler=uniform,d=3",
+   "split": "dev",
+   "arm": null,
+   "name": "visible_rate",
+   "n": 48,
+   "observed": 1.0,
+   "floor": 0.95
+  },
+  {
+   "group": "sampler=uniform,d=3",
+   "split": "test",
+   "arm": "overlap",
+   "name": "recall_at_10",
+   "n": 60,
+   "observed": 0.983333,
+   "floor": 0.9333
+  },
+  {
+   "group": "sampler=uniform,d=3",
+   "split": "test",
+   "arm": "overlap",
+   "name": "mrr_at_10",
+   "n": 60,
+   "observed": 0.612685,
+   "floor": 0.5627
+  },
+  {
+   "group": "sampler=uniform,d=3",
+   "split": "test",
+   "arm": "idf_flat",
+   "name": "recall_at_10",
+   "n": 60,
+   "observed": 0.95,
+   "floor": 0.9
+  },
+  {
+   "group": "sampler=uniform,d=3",
+   "split": "test",
+   "arm": "idf_flat",
+   "name": "mrr_at_10",
+   "n": 60,
+   "observed": 0.584947,
+   "floor": 0.5349
+  },
+  {
+   "group": "sampler=uniform,d=3",
+   "split": "test",
+   "arm": "shipped",
+   "name": "recall_at_10",
+   "n": 60,
+   "observed": 0.983333,
+   "floor": 0.9333
+  },
+  {
+   "group": "sampler=uniform,d=3",
+   "split": "test",
+   "arm": "shipped",
+   "name": "mrr_at_10",
+   "n": 60,
+   "observed": 0.390522,
+   "floor": 0.3405
+  },
+  {
+   "group": "sampler=uniform,d=3",
+   "split": "test",
+   "arm": "shipped",
+   "name": "makeable_at_10",
+   "n": 60,
+   "observed": 0.16,
+   "floor": 0.11
+  },
+  {
+   "group": "sampler=uniform,d=3",
+   "split": "test",
+   "arm": null,
+   "name": "visible_rate",
+   "n": 60,
+   "observed": 1.0,
+   "floor": 0.95
+  },
+  {
+   "group": "sampler=popularity,d=3",
+   "split": "dev",
+   "arm": "overlap",
+   "name": "recall_at_10",
+   "n": 48,
+   "observed": 0.9375,
+   "floor": 0.8875
+  },
+  {
+   "group": "sampler=popularity,d=3",
+   "split": "dev",
+   "arm": "overlap",
+   "name": "mrr_at_10",
+   "n": 48,
+   "observed": 0.566782,
+   "floor": 0.5168
+  },
+  {
+   "group": "sampler=popularity,d=3",
+   "split": "dev",
+   "arm": "idf_flat",
+   "name": "recall_at_10",
+   "n": 48,
+   "observed": 1.0,
+   "floor": 0.95
+  },
+  {
+   "group": "sampler=popularity,d=3",
+   "split": "dev",
+   "arm": "idf_flat",
+   "name": "mrr_at_10",
+   "n": 48,
+   "observed": 0.572396,
+   "floor": 0.5224
+  },
+  {
+   "group": "sampler=popularity,d=3",
+   "split": "dev",
+   "arm": "shipped",
+   "name": "recall_at_10",
+   "n": 48,
+   "observed": 0.916667,
+   "floor": 0.8667
+  },
+  {
+   "group": "sampler=popularity,d=3",
+   "split": "dev",
+   "arm": "shipped",
+   "name": "mrr_at_10",
+   "n": 48,
+   "observed": 0.275083,
+   "floor": 0.2251
+  },
+  {
+   "group": "sampler=popularity,d=3",
+   "split": "dev",
+   "arm": "shipped",
+   "name": "makeable_at_10",
+   "n": 48,
+   "observed": 0.258333,
+   "floor": 0.2083
+  },
+  {
+   "group": "sampler=popularity,d=3",
+   "split": "dev",
+   "arm": null,
+   "name": "visible_rate",
+   "n": 48,
+   "observed": 1.0,
+   "floor": 0.95
+  },
+  {
+   "group": "sampler=popularity,d=3",
+   "split": "test",
+   "arm": "overlap",
+   "name": "recall_at_10",
+   "n": 60,
+   "observed": 0.95,
+   "floor": 0.9
+  },
+  {
+   "group": "sampler=popularity,d=3",
+   "split": "test",
+   "arm": "overlap",
+   "name": "mrr_at_10",
+   "n": 60,
+   "observed": 0.590595,
+   "floor": 0.5406
+  },
+  {
+   "group": "sampler=popularity,d=3",
+   "split": "test",
+   "arm": "idf_flat",
+   "name": "recall_at_10",
+   "n": 60,
+   "observed": 0.95,
+   "floor": 0.9
+  },
+  {
+   "group": "sampler=popularity,d=3",
+   "split": "test",
+   "arm": "idf_flat",
+   "name": "mrr_at_10",
+   "n": 60,
+   "observed": 0.636733,
+   "floor": 0.5867
+  },
+  {
+   "group": "sampler=popularity,d=3",
+   "split": "test",
+   "arm": "shipped",
+   "name": "recall_at_10",
+   "n": 60,
+   "observed": 1.0,
+   "floor": 0.95
+  },
+  {
+   "group": "sampler=popularity,d=3",
+   "split": "test",
+   "arm": "shipped",
+   "name": "mrr_at_10",
+   "n": 60,
+   "observed": 0.370053,
+   "floor": 0.3201
+  },
+  {
+   "group": "sampler=popularity,d=3",
+   "split": "test",
+   "arm": "shipped",
+   "name": "makeable_at_10",
+   "n": 60,
+   "observed": 0.163333,
+   "floor": 0.1133
+  },
+  {
+   "group": "sampler=popularity,d=3",
+   "split": "test",
+   "arm": null,
+   "name": "visible_rate",
+   "n": 60,
+   "observed": 1.0,
+   "floor": 0.95
+  }
+ ]
+}
