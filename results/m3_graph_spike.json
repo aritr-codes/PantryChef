@@ -1,0 +1,249 @@
+{
+  "arms": [
+    {
+      "features_used": [
+        "idf",
+        "have",
+        "total",
+        "group"
+      ],
+      "name": "table_flat"
+    },
+    {
+      "features_used": [
+        "idf",
+        "have",
+        "total",
+        "group",
+        "is_a",
+        "form_of"
+      ],
+      "name": "graph_traversal"
+    }
+  ],
+  "command": "uv run python scripts/graph_spike.py sheet",
+  "commit": "b5366b1a0f54d926e286b718bc800cabfaf69708",
+  "comparisons": [],
+  "config": {
+    "edge_option": {
+      "confirmed_by": "owner",
+      "confirmed_on": "2026-11-09",
+      "option": "b"
+    },
+    "plan": {
+      "allocation_rule": "equal_shares_over_signature_strata_borrow_across_groups",
+      "bootstrap_resamples": 10000,
+      "cap_new": 100,
+      "decoy_rule": "same_pantry_same_group_hash_order_fallback_all_pantries",
+      "max_hops": 3,
+      "repeat_min_gap": 20,
+      "repeat_placement_rule": "next_session_hash_place_min_gap_moved_away",
+      "repeats": 10,
+      "seed": 46,
+      "sessions": 3,
+      "split": {
+        "make_now": 50,
+        "one_away": 50
+      }
+    },
+    "thresholds": {
+      "T1": {
+        "min_correct": 5,
+        "min_pantries": 3
+      },
+      "T2": {
+        "min_lower_bound": 0.0
+      },
+      "T3": {
+        "form": "wilson_lb",
+        "min_rated": 20,
+        "point_min": 0.9,
+        "wilson_lb_min": 0.8
+      },
+      "confirmed_by": "owner",
+      "confirmed_on": "2026-11-09",
+      "guard": {
+        "new_mean_max": 0.0,
+        "new_precision_min": 0.85
+      },
+      "new_subset_guard": true,
+      "unsure_is_wrong": true
+    }
+  },
+  "corpus_fingerprint": "a1a076ab0aee385c4e01cdc904342214dfaa6b01dc35d80d32519ea625c597d2",
+  "dirty": false,
+  "dirty_paths": [],
+  "environment": {
+    "numpy": "2.4.6",
+    "platform": "Windows 10 (win32)",
+    "python": "3.11.15"
+  },
+  "label": "MEASURED",
+  "metrics": [],
+  "raw": {
+    "checks": {},
+    "edge_option": {
+      "confirmed_by": "owner",
+      "confirmed_on": "2026-11-09",
+      "option": "b"
+    },
+    "edge_source_hits": {
+      "by_pantry": {
+        "new01": 0,
+        "new02": 0,
+        "new03": 0,
+        "new04": 0,
+        "new05": 0,
+        "new06": 0,
+        "new07": 0,
+        "new08": 0,
+        "new09": 0,
+        "new10": 0,
+        "new11": 0,
+        "new12": 0,
+        "new13": 0,
+        "new14": 0,
+        "new15": 0,
+        "new16": 0,
+        "new17": 0,
+        "new18": 0,
+        "new19": 0,
+        "new20": 0,
+        "pilot01": 0,
+        "pilot02": 0,
+        "pilot03": 0,
+        "pilot04": 0,
+        "pilot05": 0,
+        "pilot06": 0,
+        "pilot07": 0,
+        "pilot08": 0,
+        "pilot09": 0,
+        "pilot10": 0,
+        "pilot11": 0,
+        "pilot12": 0,
+        "pilot13": 0,
+        "pilot14": 0,
+        "pilot15": 0,
+        "pilot16": 0,
+        "pilot17": 0,
+        "pilot18": 0,
+        "pilot19": 0,
+        "pilot20": 0
+      },
+      "new": 0,
+      "pilot": 0
+    },
+    "edges_in_use": {
+      "count_per_type": {
+        "form_of": 1,
+        "is_a": 16
+      },
+      "owner_edits": [
+        {
+          "basis": "accepted second-pass proposal (edge_labels.proposals.v1.json)",
+          "by": "owner",
+          "date": "2026-11-09",
+          "from": "chiltepin",
+          "new_label": "usable",
+          "old_label": "not usable",
+          "to": "chili_pepper",
+          "type": "is_a"
+        },
+        {
+          "basis": "accepted second-pass proposal (edge_labels.proposals.v1.json)",
+          "by": "owner",
+          "date": "2026-11-09",
+          "from": "cornflakes",
+          "new_label": "usable",
+          "old_label": "not usable",
+          "to": "cereal",
+          "type": "is_a"
+        }
+      ]
+    },
+    "freeze_commit": "e33e6301b24f24d7d082f5c1732ff87b84b31a70",
+    "freeze_sha256": "68394057d375df03b1abdc9ff326e938493981785e726869d8e6580247677f19",
+    "limits": [
+      "Nothing was rated, so no precision or interval exists.",
+      "The ADR stays Proposed unless the pool is empty, which is a rejection."
+    ],
+    "max_depth_observed": 1,
+    "pantries": {
+      "n": 40,
+      "new": 20,
+      "pilot": 20,
+      "unknown_names": {
+        "new06": [
+          "chapati flour"
+        ],
+        "new08": [
+          "san marzano tomatoes"
+        ],
+        "new13": [
+          "crisps",
+          "tortilla wraps"
+        ],
+        "new15": [
+          "whey protein"
+        ],
+        "new16": [
+          "cod fillets"
+        ],
+        "new19": [
+          "heirloom tomatoes"
+        ],
+        "new20": [
+          "frozen mixed veg"
+        ]
+      }
+    },
+    "pool": {
+      "by_edge": [],
+      "counts": {
+        "decoy_candidates": {
+          "make_now": 733,
+          "one_away": 1750
+        },
+        "edge_types": {
+          "form_of": {
+            "new": 0,
+            "pantries": 0
+          },
+          "is_a": {
+            "new": 0,
+            "pantries": 0
+          }
+        },
+        "new": {}
+      }
+    },
+    "reason": "no_new_recipes: traversal adds no new recipe beyond collapse and synonyms",
+    "thresholds": {
+      "T1": {
+        "min_correct": 5,
+        "min_pantries": 3
+      },
+      "T2": {
+        "min_lower_bound": 0.0
+      },
+      "T3": {
+        "form": "wilson_lb",
+        "min_rated": 20,
+        "point_min": 0.9,
+        "wilson_lb_min": 0.8
+      },
+      "confirmed_by": "owner",
+      "confirmed_on": "2026-11-09",
+      "guard": {
+        "new_mean_max": 0.0,
+        "new_precision_min": 0.85
+      },
+      "new_subset_guard": true,
+      "unsure_is_wrong": true
+    },
+    "verdict": "rejected"
+  },
+  "schema": 1,
+  "seed": 46,
+  "what": "ADR 0006 graph spike: nothing was rated. The pool counts are the result"
+}
