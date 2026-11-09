@@ -87,6 +87,19 @@ METRICS: dict[str, MetricSpec] = {
         ("parser_rules", "labeller_model"),
         "decides a data value of the bare pepper rule (D5); never selects between models",
     ),
+    # ADR 0006 graph spike (M3 Task 8). Blind hand judgement of new recipes. The rater sees raw
+    # recipe lines and pantry names, never ids or edges, so the label does not read the edges.
+    "graph_net_new_per_pantry": MetricSpec(
+        "selection", (), "blind hand judgement; the label does not read the edges"
+    ),
+    "graph_new_precision_make_now": MetricSpec(
+        "selection", (), "blind hand judgement; the label does not read the edges"
+    ),
+    "graph_new_precision_one_away": MetricSpec(
+        "selection", (), "blind hand judgement; the label does not read the edges"
+    ),
+    "graph_decoy_precision": MetricSpec("sanity", ()),
+    "graph_rater_repeat_agreement": MetricSpec("sanity", ()),
     "latency_p50_ms": MetricSpec("latency", ()),
     "latency_p95_ms": MetricSpec("latency", ()),
     "latency_max_ms": MetricSpec("latency", ()),
@@ -97,6 +110,10 @@ ARMS: dict[str, tuple[str, ...]] = {
     "overlap": ("have", "total"),
     "idf_flat": ("idf", "have", "total"),
     "shipped": ("idf", "have", "total", "group"),
+    # ADR 0006 spike: the flat table arm, and the same arm with edge traversal. The results file
+    # records the edge option and the edges in use.
+    "table_flat": ("idf", "have", "total", "group"),
+    "graph_traversal": ("idf", "have", "total", "group", "is_a", "form_of"),
 }
 
 

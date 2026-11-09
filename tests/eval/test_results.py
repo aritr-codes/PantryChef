@@ -304,6 +304,8 @@ def test_registry_contents():
         "overlap": ("have", "total"),
         "idf_flat": ("idf", "have", "total"),
         "shipped": ("idf", "have", "total", "group"),
+        "table_flat": ("idf", "have", "total", "group"),
+        "graph_traversal": ("idf", "have", "total", "group", "is_a", "form_of"),
     }
     assert METRICS["recall_at_10"].role == "sanity"
     assert METRICS["mrr_at_10"].depends_on == ("gold_recipe_lines", "have", "total", "idf")
@@ -388,3 +390,21 @@ def test_m3_metrics_registered():
             r.assert_selectable(name, ["random"])
     assert r.METRICS["mention_accuracy"].depends_on == ("ingredient_table", "parser_rules")
     assert r.METRICS["agreed_error_rate"].depends_on == ()
+
+
+def test_graph_spike_metrics_and_arms_registered():
+    from pantrychef.eval import results as r
+
+    for name in ("graph_net_new_per_pantry", "graph_new_precision_make_now",
+                 "graph_new_precision_one_away"):  # fmt: skip
+        spec = r.METRICS[name]
+        assert spec.role == "selection", name
+        assert spec.depends_on == (), name
+        assert "does not read the edges" in spec.justification, name
+        r.assert_selectable(name, ["table_flat", "graph_traversal"])
+    for name in ("graph_decoy_precision", "graph_rater_repeat_agreement"):
+        assert r.METRICS[name].role == "sanity", name
+        with pytest.raises(r.NotSelectable):
+            r.assert_selectable(name, ["table_flat"])
+    assert r.ARMS["table_flat"] == ("idf", "have", "total", "group")
+    assert r.ARMS["graph_traversal"] == ("idf", "have", "total", "group", "is_a", "form_of")
