@@ -1,0 +1,1051 @@
+{
+  "version": 1,
+  "resolved_by": "owner",
+  "agreed_check": {
+    "n": 30,
+    "errors": 0,
+    "agreed_error_rate": 0.0,
+    "error_ids": []
+  },
+  "sets": {
+    "test150": {
+      "lines": 150,
+      "exact_agreement": 140,
+      "a": "m3_label_test150.opus.csv",
+      "b": "labels.test.v1.json",
+      "disagreements": [
+        {
+          "id": "wb-170967#13",
+          "text": "Chopped green celery leaves (Maltese krafes)",
+          "a": {
+            "groups": [
+              [
+                "celery"
+              ]
+            ],
+            "optional": false,
+            "not_an_ingredient": false
+          },
+          "b": {
+            "groups": [
+              [
+                "celery leaf"
+              ]
+            ],
+            "optional": false,
+            "not_an_ingredient": false
+          },
+          "final": {
+            "groups": [
+              [
+                "celery leaf"
+              ]
+            ],
+            "optional": false,
+            "not_an_ingredient": false
+          },
+          "resolved_by": "owner"
+        },
+        {
+          "id": "wb-52334#2",
+          "text": "Oat flakes",
+          "a": {
+            "groups": [
+              [
+                "rolled oat"
+              ]
+            ],
+            "optional": false,
+            "not_an_ingredient": false
+          },
+          "b": {
+            "groups": [
+              [
+                "rolled oats"
+              ]
+            ],
+            "optional": false,
+            "not_an_ingredient": false
+          },
+          "final": {
+            "groups": [
+              [
+                "rolled oats"
+              ]
+            ],
+            "optional": false,
+            "not_an_ingredient": false
+          },
+          "resolved_by": "owner"
+        },
+        {
+          "id": "wb-109334#14",
+          "text": "1 serrano or jalape\u00f1o chile, very finely diced",
+          "a": {
+            "groups": [
+              [
+                "serrano pepper",
+                "jalape\u00f1o pepper"
+              ]
+            ],
+            "optional": false,
+            "not_an_ingredient": false
+          },
+          "b": {
+            "groups": [
+              [
+                "serrano pepper",
+                "jalapeno pepper"
+              ]
+            ],
+            "optional": false,
+            "not_an_ingredient": false
+          },
+          "final": {
+            "groups": [
+              [
+                "serrano pepper",
+                "jalapeno pepper"
+              ]
+            ],
+            "optional": false,
+            "not_an_ingredient": false
+          },
+          "resolved_by": "owner"
+        },
+        {
+          "id": "wb-452028#4",
+          "text": "1\u20132 serrano pepper or other green chiles, finely chopped",
+          "a": {
+            "groups": [
+              [
+                "serrano pepper",
+                "green chile"
+              ]
+            ],
+            "optional": false,
+            "not_an_ingredient": false
+          },
+          "b": {
+            "groups": [
+              [
+                "serrano pepper",
+                "green chili"
+              ]
+            ],
+            "optional": false,
+            "not_an_ingredient": false
+          },
+          "final": {
+            "groups": [
+              [
+                "serrano pepper",
+                "green chili"
+              ]
+            ],
+            "optional": false,
+            "not_an_ingredient": false
+          },
+          "resolved_by": "owner"
+        },
+        {
+          "id": "wb-20265#9",
+          "text": "1 medium whole brown onion, peeled",
+          "a": {
+            "groups": [
+              [
+                "brown onion"
+              ]
+            ],
+            "optional": false,
+            "not_an_ingredient": false
+          },
+          "b": {
+            "groups": [
+              [
+                "onion"
+              ]
+            ],
+            "optional": false,
+            "not_an_ingredient": false
+          },
+          "final": {
+            "groups": [
+              [
+                "brown onion"
+              ]
+            ],
+            "optional": false,
+            "not_an_ingredient": false
+          },
+          "resolved_by": "owner"
+        },
+        {
+          "id": "wb-75523#7",
+          "text": "1\u20132 handfuls flat-leaf parsley or watercress (optional), rough chopped",
+          "a": {
+            "groups": [
+              [
+                "flat-leaf parsley",
+                "watercress"
+              ]
+            ],
+            "optional": true,
+            "not_an_ingredient": false
+          },
+          "b": {
+            "groups": [
+              [
+                "parsley",
+                "watercress"
+              ]
+            ],
+            "optional": true,
+            "not_an_ingredient": false
+          },
+          "final": {
+            "groups": [
+              [
+                "flat-leaf parsley",
+                "watercress"
+              ]
+            ],
+            "optional": false,
+            "not_an_ingredient": false
+          },
+          "resolved_by": "owner"
+        },
+        {
+          "id": "wb-456083#5",
+          "text": "2\u20133 green chiles (add more if you want it spicier)",
+          "a": {
+            "groups": [
+              [
+                "green chile"
+              ]
+            ],
+            "optional": false,
+            "not_an_ingredient": false
+          },
+          "b": {
+            "groups": [
+              [
+                "green chili"
+              ]
+            ],
+            "optional": false,
+            "not_an_ingredient": false
+          },
+          "final": {
+            "groups": [
+              [
+                "green chili"
+              ]
+            ],
+            "optional": false,
+            "not_an_ingredient": false
+          },
+          "resolved_by": "owner"
+        },
+        {
+          "id": "wb-88902#1",
+          "text": "1 cleaned lobster tail shell",
+          "a": {
+            "groups": [
+              [
+                "lobster tail"
+              ]
+            ],
+            "optional": false,
+            "not_an_ingredient": false
+          },
+          "b": {
+            "groups": [
+              [
+                "lobster shell"
+              ]
+            ],
+            "optional": false,
+            "not_an_ingredient": false
+          },
+          "final": {
+            "groups": [
+              [
+                "lobster tail"
+              ]
+            ],
+            "optional": false,
+            "not_an_ingredient": false
+          },
+          "resolved_by": "owner"
+        },
+        {
+          "id": "wb-108436#5",
+          "text": "\u2154 cup coarsely crushed saltines (14 crackers)",
+          "a": {
+            "groups": [
+              [
+                "saltine"
+              ]
+            ],
+            "optional": false,
+            "not_an_ingredient": false
+          },
+          "b": {
+            "groups": [
+              [
+                "saltine cracker"
+              ]
+            ],
+            "optional": false,
+            "not_an_ingredient": false
+          },
+          "final": {
+            "groups": [
+              [
+                "saltine cracker"
+              ]
+            ],
+            "optional": false,
+            "not_an_ingredient": false
+          },
+          "resolved_by": "owner"
+        },
+        {
+          "id": "wb-41709#3",
+          "text": "1 pound (450 g) fettuccine egg noodles",
+          "a": {
+            "groups": [
+              [
+                "fettuccine"
+              ]
+            ],
+            "optional": false,
+            "not_an_ingredient": false
+          },
+          "b": {
+            "groups": [
+              [
+                "egg noodle"
+              ]
+            ],
+            "optional": false,
+            "not_an_ingredient": false
+          },
+          "final": {
+            "groups": [
+              [
+                "fettuccine egg noodles"
+              ]
+            ],
+            "optional": false,
+            "not_an_ingredient": false
+          },
+          "resolved_by": "owner"
+        }
+      ]
+    },
+    "extra100": {
+      "lines": 100,
+      "exact_agreement": 86,
+      "a": "m3_label_extra100.opus.csv",
+      "b": "m3_label_extra100.sonnet.csv",
+      "disagreements": [
+        {
+          "id": "wb-129526#12",
+          "text": "1 strip of lemon rind",
+          "a": {
+            "groups": [
+              [
+                "lemon peel"
+              ]
+            ],
+            "optional": false,
+            "not_an_ingredient": false
+          },
+          "b": {
+            "groups": [
+              [
+                "lemon rind"
+              ]
+            ],
+            "optional": false,
+            "not_an_ingredient": false
+          },
+          "final": {
+            "groups": [
+              [
+                "lemon rind"
+              ]
+            ],
+            "optional": false,
+            "not_an_ingredient": false
+          },
+          "resolved_by": "owner"
+        },
+        {
+          "id": "wb-110334#4",
+          "text": "1 tablespoon almond essence",
+          "a": {
+            "groups": [
+              [
+                "almond extract"
+              ]
+            ],
+            "optional": false,
+            "not_an_ingredient": false
+          },
+          "b": {
+            "groups": [
+              [
+                "almond essence"
+              ]
+            ],
+            "optional": false,
+            "not_an_ingredient": false
+          },
+          "final": {
+            "groups": [
+              [
+                "almond essence"
+              ]
+            ],
+            "optional": false,
+            "not_an_ingredient": false
+          },
+          "resolved_by": "owner"
+        },
+        {
+          "id": "wb-26777#4",
+          "text": "6 cardamom pods",
+          "a": {
+            "groups": [
+              [
+                "cardamom"
+              ]
+            ],
+            "optional": false,
+            "not_an_ingredient": false
+          },
+          "b": {
+            "groups": [
+              [
+                "cardamom pod"
+              ]
+            ],
+            "optional": false,
+            "not_an_ingredient": false
+          },
+          "final": {
+            "groups": [
+              [
+                "cardamom pod"
+              ]
+            ],
+            "optional": false,
+            "not_an_ingredient": false
+          },
+          "resolved_by": "owner"
+        },
+        {
+          "id": "wb-200937#2",
+          "text": "2 red chillies, cut in dice",
+          "a": {
+            "groups": [
+              [
+                "red chile"
+              ]
+            ],
+            "optional": false,
+            "not_an_ingredient": false
+          },
+          "b": {
+            "groups": [
+              [
+                "red chili"
+              ]
+            ],
+            "optional": false,
+            "not_an_ingredient": false
+          },
+          "final": {
+            "groups": [
+              [
+                "red chili"
+              ]
+            ],
+            "optional": false,
+            "not_an_ingredient": false
+          },
+          "resolved_by": "owner"
+        },
+        {
+          "id": "wb-66447#7",
+          "text": "1 tsp dried coriander powder",
+          "a": {
+            "groups": [
+              [
+                "coriander"
+              ]
+            ],
+            "optional": false,
+            "not_an_ingredient": false
+          },
+          "b": {
+            "groups": [
+              [
+                "coriander powder"
+              ]
+            ],
+            "optional": false,
+            "not_an_ingredient": false
+          },
+          "final": {
+            "groups": [
+              [
+                "coriander powder"
+              ]
+            ],
+            "optional": false,
+            "not_an_ingredient": false
+          },
+          "resolved_by": "owner"
+        },
+        {
+          "id": "wb-457415#0",
+          "text": "2 cups cooked beans (such as red beans, white beans, or black-eyed peas)",
+          "a": {
+            "groups": [
+              [
+                "bean",
+                "red bean",
+                "white bean",
+                "black-eyed pea"
+              ]
+            ],
+            "optional": false,
+            "not_an_ingredient": false
+          },
+          "b": {
+            "groups": [
+              [
+                "bean"
+              ]
+            ],
+            "optional": false,
+            "not_an_ingredient": false
+          },
+          "final": {
+            "groups": [
+              [
+                "beans"
+              ]
+            ],
+            "optional": false,
+            "not_an_ingredient": false
+          },
+          "resolved_by": "owner"
+        },
+        {
+          "id": "wb-4985#4",
+          "text": "1\u20132 rolls, soaked in some milk",
+          "a": {
+            "groups": [
+              [
+                "bread roll"
+              ],
+              [
+                "milk"
+              ]
+            ],
+            "optional": false,
+            "not_an_ingredient": false
+          },
+          "b": {
+            "groups": [
+              [
+                "roll"
+              ]
+            ],
+            "optional": false,
+            "not_an_ingredient": false
+          },
+          "final": {
+            "groups": [
+              [
+                "bread roll"
+              ],
+              [
+                "milk"
+              ]
+            ],
+            "optional": false,
+            "not_an_ingredient": false
+          },
+          "resolved_by": "owner"
+        },
+        {
+          "id": "wb-253721#1",
+          "text": "1 tablespoon of amchur (dried green mango) powder",
+          "a": {
+            "groups": [
+              [
+                "mango powder"
+              ]
+            ],
+            "optional": false,
+            "not_an_ingredient": false
+          },
+          "b": {
+            "groups": [
+              [
+                "amchur"
+              ]
+            ],
+            "optional": false,
+            "not_an_ingredient": false
+          },
+          "final": {
+            "groups": [
+              [
+                "amchur"
+              ]
+            ],
+            "optional": false,
+            "not_an_ingredient": false
+          },
+          "resolved_by": "owner"
+        },
+        {
+          "id": "wb-109338#5",
+          "text": "4 cups sliced shiitakes",
+          "a": {
+            "groups": [
+              [
+                "shiitake mushroom"
+              ]
+            ],
+            "optional": false,
+            "not_an_ingredient": false
+          },
+          "b": {
+            "groups": [
+              [
+                "shiitake"
+              ]
+            ],
+            "optional": false,
+            "not_an_ingredient": false
+          },
+          "final": {
+            "groups": [
+              [
+                "shiitake mushroom"
+              ]
+            ],
+            "optional": false,
+            "not_an_ingredient": false
+          },
+          "resolved_by": "owner"
+        },
+        {
+          "id": "wb-452001#5",
+          "text": "4 ice cubes",
+          "a": {
+            "groups": [
+              [
+                "ice"
+              ]
+            ],
+            "optional": false,
+            "not_an_ingredient": false
+          },
+          "b": {
+            "groups": [
+              [
+                "ice cube"
+              ]
+            ],
+            "optional": false,
+            "not_an_ingredient": false
+          },
+          "final": {
+            "groups": [
+              [
+                "ice cube"
+              ]
+            ],
+            "optional": false,
+            "not_an_ingredient": false
+          },
+          "resolved_by": "owner"
+        },
+        {
+          "id": "wb-22594#10",
+          "text": "65 g granulated sugar",
+          "a": {
+            "groups": [
+              [
+                "sugar"
+              ]
+            ],
+            "optional": false,
+            "not_an_ingredient": false
+          },
+          "b": {
+            "groups": [
+              [
+                "granulated sugar"
+              ]
+            ],
+            "optional": false,
+            "not_an_ingredient": false
+          },
+          "final": {
+            "groups": [
+              [
+                "granulated sugar"
+              ]
+            ],
+            "optional": false,
+            "not_an_ingredient": false
+          },
+          "resolved_by": "owner"
+        },
+        {
+          "id": "wb-452517#0",
+          "text": "2 pounds small white potatoes (use waxy or red potatoes)",
+          "a": {
+            "groups": [
+              [
+                "white potato",
+                "waxy potato",
+                "red potato"
+              ]
+            ],
+            "optional": false,
+            "not_an_ingredient": false
+          },
+          "b": {
+            "groups": [
+              [
+                "white potato",
+                "red potato"
+              ]
+            ],
+            "optional": false,
+            "not_an_ingredient": false
+          },
+          "final": {
+            "groups": [
+              [
+                "white potato",
+                "waxy potato",
+                "red potato"
+              ]
+            ],
+            "optional": false,
+            "not_an_ingredient": false
+          },
+          "resolved_by": "owner"
+        },
+        {
+          "id": "wb-168622#9",
+          "text": "1 oz white granulated sugar",
+          "a": {
+            "groups": [
+              [
+                "sugar"
+              ]
+            ],
+            "optional": false,
+            "not_an_ingredient": false
+          },
+          "b": {
+            "groups": [
+              [
+                "granulated sugar"
+              ]
+            ],
+            "optional": false,
+            "not_an_ingredient": false
+          },
+          "final": {
+            "groups": [
+              [
+                "granulated sugar"
+              ]
+            ],
+            "optional": false,
+            "not_an_ingredient": false
+          },
+          "resolved_by": "owner"
+        },
+        {
+          "id": "wb-28828#3",
+          "text": "\u00bd cup dry marsala wine",
+          "a": {
+            "groups": [
+              [
+                "marsala"
+              ]
+            ],
+            "optional": false,
+            "not_an_ingredient": false
+          },
+          "b": {
+            "groups": [
+              [
+                "marsala wine"
+              ]
+            ],
+            "optional": false,
+            "not_an_ingredient": false
+          },
+          "final": {
+            "groups": [
+              [
+                "dry marsala wine"
+              ]
+            ],
+            "optional": false,
+            "not_an_ingredient": false
+          },
+          "resolved_by": "owner"
+        }
+      ]
+    },
+    "inputs166": {
+      "lines": 166,
+      "exact_agreement": 159,
+      "a": "m3_label_inputs166.opus.csv",
+      "b": "m3_label_inputs166.sonnet.csv",
+      "disagreements": [
+        {
+          "id": "in009",
+          "text": "half and half",
+          "a": {
+            "groups": [
+              [
+                "half and half"
+              ]
+            ],
+            "optional": false,
+            "not_an_ingredient": false
+          },
+          "b": {
+            "groups": [
+              [
+                "half-and-half"
+              ]
+            ],
+            "optional": false,
+            "not_an_ingredient": false
+          },
+          "final": {
+            "groups": [
+              [
+                "half-and-half"
+              ]
+            ],
+            "optional": false,
+            "not_an_ingredient": false
+          },
+          "resolved_by": "owner"
+        },
+        {
+          "id": "in018",
+          "text": "mince",
+          "a": {
+            "groups": [
+              [
+                "ground beef"
+              ]
+            ],
+            "optional": false,
+            "not_an_ingredient": false
+          },
+          "b": {
+            "groups": [
+              [
+                "mince"
+              ]
+            ],
+            "optional": false,
+            "not_an_ingredient": false
+          },
+          "final": {
+            "groups": [
+              [
+                "ground beef"
+              ]
+            ],
+            "optional": false,
+            "not_an_ingredient": false
+          },
+          "resolved_by": "owner"
+        },
+        {
+          "id": "in020",
+          "text": "coriander leaves",
+          "a": {
+            "groups": [
+              [
+                "cilantro"
+              ]
+            ],
+            "optional": false,
+            "not_an_ingredient": false
+          },
+          "b": {
+            "groups": [
+              [
+                "coriander leaf"
+              ]
+            ],
+            "optional": false,
+            "not_an_ingredient": false
+          },
+          "final": {
+            "groups": [
+              [
+                "coriander leaf"
+              ]
+            ],
+            "optional": false,
+            "not_an_ingredient": false
+          },
+          "resolved_by": "owner"
+        },
+        {
+          "id": "in070",
+          "text": "yoghurt",
+          "a": {
+            "groups": [
+              [
+                "yogurt"
+              ]
+            ],
+            "optional": false,
+            "not_an_ingredient": false
+          },
+          "b": {
+            "groups": [
+              [
+                "yoghurt"
+              ]
+            ],
+            "optional": false,
+            "not_an_ingredient": false
+          },
+          "final": {
+            "groups": [
+              [
+                "yogurt"
+              ]
+            ],
+            "optional": false,
+            "not_an_ingredient": false
+          },
+          "resolved_by": "owner"
+        },
+        {
+          "id": "in089",
+          "text": "chilli flakes",
+          "a": {
+            "groups": [
+              [
+                "chilli flake"
+              ]
+            ],
+            "optional": false,
+            "not_an_ingredient": false
+          },
+          "b": {
+            "groups": [
+              [
+                "chili flakes"
+              ]
+            ],
+            "optional": false,
+            "not_an_ingredient": false
+          },
+          "final": {
+            "groups": [
+              [
+                "chili flakes"
+              ]
+            ],
+            "optional": false,
+            "not_an_ingredient": false
+          },
+          "resolved_by": "owner"
+        },
+        {
+          "id": "in090",
+          "text": "red pepper flakes",
+          "a": {
+            "groups": [
+              [
+                "red pepper flake"
+              ]
+            ],
+            "optional": false,
+            "not_an_ingredient": false
+          },
+          "b": {
+            "groups": [
+              [
+                "red pepper flakes"
+              ]
+            ],
+            "optional": false,
+            "not_an_ingredient": false
+          },
+          "final": {
+            "groups": [
+              [
+                "red pepper flakes"
+              ]
+            ],
+            "optional": false,
+            "not_an_ingredient": false
+          },
+          "resolved_by": "owner"
+        },
+        {
+          "id": "in152",
+          "text": "tabasco",
+          "a": {
+            "groups": [
+              [
+                "hot sauce"
+              ]
+            ],
+            "optional": false,
+            "not_an_ingredient": false
+          },
+          "b": {
+            "groups": [
+              [
+                "tabasco sauce"
+              ]
+            ],
+            "optional": false,
+            "not_an_ingredient": false
+          },
+          "final": {
+            "groups": [
+              [
+                "tabasco sauce"
+              ]
+            ],
+            "optional": false,
+            "not_an_ingredient": false
+          },
+          "resolved_by": "owner"
+        }
+      ]
+    }
+  }
+}

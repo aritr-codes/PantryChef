@@ -1,0 +1,1384 @@
+{
+  "version": 2,
+  "split": "test",
+  "labels": {
+    "wb-456522#7": {
+      "groups": [
+        [
+          "scallion"
+        ]
+      ],
+      "optional": false,
+      "not_an_ingredient": false
+    },
+    "wb-137949#6": {
+      "groups": [
+        [
+          "mustard powder"
+        ]
+      ],
+      "optional": false,
+      "not_an_ingredient": false
+    },
+    "wb-170967#13": {
+      "groups": [
+        [
+          "celery leaf"
+        ]
+      ],
+      "optional": false,
+      "not_an_ingredient": false
+    },
+    "wb-448052#4": {
+      "groups": [
+        [
+          "bouquet garni"
+        ]
+      ],
+      "optional": false,
+      "not_an_ingredient": false
+    },
+    "wb-198784#6": {
+      "groups": [
+        [
+          "bok choy"
+        ]
+      ],
+      "optional": false,
+      "not_an_ingredient": false
+    },
+    "wb-127011#4": {
+      "groups": [
+        [
+          "pesto"
+        ]
+      ],
+      "optional": false,
+      "not_an_ingredient": false
+    },
+    "wb-483734#0": {
+      "groups": [
+        [
+          "brown bean",
+          "black-eyed pea"
+        ]
+      ],
+      "optional": false,
+      "not_an_ingredient": false
+    },
+    "wb-446800#5": {
+      "groups": [
+        [
+          "parsley"
+        ]
+      ],
+      "optional": false,
+      "not_an_ingredient": false
+    },
+    "wb-138197#4": {
+      "groups": [
+        [
+          "bulgur",
+          "cracked wheat"
+        ]
+      ],
+      "optional": false,
+      "not_an_ingredient": false
+    },
+    "wb-462357#2": {
+      "groups": [
+        [
+          "dried fig"
+        ]
+      ],
+      "optional": false,
+      "not_an_ingredient": false
+    },
+    "wb-447220#0": {
+      "groups": [
+        [
+          "watermelon"
+        ]
+      ],
+      "optional": false,
+      "not_an_ingredient": false
+    },
+    "wb-127783#4": {
+      "groups": [
+        [
+          "chipotle powder",
+          "chipotle barbecue sauce"
+        ]
+      ],
+      "optional": false,
+      "not_an_ingredient": false
+    },
+    "wb-198207#8": {
+      "groups": [
+        [
+          "powdered sugar"
+        ]
+      ],
+      "optional": false,
+      "not_an_ingredient": false
+    },
+    "wb-96882#4": {
+      "groups": [
+        [
+          "refried bean"
+        ]
+      ],
+      "optional": false,
+      "not_an_ingredient": false
+    },
+    "wb-470573#4": {
+      "groups": [
+        [
+          "watermelon"
+        ]
+      ],
+      "optional": false,
+      "not_an_ingredient": false
+    },
+    "wb-381706#3": {
+      "groups": [
+        [
+          "doenjang"
+        ]
+      ],
+      "optional": false,
+      "not_an_ingredient": false
+    },
+    "wb-483762#3": {
+      "groups": [
+        [
+          "water"
+        ]
+      ],
+      "optional": false,
+      "not_an_ingredient": false
+    },
+    "wb-139284#9": {
+      "groups": [
+        [
+          "anchovy",
+          "tuna"
+        ]
+      ],
+      "optional": false,
+      "not_an_ingredient": false
+    },
+    "wb-276070#1": {
+      "groups": [
+        [
+          "sourdough starter"
+        ]
+      ],
+      "optional": false,
+      "not_an_ingredient": false
+    },
+    "wb-108429#0": {
+      "groups": [
+        [
+          "goat cheese"
+        ]
+      ],
+      "optional": false,
+      "not_an_ingredient": false
+    },
+    "wb-447087#0": {
+      "groups": [
+        [
+          "sorghum"
+        ]
+      ],
+      "optional": false,
+      "not_an_ingredient": false
+    },
+    "wb-23024#9": {
+      "groups": [
+        [
+          "ginger"
+        ]
+      ],
+      "optional": false,
+      "not_an_ingredient": false
+    },
+    "wb-71805#1": {
+      "groups": [
+        [
+          "red cabbage"
+        ]
+      ],
+      "optional": false,
+      "not_an_ingredient": false
+    },
+    "wb-50089#6": {
+      "groups": [
+        [
+          "onion"
+        ]
+      ],
+      "optional": false,
+      "not_an_ingredient": false
+    },
+    "wb-200610#6": {
+      "groups": [
+        [
+          "adobo sauce"
+        ]
+      ],
+      "optional": false,
+      "not_an_ingredient": false
+    },
+    "wb-4161#8": {
+      "groups": [
+        [
+          "sweet pickle"
+        ]
+      ],
+      "optional": false,
+      "not_an_ingredient": false
+    },
+    "wb-400499#2": {
+      "groups": [
+        [
+          "lemonade"
+        ]
+      ],
+      "optional": false,
+      "not_an_ingredient": false
+    },
+    "wb-359630#0": {
+      "groups": [
+        [
+          "watermelon"
+        ]
+      ],
+      "optional": false,
+      "not_an_ingredient": false
+    },
+    "wb-471935#3": {
+      "groups": [
+        [
+          "serrano pepper"
+        ]
+      ],
+      "optional": false,
+      "not_an_ingredient": false
+    },
+    "wb-404200#8": {
+      "groups": [
+        [
+          "black quinoa"
+        ]
+      ],
+      "optional": false,
+      "not_an_ingredient": false
+    },
+    "wb-52334#2": {
+      "groups": [
+        [
+          "rolled oats"
+        ]
+      ],
+      "optional": false,
+      "not_an_ingredient": false
+    },
+    "wb-476831#7": {
+      "groups": [
+        [
+          "sugar"
+        ]
+      ],
+      "optional": false,
+      "not_an_ingredient": false
+    },
+    "wb-442332#5": {
+      "groups": [
+        [
+          "nutmeg"
+        ]
+      ],
+      "optional": false,
+      "not_an_ingredient": false
+    },
+    "wb-146578#2": {
+      "groups": [
+        [
+          "malt extract"
+        ]
+      ],
+      "optional": false,
+      "not_an_ingredient": false
+    },
+    "wb-456917#1": {
+      "groups": [
+        [
+          "millet couscous"
+        ]
+      ],
+      "optional": false,
+      "not_an_ingredient": false
+    },
+    "wb-380508#6": {
+      "groups": [
+        [
+          "allspice"
+        ]
+      ],
+      "optional": false,
+      "not_an_ingredient": false
+    },
+    "wb-136073#1": {
+      "groups": [
+        [
+          "white rice"
+        ]
+      ],
+      "optional": false,
+      "not_an_ingredient": false
+    },
+    "wb-27916#4": {
+      "groups": [
+        [
+          "onion"
+        ]
+      ],
+      "optional": true,
+      "not_an_ingredient": false
+    },
+    "wb-199158#6": {
+      "groups": [
+        [
+          "milk"
+        ]
+      ],
+      "optional": false,
+      "not_an_ingredient": false
+    },
+    "wb-97024#1": {
+      "groups": [
+        [
+          "butter"
+        ]
+      ],
+      "optional": false,
+      "not_an_ingredient": false
+    },
+    "wb-204236#1": {
+      "groups": [
+        [
+          "heavy cream"
+        ]
+      ],
+      "optional": false,
+      "not_an_ingredient": false
+    },
+    "wb-198207#6": {
+      "groups": [
+        [
+          "cornstarch"
+        ]
+      ],
+      "optional": true,
+      "not_an_ingredient": false
+    },
+    "wb-109334#14": {
+      "groups": [
+        [
+          "serrano pepper",
+          "jalapeno pepper"
+        ]
+      ],
+      "optional": false,
+      "not_an_ingredient": false
+    },
+    "wb-112259#2": {
+      "groups": [
+        [
+          "chocolate chip"
+        ]
+      ],
+      "optional": false,
+      "not_an_ingredient": false
+    },
+    "wb-7261#0": {
+      "groups": [
+        [
+          "tomato"
+        ]
+      ],
+      "optional": false,
+      "not_an_ingredient": false
+    },
+    "wb-62604#1": {
+      "groups": [
+        [
+          "chocolate chip"
+        ]
+      ],
+      "optional": false,
+      "not_an_ingredient": false
+    },
+    "wb-46055#2": {
+      "groups": [
+        [
+          "water"
+        ]
+      ],
+      "optional": false,
+      "not_an_ingredient": false
+    },
+    "wb-129711#1": {
+      "groups": [
+        [
+          "refried bean"
+        ]
+      ],
+      "optional": false,
+      "not_an_ingredient": false
+    },
+    "wb-28521#3": {
+      "groups": [
+        [
+          "water"
+        ]
+      ],
+      "optional": false,
+      "not_an_ingredient": false
+    },
+    "wb-473350#18": {
+      "groups": [
+        [
+          "potato"
+        ]
+      ],
+      "optional": false,
+      "not_an_ingredient": false
+    },
+    "wb-111200#0": {
+      "groups": [
+        [
+          "chicken breast"
+        ]
+      ],
+      "optional": false,
+      "not_an_ingredient": false
+    },
+    "wb-205037#1": {
+      "groups": [
+        [
+          "red cabbage"
+        ]
+      ],
+      "optional": false,
+      "not_an_ingredient": false
+    },
+    "wb-29475#8": {
+      "groups": [
+        [
+          "cardamom"
+        ]
+      ],
+      "optional": true,
+      "not_an_ingredient": false
+    },
+    "wb-200720#0": {
+      "groups": [
+        [
+          "pork tenderloin"
+        ]
+      ],
+      "optional": false,
+      "not_an_ingredient": false
+    },
+    "wb-156848#4": {
+      "groups": [
+        [
+          "bok choy",
+          "broccoli"
+        ]
+      ],
+      "optional": false,
+      "not_an_ingredient": false
+    },
+    "wb-479552#5": {
+      "groups": [
+        [
+          "lime juice"
+        ]
+      ],
+      "optional": false,
+      "not_an_ingredient": false
+    },
+    "wb-169060#0": {
+      "groups": [
+        [
+          "milk"
+        ]
+      ],
+      "optional": false,
+      "not_an_ingredient": false
+    },
+    "wb-54600#7": {
+      "groups": [
+        [
+          "leek"
+        ]
+      ],
+      "optional": true,
+      "not_an_ingredient": false
+    },
+    "wb-456726#14": {
+      "groups": [
+        [
+          "garlic paste"
+        ]
+      ],
+      "optional": false,
+      "not_an_ingredient": false
+    },
+    "wb-87841#6": {
+      "groups": [
+        [
+          "xanthan gum"
+        ]
+      ],
+      "optional": false,
+      "not_an_ingredient": false
+    },
+    "wb-22809#6": {
+      "groups": [
+        [
+          "carrot"
+        ]
+      ],
+      "optional": false,
+      "not_an_ingredient": false
+    },
+    "wb-452003#0": {
+      "groups": [
+        [
+          "lobster"
+        ]
+      ],
+      "optional": false,
+      "not_an_ingredient": false
+    },
+    "wb-474496#0": {
+      "groups": [
+        [
+          "palm nut",
+          "palm nut extract"
+        ]
+      ],
+      "optional": false,
+      "not_an_ingredient": false
+    },
+    "wb-456107#0": {
+      "groups": [
+        [
+          "kefir"
+        ]
+      ],
+      "optional": false,
+      "not_an_ingredient": false
+    },
+    "wb-285283#7": {
+      "groups": [
+        [
+          "bouquet garni"
+        ]
+      ],
+      "optional": false,
+      "not_an_ingredient": false
+    },
+    "wb-42753#7": {
+      "groups": [
+        [
+          "cornstarch"
+        ]
+      ],
+      "optional": false,
+      "not_an_ingredient": false
+    },
+    "wb-22129#24": {
+      "groups": [
+        [
+          "guacamole"
+        ]
+      ],
+      "optional": false,
+      "not_an_ingredient": false
+    },
+    "wb-484018#8": {
+      "groups": [
+        [
+          "chickpea"
+        ]
+      ],
+      "optional": false,
+      "not_an_ingredient": false
+    },
+    "wb-29911#1": {
+      "groups": [
+        [
+          "oyster sauce"
+        ]
+      ],
+      "optional": false,
+      "not_an_ingredient": false
+    },
+    "wb-159971#5": {
+      "groups": [
+        [
+          "onion"
+        ]
+      ],
+      "optional": false,
+      "not_an_ingredient": false
+    },
+    "wb-474133#4": {
+      "groups": [
+        [
+          "butter"
+        ]
+      ],
+      "optional": false,
+      "not_an_ingredient": false
+    },
+    "wb-28521#2": {
+      "groups": [
+        [
+          "lard",
+          "vegetable shortening"
+        ]
+      ],
+      "optional": false,
+      "not_an_ingredient": false
+    },
+    "wb-203410#0": {
+      "groups": [
+        [
+          "elbow macaroni"
+        ]
+      ],
+      "optional": false,
+      "not_an_ingredient": false
+    },
+    "wb-21757#3": {
+      "groups": [
+        [
+          "bok choy"
+        ]
+      ],
+      "optional": true,
+      "not_an_ingredient": false
+    },
+    "wb-6474#18": {
+      "groups": [
+        [
+          "sardine"
+        ]
+      ],
+      "optional": false,
+      "not_an_ingredient": false
+    },
+    "wb-464616#2": {
+      "groups": [
+        [
+          "bitter melon"
+        ]
+      ],
+      "optional": false,
+      "not_an_ingredient": false
+    },
+    "wb-69849#7": {
+      "groups": [
+        [
+          "white vinegar"
+        ]
+      ],
+      "optional": false,
+      "not_an_ingredient": false
+    },
+    "wb-198695#12": {
+      "groups": [
+        [
+          "vegetarian oyster sauce"
+        ]
+      ],
+      "optional": true,
+      "not_an_ingredient": false
+    },
+    "wb-297433#0": {
+      "groups": [
+        [
+          "bread"
+        ]
+      ],
+      "optional": false,
+      "not_an_ingredient": false
+    },
+    "wb-102054#4": {
+      "groups": [
+        [
+          "orange"
+        ]
+      ],
+      "optional": false,
+      "not_an_ingredient": false
+    },
+    "wb-189368#2": {
+      "groups": [
+        [
+          "brown sugar",
+          "jaggery"
+        ]
+      ],
+      "optional": false,
+      "not_an_ingredient": false
+    },
+    "wb-452028#4": {
+      "groups": [
+        [
+          "serrano pepper",
+          "green chili"
+        ]
+      ],
+      "optional": false,
+      "not_an_ingredient": false
+    },
+    "wb-191055#4": {
+      "groups": [
+        [
+          "apple"
+        ]
+      ],
+      "optional": false,
+      "not_an_ingredient": false
+    },
+    "wb-37551#0": {
+      "groups": [
+        [
+          "hilsa"
+        ]
+      ],
+      "optional": false,
+      "not_an_ingredient": false
+    },
+    "wb-26817#15": {
+      "groups": [
+        [
+          "green onion"
+        ]
+      ],
+      "optional": false,
+      "not_an_ingredient": false
+    },
+    "wb-199816#1": {
+      "groups": [
+        [
+          "barbecue rub"
+        ]
+      ],
+      "optional": false,
+      "not_an_ingredient": false
+    },
+    "wb-181025#13": {
+      "groups": [
+        [
+          "cornstarch"
+        ]
+      ],
+      "optional": true,
+      "not_an_ingredient": false
+    },
+    "wb-200938#6": {
+      "groups": [
+        [
+          "rice"
+        ]
+      ],
+      "optional": false,
+      "not_an_ingredient": false
+    },
+    "wb-72877#5": {
+      "groups": [
+        [
+          "sugar"
+        ]
+      ],
+      "optional": false,
+      "not_an_ingredient": false
+    },
+    "wb-19267#3": {
+      "groups": [
+        [
+          "juniper berry"
+        ]
+      ],
+      "optional": false,
+      "not_an_ingredient": false
+    },
+    "wb-455277#3": {
+      "groups": [
+        [
+          "pink lemonade"
+        ]
+      ],
+      "optional": false,
+      "not_an_ingredient": false
+    },
+    "wb-27095#5": {
+      "groups": [
+        [
+          "white onion"
+        ]
+      ],
+      "optional": false,
+      "not_an_ingredient": false
+    },
+    "wb-483817#7": {
+      "groups": [
+        [
+          "scotch bonnet pepper"
+        ]
+      ],
+      "optional": false,
+      "not_an_ingredient": false
+    },
+    "wb-17080#1": {
+      "groups": [
+        [
+          "milk"
+        ]
+      ],
+      "optional": false,
+      "not_an_ingredient": false
+    },
+    "wb-39509#3": {
+      "groups": [
+        [
+          "wheat germ"
+        ]
+      ],
+      "optional": false,
+      "not_an_ingredient": false
+    },
+    "wb-34645#1": {
+      "groups": [
+        [
+          "wholemeal flour",
+          "plain flour"
+        ]
+      ],
+      "optional": false,
+      "not_an_ingredient": false
+    },
+    "wb-37564#2": {
+      "groups": [
+        [
+          "bitter melon"
+        ]
+      ],
+      "optional": false,
+      "not_an_ingredient": false
+    },
+    "wb-7280#1": {
+      "groups": [
+        [
+          "clove"
+        ]
+      ],
+      "optional": false,
+      "not_an_ingredient": false
+    },
+    "wb-112906#10": {
+      "groups": [
+        [
+          "bagel chip"
+        ]
+      ],
+      "optional": false,
+      "not_an_ingredient": false
+    },
+    "wb-437761#11": {
+      "groups": [
+        [
+          "hummus"
+        ]
+      ],
+      "optional": false,
+      "not_an_ingredient": false
+    },
+    "wb-34873#7": {
+      "groups": [
+        [
+          "black pepper"
+        ]
+      ],
+      "optional": false,
+      "not_an_ingredient": false
+    },
+    "wb-14077#0": {
+      "groups": [
+        [
+          "short grain rice"
+        ]
+      ],
+      "optional": false,
+      "not_an_ingredient": false
+    },
+    "wb-38078#0": {
+      "groups": [
+        [
+          "water"
+        ]
+      ],
+      "optional": false,
+      "not_an_ingredient": false
+    },
+    "wb-117608#0": {
+      "groups": [
+        [
+          "quinoa"
+        ]
+      ],
+      "optional": false,
+      "not_an_ingredient": false
+    },
+    "wb-94105#2": {
+      "groups": [
+        [
+          "refried bean",
+          "pinto bean",
+          "black bean"
+        ]
+      ],
+      "optional": false,
+      "not_an_ingredient": false
+    },
+    "wb-20265#9": {
+      "groups": [
+        [
+          "brown onion"
+        ]
+      ],
+      "optional": false,
+      "not_an_ingredient": false
+    },
+    "wb-484816#0": {
+      "groups": [
+        [
+          "steel-cut oat"
+        ]
+      ],
+      "optional": false,
+      "not_an_ingredient": false
+    },
+    "wb-370169#9": {
+      "groups": [
+        [
+          "oyster sauce"
+        ]
+      ],
+      "optional": false,
+      "not_an_ingredient": false
+    },
+    "wb-22344#3": {
+      "groups": [
+        [
+          "dried sardine",
+          "dried anchovy"
+        ]
+      ],
+      "optional": false,
+      "not_an_ingredient": false
+    },
+    "wb-167224#4": {
+      "groups": [
+        [
+          "madeira",
+          "port",
+          "cognac"
+        ]
+      ],
+      "optional": false,
+      "not_an_ingredient": false
+    },
+    "wb-449876#0": {
+      "groups": [
+        [
+          "red cabbage"
+        ]
+      ],
+      "optional": false,
+      "not_an_ingredient": false
+    },
+    "wb-29866#3": {
+      "groups": [
+        [
+          "juniper berry"
+        ]
+      ],
+      "optional": false,
+      "not_an_ingredient": false
+    },
+    "wb-457343#14": {
+      "groups": [
+        [
+          "parsley",
+          "cilantro"
+        ]
+      ],
+      "optional": true,
+      "not_an_ingredient": false
+    },
+    "wb-308168#4": {
+      "groups": [
+        [
+          "green bell pepper"
+        ]
+      ],
+      "optional": false,
+      "not_an_ingredient": false
+    },
+    "wb-176798#13": {
+      "groups": [
+        [
+          "watercress"
+        ]
+      ],
+      "optional": false,
+      "not_an_ingredient": false
+    },
+    "wb-470240#0": {
+      "groups": [
+        [
+          "corn flour"
+        ]
+      ],
+      "optional": false,
+      "not_an_ingredient": false
+    },
+    "wb-75523#7": {
+      "groups": [
+        [
+          "flat-leaf parsley",
+          "watercress"
+        ]
+      ],
+      "optional": false,
+      "not_an_ingredient": false
+    },
+    "wb-234180#4": {
+      "groups": [
+        [
+          "coconut"
+        ]
+      ],
+      "optional": false,
+      "not_an_ingredient": false
+    },
+    "wb-29046#2": {
+      "groups": [
+        [
+          "bacon",
+          "breakfast sausage"
+        ]
+      ],
+      "optional": false,
+      "not_an_ingredient": false
+    },
+    "wb-8329#9": {
+      "groups": [
+        [
+          "refried bean"
+        ]
+      ],
+      "optional": false,
+      "not_an_ingredient": false
+    },
+    "wb-22129#9": {
+      "groups": [
+        [
+          "refried bean"
+        ]
+      ],
+      "optional": false,
+      "not_an_ingredient": false
+    },
+    "wb-104342#4": {
+      "groups": [
+        [
+          "brown sugar"
+        ]
+      ],
+      "optional": false,
+      "not_an_ingredient": false
+    },
+    "wb-247174#9": {
+      "groups": [
+        [
+          "cornstarch"
+        ],
+        [
+          "water"
+        ]
+      ],
+      "optional": false,
+      "not_an_ingredient": false
+    },
+    "wb-456083#5": {
+      "groups": [
+        [
+          "green chili"
+        ]
+      ],
+      "optional": false,
+      "not_an_ingredient": false
+    },
+    "wb-266728#1": {
+      "groups": [
+        [
+          "butter",
+          "margarine"
+        ]
+      ],
+      "optional": false,
+      "not_an_ingredient": false
+    },
+    "wb-26817#20": {
+      "groups": [
+        [
+          "sour cream"
+        ],
+        [
+          "guacamole"
+        ]
+      ],
+      "optional": false,
+      "not_an_ingredient": false
+    },
+    "wb-457337#0": {
+      "groups": [
+        [
+          "sorghum flour",
+          "millet flour"
+        ]
+      ],
+      "optional": false,
+      "not_an_ingredient": false
+    },
+    "wb-18884#2": {
+      "groups": [
+        [
+          "dried fig"
+        ]
+      ],
+      "optional": false,
+      "not_an_ingredient": false
+    },
+    "wb-41190#9": {
+      "groups": [
+        [
+          "cracker crumb"
+        ]
+      ],
+      "optional": false,
+      "not_an_ingredient": false
+    },
+    "wb-88902#1": {
+      "groups": [
+        [
+          "lobster tail"
+        ]
+      ],
+      "optional": false,
+      "not_an_ingredient": false
+    },
+    "wb-203124#7": {
+      "groups": [
+        [
+          "lemon zest"
+        ]
+      ],
+      "optional": false,
+      "not_an_ingredient": false
+    },
+    "wb-266785#8": {
+      "groups": [
+        [
+          "water",
+          "vegetable stock"
+        ]
+      ],
+      "optional": false,
+      "not_an_ingredient": false
+    },
+    "wb-470726#15": {
+      "groups": [
+        [
+          "fig"
+        ]
+      ],
+      "optional": true,
+      "not_an_ingredient": false
+    },
+    "wb-108436#5": {
+      "groups": [
+        [
+          "saltine cracker"
+        ]
+      ],
+      "optional": false,
+      "not_an_ingredient": false
+    },
+    "wb-23288#6": {
+      "groups": [
+        [
+          "nutmeg"
+        ]
+      ],
+      "optional": false,
+      "not_an_ingredient": false
+    },
+    "wb-14399#10": {
+      "groups": [
+        [
+          "sugar"
+        ]
+      ],
+      "optional": false,
+      "not_an_ingredient": false
+    },
+    "wb-457175#11": {
+      "groups": [
+        [
+          "baguette"
+        ]
+      ],
+      "optional": false,
+      "not_an_ingredient": false
+    },
+    "wb-129711#2": {
+      "groups": [
+        [
+          "black bean"
+        ]
+      ],
+      "optional": false,
+      "not_an_ingredient": false
+    },
+    "wb-41709#3": {
+      "groups": [
+        [
+          "fettuccine egg noodles"
+        ]
+      ],
+      "optional": false,
+      "not_an_ingredient": false
+    },
+    "wb-457338#1": {
+      "groups": [
+        [
+          "water"
+        ]
+      ],
+      "optional": false,
+      "not_an_ingredient": false
+    },
+    "wb-54215#7": {
+      "groups": [
+        [
+          "chili powder"
+        ]
+      ],
+      "optional": false,
+      "not_an_ingredient": false
+    },
+    "wb-206996#2": {
+      "groups": [
+        [
+          "garlic"
+        ]
+      ],
+      "optional": false,
+      "not_an_ingredient": false
+    },
+    "wb-26503#13": {
+      "groups": [
+        [
+          "bouquet garni"
+        ]
+      ],
+      "optional": false,
+      "not_an_ingredient": false
+    },
+    "wb-442737#4": {
+      "groups": [
+        [
+          "lemon juice"
+        ]
+      ],
+      "optional": false,
+      "not_an_ingredient": false
+    },
+    "wb-470687#0": {
+      "groups": [
+        [
+          "red cabbage"
+        ]
+      ],
+      "optional": false,
+      "not_an_ingredient": false
+    },
+    "wb-203538#7": {
+      "groups": [
+        [
+          "carrot"
+        ]
+      ],
+      "optional": false,
+      "not_an_ingredient": false
+    },
+    "wb-285283#12": {
+      "groups": [
+        [
+          "juniper berry"
+        ]
+      ],
+      "optional": false,
+      "not_an_ingredient": false
+    },
+    "wb-112907#3": {
+      "groups": [
+        [
+          "pine nut"
+        ]
+      ],
+      "optional": false,
+      "not_an_ingredient": false
+    },
+    "wb-13448#8": {
+      "groups": [
+        [
+          "fish sauce"
+        ]
+      ],
+      "optional": false,
+      "not_an_ingredient": false
+    },
+    "wb-4021#8": {
+      "groups": [
+        [
+          "onion"
+        ]
+      ],
+      "optional": false,
+      "not_an_ingredient": false
+    }
+  }
+}

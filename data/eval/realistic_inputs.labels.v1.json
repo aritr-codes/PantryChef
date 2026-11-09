@@ -1,0 +1,1505 @@
+{
+  "version": 1,
+  "labels": {
+    "2 cups all-purpose flour": {
+      "groups": [
+        [
+          "all-purpose flour"
+        ]
+      ],
+      "optional": false,
+      "not_an_ingredient": false
+    },
+    "evoo": {
+      "groups": [
+        [
+          "extra virgin olive oil"
+        ]
+      ],
+      "optional": false,
+      "not_an_ingredient": false
+    },
+    "scallions": {
+      "groups": [
+        [
+          "scallion"
+        ]
+      ],
+      "optional": false,
+      "not_an_ingredient": false
+    },
+    "green onions": {
+      "groups": [
+        [
+          "green onion"
+        ]
+      ],
+      "optional": false,
+      "not_an_ingredient": false
+    },
+    "tomatos": {
+      "groups": [
+        [
+          "tomato"
+        ]
+      ],
+      "optional": false,
+      "not_an_ingredient": false
+    },
+    "chicken thighs, boneless": {
+      "groups": [
+        [
+          "chicken thigh"
+        ]
+      ],
+      "optional": false,
+      "not_an_ingredient": false
+    },
+    "chicken thighs": {
+      "groups": [
+        [
+          "chicken thigh"
+        ]
+      ],
+      "optional": false,
+      "not_an_ingredient": false
+    },
+    "1 (14 oz) can diced tomatoes": {
+      "groups": [
+        [
+          "canned tomato"
+        ]
+      ],
+      "optional": false,
+      "not_an_ingredient": false
+    },
+    "a pinch of salt": {
+      "groups": [
+        [
+          "salt"
+        ]
+      ],
+      "optional": false,
+      "not_an_ingredient": false
+    },
+    "half and half": {
+      "groups": [
+        [
+          "half-and-half"
+        ]
+      ],
+      "optional": false,
+      "not_an_ingredient": false
+    },
+    "s&p": {
+      "groups": [
+        [
+          "salt"
+        ],
+        [
+          "black pepper"
+        ]
+      ],
+      "optional": false,
+      "not_an_ingredient": false
+    },
+    "garbanzo beans/chickpeas": {
+      "groups": [
+        [
+          "garbanzo bean",
+          "chickpea"
+        ]
+      ],
+      "optional": false,
+      "not_an_ingredient": false
+    },
+    "cilantro/coriander": {
+      "groups": [
+        [
+          "cilantro",
+          "coriander"
+        ]
+      ],
+      "optional": false,
+      "not_an_ingredient": false
+    },
+    "heavy cream": {
+      "groups": [
+        [
+          "heavy cream"
+        ]
+      ],
+      "optional": false,
+      "not_an_ingredient": false
+    },
+    "powdered sugar": {
+      "groups": [
+        [
+          "powdered sugar"
+        ]
+      ],
+      "optional": false,
+      "not_an_ingredient": false
+    },
+    "icing sugar": {
+      "groups": [
+        [
+          "icing sugar"
+        ]
+      ],
+      "optional": false,
+      "not_an_ingredient": false
+    },
+    "aubergine": {
+      "groups": [
+        [
+          "aubergine"
+        ]
+      ],
+      "optional": false,
+      "not_an_ingredient": false
+    },
+    "ground beef": {
+      "groups": [
+        [
+          "ground beef"
+        ]
+      ],
+      "optional": false,
+      "not_an_ingredient": false
+    },
+    "mince": {
+      "groups": [
+        [
+          "ground beef"
+        ]
+      ],
+      "optional": false,
+      "not_an_ingredient": false
+    },
+    "courgette": {
+      "groups": [
+        [
+          "courgette"
+        ]
+      ],
+      "optional": false,
+      "not_an_ingredient": false
+    },
+    "coriander leaves": {
+      "groups": [
+        [
+          "coriander leaf"
+        ]
+      ],
+      "optional": false,
+      "not_an_ingredient": false
+    },
+    "rocket": {
+      "groups": [
+        [
+          "rocket"
+        ]
+      ],
+      "optional": false,
+      "not_an_ingredient": false
+    },
+    "capsicum": {
+      "groups": [
+        [
+          "capsicum"
+        ]
+      ],
+      "optional": false,
+      "not_an_ingredient": false
+    },
+    "caster sugar": {
+      "groups": [
+        [
+          "caster sugar"
+        ]
+      ],
+      "optional": false,
+      "not_an_ingredient": false
+    },
+    "plain flour": {
+      "groups": [
+        [
+          "plain flour"
+        ]
+      ],
+      "optional": false,
+      "not_an_ingredient": false
+    },
+    "self-raising flour": {
+      "groups": [
+        [
+          "self-raising flour"
+        ]
+      ],
+      "optional": false,
+      "not_an_ingredient": false
+    },
+    "bicarbonate of soda": {
+      "groups": [
+        [
+          "bicarbonate of soda"
+        ]
+      ],
+      "optional": false,
+      "not_an_ingredient": false
+    },
+    "double cream": {
+      "groups": [
+        [
+          "double cream"
+        ]
+      ],
+      "optional": false,
+      "not_an_ingredient": false
+    },
+    "single cream": {
+      "groups": [
+        [
+          "single cream"
+        ]
+      ],
+      "optional": false,
+      "not_an_ingredient": false
+    },
+    "spring onions": {
+      "groups": [
+        [
+          "spring onion"
+        ]
+      ],
+      "optional": false,
+      "not_an_ingredient": false
+    },
+    "swede": {
+      "groups": [
+        [
+          "swede"
+        ]
+      ],
+      "optional": false,
+      "not_an_ingredient": false
+    },
+    "prawns": {
+      "groups": [
+        [
+          "prawn"
+        ]
+      ],
+      "optional": false,
+      "not_an_ingredient": false
+    },
+    "minced beef": {
+      "groups": [
+        [
+          "minced beef"
+        ]
+      ],
+      "optional": false,
+      "not_an_ingredient": false
+    },
+    "cornflour": {
+      "groups": [
+        [
+          "cornflour"
+        ]
+      ],
+      "optional": false,
+      "not_an_ingredient": false
+    },
+    "coriander": {
+      "groups": [
+        [
+          "coriander"
+        ]
+      ],
+      "optional": false,
+      "not_an_ingredient": false
+    },
+    "beetroot": {
+      "groups": [
+        [
+          "beetroot"
+        ]
+      ],
+      "optional": false,
+      "not_an_ingredient": false
+    },
+    "chips": {
+      "groups": [
+        [
+          "chip"
+        ]
+      ],
+      "optional": false,
+      "not_an_ingredient": false
+    },
+    "eggs": {
+      "groups": [
+        [
+          "egg"
+        ]
+      ],
+      "optional": false,
+      "not_an_ingredient": false
+    },
+    "egg": {
+      "groups": [
+        [
+          "egg"
+        ]
+      ],
+      "optional": false,
+      "not_an_ingredient": false
+    },
+    "milk": {
+      "groups": [
+        [
+          "milk"
+        ]
+      ],
+      "optional": false,
+      "not_an_ingredient": false
+    },
+    "whole milk": {
+      "groups": [
+        [
+          "whole milk"
+        ]
+      ],
+      "optional": false,
+      "not_an_ingredient": false
+    },
+    "butter": {
+      "groups": [
+        [
+          "butter"
+        ]
+      ],
+      "optional": false,
+      "not_an_ingredient": false
+    },
+    "unsalted butter": {
+      "groups": [
+        [
+          "unsalted butter"
+        ]
+      ],
+      "optional": false,
+      "not_an_ingredient": false
+    },
+    "garlic": {
+      "groups": [
+        [
+          "garlic"
+        ]
+      ],
+      "optional": false,
+      "not_an_ingredient": false
+    },
+    "garlic cloves": {
+      "groups": [
+        [
+          "garlic"
+        ]
+      ],
+      "optional": false,
+      "not_an_ingredient": false
+    },
+    "onion": {
+      "groups": [
+        [
+          "onion"
+        ]
+      ],
+      "optional": false,
+      "not_an_ingredient": false
+    },
+    "onions": {
+      "groups": [
+        [
+          "onion"
+        ]
+      ],
+      "optional": false,
+      "not_an_ingredient": false
+    },
+    "red onion": {
+      "groups": [
+        [
+          "red onion"
+        ]
+      ],
+      "optional": false,
+      "not_an_ingredient": false
+    },
+    "yellow onion": {
+      "groups": [
+        [
+          "yellow onion"
+        ]
+      ],
+      "optional": false,
+      "not_an_ingredient": false
+    },
+    "potatoes": {
+      "groups": [
+        [
+          "potato"
+        ]
+      ],
+      "optional": false,
+      "not_an_ingredient": false
+    },
+    "sweet potatoes": {
+      "groups": [
+        [
+          "sweet potato"
+        ]
+      ],
+      "optional": false,
+      "not_an_ingredient": false
+    },
+    "carrots": {
+      "groups": [
+        [
+          "carrot"
+        ]
+      ],
+      "optional": false,
+      "not_an_ingredient": false
+    },
+    "bell pepper": {
+      "groups": [
+        [
+          "bell pepper"
+        ]
+      ],
+      "optional": false,
+      "not_an_ingredient": false
+    },
+    "red bell pepper": {
+      "groups": [
+        [
+          "red bell pepper"
+        ]
+      ],
+      "optional": false,
+      "not_an_ingredient": false
+    },
+    "olive oil": {
+      "groups": [
+        [
+          "olive oil"
+        ]
+      ],
+      "optional": false,
+      "not_an_ingredient": false
+    },
+    "extra virgin olive oil": {
+      "groups": [
+        [
+          "extra virgin olive oil"
+        ]
+      ],
+      "optional": false,
+      "not_an_ingredient": false
+    },
+    "vegetable oil": {
+      "groups": [
+        [
+          "vegetable oil"
+        ]
+      ],
+      "optional": false,
+      "not_an_ingredient": false
+    },
+    "canola oil": {
+      "groups": [
+        [
+          "canola oil"
+        ]
+      ],
+      "optional": false,
+      "not_an_ingredient": false
+    },
+    "soy sauce": {
+      "groups": [
+        [
+          "soy sauce"
+        ]
+      ],
+      "optional": false,
+      "not_an_ingredient": false
+    },
+    "rice": {
+      "groups": [
+        [
+          "rice"
+        ]
+      ],
+      "optional": false,
+      "not_an_ingredient": false
+    },
+    "white rice": {
+      "groups": [
+        [
+          "white rice"
+        ]
+      ],
+      "optional": false,
+      "not_an_ingredient": false
+    },
+    "basmati rice": {
+      "groups": [
+        [
+          "basmati rice"
+        ]
+      ],
+      "optional": false,
+      "not_an_ingredient": false
+    },
+    "pasta": {
+      "groups": [
+        [
+          "pasta"
+        ]
+      ],
+      "optional": false,
+      "not_an_ingredient": false
+    },
+    "spaghetti": {
+      "groups": [
+        [
+          "spaghetti"
+        ]
+      ],
+      "optional": false,
+      "not_an_ingredient": false
+    },
+    "parmesan": {
+      "groups": [
+        [
+          "parmesan"
+        ]
+      ],
+      "optional": false,
+      "not_an_ingredient": false
+    },
+    "parmigiano reggiano": {
+      "groups": [
+        [
+          "parmigiano reggiano"
+        ]
+      ],
+      "optional": false,
+      "not_an_ingredient": false
+    },
+    "mozzarella": {
+      "groups": [
+        [
+          "mozzarella"
+        ]
+      ],
+      "optional": false,
+      "not_an_ingredient": false
+    },
+    "cheddar": {
+      "groups": [
+        [
+          "cheddar"
+        ]
+      ],
+      "optional": false,
+      "not_an_ingredient": false
+    },
+    "feta": {
+      "groups": [
+        [
+          "feta"
+        ]
+      ],
+      "optional": false,
+      "not_an_ingredient": false
+    },
+    "greek yogurt": {
+      "groups": [
+        [
+          "greek yogurt"
+        ]
+      ],
+      "optional": false,
+      "not_an_ingredient": false
+    },
+    "yoghurt": {
+      "groups": [
+        [
+          "yogurt"
+        ]
+      ],
+      "optional": false,
+      "not_an_ingredient": false
+    },
+    "sour cream": {
+      "groups": [
+        [
+          "sour cream"
+        ]
+      ],
+      "optional": false,
+      "not_an_ingredient": false
+    },
+    "cream cheese": {
+      "groups": [
+        [
+          "cream cheese"
+        ]
+      ],
+      "optional": false,
+      "not_an_ingredient": false
+    },
+    "baking powder": {
+      "groups": [
+        [
+          "baking powder"
+        ]
+      ],
+      "optional": false,
+      "not_an_ingredient": false
+    },
+    "baking soda": {
+      "groups": [
+        [
+          "baking soda"
+        ]
+      ],
+      "optional": false,
+      "not_an_ingredient": false
+    },
+    "vanilla extract": {
+      "groups": [
+        [
+          "vanilla extract"
+        ]
+      ],
+      "optional": false,
+      "not_an_ingredient": false
+    },
+    "brown sugar": {
+      "groups": [
+        [
+          "brown sugar"
+        ]
+      ],
+      "optional": false,
+      "not_an_ingredient": false
+    },
+    "white sugar": {
+      "groups": [
+        [
+          "white sugar"
+        ]
+      ],
+      "optional": false,
+      "not_an_ingredient": false
+    },
+    "sugar": {
+      "groups": [
+        [
+          "sugar"
+        ]
+      ],
+      "optional": false,
+      "not_an_ingredient": false
+    },
+    "salt": {
+      "groups": [
+        [
+          "salt"
+        ]
+      ],
+      "optional": false,
+      "not_an_ingredient": false
+    },
+    "black pepper": {
+      "groups": [
+        [
+          "black pepper"
+        ]
+      ],
+      "optional": false,
+      "not_an_ingredient": false
+    },
+    "freshly ground black pepper": {
+      "groups": [
+        [
+          "black pepper"
+        ]
+      ],
+      "optional": false,
+      "not_an_ingredient": false
+    },
+    "kosher salt": {
+      "groups": [
+        [
+          "kosher salt"
+        ]
+      ],
+      "optional": false,
+      "not_an_ingredient": false
+    },
+    "sea salt": {
+      "groups": [
+        [
+          "sea salt"
+        ]
+      ],
+      "optional": false,
+      "not_an_ingredient": false
+    },
+    "paprika": {
+      "groups": [
+        [
+          "paprika"
+        ]
+      ],
+      "optional": false,
+      "not_an_ingredient": false
+    },
+    "smoked paprika": {
+      "groups": [
+        [
+          "smoked paprika"
+        ]
+      ],
+      "optional": false,
+      "not_an_ingredient": false
+    },
+    "cumin": {
+      "groups": [
+        [
+          "cumin"
+        ]
+      ],
+      "optional": false,
+      "not_an_ingredient": false
+    },
+    "ground cumin": {
+      "groups": [
+        [
+          "ground cumin"
+        ]
+      ],
+      "optional": false,
+      "not_an_ingredient": false
+    },
+    "chili powder": {
+      "groups": [
+        [
+          "chili powder"
+        ]
+      ],
+      "optional": false,
+      "not_an_ingredient": false
+    },
+    "chilli flakes": {
+      "groups": [
+        [
+          "chili flakes"
+        ]
+      ],
+      "optional": false,
+      "not_an_ingredient": false
+    },
+    "red pepper flakes": {
+      "groups": [
+        [
+          "red pepper flakes"
+        ]
+      ],
+      "optional": false,
+      "not_an_ingredient": false
+    },
+    "oregano": {
+      "groups": [
+        [
+          "oregano"
+        ]
+      ],
+      "optional": false,
+      "not_an_ingredient": false
+    },
+    "basil": {
+      "groups": [
+        [
+          "basil"
+        ]
+      ],
+      "optional": false,
+      "not_an_ingredient": false
+    },
+    "fresh basil": {
+      "groups": [
+        [
+          "basil"
+        ]
+      ],
+      "optional": false,
+      "not_an_ingredient": false
+    },
+    "parsley": {
+      "groups": [
+        [
+          "parsley"
+        ]
+      ],
+      "optional": false,
+      "not_an_ingredient": false
+    },
+    "thyme": {
+      "groups": [
+        [
+          "thyme"
+        ]
+      ],
+      "optional": false,
+      "not_an_ingredient": false
+    },
+    "rosemary": {
+      "groups": [
+        [
+          "rosemary"
+        ]
+      ],
+      "optional": false,
+      "not_an_ingredient": false
+    },
+    "lemon": {
+      "groups": [
+        [
+          "lemon"
+        ]
+      ],
+      "optional": false,
+      "not_an_ingredient": false
+    },
+    "lemon juice": {
+      "groups": [
+        [
+          "lemon juice"
+        ]
+      ],
+      "optional": false,
+      "not_an_ingredient": false
+    },
+    "lime": {
+      "groups": [
+        [
+          "lime"
+        ]
+      ],
+      "optional": false,
+      "not_an_ingredient": false
+    },
+    "chicken breast": {
+      "groups": [
+        [
+          "chicken breast"
+        ]
+      ],
+      "optional": false,
+      "not_an_ingredient": false
+    },
+    "chicken breasts": {
+      "groups": [
+        [
+          "chicken breast"
+        ]
+      ],
+      "optional": false,
+      "not_an_ingredient": false
+    },
+    "boneless skinless chicken breast": {
+      "groups": [
+        [
+          "chicken breast"
+        ]
+      ],
+      "optional": false,
+      "not_an_ingredient": false
+    },
+    "bacon": {
+      "groups": [
+        [
+          "bacon"
+        ]
+      ],
+      "optional": false,
+      "not_an_ingredient": false
+    },
+    "ground turkey": {
+      "groups": [
+        [
+          "ground turkey"
+        ]
+      ],
+      "optional": false,
+      "not_an_ingredient": false
+    },
+    "pork chops": {
+      "groups": [
+        [
+          "pork chop"
+        ]
+      ],
+      "optional": false,
+      "not_an_ingredient": false
+    },
+    "salmon": {
+      "groups": [
+        [
+          "salmon"
+        ]
+      ],
+      "optional": false,
+      "not_an_ingredient": false
+    },
+    "tuna": {
+      "groups": [
+        [
+          "tuna"
+        ]
+      ],
+      "optional": false,
+      "not_an_ingredient": false
+    },
+    "canned tuna": {
+      "groups": [
+        [
+          "canned tuna"
+        ]
+      ],
+      "optional": false,
+      "not_an_ingredient": false
+    },
+    "shrimp": {
+      "groups": [
+        [
+          "shrimp"
+        ]
+      ],
+      "optional": false,
+      "not_an_ingredient": false
+    },
+    "tomato paste": {
+      "groups": [
+        [
+          "tomato paste"
+        ]
+      ],
+      "optional": false,
+      "not_an_ingredient": false
+    },
+    "tomato sauce": {
+      "groups": [
+        [
+          "tomato sauce"
+        ]
+      ],
+      "optional": false,
+      "not_an_ingredient": false
+    },
+    "crushed tomatoes": {
+      "groups": [
+        [
+          "crushed tomato"
+        ]
+      ],
+      "optional": false,
+      "not_an_ingredient": false
+    },
+    "canned tomatoes": {
+      "groups": [
+        [
+          "canned tomato"
+        ]
+      ],
+      "optional": false,
+      "not_an_ingredient": false
+    },
+    "cherry tomatoes": {
+      "groups": [
+        [
+          "cherry tomato"
+        ]
+      ],
+      "optional": false,
+      "not_an_ingredient": false
+    },
+    "mushrooms": {
+      "groups": [
+        [
+          "mushroom"
+        ]
+      ],
+      "optional": false,
+      "not_an_ingredient": false
+    },
+    "spinach": {
+      "groups": [
+        [
+          "spinach"
+        ]
+      ],
+      "optional": false,
+      "not_an_ingredient": false
+    },
+    "broccoli": {
+      "groups": [
+        [
+          "broccoli"
+        ]
+      ],
+      "optional": false,
+      "not_an_ingredient": false
+    },
+    "cauliflower": {
+      "groups": [
+        [
+          "cauliflower"
+        ]
+      ],
+      "optional": false,
+      "not_an_ingredient": false
+    },
+    "zucchini": {
+      "groups": [
+        [
+          "zucchini"
+        ]
+      ],
+      "optional": false,
+      "not_an_ingredient": false
+    },
+    "cucumber": {
+      "groups": [
+        [
+          "cucumber"
+        ]
+      ],
+      "optional": false,
+      "not_an_ingredient": false
+    },
+    "avocado": {
+      "groups": [
+        [
+          "avocado"
+        ]
+      ],
+      "optional": false,
+      "not_an_ingredient": false
+    },
+    "avocados": {
+      "groups": [
+        [
+          "avocado"
+        ]
+      ],
+      "optional": false,
+      "not_an_ingredient": false
+    },
+    "peanut butter": {
+      "groups": [
+        [
+          "peanut butter"
+        ]
+      ],
+      "optional": false,
+      "not_an_ingredient": false
+    },
+    "honey": {
+      "groups": [
+        [
+          "honey"
+        ]
+      ],
+      "optional": false,
+      "not_an_ingredient": false
+    },
+    "maple syrup": {
+      "groups": [
+        [
+          "maple syrup"
+        ]
+      ],
+      "optional": false,
+      "not_an_ingredient": false
+    },
+    "oats": {
+      "groups": [
+        [
+          "oat"
+        ]
+      ],
+      "optional": false,
+      "not_an_ingredient": false
+    },
+    "rolled oats": {
+      "groups": [
+        [
+          "rolled oat"
+        ]
+      ],
+      "optional": false,
+      "not_an_ingredient": false
+    },
+    "bread": {
+      "groups": [
+        [
+          "bread"
+        ]
+      ],
+      "optional": false,
+      "not_an_ingredient": false
+    },
+    "tortillas": {
+      "groups": [
+        [
+          "tortilla"
+        ]
+      ],
+      "optional": false,
+      "not_an_ingredient": false
+    },
+    "black beans": {
+      "groups": [
+        [
+          "black bean"
+        ]
+      ],
+      "optional": false,
+      "not_an_ingredient": false
+    },
+    "kidney beans": {
+      "groups": [
+        [
+          "kidney bean"
+        ]
+      ],
+      "optional": false,
+      "not_an_ingredient": false
+    },
+    "chickpeas": {
+      "groups": [
+        [
+          "chickpea"
+        ]
+      ],
+      "optional": false,
+      "not_an_ingredient": false
+    },
+    "lentils": {
+      "groups": [
+        [
+          "lentil"
+        ]
+      ],
+      "optional": false,
+      "not_an_ingredient": false
+    },
+    "coconut milk": {
+      "groups": [
+        [
+          "coconut milk"
+        ]
+      ],
+      "optional": false,
+      "not_an_ingredient": false
+    },
+    "chicken stock": {
+      "groups": [
+        [
+          "chicken stock"
+        ]
+      ],
+      "optional": false,
+      "not_an_ingredient": false
+    },
+    "chicken broth": {
+      "groups": [
+        [
+          "chicken broth"
+        ]
+      ],
+      "optional": false,
+      "not_an_ingredient": false
+    },
+    "vegetable broth": {
+      "groups": [
+        [
+          "vegetable broth"
+        ]
+      ],
+      "optional": false,
+      "not_an_ingredient": false
+    },
+    "water": {
+      "groups": [
+        [
+          "water"
+        ]
+      ],
+      "optional": false,
+      "not_an_ingredient": false
+    },
+    "white wine": {
+      "groups": [
+        [
+          "white wine"
+        ]
+      ],
+      "optional": false,
+      "not_an_ingredient": false
+    },
+    "red wine": {
+      "groups": [
+        [
+          "red wine"
+        ]
+      ],
+      "optional": false,
+      "not_an_ingredient": false
+    },
+    "dijon mustard": {
+      "groups": [
+        [
+          "dijon mustard"
+        ]
+      ],
+      "optional": false,
+      "not_an_ingredient": false
+    },
+    "mayo": {
+      "groups": [
+        [
+          "mayonnaise"
+        ]
+      ],
+      "optional": false,
+      "not_an_ingredient": false
+    },
+    "mayonnaise": {
+      "groups": [
+        [
+          "mayonnaise"
+        ]
+      ],
+      "optional": false,
+      "not_an_ingredient": false
+    },
+    "ketchup": {
+      "groups": [
+        [
+          "ketchup"
+        ]
+      ],
+      "optional": false,
+      "not_an_ingredient": false
+    },
+    "ginger": {
+      "groups": [
+        [
+          "ginger"
+        ]
+      ],
+      "optional": false,
+      "not_an_ingredient": false
+    },
+    "fresh ginger": {
+      "groups": [
+        [
+          "ginger"
+        ]
+      ],
+      "optional": false,
+      "not_an_ingredient": false
+    },
+    "cinnamon": {
+      "groups": [
+        [
+          "cinnamon"
+        ]
+      ],
+      "optional": false,
+      "not_an_ingredient": false
+    },
+    "nutmeg": {
+      "groups": [
+        [
+          "nutmeg"
+        ]
+      ],
+      "optional": false,
+      "not_an_ingredient": false
+    },
+    "cocoa powder": {
+      "groups": [
+        [
+          "cocoa powder"
+        ]
+      ],
+      "optional": false,
+      "not_an_ingredient": false
+    },
+    "chocolate chips": {
+      "groups": [
+        [
+          "chocolate chip"
+        ]
+      ],
+      "optional": false,
+      "not_an_ingredient": false
+    },
+    "worcestershire": {
+      "groups": [
+        [
+          "worcestershire sauce"
+        ]
+      ],
+      "optional": false,
+      "not_an_ingredient": false
+    },
+    "tabasco": {
+      "groups": [
+        [
+          "tabasco sauce"
+        ]
+      ],
+      "optional": false,
+      "not_an_ingredient": false
+    },
+    "sriracha": {
+      "groups": [
+        [
+          "sriracha"
+        ]
+      ],
+      "optional": false,
+      "not_an_ingredient": false
+    },
+    "pb": {
+      "groups": [
+        [
+          "peanut butter"
+        ]
+      ],
+      "optional": false,
+      "not_an_ingredient": false
+    },
+    "OJ": {
+      "groups": [
+        [
+          "orange juice"
+        ]
+      ],
+      "optional": false,
+      "not_an_ingredient": false
+    },
+    "tomatoe": {
+      "groups": [
+        [
+          "tomato"
+        ]
+      ],
+      "optional": false,
+      "not_an_ingredient": false
+    },
+    "potatos": {
+      "groups": [
+        [
+          "potato"
+        ]
+      ],
+      "optional": false,
+      "not_an_ingredient": false
+    },
+    "cheeze": {
+      "groups": [
+        [
+          "cheese"
+        ]
+      ],
+      "optional": false,
+      "not_an_ingredient": false
+    },
+    "brocoli": {
+      "groups": [
+        [
+          "broccoli"
+        ]
+      ],
+      "optional": false,
+      "not_an_ingredient": false
+    },
+    "zuchini": {
+      "groups": [
+        [
+          "zucchini"
+        ]
+      ],
+      "optional": false,
+      "not_an_ingredient": false
+    },
+    "parmesean": {
+      "groups": [
+        [
+          "parmesan"
+        ]
+      ],
+      "optional": false,
+      "not_an_ingredient": false
+    },
+    "tumeric": {
+      "groups": [
+        [
+          "turmeric"
+        ]
+      ],
+      "optional": false,
+      "not_an_ingredient": false
+    },
+    "cilantro": {
+      "groups": [
+        [
+          "cilantro"
+        ]
+      ],
+      "optional": false,
+      "not_an_ingredient": false
+    },
+    "2 tbsp EVOO": {
+      "groups": [
+        [
+          "extra virgin olive oil"
+        ]
+      ],
+      "optional": false,
+      "not_an_ingredient": false
+    },
+    "1 lb ground beef/mince": {
+      "groups": [
+        [
+          "ground beef",
+          "mince"
+        ]
+      ],
+      "optional": false,
+      "not_an_ingredient": false
+    }
+  }
+}
