@@ -1,9 +1,15 @@
 {
   "arms": [],
-  "command": "uv run python scripts/m3_bare_pepper.py score data/interim/m3_bare_pepper_sheet.opus.csv",
-  "commit": "64684c015b5048f14d20528f537f918cbfb16a6c",
+  "command": "uv run python scripts/m3_bare_pepper.py score data/eval/m3_bare_pepper_labels.v1.json",
+  "commit": "ea49cb88029ebb061b3eb06a6b16f5df69c35601",
   "comparisons": [],
   "config": {
+    "changed_under_always": {
+      "black": 29,
+      "how": "resolve each labelled line with the table and with bare_pepper.when = 'always'; count the lines whose reading differs",
+      "lines": 46,
+      "of": 80
+    },
     "counts": {
       "black": 56,
       "other": 16,
@@ -11,7 +17,12 @@
     },
     "decision": "staple_cue_or_taste",
     "draw": "sha256 order of '45:bare_pepper:<line id>', first 80, frozen lines out",
-    "labeller": "one model labeller (Opus), blind; no owner adjudication",
+    "draw_counts": {
+      "drawn": 80,
+      "frozen": 2,
+      "pool": 103
+    },
+    "labeller": "one blind Opus model; no owner adjudication",
     "labels": [
       "black",
       "other",
@@ -21,9 +32,10 @@
     "seed": 45,
     "snapshot": "snapshot.2026-11-03.jsonl.gz",
     "snapshot_sha256": "a1a076ab0aee385c4e01cdc904342214dfaa6b01dc35d80d32519ea625c597d2",
-    "table": "data/ingredients/ingredients.v2.csv"
+    "table": "data/ingredients/ingredients.v2.csv",
+    "table_sha256": "b5bac0dcae3ce1e8d6c77592280c338ad1a9d28a1c502d4b3c361dced742e0b4"
   },
-  "corpus_fingerprint": "0bc766c9b5e994c6fa5cf9479e9add8fd3af62ae09cb22a628bea97838774780",
+  "corpus_fingerprint": "6bc4981af00a5ae22d491a1098fe29739882482222befd8a0d6d1e467272d243",
   "dirty": false,
   "dirty_paths": [],
   "environment": {
@@ -55,5 +67,5 @@
   ],
   "schema": 1,
   "seed": 45,
-  "what": "Share of drawn bare 'pepper' Wikibooks lines labelled black pepper (plan D5). Labels: one model labeller (Opus), blind; no owner adjudication. Decision: 'always' only if the Wilson lower bound >= 0.85."
+  "what": "Share of drawn bare 'pepper' Wikibooks lines labelled black pepper (plan D5). Labels: one blind Opus model; no owner adjudication. Decision: 'always' only if the Wilson lower bound >= 0.85."
 }
