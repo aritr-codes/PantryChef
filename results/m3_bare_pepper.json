@@ -1,0 +1,59 @@
+{
+  "arms": [],
+  "command": "uv run python scripts/m3_bare_pepper.py score data/interim/m3_bare_pepper_sheet.opus.csv",
+  "commit": "64684c015b5048f14d20528f537f918cbfb16a6c",
+  "comparisons": [],
+  "config": {
+    "counts": {
+      "black": 56,
+      "other": 16,
+      "unclear": 8
+    },
+    "decision": "staple_cue_or_taste",
+    "draw": "sha256 order of '45:bare_pepper:<line id>', first 80, frozen lines out",
+    "labeller": "one model labeller (Opus), blind; no owner adjudication",
+    "labels": [
+      "black",
+      "other",
+      "unclear"
+    ],
+    "min_lower": 0.85,
+    "seed": 45,
+    "snapshot": "snapshot.2026-11-03.jsonl.gz",
+    "snapshot_sha256": "a1a076ab0aee385c4e01cdc904342214dfaa6b01dc35d80d32519ea625c597d2",
+    "table": "data/ingredients/ingredients.v2.csv"
+  },
+  "corpus_fingerprint": "0bc766c9b5e994c6fa5cf9479e9add8fd3af62ae09cb22a628bea97838774780",
+  "dirty": false,
+  "dirty_paths": [],
+  "environment": {
+    "numpy": "2.4.6",
+    "platform": "Windows 10 (win32)",
+    "python": "3.11.15"
+  },
+  "label": "MEASURED",
+  "metrics": [
+    {
+      "arm": null,
+      "ci": {
+        "hi": 0.789355708373843,
+        "level": 0.95,
+        "lo": 0.5923163971203269,
+        "method": "wilson",
+        "n_clusters": 80
+      },
+      "depends_on": [
+        "parser_rules",
+        "labeller_model"
+      ],
+      "n": 80,
+      "name": "bare_pepper_black_share",
+      "role": "product",
+      "split": "all",
+      "value": 0.7
+    }
+  ],
+  "schema": 1,
+  "seed": 45,
+  "what": "Share of drawn bare 'pepper' Wikibooks lines labelled black pepper (plan D5). Labels: one model labeller (Opus), blind; no owner adjudication. Decision: 'always' only if the Wilson lower bound >= 0.85."
+}
