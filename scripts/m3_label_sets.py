@@ -14,6 +14,7 @@ from __future__ import annotations
 
 import argparse
 import csv
+import hashlib
 import json
 import random
 from collections.abc import Callable
@@ -98,6 +99,23 @@ def _key(label: Label) -> tuple:
     return groups, label.optional, label.not_an_ingredient
 
 
+def _ref(path: Path) -> dict:
+    path = Path(path).resolve()
+    return {"path": str(path), "sha256": hashlib.sha256(path.read_bytes()).hexdigest()}
+
+
+def _load_pair(d: dict, ids: list[str]) -> tuple[dict[str, Label], dict[str, Label]]:
+    """Reload both labeller files of a disagreement record. Refuse if either file changed."""
+    out = []
+    for side in ("a", "b"):
+        ref = d[side]
+        path = Path(ref["path"])
+        if _ref(path)["sha256"] != ref["sha256"]:
+            raise LabelError(f"{path.name} changed since compare; run compare again")
+        out.append(_load(path, ids))
+    return out[0], out[1]
+
+
 def compare(name: str, sets: Sets, a: Path, b: Path, work: Path) -> tuple[int, int, list[str]]:
     """Return ``(n, exact agreements, ids that differ)`` and write the disagreement file."""
     ids = [i for i, _ in sets[name]]
@@ -107,8 +125,8 @@ def compare(name: str, sets: Sets, a: Path, b: Path, work: Path) -> tuple[int, i
         "name": name,
         "n": len(ids),
         "exact_agreement": len(ids) - len(diff),
-        "a": str(a),
-        "b": str(b),
+        "a": _ref(a),
+        "b": _ref(b),
         "ids": diff,
     }
     (work / f"m3_disagreements_{name}.json").write_text(
@@ -135,7 +153,7 @@ def owner_sheet(sets: Sets, work: Path, n_agreed: int = N_AGREED, seed: int = SE
     for name, items in sets.items():
         d = _dis(work, name)
         ids = [i for i, _ in items]
-        la, lb = _load(Path(d["a"]), ids), _load(Path(d["b"]), ids)
+        la, lb = _load_pair(d, ids)
         text = dict(items)
         bad = set(d["ids"])
         rows += [
@@ -162,13 +180,26 @@ def merge(
     work: Path,
     targets: dict[str, Path],
     max_agreed_errors: int = MAX_AGREED_ERRORS,
+    n_agreed: int = N_AGREED,
 ) -> None:
-    """Write the new label files from a filled owner sheet. Never overwrite an existing file."""
+    """Write the new label files from a filled owner sheet. Never overwrite an existing file.
+
+    The sheet must hold exactly ``n_agreed`` agreed rows, no duplicate row, and no label text on
+    an agreed row unless its ``error`` is 1.
+    """
     for p in targets.values():
         if p.exists():
             raise SystemExit(f"{p.name} exists; v1 and frozen files are never overwritten")
+    owner: dict[tuple[str, str], dict] = {}
     with owner_csv.open(encoding="utf-8-sig", newline="") as fh:
-        owner = {(r["set"], r["id"]): r for r in csv.DictReader(fh)}
+        for r in csv.DictReader(fh):
+            if (r["set"], r["id"]) in owner:
+                raise LabelError(f"{r['id']}: duplicate row in the owner sheet")
+            if r["kind"] not in ("disagree", "agreed"):
+                raise LabelError(f"{r['id']}: kind must be disagree or agreed")
+            owner[(r["set"], r["id"])] = r
+    if sum(r["kind"] == "agreed" for r in owner.values()) != n_agreed:
+        raise LabelError(f"the owner sheet must hold exactly {n_agreed} agreed rows")
     final: dict[str, dict[str, Label]] = {}
     adjudication: dict[str, dict] = {}
     checked: list[str] = []
@@ -177,7 +208,7 @@ def merge(
         d = _dis(work, name)
         ids = [i for i, _ in items]
         text = dict(items)
-        la, lb = _load(Path(d["a"]), ids), _load(Path(d["b"]), ids)
+        la, lb = _load_pair(d, ids)
         final[name] = dict(la)  # agreed lines keep labeller A
         records = []
         for i in d["ids"]:
@@ -189,10 +220,16 @@ def merge(
         for (set_name, i), r in owner.items():
             if set_name != name or r["kind"] != "agreed":
                 continue
+            if i not in ids or i in d["ids"]:
+                raise LabelError(f"{i}: not an agreed line of {name}")
             checked.append(i)
             flag = r["error"].strip()
             if flag not in ("", "0", "1"):
                 raise LabelError(f"{i}: error must be 0, 1 or blank")
+            if flag != "1" and (
+                r["names"].strip() or r["optional"].strip() or r["not_an_ingredient"].strip()
+            ):
+                raise LabelError(f"{i}: label filled on an agreed row, but error is not 1")
             if flag == "1":
                 errors.append(i)
                 final[name][i] = label_from_fields(
@@ -201,8 +238,8 @@ def merge(
         adjudication[name] = {
             "lines": len(ids),
             "exact_agreement": d["exact_agreement"],
-            "a": Path(d["a"]).name,
-            "b": Path(d["b"]).name,
+            "a": Path(d["a"]["path"]).name,
+            "b": Path(d["b"]["path"]).name,
             "disagreements": records,
         }
     if len(errors) > max_agreed_errors:

@@ -159,3 +159,20 @@ def test_line_hash_form() -> None:
 
     assert line_hash("  Salt ") == line_hash("salt")
     assert line_hash("salt") == hashlib.sha256(b"salt").hexdigest()
+
+
+def test_id_map_missing_name_raises() -> None:
+    lines = [{"id": "1", "text": "2 eggs"}]
+    labels = {"1": Label((("egg", "hen fruit"),), False, False)}
+    with pytest.raises(LabelError, match="hen fruit"):
+        score(lines, labels, BULGUR, id_map={"egg": "egg"})
+    # a value of None still means "no id", and it is not an error
+    got = score(lines, labels, BULGUR, id_map={"egg": "egg", "hen fruit": None})
+    assert got["mention_accuracy"] == 1.0
+
+
+def test_id_map_keys_and_lookups_are_normalised() -> None:
+    lines = [{"id": "1", "text": "2 eggs"}]
+    labels = {"1": Label((("Egg",),), False, False)}
+    # the map key has another case and plural form than the gold name: both normalise alike
+    assert score(lines, labels, BULGUR, id_map={"EGGS": "egg"})["mention_accuracy"] == 1.0

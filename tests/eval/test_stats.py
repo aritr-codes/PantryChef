@@ -72,7 +72,10 @@ def test_wilson_75_of_80():
     lo, hi = wilson(75, 80)
     assert lo == pytest.approx(0.86, abs=0.01)
     assert lo < 75 / 80 < hi <= 1.0
-    assert wilson(0, 0) == (0.0, 1.0)
+    assert wilson(0, 5)[0] == 0.0
+    for k, n in ((0, 0), (-1, 5), (6, 5), (1, -2)):
+        with pytest.raises(ValueError):
+            wilson(k, n)
 
 
 def test_mcnemar_exact_symmetric():

@@ -72,8 +72,8 @@ def paired_cluster_bootstrap(
 
 def wilson(k: int, n: int, z: float = 1.96) -> tuple[float, float]:
     """Wilson score interval for ``k`` successes in ``n`` trials (95% by default)."""
-    if n <= 0:
-        return 0.0, 1.0
+    if n <= 0 or not 0 <= k <= n:
+        raise ValueError(f"need 0 <= k <= n and n > 0, got k={k}, n={n}")
     p = k / n
     centre = p + z * z / (2 * n)
     half = z * sqrt(p * (1 - p) / n + z * z / (4 * n * n))

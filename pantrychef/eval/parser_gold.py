@@ -112,12 +112,20 @@ def to_ids(
 ) -> tuple[set[str], list[str]]:
     """Return ``(ids found, names with no id)`` for one gold group.
 
-    With ``id_map`` a name maps through it (``None`` means no id). Else through the table keys.
+    With ``id_map`` a name maps through it (``None`` means no id). A name that is missing from
+    the map raises ``LabelError``. Map keys and names are compared by ``tokens``. Without
+    ``id_map`` a name maps through the table keys.
     """
+    norm = None if id_map is None else {tokens(k): v for k, v in id_map.items()}
     ids: set[str] = set()
     unknown: list[str] = []
     for name in group:
-        hit = id_map.get(name) if id_map is not None else table.keys.get(tokens(name))
+        if norm is None:
+            hit = table.keys.get(tokens(name))
+        elif tokens(name) in norm:
+            hit = norm[tokens(name)]
+        else:
+            raise LabelError(f"gold name {name!r} is not in the id map")
         if hit is None:
             unknown.append(name)
         else:

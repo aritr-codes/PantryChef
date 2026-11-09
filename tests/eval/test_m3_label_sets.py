@@ -150,7 +150,7 @@ def test_merge_writes_new_files_and_refuses_overwrite(tmp_path: Path) -> None:
     agreed_id = next(r["id"] for r in _rows(path) if r["kind"] == "agreed")
     _answer(path, _final(agreed_id, "0"))
     t = _targets(tmp_path)
-    m.merge(SETS, path, tmp_path, t)
+    m.merge(SETS, path, tmp_path, t, n_agreed=1)
     test = json.loads(t["test"].read_text(encoding="utf8"))
     assert test["labels"]["t3"] == {
         "groups": [["salt"]],
@@ -166,7 +166,7 @@ def test_merge_writes_new_files_and_refuses_overwrite(tmp_path: Path) -> None:
     rec = adj["sets"]["extra100"]["disagreements"][0]
     assert {"id", "text", "a", "b", "final"} <= set(rec)
     with pytest.raises(SystemExit):  # never overwrite
-        m.merge(SETS, path, tmp_path, t)
+        m.merge(SETS, path, tmp_path, t, n_agreed=1)
 
 
 def test_merge_stops_on_too_many_agreed_errors(tmp_path: Path) -> None:
@@ -175,9 +175,11 @@ def test_merge_stops_on_too_many_agreed_errors(tmp_path: Path) -> None:
     _answer(path, _final(agreed_id, "1"))
     t = _targets(tmp_path)
     with pytest.raises(SystemExit, match="stop"):
-        m.merge(SETS, path, tmp_path, t, max_agreed_errors=0)
+        m.merge(SETS, path, tmp_path, t, n_agreed=1, max_agreed_errors=0)
     assert not any(p.exists() for p in t.values())
-    m.merge(SETS, path, tmp_path, t, max_agreed_errors=1)  # one error is within this limit
+    m.merge(
+        SETS, path, tmp_path, t, n_agreed=1, max_agreed_errors=1
+    )  # one error is within this limit
     assert all(p.exists() for p in t.values())
 
 
@@ -185,5 +187,80 @@ def test_merge_needs_every_disagreement_answered(tmp_path: Path) -> None:
     path = _run_to_owner_sheet(tmp_path)
     t = _targets(tmp_path)
     with pytest.raises(LabelError):
-        m.merge(SETS, path, tmp_path, t)
+        m.merge(SETS, path, tmp_path, t, n_agreed=1)
+    assert not any(p.exists() for p in t.values())
+
+
+def _filled_sheet(tmp_path: Path, agreed_error: str = "0") -> tuple[Path, str]:
+    path = _run_to_owner_sheet(tmp_path)
+    agreed_id = _answer(path, _final(next_agreed(path), agreed_error))
+    return path, agreed_id
+
+
+def next_agreed(path: Path) -> str:
+    return next(r["id"] for r in _rows(path) if r["kind"] == "agreed")
+
+
+def test_merge_rejects_names_on_an_agreed_row_without_error_flag(tmp_path: Path) -> None:
+    path, agreed_id = _filled_sheet(tmp_path)
+    rows = _rows(path)
+    for r in rows:
+        if r["id"] == agreed_id:
+            r["names"] = "something"  # error stays 0: the owner forgot the flag
+    _write_rows(path, rows)
+    t = _targets(tmp_path)
+    with pytest.raises(LabelError):
+        m.merge(SETS, path, tmp_path, t, n_agreed=1)
+    assert not any(p.exists() for p in t.values())
+
+
+def test_merge_needs_exactly_n_agreed_rows(tmp_path: Path) -> None:
+    path, _ = _filled_sheet(tmp_path)
+    t = _targets(tmp_path)
+    with pytest.raises(LabelError, match="agreed"):
+        m.merge(SETS, path, tmp_path, t, n_agreed=2)
+    rows = [r for r in _rows(path) if r["kind"] != "agreed"]  # the owner deleted the agreed row
+    _write_rows(path, rows)
+    with pytest.raises(LabelError, match="agreed"):
+        m.merge(SETS, path, tmp_path, t, n_agreed=1)
+    assert not any(p.exists() for p in t.values())
+
+
+def test_merge_rejects_duplicate_rows(tmp_path: Path) -> None:
+    path, _ = _filled_sheet(tmp_path)
+    rows = _rows(path)
+    _write_rows(path, [*rows, rows[0]])
+    with pytest.raises(LabelError, match="duplicate"):
+        m.merge(SETS, path, tmp_path, _targets(tmp_path), n_agreed=1)
+
+
+def test_disagreement_file_records_absolute_paths_and_hashes(tmp_path: Path) -> None:
+    import hashlib
+
+    _two_labellers(tmp_path)
+    m.compare("test150", SETS, tmp_path / "a_test150.csv", tmp_path / "b_test150.csv", tmp_path)
+    d = json.loads((tmp_path / "m3_disagreements_test150.json").read_text(encoding="utf8"))
+    for side, name in (("a", "a_test150.csv"), ("b", "b_test150.csv")):
+        assert Path(d[side]["path"]).is_absolute()
+        want = hashlib.sha256((tmp_path / name).read_bytes()).hexdigest()
+        assert d[side]["sha256"] == want
+
+
+def test_owner_sheet_refuses_a_changed_labeller_file(tmp_path: Path) -> None:
+    _two_labellers(tmp_path)
+    for name in SETS:
+        m.compare(name, SETS, tmp_path / f"a_{name}.csv", tmp_path / f"b_{name}.csv", tmp_path)
+    a = tmp_path / "a_extra100.csv"
+    a.write_text(a.read_text(encoding="utf8") + " ", encoding="utf8")
+    with pytest.raises(LabelError, match="changed"):
+        m.owner_sheet(SETS, tmp_path, n_agreed=1)
+
+
+def test_merge_refuses_a_changed_labeller_file(tmp_path: Path) -> None:
+    path, _ = _filled_sheet(tmp_path)
+    b = tmp_path / "b_inputs166.csv"
+    b.write_text(b.read_text(encoding="utf8") + " ", encoding="utf8")
+    t = _targets(tmp_path)
+    with pytest.raises(LabelError, match="changed"):
+        m.merge(SETS, path, tmp_path, t, n_agreed=1)
     assert not any(p.exists() for p in t.values())

@@ -59,3 +59,15 @@ def test_frozen_lines_cover_test_and_extra() -> None:
     assert frozen == want
     dev = {line_hash(r["text"]) for r in sheet if r["split"] == "dev"}
     assert len(dev & frozen) == 0
+
+
+def test_extra_records_are_marked_random_extra() -> None:
+    lines = _read(GOLD / "extra.v1.json")["lines"]
+    bad = [r["id"] for r in lines if (r["stratum"], r["split"]) != ("random", "extra")]
+    assert len(bad) == 0
+
+
+def test_notice_describes_extra_lines() -> None:
+    notice = (GOLD / "NOTICE.md").read_text(encoding="utf8")
+    for word in ("extra.v1.json", "seed 43", "labels.extra.v1.json", "CC BY-SA 4.0"):
+        assert word in notice, word

@@ -20,3 +20,14 @@ On 2026-11-05 the owner checked 30 random lines (seed 7) from the 300. 28 were r
 "pork-flavored") and `wb-211843#2` (a list of optional sweeteners, no longer a non-ingredient line; the
 implementer set `optional` to true by guide rule 7). This is a sample, not a full human pass: 28 of 30 is
 93% with a wide interval, so the other 270 lines may hold errors.
+
+## Extra lines (M3)
+
+`extra.v1.json` holds 100 more single ingredient lines from the same snapshot (seed 43). They are a
+uniform random draw of distinct lines that are not in `sheet.v1.json`, with the same filters as the
+sheet (see `scripts/make_m3_extra_lines.py`). The text is available under CC BY-SA 4.0, like the
+sheet. The sha256 of the snapshot is in `extra.v1.json`. Each record has the page title and the
+revision id, and the revision link is built as above. The extra lines are frozen with the test half
+of the sheet: `data/eval/m3_frozen_lines.v1.json` holds the sha256 of each of the 250 lines. The
+labels are in `labels.extra.v1.json`, written after M3 Task 1 by two models and settled by the
+owner (`adjudication.m3.v1.json`). They are model-labelled and owner-adjudicated.

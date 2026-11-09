@@ -30,7 +30,9 @@ def test_input_accuracy_alternatives_and_id_map() -> None:
     gold = {"x": Label((("pepper", "black pepper"),), False, False)}
     got = score_inputs(["x"], gold, lambda _t: ["black_pepper"], TABLE)
     assert got["input_accuracy"] == 1.0
-    got = score_inputs(["x"], gold, lambda _t: ["sugar"], TABLE, {"pepper": "sugar"})
+    got = score_inputs(
+        ["x"], gold, lambda _t: ["sugar"], TABLE, {"pepper": "sugar", "black pepper": "sugar"}
+    )
     assert got["input_accuracy"] == 1.0  # the map replaces the table lookup
     got = score_inputs([], {}, lambda _t: [], TABLE)
     assert got == {"n": 0, "correct": 0, "input_accuracy": 0.0}
