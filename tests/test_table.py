@@ -21,6 +21,7 @@ from pantrychef.ingredients.table import (
     tokens,
 )
 from pantrychef.ingredients.units import parse_unit
+from tests.test_table_round2 import REMOVED as ROUND2_REMOVED
 
 HEADER = "id,name,synonyms,staple,provenance,is_a,form_of\n"
 
@@ -124,6 +125,9 @@ def test_v2_keeps_every_v1_row():
         for col in ("name", "staple", "provenance"):
             assert v2[rid][col] == r[col], (rid, col)
         old = {s for s in r["synonyms"].split("|") if s}
+        # Task 5 round 2 removed these (see tests/test_table_round2.py): table errors and
+        # workarounds for the old head-noun rule.
+        old -= ROUND2_REMOVED.get(rid, set())
         assert old <= {s for s in v2[rid]["synonyms"].split("|") if s}, rid
 
 
