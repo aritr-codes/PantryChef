@@ -103,9 +103,10 @@ sees an id, an edge, an arm or a weight.
 | 1 | `uv run python scripts/graph_spike.py pantries` | Loads the 40 pantries and prints the names that do not resolve |
 | 2 | `uv run python scripts/graph_spike.py freeze --option a` (or `b`) | Copies the table, writes `data/eval/graph_spike/freeze.v1.json` and prints the pool counts and the top 10 edges |
 | 3 | Commit the files in `data/eval/graph_spike/` | This is the one freeze commit |
-| 4 | `uv run python scripts/graph_spike.py sheet` | Checks the freeze. Writes the sheet and the private key in `data/interim/` and the key hash in `data/eval/graph_spike/key_sha256.txt` |
+| 4 | `uv run python scripts/graph_spike.py sheet`, then commit `data/eval/graph_spike/key_sha256.txt` **before you rate** | `sheet` checks the freeze and its commit. It writes the sheet and the private key in `data/interim/` and the key hash in `data/eval/graph_spike/key_sha256.txt`. The key itself stays out of git |
 | 5 | Rate the sheet. Write `answers.v1.csv` | See the rules below |
-| 6 | Commit `answers.v1.csv`, then run `uv run python scripts/graph_spike.py score` | Checks the freeze and git. Writes `results/m3_graph_spike.json` |
+| 6 | Commit `answers.v1.csv`, then run `uv run python scripts/graph_spike.py score` | Checks the freeze, the key hash and the answers in git. Writes `results/m3_graph_spike.json` |
+| 4 or 6 (skip) | `uv run python scripts/graph_spike.py skip --reason TEXT` | The owner skips the rating after the pre-check. Writes the results file with verdict `not_run`. An empty pool writes `rejected` (`no_new_recipes`) instead. `sheet` does the same when the pool is empty |
 
 Rules:
 
@@ -113,13 +114,22 @@ Rules:
 - Read the pool counts of step 2 once. After that, do not change the edges, the option or the labels.
   A change makes the result exploration. A new attempt needs new pantries.
 - If a group has fewer than 20 new items, the owner may skip the rating (`not_run`).
+  `freeze` also prints the T1 ceiling: the new items and the pantries per edge type. T1 needs at least 5
+  correct items from at least 3 pantries for each type, so `freeze` warns when the pool is below that.
 - Do not open the key file before you answer every item.
 - Rate in up to 3 sessions. The load is 210 items at 45 to 90 seconds each, 2.6 to 5.3 hours (ESTIMATE).
 - The first lines of `answers.v1.csv` start with `#`. One of them says "I have read" or "I have not read"
   the `is_a` and `form_of` columns or the edge labels. The columns are `item_id, answer, unmet_lines,
   seconds, note`. The answer is `yes`, `no` or `unsure`. `unsure` counts as wrong.
-- `score` stops when a frozen input changed, when `freeze.v1.json` has more than one commit, or when the
-  freeze commit is not older than the commit that adds the answers.
+- Ten items come back as unmarked repeats. Only the first answer counts: the item that the rater saw
+  first (the lower item number) is scored, and the other one only feeds the repeat agreement. A repeat
+  can come before its original.
+- The freeze covers the scoring code too: `graph_spike.py`, `stats.py`, the engine, the ingredient
+  modules, `build.py` and `scripts/graph_spike.py`. Run `freeze` on a clean, final tree.
+- `score` stops when a frozen input changed or differs from its commit. It also stops when
+  `freeze.v1.json`, `key_sha256.txt` or `answers.v1.csv` has more than one commit, or when the three
+  commits are not in this order: freeze, key hash, answers. It compares the key on disk with the hash in
+  the committed `key_sha256.txt`.
 
 The 40 pantries are dev pantries. They never enter the M4 test split.
 
