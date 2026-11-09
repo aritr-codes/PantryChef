@@ -80,6 +80,13 @@ METRICS: dict[str, MetricSpec] = {
         ("ingredient_table", "pack_rules"),
         "coverage cost of the pack, in-sample by design; never selects between models",
     ),
+    # Share of drawn bare "pepper" lines that a labeller marks black pepper (plan D5). The
+    # sample comes from the resolver's bare-pepper marker; the labels come from one model.
+    "bare_pepper_black_share": MetricSpec(
+        "product",
+        ("parser_rules", "labeller_model"),
+        "decides a data value of the bare pepper rule (D5); never selects between models",
+    ),
     "latency_p50_ms": MetricSpec("latency", ()),
     "latency_p95_ms": MetricSpec("latency", ()),
     "latency_max_ms": MetricSpec("latency", ()),
