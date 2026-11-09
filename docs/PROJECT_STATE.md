@@ -1,6 +1,6 @@
 # PantryChef: project state
 
-Date: 2026-10-30. Audited commit: `d49f02c`. Updated for M0, merged in PR #6 (section 3), and for M1, merged in PR #7 and deployed (section 10, 2026-11-03).
+Date: 2026-10-30. Audited commit: `d49f02c`. Updated for M0, merged in PR #6 (section 3), and for M1, merged in PR #7 and deployed (section 10, 2026-11-03), and for M3 in progress (section 12).
 Sources: ADRs [0003](decisions/0003-licence-clean-recipe-corpus.md), [0004](decisions/0004-static-first-browser-engine.md), [0005](decisions/0005-honest-claims-and-eval-reset.md); the [Stage 1 synthesis](research/2026-10-stage1/README.md) and its [review](research/2026-10-stage1/REVIEW.md); the repo itself. For findings and fixes, read [TECHNICAL_AUDIT.md](TECHNICAL_AUDIT.md).
 
 Labels: MEASURED (a run or a log shows it), ESTIMATE (a calculation), HYPOTHESIS (a test must confirm it).
@@ -25,7 +25,7 @@ PantryChef is meant to be a pantry-first recipe app. A user lists what they have
 | Production recommender bundle | Does not exist | Disk bundle holds 1,000 recipes. M0 corrected the docs that said otherwise |
 | Static web app with browser engine (ADR 0004) | Built, merged (PR #7) and live at <https://aritr-codes.github.io/PantryChef/> | `web/`; Vitest parity on golden cases; Playwright smoke test on the fixture pack (section 10) |
 | Wikibooks display pack (ADR 0003) | Built (M1) | 3,712 recipes; `build/pack` is not in git (section 10). Open Recipes statistics: planned |
-| Rebuilt ingredient table | Built (M1), 337 rows | `data/ingredients/ingredients.csv`. The old `vocab.json` still comes from RecipeNLG and the new table never reads it |
+| Rebuilt ingredient table | Built. M1: 337 rows. M3: table v2, 872 rows (section 12) | `data/ingredients/ingredients.csv` (M1) and `data/ingredients/ingredients.v2.csv` (M3). The old `vocab.json` still comes from RecipeNLG and the new tables never read it |
 | New evaluation with hand-judged pantries (ADR 0005) | Planned | Not started |
 
 ## 3. Git state
@@ -189,8 +189,8 @@ Not done:
 - Bare "pepper" is read as black pepper only when the line also names salt or says "to taste". This is decided, not provisional.
   The rule is data: `words.bare_pepper.when` is `staple_cue_or_taste` (this rule) or `always`. The value is `staple_cue_or_taste`
   (MEASURED, [results/m3_bare_pepper.json](../results/m3_bare_pepper.json), one blind Opus labeller, no owner adjudication): 56 of 80
-  labelled lines are black pepper (0.700, Wilson 95% 0.592 to 0.789). The bar for `always` was 75 of 80. Under `always`, 46 of the 80 lines
-  would change, and 29 of those 46 are black pepper.
+  labelled lines are black pepper (0.700, Wilson 95% 0.592 to 0.789). The bar for `always` was 75 of 80. Under `always`, 45 of the 80 lines
+  would change, and 29 of those 45 are black pepper.
   M3 Task 6a (branch `feat/m3-ingredient-foundation`) also added a head-noun check to the line resolver. "pomegranate juice",
   "red chili powder" and "linseed oil" were misread as pomegranate, chili pepper and flaxseed before. The check made them unread.
   Table round 2 gave each its own row, so they now read `pomegranate_juice`, `chili_powder` and `flaxseed_oil`. Round 2 of Task 5 treats "-ly" words and a few more words
@@ -227,3 +227,36 @@ Device findings (one phone, Galaxy A17, Chrome 156, 384 CSS px wide, DOM geometr
   - Nothing scrolls sideways at 384 px on any step.
   - Focus moves to the results heading after "See recipes", to the results heading after going back to results, and to the pantry heading after going back to the pantry. **Focus stays on the page body after a recipe opens**, so a keyboard or screen-reader user loses their place.
 - Not tested: the on-screen keyboard and a Bluetooth keyboard.
+
+## 12. M3 ingredient foundation (branch `feat/m3-ingredient-foundation`, not merged)
+
+Status: **in progress; acceptance and spike pending.**
+
+Plan: [docs/plans/2026-11-05-m3-ingredient-foundation.md](plans/2026-11-05-m3-ingredient-foundation.md). Handoff: [docs/plans/M3_HANDOFF.md](plans/M3_HANDOFF.md). Method and tables: [EVALUATION.md](EVALUATION.md) (section "M3 ingredient foundation"). Files and licences: [DATASET.md](DATASET.md). Typed-name flow: [ARCHITECTURE_PROPOSAL.md](ARCHITECTURE_PROPOSAL.md) (section 8).
+
+Results files (each one links commit, config and command):
+
+- [results/m3_m1_dev_baseline.json](../results/m3_m1_dev_baseline.json): the M1 resolver on the dev halves, before any M3 change.
+- [results/m3_table_growth.json](../results/m3_table_growth.json): 11 growth rows on dev and in-sample data.
+- [results/m3_bare_pepper.json](../results/m3_bare_pepper.json): the bare pepper decision.
+- [results/m3_pack_v2.json](../results/m3_pack_v2.json): pack v2 counts and build gates.
+- Not written yet: `results/m3_acceptance.json` and `results/m3_graph_spike.json`.
+
+| Item | Result | Label |
+| --- | --- | --- |
+| Table v2 | 872 rows. 493 `hand` and 379 `wikibooks-rule`. 81 rows with `is_a` and 75 with `form_of`. The resolver does not read the two edge columns | MEASURED (counted from `data/ingredients/ingredients.v2.csv`) |
+| Dev scores, last growth row | `mention_accuracy` 0.8618, `parser_precision` 0.9632, `input_accuracy` 0.9759 (81 of 83). Dev halves only, scored through the frozen dev id map. The dev labels were visible while the table grew | MEASURED, development figures ([results/m3_table_growth.json](../results/m3_table_growth.json)) |
+| Dev baseline, M1 resolver | `mention_accuracy` 0.8026, `parser_precision` 0.8905, `input_accuracy` 0.8916 (74 of 83) | MEASURED ([results/m3_m1_dev_baseline.json](../results/m3_m1_dev_baseline.json)) |
+| Pack v2 | 3,712 recipes, `recipes_fully_read` 0.7244 (2,689 of 3,712), `core.v2.json.gz` 502,837 bytes, 872 ingredients. In-sample. The build gates in the file pass | MEASURED ([results/m3_pack_v2.json](../results/m3_pack_v2.json)) |
+| Bare pepper | 56 of 80 labelled lines are black pepper (0.700, Wilson 95% 0.5923 to 0.7894). The rule stays `staple_cue_or_taste` | MEASURED, one blind model labeller, no owner adjudication |
+| Acceptance run | `scripts/m3_acceptance.py` exists and has not run on the test data | NOT RUN YET |
+| Graph spike (ADR 0006) | Code and design exist. The owner has not rated anything. ADR 0006 stays Proposed | NOT RUN YET |
+
+Pending:
+
+- The owner checks the blind gold-to-id mappings that differ from the table-key lookup (plan D9). The two map files do not exist yet.
+- The acceptance run, once, on a clean tree. If a target fails, stop and report. Do not lower it.
+- The graph spike rating by the owner.
+- The release of pack v2. The owner uploads release `pack-v2` and runs the Pages workflow. Nothing is deployed, and the release `pack-v2` does not exist.
+
+This section makes no claim that an M3 target is met or missed. The acceptance run decides that.

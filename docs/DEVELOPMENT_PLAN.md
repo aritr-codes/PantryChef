@@ -111,6 +111,24 @@ gate.
 
 ## M3: Ingredient foundation (3 to 4 weeks)
 
+**Status: in progress. Acceptance and the graph spike are pending.** Branch `feat/m3-ingredient-foundation`. Task plan: [2026-11-05-m3-ingredient-foundation.md](plans/2026-11-05-m3-ingredient-foundation.md). Section 12 of [PROJECT_STATE.md](PROJECT_STATE.md) holds the details and the results files.
+
+Done (code and tests exist, and the numbers are in [EVALUATION.md](EVALUATION.md)):
+
+- Table v2 with 872 rows and the `is_a` and `form_of` columns. A word file for units, size, container and preparation words.
+- Singulariser fix, line-resolver rules (head-noun check, chili pepper marker, bare pepper rule), and a typed-name resolver in Python and TypeScript with golden parity cases.
+- The bare pepper decision (`staple_cue_or_taste`). It rests on one model labeller.
+- Evaluation sets, labels and the frozen test hashes. The coverage tool and 11 growth rows, measured on the dev halves and in-sample.
+- Pack v2, built locally, with its result file. Nothing is uploaded.
+- The spike code and its design (ADR 0006). The spike has not run.
+
+Pending:
+
+- The acceptance run (`scripts/m3_acceptance.py`). It needs the two blind gold-to-id maps for the test data. It has not run, so no acceptance number exists.
+- The owner check of the mappings that differ from the table-key lookup (plan D9).
+- The graph spike: the owner rates the sample by hand. ADR 0006 stays Proposed until then.
+- The release of pack v2. The owner uploads release `pack-v2` and runs the Pages workflow.
+
 **Objective:** one trusted ingredient table.
 
 - Add rule-based collapse of size, container and preparation words, and fix the

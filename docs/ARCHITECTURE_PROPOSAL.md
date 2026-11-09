@@ -269,6 +269,51 @@ runs the TypeScript engine on the same cases. Scores must match within 1e-9, and
 order must match exactly. CI regenerates the file and fails if it changes without a
 commit.
 
+### Typed-name steps (M3)
+
+The typed-name resolver (`pantrychef/ingredients/names.py`, `resolve_name`) turns one typed
+pantry name into ids. `web/src/names.ts` runs the same steps, and golden name cases hold the two
+together. The diagram follows the Python code. Every step in it exists. The first hit wins.
+
+```mermaid
+flowchart TD
+  IN["Typed text"] --> CLEAN["Clean: NFKC, lower case,<br/>non-ASCII digits and blanks to one space"]
+  CLEAN --> EXACT{"Exact: the canonical tokens<br/>of the whole text are a key?"}
+  EXACT -- yes --> HIT1["ids of that key<br/>step: exact"]
+  EXACT -- no --> SPLIT{"Split on a comma, an ampersand or a slash (not between digits)<br/>or the word and. More than one part?"}
+  SPLIT -- no --> LEAFIN
+  SPLIT -- yes --> PARTS["Run the leaf steps on each part, in order"]
+  PARTS --> ALL{"Every part found a match?<br/>The first miss stops the loop"}
+  ALL -- yes --> HIT2["Union of the ids, in order, no repeats<br/>step: split"]
+  ALL -- no --> LEAFIN["Leaf steps on the whole text"]
+
+  subgraph LEAF["Leaf steps (one piece of text)"]
+    direction TD
+    LEXACT{"1. Exact: the tokens of the piece<br/>are a key?"}
+    LEXACT -- yes --> LHIT1["step: exact"]
+    LEXACT -- no --> STRIP["Parse quantity and unit off the front.<br/>Lone unit: a unit word with nothing after it,<br/>so the unit word is the name"]
+    STRIP --> CONT{"2. Contained:<br/>greedy longest key spans, longest first, left to right.<br/>Every token outside the spans must be a modifier<br/>(size, container, preparation word, or an -ed word).<br/>At least one span is needed"}
+    CONT -- yes --> LHIT2["ids of the spans, no repeats<br/>step: contained"]
+    CONT -- no --> LONE{"Lone unit?"}
+    LONE -- yes --> NONE["no match<br/>step: none"]
+    LONE -- no --> FUZZY{"3. Fuzzy on the tokens that are not modifiers.<br/>Name of 4 or more characters, and not only unit words.<br/>Limit: 1 edit under 8 characters, 2 from 8.<br/>Distance: Damerau-Levenshtein over the whole key.<br/>Accept only when exactly one key has the best distance<br/>and that distance is within the limit"}
+    FUZZY -- yes --> LHIT3["id of that key<br/>step: fuzzy"]
+    FUZZY -- no --> NONE
+  end
+  LEAFIN --> LEXACT
+```
+
+Notes on the diagram:
+
+- A bare "pepper" is not a key. The text stays unknown, and the person picks the pepper they hold.
+- A "/" between two digits is a fraction and does not split the text.
+- A lone unit word ("2 pints") may reach the exact and contained steps. It never reaches the fuzzy
+  step, so "2 pints" does not become "mint".
+- The fuzzy step compares only keys whose length is within the limit of the name length. A tie for
+  the best distance gives no match.
+- The split step runs the leaf steps on each part. If one part finds nothing, the code drops the
+  split and runs the leaf steps on the whole text.
+
 ## 9. Kaggle
 
 ADR 0003 removes full-corpus processing from the product build. Parsing Open Recipes

@@ -84,6 +84,147 @@ flowchart LR
 
 All arrows run today. Judges are people in M4 and were models in the M2 pilot. Metrics from masked pantries never select a model (`assert_selectable`).
 
+## M3 ingredient foundation (2026-11-09)
+
+Plan: [docs/plans/2026-11-05-m3-ingredient-foundation.md](plans/2026-11-05-m3-ingredient-foundation.md). Files: [DATASET.md](DATASET.md). The typed-name flow is in [ARCHITECTURE_PROPOSAL.md](ARCHITECTURE_PROPOSAL.md) (section 8, "Typed-name steps").
+
+Status: the table, the resolvers, the dev measurements and pack v2 are built. **The acceptance run and the graph spike have not run.** This section shows development numbers only. A development number does not show that M3 reached its targets.
+
+### Metrics
+
+The registry in `pantrychef/eval/results.py` holds the role of each metric. None of them selects a model.
+
+| Metric | Definition, as in the code | Role |
+| --- | --- | --- |
+| `mention_accuracy` | Gold groups with a correct predicted group, divided by gold groups. A predicted group is correct when it is not empty and its ids are a subset of the ids of that gold group. A gold group with no id counts as missed. Heading lines have no gold group. `pantrychef/eval/parser_gold.py` | `product` (a stopping rule for table rounds) |
+| `parser_precision` | Correct predicted groups divided by predicted groups. An unread line gives no predicted group. Same file. This is the M2 metric, unchanged | `sanity` |
+| `input_accuracy` | Typed inputs that are correct, divided by typed inputs. An input is correct when every gold group has a predicted id in it, and every predicted id is in some gold group. An input with no predicted id is wrong. `pantrychef/eval/realistic.py` | `product` (a stopping rule for table rounds) |
+| `recipes_fully_read` | Kept recipes with every required line read, divided by kept recipes. A recipe is kept when it has at least one required line that the default staples do not cover. `pantrychef.pack.build.coverage()`. It is in-sample: it measures the cost of reading the pack, not quality | `product` |
+
+The M3 plan sets these targets for acceptance: `mention_accuracy` and `parser_precision` of at least 0.90 on random-stratum lines, `input_accuracy` of at least 0.90 on the test inputs, `recipes_fully_read` of at least 0.60, and at least 2,500 recipes. `scripts/m3_acceptance.py` fixes them in its `TARGETS` table.
+
+### Only random lines carry the 90% gate
+
+The parser gold sheet has three strata: `random`, `hard` and `rare`. The M1 resolver picked the `hard` and `rare` lines, so they are biased against it. M2 decided that only the `random` stratum may give a headline. The acceptance run reports `hard` and `rare` on their own and does not use them for the gate (plan D2). The growth tool also prints the dev random stratum (50 lines) next to the dev score.
+
+### Dev scoring: id map and table keys
+
+A gold label holds names. To score, each name must become a table id. There are two ways.
+
+- `table_keys` (the M2 way): the name maps to the id that the table under test holds for that name. The score then depends on the keys of the table.
+- `id_map`: the name maps through a frozen file, `data/eval/parser_gold/dev_id_map.v1.json`. One Opus model made it blind, from the dev gold names and the table, with no prediction in view. The score does not move when table keys move.
+
+Why dev `mention_accuracy` had a table-key artefact (MEASURED, by comparing the map with the table keys of `ingredients.v2.csv`): 8 of the 134 names in the map do not agree with the table keys. 7 of them have no key in the table, and the map gives them an id (for example `angel hair pasta` to `pasta`, `soft tofu` to `tofu`). The 8th, `espagnole sauce`, has a key (`espagnole`) and the map says no id. With `table_keys`, a name with no key has no gold id, so a correct read of that line counts as missed. The same 872-row table scored 0.8487 under `table_keys` (growth row 5) and 0.8618 under `id_map` (growth row 6). That gap is a scoring artefact. It is not a change in the resolver. Rows 0 to 5 use `table_keys` and rows 6 and 7 use `id_map`, so read the `mention_accuracy` column in two parts.
+
+The gold-to-id mapping for the held-out data is a separate step (plan D9). It does not exist yet (see "Acceptance").
+
+### Growth rows (MEASURED)
+
+Source: [results/m3_table_growth.json](../results/m3_table_growth.json), `config.rows`. The file holds 11 rows. The commit messages name them rows 0, 1, 1b, 2, 2b, 3, 4, 4b, 5, 6 and 7. The columns below follow the file. `lines_read` is the count of required lines read over the 3,713 pages of the snapshot. The number of required lines can move with the resolver rules, so compare the counts with care. `recipes_fully_read` is in-sample. The three dev columns use the dev halves: 150 gold lines (152 gold groups) and 83 typed inputs. `input_accuracy_dev` scores through the typed-name resolver `resolve_name` in all rows.
+
+| Row | Commit | Stored in | Change | Table rows | lines_read | recipes_fully_read | mention_accuracy (dev) | parser_precision (dev) | input_accuracy (dev) | Dev scoring |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| 0 | `94048a6` | `e1234df` | Growth tool. M1-size table | 337 | 28,304 | 0.6040 | 0.8026 | 0.8905 | 0.9759 | `table_keys` |
+| 1 | `52f1199` | `5de2501` | Table round 1 | 678 | 29,270 | 0.7349 | 0.8355 | 0.8881 | 0.9759 | `table_keys` |
+| 1b | `eed66a4` | `0631097` | Round 1 review fixes | 682 | 29,265 | 0.7338 | 0.8355 | 0.8881 | 0.9759 | `table_keys` |
+| 2 | `0a42f42` | `10c911d` | Resolver rules: head-noun check, chili pepper marker | 682 | 28,710 | 0.6549 | 0.8355 | 0.9478 | 0.9759 | `table_keys` |
+| 2b | `56ab375` | `64684c0` | "powder" leaves `trailing_ok` | 682 | 28,574 | 0.6377 | 0.8355 | 0.9478 | 0.9759 | `table_keys` |
+| 3 | `c419637` | `5413b7c` | Modifier widening | 682 | 28,585 | 0.6401 | 0.8355 | 0.9478 | 0.9759 | `table_keys` |
+| 4 | `dd47153` | `205cc2d` | Table round 2 | 858 | 29,185 | 0.7190 | 0.8289 | 0.9265 | 0.9759 | `table_keys` |
+| 4b | `e74b323` | `b8a76c7` | Round 2 review fixes | 856 | 29,183 | 0.7193 | 0.8355 | 0.9338 | 0.9759 | `table_keys` |
+| 5 | `dea16da` | `e165bf0` | Round 2 review fixes 2 | 872 | 29,212 | 0.7244 | 0.8487 | 0.9485 | 0.9759 | `table_keys` |
+| 6 | `b90d54b` | `9445568` | Same table as row 5, dev id map | 872 | 29,212 | 0.7244 | 0.8618 | 0.9632 | 0.9759 | `id_map` |
+| 7 | `48965d0` | `f22c107` | Chili garlic sauce fix | 872 | 29,212 | 0.7244 | 0.8618 | 0.9632 | 0.9759 | `id_map` |
+
+`Commit` is the commit that the row recorded. `Stored in` is the `results:` commit that added the row. The change text comes from the nearest commit subject in `git log` and from the plan. It is not a field of the file.
+
+Observations on the numbers:
+
+- MEASURED: `input_accuracy_dev` is 0.9759 (81 of 83) in every row. The M1 resolver, which does one exact key lookup, scored 0.8916 (74 of 83) on the same dev inputs with the same 337-row table ([results/m3_m1_dev_baseline.json](../results/m3_m1_dev_baseline.json), commit `87de6b9`). So the typed-name resolver moved this metric, and table growth did not.
+- MEASURED: row 0 matches the M1 baseline on the parser lines (`mention_accuracy` 0.8026, `parser_precision` 0.8905), as expected: no resolver rule had changed yet.
+- MEASURED: the head-noun check and the stricter `trailing_ok` list (rows 2 and 2b) raise `parser_precision` from 0.8881 to 0.9478 and lower `recipes_fully_read` from 0.7338 to 0.6377. The check leaves some lines unread that the M1 rules read (see [PROJECT_STATE section 10](PROJECT_STATE.md)). Table round 2 (rows 4 to 5) wins part of the read share back.
+- MEASURED, final dev random stratum (50 lines, 50 gold groups, 47 predicted groups): `mention_accuracy` 0.86 and `parser_precision` 0.9362. The dev labels were visible while the table grew, so these are development figures.
+- The file keeps one `dirty` flag for the last write (false). It does not keep a flag for each row.
+
+### Bare pepper (MEASURED)
+
+Source: [results/m3_bare_pepper.json](../results/m3_bare_pepper.json), commit `250a9cd`. One blind Opus model labelled 80 bare "pepper" Wikibooks lines. There was no owner adjudication. The draw took the first 80 lines in sha256 order of `45:bare_pepper:<line id>` from a pool of 103, with 2 frozen lines left out.
+
+| Label | Lines |
+| --- | --- |
+| `black` | 56 |
+| `other` | 16 |
+| `unclear` | 8 |
+
+`bare_pepper_black_share` is 0.700 (Wilson 95% interval 0.5923 to 0.7894, n = 80). The rule in the result file says to adopt `always` only when the lower bound is at least 0.85. The decision is `staple_cue_or_taste`: a bare "pepper" reads as black pepper only when the line also names salt or says "to taste". `data/ingredients/words.v1.json` holds the rule (`bare_pepper.when`). Under `always`, 45 of the 80 lines would read differently, and 29 of those 45 are black pepper. A person who types "pepper" still gets "Not recognised" and picks the pepper they hold (plan D6). The labeller is one model, so this is a weak basis for a data value.
+
+Reproduce: `uv run python scripts/m3_bare_pepper.py score data/eval/m3_bare_pepper_labels.v1.json`. The count of 45 used the table at commit `250a9cd`. Later commits changed the table.
+
+### Pack v2 (MEASURED)
+
+Source: [results/m3_pack_v2.json](../results/m3_pack_v2.json), build commit `4482764` (clean tree). The file records fixed build gates and `gates_passed: true`. This is the build gate and not the acceptance verdict.
+
+| Item | Value | Gate in the file |
+| --- | --- | --- |
+| Recipes in the pack | 3,712 of 3,713 pages (1 page has no required line) | at least 2,500 |
+| `recipes_fully_read` | 0.7244 (2,689 of 3,712) | at least 0.60 |
+| `core.v2.json.gz` | 502,837 bytes | at most 3,145,728 bytes |
+| `text.v2.json.gz` | 870,411 bytes | none |
+| Table rows | 872 | none |
+| Pack lines, unread pack lines | 32,771, 1,352 | none |
+| Required lines read | 29,212 of 30,564 (0.9558) | none |
+
+Pack v2 is built locally. Nothing is uploaded. The owner uploads release `pack-v2` and runs the Pages workflow (plan D7). The core hash depends on the build commit, so a release build must come from commit `4482764`, or the hashes in `web/pack-hashes.json` must change.
+
+Reproduce: `uv run python scripts/build_pack.py --out build/pack && uv run python scripts/m3_pack_result.py --pack build/pack`.
+
+### How to use the coverage tools
+
+`coverage(recipes, table)` in `pantrychef/pack/build.py` is the one definition of read share. The pack result and the growth rows both call it.
+
+```python
+from pantrychef.pack.build import coverage
+
+cov = coverage(recipes, table)  # recipes: SourceRecipe items; table: IngredientTable
+cov["recipes_fully_read"]       # kept recipes with every required line read / kept recipes
+cov["unread"]                   # text of each unread required line, one entry per line
+```
+
+The result also holds `required_lines`, `lines_read`, `optional_lines`, `kept_recipes` and `fully_read`.
+
+`scripts/ingredient_coverage.py` prints a coverage report. With `--growth-row FILE` it also scores the dev halves and appends one row to the results file `FILE`. With `--id-map PATH` the gold names map through the frozen map (`dev_scoring: "id_map"`). Without it they map through the table keys. Lines in the frozen set never appear in the unread-phrase list.
+
+```bash
+uv run python scripts/ingredient_coverage.py data/raw/wikibooks/snapshot.2026-11-03.jsonl.gz \
+  --table data/ingredients/ingredients.v2.csv \
+  --growth-row results/m3_table_growth.json \
+  --id-map data/eval/parser_gold/dev_id_map.v1.json
+```
+
+This is the command that the results file stores for its last row. The tool appends a row to the file, so write to a new path when you only want to check a row. The snapshot sits under `data/raw/`, which git ignores (see [DATASET.md](DATASET.md)).
+
+### Reproduce a growth row
+
+1. Check out the commit in the `Commit` column.
+2. Run the command above without `--id-map` for rows 0 to 5, and with it for rows 6 and 7. Point `--growth-row` at a new file.
+3. Compare the new row with the table above.
+
+The file stores the command of its last write only. It stores the table size of each row and not the table path, so step 2 uses the table that sits in the checked-out tree. I did not re-run rows 0 to 7 for this section. The values come from the results file.
+
+### Acceptance run (NOT RUN YET)
+
+`scripts/m3_acceptance.py` scores the held-out test lines (the test half of the sheet plus the extra lines) and the test typed inputs once, on a clean tree, against two blind gold-to-id maps. It compares the M1 resolver and the M3 resolver on the typed inputs. It writes `results/m3_acceptance.json`. That file does not exist. No number is quoted here.
+
+```bash
+uv run python scripts/m3_acceptance.py
+```
+
+The run needs `data/eval/m3_gold_id_map.v1.json` and `data/eval/m3_input_gold_id_map.v1.json`. Neither file exists yet. The owner checks the mappings that differ from the table-key lookup before the run (plan D9). `uv run python scripts/m3_acceptance.py --dry-run-on dev --out PATH` runs the same code on the dev halves and never reads test data.
+
+### Graph spike (NOT RUN YET)
+
+The spike has not run. The owner has not rated anything. See the next section for the steps and the command list. ADR 0006 stays Proposed.
+
 ## ADR 0006 graph spike (PLANNED, M3 Task 8)
 
 Status: the code and tests exist. No real run has happened. No results file exists, and the ADR stays Proposed.

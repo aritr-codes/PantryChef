@@ -66,6 +66,40 @@ Git ignores these files. The sha256 values below were computed from the files on
 
 Rebuild: `uv run python scripts/extract_realistic_inputs.py`, `uv run python scripts/make_parser_gold_sheet.py`, `uv run python scripts/make_floors.py`.
 
+### Ingredient table v2 (M3)
+
+- **File:** `data/ingredients/ingredients.v2.csv`. The M1 table `ingredients.csv` (337 rows) stays as the M1 reference.
+- **Columns:** `id,name,synonyms,staple,provenance,is_a,form_of`. `is_a` and `form_of` hold the edges that [ADR 0006](decisions/0006-hybrid-graph-knowledge-base.md) proposes. The resolver does not read them.
+- **Size (MEASURED, counted from the file):** 872 rows. 4 rows are staples. 81 rows have an `is_a` value and 75 have a `form_of` value.
+- **Provenance column:** 493 rows say `hand` and 379 rows say `wikibooks-rule`. The code accepts only these two values (`pantrychef/ingredients/table.py`).
+- **Who made it:** the M1 rows were written by hand. Implementer agents grew the table in review rounds during M3. Growth mines unread phrases from the Wikibooks snapshot and leaves out every frozen test and extra line. The table only grows: v2 never removes or renames a v1 id. The commit history of the file records each round.
+- **Licence:** MIT ([LICENSES.md](../LICENSES.md)). It is not derived from RecipeNLG and never reads `data/processed/vocab.json`.
+- **Held out:** no. The table is the thing under test. The held-out data is the test and extra lines, below.
+
+### Word file (M3)
+
+- **File:** `data/ingredients/words.v1.json`. It replaces word lists that lived in code.
+- **Keys:** `units` (50 spellings, each mapped to one unit), `size` (3 words), `container` (15), `prep` (94 preparation and filler words), `staple_cue` (`["salt"]`), `bare_pepper` (the rule for a bare "pepper" line: target `black_pepper`, `when` is `staple_cue_or_taste`) and `trailing_ok` (62 words). Counts are MEASURED from the file.
+- **Use:** the Python line resolver reads it at pack build. The pack core carries a copy. The browser reads that copy to resolve typed names.
+- **Licence:** MIT. **Made by:** hand and implementer agents. **Held out:** no. M3 rounds edited it (for example `trailing_ok`). The file hash is in the pack manifest and in `results/m3_pack_v2.json`.
+
+### M3 evaluation files
+
+All paths are under `data/eval/`. Labels written by models are not human labels. Each model-labelled set says so.
+
+| File | What it is | Made by | Licence | Held out? |
+| --- | --- | --- | --- | --- |
+| `parser_gold/extra.v1.json` | 100 more Wikibooks lines. Uniform random draw, seed 43, not in `sheet.v1.json` | Script `make_m3_extra_lines.py` on the snapshot | CC BY-SA 4.0 | Yes. Unread until acceptance |
+| `parser_gold/labels.test.v2.json`, `labels.extra.v1.json`, `adjudication.m3.v1.json` | Labels for the 150 test lines and the 100 extra lines, and the settled disagreements | Fresh Opus (and Sonnet on the extra lines) blind, then the owner settled them (see the plan, D1) | MIT | Yes. Unread until acceptance |
+| `realistic_inputs.labels.v1.json` | Gold ingredient names for the 166 typed inputs | Sonnet and Opus blind, then the owner settled disagreements (plan D4) | MIT | The test entries: yes. Dev entries: no |
+| `m3_frozen_lines.v1.json` | sha256 of the `casefold().strip()` text of each of the 250 test and extra lines | Script | MIT | It holds hashes only. Table growth must not read these lines |
+| `parser_gold/dev_id_map.v1.json` | Dev gold name to table id (134 names, 14 with no id). Made at commit `b8a76c7` from the dev gold names and the table, with no predictions in view | One Opus model, blind. Nobody edited it | MIT | No. It is a dev file |
+| `m3_bare_pepper_labels.v1.json` | 80 bare "pepper" lines, seed 45, labelled `black`, `other` or `unclear`. No frozen line is in it | One Opus model, blind. The owner did not adjudicate | Text CC BY-SA 4.0. Labels MIT | No. It decides the bare pepper rule (see [EVALUATION.md](EVALUATION.md)) |
+
+Not created yet: the acceptance run needs two blind gold-to-id maps for the test data (`m3_gold_id_map.v1.json` and `m3_input_gold_id_map.v1.json`, plan D9). The owner checks every mapping that differs from the plain table-key lookup. These files do not exist on this branch (checked with `ls data/eval`). `data/eval/graph_spike/` holds the spike inputs and is not committed yet.
+
+Attribution for Wikibooks text and the label notes are in `data/eval/parser_gold/NOTICE.md`.
+
 ### USDA FoodData Central  (Phase 4 — nutrition)
 - **Why:** authoritative free nutrition data (macros + micros).
 - **Access:** free bulk CSV download (FoodData Central full-download datasets).
