@@ -1,7 +1,7 @@
 {
   "arms": [],
   "command": "uv run python scripts/m3_bare_pepper.py score data/eval/m3_bare_pepper_labels.v1.json",
-  "commit": "250a9cdee5f3160eee436b5c5b8cb517353713ac",
+  "commit": "ede234a2fff93108d2dfddfe2db02551a2aafbbc",
   "comparisons": [],
   "config": {
     "changed_under_always": {
@@ -33,7 +33,7 @@
     "snapshot": "snapshot.2026-11-03.jsonl.gz",
     "snapshot_sha256": "a1a076ab0aee385c4e01cdc904342214dfaa6b01dc35d80d32519ea625c597d2",
     "table": "data/ingredients/ingredients.v2.csv",
-    "table_sha256": "03728b2390084d84e9c1c6678a8cfcbf56c605d487db7bf66731e249b5e01b0f"
+    "table_sha256": "a03baecd93238cc3e60ea44e033f0fbcb9c6ababca7ed0aba5b7fbe89bbd761e"
   },
   "corpus_fingerprint": "1b975499ec9f2b8ba055f3cb35dcdf2c05b7c555ddd08f1f210d45d7aec58682",
   "dirty": false,
