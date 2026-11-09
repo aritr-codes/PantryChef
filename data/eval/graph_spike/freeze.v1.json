@@ -1,0 +1,1060 @@
+{
+  "code_sha256": {
+    "pantrychef/engine.py": "a753733e860f26965b2c4e7d5ee4e8bb9d1b4417cb0318fb3c8c2437060c0fa7",
+    "pantrychef/eval/graph_spike.py": "7530a50ee326ef414efb02cf1ac46316dee6a2bdc32a18ae8b79b316b7388786",
+    "pantrychef/eval/stats.py": "3052cf9be08b67a621a7858ddc87fa8614e337cfa8bcf1ba6e9de119980945f5",
+    "pantrychef/ingredients/__init__.py": "01e6cb105e16ff0a24653283aef9130740cc908e190f9ce0a83b1c9d3c09f54d",
+    "pantrychef/ingredients/names.py": "1a6329b51280af911695776f094940d30f724b600080d760dcc6b67b3f4bc9ad",
+    "pantrychef/ingredients/normalize.py": "411a8ce670494aa0d13ac7462e9609ce64db048c3127b0a62839074279690554",
+    "pantrychef/ingredients/parser.py": "0073d4b9ebd8992ad3d79d2705a8245496712899bb0cf0c200aa6b747e7c9952",
+    "pantrychef/ingredients/resolve.py": "008936f2d01bf898d72a0f9a0cc68f9d89bb959142e510e7e45a8210bc2d607d",
+    "pantrychef/ingredients/table.py": "76566b7f5a3865e93b0b711f192b25a1bafabfad6660413ae07ef28ffee19650",
+    "pantrychef/ingredients/units.py": "c52abad67f999588926f2d98624deb040e5f54d7cd084c528552261099254f43",
+    "pantrychef/ingredients/vocab.py": "23edb3247aab0e844fbf3b4dd806217c3a3b15f213f976ca7b57ae2460279eb6",
+    "pantrychef/pack/build.py": "dd6af7b9d7e3ad45e47abdaa35aee3f077e380497096d6c6bd7de98434a662b4",
+    "scripts/graph_spike.py": "56d1500385a243f5a211392537f72f98a08814cd9438ab49e30436de92914f79"
+  },
+  "edge_labels_sha256": "0d4082d52d02b8bd0a43617b8ef8ea803644807d0cdc390f4230e73acc0942f5",
+  "edge_option": {
+    "confirmed_by": "owner",
+    "confirmed_on": "2026-11-09",
+    "option": "b"
+  },
+  "edge_source_hits": {
+    "by_pantry": {
+      "new01": 0,
+      "new02": 0,
+      "new03": 0,
+      "new04": 0,
+      "new05": 0,
+      "new06": 0,
+      "new07": 0,
+      "new08": 0,
+      "new09": 0,
+      "new10": 0,
+      "new11": 0,
+      "new12": 0,
+      "new13": 0,
+      "new14": 0,
+      "new15": 0,
+      "new16": 0,
+      "new17": 0,
+      "new18": 0,
+      "new19": 0,
+      "new20": 0,
+      "pilot01": 0,
+      "pilot02": 0,
+      "pilot03": 0,
+      "pilot04": 0,
+      "pilot05": 0,
+      "pilot06": 0,
+      "pilot07": 0,
+      "pilot08": 0,
+      "pilot09": 0,
+      "pilot10": 0,
+      "pilot11": 0,
+      "pilot12": 0,
+      "pilot13": 0,
+      "pilot14": 0,
+      "pilot15": 0,
+      "pilot16": 0,
+      "pilot17": 0,
+      "pilot18": 0,
+      "pilot19": 0,
+      "pilot20": 0
+    },
+    "new": 0,
+    "pilot": 0
+  },
+  "edges": [
+    [
+      "aji_amarillo",
+      "is_a",
+      "chili_pepper"
+    ],
+    [
+      "aji_limo",
+      "is_a",
+      "chili_pepper"
+    ],
+    [
+      "almond_milk",
+      "form_of",
+      "almond"
+    ],
+    [
+      "almond_oil",
+      "form_of",
+      "almond"
+    ],
+    [
+      "american_cheese",
+      "is_a",
+      "cheese"
+    ],
+    [
+      "anaheim",
+      "is_a",
+      "chili_pepper"
+    ],
+    [
+      "ancho_chile",
+      "is_a",
+      "chili_pepper"
+    ],
+    [
+      "apple_butter",
+      "form_of",
+      "apple"
+    ],
+    [
+      "asiago",
+      "is_a",
+      "cheese"
+    ],
+    [
+      "asian_pear",
+      "is_a",
+      "pear"
+    ],
+    [
+      "avocado_oil",
+      "form_of",
+      "avocado"
+    ],
+    [
+      "bagel",
+      "is_a",
+      "bread"
+    ],
+    [
+      "baked_beans",
+      "form_of",
+      "bean"
+    ],
+    [
+      "beef_heart",
+      "form_of",
+      "beef"
+    ],
+    [
+      "beef_short_rib",
+      "is_a",
+      "beef"
+    ],
+    [
+      "beef_tongue",
+      "form_of",
+      "beef"
+    ],
+    [
+      "beet_juice",
+      "form_of",
+      "beet"
+    ],
+    [
+      "brie",
+      "is_a",
+      "cheese"
+    ],
+    [
+      "buckwheat_flour",
+      "form_of",
+      "buckwheat"
+    ],
+    [
+      "buffalo_sauce",
+      "is_a",
+      "hot_sauce"
+    ],
+    [
+      "camembert",
+      "is_a",
+      "cheese"
+    ],
+    [
+      "cascabel_chile",
+      "is_a",
+      "chili_pepper"
+    ],
+    [
+      "cheese_curd",
+      "is_a",
+      "cheese"
+    ],
+    [
+      "cherry_juice",
+      "form_of",
+      "cherry"
+    ],
+    [
+      "chickpea_flour",
+      "form_of",
+      "chickpea"
+    ],
+    [
+      "chile_de_arbol",
+      "is_a",
+      "chili_pepper"
+    ],
+    [
+      "chili_garlic_sauce",
+      "is_a",
+      "hot_sauce"
+    ],
+    [
+      "chili_paste",
+      "form_of",
+      "chili_pepper"
+    ],
+    [
+      "chiltepin",
+      "is_a",
+      "chili_pepper"
+    ],
+    [
+      "chocolate_cake_mix",
+      "is_a",
+      "cake_mix"
+    ],
+    [
+      "ciabatta",
+      "is_a",
+      "bread"
+    ],
+    [
+      "cinnamon_oil",
+      "form_of",
+      "cinnamon"
+    ],
+    [
+      "clotted_cream",
+      "is_a",
+      "cream"
+    ],
+    [
+      "coconut_flour",
+      "form_of",
+      "coconut"
+    ],
+    [
+      "coconut_milk_powder",
+      "form_of",
+      "coconut_milk"
+    ],
+    [
+      "coconut_water",
+      "form_of",
+      "coconut"
+    ],
+    [
+      "coconut_yogurt",
+      "is_a",
+      "yogurt"
+    ],
+    [
+      "coffee_powder",
+      "form_of",
+      "coffee"
+    ],
+    [
+      "coriander_oil",
+      "form_of",
+      "coriander"
+    ],
+    [
+      "corned_beef",
+      "form_of",
+      "beef"
+    ],
+    [
+      "cornflakes",
+      "is_a",
+      "cereal"
+    ],
+    [
+      "cotija",
+      "is_a",
+      "cheese"
+    ],
+    [
+      "cranberry_juice",
+      "form_of",
+      "cranberry"
+    ],
+    [
+      "creamed_corn",
+      "form_of",
+      "corn"
+    ],
+    [
+      "croissant",
+      "is_a",
+      "bread"
+    ],
+    [
+      "crystallized_ginger",
+      "form_of",
+      "ginger"
+    ],
+    [
+      "daikon",
+      "is_a",
+      "radish"
+    ],
+    [
+      "date_syrup",
+      "form_of",
+      "date"
+    ],
+    [
+      "dried_fish",
+      "is_a",
+      "fish"
+    ],
+    [
+      "edamame",
+      "form_of",
+      "soybean"
+    ],
+    [
+      "english_muffin",
+      "is_a",
+      "bread"
+    ],
+    [
+      "flatbread",
+      "is_a",
+      "bread"
+    ],
+    [
+      "flaxseed_oil",
+      "form_of",
+      "flaxseed"
+    ],
+    [
+      "fontina",
+      "is_a",
+      "cheese"
+    ],
+    [
+      "french_fried_onion",
+      "form_of",
+      "onion"
+    ],
+    [
+      "french_fries",
+      "form_of",
+      "potato"
+    ],
+    [
+      "frozen_yogurt",
+      "is_a",
+      "yogurt"
+    ],
+    [
+      "garlic_paste",
+      "form_of",
+      "garlic"
+    ],
+    [
+      "garlic_powder",
+      "form_of",
+      "garlic"
+    ],
+    [
+      "garlic_salt",
+      "is_a",
+      "seasoned_salt"
+    ],
+    [
+      "ginger_garlic_paste",
+      "form_of",
+      "garlic"
+    ],
+    [
+      "ginger_garlic_paste",
+      "form_of",
+      "ginger"
+    ],
+    [
+      "ginger_paste",
+      "form_of",
+      "ginger"
+    ],
+    [
+      "gouda",
+      "is_a",
+      "cheese"
+    ],
+    [
+      "grape_juice",
+      "form_of",
+      "grape"
+    ],
+    [
+      "ground_beef",
+      "form_of",
+      "beef"
+    ],
+    [
+      "ground_chicken",
+      "form_of",
+      "chicken"
+    ],
+    [
+      "guajillo",
+      "is_a",
+      "chili_pepper"
+    ],
+    [
+      "guava_juice",
+      "form_of",
+      "guava"
+    ],
+    [
+      "habanero",
+      "is_a",
+      "chili_pepper"
+    ],
+    [
+      "halloumi",
+      "is_a",
+      "cheese"
+    ],
+    [
+      "hash_brown",
+      "form_of",
+      "potato"
+    ],
+    [
+      "havarti",
+      "is_a",
+      "cheese"
+    ],
+    [
+      "hazelnut_oil",
+      "form_of",
+      "hazelnut"
+    ],
+    [
+      "hazelnut_syrup",
+      "form_of",
+      "hazelnut"
+    ],
+    [
+      "hickory_smoke_powder",
+      "is_a",
+      "smoke_powder"
+    ],
+    [
+      "hominy",
+      "form_of",
+      "corn"
+    ],
+    [
+      "horseradish_sauce",
+      "is_a",
+      "horseradish"
+    ],
+    [
+      "italian_dressing",
+      "is_a",
+      "salad_dressing"
+    ],
+    [
+      "kashkaval",
+      "is_a",
+      "cheese"
+    ],
+    [
+      "kelp",
+      "is_a",
+      "seaweed"
+    ],
+    [
+      "lemon_oil",
+      "form_of",
+      "lemon"
+    ],
+    [
+      "lime_oil",
+      "form_of",
+      "lime"
+    ],
+    [
+      "madeira",
+      "is_a",
+      "wine"
+    ],
+    [
+      "manchego",
+      "is_a",
+      "cheese"
+    ],
+    [
+      "mango_chutney",
+      "is_a",
+      "chutney"
+    ],
+    [
+      "mango_juice",
+      "form_of",
+      "mango"
+    ],
+    [
+      "mango_powder",
+      "form_of",
+      "mango"
+    ],
+    [
+      "marsala",
+      "is_a",
+      "wine"
+    ],
+    [
+      "mascarpone",
+      "is_a",
+      "cheese"
+    ],
+    [
+      "massaman_curry_paste",
+      "is_a",
+      "curry_paste"
+    ],
+    [
+      "mesquite_smoke_powder",
+      "is_a",
+      "smoke_powder"
+    ],
+    [
+      "mulato_chile",
+      "is_a",
+      "chili_pepper"
+    ],
+    [
+      "mustard_oil",
+      "form_of",
+      "mustard_seed"
+    ],
+    [
+      "naan",
+      "is_a",
+      "bread"
+    ],
+    [
+      "natto",
+      "is_a",
+      "soybean"
+    ],
+    [
+      "nori",
+      "is_a",
+      "seaweed"
+    ],
+    [
+      "nutmeg_oil",
+      "form_of",
+      "nutmeg"
+    ],
+    [
+      "oat_bran",
+      "form_of",
+      "oats"
+    ],
+    [
+      "oat_flour",
+      "form_of",
+      "oats"
+    ],
+    [
+      "oat_milk",
+      "form_of",
+      "oats"
+    ],
+    [
+      "onion_flakes",
+      "form_of",
+      "onion"
+    ],
+    [
+      "onion_paste",
+      "form_of",
+      "onion"
+    ],
+    [
+      "onion_salt",
+      "is_a",
+      "seasoned_salt"
+    ],
+    [
+      "orange_oil",
+      "form_of",
+      "orange"
+    ],
+    [
+      "oxtail",
+      "is_a",
+      "beef"
+    ],
+    [
+      "panang_curry_paste",
+      "is_a",
+      "curry_paste"
+    ],
+    [
+      "pandan_juice",
+      "form_of",
+      "pandan_leaf"
+    ],
+    [
+      "paneer",
+      "is_a",
+      "cheese"
+    ],
+    [
+      "pasilla",
+      "is_a",
+      "chili_pepper"
+    ],
+    [
+      "peach_nectar",
+      "form_of",
+      "peach"
+    ],
+    [
+      "peanut_powder",
+      "form_of",
+      "peanut"
+    ],
+    [
+      "pearl_onion",
+      "is_a",
+      "onion"
+    ],
+    [
+      "pickle_juice",
+      "form_of",
+      "pickle"
+    ],
+    [
+      "pickled_ginger",
+      "form_of",
+      "ginger"
+    ],
+    [
+      "pickled_jalapeno",
+      "form_of",
+      "jalapeno"
+    ],
+    [
+      "poblano",
+      "is_a",
+      "chili_pepper"
+    ],
+    [
+      "pomegranate_juice",
+      "form_of",
+      "pomegranate"
+    ],
+    [
+      "pomegranate_molasses",
+      "form_of",
+      "pomegranate"
+    ],
+    [
+      "pork_blood",
+      "form_of",
+      "pork"
+    ],
+    [
+      "port",
+      "is_a",
+      "wine"
+    ],
+    [
+      "potato_chip",
+      "form_of",
+      "potato"
+    ],
+    [
+      "potato_flakes",
+      "form_of",
+      "potato"
+    ],
+    [
+      "potato_starch",
+      "form_of",
+      "potato"
+    ],
+    [
+      "provolone",
+      "is_a",
+      "cheese"
+    ],
+    [
+      "pumpkin_seed",
+      "form_of",
+      "pumpkin"
+    ],
+    [
+      "queso_fresco",
+      "is_a",
+      "cheese"
+    ],
+    [
+      "ragi",
+      "is_a",
+      "millet"
+    ],
+    [
+      "ranch_dressing",
+      "is_a",
+      "salad_dressing"
+    ],
+    [
+      "ravioli",
+      "is_a",
+      "pasta"
+    ],
+    [
+      "rice_milk",
+      "form_of",
+      "rice"
+    ],
+    [
+      "roasted_red_pepper",
+      "form_of",
+      "bell_pepper"
+    ],
+    [
+      "rocoto",
+      "is_a",
+      "chili_pepper"
+    ],
+    [
+      "sauerkraut",
+      "form_of",
+      "cabbage"
+    ],
+    [
+      "scotch_bonnet",
+      "is_a",
+      "chili_pepper"
+    ],
+    [
+      "shaoxing_wine",
+      "is_a",
+      "wine"
+    ],
+    [
+      "smoked_fish",
+      "is_a",
+      "fish"
+    ],
+    [
+      "soy_milk",
+      "form_of",
+      "soybean"
+    ],
+    [
+      "soy_yogurt",
+      "is_a",
+      "yogurt"
+    ],
+    [
+      "sparkling_wine",
+      "is_a",
+      "wine"
+    ],
+    [
+      "spelt_flour",
+      "form_of",
+      "spelt"
+    ],
+    [
+      "stockfish",
+      "is_a",
+      "fish"
+    ],
+    [
+      "string_cheese",
+      "is_a",
+      "cheese"
+    ],
+    [
+      "sun_dried_tomato",
+      "form_of",
+      "tomato"
+    ],
+    [
+      "tamarind_juice",
+      "form_of",
+      "tamarind"
+    ],
+    [
+      "tater_tot",
+      "form_of",
+      "potato"
+    ],
+    [
+      "thai_chili",
+      "is_a",
+      "chili_pepper"
+    ],
+    [
+      "thai_chili_sauce",
+      "is_a",
+      "hot_sauce"
+    ],
+    [
+      "thousand_island_dressing",
+      "is_a",
+      "salad_dressing"
+    ],
+    [
+      "tikka_masala_paste",
+      "is_a",
+      "curry_paste"
+    ],
+    [
+      "tomato_juice",
+      "form_of",
+      "tomato"
+    ],
+    [
+      "tortellini",
+      "is_a",
+      "pasta"
+    ],
+    [
+      "vanilla_powder",
+      "form_of",
+      "vanilla"
+    ],
+    [
+      "vermouth",
+      "is_a",
+      "wine"
+    ],
+    [
+      "vinaigrette",
+      "is_a",
+      "salad_dressing"
+    ],
+    [
+      "wakame",
+      "is_a",
+      "seaweed"
+    ],
+    [
+      "walnut_oil",
+      "form_of",
+      "walnut"
+    ]
+  ],
+  "edges_in_use": {
+    "count_per_type": {
+      "form_of": 1,
+      "is_a": 16
+    },
+    "edges": [
+      [
+        "american_cheese",
+        "is_a",
+        "cheese"
+      ],
+      [
+        "asiago",
+        "is_a",
+        "cheese"
+      ],
+      [
+        "chile_de_arbol",
+        "is_a",
+        "chili_pepper"
+      ],
+      [
+        "chiltepin",
+        "is_a",
+        "chili_pepper"
+      ],
+      [
+        "ciabatta",
+        "is_a",
+        "bread"
+      ],
+      [
+        "coffee_powder",
+        "form_of",
+        "coffee"
+      ],
+      [
+        "cornflakes",
+        "is_a",
+        "cereal"
+      ],
+      [
+        "fontina",
+        "is_a",
+        "cheese"
+      ],
+      [
+        "gouda",
+        "is_a",
+        "cheese"
+      ],
+      [
+        "havarti",
+        "is_a",
+        "cheese"
+      ],
+      [
+        "hickory_smoke_powder",
+        "is_a",
+        "smoke_powder"
+      ],
+      [
+        "kashkaval",
+        "is_a",
+        "cheese"
+      ],
+      [
+        "manchego",
+        "is_a",
+        "cheese"
+      ],
+      [
+        "mesquite_smoke_powder",
+        "is_a",
+        "smoke_powder"
+      ],
+      [
+        "pearl_onion",
+        "is_a",
+        "onion"
+      ],
+      [
+        "provolone",
+        "is_a",
+        "cheese"
+      ],
+      [
+        "thai_chili",
+        "is_a",
+        "chili_pepper"
+      ]
+    ],
+    "sha256": "b4c0391f3b0d5d772fb69403c5138e491504580e0ae6daae17b8e12a1bc084cd"
+  },
+  "edges_sha256": "250420b8917a6e606b810ba8b563d1ccf6efbf4a41bfe3df2d7728c3172bee29",
+  "max_depth_observed": 1,
+  "owner_edits": [
+    {
+      "basis": "accepted second-pass proposal (edge_labels.proposals.v1.json)",
+      "by": "owner",
+      "date": "2026-11-09",
+      "from": "chiltepin",
+      "new_label": "usable",
+      "old_label": "not usable",
+      "to": "chili_pepper",
+      "type": "is_a"
+    },
+    {
+      "basis": "accepted second-pass proposal (edge_labels.proposals.v1.json)",
+      "by": "owner",
+      "date": "2026-11-09",
+      "from": "cornflakes",
+      "new_label": "usable",
+      "old_label": "not usable",
+      "to": "cereal",
+      "type": "is_a"
+    }
+  ],
+  "pantries_sha256": "dbbf5aae95676544e80f2edfe95287ca99e7ec4f7455b20a1aef1198d953590e",
+  "plan": {
+    "allocation_rule": "equal_shares_over_signature_strata_borrow_across_groups",
+    "bootstrap_resamples": 10000,
+    "cap_new": 100,
+    "decoy_rule": "same_pantry_same_group_hash_order_fallback_all_pantries",
+    "max_hops": 3,
+    "repeat_min_gap": 20,
+    "repeat_placement_rule": "next_session_hash_place_min_gap_moved_away",
+    "repeats": 10,
+    "seed": 46,
+    "sessions": 3,
+    "split": {
+      "make_now": 50,
+      "one_away": 50
+    }
+  },
+  "pool_by_edge": [],
+  "pool_counts": {
+    "decoy_candidates": {
+      "make_now": 733,
+      "one_away": 1750
+    },
+    "edge_types": {
+      "form_of": {
+        "new": 0,
+        "pantries": 0
+      },
+      "is_a": {
+        "new": 0,
+        "pantries": 0
+      }
+    },
+    "new": {}
+  },
+  "snapshot_sha256": "a1a076ab0aee385c4e01cdc904342214dfaa6b01dc35d80d32519ea625c597d2",
+  "table_sha256": "a03baecd93238cc3e60ea44e033f0fbcb9c6ababca7ed0aba5b7fbe89bbd761e",
+  "thresholds": {
+    "T1": {
+      "min_correct": 5,
+      "min_pantries": 3
+    },
+    "T2": {
+      "min_lower_bound": 0.0
+    },
+    "T3": {
+      "form": "wilson_lb",
+      "min_rated": 20,
+      "point_min": 0.9,
+      "wilson_lb_min": 0.8
+    },
+    "confirmed_by": "owner",
+    "confirmed_on": "2026-11-09",
+    "guard": {
+      "new_mean_max": 0.0,
+      "new_precision_min": 0.85
+    },
+    "new_subset_guard": true,
+    "unsure_is_wrong": true
+  },
+  "unknown_names": {
+    "new06": [
+      "chapati flour"
+    ],
+    "new08": [
+      "san marzano tomatoes"
+    ],
+    "new13": [
+      "crisps",
+      "tortilla wraps"
+    ],
+    "new15": [
+      "whey protein"
+    ],
+    "new16": [
+      "cod fillets"
+    ],
+    "new19": [
+      "heirloom tomatoes"
+    ],
+    "new20": [
+      "frozen mixed veg"
+    ]
+  },
+  "version": 1,
+  "words_sha256": "357f3735ea543d3b7def5349dc6d980f9b12d96b3858fba5fd3dc15ef2822836"
+}

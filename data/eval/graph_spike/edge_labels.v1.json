@@ -1,0 +1,1130 @@
+{
+ "version": 1,
+ "classifier": "Opus (claude-opus), blind",
+ "date": "2026-11-09",
+ "rubric": "design 4.3",
+ "edges": [
+  {
+   "from": "almond_milk",
+   "type": "form_of",
+   "to": "almond",
+   "label": "not usable",
+   "reason": "Product made from almond; does not meet that line"
+  },
+  {
+   "from": "almond_oil",
+   "type": "form_of",
+   "to": "almond",
+   "label": "not usable",
+   "reason": "Product made from almond; does not meet that line"
+  },
+  {
+   "from": "apple_butter",
+   "type": "form_of",
+   "to": "apple",
+   "label": "not usable",
+   "reason": "Product made from apple; does not meet that line"
+  },
+  {
+   "from": "avocado_oil",
+   "type": "form_of",
+   "to": "avocado",
+   "label": "not usable",
+   "reason": "Product made from avocado; does not meet that line"
+  },
+  {
+   "from": "baked_beans",
+   "type": "form_of",
+   "to": "bean",
+   "label": "not usable",
+   "reason": "Product made from bean; does not meet that line"
+  },
+  {
+   "from": "beef_heart",
+   "type": "form_of",
+   "to": "beef",
+   "label": "not usable",
+   "reason": "Product made from beef; does not meet that line"
+  },
+  {
+   "from": "beef_tongue",
+   "type": "form_of",
+   "to": "beef",
+   "label": "not usable",
+   "reason": "Product made from beef; does not meet that line"
+  },
+  {
+   "from": "beet_juice",
+   "type": "form_of",
+   "to": "beet",
+   "label": "not usable",
+   "reason": "Product made from beet; does not meet that line"
+  },
+  {
+   "from": "buckwheat_flour",
+   "type": "form_of",
+   "to": "buckwheat",
+   "label": "not usable",
+   "reason": "Product made from buckwheat; does not meet that line"
+  },
+  {
+   "from": "cherry_juice",
+   "type": "form_of",
+   "to": "cherry",
+   "label": "not usable",
+   "reason": "Product made from cherry; does not meet that line"
+  },
+  {
+   "from": "chickpea_flour",
+   "type": "form_of",
+   "to": "chickpea",
+   "label": "not usable",
+   "reason": "Product made from chickpea; does not meet that line"
+  },
+  {
+   "from": "chili_paste",
+   "type": "form_of",
+   "to": "chili_pepper",
+   "label": "not usable",
+   "reason": "Product made from chili pepper; does not meet that line"
+  },
+  {
+   "from": "cinnamon_oil",
+   "type": "form_of",
+   "to": "cinnamon",
+   "label": "not usable",
+   "reason": "Product made from cinnamon; does not meet that line"
+  },
+  {
+   "from": "coconut_flour",
+   "type": "form_of",
+   "to": "coconut",
+   "label": "not usable",
+   "reason": "Product made from coconut; does not meet that line"
+  },
+  {
+   "from": "coconut_milk_powder",
+   "type": "form_of",
+   "to": "coconut_milk",
+   "label": "not usable",
+   "reason": "Needs reconstituting; cook would call it a substitute"
+  },
+  {
+   "from": "coconut_water",
+   "type": "form_of",
+   "to": "coconut",
+   "label": "not usable",
+   "reason": "Product made from coconut; does not meet that line"
+  },
+  {
+   "from": "coffee_powder",
+   "type": "form_of",
+   "to": "coffee",
+   "label": "usable",
+   "reason": "Instant/espresso powder; table already treats instant coffee as coffee"
+  },
+  {
+   "from": "coriander_oil",
+   "type": "form_of",
+   "to": "coriander",
+   "label": "not usable",
+   "reason": "Product made from coriander; does not meet that line"
+  },
+  {
+   "from": "corned_beef",
+   "type": "form_of",
+   "to": "beef",
+   "label": "not usable",
+   "reason": "Product made from beef; does not meet that line"
+  },
+  {
+   "from": "cranberry_juice",
+   "type": "form_of",
+   "to": "cranberry",
+   "label": "not usable",
+   "reason": "Product made from cranberry; does not meet that line"
+  },
+  {
+   "from": "creamed_corn",
+   "type": "form_of",
+   "to": "corn",
+   "label": "not usable",
+   "reason": "Product made from corn; does not meet that line"
+  },
+  {
+   "from": "crystallized_ginger",
+   "type": "form_of",
+   "to": "ginger",
+   "label": "not usable",
+   "reason": "Product made from ginger; does not meet that line"
+  },
+  {
+   "from": "date_syrup",
+   "type": "form_of",
+   "to": "date",
+   "label": "not usable",
+   "reason": "Product made from date; does not meet that line"
+  },
+  {
+   "from": "edamame",
+   "type": "form_of",
+   "to": "soybean",
+   "label": "not usable",
+   "reason": "Product made from soybean; does not meet that line"
+  },
+  {
+   "from": "flaxseed_oil",
+   "type": "form_of",
+   "to": "flaxseed",
+   "label": "not usable",
+   "reason": "Product made from flaxseed; does not meet that line"
+  },
+  {
+   "from": "french_fried_onion",
+   "type": "form_of",
+   "to": "onion",
+   "label": "not usable",
+   "reason": "Product made from onion; does not meet that line"
+  },
+  {
+   "from": "french_fries",
+   "type": "form_of",
+   "to": "potato",
+   "label": "not usable",
+   "reason": "Product made from potato; does not meet that line"
+  },
+  {
+   "from": "garlic_paste",
+   "type": "form_of",
+   "to": "garlic",
+   "label": "not usable",
+   "reason": "Jarred paste; a substitute for fresh garlic"
+  },
+  {
+   "from": "garlic_powder",
+   "type": "form_of",
+   "to": "garlic",
+   "label": "not usable",
+   "reason": "Product made from garlic; does not meet that line"
+  },
+  {
+   "from": "ginger_garlic_paste",
+   "type": "form_of",
+   "to": "garlic",
+   "label": "not usable",
+   "reason": "Product made from garlic; does not meet that line"
+  },
+  {
+   "from": "ginger_garlic_paste",
+   "type": "form_of",
+   "to": "ginger",
+   "label": "not usable",
+   "reason": "Product made from ginger; does not meet that line"
+  },
+  {
+   "from": "ginger_paste",
+   "type": "form_of",
+   "to": "ginger",
+   "label": "not usable",
+   "reason": "Jarred paste; a substitute for fresh ginger"
+  },
+  {
+   "from": "grape_juice",
+   "type": "form_of",
+   "to": "grape",
+   "label": "not usable",
+   "reason": "Product made from grape; does not meet that line"
+  },
+  {
+   "from": "ground_beef",
+   "type": "form_of",
+   "to": "beef",
+   "label": "not usable",
+   "reason": "Minced meat; substitute for steak or stew beef"
+  },
+  {
+   "from": "ground_chicken",
+   "type": "form_of",
+   "to": "chicken",
+   "label": "not usable",
+   "reason": "Minced meat; substitute for chicken pieces"
+  },
+  {
+   "from": "guava_juice",
+   "type": "form_of",
+   "to": "guava",
+   "label": "not usable",
+   "reason": "Product made from guava; does not meet that line"
+  },
+  {
+   "from": "hash_brown",
+   "type": "form_of",
+   "to": "potato",
+   "label": "not usable",
+   "reason": "Product made from potato; does not meet that line"
+  },
+  {
+   "from": "hazelnut_oil",
+   "type": "form_of",
+   "to": "hazelnut",
+   "label": "not usable",
+   "reason": "Product made from hazelnut; does not meet that line"
+  },
+  {
+   "from": "hazelnut_syrup",
+   "type": "form_of",
+   "to": "hazelnut",
+   "label": "not usable",
+   "reason": "Product made from hazelnut; does not meet that line"
+  },
+  {
+   "from": "hominy",
+   "type": "form_of",
+   "to": "corn",
+   "label": "not usable",
+   "reason": "Product made from corn; does not meet that line"
+  },
+  {
+   "from": "lemon_oil",
+   "type": "form_of",
+   "to": "lemon",
+   "label": "not usable",
+   "reason": "Product made from lemon; does not meet that line"
+  },
+  {
+   "from": "lime_oil",
+   "type": "form_of",
+   "to": "lime",
+   "label": "not usable",
+   "reason": "Product made from lime; does not meet that line"
+  },
+  {
+   "from": "mango_juice",
+   "type": "form_of",
+   "to": "mango",
+   "label": "not usable",
+   "reason": "Product made from mango; does not meet that line"
+  },
+  {
+   "from": "mango_powder",
+   "type": "form_of",
+   "to": "mango",
+   "label": "not usable",
+   "reason": "Product made from mango; does not meet that line"
+  },
+  {
+   "from": "mustard_oil",
+   "type": "form_of",
+   "to": "mustard_seed",
+   "label": "not usable",
+   "reason": "Product made from mustard seed; does not meet that line"
+  },
+  {
+   "from": "nutmeg_oil",
+   "type": "form_of",
+   "to": "nutmeg",
+   "label": "not usable",
+   "reason": "Product made from nutmeg; does not meet that line"
+  },
+  {
+   "from": "oat_bran",
+   "type": "form_of",
+   "to": "oats",
+   "label": "not usable",
+   "reason": "Product made from oats; does not meet that line"
+  },
+  {
+   "from": "oat_flour",
+   "type": "form_of",
+   "to": "oats",
+   "label": "not usable",
+   "reason": "Product made from oats; does not meet that line"
+  },
+  {
+   "from": "oat_milk",
+   "type": "form_of",
+   "to": "oats",
+   "label": "not usable",
+   "reason": "Product made from oats; does not meet that line"
+  },
+  {
+   "from": "onion_flakes",
+   "type": "form_of",
+   "to": "onion",
+   "label": "not usable",
+   "reason": "Product made from onion; does not meet that line"
+  },
+  {
+   "from": "onion_paste",
+   "type": "form_of",
+   "to": "onion",
+   "label": "not usable",
+   "reason": "Product made from onion; does not meet that line"
+  },
+  {
+   "from": "orange_oil",
+   "type": "form_of",
+   "to": "orange",
+   "label": "not usable",
+   "reason": "Product made from orange; does not meet that line"
+  },
+  {
+   "from": "pandan_juice",
+   "type": "form_of",
+   "to": "pandan_leaf",
+   "label": "not usable",
+   "reason": "Product made from pandan leaf; does not meet that line"
+  },
+  {
+   "from": "peach_nectar",
+   "type": "form_of",
+   "to": "peach",
+   "label": "not usable",
+   "reason": "Product made from peach; does not meet that line"
+  },
+  {
+   "from": "peanut_powder",
+   "type": "form_of",
+   "to": "peanut",
+   "label": "not usable",
+   "reason": "Product made from peanut; does not meet that line"
+  },
+  {
+   "from": "pickle_juice",
+   "type": "form_of",
+   "to": "pickle",
+   "label": "not usable",
+   "reason": "Product made from pickle; does not meet that line"
+  },
+  {
+   "from": "pickled_ginger",
+   "type": "form_of",
+   "to": "ginger",
+   "label": "not usable",
+   "reason": "Product made from ginger; does not meet that line"
+  },
+  {
+   "from": "pickled_jalapeno",
+   "type": "form_of",
+   "to": "jalapeno",
+   "label": "not usable",
+   "reason": "Pickled; substitute for fresh jalapeno"
+  },
+  {
+   "from": "pomegranate_juice",
+   "type": "form_of",
+   "to": "pomegranate",
+   "label": "not usable",
+   "reason": "Product made from pomegranate; does not meet that line"
+  },
+  {
+   "from": "pomegranate_molasses",
+   "type": "form_of",
+   "to": "pomegranate",
+   "label": "not usable",
+   "reason": "Product made from pomegranate; does not meet that line"
+  },
+  {
+   "from": "pork_blood",
+   "type": "form_of",
+   "to": "pork",
+   "label": "not usable",
+   "reason": "Product made from pork; does not meet that line"
+  },
+  {
+   "from": "potato_chip",
+   "type": "form_of",
+   "to": "potato",
+   "label": "not usable",
+   "reason": "Product made from potato; does not meet that line"
+  },
+  {
+   "from": "potato_flakes",
+   "type": "form_of",
+   "to": "potato",
+   "label": "not usable",
+   "reason": "Dehydrated instant product; not potatoes"
+  },
+  {
+   "from": "potato_starch",
+   "type": "form_of",
+   "to": "potato",
+   "label": "not usable",
+   "reason": "Product made from potato; does not meet that line"
+  },
+  {
+   "from": "pumpkin_seed",
+   "type": "form_of",
+   "to": "pumpkin",
+   "label": "not usable",
+   "reason": "Product made from pumpkin; does not meet that line"
+  },
+  {
+   "from": "rice_milk",
+   "type": "form_of",
+   "to": "rice",
+   "label": "not usable",
+   "reason": "Product made from rice; does not meet that line"
+  },
+  {
+   "from": "roasted_red_pepper",
+   "type": "form_of",
+   "to": "bell_pepper",
+   "label": "not usable",
+   "reason": "Roasted jarred pepper; substitute for raw pepper"
+  },
+  {
+   "from": "sauerkraut",
+   "type": "form_of",
+   "to": "cabbage",
+   "label": "not usable",
+   "reason": "Product made from cabbage; does not meet that line"
+  },
+  {
+   "from": "soy_milk",
+   "type": "form_of",
+   "to": "soybean",
+   "label": "not usable",
+   "reason": "Product made from soybean; does not meet that line"
+  },
+  {
+   "from": "spelt_flour",
+   "type": "form_of",
+   "to": "spelt",
+   "label": "not usable",
+   "reason": "Product made from spelt; does not meet that line"
+  },
+  {
+   "from": "sun_dried_tomato",
+   "type": "form_of",
+   "to": "tomato",
+   "label": "not usable",
+   "reason": "Product made from tomato; does not meet that line"
+  },
+  {
+   "from": "tamarind_juice",
+   "type": "form_of",
+   "to": "tamarind",
+   "label": "not usable",
+   "reason": "Diluted; substitute for paste or pulp"
+  },
+  {
+   "from": "tater_tot",
+   "type": "form_of",
+   "to": "potato",
+   "label": "not usable",
+   "reason": "Product made from potato; does not meet that line"
+  },
+  {
+   "from": "tomato_juice",
+   "type": "form_of",
+   "to": "tomato",
+   "label": "not usable",
+   "reason": "Product made from tomato; does not meet that line"
+  },
+  {
+   "from": "vanilla_powder",
+   "type": "form_of",
+   "to": "vanilla",
+   "label": "not usable",
+   "reason": "Different form and dose; substitute for extract"
+  },
+  {
+   "from": "walnut_oil",
+   "type": "form_of",
+   "to": "walnut",
+   "label": "not usable",
+   "reason": "Product made from walnut; does not meet that line"
+  },
+  {
+   "from": "aji_amarillo",
+   "type": "is_a",
+   "to": "chili_pepper",
+   "label": "not usable",
+   "reason": "Heat or flavour differs strongly; cook would call it a substitute"
+  },
+  {
+   "from": "aji_limo",
+   "type": "is_a",
+   "to": "chili_pepper",
+   "label": "not usable",
+   "reason": "Heat or flavour differs strongly; cook would call it a substitute"
+  },
+  {
+   "from": "american_cheese",
+   "type": "is_a",
+   "to": "cheese",
+   "label": "usable",
+   "reason": "Common melting cheese; fits a generic cheese line"
+  },
+  {
+   "from": "anaheim",
+   "type": "is_a",
+   "to": "chili_pepper",
+   "label": "not usable",
+   "reason": "Heat or flavour differs strongly; cook would call it a substitute"
+  },
+  {
+   "from": "ancho_chile",
+   "type": "is_a",
+   "to": "chili_pepper",
+   "label": "not usable",
+   "reason": "Heat or flavour differs strongly; cook would call it a substitute"
+  },
+  {
+   "from": "asiago",
+   "type": "is_a",
+   "to": "cheese",
+   "label": "usable",
+   "reason": "Hard grating/melting cheese; fits a generic cheese line"
+  },
+  {
+   "from": "asian_pear",
+   "type": "is_a",
+   "to": "pear",
+   "label": "not usable",
+   "reason": "Different fruit texture; substitute for European pear"
+  },
+  {
+   "from": "bagel",
+   "type": "is_a",
+   "to": "bread",
+   "label": "not usable",
+   "reason": "Different bread product; a substitute for loaf bread"
+  },
+  {
+   "from": "beef_short_rib",
+   "type": "is_a",
+   "to": "beef",
+   "label": "not usable",
+   "reason": "Specific bony cut; changes most beef recipes"
+  },
+  {
+   "from": "brie",
+   "type": "is_a",
+   "to": "cheese",
+   "label": "not usable",
+   "reason": "Soft rind cheese; cannot shred, changes the recipe"
+  },
+  {
+   "from": "buffalo_sauce",
+   "type": "is_a",
+   "to": "hot_sauce",
+   "label": "not usable",
+   "reason": "Different sauce style; a substitute for hot sauce"
+  },
+  {
+   "from": "camembert",
+   "type": "is_a",
+   "to": "cheese",
+   "label": "not usable",
+   "reason": "Soft rind cheese; cannot shred, changes the recipe"
+  },
+  {
+   "from": "cascabel_chile",
+   "type": "is_a",
+   "to": "chili_pepper",
+   "label": "not usable",
+   "reason": "Heat or flavour differs strongly; cook would call it a substitute"
+  },
+  {
+   "from": "cheese_curd",
+   "type": "is_a",
+   "to": "cheese",
+   "label": "not usable",
+   "reason": "Fresh curds; unsure it meets a generic cheese line"
+  },
+  {
+   "from": "chile_de_arbol",
+   "type": "is_a",
+   "to": "chili_pepper",
+   "label": "usable",
+   "reason": "Small hot red chili; meets dried red chili lines"
+  },
+  {
+   "from": "chili_garlic_sauce",
+   "type": "is_a",
+   "to": "hot_sauce",
+   "label": "not usable",
+   "reason": "Different sauce style; a substitute for hot sauce"
+  },
+  {
+   "from": "chiltepin",
+   "type": "is_a",
+   "to": "chili_pepper",
+   "label": "usable",
+   "reason": "Heat or flavour differs strongly; cook would call it a substitute"
+  },
+  {
+   "from": "chocolate_cake_mix",
+   "type": "is_a",
+   "to": "cake_mix",
+   "label": "not usable",
+   "reason": "Changes yellow/white/spice cake into chocolate"
+  },
+  {
+   "from": "ciabatta",
+   "type": "is_a",
+   "to": "bread",
+   "label": "usable",
+   "reason": "Italian loaf bread; fits slices, crumbs, italian bread"
+  },
+  {
+   "from": "clotted_cream",
+   "type": "is_a",
+   "to": "cream",
+   "label": "not usable",
+   "reason": "Thick spread, not pourable cream; substitute"
+  },
+  {
+   "from": "coconut_yogurt",
+   "type": "is_a",
+   "to": "yogurt",
+   "label": "not usable",
+   "reason": "Non-dairy or frozen product; a substitute for yogurt"
+  },
+  {
+   "from": "cornflakes",
+   "type": "is_a",
+   "to": "cereal",
+   "label": "usable",
+   "reason": "Specific cereal; may not fit puffed-cereal lines"
+  },
+  {
+   "from": "cotija",
+   "type": "is_a",
+   "to": "cheese",
+   "label": "not usable",
+   "reason": "Dry crumbly topping cheese; substitute"
+  },
+  {
+   "from": "croissant",
+   "type": "is_a",
+   "to": "bread",
+   "label": "not usable",
+   "reason": "Different bread product; a substitute for loaf bread"
+  },
+  {
+   "from": "daikon",
+   "type": "is_a",
+   "to": "radish",
+   "label": "not usable",
+   "reason": "Large mild radish; substitute for small red radish"
+  },
+  {
+   "from": "dried_fish",
+   "type": "is_a",
+   "to": "fish",
+   "label": "not usable",
+   "reason": "Preserved fish; not a stand-in for fresh fish"
+  },
+  {
+   "from": "english_muffin",
+   "type": "is_a",
+   "to": "bread",
+   "label": "not usable",
+   "reason": "Different bread product; a substitute for loaf bread"
+  },
+  {
+   "from": "flatbread",
+   "type": "is_a",
+   "to": "bread",
+   "label": "not usable",
+   "reason": "Different bread product; a substitute for loaf bread"
+  },
+  {
+   "from": "fontina",
+   "type": "is_a",
+   "to": "cheese",
+   "label": "usable",
+   "reason": "Semi-soft melting cheese; fits a generic cheese line"
+  },
+  {
+   "from": "frozen_yogurt",
+   "type": "is_a",
+   "to": "yogurt",
+   "label": "not usable",
+   "reason": "Non-dairy or frozen product; a substitute for yogurt"
+  },
+  {
+   "from": "garlic_salt",
+   "type": "is_a",
+   "to": "seasoned_salt",
+   "label": "not usable",
+   "reason": "Single-flavour salt; substitute for seasoned salt blend"
+  },
+  {
+   "from": "gouda",
+   "type": "is_a",
+   "to": "cheese",
+   "label": "usable",
+   "reason": "Semi-hard melting cheese; fits a generic cheese line"
+  },
+  {
+   "from": "guajillo",
+   "type": "is_a",
+   "to": "chili_pepper",
+   "label": "not usable",
+   "reason": "Heat or flavour differs strongly; cook would call it a substitute"
+  },
+  {
+   "from": "habanero",
+   "type": "is_a",
+   "to": "chili_pepper",
+   "label": "not usable",
+   "reason": "Heat or flavour differs strongly; cook would call it a substitute"
+  },
+  {
+   "from": "halloumi",
+   "type": "is_a",
+   "to": "cheese",
+   "label": "not usable",
+   "reason": "Non-melting grilling cheese; substitute"
+  },
+  {
+   "from": "havarti",
+   "type": "is_a",
+   "to": "cheese",
+   "label": "usable",
+   "reason": "Semi-soft melting cheese; fits a generic cheese line"
+  },
+  {
+   "from": "hickory_smoke_powder",
+   "type": "is_a",
+   "to": "smoke_powder",
+   "label": "usable",
+   "reason": "A flavour kind of smoke powder; same use"
+  },
+  {
+   "from": "horseradish_sauce",
+   "type": "is_a",
+   "to": "horseradish",
+   "label": "not usable",
+   "reason": "Creamed sauce; substitute for prepared horseradish"
+  },
+  {
+   "from": "italian_dressing",
+   "type": "is_a",
+   "to": "salad_dressing",
+   "label": "not usable",
+   "reason": "Specific flavour; generic line may mean another dressing"
+  },
+  {
+   "from": "kashkaval",
+   "type": "is_a",
+   "to": "cheese",
+   "label": "usable",
+   "reason": "Semi-hard yellow melting cheese; fits a generic cheese line"
+  },
+  {
+   "from": "kelp",
+   "type": "is_a",
+   "to": "seaweed",
+   "label": "not usable",
+   "reason": "Seaweeds differ in texture and use; substitute"
+  },
+  {
+   "from": "madeira",
+   "type": "is_a",
+   "to": "wine",
+   "label": "not usable",
+   "reason": "Fortified, sparkling or rice wine; a substitute for table wine"
+  },
+  {
+   "from": "manchego",
+   "type": "is_a",
+   "to": "cheese",
+   "label": "usable",
+   "reason": "Firm grating/slicing cheese; fits a generic cheese line"
+  },
+  {
+   "from": "mango_chutney",
+   "type": "is_a",
+   "to": "chutney",
+   "label": "not usable",
+   "reason": "Fails apple/peach chutney lines held by target"
+  },
+  {
+   "from": "marsala",
+   "type": "is_a",
+   "to": "wine",
+   "label": "not usable",
+   "reason": "Fortified, sparkling or rice wine; a substitute for table wine"
+  },
+  {
+   "from": "mascarpone",
+   "type": "is_a",
+   "to": "cheese",
+   "label": "not usable",
+   "reason": "Soft cream cheese; not a grating or melting cheese"
+  },
+  {
+   "from": "massaman_curry_paste",
+   "type": "is_a",
+   "to": "curry_paste",
+   "label": "not usable",
+   "reason": "Different curry paste; substitute for red/green paste"
+  },
+  {
+   "from": "mesquite_smoke_powder",
+   "type": "is_a",
+   "to": "smoke_powder",
+   "label": "usable",
+   "reason": "A flavour kind of smoke powder; same use"
+  },
+  {
+   "from": "mulato_chile",
+   "type": "is_a",
+   "to": "chili_pepper",
+   "label": "not usable",
+   "reason": "Heat or flavour differs strongly; cook would call it a substitute"
+  },
+  {
+   "from": "naan",
+   "type": "is_a",
+   "to": "bread",
+   "label": "not usable",
+   "reason": "Different bread product; a substitute for loaf bread"
+  },
+  {
+   "from": "natto",
+   "type": "is_a",
+   "to": "soybean",
+   "label": "not usable",
+   "reason": "Fermented product; not dried soybeans"
+  },
+  {
+   "from": "nori",
+   "type": "is_a",
+   "to": "seaweed",
+   "label": "not usable",
+   "reason": "Seaweeds differ in texture and use; substitute"
+  },
+  {
+   "from": "onion_salt",
+   "type": "is_a",
+   "to": "seasoned_salt",
+   "label": "not usable",
+   "reason": "Single-flavour salt; substitute for seasoned salt blend"
+  },
+  {
+   "from": "oxtail",
+   "type": "is_a",
+   "to": "beef",
+   "label": "not usable",
+   "reason": "Specific bony cut; changes most beef recipes"
+  },
+  {
+   "from": "panang_curry_paste",
+   "type": "is_a",
+   "to": "curry_paste",
+   "label": "not usable",
+   "reason": "Different curry paste; substitute for red/green paste"
+  },
+  {
+   "from": "paneer",
+   "type": "is_a",
+   "to": "cheese",
+   "label": "not usable",
+   "reason": "Non-melting fresh cheese; substitute"
+  },
+  {
+   "from": "pasilla",
+   "type": "is_a",
+   "to": "chili_pepper",
+   "label": "not usable",
+   "reason": "Heat or flavour differs strongly; cook would call it a substitute"
+  },
+  {
+   "from": "pearl_onion",
+   "type": "is_a",
+   "to": "onion",
+   "label": "usable",
+   "reason": "Small onion of same species; same flavour when chopped"
+  },
+  {
+   "from": "poblano",
+   "type": "is_a",
+   "to": "chili_pepper",
+   "label": "not usable",
+   "reason": "Heat or flavour differs strongly; cook would call it a substitute"
+  },
+  {
+   "from": "port",
+   "type": "is_a",
+   "to": "wine",
+   "label": "not usable",
+   "reason": "Fortified, sparkling or rice wine; a substitute for table wine"
+  },
+  {
+   "from": "provolone",
+   "type": "is_a",
+   "to": "cheese",
+   "label": "usable",
+   "reason": "Semi-hard melting cheese; fits a generic cheese line"
+  },
+  {
+   "from": "queso_fresco",
+   "type": "is_a",
+   "to": "cheese",
+   "label": "not usable",
+   "reason": "Fresh crumbly non-melting cheese; substitute"
+  },
+  {
+   "from": "ragi",
+   "type": "is_a",
+   "to": "millet",
+   "label": "not usable",
+   "reason": "Finger millet, mostly flour; substitute for millet grain"
+  },
+  {
+   "from": "ranch_dressing",
+   "type": "is_a",
+   "to": "salad_dressing",
+   "label": "not usable",
+   "reason": "Specific flavour; generic line may mean another dressing"
+  },
+  {
+   "from": "ravioli",
+   "type": "is_a",
+   "to": "pasta",
+   "label": "not usable",
+   "reason": "Filled pasta; substitute for dry pasta shapes"
+  },
+  {
+   "from": "rocoto",
+   "type": "is_a",
+   "to": "chili_pepper",
+   "label": "not usable",
+   "reason": "Heat or flavour differs strongly; cook would call it a substitute"
+  },
+  {
+   "from": "scotch_bonnet",
+   "type": "is_a",
+   "to": "chili_pepper",
+   "label": "not usable",
+   "reason": "Heat or flavour differs strongly; cook would call it a substitute"
+  },
+  {
+   "from": "shaoxing_wine",
+   "type": "is_a",
+   "to": "wine",
+   "label": "not usable",
+   "reason": "Fortified, sparkling or rice wine; a substitute for table wine"
+  },
+  {
+   "from": "smoked_fish",
+   "type": "is_a",
+   "to": "fish",
+   "label": "not usable",
+   "reason": "Preserved fish; not a stand-in for fresh fish"
+  },
+  {
+   "from": "soy_yogurt",
+   "type": "is_a",
+   "to": "yogurt",
+   "label": "not usable",
+   "reason": "Non-dairy or frozen product; a substitute for yogurt"
+  },
+  {
+   "from": "sparkling_wine",
+   "type": "is_a",
+   "to": "wine",
+   "label": "not usable",
+   "reason": "Fortified, sparkling or rice wine; a substitute for table wine"
+  },
+  {
+   "from": "stockfish",
+   "type": "is_a",
+   "to": "fish",
+   "label": "not usable",
+   "reason": "Preserved fish; not a stand-in for fresh fish"
+  },
+  {
+   "from": "string_cheese",
+   "type": "is_a",
+   "to": "cheese",
+   "label": "not usable",
+   "reason": "Snack mozzarella sticks; unsure, likely a substitute"
+  },
+  {
+   "from": "thai_chili",
+   "type": "is_a",
+   "to": "chili_pepper",
+   "label": "usable",
+   "reason": "Standard small hot chili; the usual generic chili"
+  },
+  {
+   "from": "thai_chili_sauce",
+   "type": "is_a",
+   "to": "hot_sauce",
+   "label": "not usable",
+   "reason": "Different sauce style; a substitute for hot sauce"
+  },
+  {
+   "from": "thousand_island_dressing",
+   "type": "is_a",
+   "to": "salad_dressing",
+   "label": "not usable",
+   "reason": "Specific flavour; generic line may mean another dressing"
+  },
+  {
+   "from": "tikka_masala_paste",
+   "type": "is_a",
+   "to": "curry_paste",
+   "label": "not usable",
+   "reason": "Different curry paste; substitute for red/green paste"
+  },
+  {
+   "from": "tortellini",
+   "type": "is_a",
+   "to": "pasta",
+   "label": "not usable",
+   "reason": "Filled pasta; substitute for dry pasta shapes"
+  },
+  {
+   "from": "vermouth",
+   "type": "is_a",
+   "to": "wine",
+   "label": "not usable",
+   "reason": "Fortified, sparkling or rice wine; a substitute for table wine"
+  },
+  {
+   "from": "vinaigrette",
+   "type": "is_a",
+   "to": "salad_dressing",
+   "label": "not usable",
+   "reason": "Specific flavour; generic line may mean another dressing"
+  },
+  {
+   "from": "wakame",
+   "type": "is_a",
+   "to": "seaweed",
+   "label": "not usable",
+   "reason": "Seaweeds differ in texture and use; substitute"
+  }
+ ],
+ "owner_edits": [
+  {
+   "from": "chiltepin",
+   "type": "is_a",
+   "to": "chili_pepper",
+   "old_label": "not usable",
+   "new_label": "usable",
+   "by": "owner",
+   "date": "2026-11-09",
+   "basis": "accepted second-pass proposal (edge_labels.proposals.v1.json)"
+  },
+  {
+   "from": "cornflakes",
+   "type": "is_a",
+   "to": "cereal",
+   "old_label": "not usable",
+   "new_label": "usable",
+   "by": "owner",
+   "date": "2026-11-09",
+   "basis": "accepted second-pass proposal (edge_labels.proposals.v1.json)"
+  }
+ ],
+ "classifier_first_pass_sha256_note": "labels below include owner_edits; first-pass file was data/interim/edge_labels.v1.json before edits"
+}

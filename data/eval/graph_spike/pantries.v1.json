@@ -1,0 +1,720 @@
+{
+  "version": 1,
+  "split": "dev",
+  "never_in": "M4 test split",
+  "writer": {
+    "model": "Sonnet",
+    "date": "2026-11-09",
+    "prompt": "Write 20 pantries. Each is what one real household has in the kitchen on an ordinary evening, when someone decides what to cook. Use the 20 profiles given, one each. Write 6 to 15 items per pantry. Write each item as the person would type it in a shopping app. Do not list salt, pepper, oil or water.",
+    "profiles": [
+      "student flat",
+      "family weekly shop",
+      "vegetarian",
+      "vegan",
+      "keen baker",
+      "South Asian home cook",
+      "Mexican home cook",
+      "Italian home cook",
+      "East Asian home cook",
+      "Middle Eastern home cook",
+      "British pub-style cook",
+      "low budget",
+      "after a party",
+      "nearly empty fridge",
+      "gym and high protein",
+      "retired couple",
+      "breakfast person",
+      "slow cooker user",
+      "fresh market shopper",
+      "freezer and tins"
+    ]
+  },
+  "pantries": [
+    {
+      "id": "pilot01",
+      "source": "m2_pilot:item01",
+      "source_recipe_id": "wb-63892",
+      "names": [
+        "arborio rice",
+        "beef",
+        "bell pepper",
+        "canned tomato",
+        "chili powder",
+        "cumin",
+        "ground beef",
+        "oregano",
+        "potato",
+        "thyme"
+      ]
+    },
+    {
+      "id": "pilot02",
+      "source": "m2_pilot:item02",
+      "source_recipe_id": "wb-194627",
+      "names": [
+        "baking soda",
+        "basmati rice",
+        "bell pepper",
+        "butter",
+        "chicken",
+        "cranberry",
+        "saffron",
+        "soy sauce"
+      ]
+    },
+    {
+      "id": "pilot03",
+      "source": "m2_pilot:item03",
+      "source_recipe_id": "wb-413739",
+      "names": [
+        "chocolate",
+        "cinnamon",
+        "heavy cream",
+        "honey",
+        "milk",
+        "pandan leaf"
+      ]
+    },
+    {
+      "id": "pilot04",
+      "source": "m2_pilot:item04",
+      "source_recipe_id": "wb-457541",
+      "names": [
+        "cabbage",
+        "chili pepper",
+        "coriander",
+        "corn",
+        "cumin",
+        "garlic",
+        "okra",
+        "tomato",
+        "turmeric",
+        "zucchini"
+      ]
+    },
+    {
+      "id": "pilot05",
+      "source": "m2_pilot:item05",
+      "source_recipe_id": "wb-481440",
+      "names": [
+        "baking powder",
+        "basil",
+        "cardamom",
+        "chili pepper",
+        "egg",
+        "garlic",
+        "hoisin sauce",
+        "lettuce",
+        "peanut",
+        "raisin",
+        "rice",
+        "sausage"
+      ]
+    },
+    {
+      "id": "pilot06",
+      "source": "m2_pilot:item06",
+      "source_recipe_id": "wb-199943",
+      "names": [
+        "apple cider vinegar",
+        "chicken",
+        "chicken stock",
+        "powdered sugar",
+        "soy sauce",
+        "turmeric",
+        "worcestershire sauce"
+      ]
+    },
+    {
+      "id": "pilot07",
+      "source": "m2_pilot:item08",
+      "source_recipe_id": "wb-456093",
+      "names": [
+        "cheese",
+        "coriander",
+        "corn",
+        "jalapeno",
+        "miso",
+        "red pepper flakes",
+        "sour cream"
+      ]
+    },
+    {
+      "id": "pilot08",
+      "source": "m2_pilot:item09",
+      "source_recipe_id": "wb-52533",
+      "names": [
+        "bell pepper",
+        "breadcrumbs",
+        "garlic",
+        "meat",
+        "milk",
+        "rice",
+        "sausage",
+        "semolina"
+      ]
+    },
+    {
+      "id": "pilot09",
+      "source": "m2_pilot:item10",
+      "source_recipe_id": "wb-104683",
+      "names": [
+        "avocado",
+        "basil",
+        "cracker",
+        "cream cheese",
+        "garlic",
+        "lime",
+        "milk",
+        "pumpkin",
+        "red onion",
+        "sour cream"
+      ]
+    },
+    {
+      "id": "pilot10",
+      "source": "m2_pilot:item11",
+      "source_recipe_id": "wb-19088",
+      "names": [
+        "beef",
+        "flour",
+        "ginger",
+        "ketchup",
+        "mayonnaise",
+        "onion",
+        "vinegar"
+      ]
+    },
+    {
+      "id": "pilot11",
+      "source": "m2_pilot:item12",
+      "source_recipe_id": "wb-39375",
+      "names": [
+        "brown sugar",
+        "butter",
+        "dry mustard",
+        "egg",
+        "onion",
+        "vanilla",
+        "white bean",
+        "worcestershire sauce"
+      ]
+    },
+    {
+      "id": "pilot12",
+      "source": "m2_pilot:item13",
+      "source_recipe_id": "wb-456250",
+      "names": [
+        "apple cider vinegar",
+        "avocado",
+        "butter",
+        "cumin",
+        "garlic",
+        "lime",
+        "red onion"
+      ]
+    },
+    {
+      "id": "pilot13",
+      "source": "m2_pilot:item14",
+      "source_recipe_id": "wb-127095",
+      "names": [
+        "bacon",
+        "butter",
+        "ginger",
+        "honey",
+        "molasses",
+        "red pepper flakes"
+      ]
+    },
+    {
+      "id": "pilot14",
+      "source": "m2_pilot:item15",
+      "source_recipe_id": "wb-167451",
+      "names": [
+        "butter",
+        "tomato paste",
+        "tuna"
+      ]
+    },
+    {
+      "id": "pilot15",
+      "source": "m2_pilot:item17",
+      "source_recipe_id": "wb-127735",
+      "names": [
+        "allspice",
+        "chicken stock",
+        "honey",
+        "onion",
+        "sugar",
+        "tomato"
+      ]
+    },
+    {
+      "id": "pilot16",
+      "source": "m2_pilot:item18",
+      "source_recipe_id": "wb-139299",
+      "names": [
+        "beef stock",
+        "flour",
+        "milk",
+        "molasses",
+        "mustard",
+        "parsley",
+        "pickle",
+        "sugar",
+        "vinegar",
+        "wine"
+      ]
+    },
+    {
+      "id": "pilot17",
+      "source": "m2_pilot:item19",
+      "source_recipe_id": "wb-456848",
+      "names": [
+        "bell pepper",
+        "brandy",
+        "stock",
+        "turkey",
+        "turmeric"
+      ]
+    },
+    {
+      "id": "pilot18",
+      "source": "m2_pilot:item20",
+      "source_recipe_id": "wb-180018",
+      "names": [
+        "green onion",
+        "ground beef",
+        "olive oil",
+        "parsley",
+        "thyme"
+      ]
+    },
+    {
+      "id": "pilot19",
+      "source": "m2_pilot:item21",
+      "source_recipe_id": "wb-205807",
+      "names": [
+        "butter",
+        "egg",
+        "molasses",
+        "monterey jack",
+        "oregano",
+        "potato"
+      ]
+    },
+    {
+      "id": "pilot20",
+      "source": "m2_pilot:item24",
+      "source_recipe_id": "wb-166114",
+      "names": [
+        "baking soda",
+        "bell pepper",
+        "egg",
+        "feta",
+        "lemon",
+        "olive",
+        "onion",
+        "oregano",
+        "stock",
+        "tomato"
+      ]
+    },
+    {
+      "id": "new01",
+      "source": "spike_writer",
+      "profile": "student flat",
+      "names": [
+        "pasta",
+        "tinned tomatoes",
+        "cheese",
+        "eggs",
+        "bread",
+        "baked beans",
+        "instant noodles",
+        "frozen peas",
+        "onion",
+        "tinned tuna"
+      ]
+    },
+    {
+      "id": "new02",
+      "source": "spike_writer",
+      "profile": "family weekly shop",
+      "names": [
+        "chicken thighs",
+        "potatoes",
+        "carrots",
+        "broccoli",
+        "rice",
+        "milk",
+        "cheddar",
+        "pasta",
+        "minced beef",
+        "tomato sauce",
+        "bread",
+        "eggs",
+        "butter",
+        "onions"
+      ]
+    },
+    {
+      "id": "new03",
+      "source": "spike_writer",
+      "profile": "vegetarian",
+      "names": [
+        "halloumi",
+        "chickpeas",
+        "spinach",
+        "aubergine",
+        "courgette",
+        "feta",
+        "eggs",
+        "tomatoes",
+        "couscous",
+        "lentils",
+        "yoghurt",
+        "mushrooms"
+      ]
+    },
+    {
+      "id": "new04",
+      "source": "spike_writer",
+      "profile": "vegan",
+      "names": [
+        "tofu",
+        "chickpeas",
+        "coconut milk",
+        "lentils",
+        "rice",
+        "spinach",
+        "sweet potato",
+        "tahini",
+        "oat milk",
+        "nutritional yeast",
+        "black beans",
+        "cashews",
+        "garlic"
+      ]
+    },
+    {
+      "id": "new05",
+      "source": "spike_writer",
+      "profile": "keen baker",
+      "names": [
+        "plain flour",
+        "caster sugar",
+        "butter",
+        "eggs",
+        "baking powder",
+        "vanilla extract",
+        "cocoa powder",
+        "brown sugar",
+        "milk",
+        "yeast",
+        "icing sugar",
+        "chocolate chips",
+        "cream cheese"
+      ]
+    },
+    {
+      "id": "new06",
+      "source": "spike_writer",
+      "profile": "South Asian home cook",
+      "names": [
+        "basmati rice",
+        "red lentils",
+        "chickpeas",
+        "onion",
+        "tomatoes",
+        "ginger",
+        "garlic",
+        "turmeric",
+        "cumin seeds",
+        "garam masala",
+        "paneer",
+        "yoghurt",
+        "green chillies",
+        "coriander",
+        "chapati flour"
+      ]
+    },
+    {
+      "id": "new07",
+      "source": "spike_writer",
+      "profile": "Mexican home cook",
+      "names": [
+        "corn tortillas",
+        "black beans",
+        "avocado",
+        "limes",
+        "jalapenos",
+        "tomatoes",
+        "red onion",
+        "coriander",
+        "chipotle in adobo",
+        "queso fresco",
+        "rice",
+        "chicken thighs",
+        "cumin",
+        "dried ancho chillies"
+      ]
+    },
+    {
+      "id": "new08",
+      "source": "spike_writer",
+      "profile": "Italian home cook",
+      "names": [
+        "spaghetti",
+        "parmesan",
+        "san marzano tomatoes",
+        "garlic",
+        "basil",
+        "mozzarella",
+        "pancetta",
+        "eggs",
+        "arborio rice",
+        "ricotta",
+        "prosciutto",
+        "parsley"
+      ]
+    },
+    {
+      "id": "new09",
+      "source": "spike_writer",
+      "profile": "East Asian home cook",
+      "names": [
+        "soy sauce",
+        "rice",
+        "ginger",
+        "spring onions",
+        "tofu",
+        "sesame oil",
+        "miso paste",
+        "shiitake mushrooms",
+        "pak choi",
+        "eggs",
+        "rice vinegar",
+        "gochujang",
+        "udon noodles",
+        "nori"
+      ]
+    },
+    {
+      "id": "new10",
+      "source": "spike_writer",
+      "profile": "Middle Eastern home cook",
+      "names": [
+        "lamb mince",
+        "chickpeas",
+        "tahini",
+        "pita bread",
+        "yoghurt",
+        "lemons",
+        "sumac",
+        "za'atar",
+        "bulgur",
+        "parsley",
+        "cucumber",
+        "tomatoes",
+        "aubergine",
+        "pomegranate molasses",
+        "cumin"
+      ]
+    },
+    {
+      "id": "new11",
+      "source": "spike_writer",
+      "profile": "British pub-style cook",
+      "names": [
+        "sausages",
+        "potatoes",
+        "cheddar",
+        "bacon",
+        "eggs",
+        "bread",
+        "beef stock cubes",
+        "onions",
+        "peas",
+        "plain flour",
+        "butter",
+        "mustard",
+        "worcestershire sauce",
+        "brown sauce"
+      ]
+    },
+    {
+      "id": "new12",
+      "source": "spike_writer",
+      "profile": "low budget",
+      "names": [
+        "rice",
+        "lentils",
+        "onion",
+        "carrots",
+        "potatoes",
+        "eggs",
+        "tinned tomatoes",
+        "oats",
+        "bananas",
+        "cabbage"
+      ]
+    },
+    {
+      "id": "new13",
+      "source": "spike_writer",
+      "profile": "after a party",
+      "names": [
+        "crisps",
+        "hummus",
+        "olives",
+        "limes",
+        "tortilla wraps",
+        "cooked ham",
+        "cheddar",
+        "cream cheese",
+        "bread rolls",
+        "cherry tomatoes",
+        "grapes"
+      ]
+    },
+    {
+      "id": "new14",
+      "source": "spike_writer",
+      "profile": "nearly empty fridge",
+      "names": [
+        "eggs",
+        "butter",
+        "bread",
+        "ketchup",
+        "tinned tuna",
+        "rice",
+        "onion"
+      ]
+    },
+    {
+      "id": "new15",
+      "source": "spike_writer",
+      "profile": "gym and high protein",
+      "names": [
+        "chicken breast",
+        "eggs",
+        "greek yoghurt",
+        "oats",
+        "cottage cheese",
+        "rice",
+        "broccoli",
+        "whey protein",
+        "tinned tuna",
+        "sweet potato",
+        "spinach",
+        "peanut butter",
+        "bananas"
+      ]
+    },
+    {
+      "id": "new16",
+      "source": "spike_writer",
+      "profile": "retired couple",
+      "names": [
+        "potatoes",
+        "cod fillets",
+        "peas",
+        "carrots",
+        "lamb chops",
+        "cabbage",
+        "marmalade",
+        "porridge oats",
+        "tinned salmon",
+        "milk",
+        "cheddar",
+        "eggs",
+        "bread",
+        "mushrooms"
+      ]
+    },
+    {
+      "id": "new17",
+      "source": "spike_writer",
+      "profile": "breakfast person",
+      "names": [
+        "eggs",
+        "bacon",
+        "bread",
+        "avocado",
+        "porridge oats",
+        "milk",
+        "maple syrup",
+        "blueberries",
+        "greek yoghurt",
+        "granola",
+        "bananas",
+        "butter",
+        "pancake mix"
+      ]
+    },
+    {
+      "id": "new18",
+      "source": "spike_writer",
+      "profile": "slow cooker user",
+      "names": [
+        "beef chuck",
+        "pork shoulder",
+        "onions",
+        "carrots",
+        "potatoes",
+        "beef stock",
+        "tinned tomatoes",
+        "kidney beans",
+        "celery",
+        "garlic",
+        "bay leaves",
+        "chicken thighs",
+        "paprika"
+      ]
+    },
+    {
+      "id": "new19",
+      "source": "spike_writer",
+      "profile": "fresh market shopper",
+      "names": [
+        "courgettes",
+        "heirloom tomatoes",
+        "fresh basil",
+        "peaches",
+        "sweetcorn",
+        "new potatoes",
+        "rocket",
+        "goat cheese",
+        "sourdough bread",
+        "free range eggs",
+        "lemons",
+        "radishes",
+        "fennel",
+        "strawberries"
+      ]
+    },
+    {
+      "id": "new20",
+      "source": "spike_writer",
+      "profile": "freezer and tins",
+      "names": [
+        "frozen peas",
+        "frozen prawns",
+        "frozen chicken breast",
+        "frozen spinach",
+        "tinned chickpeas",
+        "tinned tomatoes",
+        "tinned sweetcorn",
+        "tinned tuna",
+        "coconut milk",
+        "frozen mixed veg",
+        "baked beans",
+        "frozen berries",
+        "pasta",
+        "tinned kidney beans"
+      ]
+    }
+  ]
+}
