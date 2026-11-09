@@ -1,0 +1,82 @@
+{
+  "arms": [],
+  "command": "uv run python scripts/m3_dev_baseline.py --out results/m3_m1_dev_baseline.json",
+  "commit": "87de6b9cffce5f469794991ecd3eefd85fc8e1fd",
+  "comparisons": [],
+  "config": {
+    "inputs": {
+      "correct": 74,
+      "input_accuracy": 0.891566265060241,
+      "n": 83
+    },
+    "labels": "model-labelled; inputs settled by the owner, see NOTICE.md",
+    "parser": {
+      "f1": 0.8479163723689788,
+      "gold_found": 123,
+      "gold_groups": 152,
+      "gold_out_of_table": 20,
+      "lines": 150,
+      "mention_accuracy": 0.8026315789473685,
+      "mention_correct": 122,
+      "optional_accuracy": 0.9852941176470589,
+      "optional_n": 136,
+      "precision": 0.8905109489051095,
+      "pred_correct": 122,
+      "pred_groups": 137,
+      "recall": 0.8092105263157895
+    },
+    "resolver": "M1: line resolver for parser lines; one exact key lookup for inputs",
+    "split": "dev",
+    "table_rows": 337
+  },
+  "corpus_fingerprint": "a1a076ab0aee385c4e01cdc904342214dfaa6b01dc35d80d32519ea625c597d2",
+  "dirty": false,
+  "dirty_paths": [],
+  "environment": {
+    "numpy": "2.4.6",
+    "platform": "Windows 10 (win32)",
+    "python": "3.11.15"
+  },
+  "label": "MEASURED",
+  "metrics": [
+    {
+      "arm": null,
+      "depends_on": [
+        "ingredient_table",
+        "parser_rules"
+      ],
+      "n": 152,
+      "name": "mention_accuracy",
+      "role": "product",
+      "split": "dev",
+      "value": 0.8026315789473685
+    },
+    {
+      "arm": null,
+      "depends_on": [
+        "ingredient_table",
+        "parser_rules"
+      ],
+      "n": 137,
+      "name": "parser_precision",
+      "role": "sanity",
+      "split": "dev",
+      "value": 0.8905109489051095
+    },
+    {
+      "arm": null,
+      "depends_on": [
+        "ingredient_table",
+        "name_resolver"
+      ],
+      "n": 83,
+      "name": "input_accuracy",
+      "role": "product",
+      "split": "dev",
+      "value": 0.891566265060241
+    }
+  ],
+  "schema": 1,
+  "seed": 0,
+  "what": "M1 resolver on the dev halves before any M3 change (baseline for growth)"
+}
