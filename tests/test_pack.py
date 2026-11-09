@@ -13,7 +13,7 @@ from pathlib import Path
 
 import pytest
 
-from pantrychef.ingredients.table import DEFAULT_TABLE_PATH
+from pantrychef.ingredients.table import DEFAULT_TABLE_PATH, DEFAULT_WORDS_PATH, IngredientTable
 from pantrychef.pack.allowlist import AllowlistError, sha256_file
 from pantrychef.pack.build import BuildError, build_pack, check_source_url
 from pantrychef.pack.guard import GuardViolation, guarded_build
@@ -29,7 +29,9 @@ def _snapshot(path: Path, records: list[dict]) -> None:
         gz.write(raw)
 
 
-def _allowlist(tmp: Path, snapshot: Path, table: Path = DEFAULT_TABLE_PATH) -> Path:
+def _allowlist(
+    tmp: Path, snapshot: Path, table: Path = DEFAULT_TABLE_PATH, words: Path = DEFAULT_WORDS_PATH
+) -> Path:
     path = tmp / "allowlist.json"
     path.write_text(
         json.dumps(
@@ -41,6 +43,7 @@ def _allowlist(tmp: Path, snapshot: Path, table: Path = DEFAULT_TABLE_PATH) -> P
                         "retrieved_on": "2026-11-03",
                     },
                     "table": {"path": str(table), "sha256": sha256_file(table)},
+                    "words": {"path": str(words), "sha256": sha256_file(words)},
                 }
             }
         ),
@@ -111,7 +114,7 @@ def test_manifest_lists_every_shipped_file_with_hash_size_licence(fixture_build)
         assert f["sha256"] == hashlib.sha256(data).hexdigest() and f["size"] == len(data)
         assert f["licence"] == "CC BY-SA 4.0"
     assert json.loads((out / "manifest.v1.json").read_text()) == manifest
-    assert set(manifest["inputs"]) == {"snapshot", "table"}
+    assert set(manifest["inputs"]) == {"snapshot", "table", "words"}
 
 
 def test_build_is_deterministic(tmp_path):
@@ -278,3 +281,30 @@ def test_real_pack_core_is_under_3_mb(tmp_path):
     core = next(f for f in manifest["files"] if f["name"].startswith("core."))
     assert core["size"] < 3 * 1024 * 1024
     assert manifest["counts"]["recipes"] > 3000
+
+
+def test_build_uses_the_listed_words_file_and_reads_nothing_else(tmp_path, monkeypatch):
+    """The build passes the allow-listed words in. The default words are never opened."""
+    import pantrychef.pack.build as build_mod
+
+    seen = []
+    real = IngredientTable.from_text.__func__
+
+    def spy(cls, text, words_json=None):
+        seen.append(words_json)
+        return real(cls, text, words_json)
+
+    monkeypatch.setattr(build_mod.IngredientTable, "from_text", classmethod(spy))
+    snap = tmp_path / "snap.jsonl.gz"
+    _snapshot(snap, json.loads(PAGES.read_text(encoding="utf8")))
+    manifest = build_pack(
+        _allowlist(tmp_path, snap), tmp_path / "o", repo_root=ROOT, commit="c", dirty=False
+    )
+    assert seen == [DEFAULT_WORDS_PATH.read_text(encoding="utf8")]
+    assert manifest["inputs"]["words"]["sha256"] == sha256_file(DEFAULT_WORDS_PATH)
+
+
+def test_from_text_without_words_opens_no_file_in_a_guarded_build(tmp_path):
+    csv_text = "id,name,synonyms,staple,provenance\na,apple,,0,hand\n"
+    with guarded_build([], tmp_path / "out", [ROOT / "pantrychef"]):
+        assert IngredientTable.from_text(csv_text).words.staple_cue == {"salt"}

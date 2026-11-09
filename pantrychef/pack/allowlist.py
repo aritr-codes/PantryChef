@@ -11,7 +11,7 @@ import json
 from dataclasses import dataclass
 from pathlib import Path
 
-REQUIRED = ("snapshot", "table")
+REQUIRED = ("snapshot", "table", "words")
 
 
 class AllowlistError(RuntimeError):

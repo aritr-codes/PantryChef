@@ -44261,14 +44261,14 @@
   {
    "input": "asparagus",
    "tokens": [
-    "asparagu"
+    "asparagus"
    ]
   },
   {
    "input": "bay leaves",
    "tokens": [
     "bay",
-    "leave"
+    "leaf"
    ]
   },
   {
@@ -44334,6 +44334,90 @@
    "input": "potatoes",
    "tokens": [
     "potato"
+   ]
+  },
+  {
+   "input": "couscous",
+   "tokens": [
+    "couscous"
+   ]
+  },
+  {
+   "input": "hummus",
+   "tokens": [
+    "hummus"
+   ]
+  },
+  {
+   "input": "citrus",
+   "tokens": [
+    "citrus"
+   ]
+  },
+  {
+   "input": "octopus",
+   "tokens": [
+    "octopus"
+   ]
+  },
+  {
+   "input": "swiss",
+   "tokens": [
+    "swiss"
+   ]
+  },
+  {
+   "input": "chilies",
+   "tokens": [
+    "chili"
+   ]
+  },
+  {
+   "input": "knives",
+   "tokens": [
+    "knife"
+   ]
+  },
+  {
+   "input": "cheeses",
+   "tokens": [
+    "cheese"
+   ]
+  },
+  {
+   "input": "halves",
+   "tokens": [
+    "half"
+   ]
+  },
+  {
+   "input": "loaves",
+   "tokens": [
+    "loaf"
+   ]
+  },
+  {
+   "input": "chilis",
+   "tokens": [
+    "chili"
+   ]
+  },
+  {
+   "input": "chillis",
+   "tokens": [
+    "chilli"
+   ]
+  },
+  {
+   "input": "zucchinis",
+   "tokens": [
+    "zucchini"
+   ]
+  },
+  {
+   "input": "tennis",
+   "tokens": [
+    "tennis"
    ]
   },
   {

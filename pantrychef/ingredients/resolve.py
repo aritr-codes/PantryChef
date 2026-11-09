@@ -20,7 +20,13 @@ from __future__ import annotations
 import re
 from dataclasses import dataclass
 
-from pantrychef.ingredients.table import IngredientTable, tokens
+from pantrychef.ingredients.table import (
+    DEFAULT_WORDS,
+    IngredientTable,
+    Words,
+    is_modifier,
+    tokens,
+)
 from pantrychef.ingredients.units import parse_quantity, parse_unit
 
 _PAREN = re.compile(r"\([^)]*\)")
@@ -32,16 +38,6 @@ _OPTIONAL = re.compile(
 )
 _TASTE = re.compile(r"\bto taste\b|\bas needed\b", re.I)
 _PEPPER = "?pepper"
-# Words that may stand alone in an "and" part without hiding an ingredient.
-_PREP = frozenset(
-    """a an the of into to for with in on or and plus more extra some about each as if desired
-    chopped diced sliced minced peeled cored seeded soaked cooked drained rinsed mashed crushed
-    grated shredded melted softened beaten trimmed halved quartered cut finely roughly thinly
-    coarsely fresh freshly dried dry ground whole small large medium taste needed optional
-    washed dried cleaned divided packed sifted toasted roasted boiled steamed chilled cold warm
-    hot room temperature skinned deveined pitted stemmed boneless skinless ripe firm lean thick
-    thin raw frozen canned unsalted salted plain""".split()  # noqa: SIM905
-)
 
 
 @dataclass(frozen=True)
@@ -50,12 +46,6 @@ class ResolvedLine:
     optional: bool
     read: bool
     text: str
-
-
-def _is_prep(token: str) -> bool:
-    return token in _PREP or (
-        token.endswith("ed") and len(token) > 4 and not token.endswith("seed")
-    )
 
 
 def _spans(toks: tuple[str, ...], table: IngredientTable) -> list[tuple[int, int, str]]:
@@ -89,11 +79,11 @@ def _split(
     return parts
 
 
-def _body(text: str) -> str:
+def _body(text: str, words: Words = DEFAULT_WORDS) -> str:
     body = _PAREN.sub(" ", text).replace("&", " and ")
     body = _SLASH.sub(" or ", body)
     _, rest = parse_quantity(body)
-    unit, rest = parse_unit(rest)
+    unit, rest = parse_unit(rest, words.units)
     if unit == "clove" and not rest.strip():
         return "clove"  # "4 cloves" alone means the spice
     return rest
@@ -108,17 +98,18 @@ def resolve_lines(text: str, table: IngredientTable) -> list[ResolvedLine]:
 
     # groups: (separator, list of alternatives, each a list of ids) in line order
     groups: list[tuple[str, list[list[str]], bool]] = []
-    has_salt = False
-    for ci, chunk in enumerate(_body(raw).split(",")):
+    words = table.words
+    has_cue = False
+    for ci, chunk in enumerate(_body(raw, table.words).split(",")):
         toks = tokens(chunk)
         spans = _spans(toks, table)
-        has_salt = has_salt or any(i == "salt" for _, _, i in spans)
+        has_cue = has_cue or any(i in words.staple_cue for _, _, i in spans)
         for ai, (a_toks, a_spans) in enumerate(_split(toks, spans, "and")):
             sep = "first" if ci == 0 and ai == 0 else ("and" if ai else "comma")
             alts, plain = [], True
             for o_toks, o_spans in _split(a_toks, a_spans, "or"):
                 ids = [i for _, _, i in o_spans]
-                plain = plain and all(_is_prep(t) for t in o_toks) and not ids
+                plain = plain and all(is_modifier(t, words) for t in o_toks) and not ids
                 if ids:
                     # Head noun: the last match, but a staple never hides a real ingredient.
                     real = [i for i in ids if i not in table.staples]
@@ -143,9 +134,9 @@ def resolve_lines(text: str, table: IngredientTable) -> list[ResolvedLine]:
         for alt in alts:
             for i in alt:
                 if i == _PEPPER:
-                    if not (has_salt or taste):
+                    if not (has_cue or taste):
                         continue
-                    i = "black_pepper"
+                    i = words.bare_pepper["target"]
                 if i not in ids:
                     ids.append(i)
         if ids:

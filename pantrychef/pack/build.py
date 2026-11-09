@@ -105,7 +105,9 @@ def build_pack(
     out.mkdir(parents=True, exist_ok=True)
 
     with guarded_build([i.path for i in inputs.values()], out, [_CODE_ROOT]):
-        table = IngredientTable.from_text(data["table"].decode("utf8"))
+        table = IngredientTable.from_text(
+            data["table"].decode("utf8"), data["words"].decode("utf8")
+        )
         sources = [
             r for rec in _read_snapshot(data["snapshot"]) if (r := parse_page(rec, retrieved_on))
         ]

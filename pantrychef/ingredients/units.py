@@ -10,6 +10,8 @@ from __future__ import annotations
 import re
 from fractions import Fraction
 
+from pantrychef.ingredients.table import DEFAULT_WORDS
+
 UNICODE_FRACTIONS = {
     "½": "1/2",
     "⅓": "1/3",
@@ -27,58 +29,8 @@ UNICODE_FRACTIONS = {
     "⅞": "7/8",
 }
 
-UNITS = {
-    "cup": "cup",
-    "cups": "cup",
-    "c": "cup",
-    "tablespoon": "tbsp",
-    "tablespoons": "tbsp",
-    "tbsp": "tbsp",
-    "tbs": "tbsp",
-    "tbsps": "tbsp",
-    "teaspoon": "tsp",
-    "teaspoons": "tsp",
-    "tsp": "tsp",
-    "tsps": "tsp",
-    "gram": "g",
-    "grams": "g",
-    "g": "g",
-    "kg": "kg",
-    "kilogram": "kg",
-    "kilograms": "kg",
-    "ounce": "oz",
-    "ounces": "oz",
-    "oz": "oz",
-    "pound": "lb",
-    "pounds": "lb",
-    "lb": "lb",
-    "lbs": "lb",
-    "milliliter": "ml",
-    "milliliters": "ml",
-    "ml": "ml",
-    "liter": "l",
-    "liters": "l",
-    "litre": "l",
-    "litres": "l",
-    "l": "l",
-    "pinch": "pinch",
-    "dash": "dash",
-    "clove": "clove",
-    "cloves": "clove",
-    "can": "can",
-    "cans": "can",
-    "package": "package",
-    "packages": "package",
-    "pkg": "package",
-    "slice": "slice",
-    "slices": "slice",
-    "stick": "stick",
-    "sticks": "stick",
-    "quart": "quart",
-    "quarts": "quart",
-    "pint": "pint",
-    "pints": "pint",
-}
+# Unit words live in data/ingredients/words.v1.json. The module default is read at import.
+UNITS = DEFAULT_WORDS.units
 
 _NUM = re.compile(r"^\s*(\d+\s+\d+/\d+|\d+/\d+|\d+\.\d+|\d+)")
 _RANGE_TAIL = re.compile(r"^\s*(?:-|to)\s*(?:\d+\.\d+|\d+/\d+|\d+)")
@@ -116,17 +68,18 @@ def parse_quantity(text: str) -> tuple[float | None, str]:
 _SIZE_PAREN = re.compile(r"^\s*\([^)]*\)\s*")
 
 
-def parse_unit(text: str) -> tuple[str | None, str]:
+def parse_unit(text: str, units: dict[str, str] | None = None) -> tuple[str | None, str]:
     """Split a leading unit off ``text``. A size note such as "(14 oz) can" is skipped."""
+    units = UNITS if units is None else units
     sized = _SIZE_PAREN.sub("", text, count=1)
     if sized != text:
-        unit, rest = parse_unit(sized)
+        unit, rest = parse_unit(sized, units)
         if unit:
             return unit, rest
     parts = text.strip().split()
     if not parts:
         return None, ""
     first = parts[0].lower().rstrip(".")
-    if first in UNITS:
-        return UNITS[first], " ".join(parts[1:]).strip()
+    if first in units:
+        return units[first], " ".join(parts[1:]).strip()
     return None, text.strip()

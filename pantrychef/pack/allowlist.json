@@ -8,6 +8,10 @@
     "table": {
       "path": "data/ingredients/ingredients.csv",
       "sha256": "a896631e5b1f3bd738e15aff1460f8874347006307d8ea1270fdb709bb95ed01"
+    },
+    "words": {
+      "path": "data/ingredients/words.v1.json",
+      "sha256": "5587b1b184237aada8859b5a62e9eedfd66d7e0679419cb2fb55d2a2d3c3ab17"
     }
   }
 }
