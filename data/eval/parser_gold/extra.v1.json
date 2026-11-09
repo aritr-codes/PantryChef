@@ -1,0 +1,911 @@
+{
+  "version": 1,
+  "seed": 43,
+  "snapshot": "snapshot.2026-11-03.jsonl.gz",
+  "snapshot_sha256": "a1a076ab0aee385c4e01cdc904342214dfaa6b01dc35d80d32519ea625c597d2",
+  "retrieved_on": "2026-11-03",
+  "licence": "CC BY-SA 4.0",
+  "n": 100,
+  "lines": [
+    {
+      "id": "wb-403553#2",
+      "text": "60 ml/¼ cup milk, half-and-half, or light cream",
+      "page": "Cookbook:Mashed Potatoes",
+      "revision_id": 4669243,
+      "revision_url": "https://en.wikibooks.org/w/index.php?oldid=4669243",
+      "stratum": "random",
+      "split": "extra"
+    },
+    {
+      "id": "wb-129526#12",
+      "text": "1 strip of lemon rind",
+      "page": "Cookbook:Spaghetti with Bolognese Meat Sauce",
+      "revision_id": 4630833,
+      "revision_url": "https://en.wikibooks.org/w/index.php?oldid=4630833",
+      "stratum": "random",
+      "split": "extra"
+    },
+    {
+      "id": "wb-455363#2",
+      "text": "rhubarb, trimmed and chopped into pieces",
+      "page": "Cookbook:Rhubarb and Custard Bread Pudding",
+      "revision_id": 4587483,
+      "revision_url": "https://en.wikibooks.org/w/index.php?oldid=4587483",
+      "stratum": "random",
+      "split": "extra"
+    },
+    {
+      "id": "wb-462331#0",
+      "text": "1¾ cups (400 ml) heavy cream",
+      "page": "Cookbook:American Alfredo Sauce",
+      "revision_id": 4518847,
+      "revision_url": "https://en.wikibooks.org/w/index.php?oldid=4518847",
+      "stratum": "random",
+      "split": "extra"
+    },
+    {
+      "id": "wb-174890#12",
+      "text": "1 free-range chicken, jointed into 8 pieces, or 8 thighs and/or drumsticks",
+      "page": "Cookbook:Bangladesh Curry",
+      "revision_id": 4518850,
+      "revision_url": "https://en.wikibooks.org/w/index.php?oldid=4518850",
+      "stratum": "random",
+      "split": "extra"
+    },
+    {
+      "id": "wb-36151#3",
+      "text": "Grated zest of an organically-grown lemon",
+      "page": "Cookbook:Latte di Suocera (Lemon Cream Liqueur)",
+      "revision_id": 4522212,
+      "revision_url": "https://en.wikibooks.org/w/index.php?oldid=4522212",
+      "stratum": "random",
+      "split": "extra"
+    },
+    {
+      "id": "wb-110334#4",
+      "text": "1 tablespoon almond essence",
+      "page": "Cookbook:Surinamese Cassava and Coconut Dessert (Bojo)",
+      "revision_id": 4587351,
+      "revision_url": "https://en.wikibooks.org/w/index.php?oldid=4587351",
+      "stratum": "random",
+      "split": "extra"
+    },
+    {
+      "id": "wb-38515#13",
+      "text": "1 grind nutmeg",
+      "page": "Cookbook:Arambasici (Croatian Sour Cabbage Rolls)",
+      "revision_id": 4509907,
+      "revision_url": "https://en.wikibooks.org/w/index.php?oldid=4509907",
+      "stratum": "random",
+      "split": "extra"
+    },
+    {
+      "id": "wb-452017#9",
+      "text": "1 can (400 g / 14 oz) chopped tomatoes",
+      "page": "Cookbook:Spaghetti Pie",
+      "revision_id": 4605236,
+      "revision_url": "https://en.wikibooks.org/w/index.php?oldid=4605236",
+      "stratum": "random",
+      "split": "extra"
+    },
+    {
+      "id": "wb-412220#3",
+      "text": "1 liter water",
+      "page": "Cookbook:Foithong (Egg Threads in Syrup)",
+      "revision_id": 4587440,
+      "revision_url": "https://en.wikibooks.org/w/index.php?oldid=4587440",
+      "stratum": "random",
+      "split": "extra"
+    },
+    {
+      "id": "wb-307197#12",
+      "text": "2 onions, grated",
+      "page": "Cookbook:Fish Biryani",
+      "revision_id": 4612001,
+      "revision_url": "https://en.wikibooks.org/w/index.php?oldid=4612001",
+      "stratum": "random",
+      "split": "extra"
+    },
+    {
+      "id": "wb-28941#0",
+      "text": "5 ounces Barnham and Bailey animal crackers or sweet digestive biscuits",
+      "page": "Cookbook:New York Cheesecake",
+      "revision_id": 4517122,
+      "revision_url": "https://en.wikibooks.org/w/index.php?oldid=4517122",
+      "stratum": "random",
+      "split": "extra"
+    },
+    {
+      "id": "wb-133863#3",
+      "text": "Scotch bonnet Chile peppers, diced",
+      "page": "Cookbook:Moin Moin (Nigerian Bean Pudding)",
+      "revision_id": 4573228,
+      "revision_url": "https://en.wikibooks.org/w/index.php?oldid=4573228",
+      "stratum": "random",
+      "split": "extra"
+    },
+    {
+      "id": "wb-456836#3",
+      "text": "Juice of 1–2 fresh lemons (optional, for added tanginess)",
+      "page": "Cookbook:Wonjo Bissap (Gambian Hibiscus Beverage)",
+      "revision_id": 4510293,
+      "revision_url": "https://en.wikibooks.org/w/index.php?oldid=4510293",
+      "stratum": "random",
+      "split": "extra"
+    },
+    {
+      "id": "wb-26777#4",
+      "text": "6 cardamom pods",
+      "page": "Cookbook:Kheer (Rice Pudding)",
+      "revision_id": 4587270,
+      "revision_url": "https://en.wikibooks.org/w/index.php?oldid=4587270",
+      "stratum": "random",
+      "split": "extra"
+    },
+    {
+      "id": "wb-159971#11",
+      "text": "½ small cabbage, thinly sliced",
+      "page": "Cookbook:Ukrainian Borscht",
+      "revision_id": 4671618,
+      "revision_url": "https://en.wikibooks.org/w/index.php?oldid=4671618",
+      "stratum": "random",
+      "split": "extra"
+    },
+    {
+      "id": "wb-451655#0",
+      "text": "Large potatoes, peeled",
+      "page": "Cookbook:Fried Potato Slices",
+      "revision_id": 4503144,
+      "revision_url": "https://en.wikibooks.org/w/index.php?oldid=4503144",
+      "stratum": "random",
+      "split": "extra"
+    },
+    {
+      "id": "wb-56657#0",
+      "text": "1 kg red meat",
+      "page": "Cookbook:Cirdingis (Chechen Meat and Dumplings)",
+      "revision_id": 4501454,
+      "revision_url": "https://en.wikibooks.org/w/index.php?oldid=4501454",
+      "stratum": "random",
+      "split": "extra"
+    },
+    {
+      "id": "wb-409684#7",
+      "text": "1 can (8 oz) beef broth",
+      "page": "Cookbook:Hamburger Stoup",
+      "revision_id": 4518624,
+      "revision_url": "https://en.wikibooks.org/w/index.php?oldid=4518624",
+      "stratum": "random",
+      "split": "extra"
+    },
+    {
+      "id": "wb-7671#4",
+      "text": "8 ounces crushed tomatoes",
+      "page": "Cookbook:Rice and Turnip Minestrone",
+      "revision_id": 4518503,
+      "revision_url": "https://en.wikibooks.org/w/index.php?oldid=4518503",
+      "stratum": "random",
+      "split": "extra"
+    },
+    {
+      "id": "wb-17010#10",
+      "text": "½ glass Chablis white wine",
+      "page": "Cookbook:Tomato Sauce Piquante",
+      "revision_id": 4519033,
+      "revision_url": "https://en.wikibooks.org/w/index.php?oldid=4519033",
+      "stratum": "random",
+      "split": "extra"
+    },
+    {
+      "id": "wb-106261#1",
+      "text": "⅓ cup (60 g) flour",
+      "page": "Cookbook:Corn Dogs",
+      "revision_id": 4523343,
+      "revision_url": "https://en.wikibooks.org/w/index.php?oldid=4523343",
+      "stratum": "random",
+      "split": "extra"
+    },
+    {
+      "id": "wb-166037#2",
+      "text": "1 shallot, finely chopped",
+      "page": "Cookbook:Béarnaise Sauce",
+      "revision_id": 4518859,
+      "revision_url": "https://en.wikibooks.org/w/index.php?oldid=4518859",
+      "stratum": "random",
+      "split": "extra"
+    },
+    {
+      "id": "wb-63850#2",
+      "text": "1 dessert spoon golden syrup",
+      "page": "Cookbook:Basic Flapjacks",
+      "revision_id": 4587307,
+      "revision_url": "https://en.wikibooks.org/w/index.php?oldid=4587307",
+      "stratum": "random",
+      "split": "extra"
+    },
+    {
+      "id": "wb-415341#1",
+      "text": "2½ cups lukewarm water, divided",
+      "page": "Cookbook:Lahoh (Spongy Flatbread) I",
+      "revision_id": 4630060,
+      "revision_url": "https://en.wikibooks.org/w/index.php?oldid=4630060",
+      "stratum": "random",
+      "split": "extra"
+    },
+    {
+      "id": "wb-11173#3",
+      "text": "Lemon zest",
+      "page": "Cookbook:Windsor Pudding",
+      "revision_id": 4517955,
+      "revision_url": "https://en.wikibooks.org/w/index.php?oldid=4517955",
+      "stratum": "random",
+      "split": "extra"
+    },
+    {
+      "id": "wb-78549#7",
+      "text": "10 whole black peppercorns",
+      "page": "Cookbook:Pigeon Pea and Fenugreek Curry (Methi Tadka Dal)",
+      "revision_id": 4615199,
+      "revision_url": "https://en.wikibooks.org/w/index.php?oldid=4615199",
+      "stratum": "random",
+      "split": "extra"
+    },
+    {
+      "id": "wb-113272#5",
+      "text": "1 medium-large onion, diced",
+      "page": "Cookbook:Tuscan Bean Soup",
+      "revision_id": 4515570,
+      "revision_url": "https://en.wikibooks.org/w/index.php?oldid=4515570",
+      "stratum": "random",
+      "split": "extra"
+    },
+    {
+      "id": "wb-381837#0",
+      "text": "Rice flour",
+      "page": "Cookbook:Jhilinga (Nepalese Rice Fritters)",
+      "revision_id": 4517744,
+      "revision_url": "https://en.wikibooks.org/w/index.php?oldid=4517744",
+      "stratum": "random",
+      "split": "extra"
+    },
+    {
+      "id": "wb-243052#0",
+      "text": "1 whole chicken, cut into pieces (breast cut into 4 pieces)",
+      "page": "Cookbook:Estofado de Pollo (Chicken Stew)",
+      "revision_id": 4518611,
+      "revision_url": "https://en.wikibooks.org/w/index.php?oldid=4518611",
+      "stratum": "random",
+      "split": "extra"
+    },
+    {
+      "id": "wb-414624#1",
+      "text": "1 large glass of orange blossom water",
+      "page": "Cookbook:Cherbet Mazhar (Algerian Flower Water Drink)",
+      "revision_id": 4513339,
+      "revision_url": "https://en.wikibooks.org/w/index.php?oldid=4513339",
+      "stratum": "random",
+      "split": "extra"
+    },
+    {
+      "id": "wb-18251#9",
+      "text": "1 spoonful flour",
+      "page": "Cookbook:Zelenchukova Supa (Bulgarian Vegetable Soup)",
+      "revision_id": 4494292,
+      "revision_url": "https://en.wikibooks.org/w/index.php?oldid=4494292",
+      "stratum": "random",
+      "split": "extra"
+    },
+    {
+      "id": "wb-199768#8",
+      "text": "¼ cup () dehydrated lemon peel",
+      "page": "Cookbook:Barbecue Rub",
+      "revision_id": 4516582,
+      "revision_url": "https://en.wikibooks.org/w/index.php?oldid=4516582",
+      "stratum": "random",
+      "split": "extra"
+    },
+    {
+      "id": "wb-199317#2",
+      "text": "7 tbsp coarsely ground coriander seed",
+      "page": "Cookbook:Steak Rub",
+      "revision_id": 4525508,
+      "revision_url": "https://en.wikibooks.org/w/index.php?oldid=4525508",
+      "stratum": "random",
+      "split": "extra"
+    },
+    {
+      "id": "wb-180338#3",
+      "text": "¼ cup (70 g) butter",
+      "page": "Cookbook:Kasnocken (Austrian Cheese Dumplings)",
+      "revision_id": 4511373,
+      "revision_url": "https://en.wikibooks.org/w/index.php?oldid=4511373",
+      "stratum": "random",
+      "split": "extra"
+    },
+    {
+      "id": "wb-457280#5",
+      "text": "1 small cucumber, diced",
+      "page": "Cookbook:Yemiser Selatta (Ethiopian Lentil Salad)",
+      "revision_id": 4531802,
+      "revision_url": "https://en.wikibooks.org/w/index.php?oldid=4531802",
+      "stratum": "random",
+      "split": "extra"
+    },
+    {
+      "id": "wb-34650#5",
+      "text": "Asparagus",
+      "page": "Cookbook:Neapolitan Soup",
+      "revision_id": 4518464,
+      "revision_url": "https://en.wikibooks.org/w/index.php?oldid=4518464",
+      "stratum": "random",
+      "split": "extra"
+    },
+    {
+      "id": "wb-34654#3",
+      "text": "Salt, pepper, vinegar, and herbs, to taste",
+      "page": "Cookbook:Herring Soup",
+      "revision_id": 4518418,
+      "revision_url": "https://en.wikibooks.org/w/index.php?oldid=4518418",
+      "stratum": "random",
+      "split": "extra"
+    },
+    {
+      "id": "wb-200937#2",
+      "text": "2 red chillies, cut in dice",
+      "page": "Cookbook:Pattaya Fried Rice",
+      "revision_id": 4517690,
+      "revision_url": "https://en.wikibooks.org/w/index.php?oldid=4517690",
+      "stratum": "random",
+      "split": "extra"
+    },
+    {
+      "id": "wb-168682#0",
+      "text": "2 eggs OR 4 soft-boiled egg yolks OR 3 oz egg substitute with lecithin",
+      "page": "Cookbook:Hot and Spicy Dip",
+      "revision_id": 4519044,
+      "revision_url": "https://en.wikibooks.org/w/index.php?oldid=4519044",
+      "stratum": "random",
+      "split": "extra"
+    },
+    {
+      "id": "wb-66447#7",
+      "text": "1 tsp dried coriander powder",
+      "page": "Cookbook:Chicken Vindaloo",
+      "revision_id": 4615149,
+      "revision_url": "https://en.wikibooks.org/w/index.php?oldid=4615149",
+      "stratum": "random",
+      "split": "extra"
+    },
+    {
+      "id": "wb-457415#0",
+      "text": "2 cups cooked beans (such as red beans, white beans, or black-eyed peas)",
+      "page": "Cookbook:Ibisuba (Rwandan Bean Salad)",
+      "revision_id": 4534250,
+      "revision_url": "https://en.wikibooks.org/w/index.php?oldid=4534250",
+      "stratum": "random",
+      "split": "extra"
+    },
+    {
+      "id": "wb-455530#5",
+      "text": "8 thick slices pancetta, cut into strips less than width of little finger",
+      "page": "Cookbook:Coq au Vin III",
+      "revision_id": 4518796,
+      "revision_url": "https://en.wikibooks.org/w/index.php?oldid=4518796",
+      "stratum": "random",
+      "split": "extra"
+    },
+    {
+      "id": "wb-4985#4",
+      "text": "1–2 rolls, soaked in some milk",
+      "page": "Cookbook:Pork Stomach Filled with Meat and Vegetables (Saumagen)",
+      "revision_id": 4494445,
+      "revision_url": "https://en.wikibooks.org/w/index.php?oldid=4494445",
+      "stratum": "random",
+      "split": "extra"
+    },
+    {
+      "id": "wb-77803#7",
+      "text": "1 spoonful anchovy sauce",
+      "page": "Cookbook:Sydney Smith's Salad Dressing",
+      "revision_id": 4613699,
+      "revision_url": "https://en.wikibooks.org/w/index.php?oldid=4613699",
+      "stratum": "random",
+      "split": "extra"
+    },
+    {
+      "id": "wb-411682#0",
+      "text": "1 kg palmyra palm fruit (Borassus flabellifer)",
+      "page": "Cookbook:Palm Fruit with Syrup",
+      "revision_id": 4587439,
+      "revision_url": "https://en.wikibooks.org/w/index.php?oldid=4587439",
+      "stratum": "random",
+      "split": "extra"
+    },
+    {
+      "id": "wb-15444#9",
+      "text": "Pennyroyal",
+      "page": "Cookbook:Giblet Soup",
+      "revision_id": 4518409,
+      "revision_url": "https://en.wikibooks.org/w/index.php?oldid=4518409",
+      "stratum": "random",
+      "split": "extra"
+    },
+    {
+      "id": "wb-113272#0",
+      "text": "3 cups cranberry or pinto beans",
+      "page": "Cookbook:Tuscan Bean Soup",
+      "revision_id": 4515570,
+      "revision_url": "https://en.wikibooks.org/w/index.php?oldid=4515570",
+      "stratum": "random",
+      "split": "extra"
+    },
+    {
+      "id": "wb-95892#8",
+      "text": "1 cup (250 ml) red wine",
+      "page": "Cookbook:Greek Moussaka",
+      "revision_id": 4522774,
+      "revision_url": "https://en.wikibooks.org/w/index.php?oldid=4522774",
+      "stratum": "random",
+      "split": "extra"
+    },
+    {
+      "id": "wb-119909#11",
+      "text": "2 tablespoons plus 1 dash Worcestershire sauce",
+      "page": "Cookbook:Nibbles",
+      "revision_id": 4524825,
+      "revision_url": "https://en.wikibooks.org/w/index.php?oldid=4524825",
+      "stratum": "random",
+      "split": "extra"
+    },
+    {
+      "id": "wb-253721#1",
+      "text": "1 tablespoon of amchur (dried green mango) powder",
+      "page": "Cookbook:Bread Filled with Potato Curry (Pani Puri)",
+      "revision_id": 4608515,
+      "revision_url": "https://en.wikibooks.org/w/index.php?oldid=4608515",
+      "stratum": "random",
+      "split": "extra"
+    },
+    {
+      "id": "wb-166037#7",
+      "text": "1 tablespoon freshly-chopped tarragon",
+      "page": "Cookbook:Béarnaise Sauce",
+      "revision_id": 4518859,
+      "revision_url": "https://en.wikibooks.org/w/index.php?oldid=4518859",
+      "stratum": "random",
+      "split": "extra"
+    },
+    {
+      "id": "wb-453110#5",
+      "text": "20 g minced ginger",
+      "page": "Cookbook:Chola and Roti",
+      "revision_id": 4515531,
+      "revision_url": "https://en.wikibooks.org/w/index.php?oldid=4515531",
+      "stratum": "random",
+      "split": "extra"
+    },
+    {
+      "id": "wb-38091#1",
+      "text": "1 large fennel bulb, thinly sliced",
+      "page": "Cookbook:Cioppino (Italian Seafood Stew)",
+      "revision_id": 4630394,
+      "revision_url": "https://en.wikibooks.org/w/index.php?oldid=4630394",
+      "stratum": "random",
+      "split": "extra"
+    },
+    {
+      "id": "wb-209339#7",
+      "text": "½ tsp freshly ground cinnamon",
+      "page": "Cookbook:Bourbon Apples",
+      "revision_id": 4516764,
+      "revision_url": "https://en.wikibooks.org/w/index.php?oldid=4516764",
+      "stratum": "random",
+      "split": "extra"
+    },
+    {
+      "id": "wb-109338#5",
+      "text": "4 cups sliced shiitakes",
+      "page": "Cookbook:Mushroom Soup",
+      "revision_id": 4610476,
+      "revision_url": "https://en.wikibooks.org/w/index.php?oldid=4610476",
+      "stratum": "random",
+      "split": "extra"
+    },
+    {
+      "id": "wb-225558#0",
+      "text": "250 g all-purpose flour",
+      "page": "Cookbook:Vegetable Spring Roll",
+      "revision_id": 4610531,
+      "revision_url": "https://en.wikibooks.org/w/index.php?oldid=4610531",
+      "stratum": "random",
+      "split": "extra"
+    },
+    {
+      "id": "wb-64913#6",
+      "text": "2 tablespoons orange juice",
+      "page": "Cookbook:Cranberry Orange Squares",
+      "revision_id": 4515275,
+      "revision_url": "https://en.wikibooks.org/w/index.php?oldid=4515275",
+      "stratum": "random",
+      "split": "extra"
+    },
+    {
+      "id": "wb-476831#6",
+      "text": "¼ tsp ground pepper",
+      "page": "Cookbook:Orzo Salad",
+      "revision_id": 4527219,
+      "revision_url": "https://en.wikibooks.org/w/index.php?oldid=4527219",
+      "stratum": "random",
+      "split": "extra"
+    },
+    {
+      "id": "wb-23143#12",
+      "text": "¾ teaspoon toasted sesame oil",
+      "page": "Cookbook:Hot and Sour Soup",
+      "revision_id": 4518420,
+      "revision_url": "https://en.wikibooks.org/w/index.php?oldid=4518420",
+      "stratum": "random",
+      "split": "extra"
+    },
+    {
+      "id": "wb-200937#0",
+      "text": "3 tbsp olive oil (2 tbsp for frying and 1 tbsp for making an omelette)",
+      "page": "Cookbook:Pattaya Fried Rice",
+      "revision_id": 4517690,
+      "revision_url": "https://en.wikibooks.org/w/index.php?oldid=4517690",
+      "stratum": "random",
+      "split": "extra"
+    },
+    {
+      "id": "wb-93175#5",
+      "text": "⅔–¾ cup (120–150 g) brown sugar",
+      "page": "Cookbook:Apple Crisp I",
+      "revision_id": 4587326,
+      "revision_url": "https://en.wikibooks.org/w/index.php?oldid=4587326",
+      "stratum": "random",
+      "split": "extra"
+    },
+    {
+      "id": "wb-5477#12",
+      "text": "2 tablespoons vegetable oil",
+      "page": "Cookbook:Beef and Barley Stew",
+      "revision_id": 4535144,
+      "revision_url": "https://en.wikibooks.org/w/index.php?oldid=4535144",
+      "stratum": "random",
+      "split": "extra"
+    },
+    {
+      "id": "wb-13448#9",
+      "text": "½ onion, thinly sliced",
+      "page": "Cookbook:Cabbage Kimchi",
+      "revision_id": 4630327,
+      "revision_url": "https://en.wikibooks.org/w/index.php?oldid=4630327",
+      "stratum": "random",
+      "split": "extra"
+    },
+    {
+      "id": "wb-454170#11",
+      "text": "½ cup (120 ml), plus more as needed, white table wine",
+      "page": "Cookbook:American Marinara Sauce II",
+      "revision_id": 4518811,
+      "revision_url": "https://en.wikibooks.org/w/index.php?oldid=4518811",
+      "stratum": "random",
+      "split": "extra"
+    },
+    {
+      "id": "wb-457469#7",
+      "text": "½ teaspoon cayenne pepper (optional, adjust to taste)",
+      "page": "Cookbook:Ikijumba (Rwandan Sweet Potato Stew)",
+      "revision_id": 4518628,
+      "revision_url": "https://en.wikibooks.org/w/index.php?oldid=4518628",
+      "stratum": "random",
+      "split": "extra"
+    },
+    {
+      "id": "wb-7289#9",
+      "text": "1 tablespoon oil",
+      "page": "Cookbook:Khara Pongal (Rice and Mung Bean Porridge)",
+      "revision_id": 4615203,
+      "revision_url": "https://en.wikibooks.org/w/index.php?oldid=4615203",
+      "stratum": "random",
+      "split": "extra"
+    },
+    {
+      "id": "wb-452001#5",
+      "text": "4 ice cubes",
+      "page": "Cookbook:Brown Butter Toffee Chocolate Chip Cookies",
+      "revision_id": 4587476,
+      "revision_url": "https://en.wikibooks.org/w/index.php?oldid=4587476",
+      "stratum": "random",
+      "split": "extra"
+    },
+    {
+      "id": "wb-30771#4",
+      "text": "3 or more whole spring onions, chopped",
+      "page": "Cookbook:Spring Onion Spelt Spread",
+      "revision_id": 4523503,
+      "revision_url": "https://en.wikibooks.org/w/index.php?oldid=4523503",
+      "stratum": "random",
+      "split": "extra"
+    },
+    {
+      "id": "wb-203753#8",
+      "text": "1 tablespoon black peppercorns, cracked",
+      "page": "Cookbook:Hickory Smoked Pork Chops",
+      "revision_id": 4505204,
+      "revision_url": "https://en.wikibooks.org/w/index.php?oldid=4505204",
+      "stratum": "random",
+      "split": "extra"
+    },
+    {
+      "id": "wb-98709#12",
+      "text": "1 tablespoon tomato paste",
+      "page": "Cookbook:Lentil and Sausage Stew",
+      "revision_id": 4518638,
+      "revision_url": "https://en.wikibooks.org/w/index.php?oldid=4518638",
+      "stratum": "random",
+      "split": "extra"
+    },
+    {
+      "id": "wb-457604#5",
+      "text": "1 cup diced zucchini or squash",
+      "page": "Cookbook:Entula (Ugandan Eggplant Stew)",
+      "revision_id": 4629614,
+      "revision_url": "https://en.wikibooks.org/w/index.php?oldid=4629614",
+      "stratum": "random",
+      "split": "extra"
+    },
+    {
+      "id": "wb-22594#10",
+      "text": "65 g granulated sugar",
+      "page": "Cookbook:Sponge Cake II",
+      "revision_id": 4516958,
+      "revision_url": "https://en.wikibooks.org/w/index.php?oldid=4516958",
+      "stratum": "random",
+      "split": "extra"
+    },
+    {
+      "id": "wb-218663#10",
+      "text": "Fresh thyme",
+      "page": "Cookbook:Venison Pie",
+      "revision_id": 4523246,
+      "revision_url": "https://en.wikibooks.org/w/index.php?oldid=4523246",
+      "stratum": "random",
+      "split": "extra"
+    },
+    {
+      "id": "wb-382322#12",
+      "text": "800 g rice",
+      "page": "Cookbook:Ghormeh Sabzi (Iranian Herb Stew)",
+      "revision_id": 4524744,
+      "revision_url": "https://en.wikibooks.org/w/index.php?oldid=4524744",
+      "stratum": "random",
+      "split": "extra"
+    },
+    {
+      "id": "wb-158109#6",
+      "text": "3 tbsp chopped onion",
+      "page": "Cookbook:Green Chicken Curry with Coconut Milk",
+      "revision_id": 4517539,
+      "revision_url": "https://en.wikibooks.org/w/index.php?oldid=4517539",
+      "stratum": "random",
+      "split": "extra"
+    },
+    {
+      "id": "wb-452517#0",
+      "text": "2 pounds small white potatoes (use waxy or red potatoes)",
+      "page": "Cookbook:Potato Salad (Southern Ontario Style)",
+      "revision_id": 4613369,
+      "revision_url": "https://en.wikibooks.org/w/index.php?oldid=4613369",
+      "stratum": "random",
+      "split": "extra"
+    },
+    {
+      "id": "wb-462091#1",
+      "text": "4 green bell peppers",
+      "page": "Cookbook:Stuffed Peppers (Vegetarian)",
+      "revision_id": 4514117,
+      "revision_url": "https://en.wikibooks.org/w/index.php?oldid=4514117",
+      "stratum": "random",
+      "split": "extra"
+    },
+    {
+      "id": "wb-14851#2",
+      "text": "1 tin (300 ml) sweetened condensed milk",
+      "page": "Cookbook:Lemon Meringue Pie (British)",
+      "revision_id": 4517316,
+      "revision_url": "https://en.wikibooks.org/w/index.php?oldid=4517316",
+      "stratum": "random",
+      "split": "extra"
+    },
+    {
+      "id": "wb-138396#0",
+      "text": "1 cup (250 ml) powdered orange flavor drink mix (e.g. Tang brand)",
+      "page": "Cookbook:Russian Tea",
+      "revision_id": 4509761,
+      "revision_url": "https://en.wikibooks.org/w/index.php?oldid=4509761",
+      "stratum": "random",
+      "split": "extra"
+    },
+    {
+      "id": "wb-421882#5",
+      "text": "1 cup whipping cream",
+      "page": "Cookbook:Sugar Pie",
+      "revision_id": 4540928,
+      "revision_url": "https://en.wikibooks.org/w/index.php?oldid=4540928",
+      "stratum": "random",
+      "split": "extra"
+    },
+    {
+      "id": "wb-451652#0",
+      "text": "1 lb potatoes",
+      "page": "Cookbook:Potato Pie",
+      "revision_id": 4517276,
+      "revision_url": "https://en.wikibooks.org/w/index.php?oldid=4517276",
+      "stratum": "random",
+      "split": "extra"
+    },
+    {
+      "id": "wb-19088#5",
+      "text": "2 teaspoons (10 ml) finely-minced onions",
+      "page": "Cookbook:Thousand Island Dressing",
+      "revision_id": 4636109,
+      "revision_url": "https://en.wikibooks.org/w/index.php?oldid=4636109",
+      "stratum": "random",
+      "split": "extra"
+    },
+    {
+      "id": "wb-112947#3",
+      "text": "½ cup chopped green olives",
+      "page": "Cookbook:Olive Ascolane (Stuffed Fried Olives)",
+      "revision_id": 4514984,
+      "revision_url": "https://en.wikibooks.org/w/index.php?oldid=4514984",
+      "stratum": "random",
+      "split": "extra"
+    },
+    {
+      "id": "wb-34654#2",
+      "text": "4 herrings, meat pounded",
+      "page": "Cookbook:Herring Soup",
+      "revision_id": 4518418,
+      "revision_url": "https://en.wikibooks.org/w/index.php?oldid=4518418",
+      "stratum": "random",
+      "split": "extra"
+    },
+    {
+      "id": "wb-151270#4",
+      "text": "1 tablespoon chocolate chips",
+      "page": "Cookbook:Cannoli",
+      "revision_id": 4629802,
+      "revision_url": "https://en.wikibooks.org/w/index.php?oldid=4629802",
+      "stratum": "random",
+      "split": "extra"
+    },
+    {
+      "id": "wb-200707#6",
+      "text": "1 cup (900 g) basmati rice, cooked",
+      "page": "Cookbook:Spicy Fried Rice",
+      "revision_id": 4517692,
+      "revision_url": "https://en.wikibooks.org/w/index.php?oldid=4517692",
+      "stratum": "random",
+      "split": "extra"
+    },
+    {
+      "id": "wb-18111#1",
+      "text": "Herbs and spices (optional; see suggestions)",
+      "page": "Cookbook:Hamburger",
+      "revision_id": 4636790,
+      "revision_url": "https://en.wikibooks.org/w/index.php?oldid=4636790",
+      "stratum": "random",
+      "split": "extra"
+    },
+    {
+      "id": "wb-168622#9",
+      "text": "1 oz white granulated sugar",
+      "page": "Cookbook:Alsatian Fish Stew (Matelote de poissons d'Alsace)",
+      "revision_id": 4630345,
+      "revision_url": "https://en.wikibooks.org/w/index.php?oldid=4630345",
+      "stratum": "random",
+      "split": "extra"
+    },
+    {
+      "id": "wb-483749#0",
+      "text": "4 medium potatoes, peeled and cut into fries",
+      "page": "Cookbook:Chipsi mayai",
+      "revision_id": 4638743,
+      "revision_url": "https://en.wikibooks.org/w/index.php?oldid=4638743",
+      "stratum": "random",
+      "split": "extra"
+    },
+    {
+      "id": "wb-415698#5",
+      "text": "Milk, warm (~100°F)",
+      "page": "Cookbook:Steamed Tuna Bao Buns",
+      "revision_id": 4629061,
+      "revision_url": "https://en.wikibooks.org/w/index.php?oldid=4629061",
+      "stratum": "random",
+      "split": "extra"
+    },
+    {
+      "id": "wb-28828#3",
+      "text": "½ cup dry marsala wine",
+      "page": "Cookbook:Marsala Chicken Scallopini",
+      "revision_id": 4512091,
+      "revision_url": "https://en.wikibooks.org/w/index.php?oldid=4512091",
+      "stratum": "random",
+      "split": "extra"
+    },
+    {
+      "id": "wb-4151#5",
+      "text": "500 g (2 cups) raisins",
+      "page": "Cookbook:Pickert (German Potato Dumpling)",
+      "revision_id": 4522382,
+      "revision_url": "https://en.wikibooks.org/w/index.php?oldid=4522382",
+      "stratum": "random",
+      "split": "extra"
+    },
+    {
+      "id": "wb-461704#4",
+      "text": "4 broken star anise",
+      "page": "Cookbook:Mulling Spice with Anise",
+      "revision_id": 4516614,
+      "revision_url": "https://en.wikibooks.org/w/index.php?oldid=4516614",
+      "stratum": "random",
+      "split": "extra"
+    },
+    {
+      "id": "wb-193771#2",
+      "text": "2+ handfuls of pretzels",
+      "page": "Cookbook:Deep Fried Pretzels",
+      "revision_id": 4503381,
+      "revision_url": "https://en.wikibooks.org/w/index.php?oldid=4503381",
+      "stratum": "random",
+      "split": "extra"
+    },
+    {
+      "id": "wb-479618#7",
+      "text": "½ oz (15 g) ginseng",
+      "page": "Cookbook:Herbal Energy Drink",
+      "revision_id": 4601583,
+      "revision_url": "https://en.wikibooks.org/w/index.php?oldid=4601583",
+      "stratum": "random",
+      "split": "extra"
+    },
+    {
+      "id": "wb-207540#10",
+      "text": "4 ea. (24 ounces / 680 g) wild salmon fillets with skin, pin bones removed",
+      "page": "Cookbook:Asian Grilled Salmon",
+      "revision_id": 4508839,
+      "revision_url": "https://en.wikibooks.org/w/index.php?oldid=4508839",
+      "stratum": "random",
+      "split": "extra"
+    },
+    {
+      "id": "wb-382657#4",
+      "text": "40 g flour",
+      "page": "Cookbook:Gâteau Nantais (Nantes Cake)",
+      "revision_id": 4517001,
+      "revision_url": "https://en.wikibooks.org/w/index.php?oldid=4517001",
+      "stratum": "random",
+      "split": "extra"
+    },
+    {
+      "id": "wb-252233#5",
+      "text": "3 potatoes, boiled and smashed",
+      "page": "Cookbook:Smoked Salmon Chowder",
+      "revision_id": 4522739,
+      "revision_url": "https://en.wikibooks.org/w/index.php?oldid=4522739",
+      "stratum": "random",
+      "split": "extra"
+    },
+    {
+      "id": "wb-115018#1",
+      "text": "⅓ cup margarine (or butter)",
+      "page": "Cookbook:Pork Pot Pie",
+      "revision_id": 4522449,
+      "revision_url": "https://en.wikibooks.org/w/index.php?oldid=4522449",
+      "stratum": "random",
+      "split": "extra"
+    }
+  ]
+}
