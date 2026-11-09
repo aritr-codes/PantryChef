@@ -58,6 +58,28 @@ METRICS: dict[str, MetricSpec] = {
     "parser_recall": MetricSpec("sanity", ("ingredient_table", "parser_rules")),
     "parser_f1": MetricSpec("sanity", ("ingredient_table", "parser_rules")),
     "parser_optional_accuracy": MetricSpec("sanity", ("ingredient_table", "parser_rules")),
+    # M3 (plan section 3). Product role: they gate table growth rounds (a stopping rule) and they
+    # never choose between models, so no arm or model is selected by them.
+    "mention_accuracy": MetricSpec(
+        "product",
+        ("ingredient_table", "parser_rules"),
+        "stopping rule for table rounds; never selects between models",
+    ),
+    "input_accuracy": MetricSpec(
+        "product",
+        ("ingredient_table", "name_resolver"),
+        "stopping rule for table rounds; never selects between models",
+    ),
+    # Owner-marked errors among 30 agreed lines, divided by 30. It reads no model feature.
+    "agreed_error_rate": MetricSpec(
+        "product", (), "label-quality check on the gold set; never selects between models"
+    ),
+    # In-sample by design: it measures the cost of reading the pack recipes, not quality.
+    "recipes_fully_read": MetricSpec(
+        "product",
+        ("ingredient_table", "pack_rules"),
+        "coverage cost of the pack, in-sample by design; never selects between models",
+    ),
     "latency_p50_ms": MetricSpec("latency", ()),
     "latency_p95_ms": MetricSpec("latency", ()),
     "latency_max_ms": MetricSpec("latency", ()),

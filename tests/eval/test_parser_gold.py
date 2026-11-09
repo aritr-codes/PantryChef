@@ -99,3 +99,63 @@ def test_committed_sheet_is_blank_and_split_exact() -> None:
     assert set(doc["lines"][0]) == {
         "id", "text", "page", "revision_id", "revision_url", "stratum", "split",
     }  # fmt: skip
+
+
+# ---- M3: mention_accuracy, id_map, line_hash ----
+
+BULGUR = IngredientTable.from_text(
+    "id,name,synonyms,staple,provenance\n"
+    "bulgur,bulgur,,0,hand\n"
+    "cracked_wheat,cracked wheat,,0,hand\n"
+    "rice,rice,,0,hand\n"
+    "egg,egg,eggs,0,hand\n"
+    "flour,flour,,0,hand\n"
+)
+
+
+def test_mention_accuracy_counts_subset_reads() -> None:
+    labels = {
+        "1": Label((("bulgur", "cracked wheat"),), False, False),
+        "2": Label((("bulgur", "cracked wheat"),), False, False),
+    }
+    # line 1 reads {bulgur}: a subset of the gold group, so it counts.
+    got = score([{"id": "1", "text": "1 cup bulgur"}], labels, BULGUR)
+    assert got["mention_accuracy"] == 1.0
+    # line 2 reads {bulgur, rice}: rice is outside the gold group, so it does not count.
+    got = score([{"id": "2", "text": "1 cup bulgur or rice"}], labels, BULGUR)
+    assert got["mention_accuracy"] == 0.0
+
+
+def test_mention_accuracy_counts_gold_groups() -> None:
+    lines = [{"id": "1", "text": "2 eggs, flour"}, {"id": "2", "text": "3 kumquats"}]
+    labels = {
+        "1": Label((("egg",), ("flour",)), False, False),
+        "2": Label((("kumquat",),), False, False),
+    }
+    got = score(lines, labels, BULGUR)
+    assert got["mention_accuracy"] == pytest.approx(2 / 3)  # egg, flour yes; kumquat no
+
+
+def test_id_map_overrides_table_keys() -> None:
+    lines = [{"id": "1", "text": "2 eggs"}]
+    labels = {"1": Label((("egg",),), False, False)}
+    assert score(lines, labels, BULGUR)["mention_accuracy"] == 1.0
+    # the map wins over the table key: gold "egg" is now flour, so the read of egg is wrong
+    assert score(lines, labels, BULGUR, id_map={"egg": "flour"})["mention_accuracy"] == 0.0
+    # a gold name the table cannot key still maps through the map
+    labels = {"1": Label((("hen fruit",),), False, False)}
+    assert score(lines, labels, BULGUR)["mention_accuracy"] == 0.0
+    assert score(lines, labels, BULGUR, id_map={"hen fruit": "egg"})["mention_accuracy"] == 1.0
+    # a name mapped to None has no id
+    got = score(lines, labels, BULGUR, id_map={"hen fruit": None})
+    assert got["mention_accuracy"] == 0.0
+    assert got["gold_out_of_table"] == 1
+
+
+def test_line_hash_form() -> None:
+    import hashlib
+
+    from pantrychef.eval.parser_gold import line_hash
+
+    assert line_hash("  Salt ") == line_hash("salt")
+    assert line_hash("salt") == hashlib.sha256(b"salt").hexdigest()

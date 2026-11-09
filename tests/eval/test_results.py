@@ -375,3 +375,16 @@ def test_every_results_file_validates():
     assert files
     for p in files:
         r.load_result(p)
+
+
+def test_m3_metrics_registered():
+    from pantrychef.eval import results as r
+
+    for name in ("mention_accuracy", "input_accuracy", "agreed_error_rate", "recipes_fully_read"):
+        spec = r.METRICS[name]
+        assert spec.role == "product", name
+        assert spec.justification.strip(), name
+        with pytest.raises(r.NotSelectable):
+            r.assert_selectable(name, ["random"])
+    assert r.METRICS["mention_accuracy"].depends_on == ("ingredient_table", "parser_rules")
+    assert r.METRICS["agreed_error_rate"].depends_on == ()

@@ -16,17 +16,26 @@ Scoring, per split (group level, micro-averaged):
 - A gold group is found when some predicted group shares an id with it.
 - precision = correct predicted groups / predicted groups. recall = found gold groups / gold groups.
 - Unread lines give no predicted group.
+
+M3 adds ``mention_accuracy``: gold groups with a correct predicted group / gold groups. With an
+``id_map`` (gold name to id), gold names map through it and not through the table keys.
 """
 
 from __future__ import annotations
 
 import csv
+import hashlib
+import json
 from collections.abc import Iterable
 from dataclasses import dataclass
 from pathlib import Path
 
 from pantrychef.ingredients.resolve import resolve_lines
 from pantrychef.ingredients.table import IngredientTable, tokens
+
+
+ROOT = Path(__file__).resolve().parents[2]
+FROZEN = ROOT / "data/eval/m3_frozen_lines.v1.json"
 
 
 class LabelError(ValueError):
@@ -76,12 +85,27 @@ def read_labels_csv(path: Path, line_ids: Iterable[str]) -> dict[str, Label]:
     return out
 
 
-def to_ids(group: tuple[str, ...], table: IngredientTable) -> tuple[set[str], list[str]]:
-    """Return ``(ids found, names with no table key)`` for one gold group."""
+def line_hash(text: str) -> str:
+    """sha256 of the case-folded, stripped line text. The key of the M3 frozen set."""
+    return hashlib.sha256(text.casefold().strip().encode("utf8")).hexdigest()
+
+
+def load_frozen() -> frozenset[str]:
+    """Hashes of every test and extra line. Table growth must not read these lines."""
+    return frozenset(json.loads(FROZEN.read_text(encoding="utf8"))["hashes"])
+
+
+def to_ids(
+    group: tuple[str, ...], table: IngredientTable, id_map: dict[str, str | None] | None = None
+) -> tuple[set[str], list[str]]:
+    """Return ``(ids found, names with no id)`` for one gold group.
+
+    With ``id_map`` a name maps through it (``None`` means no id). Else through the table keys.
+    """
     ids: set[str] = set()
     unknown: list[str] = []
     for name in group:
-        hit = table.keys.get(tokens(name))
+        hit = id_map.get(name) if id_map is not None else table.keys.get(tokens(name))
         if hit is None:
             unknown.append(name)
         else:
@@ -90,10 +114,13 @@ def to_ids(group: tuple[str, ...], table: IngredientTable) -> tuple[set[str], li
 
 
 def score(
-    lines: list[dict], labels: dict[str, Label], table: IngredientTable
+    lines: list[dict],
+    labels: dict[str, Label],
+    table: IngredientTable,
+    id_map: dict[str, str | None] | None = None,
 ) -> dict[str, float | int]:
     """Score the resolver on ``lines`` (sheet records) against ``labels``."""
-    pred_total = pred_ok = gold_total = gold_found = out_of_table = 0
+    pred_total = pred_ok = gold_total = gold_found = out_of_table = mention_ok = 0
     opt_total = opt_ok = 0
     for rec in lines:
         label = labels[rec["id"]]
@@ -102,12 +129,13 @@ def score(
         pred_total += len(preds)
         gold_sets: list[set[str]] = []
         for group in label.groups:
-            ids, unknown = to_ids(group, table)
+            ids, unknown = to_ids(group, table, id_map)
             out_of_table += bool(unknown) and not ids
             gold_sets.append(ids)
         gold_total += len(gold_sets)
         pred_ok += sum(1 for p in preds if p and any(g and p <= g for g in gold_sets))
         gold_found += sum(1 for g in gold_sets if g and any(p & g for p in preds))
+        mention_ok += sum(1 for g in gold_sets if g and any(p and p <= g for p in preds))
         if resolved and not label.not_an_ingredient:
             opt_total += 1
             opt_ok += any(rl.optional for rl in resolved) == label.optional
@@ -121,6 +149,8 @@ def score(
         "gold_groups": gold_total,
         "gold_found": gold_found,
         "gold_out_of_table": out_of_table,
+        "mention_correct": mention_ok,
+        "mention_accuracy": mention_ok / gold_total if gold_total else 0.0,
         "precision": precision,
         "recall": recall,
         "f1": f1,

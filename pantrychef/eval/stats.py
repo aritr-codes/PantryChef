@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 from dataclasses import dataclass
+from math import comb, sqrt
 
 import numpy as np
 
@@ -67,3 +68,23 @@ def paired_cluster_bootstrap(
     lo = float(means[int(alpha / 2 * resamples)])
     hi = float(means[min(resamples - 1, int((1 - alpha / 2) * resamples))])
     return Interval(mean=mean, lo=lo, hi=hi, level=level, n_clusters=m)
+
+
+def wilson(k: int, n: int, z: float = 1.96) -> tuple[float, float]:
+    """Wilson score interval for ``k`` successes in ``n`` trials (95% by default)."""
+    if n <= 0:
+        return 0.0, 1.0
+    p = k / n
+    centre = p + z * z / (2 * n)
+    half = z * sqrt(p * (1 - p) / n + z * z / (4 * n * n))
+    denom = 1 + z * z / n
+    return max(0.0, (centre - half) / denom), min(1.0, (centre + half) / denom)
+
+
+def mcnemar_exact(b: int, c: int) -> float:
+    """Two-sided exact McNemar p-value from the discordant counts ``b`` and ``c``."""
+    n = b + c
+    if n == 0:
+        return 1.0
+    tail = sum(comb(n, i) for i in range(min(b, c) + 1)) / 2**n
+    return min(1.0, 2 * tail)

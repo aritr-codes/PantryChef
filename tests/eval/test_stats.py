@@ -64,3 +64,23 @@ def test_mismatched_lengths_raise():
 def test_resamples_below_one_raise():
     with pytest.raises(ValueError):
         paired_cluster_bootstrap([1.0], [0.0], ["a"], resamples=0)
+
+
+def test_wilson_75_of_80():
+    from pantrychef.eval.stats import wilson
+
+    lo, hi = wilson(75, 80)
+    assert lo == pytest.approx(0.86, abs=0.01)
+    assert lo < 75 / 80 < hi <= 1.0
+    assert wilson(0, 0) == (0.0, 1.0)
+
+
+def test_mcnemar_exact_symmetric():
+    from pantrychef.eval.stats import mcnemar_exact
+
+    assert mcnemar_exact(3, 9) == mcnemar_exact(9, 3)
+    # n = 12, P(X <= 3) = (1 + 12 + 66 + 220) / 4096, two-sided doubles it
+    assert mcnemar_exact(3, 9) == pytest.approx(2 * 299 / 4096)
+    assert mcnemar_exact(5, 5) == 1.0
+    assert mcnemar_exact(0, 0) == 1.0
+    assert mcnemar_exact(0, 10) == pytest.approx(2 / 1024)
