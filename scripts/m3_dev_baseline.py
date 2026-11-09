@@ -14,7 +14,7 @@ import argparse
 import json
 from pathlib import Path
 
-from pantrychef.eval.parser_gold import Label, score
+from pantrychef.eval.parser_gold import read_labels_json, score
 from pantrychef.eval.realistic import score_inputs
 from pantrychef.eval.results import write_result
 from pantrychef.ingredients.table import IngredientTable, tokens
@@ -22,14 +22,6 @@ from pantrychef.ingredients.table import IngredientTable, tokens
 ROOT = Path(__file__).resolve().parent.parent
 GOLD = ROOT / "data/eval/parser_gold"
 EVAL = ROOT / "data/eval"
-
-
-def _labels(path: Path) -> dict[str, Label]:
-    raw = json.loads(path.read_text(encoding="utf8"))["labels"]
-    return {
-        k: Label(tuple(tuple(g) for g in v["groups"]), v["optional"], v["not_an_ingredient"])
-        for k, v in raw.items()
-    }
 
 
 def main() -> None:
@@ -40,11 +32,11 @@ def main() -> None:
     table = IngredientTable.load()
     sheet = json.loads((GOLD / "sheet.v1.json").read_text(encoding="utf8"))
     lines = [r for r in sheet["lines"] if r["split"] == "dev"]
-    parser = score(lines, _labels(GOLD / "labels.dev.v1.json"), table)
+    parser = score(lines, read_labels_json(GOLD / "labels.dev.v1.json"), table)
 
     split = json.loads((EVAL / "realistic_inputs.split.v1.json").read_text(encoding="utf8"))
     dev_inputs = sorted(t for t, s in split["assignment"].items() if s == "dev")
-    labels = _labels(EVAL / "realistic_inputs.labels.v1.json")
+    labels = read_labels_json(EVAL / "realistic_inputs.labels.v1.json")
 
     def resolve(text: str) -> list[str]:
         hit = table.keys.get(tokens(text))

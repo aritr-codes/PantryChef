@@ -20,6 +20,7 @@ import hashlib
 import io
 import json
 import math
+from collections.abc import Iterable
 from pathlib import Path
 from urllib.parse import urlparse
 
@@ -62,15 +63,54 @@ def _file_entry(path: Path, licence: str) -> dict:
     }
 
 
-def _core_recipe(r: SourceRecipe, table: IngredientTable) -> dict | None:
-    lines = [
+def _lines(r: SourceRecipe, table: IngredientTable) -> list[dict]:
+    return [
         {"t": line.text, "o": list(line.options), "opt": line.optional, "r": line.read}
         for text in r.ingredient_lines
         for line in resolve_lines(text, table)
     ]
-    # A recipe needs at least one required line that the default staples do not cover.
-    needed = [ln for ln in lines if not ln["opt"] and not any(i in table.staples for i in ln["o"])]
-    if not needed:
+
+
+def _kept(lines: list[dict], table: IngredientTable) -> bool:
+    """The pack rule: a recipe needs at least one required line that the staples do not cover."""
+    return any(not ln["opt"] and not any(i in table.staples for i in ln["o"]) for ln in lines)
+
+
+def coverage(recipes: Iterable[SourceRecipe], table: IngredientTable) -> dict:
+    """How much of ``recipes`` the table reads, by the pack rules. The one definition (M3, sec. 3).
+
+    Line counts cover every recipe. Recipe counts cover the kept recipes only (see ``_kept``).
+    ``recipes_fully_read`` = kept recipes with every required line read / kept recipes. It is
+    in-sample by design: it measures the cost of reading the pack, not quality. ``unread`` holds
+    the text of each unread required line, one entry per line.
+    """
+    required = read = optional = kept = full = 0
+    unread: list[str] = []
+    for r in recipes:
+        lines = _lines(r, table)
+        req = [ln for ln in lines if not ln["opt"]]
+        bad = [ln["t"] for ln in req if not ln["r"]]
+        optional += len(lines) - len(req)
+        required += len(req)
+        read += len(req) - len(bad)
+        unread += bad
+        if _kept(lines, table):
+            kept += 1
+            full += not bad
+    return {
+        "required_lines": required,
+        "lines_read": read,
+        "optional_lines": optional,
+        "kept_recipes": kept,
+        "fully_read": full,
+        "recipes_fully_read": full / kept if kept else 0.0,
+        "unread": unread,
+    }
+
+
+def _core_recipe(r: SourceRecipe, table: IngredientTable) -> dict | None:
+    lines = _lines(r, table)
+    if not _kept(lines, table):
         return None
     return {
         "id": r.recipe_id,

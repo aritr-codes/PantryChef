@@ -97,6 +97,15 @@ def read_labels_csv(path: Path, line_ids: Iterable[str]) -> dict[str, Label]:
     return out
 
 
+def read_labels_json(path: Path) -> dict[str, Label]:
+    """Read a ``labels.*.json`` file (parser gold) or ``realistic_inputs.labels`` file."""
+    raw = json.loads(Path(path).read_text(encoding="utf8"))["labels"]
+    return {
+        k: Label(tuple(tuple(g) for g in v["groups"]), v["optional"], v["not_an_ingredient"])
+        for k, v in raw.items()
+    }
+
+
 def line_hash(text: str) -> str:
     """sha256 of the case-folded, stripped line text. The key of the M3 frozen set."""
     return hashlib.sha256(text.casefold().strip().encode("utf8")).hexdigest()
