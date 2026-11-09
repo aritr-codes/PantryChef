@@ -91,6 +91,7 @@ flowchart TB
 | Line parser | `pantrychef/ingredients/` | Ingredient line | Quantity, unit, ingredient text | Built; Unicode fractions added in M1 |
 | Ingredient table | `data/ingredients/ingredients.csv` | Hand curation | Ids, names, synonyms, staple flag | Built (M1): 337 rows. No roles or diet flags yet |
 | Resolver | `pantrychef/ingredients/resolve.py` | Text | Lines with option ids, or "unread" | Built (M1) |
+| Typed-name resolver | `pantrychef/ingredients/names.py`, `web/src/names.ts` | One typed pantry name, the pack keys and word lists | Ids and the step that matched: exact, split, contained, fuzzy or none | Built (M3 task 3): matches Python on the golden name cases. A bare "pepper" stays unknown |
 | Pack builder | `pantrychef/pack/` | Records and table | Recipe pack and manifest | Built (M1): hash allow-list and input guard |
 | Reference engine | `pantrychef/engine.py` | Pantry ids, settings | `Answer` | Built (M1) |
 | Substitution mining | `pantrychef/substitution/` | Open Recipes as ingredient sets | Top-k table with evidence | Built for RecipeNLG; needs retraining and table export |

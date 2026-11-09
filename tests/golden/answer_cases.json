@@ -44482,5 +44482,588 @@
     "  "
    ]
   }
+ ],
+ "resolve": [
+  {
+   "text": "flour",
+   "ids": [
+    "flour"
+   ],
+   "step": "exact"
+  },
+  {
+   "text": "Flour",
+   "ids": [
+    "flour"
+   ],
+   "step": "exact"
+  },
+  {
+   "text": "  EGGS ",
+   "ids": [
+    "egg"
+   ],
+   "step": "exact"
+  },
+  {
+   "text": "olive oil",
+   "ids": [
+    "olive_oil"
+   ],
+   "step": "exact"
+  },
+  {
+   "text": "Olive-Oil",
+   "ids": [
+    "olive_oil"
+   ],
+   "step": "exact"
+  },
+  {
+   "text": "half and half",
+   "ids": [
+    "half_and_half"
+   ],
+   "step": "exact"
+  },
+  {
+   "text": "Half & Half",
+   "ids": [
+    "half_and_half"
+   ],
+   "step": "exact"
+  },
+  {
+   "text": "black pepper",
+   "ids": [
+    "black_pepper"
+   ],
+   "step": "exact"
+  },
+  {
+   "text": "chicken thighs",
+   "ids": [
+    "chicken_thigh"
+   ],
+   "step": "exact"
+  },
+  {
+   "text": "Ground Beef",
+   "ids": [
+    "ground_beef"
+   ],
+   "step": "exact"
+  },
+  {
+   "text": "peas",
+   "ids": [
+    "pea"
+   ],
+   "step": "exact"
+  },
+  {
+   "text": "pear",
+   "ids": [
+    "pear"
+   ],
+   "step": "exact"
+  },
+  {
+   "text": "pea",
+   "ids": [
+    "pea"
+   ],
+   "step": "exact"
+  },
+  {
+   "text": "chicken thighs, boneless",
+   "ids": [
+    "chicken_thigh"
+   ],
+   "step": "contained"
+  },
+  {
+   "text": "lean ground beef",
+   "ids": [
+    "ground_beef"
+   ],
+   "step": "contained"
+  },
+  {
+   "text": "boneless chicken thighs",
+   "ids": [
+    "chicken_thigh"
+   ],
+   "step": "contained"
+  },
+  {
+   "text": "2 large eggs",
+   "ids": [
+    "egg"
+   ],
+   "step": "contained"
+  },
+  {
+   "text": "onion, chopped",
+   "ids": [
+    "onion"
+   ],
+   "step": "contained"
+  },
+  {
+   "text": "chopped fresh parsley",
+   "ids": [
+    "parsley"
+   ],
+   "step": "contained"
+  },
+  {
+   "text": "diced onion",
+   "ids": [
+    "onion"
+   ],
+   "step": "contained"
+  },
+  {
+   "text": "chopped lean ground beef",
+   "ids": [
+    "ground_beef"
+   ],
+   "step": "contained"
+  },
+  {
+   "text": "ground beef, browned",
+   "ids": [
+    "ground_beef"
+   ],
+   "step": "contained"
+  },
+  {
+   "text": "2 cups milk",
+   "ids": [
+    "milk"
+   ],
+   "step": "contained"
+  },
+  {
+   "text": "½ cup milk",
+   "ids": [
+    "milk"
+   ],
+   "step": "contained"
+  },
+  {
+   "text": "1⁄2 cup milk",
+   "ids": [
+    "milk"
+   ],
+   "step": "contained"
+  },
+  {
+   "text": "1 1/2 cups milk",
+   "ids": [
+    "milk"
+   ],
+   "step": "contained"
+  },
+  {
+   "text": "1/2 cup milk",
+   "ids": [
+    "milk"
+   ],
+   "step": "contained"
+  },
+  {
+   "text": "1½ cups milk",
+   "ids": [
+    "milk"
+   ],
+   "step": "contained"
+  },
+  {
+   "text": "2-3 cloves",
+   "ids": [
+    "clove"
+   ],
+   "step": "contained"
+  },
+  {
+   "text": "2–3 cloves",
+   "ids": [
+    "clove"
+   ],
+   "step": "contained"
+  },
+  {
+   "text": "2 to 3 cloves",
+   "ids": [
+    "clove"
+   ],
+   "step": "contained"
+  },
+  {
+   "text": "2 (8 oz) cans tomatoes",
+   "ids": [
+    "tomato"
+   ],
+   "step": "contained"
+  },
+  {
+   "text": "1 tbsp olive oil",
+   "ids": [
+    "olive_oil"
+   ],
+   "step": "contained"
+  },
+  {
+   "text": "1.5 oz butter",
+   "ids": [
+    "butter"
+   ],
+   "step": "contained"
+  },
+  {
+   "text": "3 eggs",
+   "ids": [
+    "egg"
+   ],
+   "step": "contained"
+  },
+  {
+   "text": "1/0 cup milk",
+   "ids": [],
+   "step": "none"
+  },
+  {
+   "text": "٣ cups milk",
+   "ids": [
+    "milk"
+   ],
+   "step": "contained"
+  },
+  {
+   "text": "１ cup milk",
+   "ids": [
+    "milk"
+   ],
+   "step": "contained"
+  },
+  {
+   "text": "2 cups",
+   "ids": [],
+   "step": "none"
+  },
+  {
+   "text": "cloves",
+   "ids": [
+    "clove"
+   ],
+   "step": "exact"
+  },
+  {
+   "text": "s&p",
+   "ids": [
+    "salt",
+    "black_pepper"
+   ],
+   "step": "split"
+  },
+  {
+   "text": "S & P",
+   "ids": [
+    "salt",
+    "black_pepper"
+   ],
+   "step": "split"
+  },
+  {
+   "text": "salt and p",
+   "ids": [
+    "salt",
+    "black_pepper"
+   ],
+   "step": "split"
+  },
+  {
+   "text": "flour and sugar",
+   "ids": [
+    "flour",
+    "sugar"
+   ],
+   "step": "split"
+  },
+  {
+   "text": "flour/sugar",
+   "ids": [
+    "flour",
+    "sugar"
+   ],
+   "step": "split"
+  },
+  {
+   "text": "flour, sugar",
+   "ids": [
+    "flour",
+    "sugar"
+   ],
+   "step": "split"
+  },
+  {
+   "text": "milk, eggs, butter",
+   "ids": [
+    "milk",
+    "egg",
+    "butter"
+   ],
+   "step": "split"
+  },
+  {
+   "text": "flour, flour",
+   "ids": [
+    "flour"
+   ],
+   "step": "split"
+  },
+  {
+   "text": "egg & milk",
+   "ids": [
+    "egg",
+    "milk"
+   ],
+   "step": "split"
+  },
+  {
+   "text": "flour, sugar, ",
+   "ids": [
+    "flour",
+    "sugar"
+   ],
+   "step": "split"
+  },
+  {
+   "text": "tomato / onion",
+   "ids": [
+    "tomato",
+    "onion"
+   ],
+   "step": "split"
+  },
+  {
+   "text": "flour and xylophone",
+   "ids": [],
+   "step": "none"
+  },
+  {
+   "text": "cinamon",
+   "ids": [
+    "cinnamon"
+   ],
+   "step": "fuzzy"
+  },
+  {
+   "text": "gralic",
+   "ids": [
+    "garlic"
+   ],
+   "step": "fuzzy"
+  },
+  {
+   "text": "chiken",
+   "ids": [
+    "chicken"
+   ],
+   "step": "fuzzy"
+  },
+  {
+   "text": "tomatoe",
+   "ids": [
+    "tomato"
+   ],
+   "step": "fuzzy"
+  },
+  {
+   "text": "buter",
+   "ids": [
+    "butter"
+   ],
+   "step": "fuzzy"
+  },
+  {
+   "text": "margerine",
+   "ids": [
+    "margarine"
+   ],
+   "step": "fuzzy"
+  },
+  {
+   "text": "ground cinamon",
+   "ids": [
+    "cinnamon"
+   ],
+   "step": "fuzzy"
+  },
+  {
+   "text": "2 cups cinamon",
+   "ids": [
+    "cinnamon"
+   ],
+   "step": "fuzzy"
+  },
+  {
+   "text": "diced tomatoe",
+   "ids": [
+    "tomato"
+   ],
+   "step": "fuzzy"
+  },
+  {
+   "text": "parsly",
+   "ids": [
+    "parsley"
+   ],
+   "step": "fuzzy"
+  },
+  {
+   "text": "peaz",
+   "ids": [],
+   "step": "none"
+  },
+  {
+   "text": "cinnamom",
+   "ids": [
+    "cinnamon"
+   ],
+   "step": "fuzzy"
+  },
+  {
+   "text": "oliv oil",
+   "ids": [
+    "olive_oil"
+   ],
+   "step": "fuzzy"
+  },
+  {
+   "text": "pepper",
+   "ids": [],
+   "step": "none"
+  },
+  {
+   "text": "salt and pepper",
+   "ids": [],
+   "step": "none"
+  },
+  {
+   "text": "xylophone",
+   "ids": [],
+   "step": "none"
+  },
+  {
+   "text": "ace",
+   "ids": [],
+   "step": "none"
+  },
+  {
+   "text": "boneless",
+   "ids": [],
+   "step": "none"
+  },
+  {
+   "text": "",
+   "ids": [],
+   "step": "none"
+  },
+  {
+   "text": "   ",
+   "ids": [],
+   "step": "none"
+  },
+  {
+   "text": "constructor",
+   "ids": [],
+   "step": "none"
+  },
+  {
+   "text": "__proto__",
+   "ids": [],
+   "step": "none"
+  },
+  {
+   "text": "toString",
+   "ids": [],
+   "step": "none"
+  },
+  {
+   "text": "flour tortilla wrap",
+   "ids": [],
+   "step": "none"
+  },
+  {
+   "text": "ＦＬＯＵＲ",
+   "ids": [
+    "flour"
+   ],
+   "step": "exact"
+  },
+  {
+   "text": "ﬂour",
+   "ids": [
+    "flour"
+   ],
+   "step": "exact"
+  },
+  {
+   "text": "ÉGG",
+   "ids": [
+    "egg"
+   ],
+   "step": "exact"
+  },
+  {
+   "text": "flour，sugar",
+   "ids": [
+    "flour",
+    "sugar"
+   ],
+   "step": "split"
+  },
+  {
+   "text": "flour ＆ sugar",
+   "ids": [
+    "flour",
+    "sugar"
+   ],
+   "step": "split"
+  },
+  {
+   "text": "chicken thighs",
+   "ids": [
+    "chicken_thigh"
+   ],
+   "step": "exact"
+  },
+  {
+   "text": "crème fraîche",
+   "ids": [],
+   "step": "none"
+  },
+  {
+   "text": "jalapeño",
+   "ids": [],
+   "step": "none"
+  },
+  {
+   "text": "Ｃｉｎａｍｏｎ",
+   "ids": [
+    "cinnamon"
+   ],
+   "step": "fuzzy"
+  },
+  {
+   "text": "cinnamon﻿",
+   "ids": [
+    "cinnamon"
+   ],
+   "step": "exact"
+  }
  ]
 }

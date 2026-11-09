@@ -15,12 +15,15 @@ from dataclasses import asdict
 from pathlib import Path
 
 from pantrychef.engine import AnswerRequest, Pack, answer, load_pack, resolve_names
+from pantrychef.ingredients.names import resolve_name
 from pantrychef.ingredients.table import tokens
 
 ROOT = Path(__file__).resolve().parents[1]
 FIXTURE = ROOT / "tests" / "fixtures" / "pack"
 OUT = ROOT / "tests" / "golden" / "answer_cases.json"
 SEED = 20261102
+# The fixture pack ends with rows that only the name cases use. The answer cases sample the rest.
+ANSWER_INGREDIENTS = 30
 
 TOKEN_INPUTS = [
     "Eggs",
@@ -69,6 +72,39 @@ NAME_LISTS = [
 ]
 
 
+# Dev or invented typed names only. The Unicode and quantity cases are the ones that Python and
+# TypeScript could disagree on.
+# fmt: off
+NAME_CASES = [
+    # exact
+    "flour", "Flour", "  EGGS ", "olive oil", "Olive-Oil", "half and half", "Half & Half",
+    "black pepper", "chicken thighs", "Ground Beef", "peas", "pear", "pea",
+    # contained
+    "chicken thighs, boneless", "lean ground beef", "boneless chicken thighs", "2 large eggs",
+    "onion, chopped", "chopped fresh parsley", "diced onion", "chopped lean ground beef",
+    "ground beef, browned",
+    # quantity and unit
+    "2 cups milk", "½ cup milk", "1⁄2 cup milk", "1 1/2 cups milk", "1/2 cup milk",
+    "1½ cups milk", "2-3 cloves", "2–3 cloves", "2 to 3 cloves", "2 (8 oz) cans tomatoes",
+    "1 tbsp olive oil", "1.5 oz butter", "3 eggs", "1/0 cup milk", "٣ cups milk", "１ cup milk",
+    "2 cups", "cloves",
+    # split
+    "s&p", "S & P", "salt and p", "flour and sugar", "flour/sugar", "flour, sugar",
+    "milk, eggs, butter", "flour, flour", "egg & milk", "flour, sugar, ", "tomato / onion",
+    "flour and xylophone",
+    # fuzzy
+    "cinamon", "gralic", "chiken", "tomatoe", "buter", "margerine", "ground cinamon",
+    "2 cups cinamon", "diced tomatoe", "parsly", "peaz", "cinnamom", "oliv oil",
+    # none
+    "pepper", "salt and pepper", "xylophone", "ace", "boneless", "", "   ", "constructor",
+    "__proto__", "toString", "flour tortilla wrap",
+    # Unicode
+    "ＦＬＯＵＲ", "ﬂour", "ÉGG", "flour，sugar", "flour ＆ sugar", "chicken thighs",
+    "crème fraîche", "jalapeño", "Ｃｉｎａｍｏｎ", "cinnamon﻿",
+]
+# fmt: on
+
+
 def _edge_cases(pack: Pack) -> list[tuple[str, AnswerRequest]]:
     d = pack.default_staples
     return [
@@ -78,7 +114,7 @@ def _edge_cases(pack: Pack) -> list[tuple[str, AnswerRequest]]:
         ("limit zero", AnswerRequest(["flour", "egg", "milk"], d, limit=0)),
         ("no staples", AnswerRequest(["flour", "water"], [])),
         ("flour is a staple", AnswerRequest(["egg", "milk"], [*d, "flour"])),
-        ("everything", AnswerRequest(list(pack.ingredients), d, limit=50)),
+        ("everything", AnswerRequest(list(pack.ingredients)[:ANSWER_INGREDIENTS], d, limit=50)),
         ("one item", AnswerRequest(["honey"], d)),
         ("tie on score and total", AnswerRequest(["rice", "butter"], d, limit=50)),
         ("or line", AnswerRequest(["margarine", "flour", "sugar", "egg"], d)),
@@ -89,7 +125,7 @@ def _edge_cases(pack: Pack) -> list[tuple[str, AnswerRequest]]:
 
 def build() -> dict:
     pack = load_pack(FIXTURE)
-    ids = list(pack.ingredients)
+    ids = list(pack.ingredients)[:ANSWER_INGREDIENTS]
     rng = random.Random(SEED)
     cases = [(name, req) for name, req in _edge_cases(pack)]
     staple_sets = [pack.default_staples, [], [*pack.default_staples, "flour"]]
@@ -124,6 +160,11 @@ def build() -> dict:
             {"names": names, "ids": ids_, "unknown": unk}
             for names in NAME_LISTS
             for ids_, unk in [resolve_names(pack, names)]
+        ],
+        "resolve": [
+            {"text": text, "ids": list(m.ids), "step": m.step}
+            for text in NAME_CASES
+            for m in [resolve_name(text, pack.keys, pack.words)]
         ],
     }
 

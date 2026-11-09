@@ -23,9 +23,13 @@ import math
 from dataclasses import dataclass, field
 from pathlib import Path
 
+from pantrychef.ingredients.names import resolve_name
+from pantrychef.ingredients.table import Words
+
 GROUPS = ("make_now", "one_away", "two_away")
 UNLOCK_LIMIT = 10
 BLOCKER_LIMIT = 5
+NO_WORDS = Words({}, frozenset(), frozenset(), frozenset(), frozenset(), {})
 
 
 @dataclass(frozen=True)
@@ -66,6 +70,7 @@ class Pack:
     ingredients: dict[str, Ingredient]
     keys: dict[str, str]
     recipes: tuple[Recipe, ...]
+    words: Words = NO_WORDS  # a pack core from before pack v2 has none
 
     @classmethod
     def from_core(cls, core: dict) -> Pack:
@@ -87,6 +92,7 @@ class Pack:
                 )
                 for r in core["recipes"]
             ),
+            words=Words.from_dict(core["words"]) if "words" in core else NO_WORDS,
         )
 
     @property
@@ -176,17 +182,16 @@ def _needed(recipe: Recipe, staples: set[str]) -> list[Line]:
 
 
 def resolve_names(pack: Pack, names: list[str]) -> tuple[list[str], list[str]]:
-    """Map typed names to ingredient ids by exact canonical key. Return ``(ids, unknown)``."""
-    from pantrychef.ingredients.table import tokens
+    """Map typed names to ingredient ids. Return ``(ids, unknown)``.
 
+    A name is unknown when no step of ``resolve_name`` matches. Ids keep the order of the names.
+    """
     ids, unknown = [], []
     for name in names:
-        key = " ".join(tokens(name))
-        hit = pack.keys.get(key)
-        if hit is None:
+        match = resolve_name(name, pack.keys, pack.words)
+        if match.step == "none":
             unknown.append(name)
-        elif hit not in ids:
-            ids.append(hit)
+        ids.extend(i for i in match.ids if i not in ids)
     return ids, unknown
 
 

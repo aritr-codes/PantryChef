@@ -6,8 +6,9 @@ size and licence.
 
 Pack format 1:
 
-- ``core.vN.json.gz``: ingredients (id, name, staple, idf), name and synonym keys, recipes
-  with their lines as ids (and line text, because a missing line shows its text).
+- ``core.vN.json.gz``: ingredients (id, name, staple, idf), name and synonym keys, the word
+  lists (as in ``words.v1.json``, for the typed-name resolver), recipes with their lines as ids
+  (and line text, because a missing line shows its text).
 - ``text.vN.json.gz``: steps, servings, time, category and attribution per recipe.
 - ``manifest.vN.json``: hashes, sizes, licences, input hashes, commit, counts.
 """
@@ -142,6 +143,7 @@ def build_pack(
                 for row in table.rows
             ],
             "keys": {" ".join(k): i for k, i in sorted(table.keys.items())},
+            "words": json.loads(data["words"].decode("utf8")),
             "recipes": [c for _, c in kept],
         }
         text = {

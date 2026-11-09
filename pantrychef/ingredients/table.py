@@ -78,7 +78,10 @@ class Words:
 
     @classmethod
     def from_json(cls, text: str) -> Words:
-        raw = json.loads(text)
+        return cls.from_dict(json.loads(text))
+
+    @classmethod
+    def from_dict(cls, raw: dict) -> Words:
         return cls(
             units=dict(raw["units"]),
             size=frozenset(raw["size"]),

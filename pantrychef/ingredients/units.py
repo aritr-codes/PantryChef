@@ -59,7 +59,10 @@ def parse_quantity(text: str) -> tuple[float | None, str]:
     m = _NUM.match(text)
     if not m:
         return None, text.strip()
-    qty = _to_float(m.group(1))
+    try:
+        qty = _to_float(m.group(1))
+    except ZeroDivisionError:  # "1/0 cup" is not a quantity
+        return None, text.strip()
     rest = text[m.end() :]
     rest = _RANGE_TAIL.sub("", rest)
     return qty, rest.strip()

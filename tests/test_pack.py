@@ -13,6 +13,7 @@ from pathlib import Path
 
 import pytest
 
+from pantrychef.engine import Pack, resolve_names
 from pantrychef.ingredients.table import DEFAULT_TABLE_PATH, DEFAULT_WORDS_PATH, IngredientTable
 from pantrychef.pack.allowlist import AllowlistError, sha256_file
 from pantrychef.pack.build import BuildError, build_pack, check_source_url
@@ -80,6 +81,14 @@ def test_build_writes_core_text_and_manifest(fixture_build):
     assert core["info"]["commit"] == "test" and core["info"]["recipes"] == 4
     assert core["keys"]["salt"] == "salt"
     assert all(r["rev"] and r["page"].startswith("Cookbook:") for r in core["recipes"])
+
+
+def test_core_carries_the_word_lists_for_the_typed_name_resolver(fixture_build):
+    out, _ = fixture_build
+    core = _load(out / "core.v1.json.gz")
+    assert core["words"] == json.loads(DEFAULT_WORDS_PATH.read_text(encoding="utf8"))
+    pack = Pack.from_core(core)
+    assert resolve_names(pack, ["2 cups butter", "xylophone"]) == (["butter"], ["xylophone"])
 
 
 def test_idf_is_log_one_plus_n_over_df(fixture_build):

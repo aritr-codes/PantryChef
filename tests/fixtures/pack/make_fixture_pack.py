@@ -18,6 +18,7 @@ import json
 import math
 from pathlib import Path
 
+WORDS = Path(__file__).resolve().parents[3] / "data" / "ingredients" / "words.v1.json"
 STAPLES = {"water", "salt", "black_pepper", "vegetable_oil"}
 INGREDIENTS = [
     "water",
@@ -51,6 +52,18 @@ INGREDIENTS = [
     "celery",
     "olive_oil",
 ]
+# Rows for the typed-name tests. No recipe uses them, so the answer cases do not change.
+NAME_ONLY = [
+    "chicken_thigh",
+    "ground_beef",
+    "pear",
+    "pea",
+    "cinnamon",
+    "half_and_half",
+    "clove",
+]
+# Extra keys, as a table synonym would give them.
+EXTRA_KEYS = {"s": "salt", "p": "black_pepper", "half half": "half_and_half"}
 
 RECIPES: dict[str, list[str]] = {
     "Pancakes": ["flour", "egg", "milk", "sugar", "butter", "salt"],
@@ -143,9 +156,10 @@ def build() -> dict:
                 "staple": i in STAPLES,
                 "idf": math.log(1 + n / df[i]) if i in df else 0.0,
             }
-            for i in INGREDIENTS
+            for i in [*INGREDIENTS, *NAME_ONLY]
         ],
-        "keys": {i.replace("_", " "): i for i in INGREDIENTS},
+        "keys": {i.replace("_", " "): i for i in [*INGREDIENTS, *NAME_ONLY]} | EXTRA_KEYS,
+        "words": json.loads(WORDS.read_text(encoding="utf8")),
         "recipes": recipes,
     }
 
