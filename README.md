@@ -23,7 +23,7 @@ in [LICENSES.md](LICENSES.md).
 | Web app | Live (M1): <https://aritr-codes.github.io/PantryChef/>. Preact app in [`web/`](web/) with a pantry screen, a results screen and a recipe view. A manual workflow, `pages.yml`, deploys it | Faster results screen (M1 follow-up). Polish and saved pantry (M6, [ADR 0004](docs/decisions/0004-static-first-browser-engine.md)) |
 | Recipes for display | Built (M1): a pack of 3,712 Wikibooks Cookbook recipes, CC BY-SA 4.0, from [`pantrychef/pack/`](pantrychef/pack/). The pack is not in git. M3 built pack v2 locally (same 3,712 recipes, 872-row table). It is not uploaded yet. The Release `pack-v1` holds the M1 pack, and the Release `pack-v2` does not exist ([ADR 0003](docs/decisions/0003-licence-clean-recipe-corpus.md)) | A held-out check of how well lines are read (M3) |
 | Photo input | None | Tested later, and ships only if it passes a gate (M8) |
-| Ingredient and recipe knowledge graph with ML on top | None | Proposed, not accepted ([ADR 0006](docs/decisions/0006-hybrid-graph-knowledge-base.md)) |
+| Ingredient and recipe knowledge graph with ML on top | None | Rejected on 2026-11-09 by the M3 spike rule: the spike found no new recipes ([ADR 0006](docs/decisions/0006-hybrid-graph-knowledge-base.md) says what that does and does not show). The product keeps a flat table |
 
 Milestones are in [docs/DEVELOPMENT_PLAN.md](docs/DEVELOPMENT_PLAN.md).
 

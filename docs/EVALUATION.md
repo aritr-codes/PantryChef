@@ -88,7 +88,7 @@ All arrows run today. Judges are people in M4 and were models in the M2 pilot. M
 
 Plan: [docs/plans/2026-11-05-m3-ingredient-foundation.md](plans/2026-11-05-m3-ingredient-foundation.md). Files: [DATASET.md](DATASET.md). The typed-name flow is in [ARCHITECTURE_PROPOSAL.md](ARCHITECTURE_PROPOSAL.md) (section 8, "Typed-name steps").
 
-Status: the table, the resolvers, the dev measurements and pack v2 are built. **The acceptance run and the graph spike have not run.** This section shows development numbers only. A development number does not show that M3 reached its targets.
+Status: the table, the resolvers, the dev measurements and pack v2 are built. **The acceptance run has not run.** The ADR 0006 graph spike ran and ended at its empty-pool rule (see "Graph spike result"). This section shows development numbers only. A development number does not show that M3 reached its targets.
 
 ### Metrics
 
@@ -148,7 +148,7 @@ Observations on the numbers:
 
 ### Bare pepper (MEASURED)
 
-Source: [results/m3_bare_pepper.json](../results/m3_bare_pepper.json), commit `250a9cd`. One blind Opus model labelled 80 bare "pepper" Wikibooks lines. There was no owner adjudication. The draw took the first 80 lines in sha256 order of `45:bare_pepper:<line id>` from a pool of 103, with 2 frozen lines left out.
+Source: [results/m3_bare_pepper.json](../results/m3_bare_pepper.json), commit `b5366b1` (a re-run on the final v2 table). One blind Opus model labelled 80 bare "pepper" Wikibooks lines. There was no owner adjudication. The draw took the first 80 lines in sha256 order of `45:bare_pepper:<line id>` from a pool of 103, with 2 frozen lines left out.
 
 | Label | Lines |
 | --- | --- |
@@ -158,7 +158,7 @@ Source: [results/m3_bare_pepper.json](../results/m3_bare_pepper.json), commit `2
 
 `bare_pepper_black_share` is 0.700 (Wilson 95% interval 0.5923 to 0.7894, n = 80). The rule in the result file says to adopt `always` only when the lower bound is at least 0.85. The decision is `staple_cue_or_taste`: a bare "pepper" reads as black pepper only when the line also names salt or says "to taste". `data/ingredients/words.v1.json` holds the rule (`bare_pepper.when`). Under `always`, 45 of the 80 lines would read differently, and 29 of those 45 are black pepper. A person who types "pepper" still gets "Not recognised" and picks the pepper they hold (plan D6). The labeller is one model, so this is a weak basis for a data value.
 
-Reproduce: `uv run python scripts/m3_bare_pepper.py score data/eval/m3_bare_pepper_labels.v1.json`. The count of 45 used the table at commit `250a9cd`. Later commits changed the table.
+Reproduce: `uv run python scripts/m3_bare_pepper.py score data/eval/m3_bare_pepper_labels.v1.json`. The result records the sha256 of the final v2 table (`a03baecd…`), the same hash as in the pack v2 result. The first run (commit `250a9cd`) used an older table. The re-run gave the same decision and the same counts.
 
 ### Pack v2 (MEASURED)
 
@@ -221,13 +221,28 @@ uv run python scripts/m3_acceptance.py
 
 The run needs `data/eval/m3_gold_id_map.v1.json` and `data/eval/m3_input_gold_id_map.v1.json`. Neither file exists yet. The owner checks the mappings that differ from the table-key lookup before the run (plan D9). `uv run python scripts/m3_acceptance.py --dry-run-on dev --out PATH` runs the same code on the dev halves and never reads test data.
 
-### Graph spike (NOT RUN YET)
+### Graph spike result (MEASURED)
 
-The spike has not run. The owner has not rated anything. See the next section for the steps and the command list. ADR 0006 stays Proposed.
+Source: [results/m3_graph_spike.json](../results/m3_graph_spike.json), commit `7983baf`. The spike inputs were frozen in commit `e33e630`. The command was `uv run python scripts/graph_spike.py sheet`, which took the empty-pool path.
 
-## ADR 0006 graph spike (PLANNED, M3 Task 8)
+**Verdict: `rejected`, reason `no_new_recipes`.** The decision rule of [ADR 0006](decisions/0006-hybrid-graph-knowledge-base.md) says that no newly surfaced recipe is a rejection. ADR 0006 has status Rejected (2026-11-09).
 
-Status: the code and tests exist. No real run has happened. No results file exists, and the ADR stays Proposed.
+| Item | Value |
+| --- | --- |
+| Edge option | `b` (only the edges that a blind labeller marked usable, with two owner edits) |
+| Edges in the table | 157 (81 `is_a`, 76 `form_of`) |
+| Usable edges | 17 (16 `is_a`, 1 `form_of`) |
+| Longest chain | 1 edge |
+| Pool of new items | 0 for `is_a`, 0 for `form_of` |
+| Pantries with an edge-source hit | 0 of 40 |
+| Decoy candidates | 733 for "make now", 1,750 for "one away" |
+| Items rated | 0. Nobody rated, so T1 to T3 were not tested |
+
+This result is narrow. It does not show that traversal fails for a person who types a specific kind (HYPOTHESIS: such pantries would surface new recipes). The spike pantries named general items such as "cheese". It says nothing about multi-hop traversal, because the table has no chain longer than one edge. Most `form_of` rows mean "made from", so the spike could not test mixed edge types. One model labelled the edges and one model wrote the new pantries. The ADR section "Outcome of the M3 spike" holds the cause and the consequences. A new spike needs new pantries.
+
+## ADR 0006 graph spike: run book (the first spike ended at the empty-pool rule)
+
+Status: the first spike ran on 2026-11-09 with edge option `b`. It stopped at the empty-pool rule, and ADR 0006 is Rejected (see "Graph spike result" above). The steps below stay valid if a new spike runs with new pantries. A new run needs new pantries and a new freeze. Do not reuse the first freeze.
 Design: [graph_spike_design.md](research/2026-11-m3/graph_spike_design.md). The decision rule is in
 [ADR 0006](decisions/0006-hybrid-graph-knowledge-base.md).
 
@@ -237,12 +252,12 @@ person judges correct? It compares two arms on 40 dev pantries. `table_flat` is 
 One person rates a blind sample by hand. The rater sees raw recipe lines and pantry names. The rater never
 sees an id, an edge, an arm or a weight.
 
-### How to run (PLANNED)
+### How to run (for a new spike)
 
 | Step | Command | What it does |
 | --- | --- | --- |
 | 1 | `uv run python scripts/graph_spike.py pantries` | Loads the 40 pantries and prints the names that do not resolve |
-| 2 | `uv run python scripts/graph_spike.py freeze --option a` (or `b`) | Copies the table, writes `data/eval/graph_spike/freeze.v1.json` and prints the pool counts and the top 10 edges |
+| 2 | `uv run python scripts/graph_spike.py freeze --option a` (or `b`; the first spike used `b`) | Copies the table, writes `data/eval/graph_spike/freeze.v1.json` and prints the pool counts and the top 10 edges |
 | 3 | Commit the files in `data/eval/graph_spike/` | This is the one freeze commit |
 | 4 | `uv run python scripts/graph_spike.py sheet`, then commit `data/eval/graph_spike/key_sha256.txt` **before you rate** | `sheet` checks the freeze and its commit. It writes the sheet and the private key in `data/interim/` and the key hash in `data/eval/graph_spike/key_sha256.txt`. The key itself stays out of git |
 | 5 | Rate the sheet. Write `answers.v1.csv` | See the rules below |

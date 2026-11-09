@@ -21,8 +21,9 @@ artifacts before release ([ADR 0004](docs/decisions/0004-static-first-browser-en
 - Statistics corpus: Open Recipes, CC BY 3.0. Only derived statistics ship.
 - RecipeNLG and GISMo data: research only. They never ship
   ([ADR 0003](docs/decisions/0003-licence-clean-recipe-corpus.md)).
-- Proposed, not accepted: a graph knowledge base with ML on top
-  ([ADR 0006](docs/decisions/0006-hybrid-graph-knowledge-base.md)). Keep it in view from M3.
+- Rejected on 2026-11-09 by the M3 spike rule (no new recipes): a graph knowledge base with ML on top
+  ([ADR 0006](docs/decisions/0006-hybrid-graph-knowledge-base.md)). The ADR says what this does and does not
+  show. The table keeps its `is_a` and `form_of` columns as data. A new spike needs new pantries.
 
 ## Module boundaries
 

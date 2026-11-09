@@ -69,7 +69,7 @@ Rebuild: `uv run python scripts/extract_realistic_inputs.py`, `uv run python scr
 ### Ingredient table v2 (M3)
 
 - **File:** `data/ingredients/ingredients.v2.csv`. The M1 table `ingredients.csv` (337 rows) stays as the M1 reference.
-- **Columns:** `id,name,synonyms,staple,provenance,is_a,form_of`. `is_a` and `form_of` hold the edges that [ADR 0006](decisions/0006-hybrid-graph-knowledge-base.md) proposes. The resolver does not read them.
+- **Columns:** `id,name,synonyms,staple,provenance,is_a,form_of`. `is_a` and `form_of` hold the edges that [ADR 0006](decisions/0006-hybrid-graph-knowledge-base.md) proposed. The ADR is rejected (the M3 spike found no new recipes), so the columns stay as data. The resolver does not read them.
 - **Size (MEASURED, counted from the file):** 872 rows. 4 rows are staples. 81 rows have an `is_a` value and 75 have a `form_of` value.
 - **Provenance column:** 493 rows say `hand` and 379 rows say `wikibooks-rule`. The code accepts only these two values (`pantrychef/ingredients/table.py`).
 - **Who made it:** the M1 rows were written by hand. Implementer agents grew the table in review rounds during M3. Growth mines unread phrases from the Wikibooks snapshot and leaves out every frozen test and extra line. The table only grows: v2 never removes or renames a v1 id. The commit history of the file records each round.
@@ -96,7 +96,7 @@ All paths are under `data/eval/`. Labels written by models are not human labels.
 | `parser_gold/dev_id_map.v1.json` | Dev gold name to table id (134 names, 14 with no id). Made at commit `b8a76c7` from the dev gold names and the table, with no predictions in view | One Opus model, blind. Nobody edited it | MIT | No. It is a dev file |
 | `m3_bare_pepper_labels.v1.json` | 80 bare "pepper" lines, seed 45, labelled `black`, `other` or `unclear`. No frozen line is in it | One Opus model, blind. The owner did not adjudicate | Text CC BY-SA 4.0. Labels MIT | No. It decides the bare pepper rule (see [EVALUATION.md](EVALUATION.md)) |
 
-Not created yet: the acceptance run needs two blind gold-to-id maps for the test data (`m3_gold_id_map.v1.json` and `m3_input_gold_id_map.v1.json`, plan D9). The owner checks every mapping that differs from the plain table-key lookup. These files do not exist on this branch (checked with `ls data/eval`). `data/eval/graph_spike/` holds the spike inputs and is not committed yet.
+Not created yet: the acceptance run needs two blind gold-to-id maps for the test data (`m3_gold_id_map.v1.json` and `m3_input_gold_id_map.v1.json`, plan D9). The owner checks every mapping that differs from the plain table-key lookup. These files do not exist on this branch (checked with `ls data/eval`). `data/eval/graph_spike/` holds the frozen inputs of the ADR 0006 spike (freeze commit `e33e630`). The spike ended at an empty pool, so nobody rated anything (see [EVALUATION.md](EVALUATION.md)). Its 40 pantries stay dev pantries.
 
 Attribution for Wikibooks text and the label notes are in `data/eval/parser_gold/NOTICE.md`.
 

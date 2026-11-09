@@ -50,8 +50,8 @@ order. M8 and M9 are independent of each other.
 
 **Tests:** a CI job that runs the exact quickstart commands.
 
-M0 also records the proposed graph direction in
-[ADR 0006](decisions/0006-hybrid-graph-knowledge-base.md).
+M0 also recorded the proposed graph direction in
+[ADR 0006](decisions/0006-hybrid-graph-knowledge-base.md). The M3 spike rejected it (see M3).
 
 ## M1: Thin slice (about 2 weeks)
 
@@ -111,7 +111,7 @@ gate.
 
 ## M3: Ingredient foundation (3 to 4 weeks)
 
-**Status: in progress. Acceptance and the graph spike are pending.** Branch `feat/m3-ingredient-foundation`. Task plan: [2026-11-05-m3-ingredient-foundation.md](plans/2026-11-05-m3-ingredient-foundation.md). Section 12 of [PROJECT_STATE.md](PROJECT_STATE.md) holds the details and the results files.
+**Status: in progress. The graph spike has run and ended at its empty-pool rule. The acceptance run is pending.** Branch `feat/m3-ingredient-foundation`. Task plan: [2026-11-05-m3-ingredient-foundation.md](plans/2026-11-05-m3-ingredient-foundation.md). Section 12 of [PROJECT_STATE.md](PROJECT_STATE.md) holds the details and the results files.
 
 Done (code and tests exist, and the numbers are in [EVALUATION.md](EVALUATION.md)):
 
@@ -120,13 +120,12 @@ Done (code and tests exist, and the numbers are in [EVALUATION.md](EVALUATION.md
 - The bare pepper decision (`staple_cue_or_taste`). It rests on one model labeller.
 - Evaluation sets, labels and the frozen test hashes. The coverage tool and 11 growth rows, measured on the dev halves and in-sample.
 - Pack v2, built locally, with its result file. Nothing is uploaded.
-- The spike code and its design (ADR 0006). The spike has not run.
+- The ADR 0006 graph spike. It ran on 2026-11-09 and found no newly surfaced recipe (MEASURED, [results/m3_graph_spike.json](../results/m3_graph_spike.json)). The ADR rule counts that as a rejection, so ADR 0006 is Rejected. No person rated anything, and the thresholds T1 to T3 were not tested. The result is narrow: it does not show that traversal fails for pantries that name specific kinds, and it says nothing about multi-hop traversal.
 
 Pending:
 
 - The acceptance run (`scripts/m3_acceptance.py`). It needs the two blind gold-to-id maps for the test data. It has not run, so no acceptance number exists.
 - The owner check of the mappings that differ from the table-key lookup (plan D9).
-- The graph spike: the owner rates the sample by hand. ADR 0006 stays Proposed until then.
 - The release of pack v2. The owner uploads release `pack-v2` and runs the Pages workflow.
 
 **Objective:** one trusted ingredient table.
@@ -144,7 +143,8 @@ Pending:
   such lines, and some are not black pepper.
 - Rebuild the pack with the table. Measure coverage.
 - Run the graph spike in [ADR 0006](decisions/0006-hybrid-graph-knowledge-base.md), and accept
-  or reject that ADR. Allow for `is_a` and `form_of` columns in the table.
+  or reject that ADR. Allow for `is_a` and `form_of` columns in the table. (Done: the spike ran and
+  the ADR is Rejected. The table keeps the columns as data.)
 
 **Acceptance:**
 
@@ -275,8 +275,8 @@ demonstrates, and what remains if every gate fails.
 | Data engineering | Fetcher, adapters, pack builder, manifest. Scale only in research | Certain | Unchanged, but small scale in product |
 | Information retrieval | Index, IDF ordering in browser, protocols | Certain | Unchanged |
 | Recommendation | Small ranker with judged data | Gated (M4) | The IDF rule ships. A published negative result remains |
-| Knowledge graph | Ingredient table with roles and relations. Mined context graph is research | Partly certain. Table is certain, graph in product is gated (M3 spike in ADR 0006, M5) | A table, not a true graph, in the product |
-| Hybrid graph with ML on top (proposed, [ADR 0006](decisions/0006-hybrid-graph-knowledge-base.md)) | Typed graph artifact, a build-time mention classifier, edge proposals, graph features in the ranker | Gated. The M3 spike decides the graph. Each model must beat its no-ML baseline on a test fixed in advance (ADR 0005 rules apply) | Flat table and rules. Results stay as research |
+| Knowledge graph | Ingredient table with roles and relations. Mined context graph is research | Partly certain. The table is certain. The graph in the product was gated on the M3 spike, which rejected it (ADR 0006). The M5 mined swaps stay gated | A table, not a true graph, in the product. This is now the plan |
+| Hybrid graph with ML on top (rejected by the M3 spike, [ADR 0006](decisions/0006-hybrid-graph-knowledge-base.md)) | Typed graph artifact, a build-time mention classifier, edge proposals, graph features in the ranker | Not built. The M3 spike found no new recipes, so the graph is rejected. Any model must beat its no-ML baseline on a test fixed in advance (ADR 0005 rules apply) | Flat table and rules. Results stay as research |
 | Practical ML | Mined swaps, ranker | Gated (M4, M5) | Research results only |
 | Computer vision | Tiled image-text matching | Gated (M8) | A published test, no feature |
 | Model optimisation | Vision quantisation tests. Small ranker in browser | Gated (M8, M4) | Measurements only |
@@ -285,9 +285,12 @@ demonstrates, and what remains if every gate fails.
 | Full stack and deployment | TypeScript engine and app on Pages | Certain | Unchanged |
 | Product thinking | Research, user tests, wording rules | Certain | Unchanged |
 
-The owner intends a classical ML-backed project. ADR 0006 records that direction as a
-proposal. It adds tests, and it does not remove any gate, so the worst case below stays
-possible.
+The owner intends a classical ML-backed project. ADR 0006 recorded the graph direction as a
+proposal. The M3 spike tested one step of it, a one-step lookup over the `is_a` and `form_of`
+edges, on 40 dev pantries. It found no new recipe, and the ADR is Rejected. This is narrow: the
+spike did not test pantries that name specific kinds, multi-hop traversal or the ML parts
+(see the ADR). The ML intent stays. ML in the product still has to pass the gates in M4 and M5,
+so the worst case below stays possible.
 
 Worst case: if all gates fail, the product is deterministic, with no ML in the browser.
 The ML work then exists as honest research results. That would still be a useful product,

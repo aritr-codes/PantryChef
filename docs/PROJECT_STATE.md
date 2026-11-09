@@ -148,7 +148,7 @@ Full ledger: 43 claims. 14 FALSE, 11 UNSUPPORTED, 11 STALE, 7 TRUE ([report 07](
 
 - [ADR 0003](decisions/0003-licence-clean-recipe-corpus.md): the public app uses Wikibooks Cookbook (CC BY-SA 4.0, 3,800 recipes) for display and Open Recipes (CC BY 3.0, 173,276 recipes) for statistics only. RecipeNLG is for research. The vocabulary will be rebuilt. Open Recipes statistics ship only if mined swaps pass the M5 blind rating. Otherwise nothing from Open Recipes ships.
 - [ADR 0004](decisions/0004-static-first-browser-engine.md): a static site on GitHub Pages with a small TypeScript engine in the browser (a Web Worker only if latency requires it). Python stays the reference. A golden-file test must prove both give the same results.
-- Proposed, not accepted: [ADR 0006](decisions/0006-hybrid-graph-knowledge-base.md), a graph knowledge base with ML on top. A spike in M3 decides.
+- Rejected on 2026-11-09: [ADR 0006](decisions/0006-hybrid-graph-knowledge-base.md), a graph knowledge base with ML on top. The M3 spike found no newly surfaced recipe, and the ADR rule counts that as a rejection. The result is narrow: it does not show that traversal fails for pantries that name specific kinds, and it says nothing about multi-hop traversal (section 12).
 - [ADR 0005](decisions/0005-honest-claims-and-eval-reset.md): retract the headlines. Keep masked recovery as a sanity test with the no-ML rule on the leaderboard. A learned ranker ships only if it beats the IDF rule on hand-judged pantries. Nutrition stays out of release 1. The diet filter is a three-state preference filter with no allergen claim. Every published number links to a results file.
 
 ## 9. Environment
@@ -230,7 +230,7 @@ Device findings (one phone, Galaxy A17, Chrome 156, 384 CSS px wide, DOM geometr
 
 ## 12. M3 ingredient foundation (branch `feat/m3-ingredient-foundation`, not merged)
 
-Status: **in progress; acceptance and spike pending.**
+Status: **in progress; acceptance pending. The graph spike is done: rejected (no new recipes).**
 
 Plan: [docs/plans/2026-11-05-m3-ingredient-foundation.md](plans/2026-11-05-m3-ingredient-foundation.md). Handoff: [docs/plans/M3_HANDOFF.md](plans/M3_HANDOFF.md). Method and tables: [EVALUATION.md](EVALUATION.md) (section "M3 ingredient foundation"). Files and licences: [DATASET.md](DATASET.md). Typed-name flow: [ARCHITECTURE_PROPOSAL.md](ARCHITECTURE_PROPOSAL.md) (section 8).
 
@@ -240,7 +240,8 @@ Results files (each one links commit, config and command):
 - [results/m3_table_growth.json](../results/m3_table_growth.json): 11 growth rows on dev and in-sample data.
 - [results/m3_bare_pepper.json](../results/m3_bare_pepper.json): the bare pepper decision.
 - [results/m3_pack_v2.json](../results/m3_pack_v2.json): pack v2 counts and build gates.
-- Not written yet: `results/m3_acceptance.json` and `results/m3_graph_spike.json`.
+- [results/m3_graph_spike.json](../results/m3_graph_spike.json): the ADR 0006 spike result (empty pool).
+- Not written yet: `results/m3_acceptance.json`.
 
 | Item | Result | Label |
 | --- | --- | --- |
@@ -250,13 +251,12 @@ Results files (each one links commit, config and command):
 | Pack v2 | 3,712 recipes, `recipes_fully_read` 0.7244 (2,689 of 3,712), `core.v2.json.gz` 502,837 bytes, 872 ingredients. In-sample. The build gates in the file pass | MEASURED ([results/m3_pack_v2.json](../results/m3_pack_v2.json)) |
 | Bare pepper | 56 of 80 labelled lines are black pepper (0.700, Wilson 95% 0.5923 to 0.7894). The rule stays `staple_cue_or_taste` | MEASURED, one blind model labeller, no owner adjudication |
 | Acceptance run | `scripts/m3_acceptance.py` exists and has not run on the test data | NOT RUN YET |
-| Graph spike (ADR 0006) | Code and design exist. The owner has not rated anything. ADR 0006 stays Proposed | NOT RUN YET |
+| Graph spike (ADR 0006) | Verdict `rejected`, reason `no_new_recipes`. Edge option b: 17 of 157 edges usable (16 `is_a`, 1 `form_of`), longest chain 1. Pool of new items 0. Edge-source hits 0 of 40 pantries. Decoy candidates 733 (make now) and 1,750 (one away). Nobody rated, so T1 to T3 were not tested. ADR 0006 is Rejected. Narrow: it does not show that traversal fails for pantries that name specific kinds, and it says nothing about multi-hop traversal | MEASURED ([results/m3_graph_spike.json](../results/m3_graph_spike.json)) |
 
 Pending:
 
 - The owner checks the blind gold-to-id mappings that differ from the table-key lookup (plan D9). The two map files do not exist yet.
 - The acceptance run, once, on a clean tree. If a target fails, stop and report. Do not lower it.
-- The graph spike rating by the owner.
 - The release of pack v2. The owner uploads release `pack-v2` and runs the Pages workflow. Nothing is deployed, and the release `pack-v2` does not exist.
 
 This section makes no claim that an M3 target is met or missed. The acceptance run decides that.

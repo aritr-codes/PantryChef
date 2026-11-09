@@ -378,16 +378,30 @@ run.
 | `data/nutrition/aliases.json` | Unused in v1. Review its origin at M9 |
 | `cli.py` | Change `cook` to call `answer()` |
 
-## 14. Proposed direction: graph knowledge base with ML on top
+## 14. Graph knowledge base with ML on top (rejected by the M3 spike)
 
-Status: proposed, not accepted. [ADR 0006](decisions/0006-hybrid-graph-knowledge-base.md)
-records it. Nothing in the sections above depends on it.
+Status: rejected on 2026-11-09 by the decision rule of
+[ADR 0006](decisions/0006-hybrid-graph-knowledge-base.md). Nothing in the sections above
+depends on it. The graph parts are not built.
 
-The owner intends a classical ML-backed project. The idea is a typed ingredient and recipe
+The owner intends a classical ML-backed project. The idea was a typed ingredient and recipe
 graph, shipped as a static artifact, with ML for retrieval, ranking, ingredient
 understanding and recommendations. It fits ADR 0004, because traversals can be precomputed
-at build time. A spike in M3 decides whether the graph stays. ADR 0005 still decides whether
-each model ships. If the spike fails, the design above stands, with a flat table.
+at build time. ADR 0005 still decides whether each model ships.
+
+The M3 spike tested one step of this idea: a one-step lookup over the `is_a` and `form_of`
+edges of the table. It found no newly surfaced recipe on the 40 dev pantries (MEASURED,
+[results/m3_graph_spike.json](../results/m3_graph_spike.json)). The ADR rule counts that as a
+rejection. The result is narrow:
+
+- It does not show that traversal fails for a person who types a specific kind (a HYPOTHESIS
+  says it would help). The spike pantries named general items.
+- It says nothing about multi-hop traversal. The table has no chain longer than one edge.
+- It did not test the ML parts (mention classifier, edge proposals, graph features in the
+  ranker).
+
+The design above stands, with a flat table. The table keeps its `is_a` and `form_of`
+columns as data, and the resolver does not read them. A new spike needs new pantries.
 
 ## 15. Open questions
 
