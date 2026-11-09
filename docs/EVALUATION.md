@@ -84,6 +84,45 @@ flowchart LR
 
 All arrows run today. Judges are people in M4 and were models in the M2 pilot. Metrics from masked pantries never select a model (`assert_selectable`).
 
+## ADR 0006 graph spike (PLANNED, M3 Task 8)
+
+Status: the code and tests exist. No real run has happened. No results file exists, and the ADR stays Proposed.
+Design: [graph_spike_design.md](research/2026-11-m3/graph_spike_design.md). The decision rule is in
+[ADR 0006](decisions/0006-hybrid-graph-knowledge-base.md).
+
+The spike asks one question. Does a one-step lookup over the `is_a` and `form_of` edges add recipes that a
+person judges correct? It compares two arms on 40 dev pantries. `table_flat` is the shipped engine.
+`graph_traversal` adds the ancestors of each pantry item (specific to general only) before the same call.
+One person rates a blind sample by hand. The rater sees raw recipe lines and pantry names. The rater never
+sees an id, an edge, an arm or a weight.
+
+### How to run (PLANNED)
+
+| Step | Command | What it does |
+| --- | --- | --- |
+| 1 | `uv run python scripts/graph_spike.py pantries` | Loads the 40 pantries and prints the names that do not resolve |
+| 2 | `uv run python scripts/graph_spike.py freeze --option a` (or `b`) | Copies the table, writes `data/eval/graph_spike/freeze.v1.json` and prints the pool counts and the top 10 edges |
+| 3 | Commit the files in `data/eval/graph_spike/` | This is the one freeze commit |
+| 4 | `uv run python scripts/graph_spike.py sheet` | Checks the freeze. Writes the sheet and the private key in `data/interim/` and the key hash in `data/eval/graph_spike/key_sha256.txt` |
+| 5 | Rate the sheet. Write `answers.v1.csv` | See the rules below |
+| 6 | Commit `answers.v1.csv`, then run `uv run python scripts/graph_spike.py score` | Checks the freeze and git. Writes `results/m3_graph_spike.json` |
+
+Rules:
+
+- Choose edge option `a` (all edges) or `b` (edges that the classifier marked usable) before step 2.
+- Read the pool counts of step 2 once. After that, do not change the edges, the option or the labels.
+  A change makes the result exploration. A new attempt needs new pantries.
+- If a group has fewer than 20 new items, the owner may skip the rating (`not_run`).
+- Do not open the key file before you answer every item.
+- Rate in up to 3 sessions. The load is 210 items at 45 to 90 seconds each, 2.6 to 5.3 hours (ESTIMATE).
+- The first lines of `answers.v1.csv` start with `#`. One of them says "I have read" or "I have not read"
+  the `is_a` and `form_of` columns or the edge labels. The columns are `item_id, answer, unmet_lines,
+  seconds, note`. The answer is `yes`, `no` or `unsure`. `unsure` counts as wrong.
+- `score` stops when a frozen input changed, when `freeze.v1.json` has more than one commit, or when the
+  freeze commit is not older than the commit that adds the answers.
+
+The 40 pantries are dev pantries. They never enter the M4 test split.
+
 ## RecipeNLG rule baselines (MEASURED, research only)
 
 Source: [`results/m2_rule_baselines_recipenlg.json`](../results/m2_rule_baselines_recipenlg.json).
