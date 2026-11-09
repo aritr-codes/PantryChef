@@ -20,8 +20,8 @@ Rules (see docs/plans/2026-11-02-m1-thin-slice.md, gap 8):
   unread, unless a table key covers the whole phrase. A staple right after a food ("linseed
   oil", "chile oil") is a product form, so that part is unread too. This rule costs coverage
   (MEASURED, dev snapshot: lines read 95.7% before, 93.5% after; recipes_fully_read 0.7338
-  before, 0.6377 after). The table rounds win back part of it: table round 2 reads 95.5% of lines
-  and recipes_fully_read 0.7193 (MEASURED, growth rows 1b, 2b and 4b).
+  before, 0.6377 after). The table rounds win back part of it: table round 2 reads 95.6% of lines
+  and recipes_fully_read 0.7244 (MEASURED, growth rows 1b, 2b and 7).
 - A staple never hides a real ingredient when they are not adjacent ("cornstarch mixed with
   water" reads cornstarch).
 - A "pepper" right after a match of a row known as "... pepper" is part of that name ("green

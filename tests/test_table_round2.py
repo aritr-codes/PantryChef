@@ -217,3 +217,24 @@ def test_ground_meat_edges(table):
     assert table.by_id["ground_chicken"].form_of == ("chicken",)
     assert table.by_id["ground_chicken"].is_a == ()
     assert table.by_id["ground_beef"].form_of == ("beef",)
+
+
+@pytest.mark.parametrize(
+    ("name", "ids"),
+    [
+        ("red chili garlic sauce", "chili_garlic_sauce"),
+        ("green chili garlic sauce", "chili_garlic_sauce"),
+        ("red chile garlic sauce", "chili_garlic_sauce"),
+        ("green chilli garlic sauce", "chili_garlic_sauce"),
+        ("hot red chili garlic sauce", "chili_garlic_sauce"),
+        ("green chili powder", "chili_powder"),
+        ("green chile powder", "chili_powder"),
+        ("red chili oil", "chili_oil"),
+        ("green chili bean paste", "chili_bean_paste"),
+    ],
+)
+def test_colour_prefixed_product_forms_keep_their_own_row(table, name, ids):
+    # "red chili" and "green chili" are keys again, so each longer phrase needs its own key.
+    assert _ids(table, f"1 tbsp {name}") == [((ids,), True)]
+    keys = {" ".join(k): i for k, i in table.keys.items()}
+    assert resolve_name(name, keys, table.words).ids == (ids,)

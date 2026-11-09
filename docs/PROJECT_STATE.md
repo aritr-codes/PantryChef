@@ -196,8 +196,8 @@ Not done:
   Table round 2 gave each its own row, so they now read `pomegranate_juice`, `chili_powder` and `flaxseed_oil`. Round 2 of Task 5 treats "-ly" words and a few more words
   ("very", "fine", "only", "size", "approximately", "virgin") as modifiers, so "2 eggs lightly beaten" reads again. See `pantrychef/ingredients/resolve.py`.
   Coverage cost of the head-noun check (MEASURED, dev snapshot, growth row 1b to row 2b): lines read fall from 95.7% to 93.5%, and
-  `recipes_fully_read` falls from 0.7338 to 0.6377. Table round 2 wins back part of it (MEASURED, growth row 4b: lines read 95.5%,
-  `recipes_fully_read` 0.7193, 856 rows).
+  `recipes_fully_read` falls from 0.7338 to 0.6377. Table round 2 wins back part of it (MEASURED, growth row 7 in
+  `results/m3_table_growth.json`: 872 rows, lines read 95.6%, `recipes_fully_read` 0.7244).
   The shipped pack-v1 was built by the old resolver. The next pack build changes what lines read. For example, "1 tsp chile oil" was
   `chili_pepper` and is now unread. That build needs a new release and a new hash set (Task 7).
 
