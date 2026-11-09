@@ -974,3 +974,127 @@ def build_frozen_pack(root: Path, out_dir: Path) -> Pack:
     allow.write_text(json.dumps({"inputs": inputs}), encoding="utf-8")
     build_pack(allow, out_dir, repo_root=root, commit="frozen", dirty=False)
     return load_pack(out_dir)
+
+
+# ------------------------------------------------------------------------------ results file
+
+
+def result_doc(
+    manifest: dict,
+    scored: dict,
+    key: dict,
+    rater: dict,
+    freeze_commit: str,
+    freeze_sha256: str,
+    command: str,
+) -> dict:
+    """The ``results/m3_graph_spike.json`` document, for ``results.write_result`` (Step E)."""
+    n = scored["net_new_per_pantry"]
+    prec = scored["precision"]
+    dec_n = sum(prec[g]["decoy_n"] for g in SAMPLED_GROUPS)
+    dec_k = sum(
+        prec[g]["decoy_precision"] * prec[g]["decoy_n"]
+        for g in SAMPLED_GROUPS
+        if prec[g]["decoy_n"]
+    )
+    option = manifest["edge_option"]["option"]
+    used = manifest["edges_in_use"]
+    limits = [
+        "One rater. The repeats measure self-agreement only.",
+        "The rater "
+        + ("read" if rater["read_edges"] == "yes" else "did not read")
+        + " the is_a and form_of columns or the edge labels before rating.",
+        "The new pantries are model-written and the pilot pantries come from recipe slots. "
+        "Real household pantries are untested.",
+        "Python only. Shipping needs a precomputed expansion and browser parity tests.",
+    ]
+    if option == "b":
+        limits.append("Option (b): one model chose the edges, with the rubric the rater used.")
+    if manifest["max_depth_observed"] <= 1:
+        limits.append(
+            "Maximum edge depth is 1, so the spike tests one-step lookups, not multi-hop traversal."
+        )
+    metrics = [
+        {"name": "graph_net_new_per_pantry", "arm": "graph_traversal", "split": "dev",
+         "n": n["n_pantries"], "value": n["mean"],
+         "ci": {"lo": n["boot_lo"], "hi": n["boot_hi"], "level": 0.95,
+                "method": "cluster-bootstrap-percentile", "n_clusters": n["n_pantries"]}},
+    ]  # fmt: skip
+    for g in SAMPLED_GROUPS:
+        if prec[g]["weighted"] is not None:
+            metrics.append(
+                {"name": f"graph_new_precision_{g}", "arm": "graph_traversal", "split": "dev",
+                 "n": prec[g]["n"], "value": prec[g]["weighted"]}
+            )  # fmt: skip
+    if dec_n:
+        metrics.append(
+            {"name": "graph_decoy_precision", "arm": None, "split": "dev", "n": dec_n,
+             "value": dec_k / dec_n}
+        )  # fmt: skip
+    if scored["repeat_agreement"]["rate"] is not None:
+        metrics.append(
+            {"name": "graph_rater_repeat_agreement", "arm": None, "split": "dev",
+             "n": scored["repeat_agreement"]["pairs"], "value": scored["repeat_agreement"]["rate"]}
+        )  # fmt: skip
+    sets = key["pantries"]
+    return {
+        "label": "MEASURED",
+        "what": "ADR 0006 graph spike: blind rating of recipes that one-step edge lookup adds",
+        "command": command,
+        "config": {
+            "edge_option": manifest["edge_option"],
+            "plan": manifest["plan"],
+            "thresholds": manifest["thresholds"],
+        },  # fmt: skip
+        "seed": manifest["plan"]["seed"],
+        "corpus_fingerprint": manifest["snapshot_sha256"],
+        "arms": [{"name": "table_flat"}, {"name": "graph_traversal"}],
+        "metrics": metrics,
+        "comparisons": [],
+        "environment": {},
+        "raw": {
+            "freeze_commit": freeze_commit,
+            "freeze_sha256": freeze_sha256,
+            "thresholds": manifest["thresholds"],
+            "edge_option": manifest["edge_option"],
+            "edges_in_use": {
+                "count_per_type": used["count_per_type"],
+                "owner_edits": manifest.get("owner_edits", []),
+            },
+            "max_depth_observed": manifest["max_depth_observed"],
+            "pantries": {
+                "n": len(sets),
+                "pilot": sum(v == "pilot" for v in sets.values()),
+                "new": sum(v == "new" for v in sets.values()),
+                "unknown_names": manifest.get("unknown_names", {}),
+            },
+            "edge_source_hits": manifest.get("edge_source_hits", {}),
+            "pool": {
+                "counts": manifest.get("pool_counts", {}),
+                "by_edge": manifest.get("pool_by_edge", []),
+            },
+            "rated": {
+                **scored["rated"],
+                "strata_mode": {
+                    f"{s['group']}|{s['signature']}": s["mode"] for s in scored["strata"]
+                },
+            },
+            **{
+                k: scored[k]
+                for k in (
+                    "hops",
+                    "net_new_per_pantry",
+                    "precision",
+                    "strata",
+                    "edge_types",
+                    "edges",
+                    "split_report",
+                    "repeat_agreement",
+                    "checks",
+                    "verdict",
+                )
+            },  # fmt: skip
+            "rater": {"count": 1, **rater},
+            "limits": limits,
+        },
+    }
