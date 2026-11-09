@@ -56,7 +56,23 @@
   "medium",
   "large"
  ],
- "container": [],
+ "container": [
+  "can",
+  "jar",
+  "bottle",
+  "package",
+  "packet",
+  "box",
+  "bag",
+  "tin",
+  "carton",
+  "tub",
+  "tube",
+  "jug",
+  "sachet",
+  "bunch",
+  "head"
+ ],
  "prep": [
   "a",
   "an",
