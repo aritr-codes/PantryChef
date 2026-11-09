@@ -1,13 +1,13 @@
 {
   "arms": [],
   "command": "uv run python scripts/m3_bare_pepper.py score data/eval/m3_bare_pepper_labels.v1.json",
-  "commit": "ea49cb88029ebb061b3eb06a6b16f5df69c35601",
+  "commit": "250a9cdee5f3160eee436b5c5b8cb517353713ac",
   "comparisons": [],
   "config": {
     "changed_under_always": {
       "black": 29,
       "how": "resolve each labelled line with the table and with bare_pepper.when = 'always'; count the lines whose reading differs",
-      "lines": 46,
+      "lines": 45,
       "of": 80
     },
     "counts": {
@@ -33,9 +33,9 @@
     "snapshot": "snapshot.2026-11-03.jsonl.gz",
     "snapshot_sha256": "a1a076ab0aee385c4e01cdc904342214dfaa6b01dc35d80d32519ea625c597d2",
     "table": "data/ingredients/ingredients.v2.csv",
-    "table_sha256": "b5bac0dcae3ce1e8d6c77592280c338ad1a9d28a1c502d4b3c361dced742e0b4"
+    "table_sha256": "03728b2390084d84e9c1c6678a8cfcbf56c605d487db7bf66731e249b5e01b0f"
   },
-  "corpus_fingerprint": "6bc4981af00a5ae22d491a1098fe29739882482222befd8a0d6d1e467272d243",
+  "corpus_fingerprint": "1b975499ec9f2b8ba055f3cb35dcdf2c05b7c555ddd08f1f210d45d7aec58682",
   "dirty": false,
   "dirty_paths": [],
   "environment": {
