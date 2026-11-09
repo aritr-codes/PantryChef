@@ -1,6 +1,6 @@
 # 0006. Hybrid: a graph knowledge base with ML on top
 
-- **Status:** Proposed. Nothing here is accepted or built. A spike in M3 decides.
+- **Status:** Rejected on 2026-11-09 by the rule in this ADR: the M3 spike surfaced no new recipe. See "Outcome of the M3 spike". The structure question stays open for a new spike with new pantries.
 - **Date:** 2026-10-30
 - **Deciders:** Project owner (intent), Tech Lead
 
@@ -152,3 +152,50 @@ literature.
   its budget of 3 systems and about 1,500 judgments, so decide that at the end of M3. Wrong edges can create
   false "make now" results. Traversal logic adds parity cases, unless it is precomputed.
 - Revisit when: the M3 spike ends, or M4 and M5 results change the balance.
+
+## Outcome of the M3 spike
+
+**Result: Rejected, reason "no newly surfaced recipes".** The decision rule above says that having no newly surfaced
+recipes is a rejection. This outcome is narrow. It rejects the tested setup, not the idea of a graph (see
+"What this does not show").
+
+Evidence (MEASURED, [results/m3_graph_spike.json](../../results/m3_graph_spike.json); inputs frozen in commit
+e33e630, files in `data/eval/graph_spike/`):
+
+- Edge option b: traversal follows only the edges that a blind labeller marked usable, with two owner edits.
+  The table has 157 edges (81 `is_a`, 76 `form_of`). Of these, 17 are usable: 16 `is_a` and 1 `form_of`
+  (`coffee_powder` to `coffee`). The longest chain has one edge.
+- Pool of new recipes: 0 for `is_a` and 0 for `form_of`. No recipe moves into "make now" or "one away" through
+  an edge, compared with the same table without traversal.
+- Edge-source hits: 0 of 40 pantries. No pantry lists the specific food at the start of a usable edge, such as
+  gouda or ciabatta. Decoy candidates exist (733 for "make now", 1,750 for "one away"), but without new items
+  no sheet was built.
+- No person rated anything. The thresholds T1 to T3 were not tested. The owner confirmed them before the freeze:
+  T1 and T2 as written above, T3 as a Wilson lower bound of at least 0.80 with at least 20 rated items per group,
+  and "unsure" counts as wrong.
+
+Cause (MEASURED counts, one read-only probe of the pantry file): the pantries name general items, such as
+"cheese", "cream cheese" and "cottage cheese". The usable edges run from a specific kind to a general one, so a
+pantry that already holds the general name gains nothing. The writer of the 20 new pantries did not see the table
+or the edges, and its prompt did not mention kinds.
+
+What this does not show:
+
+- It does not show that traversal fails for a person who types a specific name. That test needs pantries that
+  contain specific kinds. HYPOTHESIS: such pantries would surface new recipes.
+- It does not show anything about multi-hop traversal. The table has no chain longer than one edge.
+- `form_of` rows in the table mostly mean "made from", not "can stand in for". Only 1 of 76 is usable, so the
+  spike could not test mixed edge types. T1 needed both types.
+- One model labelled the edges. One model wrote the new pantries. No person rated.
+
+Consequences:
+
+- The table keeps its `is_a` and `form_of` columns as data. The documents keep the word "table" and do not call
+  the product a graph.
+- The 40 spike pantries stay dev pantries. None may enter the M4 test split (the check is in
+  `docs/research/2026-11-m3/graph_spike_design.md`, section 2.2).
+- A new spike needs new pantries. It would include pantries that name specific kinds, and the owner would confirm
+  T1 again, because the table gives only one usable `form_of` edge. The M3 typed-name resolver already covers
+  synonyms, split, contained and fuzzy names, so a new spike must show a gain beyond those steps.
+- Licence and literature checks are in `docs/research/2026-11-m3/epicure.md` and the design file, section 6.
+  The FoodOn and Epicure data stay unadopted.
