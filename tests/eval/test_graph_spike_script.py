@@ -250,7 +250,7 @@ def _ready(repo, **kw):
 
 def test_sheet_needs_the_freeze_committed_and_clean(repo):
     assert run(repo, "freeze", "--option", "a") == 0
-    with pytest.raises(SystemExit, match="exactly one commit"):
+    with pytest.raises(SystemExit, match="not tracked"):
         run(repo, "sheet")  # the freeze is not committed yet
     git(repo, "add", GRAPH)
     git(repo, "commit", "-q", "-m", "freeze")
@@ -258,6 +258,40 @@ def test_sheet_needs_the_freeze_committed_and_clean(repo):
     fz.write_text(fz.read_text() + "\n")  # still valid JSON, but no longer the committed file
     with pytest.raises(SystemExit, match="differ from their commit"):
         run(repo, "sheet")
+
+
+def test_an_ignored_frozen_file_is_refused_even_though_git_status_is_silent(repo):
+    (repo / ".gitignore").write_text("data/interim/\n*.csv\n")  # a rule that hides the table copy
+    git(repo, "add", ".gitignore")
+    git(repo, "commit", "-q", "-m", "ignore csv")
+    assert run(repo, "freeze", "--option", "a") == 0
+    git(repo, "add", GRAPH)  # skips the ignored table.frozen.csv without an error
+    git(repo, "commit", "-q", "-m", "freeze")
+    assert (repo / GRAPH / "table.frozen.csv").exists()
+    for call in (("sheet",), ("skip", "--reason", "x")):
+        with pytest.raises(SystemExit, match=r"table.frozen.csv is not tracked.*git add -f"):
+            run(repo, *call)
+    git(repo, "add", "-f", GRAPH + "/table.frozen.csv")
+    git(repo, "commit", "-q", "-m", "table copy")
+    assert run(repo, "sheet") == 0
+
+
+def test_an_ignored_answers_file_is_refused_with_the_fix(repo):
+    _frozen(repo)
+    _answered(repo)
+    (repo / ".gitignore").write_text("data/interim/\n*.csv\n")
+    with pytest.raises(SystemExit, match="git add -f"):
+        run(repo, "score")
+
+
+def test_an_ignored_key_hash_is_refused_with_the_fix(repo):
+    (repo / ".gitignore").write_text("data/interim/\nkey_sha256.txt\n")
+    _frozen(repo)
+    _answered(repo, commit_key=False)
+    git(repo, "add", "-f", GRAPH + "/answers.v1.csv")
+    git(repo, "commit", "-q", "-m", "answers")
+    with pytest.raises(SystemExit, match="git add -f"):
+        run(repo, "score")
 
 
 def test_score_needs_answers_committed_after_the_freeze(repo):
@@ -363,7 +397,7 @@ def test_skip_writes_not_run_with_the_reason(repo):
 
 def test_skip_needs_a_clean_freeze_and_no_sheet(repo):
     assert run(repo, "freeze", "--option", "a") == 0
-    with pytest.raises(SystemExit, match="exactly one commit"):
+    with pytest.raises(SystemExit, match="not tracked"):
         run(repo, "skip", "--reason", "x")
     git(repo, "add", GRAPH)
     git(repo, "commit", "-q", "-m", "freeze")

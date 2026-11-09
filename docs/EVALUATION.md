@@ -115,7 +115,8 @@ Rules:
   A change makes the result exploration. A new attempt needs new pantries.
 - If a group has fewer than 20 new items, the owner may skip the rating (`not_run`).
   `freeze` also prints the T1 ceiling: the new items and the pantries per edge type. T1 needs at least 5
-  correct items from at least 3 pantries for each type, so `freeze` warns when the pool is below that.
+  correct items from at least 3 pantries for each type, so `freeze` warns when the pool is below that. The ceiling counts the whole pool, not the drawn sample,
+  so it is an upper bound.
 - Do not open the key file before you answer every item.
 - Rate in up to 3 sessions. The load is 210 items at 45 to 90 seconds each, 2.6 to 5.3 hours (ESTIMATE).
 - The first lines of `answers.v1.csv` start with `#`. One of them says "I have read" or "I have not read"
@@ -128,8 +129,9 @@ Rules:
   modules, `build.py` and `scripts/graph_spike.py`. Run `freeze` on a clean, final tree.
 - `score` stops when a frozen input changed or differs from its commit. It also stops when
   `freeze.v1.json`, `key_sha256.txt` or `answers.v1.csv` has more than one commit, or when the three
-  commits are not in this order: freeze, key hash, answers. It compares the key on disk with the hash in
-  the committed `key_sha256.txt`.
+  commits are not in this order: freeze, key hash, answers. Every frozen file, the key hash and the
+  answers must be tracked by git. If a `.gitignore` rule hides one, add it with `git add -f`. `score` also compares the key on disk with the
+  hash in the committed `key_sha256.txt`.
 
 The 40 pantries are dev pantries. They never enter the M4 test split.
 

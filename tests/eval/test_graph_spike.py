@@ -195,6 +195,12 @@ def test_option_b_rejects_odd_labels_and_stray_edges():
         edges_in_use(EDGES, "b", {"edges": [*LABELS["edges"], extra]})
 
 
+def test_option_b_rejects_a_label_listed_twice():
+    twice = {"edges": [*LABELS["edges"], dict(LABELS["edges"][0], label="not usable")]}
+    with pytest.raises(ValueError, match="twice"):
+        edges_in_use(EDGES, "b", twice)
+
+
 def test_option_b_checks_owner_edits_against_labels():
     edit = {"from": "paneer", "type": "is_a", "to": "cheese", "old_label": "not usable"}
     ok = {**LABELS, "owner_edits": [{**edit, "new_label": "usable"}]}

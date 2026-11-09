@@ -82,6 +82,8 @@ def edges_in_use(edges: list[Edge], option: str, labels: dict | None) -> list[Ed
     if labels is None:
         raise ValueError("option b needs the edge labels")
     by_edge = {(x["from"], x["type"], x["to"]): x["label"] for x in labels["edges"]}
+    if len(by_edge) != len(labels["edges"]):
+        raise ValueError("option b: an edge is listed twice in the labels")
     bad = sorted((e, v) for e, v in by_edge.items() if v not in LABEL_VALUES)
     if bad:
         raise ValueError(f"option b: label must be 'usable' or 'not usable', got {bad[0]}")

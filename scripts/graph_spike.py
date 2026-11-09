@@ -162,7 +162,10 @@ def cmd_freeze(root: Path, option: str) -> int:
     per_group = {g: sum(n for k, n in extras["pool_counts"]["new"].items() if k.startswith(g))
                  for g in gs.SAMPLED_GROUPS}  # fmt: skip
     t1 = gs.THRESHOLDS["T1"]
-    print("T1 ceiling (new items in the pool and the pantries they come from, per edge type):")
+    print(
+        "T1 ceiling per edge type: new items in the whole pool and the pantries they come from. "
+        "It counts the pool, not the drawn sample, so it is an upper bound:"
+    )
     for etype, c in extras["pool_counts"]["edge_types"].items():
         print(f"  {etype}: {c['new']} new items from {c['pantries']} pantries")
         if c["new"] < t1["min_correct"] or c["pantries"] < t1["min_pantries"]:
@@ -231,8 +234,22 @@ def _commits(root: Path, rel: str) -> list[str]:
     return _git(root, "log", "--format=%H", "--", rel).split()
 
 
+def _require_tracked(root: Path, rels: tuple[str, ...]) -> None:
+    """Every file is tracked. A clean ``git status`` says nothing for ignored files."""
+    for rel in rels:
+        done = subprocess.run(
+            ["git", "ls-files", "--error-unmatch", "--", rel], cwd=root, capture_output=True
+        )
+        if done.returncode != 0:
+            raise SystemExit(
+                f"{rel} is not tracked by git. Run `git add -f {rel}` (a .gitignore rule may hide "
+                "it) and commit it, then try again."
+            )
+
+
 def _one_clean_commit(root: Path, rel: str, extra: tuple[str, ...] = ()) -> str:
-    """The file has exactly one commit and neither it nor the ``extra`` files differ from HEAD."""
+    """The files are tracked, ``rel`` has exactly one commit and no file differs from HEAD."""
+    _require_tracked(root, (rel, *extra))
     commits = _commits(root, rel)
     if len(commits) != 1:
         raise SystemExit(f"{rel} must have exactly one commit, found {len(commits)}")
@@ -252,7 +269,8 @@ def _older(root: Path, older: str, newer: str, what: str) -> None:
 
 def _check_freeze_git(root: Path, p: SimpleNamespace) -> str:
     """One commit holds the freeze, and the frozen files match it. Return that commit."""
-    inputs = [p.table, p.pantries] + ([p.labels] if p.labels.exists() else [])
+    optional = [p.labels, p.graph / "edge_labels.proposals.v1.json"]
+    inputs = [p.table, p.pantries] + [f for f in optional if f.exists()]
     return _one_clean_commit(root, _rel(root, p.freeze), tuple(_rel(root, f) for f in inputs))
 
 
@@ -260,7 +278,10 @@ def _check_key_git(root: Path, p: SimpleNamespace, freeze_commit: str) -> tuple[
     """The key hash is committed once, after the freeze. Return ``(commit, committed hash)``."""
     rel = _rel(root, p.key_sha)
     if not _commits(root, rel):
-        raise SystemExit(f"{rel} is not committed. Commit the key hash before rating.")
+        raise SystemExit(
+            f"{rel} is not committed. Commit the key hash before rating "
+            f"(run `git add -f {rel}` if a .gitignore rule hides it)."
+        )
     commit = _one_clean_commit(root, rel)
     _older(root, freeze_commit, commit, "freeze commit and key hash commit")
     return commit, _git(root, "show", f"{commit}:{rel}").strip()
@@ -270,7 +291,10 @@ def _check_answers_git(root: Path, p: SimpleNamespace, key_commit: str) -> str:
     """The answers file has one commit, newer than the key hash commit."""
     rel = _rel(root, p.answers)
     if not _commits(root, rel):
-        raise SystemExit(f"{rel} is not committed. Commit the answers, then score.")
+        raise SystemExit(
+            f"{rel} is not committed. Commit the answers, then score "
+            f"(run `git add -f {rel}` if a .gitignore rule hides it)."
+        )
     commit = _one_clean_commit(root, rel)
     _older(root, key_commit, commit, "key hash commit and answers commit")
     return commit
