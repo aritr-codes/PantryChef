@@ -111,15 +111,24 @@ def test_v1_file_without_edge_columns_still_loads():
     assert all(r.is_a == () and r.form_of == () for r in t.rows)
 
 
-def test_v2_is_v1_plus_two_empty_columns():
+def test_v2_keeps_every_v1_row():
     def read(p):
         with open(p, encoding="utf8", newline="") as fh:
-            return list(csv.DictReader(fh))
+            return {r["id"]: r for r in csv.DictReader(fh)}
 
     v1, v2 = read(DEFAULT_TABLE_PATH), read(TABLE_V2_PATH)
-    assert [{**r, "is_a": "", "form_of": ""} for r in v1] == v2
-    t1, t2 = IngredientTable.load(DEFAULT_TABLE_PATH), IngredientTable.load(TABLE_V2_PATH)
-    assert t1.keys == t2.keys and t1.staples == t2.staples
+    for rid, r in v1.items():
+        assert rid in v2, rid
+        for col in ("name", "staple", "provenance"):
+            assert v2[rid][col] == r[col], (rid, col)
+        old = {s for s in r["synonyms"].split("|") if s}
+        assert old <= {s for s in v2[rid]["synonyms"].split("|") if s}, rid
+
+
+def test_v2_loads_without_duplicate_ids():
+    t = IngredientTable.load(TABLE_V2_PATH)
+    assert len(t.by_id) == len(t.rows)
+    assert len(t.rows) >= len(IngredientTable.load(DEFAULT_TABLE_PATH).rows)
 
 
 def test_default_table_stays_v1():
