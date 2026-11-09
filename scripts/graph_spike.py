@@ -6,11 +6,13 @@ Design: docs/research/2026-11-m3/graph_spike_design.md.
     uv run python scripts/graph_spike.py freeze --option a|b
     uv run python scripts/graph_spike.py sheet
     uv run python scripts/graph_spike.py score
+    uv run python scripts/graph_spike.py skip --reason TEXT
 
 ``pantries`` loads the 40 dev pantries, resolves the names and prints the unknown ones.
 ``freeze`` copies the table, builds the pool, writes ``freeze.v1.json`` and prints the pool counts.
 ``sheet`` checks the freeze, draws the sample and writes the private sheet and key.
 ``score`` checks the freeze and git, reads the answers and writes ``results/m3_graph_spike.json``.
+``skip`` writes the same file with verdict ``not_run`` (owner skip) or ``rejected`` (empty pool).
 The logic lives in ``pantrychef/eval/graph_spike.py``. This file only moves data.
 """
 
@@ -159,6 +161,16 @@ def cmd_freeze(root: Path, option: str) -> int:
           f"{extras['edge_source_hits']['new']} new")  # fmt: skip
     per_group = {g: sum(n for k, n in extras["pool_counts"]["new"].items() if k.startswith(g))
                  for g in gs.SAMPLED_GROUPS}  # fmt: skip
+    t1 = gs.THRESHOLDS["T1"]
+    print("T1 ceiling (new items in the pool and the pantries they come from, per edge type):")
+    for etype, c in extras["pool_counts"]["edge_types"].items():
+        print(f"  {etype}: {c['new']} new items from {c['pantries']} pantries")
+        if c["new"] < t1["min_correct"] or c["pantries"] < t1["min_pantries"]:
+            print(
+                f"PRE-CHECK: T1 cannot pass for {etype}. It needs at least {t1['min_correct']} "
+                f"correct items from at least {t1['min_pantries']} pantries. "
+                f"The pool has {c['new']} items from {c['pantries']} pantries."
+            )
     if not pool:
         print("PRE-CHECK: the pool is empty. The result is Rejected: no new recipes.")
     elif min(per_group.values()) < MIN_GROUP:
@@ -176,12 +188,14 @@ def cmd_freeze(root: Path, option: str) -> int:
 def cmd_sheet(root: Path) -> int:
     p = _paths(root)
     manifest = _checked_manifest(root, p)
+    freeze_commit = _check_freeze_git(root, p)
     seed = manifest["plan"]["seed"]
     pack, pantries, _, edges = _load_context(root, p, manifest)
     pool, decoys = _pool(pack, edges, pantries)
     items = gs.draw(pool, decoys, seed)
     if not items:
         print("The pool is empty. Rejected: traversal adds no new recipe. No sheet is written.")
+        _write_unrated(root, p, manifest, freeze_commit, "rejected", NO_NEW, None, "sheet")
         return 0
     key = gs.make_key(items, pool, {pid: v["set"] for pid, v in pantries.items()}, seed)
     key_bytes = _json_bytes(key)
@@ -209,25 +223,57 @@ def cmd_sheet(root: Path) -> int:
 # ---------------------------------------------------------------------------- score
 
 
-def _check_git(root: Path, p: SimpleNamespace) -> tuple[str, str]:
-    """One commit holds the freeze. It must be older than the commit that adds the answers."""
-    rel_freeze = p.freeze.relative_to(root).as_posix()
-    rel_answers = p.answers.relative_to(root).as_posix()
-    commits = _git(root, "log", "--format=%H", "--", rel_freeze).split()
+def _rel(root: Path, path: Path) -> str:
+    return path.relative_to(root).as_posix()
+
+
+def _commits(root: Path, rel: str) -> list[str]:
+    return _git(root, "log", "--format=%H", "--", rel).split()
+
+
+def _one_clean_commit(root: Path, rel: str, extra: tuple[str, ...] = ()) -> str:
+    """The file has exactly one commit and neither it nor the ``extra`` files differ from HEAD."""
+    commits = _commits(root, rel)
     if len(commits) != 1:
-        raise SystemExit(f"{rel_freeze} must have exactly one commit, found {len(commits)}")
-    if _git(root, "status", "--porcelain", "--", rel_freeze).strip():
-        raise SystemExit(f"{rel_freeze} differs from its commit")
-    added = _git(root, "log", "--diff-filter=A", "--format=%H", "--", rel_answers).split()
-    if not added:
-        raise SystemExit(f"{rel_answers} is not committed. Commit the answers, then score.")
-    freeze_commit, answers_commit = commits[0], added[-1]
-    older = subprocess.run(
-        ["git", "merge-base", "--is-ancestor", freeze_commit, answers_commit], cwd=root
+        raise SystemExit(f"{rel} must have exactly one commit, found {len(commits)}")
+    dirty = _git(root, "status", "--porcelain", "--", rel, *extra).strip()
+    if dirty:
+        raise SystemExit(f"these files differ from their commit or are not committed: {dirty}")
+    return commits[0]
+
+
+def _older(root: Path, older: str, newer: str, what: str) -> None:
+    ok = subprocess.run(
+        ["git", "merge-base", "--is-ancestor", older, newer], cwd=root, capture_output=True
     ).returncode == 0  # fmt: skip
-    if freeze_commit == answers_commit or not older:
-        raise SystemExit("the freeze commit must be an older ancestor of the answers commit")
-    return freeze_commit, answers_commit
+    if older == newer or not ok:
+        raise SystemExit(f"{what}: the first commit must be an older ancestor of the second")
+
+
+def _check_freeze_git(root: Path, p: SimpleNamespace) -> str:
+    """One commit holds the freeze, and the frozen files match it. Return that commit."""
+    inputs = [p.table, p.pantries] + ([p.labels] if p.labels.exists() else [])
+    return _one_clean_commit(root, _rel(root, p.freeze), tuple(_rel(root, f) for f in inputs))
+
+
+def _check_key_git(root: Path, p: SimpleNamespace, freeze_commit: str) -> tuple[str, str]:
+    """The key hash is committed once, after the freeze. Return ``(commit, committed hash)``."""
+    rel = _rel(root, p.key_sha)
+    if not _commits(root, rel):
+        raise SystemExit(f"{rel} is not committed. Commit the key hash before rating.")
+    commit = _one_clean_commit(root, rel)
+    _older(root, freeze_commit, commit, "freeze commit and key hash commit")
+    return commit, _git(root, "show", f"{commit}:{rel}").strip()
+
+
+def _check_answers_git(root: Path, p: SimpleNamespace, key_commit: str) -> str:
+    """The answers file has one commit, newer than the key hash commit."""
+    rel = _rel(root, p.answers)
+    if not _commits(root, rel):
+        raise SystemExit(f"{rel} is not committed. Commit the answers, then score.")
+    commit = _one_clean_commit(root, rel)
+    _older(root, key_commit, commit, "key hash commit and answers commit")
+    return commit
 
 
 def _read_answers(path: Path) -> tuple[list[dict], dict]:
@@ -252,13 +298,53 @@ def _read_answers(path: Path) -> tuple[list[dict], dict]:
     }
 
 
+NO_NEW = "no_new_recipes: traversal adds no new recipe beyond collapse and synonyms"
+
+
+def _write_unrated(
+    root: Path,
+    p: SimpleNamespace,
+    manifest: dict,
+    freeze_commit: str,
+    verdict: str,
+    reason: str,
+    out: Path | None,
+    cmd: str,
+) -> None:
+    doc = gs.unrated_result_doc(
+        manifest, verdict, reason, freeze_commit, gs.sha256_lf(p.freeze),
+        f"uv run python scripts/graph_spike.py {cmd}",
+    )  # fmt: skip
+    path = out or p.result
+    write_result(path, doc, root)
+    print(f"wrote {path}; verdict {verdict}: {reason}")
+
+
+def cmd_skip(root: Path, reason: str, out: Path | None = None) -> int:
+    """The owner skips the rating after the pre-check. An empty pool is a rejection instead."""
+    p = _paths(root)
+    manifest = _checked_manifest(root, p)
+    freeze_commit = _check_freeze_git(root, p)
+    if p.key_sha.exists():
+        raise SystemExit(f"{p.key_sha} exists. A sheet was made, so the rating was not skipped.")
+    if not manifest["pool_counts"]["new"]:
+        _write_unrated(root, p, manifest, freeze_commit, "rejected", NO_NEW, out, "skip")
+    elif not reason.strip():
+        raise SystemExit("skip needs --reason")
+    else:
+        _write_unrated(root, p, manifest, freeze_commit, "not_run", reason.strip(), out, "skip")
+    return 0
+
+
 def cmd_score(root: Path, out: Path | None = None) -> int:
     p = _paths(root)
     manifest = _checked_manifest(root, p)
-    freeze_commit, _ = _check_git(root, p)
+    freeze_commit = _check_freeze_git(root, p)
+    key_commit, committed_hash = _check_key_git(root, p, freeze_commit)
+    _check_answers_git(root, p, key_commit)
     key_bytes = p.key.read_bytes()
-    if hashlib.sha256(key_bytes).hexdigest() != p.key_sha.read_text().strip():
-        raise SystemExit("the key differs from its committed hash")
+    if hashlib.sha256(key_bytes).hexdigest() != committed_hash:
+        raise SystemExit("the key differs from the hash in the key hash commit")
     key = json.loads(key_bytes)
     answers, rater = _read_answers(p.answers)
     scored = gs.score(key, answers, manifest["thresholds"], manifest["plan"]["seed"],
@@ -282,6 +368,9 @@ def main(argv: list[str] | None = None) -> int:
     sub.add_parser("sheet")
     sc = sub.add_parser("score")
     sc.add_argument("--out", type=Path, default=None)
+    sk = sub.add_parser("skip", help="record that the owner skipped the rating (verdict not_run)")
+    sk.add_argument("--reason", default="")
+    sk.add_argument("--out", type=Path, default=None)
     args = ap.parse_args(argv)
     root = args.root.resolve()
     if args.cmd == "pantries":
@@ -290,6 +379,8 @@ def main(argv: list[str] | None = None) -> int:
         return cmd_freeze(root, args.option)
     if args.cmd == "sheet":
         return cmd_sheet(root)
+    if args.cmd == "skip":
+        return cmd_skip(root, args.reason, args.out)
     return cmd_score(root, args.out)
 
 

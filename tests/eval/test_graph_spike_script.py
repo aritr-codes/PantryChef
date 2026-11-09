@@ -114,10 +114,17 @@ def test_freeze_sheet_score_end_to_end(repo, capsys):
     out = capsys.readouterr().out
     assert "make_now|is_a: 3" in out and "one_away|is_a: 1" in out
     assert "PRE-CHECK: a group has fewer than 20" in out
+    assert "is_a: 4 new items from 2 pantries" in out
+    assert "PRE-CHECK: T1 cannot pass for is_a" in out
+    assert "PRE-CHECK: T1 cannot pass for form_of" in out
     fz = json.loads((repo / GRAPH / "freeze.v1.json").read_text())
     assert fz["pool_counts"]["new"] == {
         "make_now|form_of": 3, "make_now|is_a": 3, "one_away|form_of": 1, "one_away|is_a": 1,
     }  # fmt: skip
+    assert fz["pool_counts"]["edge_types"] == {
+        "is_a": {"new": 4, "pantries": 2},
+        "form_of": {"new": 4, "pantries": 2},
+    }
     assert fz["pool_by_edge"] == [["garlic_paste", "form_of", "garlic", 4],
                                   ["paneer", "is_a", "cheese", 4]]  # fmt: skip
     assert fz["unknown_names"] == {"pilot02": ["zzz unknown"]}
@@ -139,6 +146,8 @@ def test_freeze_sheet_score_end_to_end(repo, capsys):
     for r in rows:
         assert not any(w in " ".join(r.values()).lower() for w in ("is_a", "form_of", "pilot0"))
     assert run(repo, "sheet") == 0  # same inputs give the same key
+    git(repo, "add", GRAPH + "/key_sha256.txt")
+    git(repo, "commit", "-q", "-m", "key hash")
 
     with open(repo / GRAPH / "answers.v1.csv", "w", encoding="utf-8", newline="") as fh:
         fh.write("# I have not read the is_a and form_of columns or the edge labels.\n")
@@ -212,8 +221,12 @@ def test_sheet_refuses_a_different_key(repo):
         run(repo, "sheet")
 
 
-def _answered(repo, line="# I have read the is_a and form_of columns."):
+def _answered(repo, line="# I have read the is_a and form_of columns.", commit_key=True):
+    """Make the sheet, commit the key hash, and write (not commit) the answers file."""
     assert run(repo, "sheet") == 0
+    if commit_key:
+        git(repo, "add", GRAPH + "/key_sha256.txt")
+        git(repo, "commit", "-q", "-m", "key hash")
     key = json.loads((repo / "data" / "interim" / "graph_spike_key.v1.json").read_text())
     with open(repo / GRAPH / "answers.v1.csv", "w", encoding="utf-8", newline="") as fh:
         if line:
@@ -224,13 +237,35 @@ def _answered(repo, line="# I have read the is_a and form_of columns."):
             w.writerow([iid, "no", "1", "", ""])
 
 
+def _commit_answers(repo):
+    git(repo, "add", GRAPH + "/answers.v1.csv")
+    git(repo, "commit", "-q", "-m", "answers")
+
+
+def _ready(repo, **kw):
+    _frozen(repo)
+    _answered(repo, **kw)
+    _commit_answers(repo)
+
+
+def test_sheet_needs_the_freeze_committed_and_clean(repo):
+    assert run(repo, "freeze", "--option", "a") == 0
+    with pytest.raises(SystemExit, match="exactly one commit"):
+        run(repo, "sheet")  # the freeze is not committed yet
+    git(repo, "add", GRAPH)
+    git(repo, "commit", "-q", "-m", "freeze")
+    fz = repo / GRAPH / "freeze.v1.json"
+    fz.write_text(fz.read_text() + "\n")  # still valid JSON, but no longer the committed file
+    with pytest.raises(SystemExit, match="differ from their commit"):
+        run(repo, "sheet")
+
+
 def test_score_needs_answers_committed_after_the_freeze(repo):
     _frozen(repo)
     _answered(repo)
     with pytest.raises(SystemExit, match="not committed"):
         run(repo, "score")
-    git(repo, "add", GRAPH + "/answers.v1.csv")
-    git(repo, "commit", "-q", "-m", "answers")
+    _commit_answers(repo)
     assert run(repo, "score") == 0
     # a second commit on the freeze file breaks the one-commit rule
     fz = repo / GRAPH / "freeze.v1.json"
@@ -241,25 +276,100 @@ def test_score_needs_answers_committed_after_the_freeze(repo):
         run(repo, "score")
 
 
-def test_score_refuses_answers_in_the_freeze_commit(repo):
+def test_score_refuses_answers_committed_with_the_key_hash(repo):
     _frozen(repo)
-    _answered(repo)
-    git(repo, "add", GRAPH + "/answers.v1.csv")
-    git(repo, "commit", "-q", "--amend", "--no-edit")  # freeze and answers share one commit
+    _answered(repo, commit_key=False)
+    git(repo, "add", GRAPH + "/key_sha256.txt", GRAPH + "/answers.v1.csv")
+    git(repo, "commit", "-q", "-m", "both")
     with pytest.raises(SystemExit, match="older ancestor"):
         run(repo, "score")
 
 
-def test_score_needs_the_read_edges_line(repo):
+def test_score_refuses_a_key_hash_in_the_freeze_commit(repo):
     _frozen(repo)
-    for line in ("", "# I have / have not read the is_a and form_of columns."):
-        _answered(repo, line)
-        git(repo, "add", "-f", GRAPH + "/answers.v1.csv")
-        git(repo, "commit", "-q", "-m", "answers", "--allow-empty")
-        with pytest.raises(SystemExit, match="I have read"):
-            run(repo, "score")
-        git(repo, "rm", "-q", "-f", GRAPH + "/answers.v1.csv")
-        git(repo, "commit", "-q", "-m", "drop answers")
+    _answered(repo, commit_key=False)
+    git(repo, "add", GRAPH + "/key_sha256.txt")
+    git(repo, "commit", "-q", "--amend", "--no-edit")  # freeze and key hash share one commit
+    _commit_answers(repo)
+    with pytest.raises(SystemExit, match="freeze commit and key hash commit"):
+        run(repo, "score")
+
+
+def test_score_needs_the_key_hash_committed(repo):
+    _frozen(repo)
+    _answered(repo, commit_key=False)
+    _commit_answers(repo)
+    with pytest.raises(SystemExit, match="Commit the key hash"):
+        run(repo, "score")
+
+
+def test_score_refuses_a_key_hash_edited_after_its_commit(repo):
+    _ready(repo)
+    sha = repo / GRAPH / "key_sha256.txt"
+    committed = sha.read_text()
+    sha.write_text("0" * 64 + "\n")  # a wrong hash on disk must not replace the committed one
+    with pytest.raises(SystemExit, match="differ from their commit"):
+        run(repo, "score")
+    sha.write_text(committed)
+    assert run(repo, "score") == 0
+    git(repo, "commit", "-q", "--allow-empty", "-m", "noop")
+    sha.write_text(committed.strip() + "\n\n")
+    git(repo, "add", GRAPH + "/key_sha256.txt")
+    git(repo, "commit", "-q", "-m", "second key commit")
+    with pytest.raises(SystemExit, match="key_sha256.txt must have exactly one commit"):
+        run(repo, "score")
+
+
+def test_score_refuses_a_key_that_does_not_match_the_committed_hash(repo):
+    _ready(repo)
+    key = repo / "data" / "interim" / "graph_spike_key.v1.json"
+    key.write_bytes(key.read_bytes() + b"\n")
+    with pytest.raises(SystemExit, match="key differs"):
+        run(repo, "score")
+
+
+def test_score_refuses_answers_edited_after_their_commit(repo):
+    _ready(repo)
+    ans = repo / GRAPH / "answers.v1.csv"
+    ans.write_text(ans.read_text().replace(",no,", ",yes,", 1))
+    with pytest.raises(SystemExit, match="differ from their commit"):
+        run(repo, "score")
+    _commit_answers(repo)  # a second commit on the answers file
+    with pytest.raises(SystemExit, match="answers.v1.csv must have exactly one commit"):
+        run(repo, "score")
+
+
+@pytest.mark.parametrize("line", ["", "# I have / have not read the is_a and form_of columns."])
+def test_score_needs_the_read_edges_line(repo, line):
+    _ready(repo, line=line)
+    with pytest.raises(SystemExit, match="I have read"):
+        run(repo, "score")
+
+
+def _result(repo):
+    return load_result(repo / "results" / "m3_graph_spike.json")["raw"]
+
+
+def test_skip_writes_not_run_with_the_reason(repo):
+    _frozen(repo)
+    with pytest.raises(SystemExit, match="--reason"):
+        run(repo, "skip")
+    assert run(repo, "skip", "--reason", "pool too small to justify 3 hours") == 0
+    raw = _result(repo)
+    assert raw["verdict"] == "not_run" and raw["reason"] == "pool too small to justify 3 hours"
+    assert raw["pool"]["counts"]["new"]["make_now|is_a"] == 3 and raw["checks"] == {}
+    assert load_result(repo / "results" / "m3_graph_spike.json")["metrics"] == []
+
+
+def test_skip_needs_a_clean_freeze_and_no_sheet(repo):
+    assert run(repo, "freeze", "--option", "a") == 0
+    with pytest.raises(SystemExit, match="exactly one commit"):
+        run(repo, "skip", "--reason", "x")
+    git(repo, "add", GRAPH)
+    git(repo, "commit", "-q", "-m", "freeze")
+    assert run(repo, "sheet") == 0
+    with pytest.raises(SystemExit, match="rating was not skipped"):
+        run(repo, "skip", "--reason", "x")
 
 
 def test_empty_pool_writes_no_sheet(repo, capsys):
@@ -271,3 +381,9 @@ def test_empty_pool_writes_no_sheet(repo, capsys):
     assert run(repo, "sheet") == 0
     assert "No sheet is written" in capsys.readouterr().out
     assert not (repo / "data" / "interim" / "graph_spike_sheet.v1.csv").exists()
+    raw = _result(repo)
+    assert raw["verdict"] == "rejected" and raw["reason"].startswith("no_new_recipes")
+    assert raw["pool"]["counts"]["new"] == {}
+    # skip with an empty pool is also a rejection, whatever the reason says
+    assert run(repo, "skip", "--reason", "not needed") == 0
+    assert _result(repo)["verdict"] == "rejected"
