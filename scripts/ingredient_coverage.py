@@ -6,7 +6,10 @@ share of lines read, the share of recipes with every required line read (the pac
 set (test and extra lines, by hash) never appear in the phrases. Nothing here ships.
 
 With ``--growth-row FILE`` it also scores the dev halves and appends one row to the results file
-FILE (M3 table growth). Dev scoring never reads test or extra data.
+FILE (M3 table growth). Dev scoring never reads test or extra data. By default a gold name maps to
+an id through the table keys (``dev_scoring: "table_keys"``), so a score depends on which keys the
+table has. With ``--id-map PATH`` (a frozen map of gold name to id) gold names map through the map
+(``dev_scoring: "id_map"``), so the score does not move when the table keys move.
 
 Example:
     uv run python scripts/ingredient_coverage.py data/raw/wikibooks/snapshot.2026-11-03.jsonl.gz \\
@@ -50,11 +53,27 @@ def top_unread(
     return [[p, c] for p, c in phrases.most_common(n)]
 
 
-def dev_scores(table: IngredientTable) -> tuple[dict, dict]:
-    """Score the dev halves. Return ``(parser, inputs)``. Gold names map through the table keys."""
+def read_id_map(path: Path) -> dict[str, str | None]:
+    """Read a frozen gold-name-to-id map. ``null`` means the name has no id."""
+    return json.loads(Path(path).read_text(encoding="utf8"))
+
+
+def dev_scores(
+    table: IngredientTable, id_map: dict[str, str | None] | None = None
+) -> tuple[dict, dict]:
+    """Score the dev halves. Return ``(parser, inputs)``.
+
+    Gold names map through the table keys, or through ``id_map`` when given. ``parser`` also holds
+    ``random_stratum``: the same scores over the 50 dev lines of the random stratum.
+    """
     sheet = json.loads((GOLD / "sheet.v1.json").read_text(encoding="utf8"))
     lines = [r for r in sheet["lines"] if r["split"] == "dev"]
-    parser = score(lines, read_labels_json(GOLD / "labels.dev.v1.json"), table)
+    gold = read_labels_json(GOLD / "labels.dev.v1.json")
+    parser = score(lines, gold, table, id_map)
+    rnd = score([r for r in lines if r["stratum"] == "random"], gold, table, id_map)
+    parser["random_stratum"] = {
+        k: rnd[k] for k in ("lines", "gold_groups", "pred_groups", "mention_accuracy", "precision")
+    }
 
     split = json.loads((EVAL / "realistic_inputs.split.v1.json").read_text(encoding="utf8"))
     dev_inputs = sorted(t for t, s in split["assignment"].items() if s == "dev")
@@ -68,7 +87,13 @@ def dev_scores(table: IngredientTable) -> tuple[dict, dict]:
 
 
 def growth_row(
-    commit: str, table: IngredientTable, cov: dict, parser: dict, inputs: dict, top: list[list]
+    commit: str,
+    table: IngredientTable,
+    cov: dict,
+    parser: dict,
+    inputs: dict,
+    top: list[list],
+    id_map_path: str | None = None,
 ) -> dict:
     return {
         "commit": commit,
@@ -80,6 +105,8 @@ def growth_row(
         "parser_precision_dev": parser["precision"],
         "input_accuracy_dev": inputs["input_accuracy"],
         "top_unread": top,
+        "dev_scoring": "id_map" if id_map_path else "table_keys",
+        "id_map": id_map_path,
     }
 
 
@@ -89,6 +116,9 @@ def write_growth(
     """Append ``row`` to ``config.rows`` of the results file at ``path`` and rewrite it."""
     path = Path(path)
     rows = json.loads(path.read_text(encoding="utf8"))["config"]["rows"] if path.exists() else []
+    for old in rows:  # rows written before the id map existed scored through the table keys
+        old.setdefault("dev_scoring", "table_keys")
+        old.setdefault("id_map", None)
 
     def metric(name: str, split: str, n: int, value: float) -> dict:
         return {"name": name, "arm": None, "split": split, "n": n, "value": float(value)}
@@ -138,6 +168,7 @@ def main(argv: list[str] | None = None) -> int:
     ap.add_argument("--table", default=None)
     ap.add_argument("--top", type=int, default=60)
     ap.add_argument("--growth-row", type=Path, default=None, metavar="FILE")
+    ap.add_argument("--id-map", type=Path, default=None, metavar="PATH")
     args = ap.parse_args(argv)
 
     table = IngredientTable.load(args.table) if args.table else IngredientTable.load()
@@ -161,19 +192,29 @@ def main(argv: list[str] | None = None) -> int:
         print(f"- {c}\t{phrase}")
 
     if args.growth_row:
-        parser, inputs = dev_scores(table)
-        row = growth_row(git_facts(ROOT)[0], table, cov, parser, inputs, top)
+        id_map = read_id_map(args.id_map) if args.id_map else None
+        parser, inputs = dev_scores(table, id_map)
+        map_path = _rel(args.id_map) if id_map else None
+        row = growth_row(git_facts(ROOT)[0], table, cov, parser, inputs, top, map_path)
         command = (
             f"uv run python scripts/ingredient_coverage.py {_rel(args.snapshot)}"
             + (f" --table {_rel(args.table)}" if args.table else "")
             + f" --growth-row {_rel(args.growth_row)}"
+            + (f" --id-map {map_path}" if map_path else "")
             + (f" --top {args.top}" if args.top != 60 else "")
         )
         fingerprint = hashlib.sha256(Path(args.snapshot).read_bytes()).hexdigest()
         write_growth(
             args.growth_row, row, cov, parser, inputs, fingerprint=fingerprint, command=command
         )
-        print(f"\nRow {row['rows']} written to {_rel(args.growth_row)}.")
+        rs = parser["random_stratum"]
+        print(
+            f"\nDev scoring: {row['dev_scoring']}. Dev mention_accuracy "
+            f"{parser['mention_accuracy']:.4f}, precision {parser['precision']:.4f}. "
+            f"Random stratum ({rs['lines']} lines): mention_accuracy "
+            f"{rs['mention_accuracy']:.4f}, precision {rs['precision']:.4f}."
+        )
+        print(f"Row {row['rows']} written to {_rel(args.growth_row)}.")
     return 0
 
 

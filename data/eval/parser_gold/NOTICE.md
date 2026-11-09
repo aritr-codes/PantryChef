@@ -39,3 +39,10 @@ each with a label (`black`, `other` or `unclear`). The text is Wikibooks Cookboo
 on the same terms as the sheet. The labels are MIT. One model (Claude Opus) labelled the lines blind. The owner
 did not adjudicate them. Each record has the page title, the revision id and the revision link, as in the sheet.
 `scripts/m3_bare_pepper.py score` reads the file.
+
+## Dev id map (M3 Task 5)
+
+`dev_id_map.v1.json` maps each dev gold name (134 names, 14 with no id) to an ingredient id of the v2 table. One model
+(Claude Opus) made it blind from the dev gold names and the table at commit b8a76c7. Nobody edited it by hand. It
+is frozen: `scripts/ingredient_coverage.py --id-map` uses it so that a dev score does not move when table keys
+move. The labels are MIT.
