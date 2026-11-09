@@ -1,11 +1,13 @@
 """The ingredient table: ids, names, synonyms, staple flag and provenance.
 
 The table is a hand-curated CSV (``ingredients.csv`` is the M1 table, ``ingredients.v2.csv``
-adds the optional ``is_a`` and ``form_of`` columns of ADR 0006). It is not derived from
-RecipeNLG and never reads ``data/processed/vocab.json`` (ADR 0003).
+is the M3 table and adds the optional ``is_a`` and ``form_of`` columns of ADR 0006). It is
+not derived from RecipeNLG and never reads ``data/processed/vocab.json`` (ADR 0003).
 
 The word lists (units, size, container and preparation words, the salt cue and the bare
-pepper rule) live in ``data/ingredients/words.v1.json``. Both engines read that one file.
+pepper rule, ``trailing_ok``) live in ``data/ingredients/words.v1.json``. The Python line
+resolver reads them at pack build only. The pack core carries a copy of the file. The browser
+reads that copy, not the file, and uses it only to resolve typed names (``web/src/names.ts``).
 """
 
 from __future__ import annotations

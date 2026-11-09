@@ -24,7 +24,7 @@ const PORT = 5199;
 const PACK_PORT = 5198;
 const SIZES = [3, 5, 8, 12];
 
-const manifest = JSON.parse(readFileSync(join(root, "build", "pack", "manifest.v1.json"), "utf8"));
+const manifest = JSON.parse(readFileSync(join(root, "build", "pack", "manifest.v2.json"), "utf8"));
 
 const server = spawn(process.execPath, [join(web, "node_modules", "vite", "bin", "vite.js"), "--port", String(PORT), "--strictPort", "--host", "127.0.0.1"], {
   cwd: web,
@@ -34,7 +34,7 @@ const server = spawn(process.execPath, [join(web, "node_modules", "vite", "bin",
 // dev-server page fetch it.
 const gz = createServer((req, res) => {
   const name = (req.url ?? "").split("?")[0].replace(/^\/+/, "");
-  if (!/^(core|text)\.v1\.json\.gz$/.test(name)) return res.writeHead(404).end();
+  if (!/^(core|text)\.v2\.json\.gz$/.test(name)) return res.writeHead(404).end();
   res.writeHead(200, { "Content-Type": "application/gzip", "Access-Control-Allow-Origin": "*" });
   res.end(readFileSync(join(root, "build", "pack", name)));
 });

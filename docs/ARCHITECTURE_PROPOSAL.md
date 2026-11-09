@@ -89,7 +89,7 @@ flowchart TB
 | --- | --- | --- | --- | --- |
 | Source adapters | `pantrychef/sources/` | Snapshot file | `SourceRecipe` records with provenance | Built (M1): Wikibooks fetch and parse |
 | Line parser | `pantrychef/ingredients/` | Ingredient line | Quantity, unit, ingredient text | Built; Unicode fractions added in M1 |
-| Ingredient table | `data/ingredients/ingredients.csv` | Hand curation | Ids, names, synonyms, staple flag | Built (M1): 337 rows. No roles or diet flags yet |
+| Ingredient table | `data/ingredients/ingredients.v2.csv` | Hand curation | Ids, names, synonyms, staple flag | Built. `ingredients.csv` is the M1 table (337 rows). `ingredients.v2.csv` is the M3 table (872 rows) and the pack reads it. No diet flags yet |
 | Resolver | `pantrychef/ingredients/resolve.py` | Text | Lines with option ids, or "unread" | Built (M1) |
 | Typed-name resolver | `pantrychef/ingredients/names.py`, `web/src/names.ts` | One typed pantry name, the pack keys and word lists | Ids and the step that matched: exact, split, contained, fuzzy or none | Built (M3 task 3): matches Python on the golden name cases. A bare "pepper" stays unknown |
 | Pack builder | `pantrychef/pack/` | Records and table | Recipe pack and manifest | Built (M1): hash allow-list and input guard |
@@ -246,10 +246,12 @@ rank better. The evaluation decides.
 
 | Artifact | Format | Size target | Source |
 | --- | --- | --- | --- |
-| `core.vN.json.gz` | Ingredients, recipe lines as ids, titles, IDF, curated swaps | Under 3 MB | Table, Wikibooks |
+| `core.vN.json.gz` | Ingredients, recipe lines as ids, titles, IDF, name keys, word lists (for typed names), curated swaps | Under 3 MB | Table, word file, Wikibooks |
 | `text.vN.json.gz` | Full recipe text, CC BY-SA 4.0 | Under 7 MB, so core and text stay under the 10 MB in ADR 0003 (ESTIMATE; a rough trim with steps measured 1.2 MB gzipped) | Wikibooks |
 | `mined.vN.json.gz` | Mined swaps with evidence, only if M5 passes | Under 2 MB (ESTIMATE) | Open Recipes |
-| `manifest.vN.json` | sha256, size, commit, input hashes, licence of each file, metrics | Small | Pack builder |
+| `manifest.vN.json` | sha256, size, commit, input hashes and licences (snapshot, table, word file), licence of each file, counts | Small | Pack builder |
+
+Pack format 2 (M3): the pack files are `core.v2`, `text.v2` and `manifest.v2`. The table is `data/ingredients/ingredients.v2.csv`. The core carries a copy of `data/ingredients/words.v1.json`. The Python line resolver reads that file at pack build only. The browser reads the copy in the core, and only to resolve typed names. Format 1 packs had no word lists.
 
 The core file loads first. Full recipe text loads when needed.
 

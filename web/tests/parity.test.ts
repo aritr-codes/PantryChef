@@ -21,7 +21,7 @@ interface Golden {
 }
 
 const golden = read<Golden>("tests/golden/answer_cases.json");
-const engine = new Engine(read<Core>("tests/fixtures/pack/core.v1.json"));
+const engine = new Engine(read<Core>("tests/fixtures/pack/core.v2.json"));
 
 function expectSameResults(got: RecipeResult[], want: RecipeResult[]): void {
   expect(got.map((r) => r.recipe_id)).toEqual(want.map((r) => r.recipe_id));
@@ -81,8 +81,8 @@ describe("typed-name resolver", () => {
     );
   }
 
-  it("loads a core with no word lists, so the v1 pack still works", () => {
-    const { words: _words, ...bare } = read<Core>("tests/fixtures/pack/core.v1.json");
+  it("loads a core with no word lists, so a pack core from format 1 still loads", () => {
+    const { words: _words, ...bare } = read<Core>("tests/fixtures/pack/core.v2.json");
     const old = new Engine(bare);
     expect(old.resolve(["Eggs", "xylophone"])).toEqual({ ids: ["egg"], unknown: ["xylophone"] });
   });

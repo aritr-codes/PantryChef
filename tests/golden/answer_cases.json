@@ -1,6 +1,6 @@
 {
  "seed": 20261102,
- "pack": "tests/fixtures/pack/core.v1.json",
+ "pack": "tests/fixtures/pack/core.v2.json",
  "cases": [
   {
    "name": "empty pantry",

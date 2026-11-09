@@ -236,7 +236,7 @@ def test_diet_is_not_supported_in_m1():
 
 
 def test_fixture_pack_pancakes_example():
-    pack = load_pack(FIXTURE, "v1")
+    pack = load_pack(FIXTURE)
     ids, unknown = resolve_names(pack, ["flour", "Eggs", "milk", "xylophone"])
     assert ids == ["flour", "egg", "milk"] and unknown == ["xylophone"]
     ans = answer(pack, AnswerRequest(ids, pack.default_staples, limit=3, unknown_names=unknown))
@@ -244,3 +244,7 @@ def test_fixture_pack_pancakes_example():
     assert "Banana Pancakes" in titles
     assert ans.unknown_pantry == ["xylophone"]
     assert ans.pack.version == "fixture"
+
+
+def test_load_pack_defaults_to_v2():
+    assert load_pack(FIXTURE).info.version == "fixture"

@@ -8,8 +8,8 @@ import { fileURLToPath } from "node:url";
 const here = dirname(fileURLToPath(import.meta.url));
 const root = resolve(here, "..", "..");
 const sources = {
-  fixture: { dir: join(root, "tests", "fixtures", "pack"), match: /^(core|text)\.v1\.json$/ },
-  real: { dir: join(root, "build", "pack"), match: /^(core|text)\.v1\.json\.gz$/ },
+  fixture: { dir: join(root, "tests", "fixtures", "pack"), match: /^(core|text)\.v2\.json$/ },
+  real: { dir: join(root, "build", "pack"), match: /^(core|text)\.v2\.json\.gz$/ },
 };
 const which = process.argv[2];
 const src = sources[which];

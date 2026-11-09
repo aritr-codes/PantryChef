@@ -104,7 +104,7 @@ def main(argv: list[str] | None = None) -> int:
     cook.add_argument("--have", required=True, help="Comma-separated pantry ingredients.")
     cook.add_argument("--k", type=int, default=5, help="How many recipes to show per group.")
     cook.add_argument(
-        "--pack", default=None, help="Folder with core.v1.json.gz (default build/pack)."
+        "--pack", default=None, help="Folder with core.v2.json.gz (default build/pack)."
     )
     cook.add_argument(
         "--staples", default=None, help="Comma-separated staples (default: the pack's)."

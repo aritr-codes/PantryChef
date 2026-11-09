@@ -234,12 +234,12 @@ async function readJson<T>(url: string, gz: boolean, doFetch: typeof fetch): Pro
   return JSON.parse(await new Response(stream).text()) as T;
 }
 
-/** Load `<name>.v1.json.gz`, or the plain `.json` copy (used by the test fixture pack). */
+/** Load `<name>.v2.json.gz`, or the plain `.json` copy (used by the test fixture pack). */
 async function loadPackFile<T>(base: string, name: string, doFetch: typeof fetch): Promise<T> {
   try {
-    return await readJson<T>(`${base}${name}.v1.json.gz`, true, doFetch);
+    return await readJson<T>(`${base}${name}.v2.json.gz`, true, doFetch);
   } catch {
-    return await readJson<T>(`${base}${name}.v1.json`, false, doFetch);
+    return await readJson<T>(`${base}${name}.v2.json`, false, doFetch);
   }
 }
 

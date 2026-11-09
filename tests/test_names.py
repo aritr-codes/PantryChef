@@ -17,7 +17,7 @@ FIXTURE = ROOT / "tests" / "fixtures" / "pack"
 
 @pytest.fixture(scope="module")
 def pack() -> Pack:
-    return load_pack(FIXTURE, "v1")
+    return load_pack(FIXTURE)
 
 
 def step(pack: Pack, text: str) -> tuple[tuple[str, ...], str]:
@@ -147,7 +147,7 @@ def test_real_table_keeps_bare_pepper_unknown():
 
 
 def test_pack_without_words_still_resolves_exact_names():
-    core = json.loads((FIXTURE / "core.v1.json").read_text(encoding="utf8"))
+    core = json.loads((FIXTURE / "core.v2.json").read_text(encoding="utf8"))
     del core["words"]
     pack = Pack.from_core(core)
     assert resolve_names(pack, ["flour", "Eggs", "2 cups milk"]) == (

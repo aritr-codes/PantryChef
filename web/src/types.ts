@@ -33,6 +33,7 @@ export interface WordsJson {
   prep: string[];
   staple_cue: string[];
   bare_pepper: Record<string, string>;
+  trailing_ok?: string[]; // Python line resolver only. The browser does not read it (565 bytes in the core).
 }
 
 export interface Core {

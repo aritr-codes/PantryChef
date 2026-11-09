@@ -4,13 +4,14 @@ The build reads only the files on the hash allow-list (see ``allowlist.py``) and
 the input guard (see ``guard.py``). Every shipped file appears in the manifest with its hash,
 size and licence.
 
-Pack format 1:
+Pack format 2 (format 1 had no word lists):
 
 - ``core.vN.json.gz``: ingredients (id, name, staple, idf), name and synonym keys, the word
   lists (as in ``words.v1.json``, for the typed-name resolver), recipes with their lines as ids
   (and line text, because a missing line shows its text).
 - ``text.vN.json.gz``: steps, servings, time, category and attribution per recipe.
-- ``manifest.vN.json``: hashes, sizes, licences, input hashes, commit, counts.
+- ``manifest.vN.json``: hashes, sizes, licences, input hashes and licences (table, words
+  and snapshot), commit, counts.
 """
 
 from __future__ import annotations
@@ -31,8 +32,10 @@ from pantrychef.pack.guard import guarded_build
 from pantrychef.sources.types import SourceRecipe
 from pantrychef.sources.wikibooks import parse_page
 
-PACK_FORMAT = 1
+PACK_FORMAT = 2
 PACK_LICENCE = "CC BY-SA 4.0"
+# Licence of each allow-listed input. The words file is a source file; its lists also ship in core.
+INPUT_LICENCES = {"snapshot": PACK_LICENCE, "table": "MIT", "words": "MIT"}
 CHANGES = "Ingredient lines were matched to an ingredient list. The wording is unchanged."
 _CODE_ROOT = Path(__file__).resolve().parents[1]
 
@@ -133,7 +136,7 @@ def build_pack(
     repo_root: str | Path,
     commit: str,
     dirty: bool,
-    version: str = "v1",
+    version: str = "v2",
 ) -> dict:
     """Build the pack into ``out_dir`` and return the manifest.
 
@@ -215,7 +218,12 @@ def build_pack(
             "commit": commit,
             "dirty": dirty,
             "inputs": {
-                name: {"path": i.path.name, "sha256": i.sha256} for name, i in inputs.items()
+                name: {
+                    "path": i.path.name,
+                    "sha256": i.sha256,
+                    "licence": INPUT_LICENCES.get(name, "unknown"),
+                }
+                for name, i in inputs.items()
             },
             "files": [_file_entry(core_path, PACK_LICENCE), _file_entry(text_path, PACK_LICENCE)],
             "counts": {

@@ -84,7 +84,7 @@ def test_shipped_order_matches_answer_order_on_golden_cases():
     This proves the order key matches the product. It does NOT prove the candidate sets match:
     ``answer()`` drops recipes with more than 2 missing lines, ``candidates`` keeps them.
     """
-    pack = load_pack(ROOT / "tests" / "fixtures" / "pack", "v1")
+    pack = load_pack(ROOT / "tests" / "fixtures" / "pack")
     cases = json.loads((ROOT / "tests" / "golden" / "answer_cases.json").read_text("utf8"))["cases"]
     assert len(cases) >= 200
     checked = 0
@@ -106,7 +106,7 @@ def test_shipped_order_matches_answer_order_on_golden_cases():
 def test_candidate_index_equals_reference_and_visible_ids_equals_answer():
     """The index returns the same Scored list as ``candidates`` (same floats), and
     ``visible_ids`` returns the ids that ``answer()`` shows with its default limit."""
-    pack = load_pack(ROOT / "tests" / "fixtures" / "pack", "v1")
+    pack = load_pack(ROOT / "tests" / "fixtures" / "pack")
     cases = json.loads((ROOT / "tests" / "golden" / "answer_cases.json").read_text("utf8"))["cases"]
     indexes: dict[tuple, CandidateIndex] = {}
     for case in cases:

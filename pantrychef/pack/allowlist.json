@@ -6,8 +6,8 @@
       "retrieved_on": "2026-11-03"
     },
     "table": {
-      "path": "data/ingredients/ingredients.csv",
-      "sha256": "a896631e5b1f3bd738e15aff1460f8874347006307d8ea1270fdb709bb95ed01"
+      "path": "data/ingredients/ingredients.v2.csv",
+      "sha256": "a03baecd93238cc3e60ea44e033f0fbcb9c6ababca7ed0aba5b7fbe89bbd761e"
     },
     "words": {
       "path": "data/ingredients/words.v1.json",

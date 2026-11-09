@@ -14,9 +14,9 @@ from pathlib import Path
 import pytest
 
 from pantrychef.engine import Pack, resolve_names
-from pantrychef.ingredients.table import DEFAULT_TABLE_PATH, DEFAULT_WORDS_PATH, IngredientTable
-from pantrychef.pack.allowlist import AllowlistError, sha256_file
-from pantrychef.pack.build import BuildError, build_pack, check_source_url
+from pantrychef.ingredients.table import DEFAULT_WORDS_PATH, TABLE_V2_PATH, IngredientTable
+from pantrychef.pack.allowlist import AllowlistError, load_allowlist, sha256_file
+from pantrychef.pack.build import PACK_FORMAT, BuildError, build_pack, check_source_url
 from pantrychef.pack.guard import GuardViolation, guarded_build
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -31,7 +31,7 @@ def _snapshot(path: Path, records: list[dict]) -> None:
 
 
 def _allowlist(
-    tmp: Path, snapshot: Path, table: Path = DEFAULT_TABLE_PATH, words: Path = DEFAULT_WORDS_PATH
+    tmp: Path, snapshot: Path, table: Path = TABLE_V2_PATH, words: Path = DEFAULT_WORDS_PATH
 ) -> Path:
     path = tmp / "allowlist.json"
     path.write_text(
@@ -72,12 +72,12 @@ def _load(path: Path):
 def test_build_writes_core_text_and_manifest(fixture_build):
     out, manifest = fixture_build
     assert {p.name for p in out.iterdir()} == {
-        "core.v1.json.gz",
-        "text.v1.json.gz",
-        "manifest.v1.json",
+        "core.v2.json.gz",
+        "text.v2.json.gz",
+        "manifest.v2.json",
     }
     assert manifest["counts"]["recipes"] == 4  # 4 of the 6 fixture pages are recipes
-    core = _load(out / "core.v1.json.gz")
+    core = _load(out / "core.v2.json.gz")
     assert core["info"]["commit"] == "test" and core["info"]["recipes"] == 4
     assert core["keys"]["salt"] == "salt"
     assert all(r["rev"] and r["page"].startswith("Cookbook:") for r in core["recipes"])
@@ -85,7 +85,7 @@ def test_build_writes_core_text_and_manifest(fixture_build):
 
 def test_core_carries_the_word_lists_for_the_typed_name_resolver(fixture_build):
     out, _ = fixture_build
-    core = _load(out / "core.v1.json.gz")
+    core = _load(out / "core.v2.json.gz")
     assert core["words"] == json.loads(DEFAULT_WORDS_PATH.read_text(encoding="utf8"))
     pack = Pack.from_core(core)
     assert resolve_names(pack, ["2 cups butter", "xylophone"]) == (["butter"], ["xylophone"])
@@ -93,7 +93,7 @@ def test_core_carries_the_word_lists_for_the_typed_name_resolver(fixture_build):
 
 def test_idf_is_log_one_plus_n_over_df(fixture_build):
     out, _ = fixture_build
-    core = _load(out / "core.v1.json.gz")
+    core = _load(out / "core.v2.json.gz")
     n = len(core["recipes"])
     df = {}
     for r in core["recipes"]:
@@ -108,7 +108,7 @@ def test_idf_is_log_one_plus_n_over_df(fixture_build):
 
 def test_text_pack_carries_attribution(fixture_build):
     out, _ = fixture_build
-    text = _load(out / "text.v1.json.gz")["recipes"]["wb-3283"]
+    text = _load(out / "text.v2.json.gz")["recipes"]["wb-3283"]
     assert text["url"] == "https://en.wikibooks.org/wiki/Cookbook:Apple_Cobbler"
     assert text["revision_id"] == 4587240 and text["licence"] == "CC BY-SA 4.0"
     assert len(text["steps"]) == 8 and "wording is unchanged" in text["changes"]
@@ -116,13 +116,13 @@ def test_text_pack_carries_attribution(fixture_build):
 
 def test_manifest_lists_every_shipped_file_with_hash_size_licence(fixture_build):
     out, manifest = fixture_build
-    shipped = {p.name for p in out.iterdir()} - {"manifest.v1.json"}
+    shipped = {p.name for p in out.iterdir()} - {"manifest.v2.json"}
     assert {f["name"] for f in manifest["files"]} == shipped
     for f in manifest["files"]:
         data = (out / f["name"]).read_bytes()
         assert f["sha256"] == hashlib.sha256(data).hexdigest() and f["size"] == len(data)
         assert f["licence"] == "CC BY-SA 4.0"
-    assert json.loads((out / "manifest.v1.json").read_text()) == manifest
+    assert json.loads((out / "manifest.v2.json").read_text()) == manifest
     assert set(manifest["inputs"]) == {"snapshot", "table", "words"}
 
 
@@ -320,3 +320,49 @@ def test_from_text_without_words_opens_no_file_in_a_guarded_build(tmp_path):
     )
     with guarded_build([], tmp_path / "out", [ROOT / "pantrychef"]):
         assert IngredientTable.from_text(csv_text).words.staple_cue == {"salt"}
+
+
+def test_pack_format_is_2_in_every_file(fixture_build):
+    out, manifest = fixture_build
+    assert PACK_FORMAT == 2 and manifest["format"] == 2 and manifest["version"] == "v2"
+    assert _load(out / "core.v2.json.gz")["format"] == 2
+    assert _load(out / "text.v2.json.gz")["format"] == 2
+
+
+def test_manifest_lists_the_words_file_with_hash_and_licence(fixture_build):
+    _, manifest = fixture_build
+    words = manifest["inputs"]["words"]
+    assert words["sha256"] == sha256_file(DEFAULT_WORDS_PATH)
+    assert words["licence"] == "MIT"
+    assert manifest["inputs"]["table"]["sha256"] == sha256_file(TABLE_V2_PATH)
+    assert all(i["licence"] for i in manifest["inputs"].values())
+
+
+def test_build_rejects_an_allowlist_without_the_words_file(tmp_path):
+    snap = tmp_path / "snap.jsonl.gz"
+    _snapshot(snap, json.loads(PAGES.read_text(encoding="utf8")))
+    al = _allowlist(tmp_path, snap)
+    raw = json.loads(al.read_text(encoding="utf8"))
+    del raw["inputs"]["words"]
+    al.write_text(json.dumps(raw), encoding="utf8")
+    with pytest.raises(AllowlistError, match="lacks"):
+        build_pack(al, tmp_path / "o", repo_root=ROOT, commit="c", dirty=False)
+
+
+def test_a_words_file_that_is_not_pinned_fails_the_build(tmp_path):
+    """Editing the allow-listed words file without --pin is an error, never a silent change."""
+    snap = tmp_path / "snap.jsonl.gz"
+    _snapshot(snap, json.loads(PAGES.read_text(encoding="utf8")))
+    words = tmp_path / "words.json"
+    words.write_bytes(DEFAULT_WORDS_PATH.read_bytes())
+    al = _allowlist(tmp_path, snap, words=words)
+    words.write_text(words.read_text(encoding="utf8") + " ", encoding="utf8")
+    with pytest.raises(AllowlistError, match="'words' hash changed"):
+        build_pack(al, tmp_path / "o", repo_root=ROOT, commit="c", dirty=False)
+
+
+def test_the_repo_allowlist_pins_the_v2_table_and_the_words_file():
+    inputs, _ = load_allowlist(ROOT / "pantrychef" / "pack" / "allowlist.json", ROOT)
+    assert inputs["table"].path == TABLE_V2_PATH
+    assert inputs["words"].path == DEFAULT_WORDS_PATH
+    assert all(sha256_file(i.path) == i.sha256 for i in inputs.values() if i.name != "snapshot")

@@ -1,4 +1,4 @@
-"""Write ``core.v1.json``: a small synthetic pack for engine and parity tests.
+"""Write ``core.v2.json``: a small synthetic pack for engine and parity tests.
 
 The recipes are invented for this repo (MIT). They hold no Wikibooks text and no data from
 RecipeNLG or Open Recipes. Each recipe is a list of line specs:
@@ -150,7 +150,7 @@ def build() -> dict:
             df[ing] = df.get(ing, 0) + 1
     n = len(recipes)
     return {
-        "format": 1,
+        "format": 2,
         "info": {
             "version": "fixture",
             "commit": "fixture",
@@ -189,13 +189,13 @@ def build_text(core: dict) -> dict:
             "retrieved_on": "2026-11-02",
             "changes": "Invented for tests. Not a Wikibooks page.",
         }
-    return {"format": 1, "recipes": recipes}
+    return {"format": 2, "recipes": recipes}
 
 
 if __name__ == "__main__":
     here = Path(__file__).parent
     core = build()
-    for name, obj in (("core.v1.json", core), ("text.v1.json", build_text(core))):
+    for name, obj in (("core.v2.json", core), ("text.v2.json", build_text(core))):
         with open(here / name, "w", encoding="utf8", newline="\n") as fh:
             fh.write(json.dumps(obj, indent=1) + "\n")
         print(f"wrote {here / name}")

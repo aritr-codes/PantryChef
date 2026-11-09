@@ -127,9 +127,9 @@ test("Show more adds cards and keeps focus on a card", async ({ page }) => {
 
 test("a CC BY-SA recipe shows the licence text link", async ({ page }) => {
   // The fixture says "Synthetic test fixture (MIT)". Serve a copy that says CC BY-SA 4.0.
-  const text = JSON.parse(readFileSync("../tests/fixtures/pack/text.v1.json", "utf8"));
+  const text = JSON.parse(readFileSync("../tests/fixtures/pack/text.v2.json", "utf8"));
   for (const r of Object.values<{ licence: string }>(text.recipes)) r.licence = "CC BY-SA 4.0";
-  await page.route("**/pack/text.v1.json.gz", (route) =>
+  await page.route("**/pack/text.v2.json.gz", (route) =>
     route.fulfill({ contentType: "application/gzip", body: gzipSync(JSON.stringify(text)) }),
   );
   await page.goto("/");

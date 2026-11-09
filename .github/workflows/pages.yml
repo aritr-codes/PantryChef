@@ -1,6 +1,6 @@
 name: Deploy to Pages
 
-# Manual only. The owner runs this after the pack is uploaded to the GitHub Release `pack-v1`
+# Manual only. The owner runs this after the pack is uploaded to the GitHub Release `pack-v2`
 # and web/pack-hashes.json holds that pack's hashes.
 on:
   workflow_dispatch:
@@ -27,7 +27,7 @@ jobs:
       - name: Download the pack
         env:
           GH_TOKEN: ${{ github.token }}
-        run: gh release download pack-v1 --pattern '*.json.gz' --dir web/public/pack
+        run: gh release download pack-v2 --pattern '*.json.gz' --dir web/public/pack
 
       - name: Verify the pack hashes
         working-directory: web

@@ -40,7 +40,7 @@ def _tiny_pack(tmp_path: Path) -> Path:
             },
         ],
     }
-    (tmp_path / "core.v1.json").write_text(json.dumps(core), encoding="utf8")
+    (tmp_path / "core.v2.json").write_text(json.dumps(core), encoding="utf8")
     return tmp_path
 
 

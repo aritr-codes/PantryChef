@@ -191,7 +191,7 @@ def test_dev_test_disjoint_and_balanced_on_fixture_pack():
 
     from pantrychef.engine import load_pack
 
-    pack = load_pack(Path(__file__).resolve().parents[1] / "fixtures" / "pack", "v1")
+    pack = load_pack(Path(__file__).resolve().parents[1] / "fixtures" / "pack")
     sp = assign_splits(list(pack.recipes))
     assert set(sp) == {r.recipe_id for r in pack.recipes}
     # fixture titles are unique, so each recipe is its own group

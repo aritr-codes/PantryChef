@@ -157,7 +157,7 @@ def build() -> dict:
         )
     return {
         "seed": SEED,
-        "pack": "tests/fixtures/pack/core.v1.json",
+        "pack": "tests/fixtures/pack/core.v2.json",
         "cases": [
             {
                 "name": name,

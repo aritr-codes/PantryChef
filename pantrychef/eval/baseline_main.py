@@ -158,7 +158,7 @@ def run(
 
 def main(argv: list[str] | None = None) -> int:
     ap = argparse.ArgumentParser(prog="python -m pantrychef.eval.baseline_main")
-    ap.add_argument("--pack", required=True, help="folder holding core.v1.json[.gz]")
+    ap.add_argument("--pack", required=True, help="folder holding core.v2.json[.gz]")
     ap.add_argument("--out", required=True, help="results/NAME.json")
     ap.add_argument("--seed", type=int, default=42)
     args = ap.parse_args(argv)

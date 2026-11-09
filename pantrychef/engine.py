@@ -100,7 +100,7 @@ class Pack:
         return [i.id for i in self.ingredients.values() if i.staple]
 
 
-def load_pack(path: str | Path, version: str = "v1") -> Pack:
+def load_pack(path: str | Path, version: str = "v2") -> Pack:
     """Load ``core.<version>.json.gz`` (or the plain ``core.<version>.json``) from a folder."""
     folder = Path(path)
     gz = folder / f"core.{version}.json.gz"
