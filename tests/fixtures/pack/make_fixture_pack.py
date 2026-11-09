@@ -63,7 +63,15 @@ NAME_ONLY = [
     "clove",
 ]
 # Extra keys, as a table synonym would give them.
-EXTRA_KEYS = {"s": "salt", "p": "black_pepper", "half half": "half_and_half"}
+# "mint" and "dashi" are one edit from the unit words "pint" and "dash". They map to existing rows,
+# because more fixture rows would change the sampled eval floors.
+EXTRA_KEYS = {
+    "s": "salt",
+    "p": "black_pepper",
+    "half half": "half_and_half",
+    "mint": "basil",
+    "dashi": "celery",
+}
 
 RECIPES: dict[str, list[str]] = {
     "Pancakes": ["flour", "egg", "milk", "sugar", "butter", "salt"],

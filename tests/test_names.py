@@ -154,3 +154,20 @@ def test_pack_without_words_still_resolves_exact_names():
         ["flour", "egg"],
         ["2 cups milk"],
     )
+
+
+def test_a_lone_unit_word_is_never_fuzzy_matched():
+    # "pint" is one edit from "mint" and "dash" is one from "dashi". Neither is a food here.
+    keys = {"mint": "mint", "dashi": "dashi", "clove": "clove"}
+    for text in ("pint", "2 pints", "dash", "2 dashes", "1 dash"):
+        assert resolve_name(text, keys, DEFAULT_WORDS) == NameMatch((), "none"), text
+    # A lone unit word still reaches the exact and contained steps.
+    assert resolve_name("2 cloves", keys, DEFAULT_WORDS) == NameMatch(("clove",), "contained")
+    assert resolve_name("2 pints mint", keys, DEFAULT_WORDS) == NameMatch(("mint",), "contained")
+
+
+def test_blank_characters_of_either_language_are_one_space(pack):
+    for blank in ("\ufeff", "\x85", "\x1c", "\x1f", "\u2028", "\u3000"):
+        assert step(pack, f"2{blank}cups{blank}milk") == (("milk",), "contained"), repr(blank)
+        assert step(pack, f"flour{blank}and{blank}sugar") == (("flour", "sugar"), "split")
+        assert step(pack, f"{blank}flour{blank}") == (("flour",), "exact")

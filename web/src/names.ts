@@ -14,6 +14,8 @@ export interface NameMatch {
 const NONE: NameMatch = { ids: [], step: "none" };
 // A "/" between two digits is a fraction, not a separator. After `clean`, spaces are single.
 const SPLIT = / *(?:[,&]|(?<![0-9])\/|\/(?![0-9])) *| and /;
+// Every character that Python or JavaScript counts as white space, so `\s` never decides anything.
+const BLANKS = /[\t\n\v\f\r \x1c-\x1f\x85\xa0\u1680\u2000-\u200a\u2028\u2029\u202f\u205f\u3000\ufeff]+/g;
 const MIN_FUZZY_LEN = 4; // shorter names never match fuzzily
 const LONG_FUZZY_LEN = 8; // from this length the limit is 2, below it 1
 
@@ -28,7 +30,7 @@ function clean(text: string): string {
     .normalize("NFKC")
     .toLowerCase()
     .replace(/(?![0-9])\p{Nd}/gu, " ") // the quantity parser reads ASCII digits only
-    .replace(/[ \t\n\r\f\v]+/g, " ")
+    .replace(BLANKS, " ")
     .replace(/^ +| +$/g, "");
 }
 
@@ -67,14 +69,20 @@ function exact(text: string, keys: Keys): NameMatch | null {
   return hit ? { ids: [hit], step: "exact" } : null;
 }
 
-/** Tokens left after the quantity and the unit. A lone unit word is the name ("2 cloves"). */
-function strippedTokens(text: string, words: Words): string[] {
+/**
+ * Tokens left after the quantity and the unit, and whether a lone unit word is the name. "2 cloves"
+ * has nothing after the unit, so the unit word is the name. It may reach the exact and contained
+ * steps only, never the fuzzy step ("2 pints" must not become "mint").
+ */
+function strippedTokens(text: string, words: Words): { toks: string[]; loneUnit: boolean } {
   const [, rest] = parseQuantity(text);
   const [unit, after] = parseUnit(rest, words.units);
-  return tokens(unit !== null && tokens(after).length > 0 ? after : rest);
+  if (unit !== null && tokens(after).length === 0) return { toks: tokens(rest), loneUnit: true };
+  return { toks: tokens(after), loneUnit: false };
 }
 
 function contained(toks: string[], keys: Keys, words: Words): NameMatch | null {
+  // Recomputed on every call: O(keys), and the spread fails near 100k keys. Cache it if the table grows.
   const longest = Math.max(0, ...Object.keys(keys).map((k) => k.split(" ").length));
   const ids: string[] = [];
   const covered = toks.map(() => false);
@@ -99,8 +107,10 @@ function contained(toks: string[], keys: Keys, words: Words): NameMatch | null {
 }
 
 function fuzzy(toks: string[], keys: Keys, words: Words): NameMatch | null {
-  const name = toks.filter((t) => !isModifier(t, words)).join(" ");
-  if (name.length < MIN_FUZZY_LEN) return null;
+  const kept = toks.filter((t) => !isModifier(t, words));
+  const name = kept.join(" ");
+  // Too short, or only unit words ("pint", "dashes"): not a name to guess at.
+  if (name.length < MIN_FUZZY_LEN || kept.every((t) => words.units.has(t))) return null;
   const limit = name.length >= LONG_FUZZY_LEN ? 2 : 1;
   let best = limit + 1;
   let ids: string[] = [];
@@ -119,8 +129,13 @@ function fuzzy(toks: string[], keys: Keys, words: Words): NameMatch | null {
 
 /** Steps 1, 3 and 4 on one piece of text. */
 function leaf(text: string, keys: Keys, words: Words): NameMatch {
-  const toks = strippedTokens(text, words);
-  return exact(text, keys) ?? contained(toks, keys, words) ?? fuzzy(toks, keys, words) ?? NONE;
+  const { toks, loneUnit } = strippedTokens(text, words);
+  return (
+    exact(text, keys) ??
+    contained(toks, keys, words) ??
+    (loneUnit ? null : fuzzy(toks, keys, words)) ??
+    NONE
+  );
 }
 
 /** Resolve one typed name. `keys` maps a key (canonical tokens joined by a space) to an id. */

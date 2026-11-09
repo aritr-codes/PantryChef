@@ -45064,6 +45064,89 @@
     "cinnamon"
    ],
    "step": "exact"
+  },
+  {
+   "text": "pint",
+   "ids": [],
+   "step": "none"
+  },
+  {
+   "text": "2 pints",
+   "ids": [],
+   "step": "none"
+  },
+  {
+   "text": "dash",
+   "ids": [],
+   "step": "none"
+  },
+  {
+   "text": "2 dashes",
+   "ids": [],
+   "step": "none"
+  },
+  {
+   "text": "1 dash",
+   "ids": [],
+   "step": "none"
+  },
+  {
+   "text": "2 cloves",
+   "ids": [
+    "clove"
+   ],
+   "step": "contained"
+  },
+  {
+   "text": "2 pints mint",
+   "ids": [
+    "basil"
+   ],
+   "step": "contained"
+  },
+  {
+   "text": "2﻿cups﻿milk",
+   "ids": [
+    "milk"
+   ],
+   "step": "contained"
+  },
+  {
+   "text": "2cupsmilk",
+   "ids": [
+    "milk"
+   ],
+   "step": "contained"
+  },
+  {
+   "text": "flourandsugar",
+   "ids": [
+    "flour",
+    "sugar"
+   ],
+   "step": "split"
+  },
+  {
+   "text": "\u001cflour\u001f",
+   "ids": [
+    "flour"
+   ],
+   "step": "exact"
+  },
+  {
+   "text": "flour﻿,﻿sugar",
+   "ids": [
+    "flour",
+    "sugar"
+   ],
+   "step": "split"
+  },
+  {
+   "text": "11/2cups milk",
+   "ids": [
+    "milk"
+   ],
+   "step": "contained"
   }
  ]
 }

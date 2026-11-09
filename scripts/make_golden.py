@@ -9,6 +9,7 @@ Run:  uv run python scripts/make_golden.py
 
 from __future__ import annotations
 
+import importlib.util
 import json
 import random
 from dataclasses import asdict
@@ -22,8 +23,19 @@ ROOT = Path(__file__).resolve().parents[1]
 FIXTURE = ROOT / "tests" / "fixtures" / "pack"
 OUT = ROOT / "tests" / "golden" / "answer_cases.json"
 SEED = 20261102
-# The fixture pack ends with rows that only the name cases use. The answer cases sample the rest.
-ANSWER_INGREDIENTS = 30
+
+
+def _fixture_module():
+    path = FIXTURE / "make_fixture_pack.py"
+    spec = importlib.util.spec_from_file_location("make_fixture_pack", path)
+    module = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(module)
+    return module
+
+
+# The fixture pack ends with rows that only the name cases use. The answer cases sample the rest,
+# so adding a name row never changes an answer case.
+ANSWER_INGREDIENTS = len(_fixture_module().INGREDIENTS)
 
 TOKEN_INPUTS = [
     "Eggs",
@@ -99,8 +111,13 @@ NAME_CASES = [
     "pepper", "salt and pepper", "xylophone", "ace", "boneless", "", "   ", "constructor",
     "__proto__", "toString", "flour tortilla wrap",
     # Unicode
-    "ＦＬＯＵＲ", "ﬂour", "ÉGG", "flour，sugar", "flour ＆ sugar", "chicken thighs",
-    "crème fraîche", "jalapeño", "Ｃｉｎａｍｏｎ", "cinnamon﻿",
+    "ＦＬＯＵＲ", "ﬂour", "ÉGG", "flour，sugar", "flour ＆ sugar", "chicken\u00a0thighs",
+    "crème fraîche", "jalapeño", "Ｃｉｎａｍｏｎ", "cinnamon\ufeff",
+    # lone unit words never reach the fuzzy step
+    "pint", "2 pints", "dash", "2 dashes", "1 dash", "2 cloves", "2 pints mint",
+    # white space that only one language counts
+    "2\ufeffcups\ufeffmilk", "2\x85cups\x85milk", "flour\x85and\x85sugar", "\x1cflour\x1f",
+    "flour\ufeff,\ufeffsugar", "1\x851/2\x85cups milk",
 ]
 # fmt: on
 

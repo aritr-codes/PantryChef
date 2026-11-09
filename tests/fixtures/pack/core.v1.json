@@ -270,7 +270,9 @@
   "clove": "clove",
   "s": "salt",
   "p": "black_pepper",
-  "half half": "half_and_half"
+  "half half": "half_and_half",
+  "mint": "basil",
+  "dashi": "celery"
  },
  "words": {
   "units": {
