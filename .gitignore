@@ -33,6 +33,8 @@ datasets/
 *.csv
 # Hand-curated ingredient table (MIT) is source, not data
 !data/ingredients/*.csv
+# Graph spike inputs and the owner's answers are evidence, not data (frozen table, answers file)
+!data/eval/graph_spike/*.csv
 *.parquet
 *.jsonl
 *.npy
