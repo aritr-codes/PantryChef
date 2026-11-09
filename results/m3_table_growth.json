@@ -1,0 +1,345 @@
+{
+  "arms": [],
+  "command": "uv run python scripts/ingredient_coverage.py data/raw/wikibooks/snapshot.2026-11-03.jsonl.gz --table data/ingredients/ingredients.v2.csv --growth-row results/m3_table_growth.json",
+  "commit": "94048a6d5165b1d8d1aaa0a39265640078e359f2",
+  "comparisons": [],
+  "config": {
+    "inputs": {
+      "correct": 81,
+      "input_accuracy": 0.9759036144578314,
+      "n": 83
+    },
+    "parser": {
+      "f1": 0.8479163723689788,
+      "gold_found": 123,
+      "gold_groups": 152,
+      "gold_out_of_table": 20,
+      "lines": 150,
+      "mention_accuracy": 0.8026315789473685,
+      "mention_correct": 122,
+      "optional_accuracy": 0.9852941176470589,
+      "optional_n": 136,
+      "precision": 0.8905109489051095,
+      "pred_correct": 122,
+      "pred_groups": 137,
+      "recall": 0.8092105263157895
+    },
+    "rows": [
+      {
+        "commit": "94048a6d5165b1d8d1aaa0a39265640078e359f2",
+        "input_accuracy_dev": 0.9759036144578314,
+        "lines_read": 28304,
+        "mention_accuracy_dev": 0.8026315789473685,
+        "parser_precision_dev": 0.8905109489051095,
+        "recipes_fully_read": 0.6039870689655172,
+        "resolver": "resolve_name",
+        "rows": 337,
+        "top_unread": [
+          [
+            "pepper",
+            253
+          ],
+          [
+            "berbere spice blend",
+            20
+          ],
+          [
+            "barbecue rub",
+            9
+          ],
+          [
+            "scotch bonnet pepper",
+            9
+          ],
+          [
+            "nuoc mam",
+            7
+          ],
+          [
+            "besan",
+            6
+          ],
+          [
+            "chop rub",
+            6
+          ],
+          [
+            "cocoyam",
+            6
+          ],
+          [
+            "of pepper",
+            5
+          ],
+          [
+            "rib rub",
+            5
+          ],
+          [
+            "fish",
+            5
+          ],
+          [
+            "smoked fish",
+            5
+          ],
+          [
+            "stockfish soaked and cleaned",
+            5
+          ],
+          [
+            "seasoning to taste",
+            4
+          ],
+          [
+            "dried red chile pepper",
+            4
+          ],
+          [
+            "groundnut",
+            4
+          ],
+          [
+            "fat",
+            4
+          ],
+          [
+            "savory",
+            4
+          ],
+          [
+            "",
+            4
+          ],
+          [
+            "candlenut",
+            4
+          ],
+          [
+            "cornbread crumbled finely",
+            4
+          ],
+          [
+            "jeera",
+            4
+          ],
+          [
+            "poultry shake",
+            4
+          ],
+          [
+            "fresh pepper",
+            4
+          ],
+          [
+            "stockfish",
+            4
+          ],
+          [
+            "green bean trimmed and cut into bite sized piece",
+            4
+          ],
+          [
+            "stockfish soaked",
+            4
+          ],
+          [
+            "dried fish cleaned",
+            4
+          ],
+          [
+            "fat for deep frying",
+            3
+          ],
+          [
+            "maida",
+            3
+          ],
+          [
+            "green chilly split lengthwise",
+            3
+          ],
+          [
+            "seasoning",
+            3
+          ],
+          [
+            "dried soybean",
+            3
+          ],
+          [
+            "topping",
+            3
+          ],
+          [
+            "terasi",
+            3
+          ],
+          [
+            "spice",
+            3
+          ],
+          [
+            "espagnole sauce",
+            3
+          ],
+          [
+            "bechamel sauce",
+            3
+          ],
+          [
+            "bagoong alamang",
+            3
+          ],
+          [
+            "filling as desired",
+            3
+          ],
+          [
+            "salam leaf",
+            3
+          ],
+          [
+            "dried red chilly",
+            3
+          ],
+          [
+            "anise seed",
+            3
+          ],
+          [
+            "red chile pepper",
+            3
+          ],
+          [
+            "trassi",
+            3
+          ],
+          [
+            "thousand island dressing",
+            3
+          ],
+          [
+            "hickory chunk",
+            3
+          ],
+          [
+            "hickory smoke powder",
+            3
+          ],
+          [
+            "mesquite smoke powder",
+            3
+          ],
+          [
+            "large mesquite chunk",
+            3
+          ],
+          [
+            "crumbled cornbread",
+            3
+          ],
+          [
+            "hickory bbq rub",
+            3
+          ],
+          [
+            "potash",
+            3
+          ],
+          [
+            "ogiri",
+            3
+          ],
+          [
+            "fresh habanero pepper",
+            3
+          ],
+          [
+            "curd",
+            3
+          ],
+          [
+            "cider",
+            3
+          ],
+          [
+            "groundnut paste",
+            3
+          ],
+          [
+            "smoked fish deboned",
+            3
+          ],
+          [
+            "ogiri okpei",
+            3
+          ]
+        ]
+      }
+    ],
+    "split": "dev"
+  },
+  "corpus_fingerprint": "a1a076ab0aee385c4e01cdc904342214dfaa6b01dc35d80d32519ea625c597d2",
+  "dirty": false,
+  "dirty_paths": [],
+  "environment": {
+    "numpy": "2.4.6",
+    "platform": "Windows 10 (win32)",
+    "python": "3.11.15"
+  },
+  "label": "MEASURED",
+  "metrics": [
+    {
+      "arm": null,
+      "depends_on": [
+        "ingredient_table",
+        "pack_rules"
+      ],
+      "n": 3712,
+      "name": "recipes_fully_read",
+      "role": "product",
+      "split": "all",
+      "value": 0.6039870689655172
+    },
+    {
+      "arm": null,
+      "depends_on": [
+        "ingredient_table",
+        "parser_rules"
+      ],
+      "n": 152,
+      "name": "mention_accuracy",
+      "role": "product",
+      "split": "dev",
+      "value": 0.8026315789473685
+    },
+    {
+      "arm": null,
+      "depends_on": [
+        "ingredient_table",
+        "parser_rules"
+      ],
+      "n": 137,
+      "name": "parser_precision",
+      "role": "sanity",
+      "split": "dev",
+      "value": 0.8905109489051095
+    },
+    {
+      "arm": null,
+      "depends_on": [
+        "ingredient_table",
+        "name_resolver"
+      ],
+      "n": 83,
+      "name": "input_accuracy",
+      "role": "product",
+      "split": "dev",
+      "value": 0.9759036144578314
+    }
+  ],
+  "schema": 1,
+  "seed": 0,
+  "what": "Ingredient table growth: one row per round (latest row in metrics). recipes_fully_read is in-sample over the Wikibooks snapshot; the other three are dev."
+}
