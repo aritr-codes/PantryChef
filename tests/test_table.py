@@ -64,7 +64,9 @@ def test_canonicalize_is_unchanged_for_research_code():
 
 
 def _rows(*lines: str) -> str:
-    return HEADER + "".join(ln + "\n" for ln in lines)
+    """CSV text with the given rows plus the two rows the default word file names."""
+    staples = ("salt,salt,,1,hand,,", "black_pepper,black pepper,,1,hand,,")
+    return HEADER + "".join(ln + "\n" for ln in (*lines, *staples))
 
 
 def test_edge_to_unknown_id_fails_and_names_the_id():
@@ -148,11 +150,11 @@ def test_words_file_has_every_list():
 
 def test_load_reads_a_given_words_file(tmp_path):
     raw = json.loads(DEFAULT_WORDS_PATH.read_text(encoding="utf8"))
-    raw["staple_cue"] = ["brine"]
+    raw["staple_cue"] = ["water"]
     p = tmp_path / "words.json"
     p.write_text(json.dumps(raw), encoding="utf8")
     t = IngredientTable.load(TABLE_V2_PATH, words=p)
-    assert t.words.staple_cue == frozenset({"brine"})
+    assert t.words.staple_cue == frozenset({"water"})
 
 
 def test_parse_unit_reads_units_from_the_words_object():
@@ -188,8 +190,6 @@ MEAT = _rows(
     "beef,beef,,0,hand,,",
     "ground_beef,ground beef,,0,hand,beef,",
     "pear,pear,,0,hand,,",
-    "salt,salt,,1,hand,,",
-    "black_pepper,black pepper,,1,hand,,",
 )
 
 
@@ -224,6 +224,41 @@ def test_bare_pepper_target_and_salt_cue_come_from_the_words():
     )
     lines = resolve_lines("beef, pepper", swapped)
     assert [ln.options for ln in lines] == [("beef",), ("pear",)]
+
+
+def _words_json(**over) -> str:
+    raw = json.loads(DEFAULT_WORDS_PATH.read_text(encoding="utf8"))
+    raw.update(over)
+    return json.dumps({k: v for k, v in raw.items() if v is not None})
+
+
+def test_bare_pepper_target_must_be_a_table_id():
+    words = _words_json(bare_pepper={"target": "ghost_pepper", "when": "staple_cue_or_taste"})
+    with pytest.raises(ValueError, match=r"bare_pepper.*ghost_pepper"):
+        IngredientTable.from_text(MEAT, words)
+
+
+def test_staple_cue_ids_must_be_table_ids():
+    with pytest.raises(ValueError, match=r"staple_cue.*brine"):
+        IngredientTable.from_text(MEAT, _words_json(staple_cue=["salt", "brine"]))
+
+
+def test_bare_pepper_when_must_be_known():
+    words = _words_json(bare_pepper={"target": "black_pepper", "when": "sometimes"})
+    with pytest.raises(ValueError, match=r"bare_pepper.*sometimes"):
+        IngredientTable.from_text(MEAT, words)
+
+
+@pytest.mark.parametrize("key", ["units", "size", "container", "prep", "staple_cue", "bare_pepper"])
+def test_missing_words_key_names_the_key(key):
+    with pytest.raises(ValueError, match=f"words file has no {key!r}"):
+        IngredientTable.from_text(MEAT, _words_json(**{key: None}))
+
+
+def test_trailing_ok_is_optional_and_loads():
+    t = IngredientTable.from_text(MEAT, _words_json(trailing_ok=None))
+    assert t.words.trailing_ok == frozenset()
+    assert {"clove", "leaf"} <= IngredientTable.from_text(MEAT).words.trailing_ok
 
 
 @pytest.mark.parametrize("path", [DEFAULT_TABLE_PATH, TABLE_V2_PATH])

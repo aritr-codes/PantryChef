@@ -75,6 +75,8 @@ class Words:
     prep: frozenset[str]
     staple_cue: frozenset[str]
     bare_pepper: dict[str, str]
+    # Words after a matched food that do not change the food ("garlic cloves"). Optional key.
+    trailing_ok: frozenset[str] = frozenset()
 
     @classmethod
     def from_json(cls, text: str) -> Words:
@@ -82,6 +84,9 @@ class Words:
 
     @classmethod
     def from_dict(cls, raw: dict) -> Words:
+        for key in ("units", "size", "container", "prep", "staple_cue", "bare_pepper"):
+            if key not in raw:
+                raise ValueError(f"words file has no {key!r}")
         return cls(
             units=dict(raw["units"]),
             size=frozenset(raw["size"]),
@@ -89,6 +94,7 @@ class Words:
             prep=frozenset(raw["prep"]),
             staple_cue=frozenset(raw["staple_cue"]),
             bare_pepper=dict(raw["bare_pepper"]),
+            trailing_ok=frozenset(raw.get("trailing_ok", ())),
         )
 
 
@@ -143,6 +149,22 @@ def _check_edges(by_id: dict[str, Row]) -> None:
         visit(node, [])
 
 
+BARE_PEPPER_WHEN = ("staple_cue_or_taste", "always")
+
+
+def _check_words(words: Words, by_id: dict[str, Row]) -> None:
+    """The ids that the word file names must be table ids."""
+    target = words.bare_pepper.get("target")
+    if target not in by_id:
+        raise ValueError(f"words bare_pepper.target {target!r} is not a table id")
+    when = words.bare_pepper.get("when")
+    if when not in BARE_PEPPER_WHEN:
+        raise ValueError(f"words bare_pepper.when {when!r} is not one of {BARE_PEPPER_WHEN}")
+    for cue in sorted(words.staple_cue):
+        if cue not in by_id:
+            raise ValueError(f"words staple_cue {cue!r} is not a table id")
+
+
 def _edges(cell: str | None) -> tuple[str, ...]:
     return tuple(e.strip() for e in (cell or "").split("|") if e.strip())
 
@@ -168,6 +190,7 @@ class IngredientTable:
                 if owner != r.id:
                     raise ValueError(f"key {' '.join(key)!r} is used by {owner} and {r.id}")
         _check_edges(self.by_id)
+        _check_words(words, self.by_id)
         self.max_key_len = max(len(k) for k in self.keys)
         self.staples = frozenset(r.id for r in rows if r.staple)
 

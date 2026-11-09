@@ -24,6 +24,7 @@ TABLE = IngredientTable.from_text(
     "flour,flour,,0,hand\n"
     "butter,butter,,0,hand\n"
     "salt,salt,,1,hand\n"
+    "black_pepper,black pepper,,1,hand\n"
 )
 
 
@@ -110,6 +111,8 @@ BULGUR = IngredientTable.from_text(
     "rice,rice,,0,hand\n"
     "egg,egg,eggs,0,hand\n"
     "flour,flour,,0,hand\n"
+    "salt,salt,,1,hand\n"
+    "black_pepper,black pepper,,1,hand\n"
 )
 
 

@@ -187,6 +187,9 @@ Not done:
 - No held-out evaluation of recipe quality. Do not read the coverage numbers as quality (ADR 0005).
 - Results screen is slow in the throttled headless profile (above). Cause not found.
 - Bare "pepper" is read as black pepper only when the line also names salt or says "to taste". This is provisional until M3.
+  M3 Task 6a (branch `feat/m3-ingredient-foundation`) makes the rule data: `words.bare_pepper.when` is
+  `staple_cue_or_taste` (this rule) or `always`. Task 6b picks the value. Task 6a also adds a head-noun check to the
+  line resolver: "pomegranate juice" and "linseed oil" are now unread instead of misread. See `pantrychef/ingredients/resolve.py`.
 
 ## 11. M2 evaluation baseline (2026-11-03, branch `feat/m2-eval-baseline`, not merged)
 

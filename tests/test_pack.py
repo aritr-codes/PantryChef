@@ -314,6 +314,9 @@ def test_build_uses_the_listed_words_file_and_reads_nothing_else(tmp_path, monke
 
 
 def test_from_text_without_words_opens_no_file_in_a_guarded_build(tmp_path):
-    csv_text = "id,name,synonyms,staple,provenance\na,apple,,0,hand\n"
+    csv_text = (
+        "id,name,synonyms,staple,provenance\na,apple,,0,hand\n"
+        "salt,salt,,1,hand\nblack_pepper,black pepper,,1,hand\n"
+    )
     with guarded_build([], tmp_path / "out", [ROOT / "pantrychef"]):
         assert IngredientTable.from_text(csv_text).words.staple_cue == {"salt"}

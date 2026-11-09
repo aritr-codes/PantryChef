@@ -11,12 +11,22 @@ Rules (see docs/plans/2026-11-02-m1-thin-slice.md, gap 8):
 - "A or B" gives one line with two options.
 - "A and B" or "A, B" gives one line per part. If the first part is unknown, or an "and" part
   is unknown and is not a plain preparation word, the whole line is unread.
-- A bare "pepper" is black pepper only when the line also names salt or says "to taste".
-  This is provisional. M3 decides it fully.
+- Head noun (M3): the last match is the food only if no unexplained word follows it before a
+  note ("for frying", "of choice") starts. A word in ``words.trailing_ok`` ("garlic cloves",
+  "basil leaves") is explained. Any other word ("pomegranate juice", "garlic paste") makes
+  that part unread, unless a table key covers the whole phrase. A staple right after a food
+  ("linseed oil", "chile oil") is a product form, so that part is unread too.
+- A staple never hides a real ingredient when they are not adjacent ("cornstarch mixed with
+  water" reads cornstarch).
+- A "pepper" right after a match of a row known as "... pepper" is part of that name ("green
+  chile pepper"). Any other bare "pepper" is the ``words.bare_pepper`` target: with
+  ``when: always`` every time, with ``when: staple_cue_or_taste`` only when the line also
+  names a staple cue (salt) or says "to taste". Task 6b picks the value (plan D5).
 """
 
 from __future__ import annotations
 
+import functools
 import re
 from dataclasses import dataclass
 
@@ -38,6 +48,29 @@ _OPTIONAL = re.compile(
 )
 _TASTE = re.compile(r"\bto taste\b|\bas needed\b", re.I)
 _PEPPER = "?pepper"
+# Words that start a note after the food. The head-noun check stops at the first one.
+_CLAUSE = frozenset(
+    [
+        "for",
+        "to",
+        "with",
+        "in",
+        "on",
+        "of",
+        "at",
+        "from",
+        "per",
+        "into",
+        "as",
+        "if",
+        "such",
+        "until",
+        "you",
+        "your",
+        "is",
+        "are",
+    ]
+)
 
 
 @dataclass(frozen=True)
@@ -48,8 +81,17 @@ class ResolvedLine:
     text: str
 
 
+@functools.lru_cache(maxsize=8)
+def _pepper_names(table: IngredientTable) -> frozenset[str]:
+    """Ids with a key that ends in "pepper" ("chili pepper", "scotch bonnet pepper")."""
+    return frozenset(i for k, i in table.keys.items() if len(k) > 1 and k[-1] == "pepper")
+
+
 def _spans(toks: tuple[str, ...], table: IngredientTable) -> list[tuple[int, int, str]]:
-    """Greedy left-to-right longest matches. A bare "pepper" gets the marker id."""
+    """Greedy left-to-right longest matches. A bare "pepper" gets the marker id.
+
+    A "pepper" right after a match of a pepper row is part of that name ("green chile pepper").
+    """
     out, i = [], 0
     while i < len(toks):
         for n in range(min(table.max_key_len, len(toks) - i), 0, -1):
@@ -60,9 +102,45 @@ def _spans(toks: tuple[str, ...], table: IngredientTable) -> list[tuple[int, int
                 break
         else:
             if toks[i] == "pepper":
-                out.append((i, i + 1, _PEPPER))
+                if out and out[-1][1] == i and out[-1][2] in _pepper_names(table):
+                    out[-1] = (out[-1][0], i + 1, out[-1][2])
+                else:
+                    out.append((i, i + 1, _PEPPER))
             i += 1
     return out
+
+
+def after_head(toks: tuple[str, ...], end: int, words: Words) -> list[str]:
+    """Non-modifier words after position ``end``, up to a clause word or a non-letter token.
+
+    A head noun comes before any note: "oil for frying", "cheese of your choice", "2 sticks
+    cinnamon 1 inch long". So the scan stops at the first ``_CLAUSE`` word or number.
+    """
+    out = []
+    for t in toks[end:]:
+        if t in _CLAUSE or not t.isalpha():
+            break
+        if not is_modifier(t, words):
+            out.append(t)
+    return out
+
+
+def _head_unexplained(
+    toks: tuple[str, ...], spans: list[tuple[int, int, str]], table: IngredientTable
+) -> bool:
+    """True when the last match is not the head noun of ``toks`` (one "or" part).
+
+    "pomegranate juice": a word after the last match that is not a modifier and not in
+    ``words.trailing_ok`` names another food or a product form. "linseed oil": a staple right
+    after another food is a product form of it. A table key for the whole phrase avoids both.
+    """
+    words = table.words
+    if any(t not in words.trailing_ok for t in after_head(toks, spans[-1][1], words)):
+        return True
+    if len(spans) < 2:
+        return False
+    (_, prev_end, prev), (start, _, last) = spans[-2], spans[-1]
+    return prev_end == start and last in table.staples and prev not in table.staples
 
 
 def _split(
@@ -108,7 +186,9 @@ def resolve_lines(text: str, table: IngredientTable) -> list[ResolvedLine]:
             sep = "first" if ci == 0 and ai == 0 else ("and" if ai else "comma")
             alts, plain = [], True
             for o_toks, o_spans in _split(a_toks, a_spans, "or"):
-                ids = [i for _, _, i in o_spans]
+                unexplained = bool(o_spans) and _head_unexplained(o_toks, o_spans, table)
+                ids = [] if unexplained else [i for _, _, i in o_spans]
+                plain = plain and not unexplained
                 plain = plain and all(is_modifier(t, words) for t in o_toks) and not ids
                 if ids:
                     # Head noun: the last match, but a staple never hides a real ingredient.
@@ -134,7 +214,8 @@ def resolve_lines(text: str, table: IngredientTable) -> list[ResolvedLine]:
         for alt in alts:
             for i in alt:
                 if i == _PEPPER:
-                    if not (has_cue or taste):
+                    always = words.bare_pepper["when"] == "always"
+                    if not (always or has_cue or taste):
                         continue
                     i = words.bare_pepper["target"]
                 if i not in ids:

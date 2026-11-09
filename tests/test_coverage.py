@@ -14,6 +14,7 @@ from scripts.ingredient_coverage import growth_row, top_unread, write_growth
 TABLE = IngredientTable.from_text(
     "id,name,synonyms,staple,provenance,is_a,form_of\n"
     "salt,salt,,1,hand,,\n"
+    "black_pepper,black pepper,,1,hand,,\n"
     "butter,butter,,0,hand,,\n"
     "flour,flour,,0,hand,,\n"
     "egg,egg,,0,hand,,\n"
@@ -86,7 +87,7 @@ def test_growth_file_appends_a_row_each_run_and_stays_valid(tmp_path):
     assert rows[1] == {
         "commit": "c" * 40,
         "resolver": "resolve_name",
-        "rows": 4,
+        "rows": 5,
         "lines_read": 5,
         "recipes_fully_read": 0.5,
         "mention_accuracy_dev": 0.5,
