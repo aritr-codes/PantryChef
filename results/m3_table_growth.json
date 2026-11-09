@@ -1,7 +1,7 @@
 {
   "arms": [],
   "command": "uv run python scripts/ingredient_coverage.py data/raw/wikibooks/snapshot.2026-11-03.jsonl.gz --table data/ingredients/ingredients.v2.csv --growth-row results/m3_table_growth.json",
-  "commit": "0a42f4292b1244e3544549b262968ab4299c4cc6",
+  "commit": "56ab375bf7cf460785b5fc7d4806ca154ece38e5",
   "comparisons": [],
   "config": {
     "inputs": {
@@ -1032,6 +1032,258 @@
             2
           ]
         ]
+      },
+      {
+        "commit": "56ab375bf7cf460785b5fc7d4806ca154ece38e5",
+        "input_accuracy_dev": 0.9759036144578314,
+        "lines_read": 28574,
+        "mention_accuracy_dev": 0.8355263157894737,
+        "parser_precision_dev": 0.9477611940298507,
+        "recipes_fully_read": 0.6376616379310345,
+        "resolver": "resolve_name",
+        "rows": 682,
+        "top_unread": [
+          [
+            "pepper",
+            253
+          ],
+          [
+            "red chile powder",
+            27
+          ],
+          [
+            "ginger paste",
+            16
+          ],
+          [
+            "garlic paste",
+            15
+          ],
+          [
+            "ginger garlic paste",
+            14
+          ],
+          [
+            "cardamom powder",
+            9
+          ],
+          [
+            "paprika powder",
+            6
+          ],
+          [
+            "of pepper",
+            5
+          ],
+          [
+            "black pepper powder",
+            5
+          ],
+          [
+            "seasoning to taste",
+            4
+          ],
+          [
+            "fat",
+            4
+          ],
+          [
+            "montreal steak seasoning",
+            4
+          ],
+          [
+            "vanilla powder",
+            4
+          ],
+          [
+            "oat flake",
+            4
+          ],
+          [
+            "",
+            4
+          ],
+          [
+            "white chocolate chip",
+            4
+          ],
+          [
+            "chinese five spice powder",
+            4
+          ],
+          [
+            "peach nectar",
+            4
+          ],
+          [
+            "fresh pepper",
+            4
+          ],
+          [
+            "green bean trimmed and cut into bite sized piece",
+            4
+          ],
+          [
+            "drop orange oil",
+            4
+          ],
+          [
+            "drop lemon oil",
+            4
+          ],
+          [
+            "instant espresso powder",
+            3
+          ],
+          [
+            "nutritional yeast flake",
+            3
+          ],
+          [
+            "fat for deep frying",
+            3
+          ],
+          [
+            "dried parsley flake",
+            3
+          ],
+          [
+            "seasoning",
+            3
+          ],
+          [
+            "topping",
+            3
+          ],
+          [
+            "spice",
+            3
+          ],
+          [
+            "filling as desired",
+            3
+          ],
+          [
+            "garam masala powder",
+            3
+          ],
+          [
+            "instant coffee powder",
+            3
+          ],
+          [
+            "chicken carcasses",
+            3
+          ],
+          [
+            "almond oil",
+            3
+          ],
+          [
+            "hickory chunk",
+            3
+          ],
+          [
+            "dry mustard powder",
+            3
+          ],
+          [
+            "chicken powder",
+            3
+          ],
+          [
+            "large mesquite chunk",
+            3
+          ],
+          [
+            "red pepper paste",
+            3
+          ],
+          [
+            "cider",
+            3
+          ],
+          [
+            "bouillon powder",
+            3
+          ],
+          [
+            "drop coriander oil",
+            3
+          ],
+          [
+            "drop nutmeg oil",
+            3
+          ],
+          [
+            "filling",
+            2
+          ],
+          [
+            "sarza criolla",
+            2
+          ],
+          [
+            "fresh spinach washed and torn into small piece",
+            2
+          ],
+          [
+            "corn tortilla chip",
+            2
+          ],
+          [
+            "orange extract",
+            2
+          ],
+          [
+            "seasoning mix",
+            2
+          ],
+          [
+            "milk chocolate chip",
+            2
+          ],
+          [
+            "salt according to taste",
+            2
+          ],
+          [
+            "mustard seed oil",
+            2
+          ],
+          [
+            "walnut oil",
+            2
+          ],
+          [
+            "salad",
+            2
+          ],
+          [
+            "chili paste",
+            2
+          ],
+          [
+            "berry",
+            2
+          ],
+          [
+            "canned tomato paste",
+            2
+          ],
+          [
+            "toothpick",
+            2
+          ],
+          [
+            "flavoring",
+            2
+          ],
+          [
+            "bag dark chocolate heart",
+            2
+          ]
+        ]
       }
     ],
     "split": "dev"
@@ -1056,7 +1308,7 @@
       "name": "recipes_fully_read",
       "role": "product",
       "split": "all",
-      "value": 0.6549030172413793
+      "value": 0.6376616379310345
     },
     {
       "arm": null,
