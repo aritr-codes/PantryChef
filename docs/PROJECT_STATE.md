@@ -191,11 +191,13 @@ Not done:
   (MEASURED, [results/m3_bare_pepper.json](../results/m3_bare_pepper.json), one blind Opus labeller, no owner adjudication): 56 of 80
   labelled lines are black pepper (0.700, Wilson 95% 0.592 to 0.789). The bar for `always` was 75 of 80. Under `always`, 46 of the 80 lines
   would change, and 29 of those 46 are black pepper.
-  M3 Task 6a (branch `feat/m3-ingredient-foundation`) also added a head-noun check to the line resolver: "pomegranate juice",
-  "red chili powder" and "linseed oil" are now unread instead of misread. Round 2 of Task 5 treats "-ly" words and a few more words
+  M3 Task 6a (branch `feat/m3-ingredient-foundation`) also added a head-noun check to the line resolver. "pomegranate juice",
+  "red chili powder" and "linseed oil" were misread as pomegranate, chili pepper and flaxseed before. The check made them unread.
+  Table round 2 gave each its own row, so they now read `pomegranate_juice`, `chili_powder` and `flaxseed_oil`. Round 2 of Task 5 treats "-ly" words and a few more words
   ("very", "fine", "only", "size", "approximately", "virgin") as modifiers, so "2 eggs lightly beaten" reads again. See `pantrychef/ingredients/resolve.py`.
   Coverage cost of the head-noun check (MEASURED, dev snapshot, growth row 1b to row 2b): lines read fall from 95.7% to 93.5%, and
-  `recipes_fully_read` falls from 0.7338 to 0.6377. The table rounds of Task 5 win some of it back.
+  `recipes_fully_read` falls from 0.7338 to 0.6377. Table round 2 wins back part of it (MEASURED, growth row 4b: lines read 95.5%,
+  `recipes_fully_read` 0.7193, 856 rows).
   The shipped pack-v1 was built by the old resolver. The next pack build changes what lines read. For example, "1 tsp chile oil" was
   `chili_pepper` and is now unread. That build needs a new release and a new hash set (Task 7).
 

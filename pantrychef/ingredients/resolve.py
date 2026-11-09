@@ -14,12 +14,14 @@ Rules (see docs/plans/2026-11-02-m1-thin-slice.md, gap 8):
 - Head noun (M3): the last match is the food only if no unexplained word follows it before a
   note ("for frying", "of choice") starts. A word in ``words.trailing_ok`` ("garlic cloves",
   "basil leaves") is explained. So is a modifier, an "-ly" adverb ("lightly", "approximately")
-  and "bone", "skin" or "shell" before "in", "on" or an "-ed" word ("skin on", "skin removed").
+  and "bone", "skin" or "shell" before "in", "on", "removed", "discarded", "attached", "left" or
+  "off" ("skin on", "skin removed"; not "fish bones washed").
   Any other word ("pomegranate juice", "garlic paste", "red chili powder") makes that part
   unread, unless a table key covers the whole phrase. A staple right after a food ("linseed
   oil", "chile oil") is a product form, so that part is unread too. This rule costs coverage
   (MEASURED, dev snapshot: lines read 95.7% before, 93.5% after; recipes_fully_read 0.7338
-  before, 0.6377 after). The table rounds win it back.
+  before, 0.6377 after). The table rounds win back part of it: table round 2 reads 95.5% of lines
+  and recipes_fully_read 0.7193 (MEASURED, growth rows 1b, 2b and 4b).
 - A staple never hides a real ingredient when they are not adjacent ("cornstarch mixed with
   water" reads cornstarch).
 - A "pepper" right after a match of a row known as "... pepper" is part of that name ("green
@@ -78,7 +80,11 @@ _CLAUSE = frozenset(
     ]
 )
 
-_PART_NOTE = frozenset(["bone", "skin", "shell"])  # "bone in", "skin on", "shells on"
+_PART_NOTE = frozenset(["bone", "skin", "shell"])
+# What may follow a part word to make it a note: "bone in", "skin on", "skin removed",
+# "shells left on".
+# Any other word ("fish bones washed", "skin rendered") means the part is food or a product.
+_PART_NEXT = frozenset(["in", "on", "removed", "discarded", "attached", "left", "off"])
 
 
 @dataclass(frozen=True)
@@ -123,14 +129,16 @@ def _trailing_modifier(rest: tuple[str, ...], k: int, words: Words) -> bool:
 
     That is a modifier, an "-ly" adverb ("lightly", "approximately"; "-elly" is food: jelly,
     belly) or a part word that a "bone in", "skin on", "skin removed" or "shells on" note
-    explains ("skin removed" has an "-ed" word). This lives in the resolver only. The TS name
-    matcher has no such rule.
+    explains (only "in", "on", "removed", "discarded", "attached", "left" or "off" may follow).
+    This lives in the resolver only. The TS name matcher has no such rule.
     """
     t = rest[k]
     if is_modifier(t, words) or (t.endswith("ly") and len(t) > 4 and not t.endswith("elly")):
         return True
+    if t in ("left", "off") and k and rest[k - 1] in _PART_NOTE:
+        return True  # "skin left on", "bone off": the part word was explained by this word
     nxt = rest[k + 1] if k + 1 < len(rest) else ""
-    return t in _PART_NOTE and (nxt in ("in", "on") or nxt.endswith("ed"))
+    return t in _PART_NOTE and nxt in _PART_NEXT
 
 
 def after_head(toks: tuple[str, ...], end: int, words: Words) -> list[str]:

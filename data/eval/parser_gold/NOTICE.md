@@ -37,4 +37,5 @@ owner (`adjudication.m3.v1.json`). They are model-labelled and owner-adjudicated
 `data/eval/m3_bare_pepper_labels.v1.json` holds 80 single ingredient lines from the same snapshot (seed 45),
 each with a label (`black`, `other` or `unclear`). The text is Wikibooks Cookbook text, available under CC BY-SA 4.0
 on the same terms as the sheet. The labels are MIT. One model (Claude Opus) labelled the lines blind. The owner
-did not adjudicate them. `scripts/m3_bare_pepper.py score` reads the file.
+did not adjudicate them. Each record has the page title, the revision id and the revision link, as in the sheet.
+`scripts/m3_bare_pepper.py score` reads the file.

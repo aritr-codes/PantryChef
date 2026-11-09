@@ -182,6 +182,7 @@ FOOD = (
     "broccoli,broccoli,,0,hand\n"
     "potato,potato,,0,hand\n"
     "soy,soy,,0,hand\n"
+    "fish,fish,,0,hand\n"
 )
 
 
@@ -247,6 +248,8 @@ def test_benign_trailing_words_keep_the_food(food, text, ids):
         ("4 chicken thighs bone in skin on", ("chicken",)),
         ("chicken breasts skin removed", ("chicken",)),
         ("shrimp shells on", ("shrimp",)),
+        ("shrimp shells left on", ("shrimp",)),
+        ("chicken thighs skin attached", ("chicken",)),
         ("broccoli florets only", ("broccoli",)),
         ("1 cup cream approximately", ("cream",)),
         ("2 potatoes medium size", ("potato",)),
@@ -263,6 +266,9 @@ def test_trailing_modifier_words_keep_the_food(food, text, ids):
         "1 tsp red chili powder",
         "1 cup almond jelly",  # "-elly" is food ("jelly", "belly"), not an "-ly" adverb
         "1 cup shrimp shells for stock",  # "shells" is only a note when "on" or a modifier follows
+        "2 lb fish bones washed",  # "washed" is not one of the notes that explain a part word
+        "2 chicken skin rendered",
+        "1 lb shrimp shells reserved",
     ],
 )
 def test_trailing_product_forms_stay_unread(food, text):

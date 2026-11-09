@@ -8,38 +8,28 @@ from __future__ import annotations
 
 import pytest
 
+from pantrychef.ingredients.names import resolve_name
 from pantrychef.ingredients.resolve import resolve_lines
 from pantrychef.ingredients.table import TABLE_V2_PATH, IngredientTable
 
 # The only synonyms the round removes. The two "garlic" ones were table errors. The chili ones
 # were workarounds for the old head-noun rule: the line resolver reads them through "chili",
-# "chile" or "chilli" and the pepper rule, and the typed-name resolver still finds them.
+# "chile" or "chilli" and the pepper rule, and the typed-name resolver reaches them by the
+# "contained" step. The other 13 old chili phrases came back (review fix): without them the typed
+# resolver only reached chili_pepper by the fuzzy step.
 REMOVED = {
     "garlic": {"garlic powder", "garlic salt"},
     "chili_pepper": {
-        "green chili",
-        "red chili",
-        "green chile",
-        "red chile",
         "hot chili pepper",
         "fresh chili",
         "dry red chilly",
         "dried red chilly",
-        "green chile pepper",
-        "red chile pepper",
-        "green chilli pepper",
-        "red chilli pepper",
-        "dried red chile pepper",
         "dried red chili pepper",
         "dried chili",
         "dried chile",
         "dried chile pepper",
         "fresh chile pepper",
         "fresh chili pepper",
-        "fresh red chile pepper",
-        "fresh green chile pepper",
-        "medium green chile pepper",
-        "small dried red chile pepper",
         "fresh chilli",
         "dried chilli",
     },
@@ -69,6 +59,8 @@ def _ids(table, text):
         ("1 tbsp ginger garlic paste", "ginger_garlic_paste"),
         ("1 cup ginger garlic sauce", "ginger_garlic_paste"),
         ("1 tbsp chili paste", "chili_paste"),
+        ("1 tsp green chile paste", "chili_paste"),
+        ("1 tsp red chili sauce", "hot_sauce"),
         ("1 tsp instant espresso powder", "coffee_powder"),
         ("1 tsp mango powder", "mango_powder"),
         ("1 tsp amchur", "mango_powder"),
@@ -158,7 +150,7 @@ def test_no_new_row_hides_a_bare_product_word(table):
 
 
 def test_round_2_row_count_and_provenance(table):
-    assert len(table.rows) == 856
+    assert len(table.rows) == 872
     assert {r.provenance for r in table.rows} <= {"hand", "wikibooks-rule"}
 
 
@@ -167,3 +159,61 @@ def test_a_bare_food_word_does_not_read_as_an_organ_or_a_note(table):
     assert "kidney" not in _ids(table, "2 cans kidney, black, or pinto beans")[0][0]
     assert "kidney" not in {" ".join(k) for k in table.keys}
     assert _ids(table, "4 chicken thighs, giblets removed") == [(("chicken",), True)]
+
+
+@pytest.mark.parametrize(
+    "name",
+    [
+        "green chili",
+        "red chili",
+        "green chile",
+        "red chile",
+        "green chile pepper",
+        "medium green chile pepper",
+        "fresh red chile pepper",
+        "dried chile pepper",
+        "fresh chilli",
+    ],
+)
+def test_typed_chili_names_reach_chili_pepper_without_fuzzy_matching(table, name):
+    keys = {" ".join(k): i for k, i in table.keys.items()}
+    match = resolve_name(name, keys, table.words)
+    assert match.ids == ("chili_pepper",)
+    assert match.step in ("exact", "contained")
+
+
+@pytest.mark.parametrize(
+    ("text", "ids"),
+    [
+        ("3 chicken carcasses", "chicken_carcass"),
+        ("1 cup cider", "cider"),
+        ("1 bunch mustard greens", "mustard_greens"),
+        ("1 beef heart", "beef_heart"),
+        ("1 beef tongue", "beef_tongue"),
+        ("2 tbsp goose fat", "goose_fat"),
+        ("2 tbsp duck fat", "duck_fat"),
+        ("2 tbsp chicken fat", "chicken_fat"),
+        ("1 cup oat bran", "oat_bran"),
+        ("1 quince", "quince"),
+        ("1 head frisee", "frisee"),
+        ("2 sea urchin", "sea_urchin"),
+        ("1 cup pork blood", "pork_blood"),
+        ("1 tbsp thai chili sauce", "thai_chili_sauce"),
+        ("1 tbsp texturized soy protein", "textured_vegetable_protein"),
+        ("1 tsp soy lecithin", "soy_lecithin"),
+        ("1/4 cup barberries", "barberry"),
+        ("1 jar piccalilli", "piccalilli"),
+        ("1 cup hazelnut meal", "hazelnut"),
+        ("2 screwpine leaves", "pandan_leaf"),
+        ("1 tsp ground curcuma", "turmeric"),
+        ("1 cup salsa fresca", "salsa"),
+    ],
+)
+def test_review_fix_foods_read(table, text, ids):
+    assert _ids(table, text) == [((ids,), True)]
+
+
+def test_ground_meat_edges(table):
+    assert table.by_id["ground_chicken"].form_of == ("chicken",)
+    assert table.by_id["ground_chicken"].is_a == ()
+    assert table.by_id["ground_beef"].form_of == ("beef",)
