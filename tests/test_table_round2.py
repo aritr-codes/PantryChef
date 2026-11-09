@@ -67,6 +67,7 @@ def _ids(table, text):
         ("1 tbsp ginger paste", "ginger_paste"),
         ("1 tbsp garlic paste", "garlic_paste"),
         ("1 tbsp ginger garlic paste", "ginger_garlic_paste"),
+        ("1 cup ginger garlic sauce", "ginger_garlic_paste"),
         ("1 tbsp chili paste", "chili_paste"),
         ("1 tsp instant espresso powder", "coffee_powder"),
         ("1 tsp mango powder", "mango_powder"),
@@ -105,6 +106,8 @@ def test_product_forms_read_their_own_row(table, text, ids):
         ("1 green chili", "chili_pepper"),
         ("4 dried chiles", "chili_pepper"),
         ("1 hot chili pepper", "chili_pepper"),
+        ("1 tsp ground chile pepper (to taste)", "chili_pepper"),  # no "ground chile" key
+        ("2 tbsp ground chilli", "chili_pepper"),
     ],
 )
 def test_removed_chili_workarounds_still_read(table, text, ids):
@@ -155,5 +158,12 @@ def test_no_new_row_hides_a_bare_product_word(table):
 
 
 def test_round_2_row_count_and_provenance(table):
-    assert len(table.rows) == 858
+    assert len(table.rows) == 856
     assert {r.provenance for r in table.rows} <= {"hand", "wikibooks-rule"}
+
+
+def test_a_bare_food_word_does_not_read_as_an_organ_or_a_note(table):
+    # "kidney" alone is a bean here. The organ row needs a full name.
+    assert "kidney" not in _ids(table, "2 cans kidney, black, or pinto beans")[0][0]
+    assert "kidney" not in {" ".join(k) for k in table.keys}
+    assert _ids(table, "4 chicken thighs, giblets removed") == [(("chicken",), True)]
