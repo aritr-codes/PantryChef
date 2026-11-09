@@ -23,8 +23,9 @@ from pathlib import Path
 from pantrychef.ingredients.normalize import normalize, singularize
 
 _DATA = Path(__file__).resolve().parents[2] / "data" / "ingredients"
-DEFAULT_TABLE_PATH = _DATA / "ingredients.csv"  # the M1 table
-TABLE_V2_PATH = _DATA / "ingredients.v2.csv"
+TABLE_V1_PATH = _DATA / "ingredients.csv"  # the M1 table (337 rows), kept for the M1 baselines
+TABLE_V2_PATH = _DATA / "ingredients.v2.csv"  # the M3 table, the one the pack reads
+DEFAULT_TABLE_PATH = TABLE_V2_PATH
 DEFAULT_WORDS_PATH = _DATA / "words.v1.json"
 _ID = re.compile(r"^[a-z0-9_]+$")
 PROVENANCE = {"hand", "wikibooks-rule"}

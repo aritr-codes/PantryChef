@@ -11,12 +11,15 @@ import pytest
 import pantrychef.ingredients.resolve as resolve_mod
 import pantrychef.ingredients.table as table_mod
 from pantrychef.ingredients.resolve import resolve_lines
-from pantrychef.ingredients.table import DEFAULT_WORDS_PATH, IngredientTable
+from pantrychef.ingredients.table import DEFAULT_WORDS_PATH, TABLE_V1_PATH, IngredientTable
 
 
 @pytest.fixture(scope="module")
 def table() -> IngredientTable:
-    return IngredientTable.load()
+    return IngredientTable.load()  # the default: the v2 table
+
+
+M1_TABLE = IngredientTable.load(TABLE_V1_PATH)  # for rules whose test needs a missing row
 
 
 def _one(table, text):
@@ -138,13 +141,15 @@ def test_lone_clove_unit_means_the_spice(table):
 def test_a_staple_never_hides_a_real_ingredient(table):
     assert _one(table, "Cornstarch mixed with 1/2 cup cold water").options == ("cornstarch",)
     # A staple right after a food is a product form ("chile oil"), not a hidden staple (M3 6a).
-    assert not _one(table, "1 tsp chile oil").read
+    # The M1 table has no chile oil row, so the line is unread. The v2 table has one.
+    assert not _one(M1_TABLE, "1 tsp chile oil").read
+    assert _one(table, "1 tsp chile oil").options == ("chili_oil",)
     assert _one(table, "1 tbsp oil").options == ("vegetable_oil",)
 
 
-def test_seed_words_are_not_preparation_words(table):
-    line = _one(table, "2 cups flour and flaxseed")
-    assert not line.read  # flaxseed is unknown, and "-seed" words are not "-ed" verbs
+def test_seed_words_are_not_preparation_words():
+    line = _one(M1_TABLE, "2 cups flour and flaxseed")
+    assert not line.read  # flaxseed is unknown in M1, and "-seed" words are not "-ed" verbs
 
 
 def test_compound_names_beat_their_last_word(table):

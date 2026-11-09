@@ -144,6 +144,9 @@ def build_pack(
     """
     repo_root, out = Path(repo_root), Path(out_dir)
     inputs, raw = load_allowlist(Path(allowlist_path), repo_root)
+    unlicensed = sorted(set(inputs) - set(INPUT_LICENCES))
+    if unlicensed:
+        raise BuildError(f"allow-listed input has no licence entry: {unlicensed}")
     data = read_verified(inputs)
     retrieved_on = raw["inputs"]["snapshot"]["retrieved_on"]
     out.mkdir(parents=True, exist_ok=True)
@@ -221,7 +224,7 @@ def build_pack(
                 name: {
                     "path": i.path.name,
                     "sha256": i.sha256,
-                    "licence": INPUT_LICENCES.get(name, "unknown"),
+                    "licence": INPUT_LICENCES[name],
                 }
                 for name, i in inputs.items()
             },

@@ -14,6 +14,7 @@ from pantrychef.ingredients.resolve import resolve_lines
 from pantrychef.ingredients.table import (
     DEFAULT_TABLE_PATH,
     DEFAULT_WORDS_PATH,
+    TABLE_V1_PATH,
     TABLE_V2_PATH,
     IngredientTable,
     Words,
@@ -110,7 +111,7 @@ def test_pipe_separated_edges():
 
 
 def test_v1_file_without_edge_columns_still_loads():
-    t = IngredientTable.load(DEFAULT_TABLE_PATH)
+    t = IngredientTable.load(TABLE_V1_PATH)
     assert all(r.is_a == () and r.form_of == () for r in t.rows)
 
 
@@ -119,7 +120,7 @@ def test_v2_keeps_every_v1_row():
         with open(p, encoding="utf8", newline="") as fh:
             return {r["id"]: r for r in csv.DictReader(fh)}
 
-    v1, v2 = read(DEFAULT_TABLE_PATH), read(TABLE_V2_PATH)
+    v1, v2 = read(TABLE_V1_PATH), read(TABLE_V2_PATH)
     for rid, r in v1.items():
         assert rid in v2, rid
         for col in ("name", "staple", "provenance"):
@@ -134,12 +135,14 @@ def test_v2_keeps_every_v1_row():
 def test_v2_loads_without_duplicate_ids():
     t = IngredientTable.load(TABLE_V2_PATH)
     assert len(t.by_id) == len(t.rows)
-    assert len(t.rows) >= len(IngredientTable.load(DEFAULT_TABLE_PATH).rows)
+    assert len(t.rows) >= len(IngredientTable.load(TABLE_V1_PATH).rows)
 
 
-def test_default_table_stays_v1():
-    assert DEFAULT_TABLE_PATH.name == "ingredients.csv"
+def test_default_table_is_v2_and_v1_keeps_its_name():
+    assert DEFAULT_TABLE_PATH == TABLE_V2_PATH
+    assert TABLE_V1_PATH.name == "ingredients.csv"
     assert TABLE_V2_PATH.name == "ingredients.v2.csv"
+    assert len(IngredientTable.load().rows) == len(IngredientTable.load(TABLE_V2_PATH).rows)
 
 
 def test_words_file_has_every_list():
@@ -265,7 +268,7 @@ def test_trailing_ok_is_optional_and_loads():
     assert {"clove", "leaf"} <= IngredientTable.from_text(MEAT).words.trailing_ok
 
 
-@pytest.mark.parametrize("path", [DEFAULT_TABLE_PATH, TABLE_V2_PATH])
+@pytest.mark.parametrize("path", [TABLE_V1_PATH, TABLE_V2_PATH])
 def test_resolve_has_no_string_literal_equal_to_a_table_id(path):
     ids = set(IngredientTable.load(path).by_id)
     tree = ast.parse(Path(resolve_mod.__file__).read_text(encoding="utf8"))

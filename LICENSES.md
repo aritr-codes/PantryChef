@@ -17,7 +17,7 @@ reasons, read [ADR 0003](docs/decisions/0003-licence-clean-recipe-corpus.md).
 | `results/*.json` | MIT | Aggregate numbers with provenance. They hold no recipe text |
 | `data/nutrition/dietary_labels.json` | MIT | Hand-written labels |
 | `data/nutrition/aliases.json` | MIT, origin under review | Hand-written map to USDA ids, chosen by frequency in RecipeNLG. Unused in v1. Review at M9 |
-| `data/ingredients/ingredients.csv`, `data/ingredients/ingredients.v2.csv`, `data/ingredients/words.v1.json` | MIT | Hand-written ingredient tables (names, synonyms, staple flag) and word lists. Not derived from RecipeNLG. Each row records its provenance |
+| `data/ingredients/ingredients.csv`, `data/ingredients/ingredients.v2.csv`, `data/ingredients/words.v1.json` | MIT | Hand-written ingredient tables (names, synonyms, staple flag) and the word lists of `words.v1.json` (units, size, container and preparation words). Not derived from RecipeNLG. Each table row records its provenance. The word file has no rows |
 | `tests/fixtures/pack/`, `tests/golden/` | MIT | Synthetic fixture pack and golden parity file. The recipes are invented. They hold no Wikibooks text |
 | `tests/fixtures/wikibooks/` | CC BY-SA 4.0 | Whole Wikibooks Cookbook pages and lines, copied unchanged for parser tests. See the `NOTICE.md` in that folder |
 | `docs/research/2026-10-stage1/` | MIT | Audit record. It holds counts, metrics and short ingredient phrases from RecipeNLG, and no recipes. `evidence/subs_out.json` is withheld, and git ignores it |
@@ -41,7 +41,7 @@ Git ignores `data/raw/`, `data/processed/` and `models/`.
 
 ## Planned release artifacts
 
-The pack builder writes `core` and `text` and `manifest` into `build/pack` (git ignores it). No release exists yet. The Pages workflow reads the pack from the GitHub Release `pack-v2` and checks it against the hashes in `web/pack-hashes.json`. The hosted site then serves the pack files under CC BY-SA 4.0. Each file appears in the manifest with its hash and licence.
+The pack builder writes `core` and `text` and `manifest` into `build/pack` (git ignores it). The GitHub Release `pack-v1` holds the M1 pack. The pack v2 Release does not exist yet (M3 built it locally). The Pages workflow reads the pack from the GitHub Release `pack-v2` and checks it against the hashes in `web/pack-hashes.json`. The hosted site then serves the pack files under CC BY-SA 4.0. Each file appears in the manifest with its hash and licence.
 
 | Artifact | Licence | Note |
 | --- | --- | --- |

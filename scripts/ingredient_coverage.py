@@ -171,7 +171,7 @@ def main(argv: list[str] | None = None) -> int:
     ap.add_argument("--id-map", type=Path, default=None, metavar="PATH")
     args = ap.parse_args(argv)
 
-    table = IngredientTable.load(args.table) if args.table else IngredientTable.load()
+    table = IngredientTable.load(args.table)  # None: the default, the v2 table
     with gzip.open(args.snapshot, "rt", encoding="utf8") as fh:
         records = [json.loads(line) for line in fh]
     recipes = [r for rec in records if (r := parse_page(rec, "x"))]

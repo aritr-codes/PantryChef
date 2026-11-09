@@ -17,7 +17,7 @@ from pathlib import Path
 from pantrychef.eval.parser_gold import read_labels_json, score
 from pantrychef.eval.realistic import score_inputs
 from pantrychef.eval.results import write_result
-from pantrychef.ingredients.table import IngredientTable, tokens
+from pantrychef.ingredients.table import TABLE_V1_PATH, IngredientTable, tokens
 
 ROOT = Path(__file__).resolve().parent.parent
 GOLD = ROOT / "data/eval/parser_gold"
@@ -29,7 +29,7 @@ def main() -> None:
     ap.add_argument("--out", type=Path, required=True)
     args = ap.parse_args()
 
-    table = IngredientTable.load()
+    table = IngredientTable.load(TABLE_V1_PATH)  # the M1 baseline: the M1 table, not the default
     sheet = json.loads((GOLD / "sheet.v1.json").read_text(encoding="utf8"))
     lines = [r for r in sheet["lines"] if r["split"] == "dev"]
     parser = score(lines, read_labels_json(GOLD / "labels.dev.v1.json"), table)

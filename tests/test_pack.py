@@ -366,3 +366,15 @@ def test_the_repo_allowlist_pins_the_v2_table_and_the_words_file():
     assert inputs["table"].path == TABLE_V2_PATH
     assert inputs["words"].path == DEFAULT_WORDS_PATH
     assert all(sha256_file(i.path) == i.sha256 for i in inputs.values() if i.name != "snapshot")
+
+
+def test_an_allowlisted_input_without_a_licence_entry_fails_the_build(tmp_path):
+    snap = tmp_path / "snap.jsonl.gz"
+    _snapshot(snap, json.loads(PAGES.read_text(encoding="utf8")))
+    al = _allowlist(tmp_path, snap)
+    raw = json.loads(al.read_text(encoding="utf8"))
+    raw["inputs"]["extra"] = raw["inputs"]["words"]
+    al.write_text(json.dumps(raw), encoding="utf8")
+    with pytest.raises(BuildError, match="no licence entry"):
+        build_pack(al, tmp_path / "o", repo_root=ROOT, commit="c", dirty=False)
+    assert not (tmp_path / "o" / "manifest.v2.json").exists()
