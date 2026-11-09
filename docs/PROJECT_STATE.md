@@ -199,7 +199,8 @@ Not done:
   `recipes_fully_read` falls from 0.7338 to 0.6377. Table round 2 wins back part of it (MEASURED, growth row 7 in
   `results/m3_table_growth.json`: 872 rows, lines read 95.6%, `recipes_fully_read` 0.7244).
   The shipped pack-v1 was built by the old resolver. The next pack build changes what lines read. For example, "1 tsp chile oil" was
-  `chili_pepper` and is now unread. That build needs a new release and a new hash set (Task 7).
+  `chili_pepper` and is now unread.
+  M3 Task 7 built pack v2 locally (pack format 2, table `ingredients.v2.csv`, word file in the core). MEASURED, [results/m3_pack_v2.json](../results/m3_pack_v2.json): 3,712 recipes (gate 2,500), `recipes_fully_read` 0.7244 (2,689 of 3,712; gate 0.60), `core.v2.json.gz` 502,837 bytes (limit 3,145,728), `text.v2.json.gz` 870,411 bytes, 872 ingredients, 32,771 pack lines, 1,352 unread required lines (required lines read over the whole snapshot: 95.6%). `web/pack-hashes.json` holds these hashes for release `pack-v2`. The core hash depends on the build commit (`4482764`), so a release build must come from that commit or the hashes must change. Nothing is uploaded or deployed (D7). The owner uploads the pack and runs the Pages workflow.
 
 ## 11. M2 evaluation baseline (2026-11-03, branch `feat/m2-eval-baseline`, not merged)
 

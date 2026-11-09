@@ -1,13 +1,13 @@
 {
-  "release": "pack-v1",
+  "release": "pack-v2",
   "note": "Expected hashes of the pack files. The Pages workflow refuses any other bytes.",
   "files": {
-    "core.v1.json.gz": {
-      "sha256": "133b6449b715139acf1d47d188a18e39bbc138da53004bd99392a194364610ea",
-      "size": 476092
+    "core.v2.json.gz": {
+      "sha256": "af82ad5ee76001990aada0d7d45cb939397c13cd9a7fa2637772a0c627a3d155",
+      "size": 502837
     },
-    "text.v1.json.gz": {
-      "sha256": "c1021eee2dd4dcde676c63b1aa900d61e9beab35de8ba6e2539d71af712f9b0b",
+    "text.v2.json.gz": {
+      "sha256": "08f3a93422e9f2534a88f3bb278a6deb620da4a88b68f84c7d1db53718779d7b",
       "size": 870411
     }
   }

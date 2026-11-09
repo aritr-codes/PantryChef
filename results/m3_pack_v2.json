@@ -1,0 +1,60 @@
+{
+  "arms": [],
+  "command": "uv run python scripts/build_pack.py --out build/pack && uv run python scripts/m3_pack_result.py --pack build/pack",
+  "commit": "4482764250598f7bdd3bb4705aba51135a071520",
+  "comparisons": [],
+  "config": {
+    "build_commit": "4482764250598f7bdd3bb4705aba51135a071520",
+    "build_dirty": false,
+    "core_bytes": 502837,
+    "core_sha256": "af82ad5ee76001990aada0d7d45cb939397c13cd9a7fa2637772a0c627a3d155",
+    "dropped_no_required_line": 1,
+    "gates": {
+      "max_core_bytes": 3145728,
+      "min_recipes": 2500,
+      "min_recipes_fully_read": 0.6
+    },
+    "gates_passed": true,
+    "lines_read": 29212,
+    "lines_read_share": 0.9557649522313834,
+    "pack_format": 2,
+    "pack_lines": 32771,
+    "pack_unread_lines": 1352,
+    "pages": 3713,
+    "recipes": 3712,
+    "recipes_fully_read_count": 2689,
+    "required_lines": 30564,
+    "table": "data/ingredients/ingredients.v2.csv",
+    "table_rows": 872,
+    "table_sha256": "a03baecd93238cc3e60ea44e033f0fbcb9c6ababca7ed0aba5b7fbe89bbd761e",
+    "text_bytes": 870411,
+    "version": "v2",
+    "words_sha256": "357f3735ea543d3b7def5349dc6d980f9b12d96b3858fba5fd3dc15ef2822836"
+  },
+  "corpus_fingerprint": "a1a076ab0aee385c4e01cdc904342214dfaa6b01dc35d80d32519ea625c597d2",
+  "dirty": false,
+  "dirty_paths": [],
+  "environment": {
+    "numpy": "2.4.6",
+    "platform": "Windows 10 (win32)",
+    "python": "3.11.15"
+  },
+  "label": "MEASURED",
+  "metrics": [
+    {
+      "arm": null,
+      "depends_on": [
+        "ingredient_table",
+        "pack_rules"
+      ],
+      "n": 3712,
+      "name": "recipes_fully_read",
+      "role": "product",
+      "split": "all",
+      "value": 0.7244073275862069
+    }
+  ],
+  "schema": 1,
+  "seed": 0,
+  "what": "Pack v2 (format 2, table v2, word file) built from the Wikibooks snapshot. recipes_fully_read = kept recipes with every required line read / kept recipes, by pantrychef.pack.build.coverage. It is in-sample by design: it measures the cost of reading the pack, not quality."
+}
