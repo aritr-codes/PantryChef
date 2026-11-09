@@ -64,6 +64,22 @@ test("Enter takes the top suggestion for a partial word", async ({ page }) => {
   await expect(page.locator(".unknown")).toHaveCount(0);
 });
 
+test("a typed pair adds both ingredients, and a typo adds the nearest one", async ({ page }) => {
+  await page.goto("/");
+  const input = page.getByLabel("Type an ingredient");
+  await input.fill("s&p");
+  await input.press("Enter");
+  await expect(page.getByRole("heading", { name: "Your pantry (2)" })).toBeVisible();
+  const chips = page.getByRole("list", { name: "Your pantry" });
+  await expect(chips).toContainText("salt");
+  await expect(chips).toContainText("black pepper");
+  await input.fill("cinamon");
+  await input.press("Enter");
+  await expect(page.getByRole("heading", { name: "Your pantry (3)" })).toBeVisible();
+  await expect(chips).toContainText("cinnamon");
+  await expect(page.locator(".unknown")).toHaveCount(0);
+});
+
 test("an unknown name is shown as not used, and removable", async ({ page }) => {
   await page.goto("/");
   const input = page.getByLabel("Type an ingredient");

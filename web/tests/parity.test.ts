@@ -5,6 +5,7 @@ import { readFileSync } from "node:fs";
 import { resolve as resolvePath } from "node:path";
 import { describe, expect, it } from "vitest";
 import { Engine } from "../src/engine";
+import { resolveName } from "../src/names";
 import { tokens } from "../src/normalize";
 import type { Answer, AnswerRequest, Core, RecipeResult } from "../src/types";
 
@@ -16,6 +17,7 @@ interface Golden {
   cases: { name: string; request: AnswerRequest; answer: Answer }[];
   tokens: { input: string; tokens: string[] }[];
   names: { names: string[]; ids: string[]; unknown: string[] }[];
+  resolve: { text: string; ids: string[]; step: string }[];
 }
 
 const golden = read<Golden>("tests/golden/answer_cases.json");
@@ -63,6 +65,34 @@ describe("name resolution", () => {
       unknown: n.unknown,
     }));
   }
+});
+
+describe("typed-name resolver", () => {
+  it("has at least 40 cases", () => {
+    expect(golden.resolve.length).toBeGreaterThanOrEqual(40);
+  });
+
+  for (const c of golden.resolve) {
+    it(JSON.stringify(c.text), () =>
+      expect(resolveName(c.text, engine.core.keys, engine.words)).toEqual({
+        ids: c.ids,
+        step: c.step,
+      }),
+    );
+  }
+
+  it("loads a core with no word lists, so the v1 pack still works", () => {
+    const { words: _words, ...bare } = read<Core>("tests/fixtures/pack/core.v1.json");
+    const old = new Engine(bare);
+    expect(old.resolve(["Eggs", "xylophone"])).toEqual({ ids: ["egg"], unknown: ["xylophone"] });
+  });
+
+  it("resolves a pasted list into ids in order, without duplicates", () => {
+    expect(engine.resolve(["s&p", "salt", "cinamon", "pepper"])).toEqual({
+      ids: ["salt", "black_pepper", "cinnamon"],
+      unknown: ["pepper"],
+    });
+  });
 });
 
 describe("suggest", () => {

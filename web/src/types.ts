@@ -25,11 +25,22 @@ export interface CoreIngredient {
   idf: number;
 }
 
+/** The word lists of `data/ingredients/words.v1.json`, as the pack core carries them. */
+export interface WordsJson {
+  units: Record<string, string>;
+  size: string[];
+  container: string[];
+  prep: string[];
+  staple_cue: string[];
+  bare_pepper: Record<string, string>;
+}
+
 export interface Core {
   format: number;
   info: { version: string; commit: string; corpus_fingerprint: string; recipes: number };
   ingredients: CoreIngredient[];
   keys: Record<string, IngredientId>;
+  words?: WordsJson; // absent in a core from before pack v2
   recipes: CoreRecipe[];
 }
 

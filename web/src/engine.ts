@@ -2,7 +2,9 @@
 // Rules: docs/ARCHITECTURE_PROPOSAL.md sections 5 and 6, "Rules fixed while building M1".
 // The app calls only this module. It never reads data files itself.
 
+import { resolveName } from "./names";
 import { tokens } from "./normalize";
+import { makeWords, type Words } from "./units";
 import type {
   Answer,
   AnswerRequest,
@@ -51,8 +53,10 @@ export class Engine {
   private readonly idf = new Map<IngredientId, number>();
   private readonly names = new Map<IngredientId, string>();
   private readonly byId = new Map<string, CoreRecipe>();
+  readonly words: Words;
 
   constructor(readonly core: Core) {
+    this.words = makeWords(core.words);
     for (const i of core.ingredients) {
       this.idf.set(i.id, i.idf);
       this.names.set(i.id, i.name);
@@ -77,14 +81,14 @@ export class Engine {
       .map((i) => ({ id: i.id, name: i.name }));
   }
 
-  /** Map typed names to ids by exact canonical key. Mirrors `resolve_names` in Python. */
+  /** Map typed names to ids (see names.ts). Mirrors `resolve_names` in Python. */
   resolve(names: string[]): { ids: IngredientId[]; unknown: string[] } {
     const ids: IngredientId[] = [];
     const unknown: string[] = [];
     for (const name of names) {
-      const hit = this.core.keys[tokens(name).join(" ")];
-      if (hit === undefined) unknown.push(name);
-      else if (!ids.includes(hit)) ids.push(hit);
+      const match = resolveName(name, this.core.keys, this.words);
+      if (match.step === "none") unknown.push(name);
+      for (const id of match.ids) if (!ids.includes(id)) ids.push(id);
     }
     return { ids, unknown };
   }

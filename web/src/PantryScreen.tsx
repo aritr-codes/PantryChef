@@ -31,8 +31,11 @@ export function PantryScreen(p: Props) {
     const name = raw.trim();
     if (!name) return;
     const { ids } = p.engine.resolve([name]);
-    if (ids[0]) addId(ids[0]);
-    else {
+    if (ids.length) {
+      p.setIds([...p.ids, ...ids.filter((id) => !p.ids.includes(id))]);
+      setText("");
+      setActive(-1);
+    } else {
       if (!p.unknown.includes(name)) p.setUnknown([...p.unknown, name]);
       setText("");
       setActive(-1);
