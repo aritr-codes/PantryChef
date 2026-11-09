@@ -1,7 +1,7 @@
 {
   "arms": [],
   "command": "uv run python scripts/ingredient_coverage.py data/raw/wikibooks/snapshot.2026-11-03.jsonl.gz --table data/ingredients/ingredients.v2.csv --growth-row results/m3_table_growth.json",
-  "commit": "94048a6d5165b1d8d1aaa0a39265640078e359f2",
+  "commit": "52f1199fa3e97a8471511047609fe18aa1fc3743",
   "comparisons": [],
   "config": {
     "inputs": {
@@ -10,19 +10,19 @@
       "n": 83
     },
     "parser": {
-      "f1": 0.8479163723689788,
-      "gold_found": 123,
+      "f1": 0.864496915549883,
+      "gold_found": 128,
       "gold_groups": 152,
-      "gold_out_of_table": 20,
+      "gold_out_of_table": 17,
       "lines": 150,
-      "mention_accuracy": 0.8026315789473685,
-      "mention_correct": 122,
-      "optional_accuracy": 0.9852941176470589,
-      "optional_n": 136,
-      "precision": 0.8905109489051095,
-      "pred_correct": 122,
-      "pred_groups": 137,
-      "recall": 0.8092105263157895
+      "mention_accuracy": 0.8355263157894737,
+      "mention_correct": 127,
+      "optional_accuracy": 0.9859154929577465,
+      "optional_n": 142,
+      "precision": 0.8881118881118881,
+      "pred_correct": 127,
+      "pred_groups": 143,
+      "recall": 0.8421052631578947
     },
     "rows": [
       {
@@ -276,6 +276,258 @@
             3
           ]
         ]
+      },
+      {
+        "commit": "52f1199fa3e97a8471511047609fe18aa1fc3743",
+        "input_accuracy_dev": 0.9759036144578314,
+        "lines_read": 29270,
+        "mention_accuracy_dev": 0.8355263157894737,
+        "parser_precision_dev": 0.8881118881118881,
+        "recipes_fully_read": 0.7349137931034483,
+        "resolver": "resolve_name",
+        "rows": 678,
+        "top_unread": [
+          [
+            "pepper",
+            253
+          ],
+          [
+            "of pepper",
+            5
+          ],
+          [
+            "seasoning to taste",
+            4
+          ],
+          [
+            "fat",
+            4
+          ],
+          [
+            "",
+            4
+          ],
+          [
+            "fresh pepper",
+            4
+          ],
+          [
+            "green bean trimmed and cut into bite sized piece",
+            4
+          ],
+          [
+            "fat for deep frying",
+            3
+          ],
+          [
+            "seasoning",
+            3
+          ],
+          [
+            "topping",
+            3
+          ],
+          [
+            "spice",
+            3
+          ],
+          [
+            "filling as desired",
+            3
+          ],
+          [
+            "hickory chunk",
+            3
+          ],
+          [
+            "large mesquite chunk",
+            3
+          ],
+          [
+            "cider",
+            3
+          ],
+          [
+            "filling",
+            2
+          ],
+          [
+            "sarza criolla",
+            2
+          ],
+          [
+            "fresh spinach washed and torn into small piece",
+            2
+          ],
+          [
+            "seasoning mix",
+            2
+          ],
+          [
+            "salad",
+            2
+          ],
+          [
+            "toothpick",
+            2
+          ],
+          [
+            "flavoring",
+            2
+          ],
+          [
+            "preferred seasoning",
+            2
+          ],
+          [
+            "butter melted and cooled slightly",
+            2
+          ],
+          [
+            "whole chicken wing tip removed and cut in half",
+            2
+          ],
+          [
+            "soaked mesquite chip",
+            2
+          ],
+          [
+            "dry applewood chunk",
+            2
+          ],
+          [
+            "soaked mesquite wood chip",
+            2
+          ],
+          [
+            "prime rib seasoning as needed",
+            2
+          ],
+          [
+            "grill seasoning for chop as needed",
+            2
+          ],
+          [
+            "mesquite wood chip soaked in water 30 minute",
+            2
+          ],
+          [
+            "munich malt",
+            2
+          ],
+          [
+            "medium iguana",
+            2
+          ],
+          [
+            "pepper blended",
+            2
+          ],
+          [
+            "seasoning as desired",
+            2
+          ],
+          [
+            "hatxora",
+            2
+          ],
+          [
+            "soda extract",
+            2
+          ],
+          [
+            "rich dark ale",
+            1
+          ],
+          [
+            "strong flavoured herba minced",
+            1
+          ],
+          [
+            "canned black bean rinsed and well drained",
+            1
+          ],
+          [
+            "large ripe tomato well chopped seed and skin included",
+            1
+          ],
+          [
+            "other ingredient as necessary",
+            1
+          ],
+          [
+            "mexican seasoning",
+            1
+          ],
+          [
+            "chicken jointed get the giblet and the blood if you can season beforehand marrow is important.",
+            1
+          ],
+          [
+            "frangipane",
+            1
+          ],
+          [
+            "medium eggplant peeled and chopped into 1/2 inch cube",
+            1
+          ],
+          [
+            "approximately potato unpeeled and cut into chunk",
+            1
+          ],
+          [
+            "whole cleaned trout between 10 and 14 inch",
+            1
+          ],
+          [
+            "dozen raw whole oyster",
+            1
+          ],
+          [
+            "soaked and boiled black pinto kidney or other bean",
+            1
+          ],
+          [
+            "carrot peeled and sliced lengthwise",
+            1
+          ],
+          [
+            "thinly sliced beets.",
+            1
+          ],
+          [
+            "cilantro leaf and stem",
+            1
+          ],
+          [
+            "mayso",
+            1
+          ],
+          [
+            "maysocha",
+            1
+          ],
+          [
+            "maycha",
+            1
+          ],
+          [
+            "hot mom",
+            1
+          ],
+          [
+            "of masala mixture",
+            1
+          ],
+          [
+            "water for soaking rice and 2 to 2 1/2 cup for grinding",
+            1
+          ],
+          [
+            "large potato cubed and par boiled",
+            1
+          ]
+        ]
       }
     ],
     "split": "dev"
@@ -300,7 +552,7 @@
       "name": "recipes_fully_read",
       "role": "product",
       "split": "all",
-      "value": 0.6039870689655172
+      "value": 0.7349137931034483
     },
     {
       "arm": null,
@@ -312,7 +564,7 @@
       "name": "mention_accuracy",
       "role": "product",
       "split": "dev",
-      "value": 0.8026315789473685
+      "value": 0.8355263157894737
     },
     {
       "arm": null,
@@ -320,11 +572,11 @@
         "ingredient_table",
         "parser_rules"
       ],
-      "n": 137,
+      "n": 143,
       "name": "parser_precision",
       "role": "sanity",
       "split": "dev",
-      "value": 0.8905109489051095
+      "value": 0.8881118881118881
     },
     {
       "arm": null,
