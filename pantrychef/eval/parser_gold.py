@@ -33,7 +33,6 @@ from pathlib import Path
 from pantrychef.ingredients.resolve import resolve_lines
 from pantrychef.ingredients.table import IngredientTable, tokens
 
-
 ROOT = Path(__file__).resolve().parents[2]
 FROZEN = ROOT / "data/eval/m3_frozen_lines.v1.json"
 
@@ -58,27 +57,40 @@ def parse_names(text: str) -> tuple[tuple[str, ...], ...]:
     return tuple(groups)
 
 
+def label_from_fields(lid: str, names: str, optional: str, not_an_ingredient: str) -> Label:
+    """Build a ``Label`` from the three work-sheet fields. Raise ``LabelError`` if they conflict."""
+    skip = not_an_ingredient.strip() == "1"
+    groups = parse_names(names)
+    if skip and groups:
+        raise LabelError(f"{lid}: not_an_ingredient with names")
+    if not skip and not groups:
+        raise LabelError(f"{lid}: blank label")
+    opt = optional.strip()
+    if opt not in ("", "0", "1"):
+        raise LabelError(f"{lid}: optional must be 0, 1 or blank")
+    return Label(groups, opt == "1", skip)
+
+
 def read_labels_csv(path: Path, line_ids: Iterable[str]) -> dict[str, Label]:
-    """Read the work CSV. Raise ``LabelError`` for a missing, extra, blank or contradictory row."""
+    """Read the work CSV. Raise ``LabelError`` for a missing, extra, blank or contradictory row.
+
+    The ``optional`` and ``not_an_ingredient`` columns may be absent (realistic-input sheets).
+    """
     expected = set(line_ids)
     out: dict[str, Label] = {}
-    with path.open(encoding="utf8", newline="") as fh:
+    with path.open(encoding="utf-8-sig", newline="") as fh:
         for rec in csv.DictReader(fh):
             lid = rec["id"]
             if lid not in expected:
                 raise LabelError(f"unknown line id {lid}")
             if lid in out:
                 raise LabelError(f"duplicate line id {lid}")
-            skip = rec["not_an_ingredient"].strip() == "1"
-            groups = parse_names(rec["names"])
-            if skip and groups:
-                raise LabelError(f"{lid}: not_an_ingredient with names")
-            if not skip and not groups:
-                raise LabelError(f"{lid}: blank label")
-            opt = rec["optional"].strip()
-            if opt not in ("", "0", "1"):
-                raise LabelError(f"{lid}: optional must be 0, 1 or blank")
-            out[lid] = Label(groups, opt == "1", skip)
+            out[lid] = label_from_fields(
+                lid,
+                rec["names"] or "",
+                rec.get("optional") or "",
+                rec.get("not_an_ingredient") or "",
+            )
     missing = expected - set(out)
     if missing:
         raise LabelError(f"{len(missing)} lines have no label, for example {sorted(missing)[0]}")
