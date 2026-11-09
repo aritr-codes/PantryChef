@@ -26,6 +26,7 @@ GROUP_RANK = {"make_now": 0, "one_away": 1, "two_away": 2}  # absent = 3
 SAMPLED_GROUPS = ("make_now", "one_away")
 CLAIM = {"make_now": "make now", "one_away": "one away"}
 ANSWERS = ("yes", "no", "unsure")
+LABEL_VALUES = ("usable", "not usable")
 
 Edge = tuple[str, str, str]  # (from, type, to)
 
@@ -81,9 +82,19 @@ def edges_in_use(edges: list[Edge], option: str, labels: dict | None) -> list[Ed
     if labels is None:
         raise ValueError("option b needs the edge labels")
     by_edge = {(x["from"], x["type"], x["to"]): x["label"] for x in labels["edges"]}
+    bad = sorted((e, v) for e, v in by_edge.items() if v not in LABEL_VALUES)
+    if bad:
+        raise ValueError(f"option b: label must be 'usable' or 'not usable', got {bad[0]}")
     missing = [e for e in edges if e not in by_edge]
     if missing:
         raise ValueError(f"option b: no label for {len(missing)} edge(s), first {missing[0]}")
+    extra = sorted(set(by_edge) - set(edges))
+    if extra:
+        raise ValueError(f"option b: label for an edge that is not in the table: {extra[0]}")
+    for ed in labels.get("owner_edits", []):
+        e = (ed["from"], ed["type"], ed["to"])
+        if by_edge.get(e) != ed["new_label"]:
+            raise ValueError(f"option b: owner edit of {e} does not match its label")
     return [e for e in edges if by_edge[e] == "usable"]
 
 
@@ -258,7 +269,14 @@ def pool_counts(pool: list[NewItem], decoys: dict[str, dict[str, list[str]]]) ->
         k = stratum_name(i.group, i.signature)
         new[k] = new.get(k, 0) + 1
     cand = {g: sum(len(d.get(g, ())) for d in decoys.values()) for g in SAMPLED_GROUPS}
-    return {"new": dict(sorted(new.items())), "decoy_candidates": cand}
+    types = {
+        t: {
+            "new": sum(t in i.signature for i in pool),
+            "pantries": len({i.pantry_id for i in pool if t in i.signature}),
+        }
+        for t in EDGE_TYPES
+    }  # T1 needs correct items of each type from several pantries; this is the ceiling
+    return {"new": dict(sorted(new.items())), "decoy_candidates": cand, "edge_types": types}
 
 
 def pool_by_edge(pool: list[NewItem], top: int = 10) -> list[list]:
@@ -497,14 +515,18 @@ def sheet_rows(items: list[SheetItem], pack: Pack, pantries: dict, edges: list[E
 def make_key(items: list[SheetItem], pool: list[NewItem], sets: dict[str, str], seed: int) -> dict:
     """The private key: everything the rater must not see. Plain JSON."""
     pool_n: dict[str, int] = {}
+    by_set: dict[str, dict[str, int]] = {"pilot": {}, "new": {}}
     for i in pool:
         k = stratum_name(i.group, i.signature)
         pool_n[k] = pool_n.get(k, 0) + 1
+        sub = by_set[sets[i.pantry_id]]
+        sub[k] = sub.get(k, 0) + 1
     return {
         "version": 1,
         "seed": seed,
         "pantries": dict(sorted(sets.items())),
         "pool": dict(sorted(pool_n.items())),
+        "pool_by_set": {s: dict(sorted(v.items())) for s, v in by_set.items()},
         "items": {
             i.item_id: {
                 "pantry_id": i.pantry_id,
@@ -708,6 +730,15 @@ def score(
     if missing:
         raise ValueError(f"missing answers for {len(missing)} item(s), first {missing[0]!r}")
 
+    # Only the first answer counts (design 4.1). A repeat can sit before its original (session 3
+    # repeats go to session 1), so the item the rater saw first, by sheet position, is the one
+    # that counts. The other one is used for the repeat agreement only.
+    second: set[str] = set()
+    for iid, v in items.items():
+        if v["repeat_of"]:
+            if v["repeat_of"] not in items:
+                raise ValueError(f"item {iid!r} repeats the unknown item {v['repeat_of']!r}")
+            second.add(max(iid, v["repeat_of"], key=lambda s: int(s[1:])))
     rated = [
         {
             **v,
@@ -717,7 +748,7 @@ def score(
             "set": key["pantries"].get(v["pantry_id"]),
         }
         for iid, v in items.items()
-        if v["repeat_of"] is None
+        if iid not in second
     ]
     sets = key["pantries"]
     ids = {s: sorted(p for p, x in sets.items() if x == s) for s in ("pilot", "new")}
@@ -725,7 +756,9 @@ def score(
     pool = key["pool"]
     full = _figures(rated, all_ids, pool, seed, resamples)
     split = {
-        s: _figures([r for r in rated if r["set"] == s], ids[s], pool, seed, resamples)
+        s: _figures(
+            [r for r in rated if r["set"] == s], ids[s], key["pool_by_set"][s], seed, resamples
+        )
         for s in ("pilot", "new")
     }
 
@@ -812,6 +845,8 @@ CODE_GLOBS = (
     "pantrychef/engine.py",
     "pantrychef/ingredients/*.py",
     "pantrychef/pack/build.py",
+    "pantrychef/eval/stats.py",
+    "scripts/graph_spike.py",
 )
 CHECKED_FIELDS = (
     "table_sha256", "words_sha256", "snapshot_sha256", "code_sha256", "edges", "edges_sha256",
@@ -1096,5 +1131,67 @@ def result_doc(
             },  # fmt: skip
             "rater": {"count": 1, **rater},
             "limits": limits,
+        },
+    }
+
+
+def unrated_result_doc(
+    manifest: dict,
+    verdict: str,
+    reason: str,
+    freeze_commit: str,
+    freeze_sha256: str,
+    command: str,
+) -> dict:
+    """The results document when nothing was rated: ``not_run`` (owner skip) or ``rejected``."""
+    if verdict not in ("not_run", "rejected"):
+        raise ValueError("verdict must be 'not_run' or 'rejected'")
+    if not reason.strip():
+        raise ValueError("a reason is required")
+    used = manifest["edges_in_use"]
+    by_pantry = manifest.get("edge_source_hits", {}).get("by_pantry", {})
+    return {
+        "label": "MEASURED",
+        "what": "ADR 0006 graph spike: nothing was rated. The pool counts are the result",
+        "command": command,
+        "config": {
+            "edge_option": manifest["edge_option"],
+            "plan": manifest["plan"],
+            "thresholds": manifest["thresholds"],
+        },
+        "seed": manifest["plan"]["seed"],
+        "corpus_fingerprint": manifest["snapshot_sha256"],
+        "arms": [{"name": "table_flat"}, {"name": "graph_traversal"}],
+        "metrics": [],
+        "comparisons": [],
+        "environment": {},
+        "raw": {
+            "freeze_commit": freeze_commit,
+            "freeze_sha256": freeze_sha256,
+            "thresholds": manifest["thresholds"],
+            "edge_option": manifest["edge_option"],
+            "edges_in_use": {
+                "count_per_type": used["count_per_type"],
+                "owner_edits": manifest.get("owner_edits", []),
+            },
+            "max_depth_observed": manifest["max_depth_observed"],
+            "pantries": {
+                "n": len(by_pantry),
+                "pilot": sum(p.startswith("pilot") for p in by_pantry),
+                "new": sum(not p.startswith("pilot") for p in by_pantry),
+                "unknown_names": manifest.get("unknown_names", {}),
+            },
+            "edge_source_hits": manifest.get("edge_source_hits", {}),
+            "pool": {
+                "counts": manifest.get("pool_counts", {}),
+                "by_edge": manifest.get("pool_by_edge", []),
+            },
+            "checks": {},
+            "verdict": verdict,
+            "reason": reason,
+            "limits": [
+                "Nothing was rated, so no precision or interval exists.",
+                "The ADR stays Proposed unless the pool is empty, which is a rejection.",
+            ],
         },
     }

@@ -180,6 +180,33 @@ def test_option_b_filters_edges():
         edges_in_use(EDGES, "c", None)
 
 
+def _labels(**changes):
+    rows = [dict(x) for x in LABELS["edges"]]
+    rows[0].update(changes)
+    return {"edges": rows}
+
+
+def test_option_b_rejects_odd_labels_and_stray_edges():
+    for odd in ("Usable", "usable ", "yes", "not_usable", ""):
+        with pytest.raises(ValueError, match="usable"):
+            edges_in_use(EDGES, "b", _labels(label=odd))
+    extra = {"from": "x", "type": "is_a", "to": "y", "label": "usable"}
+    with pytest.raises(ValueError, match="not in the table"):
+        edges_in_use(EDGES, "b", {"edges": [*LABELS["edges"], extra]})
+
+
+def test_option_b_checks_owner_edits_against_labels():
+    edit = {"from": "paneer", "type": "is_a", "to": "cheese", "old_label": "not usable"}
+    ok = {**LABELS, "owner_edits": [{**edit, "new_label": "usable"}]}
+    assert ("paneer", "is_a", "cheese") in edges_in_use(EDGES, "b", ok)
+    bad = {**LABELS, "owner_edits": [{**edit, "new_label": "not usable"}]}
+    with pytest.raises(ValueError, match="owner edit"):
+        edges_in_use(EDGES, "b", bad)
+    gone = {**LABELS, "owner_edits": [{**edit, "from": "nothing", "new_label": "usable"}]}
+    with pytest.raises(ValueError, match="owner edit"):
+        edges_in_use(EDGES, "b", gone)
+
+
 def test_max_depth():
     assert max_depth(EDGES) == 1
     assert max_depth([("a", "is_a", "b"), ("b", "is_a", "c")]) == 2
@@ -464,15 +491,18 @@ def _entry(pid, group, kind, sig, w, edges=(), repeat_of=None, session=1, hops=1
     }  # fmt: skip
 
 
-def _key(entries, pool=None, sets=SETS):
+def _key(entries, pool=None, sets=SETS, pool_by_set=None):
     items = {f"g{k + 1:03d}": e for k, e in enumerate(entries)}
     if pool is None:
-        pool = {}
+        pool, pool_by_set = {}, {"pilot": {}, "new": {}}
         for e in entries:
             if e["kind"] == "new" and e["repeat_of"] is None:
                 k = f"{e['group']}|{'+'.join(e['signature'])}"
                 pool[k] = pool.get(k, 0) + 1
-    return {"version": 1, "seed": 46, "pantries": dict(sets), "pool": pool, "items": items}
+                sub = pool_by_set[sets[e["pantry_id"]]]
+                sub[k] = sub.get(k, 0) + 1
+    return {"version": 1, "seed": 46, "pantries": dict(sets), "pool": pool,
+            "pool_by_set": pool_by_set or {"pilot": {}, "new": {}}, "items": items}  # fmt: skip
 
 
 def _answers(key, no=(), unsure=()):
@@ -496,7 +526,9 @@ def _hand():
         _entry("p1", "make_now", "new", ("is_a",), 2.0, [PANEER], repeat_of="g002"),  # g009 yes
     ]
     key = _key(e, pool={"make_now|is_a": 10, "make_now|form_of+is_a": 1, "one_away|form_of": 2},
-               sets={"p1": "pilot", "p2": "pilot", "p3": "new"})  # fmt: skip
+               sets={"p1": "pilot", "p2": "pilot", "p3": "new"},
+               pool_by_set={"pilot": {"make_now|is_a": 7, "one_away|form_of": 2},
+                            "new": {"make_now|is_a": 3, "make_now|form_of+is_a": 1}})  # fmt: skip
     answers = _answers(key, no=("g002", "g007"), unsure=("g004",))
     return key, answers
 
@@ -535,6 +567,37 @@ def test_score_hand_case():
     assert pil["net_new_per_pantry"]["mean"] == 0.0  # d = [1, -1]
     assert new["net_new_per_pantry"]["mean"] == 1.0 and new["net_new_per_pantry"]["n_pantries"] == 1
     assert r["rated"]["new"] == 5 and r["rated"]["decoys"] == 2 and r["rated"]["repeats"] == 2
+
+
+def test_split_strata_use_the_pool_of_their_own_subset():
+    key, answers = _hand()
+    r = score(key, answers, T, 46)
+    pil = {(x["group"], x["signature"]): x for x in r["split_report"]["pilot"]["strata"]}
+    new = {(x["group"], x["signature"]): x for x in r["split_report"]["new"]["strata"]}
+    assert pil[("make_now", "is_a")]["pool_n"] == 7 and pil[("make_now", "is_a")]["n"] == 2
+    assert pil[("make_now", "is_a")]["mode"] == "sample"
+    assert new[("make_now", "is_a")]["pool_n"] == 3 and new[("make_now", "is_a")]["n"] == 0
+    assert new[("make_now", "form_of+is_a")]["mode"] == "census"
+    assert ("one_away", "form_of") not in new  # no pool and no item in the new pantries
+
+
+def test_first_answer_counts_when_a_repeat_comes_before_its_original():
+    # g001 is the repeat of g003: the rater saw g001 first, so its answer is the one that counts
+    e = [
+        _entry("p1", "make_now", "new", ("is_a",), 1.0, [PANEER], repeat_of="g003"),  # g001
+        _entry("p2", "make_now", "new", ("is_a",), 1.0, [PANEER]),  # g002
+        _entry("p1", "make_now", "new", ("is_a",), 1.0, [PANEER]),  # g003, the original
+    ]
+    key = _key(e, pool={"make_now|is_a": 2}, sets={"p1": "pilot", "p2": "pilot"},
+               pool_by_set={"pilot": {"make_now|is_a": 2}, "new": {}})  # fmt: skip
+    first_yes = score(key, _answers(key, no=("g003",)), T, 46)
+    assert first_yes["precision"]["make_now"]["weighted"] == 1.0  # g001 yes, g002 yes
+    assert first_yes["net_new_per_pantry"]["mean"] == 1.0  # d = [1, 1]
+    assert first_yes["rated"]["new"] == 2
+    assert first_yes["repeat_agreement"] == {"pairs": 1, "agree": 0, "rate": 0.0}
+    first_no = score(key, _answers(key, no=("g001",)), T, 46)
+    assert first_no["precision"]["make_now"]["weighted"] == 0.5  # g001 no, g002 yes
+    assert first_no["net_new_per_pantry"]["mean"] == 0.0
 
 
 def test_pantry_with_no_new_item_stays_in_with_zero():
@@ -707,6 +770,10 @@ def test_pool_counts_top_edges_and_source_hits(dpack):
     counts = gs.pool_counts(pool, decoys)
     assert counts["new"] == {"make_now|is_a": 3, "one_away|is_a": 1}
     assert counts["decoy_candidates"] == {"make_now": 12, "one_away": 13}
+    assert counts["edge_types"] == {
+        "is_a": {"new": 4, "pantries": 2},
+        "form_of": {"new": 0, "pantries": 0},
+    }
     assert gs.pool_by_edge(pool, top=10) == [["paneer", "is_a", "cheese", 4]]
     hits = gs.edge_source_hits(
         dpack,
@@ -727,6 +794,8 @@ CODE_FILES = (
     "pantrychef/ingredients/names.py",
     "pantrychef/ingredients/table.py",
     "pantrychef/pack/build.py",
+    "pantrychef/eval/stats.py",
+    "scripts/graph_spike.py",
 )
 
 
