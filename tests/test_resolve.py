@@ -172,6 +172,16 @@ FOOD = (
     "black_pepper,black pepper,,1,hand\n"
     "vegetable_oil,vegetable oil,oil,1,hand\n"
     "water,water,,1,hand\n"
+    "cream,cream,,0,hand\n"
+    "onion,onion,,0,hand\n"
+    "parsley,parsley,,0,hand\n"
+    "cabbage,cabbage,,0,hand\n"
+    "olive_oil,olive oil,,1,hand\n"
+    "chicken,chicken,,0,hand\n"
+    "shrimp,shrimp,,0,hand\n"
+    "broccoli,broccoli,,0,hand\n"
+    "potato,potato,,0,hand\n"
+    "soy,soy,,0,hand\n"
 )
 
 
@@ -224,6 +234,39 @@ def test_a_key_that_covers_the_whole_phrase_still_reads(food):
 )
 def test_benign_trailing_words_keep_the_food(food, text, ids):
     assert _ids(food, text) == [(ids, True)]
+
+
+@pytest.mark.parametrize(
+    ("text", "ids"),
+    [
+        ("2 eggs lightly beaten", ("egg",)),
+        ("1 onion very finely chopped", ("onion",)),
+        ("parsley chopped fine", ("parsley",)),
+        ("cabbage shredded fine", ("cabbage",)),
+        ("1 tbsp olive oil extra virgin", ("olive_oil",)),
+        ("4 chicken thighs bone in skin on", ("chicken",)),
+        ("chicken breasts skin removed", ("chicken",)),
+        ("shrimp shells on", ("shrimp",)),
+        ("broccoli florets only", ("broccoli",)),
+        ("1 cup cream approximately", ("cream",)),
+        ("2 potatoes medium size", ("potato",)),
+    ],
+)
+def test_trailing_modifier_words_keep_the_food(food, text, ids):
+    assert _ids(food, text) == [(ids, True)]
+
+
+@pytest.mark.parametrize(
+    "text",
+    [
+        "1 tbsp soy sauce",  # no "soy sauce" key, so the base food must not win
+        "1 tsp red chili powder",
+        "1 cup almond jelly",  # "-elly" is food ("jelly", "belly"), not an "-ly" adverb
+        "1 cup shrimp shells for stock",  # "shells" is only a note when "on" or a modifier follows
+    ],
+)
+def test_trailing_product_forms_stay_unread(food, text):
+    assert _ids(food, text) == [((), False)]
 
 
 def test_or_alternative_with_unexplained_head_is_dropped_not_misread(food):

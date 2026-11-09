@@ -186,10 +186,18 @@ Not done:
 
 - No held-out evaluation of recipe quality. Do not read the coverage numbers as quality (ADR 0005).
 - Results screen is slow in the throttled headless profile (above). Cause not found.
-- Bare "pepper" is read as black pepper only when the line also names salt or says "to taste". This is provisional until M3.
-  M3 Task 6a (branch `feat/m3-ingredient-foundation`) makes the rule data: `words.bare_pepper.when` is
-  `staple_cue_or_taste` (this rule) or `always`. Task 6b picks the value. Task 6a also adds a head-noun check to the
-  line resolver: "pomegranate juice" and "linseed oil" are now unread instead of misread. See `pantrychef/ingredients/resolve.py`.
+- Bare "pepper" is read as black pepper only when the line also names salt or says "to taste". This is decided, not provisional.
+  The rule is data: `words.bare_pepper.when` is `staple_cue_or_taste` (this rule) or `always`. The value is `staple_cue_or_taste`
+  (MEASURED, [results/m3_bare_pepper.json](../results/m3_bare_pepper.json), one blind Opus labeller, no owner adjudication): 56 of 80
+  labelled lines are black pepper (0.700, Wilson 95% 0.592 to 0.789). The bar for `always` was 75 of 80. Under `always`, 46 of the 80 lines
+  would change, and 29 of those 46 are black pepper.
+  M3 Task 6a (branch `feat/m3-ingredient-foundation`) also added a head-noun check to the line resolver: "pomegranate juice",
+  "red chili powder" and "linseed oil" are now unread instead of misread. Round 2 of Task 5 treats "-ly" words and a few more words
+  ("very", "fine", "only", "size", "approximately", "virgin") as modifiers, so "2 eggs lightly beaten" reads again. See `pantrychef/ingredients/resolve.py`.
+  Coverage cost of the head-noun check (MEASURED, dev snapshot, growth row 1b to row 2b): lines read fall from 95.7% to 93.5%, and
+  `recipes_fully_read` falls from 0.7338 to 0.6377. The table rounds of Task 5 win some of it back.
+  The shipped pack-v1 was built by the old resolver. The next pack build changes what lines read. For example, "1 tsp chile oil" was
+  `chili_pepper` and is now unread. That build needs a new release and a new hash set (Task 7).
 
 ## 11. M2 evaluation baseline (2026-11-03, branch `feat/m2-eval-baseline`, not merged)
 

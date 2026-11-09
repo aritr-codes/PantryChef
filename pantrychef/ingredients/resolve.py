@@ -13,15 +13,21 @@ Rules (see docs/plans/2026-11-02-m1-thin-slice.md, gap 8):
   is unknown and is not a plain preparation word, the whole line is unread.
 - Head noun (M3): the last match is the food only if no unexplained word follows it before a
   note ("for frying", "of choice") starts. A word in ``words.trailing_ok`` ("garlic cloves",
-  "basil leaves") is explained. Any other word ("pomegranate juice", "garlic paste") makes
-  that part unread, unless a table key covers the whole phrase. A staple right after a food
-  ("linseed oil", "chile oil") is a product form, so that part is unread too.
+  "basil leaves") is explained. So is a modifier, an "-ly" adverb ("lightly", "approximately")
+  and "bone", "skin" or "shell" before "in", "on" or an "-ed" word ("skin on", "skin removed").
+  Any other word ("pomegranate juice", "garlic paste", "red chili powder") makes that part
+  unread, unless a table key covers the whole phrase. A staple right after a food ("linseed
+  oil", "chile oil") is a product form, so that part is unread too. This rule costs coverage
+  (MEASURED, dev snapshot: lines read 95.7% before, 93.5% after; recipes_fully_read 0.7338
+  before, 0.6377 after). The table rounds win it back.
 - A staple never hides a real ingredient when they are not adjacent ("cornstarch mixed with
   water" reads cornstarch).
 - A "pepper" right after a match of a row known as "... pepper" is part of that name ("green
   chile pepper"). Any other bare "pepper" is the ``words.bare_pepper`` target: with
   ``when: always`` every time, with ``when: staple_cue_or_taste`` only when the line also
-  names a staple cue (salt) or says "to taste". Task 6b picks the value (plan D5).
+  names a staple cue (salt) or says "to taste". The value is ``staple_cue_or_taste``
+  (MEASURED, 80 labelled lines: 56 are black pepper, 0.700, Wilson 95% 0.592 to 0.789; the
+  bar for ``always`` was 75 of 80). See ``results/m3_bare_pepper.json``.
 """
 
 from __future__ import annotations
@@ -72,6 +78,8 @@ _CLAUSE = frozenset(
     ]
 )
 
+_PART_NOTE = frozenset(["bone", "skin", "shell"])  # "bone in", "skin on", "shells on"
+
 
 @dataclass(frozen=True)
 class ResolvedLine:
@@ -110,17 +118,32 @@ def _spans(toks: tuple[str, ...], table: IngredientTable) -> list[tuple[int, int
     return out
 
 
+def _trailing_modifier(rest: tuple[str, ...], k: int, words: Words) -> bool:
+    """True when ``rest[k]`` is a word that does not change the food.
+
+    That is a modifier, an "-ly" adverb ("lightly", "approximately"; "-elly" is food: jelly,
+    belly) or a part word that a "bone in", "skin on", "skin removed" or "shells on" note
+    explains ("skin removed" has an "-ed" word). This lives in the resolver only. The TS name
+    matcher has no such rule.
+    """
+    t = rest[k]
+    if is_modifier(t, words) or (t.endswith("ly") and len(t) > 4 and not t.endswith("elly")):
+        return True
+    nxt = rest[k + 1] if k + 1 < len(rest) else ""
+    return t in _PART_NOTE and (nxt in ("in", "on") or nxt.endswith("ed"))
+
+
 def after_head(toks: tuple[str, ...], end: int, words: Words) -> list[str]:
     """Non-modifier words after position ``end``, up to a clause word or a non-letter token.
 
     A head noun comes before any note: "oil for frying", "cheese of your choice", "2 sticks
     cinnamon 1 inch long". So the scan stops at the first ``_CLAUSE`` word or number.
     """
-    out = []
-    for t in toks[end:]:
+    out, rest = [], toks[end:]
+    for k, t in enumerate(rest):
         if t in _CLAUSE or not t.isalpha():
             break
-        if not is_modifier(t, words):
+        if not _trailing_modifier(rest, k, words):
             out.append(t)
     return out
 

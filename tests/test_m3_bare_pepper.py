@@ -3,13 +3,23 @@
 from __future__ import annotations
 
 import csv
+import json
 
 import pytest
 
 from pantrychef.eval.parser_gold import line_hash
 from pantrychef.eval.results import load_result
 from pantrychef.ingredients.table import IngredientTable
-from scripts.m3_bare_pepper import decide, draw, has_bare_pepper, read_labels, score, write_sheet
+from scripts.m3_bare_pepper import (
+    LABELS_FILE,
+    changed_under_always,
+    decide,
+    draw,
+    has_bare_pepper,
+    read_labels,
+    score,
+    write_sheet,
+)
 
 TABLE = IngredientTable.from_text(
     "id,name,synonyms,staple,provenance\n"
@@ -126,3 +136,41 @@ def test_score_writes_a_valid_result(tmp_path):
     assert doc["config"]["decision"] == "always"
     assert doc["config"]["counts"] == {"black": 76, "other": 3, "unclear": 1}
     assert doc["label"] == "MEASURED" and "one model" in doc["what"]
+
+
+def _json_sheet(tmp_path, labels, labeller="a test labeller"):
+    p = tmp_path / "labels.json"
+    lines = [{"id": f"L{k}", "text": f"{k} pepper", "label": lab} for k, lab in enumerate(labels)]
+    p.write_text(json.dumps({"labeller": labeller, "lines": lines}), encoding="utf8")
+    return p
+
+
+def test_read_labels_accepts_json(tmp_path):
+    p = _json_sheet(tmp_path, [" Black ", "other"])
+    assert read_labels(p) == {"L0": "black", "L1": "other"}
+
+
+def test_changed_under_always_counts_lines_that_change_and_the_black_ones():
+    recs = [
+        {"id": "a", "text": "1 tsp pepper", "label": "black"},  # unread now, black under always
+        {"id": "b", "text": "2 tsp ground pepper", "label": "other"},  # changes, not black
+        {"id": "c", "text": "salt and pepper", "label": "black"},  # reads the same both ways
+        {"id": "d", "text": "2 eggs", "label": "black"},  # no marker
+    ]
+    assert changed_under_always(recs, TABLE) == {"changed": 2, "changed_black": 1}
+
+
+def test_score_accepts_json_and_records_labeller_and_change_counts(tmp_path):
+    p = _json_sheet(tmp_path, ["black"] * 3 + ["other"])
+    out_path = tmp_path / "res.json"
+    score(p, out_path, TABLE)
+    doc = load_result(out_path)
+    assert "a test labeller" in doc["what"]
+    assert doc["config"]["changed_under_always"]["of"] == 4
+    assert doc["config"]["draw_counts"] == {"pool": 103, "frozen": 2, "drawn": 80}
+
+
+def test_committed_labels_file_scores_to_the_recorded_decision(tmp_path):
+    out = score(LABELS_FILE, tmp_path / "res.json", TABLE)
+    assert out["n"] == 80 and out["counts"] == {"black": 56, "other": 16, "unclear": 8}
+    assert out["decision"] == "staple_cue_or_taste"

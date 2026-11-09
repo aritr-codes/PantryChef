@@ -6,13 +6,15 @@ by sha256 of ``"45:bare_pepper:<line id>"`` (the ``sort_key`` of ``make_parser_g
 keeps the first 80. It writes a blind sheet (``id,text,label``; no resolver output) and prints
 counts only.
 
-``score FILE`` reads the filled sheet. Labels: ``black``, ``other``, ``unclear``. It writes
+``score [FILE]`` reads the labelled lines: the committed ``data/eval/m3_bare_pepper_labels.v1.json``
+(default) or a filled CSV sheet. Labels: ``black``, ``other``, ``unclear``. It writes
 ``results/m3_bare_pepper.json`` with the black share and its Wilson 95% interval, and prints the
 D5 decision: ``always`` only when the lower bound is at least 0.85 (75 of 80), else
 ``staple_cue_or_taste``. It does not edit ``words.v1.json``.
 
 Run from the repo root:
     uv run python scripts/m3_bare_pepper.py draw
+    uv run python scripts/m3_bare_pepper.py score
     uv run python scripts/m3_bare_pepper.py score data/interim/m3_bare_pepper_sheet.filled.csv
 """
 
@@ -20,20 +22,25 @@ from __future__ import annotations
 
 import argparse
 import csv
+import dataclasses
 import hashlib
+import json
 from collections import Counter
 from pathlib import Path
 
 from pantrychef.eval.parser_gold import line_hash, load_frozen
 from pantrychef.eval.results import write_result
 from pantrychef.eval.stats import wilson
-from pantrychef.ingredients.resolve import _PEPPER, _body, _spans
+from pantrychef.ingredients.resolve import _PEPPER, _body, _spans, resolve_lines
 from pantrychef.ingredients.table import TABLE_V2_PATH, IngredientTable, tokens
 from scripts.make_parser_gold_sheet import SNAPSHOT, collect_lines, sort_key
 
 ROOT = Path(__file__).resolve().parent.parent
 SHEET = ROOT / "data/interim/m3_bare_pepper_sheet.csv"
 RESULT = ROOT / "results/m3_bare_pepper.json"
+LABELS_FILE = ROOT / "data/eval/m3_bare_pepper_labels.v1.json"
+# Counts from `draw` at M3 6a (v2 table, 682 rows, commit 0a42f42). Not re-derived on each score.
+DRAW_COUNTS = {"pool": 103, "frozen": 2, "drawn": 80}
 SEED = 45
 N = 80
 LABELS = ("black", "other", "unclear")
@@ -68,20 +75,48 @@ def write_sheet(rows: list[dict], path: Path = SHEET) -> None:
             out.writerow([r["id"], r["text"], ""])
 
 
+def read_records(path: Path) -> tuple[list[dict], str]:
+    """Return ``(records, labeller)``. JSON holds ``{"labeller", "lines"}``; CSV holds a sheet."""
+    if Path(path).suffix == ".json":
+        doc = json.loads(Path(path).read_text(encoding="utf8"))
+        return list(doc["lines"]), doc.get("labeller", LABELLER)
+    with open(path, encoding="utf8", newline="") as fh:
+        return list(csv.DictReader(fh)), LABELLER
+
+
 def read_labels(path: Path) -> dict[str, str]:
     """Return ``{id: label}``. Every row needs a known label."""
     labels: dict[str, str] = {}
-    with open(path, encoding="utf8", newline="") as fh:
-        for rec in csv.DictReader(fh):
-            label = (rec.get("label") or "").strip().lower()
-            if label not in LABELS:
-                raise ValueError(f"line {rec['id']!r}: label {label!r} is not one of {LABELS}")
-            if rec["id"] in labels:
-                raise ValueError(f"line {rec['id']!r} appears twice")
-            labels[rec["id"]] = label
+    for rec in read_records(path)[0]:
+        label = (rec.get("label") or "").strip().lower()
+        if label not in LABELS:
+            raise ValueError(f"line {rec['id']!r}: label {label!r} is not one of {LABELS}")
+        if rec["id"] in labels:
+            raise ValueError(f"line {rec['id']!r} appears twice")
+        labels[rec["id"]] = label
     if not labels:
         raise ValueError(f"{path} has no labelled lines")
     return labels
+
+
+def changed_under_always(records: list[dict], table: IngredientTable) -> dict:
+    """Count the lines that read differently when ``bare_pepper.when`` is ``always``.
+
+    ``changed_black`` counts those lines whose label is ``black``.
+    """
+    words = dataclasses.replace(
+        table.words, bare_pepper={**table.words.bare_pepper, "when": "always"}
+    )
+    always = IngredientTable(list(table.rows), words)
+    changed = black = 0
+    for rec in records:
+        a, b = (
+            [(ln.options, ln.read) for ln in resolve_lines(rec["text"], t)] for t in (table, always)
+        )
+        if a != b:
+            changed += 1
+            black += (rec.get("label") or "").strip().lower() == "black"
+    return {"changed": changed, "changed_black": black}
 
 
 def decide(labels: dict[str, str]) -> dict:
@@ -98,26 +133,40 @@ def decide(labels: dict[str, str]) -> dict:
     }
 
 
-def score(path: Path, result: Path = RESULT) -> dict:
+def score(
+    path: Path = LABELS_FILE, result: Path = RESULT, table: IngredientTable | None = None
+) -> dict:
     out = decide(read_labels(path))
+    records, labeller = read_records(path)
+    table = table or IngredientTable.load(TABLE_V2_PATH)
+    changed = changed_under_always(records, table)
     fingerprint = hashlib.sha256(Path(path).read_bytes()).hexdigest()
     write_result(
         result,
         {
             "label": "MEASURED",
             "what": "Share of drawn bare 'pepper' Wikibooks lines labelled black pepper (plan D5). "
-            f"Labels: {LABELLER}. "
+            f"Labels: {labeller}. "
             f"Decision: 'always' only if the Wilson lower bound >= {MIN_LOWER}.",
             "command": f"uv run python scripts/m3_bare_pepper.py score {_rel(path)}",
             "config": {
-                "labeller": LABELLER,
+                "labeller": labeller,
                 "labels": list(LABELS),
                 "seed": SEED,
                 "draw": "sha256 order of '45:bare_pepper:<line id>', first 80, frozen lines out",
                 "table": "data/ingredients/ingredients.v2.csv",
                 "snapshot": SNAPSHOT.name,
                 "snapshot_sha256": hashlib.sha256(SNAPSHOT.read_bytes()).hexdigest(),
+                "table_sha256": hashlib.sha256(TABLE_V2_PATH.read_bytes()).hexdigest(),
                 "min_lower": MIN_LOWER,
+                "draw_counts": DRAW_COUNTS,
+                "changed_under_always": {
+                    "of": out["n"],
+                    "lines": changed["changed"],
+                    "black": changed["changed_black"],
+                    "how": "resolve each labelled line with the table and with bare_pepper.when "
+                    "= 'always'; count the lines whose reading differs",
+                },
                 "counts": out["counts"],
                 "decision": out["decision"],
             },
@@ -152,7 +201,7 @@ def main(argv: list[str] | None = None) -> int:
     sub = ap.add_subparsers(dest="cmd", required=True)
     sub.add_parser("draw")
     sc = sub.add_parser("score")
-    sc.add_argument("sheet", type=Path)
+    sc.add_argument("sheet", type=Path, nargs="?", default=LABELS_FILE)
     args = ap.parse_args(argv)
 
     if args.cmd == "draw":

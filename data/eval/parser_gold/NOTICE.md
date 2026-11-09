@@ -31,3 +31,10 @@ revision id, and the revision link is built as above. The extra lines are frozen
 of the sheet: `data/eval/m3_frozen_lines.v1.json` holds the sha256 of each of the 250 lines. The
 labels are in `labels.extra.v1.json`, written after M3 Task 1 by two models and settled by the
 owner (`adjudication.m3.v1.json`). They are model-labelled and owner-adjudicated.
+
+## Bare pepper labels (M3 Task 6)
+
+`data/eval/m3_bare_pepper_labels.v1.json` holds 80 single ingredient lines from the same snapshot (seed 45),
+each with a label (`black`, `other` or `unclear`). The text is Wikibooks Cookbook text, available under CC BY-SA 4.0
+on the same terms as the sheet. The labels are MIT. One model (Claude Opus) labelled the lines blind. The owner
+did not adjudicate them. `scripts/m3_bare_pepper.py score` reads the file.

@@ -161,7 +161,13 @@
   "canned",
   "unsalted",
   "salted",
-  "plain"
+  "plain",
+  "very",
+  "fine",
+  "only",
+  "size",
+  "approximately",
+  "virgin"
  ],
  "staple_cue": [
   "salt"
