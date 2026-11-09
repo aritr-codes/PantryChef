@@ -7,21 +7,28 @@ It scores, against the frozen blind id maps (plan D9):
 1. Parser lines, the test half of the gold sheet plus the extra lines: ``mention_accuracy`` and
    ``parser_precision`` on the ``random`` stratum (the D2 gate), and on ``hard`` and ``rare``
    separately. Table: v2.
-2. The test typed inputs: ``input_accuracy`` for M1 (v1 table, one exact key lookup, as
-   ``resolve_names`` does) and for M3 (v2 table, ``resolve_name``), paired per input:
-   exact McNemar and a paired bootstrap interval of the accuracy difference.
+2. The test typed inputs: ``input_accuracy`` for M1 and for M3, paired per input: exact McNemar
+   and a paired bootstrap interval of the accuracy difference. M1 is the shipped M1 resolver:
+   one exact lookup (``resolve_names`` on ``main``) in the v1 table keys, built and looked up
+   with the OLD tokens, ``canonicalize(fold(x)).split()``. It does not use the new singulariser.
+   M3 is ``resolve_name`` on the v2 table with the current ``tokens``.
 3. The pack counts, copied from ``results/m3_pack_v2.json``. The pack is not rebuilt.
 
 It writes ``results/m3_acceptance.json``. Every target is fixed in ``TARGETS`` below. The script
 never softens one. If a target fails, the result says ``stop_and_report`` and the owner decides.
 Do not tune and score again.
 
-It refuses (exit 1, nothing written) when the tree is dirty, when the result file exists
-("do not rescore"), when an id map is missing or incomplete, or when an input is malformed.
+It refuses (exit 1, nothing written) when the tree is dirty (by ``git status`` and by
+``results.git_facts``), when the result file exists ("do not rescore"), when an id map is missing
+or incomplete, when the pack result is dirty or was built from other table or word files, or when
+an input is malformed. Refusals of the real run print counts only, never a gold name, line id or
+input text.
 
 ``--dry-run-on dev --out PATH`` runs the same code on the DEV halves (dev parser lines, dev
 labels, ``dev_id_map.v1.json``, dev typed inputs scored through the table keys) and writes to PATH.
-It never reads test or extra data and never writes ``results/m3_acceptance.json``.
+It never reads test or extra data and never writes ``results/m3_acceptance.json``. A dry run
+only WARNS about a dirty tree and about a pack result that does not match the files, because the
+tree is dirty during development.
 """
 
 from __future__ import annotations
@@ -35,10 +42,18 @@ from pathlib import Path
 
 from pantrychef.eval.parser_gold import Label, read_labels_json, score
 from pantrychef.eval.realistic import score_inputs
-from pantrychef.eval.results import write_result
+from pantrychef.eval.results import git_facts, write_result
 from pantrychef.eval.stats import mcnemar_exact, paired_cluster_bootstrap, wilson
 from pantrychef.ingredients.names import resolve_name
-from pantrychef.ingredients.table import TABLE_V1_PATH, TABLE_V2_PATH, IngredientTable, tokens
+from pantrychef.ingredients.normalize import canonicalize
+from pantrychef.ingredients.table import (
+    DEFAULT_WORDS_PATH,
+    TABLE_V1_PATH,
+    TABLE_V2_PATH,
+    IngredientTable,
+    fold,
+    tokens,
+)
 
 ROOT = Path(__file__).resolve().parent.parent
 GOLD = ROOT / "data/eval/parser_gold"
@@ -55,7 +70,7 @@ TARGETS = {
     "recipes_fully_read": 0.60,
     "recipes": 2500,
 }
-EXPECTED = {"test_lines": 150, "extra_lines": 100, "test_inputs": 83}
+EXPECTED = {"test_lines": 150, "test_random": 50, "extra_lines": 100, "test_inputs": 83}
 # Untracked files that never change a result. Anything else untracked or modified is dirty.
 IGNORED = (
     ".claude",
@@ -65,7 +80,6 @@ IGNORED = (
     "scratch_codex_audit_prompt.md",
     "temp_pytest",
     "data/interim",
-    "data/eval/graph_spike",
 )
 
 
@@ -86,6 +100,7 @@ class Config:
     input_map: Path | None  # None: gold names map through the v2 table keys (dev only)
     table_v1: Path
     table_v2: Path
+    words: Path
     pack_result: Path
     out: Path
     command: str
@@ -106,6 +121,7 @@ def real_config() -> Config:
         input_map=EVAL / "m3_input_gold_id_map.v1.json",
         table_v1=TABLE_V1_PATH,
         table_v2=TABLE_V2_PATH,
+        words=DEFAULT_WORDS_PATH,
         pack_result=ROOT / "results/m3_pack_v2.json",
         out=RESULT,
         command="uv run python scripts/m3_acceptance.py",
@@ -127,6 +143,7 @@ def dev_config(out: Path) -> Config:
         input_map=None,
         table_v1=TABLE_V1_PATH,
         table_v2=TABLE_V2_PATH,
+        words=DEFAULT_WORDS_PATH,
         pack_result=ROOT / "results/m3_pack_v2.json",
         out=out,
         command=f"uv run python scripts/m3_acceptance.py --dry-run-on dev --out {out}",
@@ -174,17 +191,55 @@ def read_map(path: Path | None, what: str) -> dict[str, str | None]:
     return m
 
 
-def check_map(m: dict[str, str | None], names: set[str], ids: set[str], what: str) -> None:
-    """Refuse when a map id is not a table id or a gold name has no entry (compared by tokens)."""
+def check_map(
+    m: dict[str, str | None], names: set[str], ids: set[str], what: str, *, quiet: bool = False
+) -> None:
+    """Refuse when the map is not usable for ``names``. Names are compared by ``tokens``.
+
+    Bad: an id that is not a table id, two keys with equal tokens and different ids (the scorer
+    would keep one silently), or a gold name with no entry. ``quiet`` prints counts only.
+    """
     bad = sorted({v for v in m.values() if v is not None and v not in ids})
     if bad:
         raise Refuse(f"{what} maps ids that are not in the v2 table: {bad}")
+    seen: dict[tuple[str, ...], str | None] = {}
+    clash = sorted({k for k, v in m.items() if seen.setdefault(tokens(k), v) != v})
+    if clash:
+        raise Refuse(
+            f"{what} has {len(clash)} keys that clash with an equal key{_eg(clash, quiet)}"
+        )
     have = {tokens(k) for k in m}
     missing = sorted(n for n in names if tokens(n) not in have)
     if missing:
-        raise Refuse(
-            f"{what} has no entry for {len(missing)} gold names, for example {missing[:5]}"
-        )
+        raise Refuse(f"{what} has no entry for {len(missing)} gold names{_eg(missing, quiet)}")
+
+
+def _eg(items: list, quiet: bool) -> str:
+    """``, for example [...]``, or nothing when ``quiet`` (the real run prints no held-out text)."""
+    return "" if quiet else f", for example {items[:5]}"
+
+
+def old_tokens(text: str) -> tuple[str, ...]:
+    """The M1 tokens, as on ``main``: ``canonicalize(fold(x)).split()``. No new singulariser."""
+    return tuple(canonicalize(fold(text)).split())
+
+
+def m1_resolver(table: IngredientTable):
+    """The shipped M1 typed-name resolver: one exact key lookup (``resolve_names`` on ``main``).
+
+    Keys come from the names and synonyms of ``table`` with the OLD tokens, first owner wins.
+    """
+    keys: dict[str, str] = {}
+    for r in table.rows:
+        for text in (r.name, *r.synonyms):
+            if key := " ".join(old_tokens(text)):
+                keys.setdefault(key, r.id)
+
+    def resolve(text: str) -> list[str]:
+        hit = keys.get(" ".join(old_tokens(text)))
+        return [hit] if hit else []
+
+    return resolve
 
 
 def _gold_names(labels: dict[str, Label]) -> set[str]:
@@ -252,48 +307,64 @@ def run(cfg: Config) -> int:
         return 1
 
 
+def _problem(cfg: Config, msg: str) -> None:
+    """Refuse in the real run. In a dry run print a warning and go on."""
+    if cfg.strict:
+        raise Refuse(msg)
+    print(f"WARNING (dry run, would refuse in the real run): {msg}")
+
+
 def _run(cfg: Config) -> int:
     root = cfg.root
     if cfg.split != "test" and cfg.out.resolve() == RESULT.resolve():
         raise Refuse("a dry run never writes results/m3_acceptance.json")
-    if cfg.strict:
-        if cfg.out.exists():
-            raise Refuse(f"{cfg.out.name} exists; one run only, do not rescore")
-        dirty = dirty_paths(root)
-        if dirty:
-            raise Refuse(f"the git tree is dirty ({len(dirty)} paths), for example {dirty[:5]}")
+    if cfg.strict and cfg.out.exists():
+        raise Refuse(f"{cfg.out.name} exists; one run only, do not rescore")
+    dirty = dirty_paths(root)
+    if cfg.strict and not dirty and git_facts(root, exclude=(cfg.out,))[1]:
+        dirty = ["(results.git_facts reports a dirty tree)"]
+    if dirty:
+        _problem(cfg, f"the git tree is dirty ({len(dirty)} paths), for example {dirty[:5]}")
 
-    t1, t2 = IngredientTable.load(cfg.table_v1), IngredientTable.load(cfg.table_v2)
+    t1 = IngredientTable.load(cfg.table_v1, cfg.words)
+    t2 = IngredientTable.load(cfg.table_v2, cfg.words)
     ids = set(t2.by_id)
 
     # Parser lines and labels.
     sheet = _json(cfg.sheet, "gold sheet")
     lines = [r for r in sheet["lines"] if r["split"] == cfg.split]
-    n_extra = 0
+    n_extra, n_random = 0, sum(r["stratum"] == "random" for r in lines)
     if cfg.extra is not None:
         extra = _json(cfg.extra, "extra lines")["lines"]
         n_extra = len(extra)
         lines += extra
+        if cfg.expected and any(r["stratum"] != "random" for r in extra):
+            raise Refuse("an extra line is not in the random stratum")
     labels: dict[str, Label] = {}
     for p in cfg.parser_labels:
         part = _labels(p, "parser labels")
         if labels.keys() & part.keys():
             raise Refuse(f"line ids repeat across label files: {p.name}")
         labels |= part
-    if cfg.expected and (len(lines) - n_extra, n_extra) != (
-        cfg.expected["test_lines"], cfg.expected["extra_lines"],
-    ):  # fmt: skip
-        raise Refuse(f"unexpected line counts: {len(lines) - n_extra} sheet, {n_extra} extra")
+    if cfg.expected and (len(lines) - n_extra, n_random, n_extra) != (
+        cfg.expected["test_lines"],
+        cfg.expected["test_random"],
+        cfg.expected["extra_lines"],
+    ):
+        raise Refuse(
+            f"unexpected line counts: {len(lines) - n_extra} sheet ({n_random} random), "
+            f"{n_extra} extra"
+        )
     unlabelled = sorted(r["id"] for r in lines if r["id"] not in labels)
     if unlabelled:
-        raise Refuse(f"{len(unlabelled)} lines have no label, for example {unlabelled[0]}")
+        raise Refuse(f"{len(unlabelled)} lines have no label{_eg(unlabelled, cfg.strict)}")
     if any(r["stratum"] not in STRATA for r in lines):
         raise Refuse("a line has an unknown stratum")
     labels = {r["id"]: labels[r["id"]] for r in lines}
     pmap = None
     if cfg.parser_map is not None:
         pmap = read_map(cfg.parser_map, "parser id map")
-        check_map(pmap, _gold_names(labels), ids, "parser id map")
+        check_map(pmap, _gold_names(labels), ids, "parser id map", quiet=cfg.strict)
 
     # Typed inputs.
     assignment = _json(cfg.input_split, "input split")["assignment"]
@@ -303,12 +374,12 @@ def _run(cfg: Config) -> int:
     in_labels = _labels(cfg.input_labels, "input labels")
     no_label = [t for t in inputs if t not in in_labels]
     if no_label:
-        raise Refuse(f"{len(no_label)} inputs have no label, for example {no_label[0]!r}")
+        raise Refuse(f"{len(no_label)} inputs have no label{_eg(no_label, cfg.strict)}")
     in_labels = {t: in_labels[t] for t in inputs}
     imap = None
     if cfg.input_map is not None:
         imap = read_map(cfg.input_map, "input id map")
-        check_map(imap, _gold_names(in_labels), ids, "input id map")
+        check_map(imap, _gold_names(in_labels), ids, "input id map", quiet=cfg.strict)
 
     # Pack counts, copied from the pack result.
     pack = _json(cfg.pack_result, "pack result")
@@ -320,6 +391,11 @@ def _run(cfg: Config) -> int:
         raise Refuse(f"pack result is malformed: {type(e).__name__}: {e}") from e
     if recipes < 1 or abs(fully / recipes - pack_frac) > 1e-9:
         raise Refuse("pack result: recipes_fully_read does not match its counts")
+    if pack.get("dirty") or pc.get("build_dirty"):
+        _problem(cfg, "the pack result was built from a dirty tree")
+    for key, path in (("table_sha256", cfg.table_v2), ("words_sha256", cfg.words)):
+        if pc.get(key) != _sha(path):
+            _problem(cfg, f"pack result {key} does not match {path.name}: rebuild the pack result")
 
     # Score parser lines per stratum.
     parser = {s: score([r for r in lines if r["stratum"] == s], labels, t2, pmap) for s in STRATA}
@@ -329,9 +405,7 @@ def _run(cfg: Config) -> int:
     # Score typed inputs, M1 and M3, paired.
     keys = {" ".join(k): i for k, i in t2.keys.items()}
 
-    def resolve_m1(text: str) -> list[str]:  # one exact key lookup, as resolve_names does
-        hit = t1.keys.get(tokens(text))
-        return [hit] if hit else []
+    resolve_m1 = m1_resolver(t1)  # the shipped M1 resolver: old tokens, one exact lookup
 
     def resolve_m3(text: str) -> list[str]:
         return list(resolve_name(text, keys, t2.words).ids)
@@ -404,13 +478,19 @@ def _run(cfg: Config) -> int:
         )
 
     files = [cfg.sheet, cfg.extra, *cfg.parser_labels, cfg.parser_map, cfg.input_split]
-    files += [cfg.input_labels, cfg.input_map, cfg.table_v1, cfg.table_v2, cfg.pack_result]
+    files += [cfg.input_labels, cfg.input_map, cfg.table_v1, cfg.table_v2, cfg.words]
+    files += [cfg.pack_result]
     config = {
         "split": sp,
         "dry_run": not cfg.strict,
         "tables": {"v1_rows": len(t1.rows), "v2_rows": len(t2.rows)},
+        "resolvers": {
+            "m1": "shipped M1 resolver: one exact key lookup in the v1 table, old tokens "
+            "canonicalize(fold(x)).split(), as resolve_names on main",
+            "m3": "pantrychef.ingredients.names.resolve_name on the v2 table, current tokens",
+        },
         "gold_to_id": "frozen blind id map (D9)" if cfg.strict else "dev id map / table keys",
-        "ignored_untracked": list(IGNORED) if cfg.strict else [],
+        "ignored_untracked": list(IGNORED),
         "files_sha256": {rel(p): _sha(p) for p in files if p is not None},
         "parser": parser,
         "inputs": inp,

@@ -5,6 +5,7 @@ No real held-out name or input appears here. The script's real path never runs i
 
 from __future__ import annotations
 
+import hashlib
 import json
 import subprocess
 from dataclasses import replace
@@ -14,6 +15,7 @@ import pytest
 
 from pantrychef.eval.results import load_result
 from pantrychef.eval.stats import mcnemar_exact
+from pantrychef.ingredients.table import DEFAULT_WORDS_PATH, IngredientTable, tokens
 from scripts import m3_acceptance as acc
 
 V1 = (
@@ -24,6 +26,10 @@ V1 = (
     "flour,flour,,0,hand,,\n"
 )
 V2 = V1 + "egg,egg,,0,hand,,\nthyme,thyme,dried thyme,0,hand,,\nghee,ghee,,0,hand,,\n"
+
+
+def _sha(path: Path) -> str:
+    return hashlib.sha256(path.read_bytes()).hexdigest()
 
 
 def _label(*groups: list[str], skip: bool = False) -> dict:
@@ -100,7 +106,15 @@ def cfg(tmp_path) -> acc.Config:
     _write(
         root / "results" / "pack.json",
         {
-            "config": {"recipes": 2600, "recipes_fully_read_count": 1700, "core_bytes": 9},
+            "dirty": False,
+            "config": {
+                "recipes": 2600,
+                "recipes_fully_read_count": 1700,
+                "core_bytes": 9,
+                "build_dirty": False,
+                "table_sha256": _sha(d / "t2.csv"),
+                "words_sha256": _sha(DEFAULT_WORDS_PATH),
+            },
             "metrics": [{"name": "recipes_fully_read", "value": 1700 / 2600}],
         },
     )
@@ -119,11 +133,12 @@ def cfg(tmp_path) -> acc.Config:
         input_map=d / "input_map.json",
         table_v1=d / "t1.csv",
         table_v2=d / "t2.csv",
+        words=DEFAULT_WORDS_PATH,
         pack_result=root / "results" / "pack.json",
         out=root / "results" / "m3_acceptance.json",
         command="test",
         strict=True,
-        expected={"test_lines": 5, "extra_lines": 2, "test_inputs": 4},
+        expected={"test_lines": 5, "test_random": 3, "extra_lines": 2, "test_inputs": 4},
     )
 
 
@@ -180,12 +195,32 @@ def test_known_untracked_scratch_does_not_count_as_dirty(cfg):
         "scratch_codex_audit_prompt.md",
         "temp_pytest/c",
         "data/interim/d",
-        "data/eval/graph_spike/e",
     ):
         p = cfg.root / rel
         p.parent.mkdir(parents=True, exist_ok=True)
         p.write_text("x", encoding="utf8")
     assert acc.run(cfg) == 0
+
+
+def test_untracked_graph_spike_is_dirty(cfg):
+    p = cfg.root / "data/eval/graph_spike/e.json"
+    p.parent.mkdir(parents=True)
+    p.write_text("{}", encoding="utf8")
+    assert acc.run(cfg) == 1
+    assert not cfg.out.exists()
+
+
+def test_git_facts_dirty_also_refuses(cfg, monkeypatch, capsys):
+    monkeypatch.setattr(acc, "git_facts", lambda root, exclude=(): ("0" * 40, True, ["x"]))
+    assert acc.run(cfg) == 1
+    assert not cfg.out.exists()
+    assert "git_facts" in capsys.readouterr().out
+
+
+def test_dry_run_warns_about_a_dirty_tree_and_goes_on(cfg, capsys):
+    (cfg.root / "stray.py").write_text("x = 1\n", encoding="utf8")
+    assert acc.run(replace(cfg, strict=False)) == 0
+    assert "WARNING (dry run" in capsys.readouterr().out
 
 
 def test_second_run_is_refused_and_the_file_is_untouched(cfg, capsys):
@@ -215,7 +250,8 @@ def test_gold_name_without_a_map_entry_is_refused(cfg, which, capsys):
     _edit(getattr(cfg, which), lambda d: d["map"].pop("ghee"))
     assert acc.run(cfg) == 1
     assert not cfg.out.exists()
-    assert "ghee" in capsys.readouterr().out
+    out = capsys.readouterr().out
+    assert "no entry for 1 gold names" in out and "ghee" not in out
 
 
 @pytest.mark.parametrize("which", ["parser_map", "input_map"])
@@ -245,10 +281,38 @@ def test_label_missing_for_a_line_is_refused(cfg):
 
 
 def test_wrong_set_size_is_refused(cfg):
-    assert (
-        acc.run(replace(cfg, expected={"test_lines": 6, "extra_lines": 2, "test_inputs": 4})) == 1
-    )
+    assert acc.run(replace(cfg, expected={**cfg.expected, "test_lines": 6})) == 1
     assert not cfg.out.exists()
+
+
+def test_sheet_random_count_is_checked_apart_from_the_total(cfg):
+    # Same total of 5 test lines, but 2 random instead of 3.
+    assert acc.run(replace(cfg, expected={**cfg.expected, "test_random": 2})) == 1
+    assert not cfg.out.exists()
+
+
+def test_an_extra_line_outside_the_random_stratum_is_refused(cfg):
+    _edit(cfg.extra, lambda d: d["lines"][0].update(stratum="hard"))
+    assert acc.run(cfg) == 1
+    assert not cfg.out.exists()
+
+
+def test_real_run_refusals_print_counts_not_held_out_text(cfg, capsys):
+    _edit(cfg.parser_labels[0], lambda d: d["labels"].pop("test-hard-0"))
+    assert acc.run(cfg) == 1
+    out = capsys.readouterr().out
+    assert "1 lines have no label" in out and "test-hard-0" not in out
+    _edit(cfg.parser_labels[0], lambda d: d["labels"].update({"test-hard-0": _label(["thyme"])}))
+    _edit(cfg.input_labels, lambda d: d["labels"].pop("ghee"))
+    assert acc.run(cfg) == 1
+    out = capsys.readouterr().out
+    assert "1 inputs have no label" in out and "ghee" not in out
+
+
+def test_dev_refusals_may_show_examples(cfg, capsys):
+    _edit(cfg.parser_labels[0], lambda d: d["labels"].pop("test-hard-0"))
+    assert acc.run(replace(cfg, strict=False)) == 1
+    assert "test-hard-0" in capsys.readouterr().out
 
 
 def test_map_file_with_no_map_key_is_refused(cfg):
@@ -314,7 +378,7 @@ def test_m1_vs_m3_inputs_are_paired(cfg):
 def test_a_failed_target_is_reported_and_never_softened(cfg, capsys):
     # The M3 resolver misses "ghee" when the table v2 loses the row: 3 of 4 inputs, below 0.90.
     cfg.table_v2.write_text(V2.replace("ghee,ghee,,0,hand,,\n", ""), encoding="utf8")
-    _commit(cfg.root)
+    _edit(cfg.pack_result, lambda d: d["config"].update(table_sha256=_sha(cfg.table_v2)))
     _edit(cfg.parser_map, lambda d: d["map"].update(ghee=None))
     _edit(cfg.input_map, lambda d: d["map"].update(ghee=None))
     assert acc.run(cfg) == 0
@@ -390,4 +454,66 @@ def test_targets_are_the_plan_values():
         "recipes_fully_read": 0.60,
         "recipes": 2500,
     }
-    assert acc.EXPECTED == {"test_lines": 150, "extra_lines": 100, "test_inputs": 83}
+    assert acc.EXPECTED == {
+        "test_lines": 150,
+        "test_random": 50,
+        "extra_lines": 100,
+        "test_inputs": 83,
+    }
+
+
+# ---- review fixes -----------------------------------------------------------------------
+
+
+def test_m1_arm_uses_the_old_tokens_not_the_new_singulariser():
+    # "blorbus" is invented. Old canonicalize cuts the "s" ("blorbu"); the new tokens keep it.
+    table = IngredientTable.from_text(V1 + "blorbu,blorbu,,0,hand,,\n")
+    assert acc.old_tokens("Blorbus") == ("blorbu",) and tokens("Blorbus") == ("blorbus",)
+    assert table.keys.get(tokens("blorbus")) is None  # the new tokens do not reach the row
+    assert acc.m1_resolver(table)("blorbus") == ["blorbu"]  # the M1 arm does
+    assert acc.m1_resolver(table)("2 blorbus") == []  # one exact lookup, nothing else
+    assert acc.m1_resolver(table)("BUTTER") == ["butter"]
+
+
+def test_m1_arm_synonyms_use_the_old_tokens_too():
+    table = IngredientTable.from_text(V1 + "zorb,zorb,glorpus|dried zorbs,0,hand,,\n")
+    r = acc.m1_resolver(table)
+    assert r("glorpus") == ["zorb"] and r("dried zorb") == ["zorb"] and r("glorpuss") == []
+
+
+def test_result_describes_the_m1_arm(cfg):
+    assert acc.run(cfg) == 0
+    c = load_result(cfg.out)["config"]
+    assert "old tokens" in c["resolvers"]["m1"]
+    assert any(k.endswith("words.v1.json") for k in c["files_sha256"])
+
+
+def test_pack_result_hash_mismatch_is_refused_in_the_real_run_only(cfg, capsys):
+    _edit(cfg.pack_result, lambda d: d["config"].update(table_sha256="0" * 64))
+    assert acc.run(cfg) == 1
+    assert not cfg.out.exists()
+    assert acc.run(replace(cfg, strict=False, out=cfg.root / "dev.json")) == 0
+    assert "WARNING (dry run" in capsys.readouterr().out
+
+
+def test_words_hash_mismatch_is_refused(cfg):
+    _edit(cfg.pack_result, lambda d: d["config"].update(words_sha256="0" * 64))
+    assert acc.run(cfg) == 1
+
+
+def test_dirty_pack_result_is_refused(cfg):
+    _edit(cfg.pack_result, lambda d: d.update(dirty=True))
+    assert acc.run(cfg) == 1
+    assert not cfg.out.exists()
+
+
+def test_map_keys_with_equal_tokens_and_different_ids_are_refused(cfg):
+    # "eggs" and "egg" have the same tokens; the scorer would keep one silently.
+    _edit(cfg.parser_map, lambda d: d["map"].update(eggs="butter"))
+    assert acc.run(cfg) == 1
+    assert not cfg.out.exists()
+
+
+def test_map_keys_with_equal_tokens_and_the_same_id_are_fine(cfg):
+    _edit(cfg.parser_map, lambda d: d["map"].update(eggs="egg"))
+    assert acc.run(cfg) == 0
