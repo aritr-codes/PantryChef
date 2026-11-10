@@ -5,9 +5,9 @@ import type { CoreLine, IngredientId } from "./types";
 export type LineStatus = "have" | "missing" | "assumed" | "optional" | "check";
 
 export const STATUS_LABEL: Record<LineStatus, string> = {
-  have: "You have this",
-  missing: "Missing",
-  assumed: "Assumed (staple)",
+  have: "You have it",
+  missing: "You need it",
+  assumed: "Assumed",
   optional: "Optional",
   check: "Check this line",
 };
