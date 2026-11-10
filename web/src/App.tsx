@@ -4,7 +4,9 @@ import { AnswerPanel, type Tab, defaultTab } from "./Answer";
 import { Kitchen } from "./Kitchen";
 import { RecipeScreen } from "./RecipeScreen";
 import type { Undo } from "./UndoBar";
+import { burst } from "./burst";
 import { type Engine, ready } from "./engine";
+import { type Example, resolveExamples } from "./examples";
 import { type Saved, load, save, storageWorks } from "./store";
 
 type Screen = { name: "board" } | { name: "recipe"; id: string };
@@ -13,15 +15,24 @@ const PAGE = 10;
 const UNDO_MS = 12_000;
 const PACK_URL = (import.meta.env.VITE_PACK_URL as string | undefined) ?? "./pack/";
 
-function Frame(p: { children: ComponentChildren }) {
+function Frame(p: { children: ComponentChildren; skip?: boolean }) {
   return (
-    <main>
-      <header class="top">
-        <h1 class="mark">PantryChef</h1>
-        <p class="tagline">What can you cook with what you have?</p>
-      </header>
-      {p.children}
-    </main>
+    <>
+      {p.skip && (
+        <a class="skip" href="#answer">
+          Skip to the recipes
+        </a>
+      )}
+      <main>
+        <header class="top">
+          <h1 class="mark">
+            pantry<span>chef</span>
+          </h1>
+          <p class="tag">Tell us what you have. See what you can cook.</p>
+        </header>
+        {p.children}
+      </main>
+    </>
   );
 }
 
@@ -40,6 +51,9 @@ export function App() {
   const [undo, setUndo] = useState<Undo | null>(null);
   const [announce, setAnnounce] = useState("");
   const first = useRef(true);
+  const intro = useRef(true);
+  const celebrate = useRef(false); // a colour burst on the "Ready now" tab after an add
+  const focusFirstTab = useRef(false); // after an example kitchen is picked
   const latest = useRef<Saved | null>(null); // what to save if the page closes before the effect runs
   const screenName = screen.name === "recipe" ? `recipe:${screen.id}` : screen.name;
 
@@ -50,6 +64,7 @@ export function App() {
       first.current = false;
       return;
     }
+    intro.current = false; // the slips print in on the first load only
     window.scrollTo(0, 0);
     if (screen.name === "board") document.querySelector<HTMLElement>("[data-focus-heading]")?.focus();
   }, [screenName]);
@@ -105,6 +120,20 @@ export function App() {
     setTimeout(() => setAnnounce(message), 50);
   };
 
+  // Both run after the render that shows the result, so they act on the new page.
+  useEffect(() => {
+    if (focusFirstTab.current) {
+      focusFirstTab.current = false;
+      document.getElementById("tab-make_now")?.focus();
+    }
+    if (celebrate.current) {
+      celebrate.current = false;
+      burst(document.getElementById("tab-make_now"));
+    }
+  });
+
+  const examples = useMemo(() => (engine ? resolveExamples((n) => engine.resolve(n)) : []), [engine]);
+
   const answer = useMemo(
     () =>
       engine?.answer({ pantry: ids, staples, diet: null, limit: shown, unknown_names: unknown }),
@@ -134,27 +163,38 @@ export function App() {
   }
 
   const tab = picked ?? defaultTab(answer);
-  const tryItem = (id: string, name: string) => {
+  const tryItem = (id: string, name: string, gain: number) => {
     if (ids.includes(id)) return;
     setIds([...ids, id]);
+    celebrate.current = true;
     setUndo({
       where: "ticket",
-      msg: `Added ${name}.`,
+      msg: `${name} added.${gain > 0 ? ` ${gain} more ${gain === 1 ? "recipe is" : "recipes are"} ready now.` : ""}`,
       run: () => {
         setIds((cur) => cur.filter((x) => x !== id));
       },
     });
   };
 
+  const pickExample = (ex: Example) => {
+    setIds(ex.ids);
+    setPicked("make_now");
+    setOpen(false);
+    focusFirstTab.current = true;
+    say(`${ex.name} added. ${ex.ids.length} items.`);
+  };
+
   return (
-    <Frame>
+    <Frame skip>
       {screen.name === "board" ? (
-        <div class="grid">
+        <div class={`grid${intro.current ? " printin" : ""}`}>
           <Kitchen
             engine={engine}
             ids={ids}
             unknown={unknown}
             staples={staples}
+            examples={examples}
+            onExample={pickExample}
             saved={saved}
             open={open}
             undo={undo}
@@ -192,7 +232,10 @@ export function App() {
       <div class="sr" role="status" aria-live="polite">{announce}</div>
       <footer class="page">
         <p>
-          Nothing you type leaves this device. {saved ? "Your kitchen is saved in this browser only, and you can clear it at any time." : "Your kitchen is not saved, because this browser blocks storage."} Recipes come from the Wikibooks Cookbook, with their licence.
+          {saved
+            ? "Saved on this device. We send nothing to a server."
+            : "Not saved: this browser blocks storage. We send nothing to a server."}{" "}
+          Recipes come from the Wikibooks Cookbook and show their licence.
         </p>
       </footer>
     </Frame>

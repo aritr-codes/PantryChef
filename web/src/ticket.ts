@@ -29,12 +29,12 @@ export function ticket(answer: Answer): Ticket | null {
   };
 }
 
+/** "With x, you can cook 3 more: A, B and C." The count is the engine's, and the titles may be fewer. */
 export function ticketText(t: Ticket): string {
-  const noun = t.recipes === 1 ? "recipe" : "recipes";
-  if (t.titles.length === 0) return `Opens ${t.recipes} ${noun}.`;
+  const head = `With ${t.name}, you can cook ${t.recipes} more`;
+  if (t.titles.length === 0) return `${head}.`;
+  if (t.more > 0) return `${head}: ${t.titles.join(", ")} and ${t.more} more.`;
   const last = t.titles[t.titles.length - 1] as string;
-  const head = t.titles.slice(0, -1);
-  if (t.more > 0) return `Opens ${t.recipes} ${noun}: ${t.titles.join(", ")} and ${t.more} more.`;
-  const list = head.length ? `${head.join(", ")} and ${last}` : last;
-  return `Opens ${t.recipes} ${noun}: ${list}.`;
+  const rest = t.titles.slice(0, -1);
+  return `${head}: ${rest.length ? `${rest.join(", ")} and ${last}` : last}.`;
 }

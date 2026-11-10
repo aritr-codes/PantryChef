@@ -160,12 +160,12 @@ describe("recipeSlots", () => {
 describe("ticketText", () => {
   const t = (titles: string[], recipes: number) => ({ id: "x", name: "x", recipes, titles, more: recipes - titles.length });
   it("lists up to three titles and counts the rest", () => {
-    expect(ticketText(t(["A"], 1))).toBe("Opens 1 recipe: A.");
-    expect(ticketText(t(["A", "B"], 2))).toBe("Opens 2 recipes: A and B.");
-    expect(ticketText(t(["A", "B", "C"], 3))).toBe("Opens 3 recipes: A, B and C.");
-    expect(ticketText(t(["A", "B", "C"], 5))).toBe("Opens 5 recipes: A, B, C and 2 more.");
+    expect(ticketText(t(["A"], 1))).toBe("With x, you can cook 1 more: A.");
+    expect(ticketText(t(["A", "B"], 2))).toBe("With x, you can cook 2 more: A and B.");
+    expect(ticketText(t(["A", "B", "C"], 3))).toBe("With x, you can cook 3 more: A, B and C.");
+    expect(ticketText(t(["A", "B", "C"], 5))).toBe("With x, you can cook 5 more: A, B, C and 2 more.");
   });
-  it("still says the count when no title is on the page yet", () => {
-    expect(ticketText(t([], 4))).toBe("Opens 4 recipes.");
+  it("still says the full count when no title is on the page yet", () => {
+    expect(ticketText(t([], 4))).toBe("With x, you can cook 4 more.");
   });
 });
