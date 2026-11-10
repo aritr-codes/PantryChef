@@ -98,8 +98,8 @@ def test_product_forms_read_their_own_row(table, text, ids):
         ("1 green chili", "chili_pepper"),
         ("4 dried chiles", "chili_pepper"),
         ("1 hot chili pepper", "chili_pepper"),
-        ("1 tsp ground chile pepper (to taste)", "chili_pepper"),  # no "ground chile" key
-        ("2 tbsp ground chilli", "chili_pepper"),
+        ("1 tsp ground chile pepper (to taste)", "chili_powder"),  # F6: "chile pepper powder" key
+        ("2 tbsp ground chilli", "chili_powder"),  # F6: "chilli powder" key
     ],
 )
 def test_removed_chili_workarounds_still_read(table, text, ids):
