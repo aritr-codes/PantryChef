@@ -17,6 +17,9 @@ export function UndoBar(p: { where: Undo["where"]; undo: Undo | null; onDone: ()
           <button
             type="button"
             onClick={() => {
+              // The button goes away with the bar, so focus moves first, to a control that stays.
+              const stay = p.where === "kitchen" ? "#ingredient" : '[role=tab][aria-selected=true]';
+              document.querySelector<HTMLElement>(stay)?.focus();
               mine.run();
               p.onDone();
             }}

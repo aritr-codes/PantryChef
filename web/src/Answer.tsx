@@ -216,7 +216,14 @@ export function AnswerPanel(p: Props) {
                           <li key={b.ingredient_id ?? b.name}>
                             Add {b.name} to get {plural(b.recipes, "recipe", "recipes")}.{" "}
                             {b.ingredient_id && (
-                              <button type="button" class="linkbtn" onClick={() => p.onTry(b.ingredient_id as string, b.name)}>
+                              <button
+                                type="button"
+                                class="linkbtn"
+                                onClick={() => {
+                                  tried.current = true;
+                                  p.onTry(b.ingredient_id as string, b.name);
+                                }}
+                              >
                                 Try it with {b.name}
                               </button>
                             )}
