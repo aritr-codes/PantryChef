@@ -1,13 +1,13 @@
 {
   "arms": [],
   "command": "uv run python scripts/build_pack.py --out build/pack && uv run python scripts/m3_pack_result.py --pack build/pack",
-  "commit": "4ad56b55d50debe41d1c54d4c0d450f0e83531fa",
+  "commit": "fe847bfdb0bdb2c900a322915125f40df0c097f5",
   "comparisons": [],
   "config": {
-    "build_commit": "4ad56b55d50debe41d1c54d4c0d450f0e83531fa",
+    "build_commit": "fe847bfdb0bdb2c900a322915125f40df0c097f5",
     "build_dirty": false,
-    "core_bytes": 504815,
-    "core_sha256": "1da7076b5ae1d3e781d57d59117abca821f3b3350a17808634aa03567681399e",
+    "core_bytes": 504896,
+    "core_sha256": "1c2bcf5a0ac31813e9e08279c7729830c0658474a4d7fed8c8bfd1a94379a313",
     "dropped_no_required_line": 1,
     "gates": {
       "max_core_bytes": 3145728,
@@ -15,18 +15,18 @@
       "min_recipes_fully_read": 0.6
     },
     "gates_passed": true,
-    "lines_read": 29590,
-    "lines_read_share": 0.9683859143866999,
+    "lines_read": 29583,
+    "lines_read_share": 0.9676817899316346,
     "pack_format": 2,
-    "pack_lines": 32773,
-    "pack_unread_lines": 966,
+    "pack_lines": 32782,
+    "pack_unread_lines": 988,
     "pages": 3713,
     "recipes": 3712,
-    "recipes_fully_read_count": 2915,
-    "required_lines": 30556,
+    "recipes_fully_read_count": 2902,
+    "required_lines": 30571,
     "table": "data/ingredients/ingredients.v2.csv",
-    "table_rows": 891,
-    "table_sha256": "42a0c0d2e72bd6d8135112ea05de93374bb8828255e08b87161cd0ceb95d5937",
+    "table_rows": 894,
+    "table_sha256": "307f580c9fb26850ae1fb840c66b13f2a3548932b4548bedea06c0baa7f05fe6",
     "text_bytes": 870411,
     "version": "v2",
     "words_sha256": "357f3735ea543d3b7def5349dc6d980f9b12d96b3858fba5fd3dc15ef2822836"
@@ -51,7 +51,7 @@
       "name": "recipes_fully_read",
       "role": "product",
       "split": "all",
-      "value": 0.7852909482758621
+      "value": 0.7817887931034483
     }
   ],
   "schema": 1,
