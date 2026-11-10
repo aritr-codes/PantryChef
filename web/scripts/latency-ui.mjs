@@ -81,7 +81,19 @@ function timed(page, kind) {
   );
 }
 
+let loadRetries = 0;
+/** Open the page. A load that fails is retried once: it is a harness fault, and no timing has started. */
 async function open(browser) {
+  try {
+    return await openOnce(browser);
+  } catch (e) {
+    loadRetries++;
+    console.error(`page did not load, retrying once: ${String(e.message).split(/\r?\n/)[0]}`);
+    return openOnce(browser);
+  }
+}
+
+async function openOnce(browser) {
   const page = await browser.newPage();
   const cdp = await page.context().newCDPSession(page);
   await cdp.send("Network.enable");
@@ -187,6 +199,7 @@ const raw = {
   cells_over_pass_line: over,
   cells_over_goal: keys.filter((k) => byKey[k].p95 > GOAL_MS),
   skipped_runs: skipped,
+  load_retries: loadRetries,
   page_ready_ms: stats(loads),
   limits:
     "Headless Chromium on a development laptop, local preview server, CPU throttle only. Page-ready time is unthrottled. The end of each timing is two animation frames after the kitchen grows, so it is more than the engine call alone. One run, no real phone.",
