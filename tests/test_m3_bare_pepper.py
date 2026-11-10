@@ -12,6 +12,7 @@ from pantrychef.eval.results import load_result
 from pantrychef.ingredients.table import IngredientTable
 from scripts.m3_bare_pepper import (
     LABELS_FILE,
+    SNAPSHOT,
     changed_under_always,
     decide,
     draw,
@@ -19,6 +20,11 @@ from scripts.m3_bare_pepper import (
     read_labels,
     score,
     write_sheet,
+)
+
+# score() records the snapshot hash, so these tests need the local snapshot. CI does not have it.
+needs_snapshot = pytest.mark.skipif(
+    not SNAPSHOT.exists(), reason="Wikibooks snapshot is not in this checkout"
 )
 
 TABLE = IngredientTable.from_text(
@@ -124,6 +130,7 @@ def test_decision_scales_with_n():
     assert decide(small)["decision"] == "staple_cue_or_taste"
 
 
+@needs_snapshot
 def test_score_writes_a_valid_result(tmp_path):
     p = _filled(tmp_path, ["black"] * 76 + ["other"] * 3 + ["unclear"])
     out_path = tmp_path / "res.json"
@@ -160,6 +167,7 @@ def test_changed_under_always_counts_lines_that_change_and_the_black_ones():
     assert changed_under_always(recs, TABLE) == {"changed": 2, "changed_black": 1}
 
 
+@needs_snapshot
 def test_score_accepts_json_and_records_labeller_and_change_counts(tmp_path):
     p = _json_sheet(tmp_path, ["black"] * 3 + ["other"])
     out_path = tmp_path / "res.json"
@@ -170,6 +178,7 @@ def test_score_accepts_json_and_records_labeller_and_change_counts(tmp_path):
     assert doc["config"]["draw_counts"] == {"pool": 103, "frozen": 2, "drawn": 80}
 
 
+@needs_snapshot
 def test_committed_labels_file_scores_to_the_recorded_decision(tmp_path):
     out = score(LABELS_FILE, tmp_path / "res.json", TABLE)
     assert out["n"] == 80 and out["counts"] == {"black": 56, "other": 16, "unclear": 8}
