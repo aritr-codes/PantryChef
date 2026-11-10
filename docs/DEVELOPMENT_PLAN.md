@@ -115,7 +115,7 @@ gate.
 
 Done (code and tests exist, and the numbers are in [EVALUATION.md](EVALUATION.md)):
 
-- Table v2 with 872 rows and the `is_a` and `form_of` columns. A word file for units, size, container and preparation words.
+- Table v2 with 891 rows and the `is_a` and `form_of` columns. A word file for units, size, container and preparation words.
 - Singulariser fix, line-resolver rules (head-noun check, chili pepper marker, bare pepper rule), and a typed-name resolver in Python and TypeScript with golden parity cases.
 - The bare pepper decision (`staple_cue_or_taste`). It rests on one model labeller.
 - Evaluation sets, labels and the frozen test hashes. The coverage tool and 11 growth rows, measured on the dev halves and in-sample.
