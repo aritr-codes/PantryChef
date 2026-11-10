@@ -28,7 +28,7 @@ const RATE = Number(arg("rate", 6));
 const RUNS = Number(arg("runs", 15));
 const SEED = Number(arg("seed", 1));
 const OUT = arg("out", "latency_ui.json");
-const WARMUP = 2;
+const DISCARD = 2; // the first runs of each cell are dropped. Each run opens a new page, so this is not a warm-up.
 const PASS_MS = 200;
 const GOAL_MS = 100;
 const SIZES = [3, 8, 15]; // kitchen size before the timed actions
@@ -48,7 +48,7 @@ const stats = (xs) => {
 const count = (page) => page.locator(".pantry .have").count();
 
 /** Dispatch one action inside the page. Resolves with {commit, paint}: ms until the kitchen grew, and until two frames after. */
-function timed(page, kind) {
+function timedNow(page, kind) {
   return page.evaluate(
     (k) =>
       new Promise((resolveMs, reject) => {
@@ -79,6 +79,14 @@ function timed(page, kind) {
       }),
     kind,
   );
+}
+
+/** Let the work left over from the last action finish, so it cannot fall inside the next timing. */
+async function timed(page, kind) {
+  await page.evaluate(
+    () => new Promise((done) => requestAnimationFrame(() => requestAnimationFrame(() => setTimeout(done, 300)))),
+  );
+  return timedNow(page, kind);
 }
 
 let loadRetries = 0;
@@ -120,10 +128,11 @@ async function fill(page, input, names) {
 const browser = await chromium.launch();
 const results = {}; // `${action}@${size}` -> ms[]
 const skipped = {};
+const pasteNew = {}; // paste start size -> how many of the 20 pasted items are new
 const loads = [];
 const commits = {}; // same keys: ms until the kitchen grew, before the two frames
 const push = (key, r, ms) => {
-  if (r < WARMUP) return;
+  if (r < DISCARD) return;
   (results[key] ??= []).push(ms.paint);
   (commits[key] ??= []).push(ms.commit);
 };
@@ -148,10 +157,12 @@ try {
     for (let r = 0; r < RUNS; r++) {
       const { page, input, ready } = await open(browser);
       loads.push(ready);
-      await fill(page, input, shuffled(POOL).slice(0, size));
+      const have = shuffled(POOL).slice(0, size);
+      await fill(page, input, have);
       await page.getByRole("button", { name: "Paste a list" }).click();
       // A pasted list of 20 items, split over commas and new lines, with quantities on some.
       const items = shuffled(POOL).map((n, i) => (i % 5 === 0 ? `2 ${n}` : n));
+      pasteNew[size] = POOL.filter((n) => !have.includes(n)).length; // the other pasted items are already in the kitchen
       await page.getByLabel("Paste ingredients").fill(items.slice(0, 10).join(", ") + "\n" + items.slice(10).join(" and "));
       push(`paste@${size}`, r, await timed(page, "paste"));
       await page.close();
@@ -178,14 +189,19 @@ const metrics = keys.flatMap((k) => {
     group: { action, start_size: Number(size) },
   }));
 });
+// Hash the script bundle the server really served, so the result shows which build ran.
+const html = await (await fetch(URL_)).text();
+const bundleRef = /assets\/index-[^"']+\.js/.exec(html)?.[0];
+const bundle = bundleRef ? Buffer.from(await (await fetch(new URL(bundleRef, URL_))).arrayBuffer()) : null;
 const core = readFileSync(join(web, "public", "pack", "core.v2.json.gz"));
 const config = {
   cpu_throttle_rate: RATE,
   runs_per_cell: RUNS,
-  warmup_runs: WARMUP,
+  discarded_first_runs: DISCARD,
   start_sizes: SIZES,
   paste_start_sizes: PASTE_SIZES,
   cache: "disabled",
+  served_bundle: bundleRef ? `${bundleRef} sha256 ${createHash("sha256").update(bundle).digest("hex")}` : "not found",
   pass_p95_ms: PASS_MS,
   goal_p95_ms: GOAL_MS,
   pool: POOL,
@@ -199,6 +215,8 @@ const raw = {
   cells_over_pass_line: over,
   cells_over_goal: keys.filter((k) => byKey[k].p95 > GOAL_MS),
   skipped_runs: skipped,
+  paste_new_items: pasteNew,
+  settle_before_each_timing_ms: 300,
   load_retries: loadRetries,
   page_ready_ms: stats(loads),
   limits:
