@@ -141,7 +141,11 @@ export function Kitchen(p: Props) {
     });
     pending.current = () => input.current?.focus();
   };
-  const dismiss = (name: string) => p.setUnknown(p.unknown.filter((n) => n !== name));
+  // The stamp goes away when it is used, so focus returns to the field.
+  const dismiss = (name: string) => {
+    p.setUnknown(p.unknown.filter((n) => n !== name));
+    pending.current = () => input.current?.focus();
+  };
   const toggleStaple = (id: string) =>
     p.setStaples(p.staples.includes(id) ? p.staples.filter((s) => s !== id) : [...p.staples, id]);
 
