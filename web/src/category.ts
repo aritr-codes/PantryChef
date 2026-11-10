@@ -9,13 +9,21 @@ export type IconKey =
 
 // Checked first, in order. These names hold a word of another group, or are not what they seem.
 const FIRST: [RegExp, IconKey | null][] = [
-  [/\b(peanut|almond|cashew|nut) butter\b/, null],
-  [/\bcream of tartar\b/, null],
-  [/\b(coconut|condensed|evaporated) milk\b|\bcondensed soup\b|\bcanned\b|\btomato (paste|sauce)\b|\bpizza sauce\b|\bstock\b/, "tin"],
-  [/\begg noodle\b/, "grain"],
-  [/\b(green bean|bean sprout|butternut squash|green onion|mixed vegetables|collard greens)\b/, "veg"],
-  // Spices, seeds and powders carry the word of the plant they come from.
+  // A herb leaf is a herb. Any other leaf (banana, grape, makrut lime) is not.
+  [/\b(bay|curry|pandan|mint|basil) (leaf|leaves)\b/, "herb"],
+  // Spices, seeds and powders carry the word of the plant they come from. This is before "tin",
+  // so "coconut milk powder" is not a tin.
   [/\b(seed|powder|flakes|extract|seasoning|lemon pepper|black pepper|white pepper|baking soda|mixed spice)\b/, null],
+  [/\b(coconut|condensed|evaporated) milk\b|\bcondensed soup\b|\bcanned\b|\btomato (paste|sauce)\b|\bpizza sauce\b|\bstock\b/, "tin"],
+  // Names that hold a food word but are another thing: no icon.
+  [/\b(peanut|almond|cashew|nut|cocoa|apple|shea) butter\b|\bbutter beans?\b|\bbutter chicken\b|\b(coconut|soy|almond|oat) yogurt\b/, null],
+  [/\bcream of tartar\b|\bcrab apple\b|\blamb's lettuce\b|\bbitter melon\b/, null],
+  // Parts, mixes and salts of a plant are not the plant.
+  [/\b(leaf|leaves|husk|salt|masala|starch|soup mix|soup|blossom|yeast|ale)\b/, null],
+  // Preserves, snacks and hot peppers that carry a fruit, vegetable or dairy word.
+  [/\b(chutney|curd|chips?|casing|nectar|macaroni and cheese|banana pepper|cherry pepper)\b/, null],
+  [/\begg noodles?\b/, "grain"],
+  [/\b(green bean|bean sprout|butternut squash|green onion|mixed vegetables|collard greens)\b/, "veg"],
   [/^ground (?!beef|pork|turkey|lamb|chicken)/, null],
   [/\b(juice|lemonade|vinegar|honey|syrup|molasses|ketchup|mayonnaise|sauce|wine|beer|rum|brandy|vodka|whiskey|sherry|liqueur|tequila|gin|sake|mirin|club soda|oil)\b/, "bottle"],
 ];
@@ -23,12 +31,12 @@ const FIRST: [RegExp, IconKey | null][] = [
 // Then the first rule that matches wins. Order matters: "bread flour" is grain, not bread.
 const RULES: [IconKey, RegExp][] = [
   ["tofu", /\b(tofu|tempeh)\b/],
+  ["mushroom", /\bmushroom\b/], // before dairy and fish: "oyster mushroom" is not a fish
   ["egg", /\begg\b/],
   ["dairy", /\b(milk|buttermilk|cream|yogurt|cheese|cheddar|mozzarella|parmesan|feta|ricotta|butter|margarine|half and half|monterey jack)\b/],
   ["legume", /\b(lentil|chickpea|beans?|split pea|dal)\b/],
   ["fish", /\b(salmon|tuna|white fish|shrimp|crab|lobster|clam|mussel|oyster|scallop|anchovy|sardine|crayfish|oily fish)\b/],
   ["meat", /\b(chicken|beef|pork|bacon|ham|sausage|lamb|turkey|duck|pepperoni|meat)\b/],
-  ["mushroom", /\bmushroom\b/],
   ["herb", /\b(parsley|cilantro|basil|oregano|thyme|rosemary|sage|mint|dill|chive|bay leaf|tarragon|marjoram|curry leaf|pandan leaf|lemongrass|bouquet garni)\b/],
   ["grain", /\b(flour|rice|pasta|noodle|couscous|quinoa|oats|bulgur|barley|cornmeal|semolina)\b/],
   ["bread", /\b(bread|tortilla|pita|cracker|crouton|hamburger bun)\b/],
