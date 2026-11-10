@@ -1,0 +1,866 @@
+{
+  "version": 1,
+  "resolved_by": "owner",
+  "agreed_check": {
+    "n": 30,
+    "errors": 1,
+    "agreed_error_rate": 0.03333333333333333,
+    "error_ids": [
+      "wb-414040#8"
+    ]
+  },
+  "set": {
+    "lines": 200,
+    "exact_agreement": 174,
+    "a": "opus_fresh200.csv",
+    "b": "sonnet_fresh200.csv",
+    "disagreements": [
+      {
+        "id": "wb-162377#0",
+        "text": "1 tin (400 g) baked beans",
+        "a": {
+          "groups": [
+            [
+              "baked bean"
+            ]
+          ],
+          "optional": false,
+          "not_an_ingredient": false
+        },
+        "b": {
+          "groups": [
+            [
+              "baked beans"
+            ]
+          ],
+          "optional": false,
+          "not_an_ingredient": false
+        },
+        "final": {
+          "groups": [
+            [
+              "baked bean"
+            ]
+          ],
+          "optional": false,
+          "not_an_ingredient": false
+        },
+        "resolved_by": "owner"
+      },
+      {
+        "id": "wb-80809#0",
+        "text": "400 g (~3\u00bc cups) plain flour",
+        "a": {
+          "groups": [
+            [
+              "flour"
+            ]
+          ],
+          "optional": false,
+          "not_an_ingredient": false
+        },
+        "b": {
+          "groups": [
+            [
+              "plain flour"
+            ]
+          ],
+          "optional": false,
+          "not_an_ingredient": false
+        },
+        "final": {
+          "groups": [
+            [
+              "plain flour"
+            ]
+          ],
+          "optional": false,
+          "not_an_ingredient": false
+        },
+        "resolved_by": "owner"
+      },
+      {
+        "id": "wb-144398#4",
+        "text": "Milk, or a mixture of milk and cream, for serving",
+        "a": {
+          "groups": [
+            [
+              "milk"
+            ]
+          ],
+          "optional": false,
+          "not_an_ingredient": false
+        },
+        "b": {
+          "groups": [
+            [
+              "milk",
+              "cream"
+            ]
+          ],
+          "optional": false,
+          "not_an_ingredient": false
+        },
+        "final": {
+          "groups": [
+            [
+              "milk",
+              "milk"
+            ],
+            [
+              "cream"
+            ]
+          ],
+          "optional": false,
+          "not_an_ingredient": false
+        },
+        "resolved_by": "owner"
+      },
+      {
+        "id": "wb-96870#2",
+        "text": "3 tbsp (45 ml) white granulated sugar",
+        "a": {
+          "groups": [
+            [
+              "sugar"
+            ]
+          ],
+          "optional": false,
+          "not_an_ingredient": false
+        },
+        "b": {
+          "groups": [
+            [
+              "granulated sugar"
+            ]
+          ],
+          "optional": false,
+          "not_an_ingredient": false
+        },
+        "final": {
+          "groups": [
+            [
+              "granulated sugar"
+            ]
+          ],
+          "optional": false,
+          "not_an_ingredient": false
+        },
+        "resolved_by": "owner"
+      },
+      {
+        "id": "wb-110866#8",
+        "text": "1 cup light corn syrup",
+        "a": {
+          "groups": [
+            [
+              "corn syrup"
+            ]
+          ],
+          "optional": false,
+          "not_an_ingredient": false
+        },
+        "b": {
+          "groups": [
+            [
+              "light corn syrup"
+            ]
+          ],
+          "optional": false,
+          "not_an_ingredient": false
+        },
+        "final": {
+          "groups": [
+            [
+              "light corn syrup"
+            ]
+          ],
+          "optional": false,
+          "not_an_ingredient": false
+        },
+        "resolved_by": "owner"
+      },
+      {
+        "id": "wb-246393#13",
+        "text": "1 tbsp cumin powder",
+        "a": {
+          "groups": [
+            [
+              "ground cumin"
+            ]
+          ],
+          "optional": false,
+          "not_an_ingredient": false
+        },
+        "b": {
+          "groups": [
+            [
+              "cumin"
+            ]
+          ],
+          "optional": false,
+          "not_an_ingredient": false
+        },
+        "final": {
+          "groups": [
+            [
+              "ground cumin"
+            ]
+          ],
+          "optional": false,
+          "not_an_ingredient": false
+        },
+        "resolved_by": "owner"
+      },
+      {
+        "id": "wb-17921#4",
+        "text": "\u00bc cup and 1 tablespoon (75 ml) palm sugar (or granulated sugar)",
+        "a": {
+          "groups": [
+            [
+              "palm sugar",
+              "sugar"
+            ]
+          ],
+          "optional": false,
+          "not_an_ingredient": false
+        },
+        "b": {
+          "groups": [
+            [
+              "palm sugar",
+              "granulated sugar"
+            ]
+          ],
+          "optional": false,
+          "not_an_ingredient": false
+        },
+        "final": {
+          "groups": [
+            [
+              "palm sugar",
+              "granulated sugar"
+            ]
+          ],
+          "optional": false,
+          "not_an_ingredient": false
+        },
+        "resolved_by": "owner"
+      },
+      {
+        "id": "wb-15444#8",
+        "text": "Chives",
+        "a": {
+          "groups": [
+            [
+              "chive"
+            ]
+          ],
+          "optional": false,
+          "not_an_ingredient": false
+        },
+        "b": {
+          "groups": [
+            [
+              "chives"
+            ]
+          ],
+          "optional": false,
+          "not_an_ingredient": false
+        },
+        "final": {
+          "groups": [
+            [
+              "chive"
+            ]
+          ],
+          "optional": false,
+          "not_an_ingredient": false
+        },
+        "resolved_by": "owner"
+      },
+      {
+        "id": "wb-462359#10",
+        "text": "150 g (5 oz) granulated sugar",
+        "a": {
+          "groups": [
+            [
+              "sugar"
+            ]
+          ],
+          "optional": false,
+          "not_an_ingredient": false
+        },
+        "b": {
+          "groups": [
+            [
+              "granulated sugar"
+            ]
+          ],
+          "optional": false,
+          "not_an_ingredient": false
+        },
+        "final": {
+          "groups": [
+            [
+              "granulated sugar"
+            ]
+          ],
+          "optional": false,
+          "not_an_ingredient": false
+        },
+        "resolved_by": "owner"
+      },
+      {
+        "id": "wb-456947#5",
+        "text": "\u00bd teaspoon dried ginger",
+        "a": {
+          "groups": [
+            [
+              "ground ginger"
+            ]
+          ],
+          "optional": false,
+          "not_an_ingredient": false
+        },
+        "b": {
+          "groups": [
+            [
+              "dried ginger"
+            ]
+          ],
+          "optional": false,
+          "not_an_ingredient": false
+        },
+        "final": {
+          "groups": [
+            [
+              "dried ginger"
+            ]
+          ],
+          "optional": false,
+          "not_an_ingredient": false
+        },
+        "resolved_by": "owner"
+      },
+      {
+        "id": "wb-82978#3",
+        "text": "Yellow cornmeal",
+        "a": {
+          "groups": [
+            [
+              "cornmeal"
+            ]
+          ],
+          "optional": false,
+          "not_an_ingredient": false
+        },
+        "b": {
+          "groups": [
+            [
+              "yellow cornmeal"
+            ]
+          ],
+          "optional": false,
+          "not_an_ingredient": false
+        },
+        "final": {
+          "groups": [
+            [
+              "yellow cornmeal"
+            ]
+          ],
+          "optional": false,
+          "not_an_ingredient": false
+        },
+        "resolved_by": "owner"
+      },
+      {
+        "id": "wb-33519#1",
+        "text": "\u2153 cup (80 ml / 2.7 oz) spiced rum",
+        "a": {
+          "groups": [
+            [
+              "rum"
+            ]
+          ],
+          "optional": false,
+          "not_an_ingredient": false
+        },
+        "b": {
+          "groups": [
+            [
+              "spiced rum"
+            ]
+          ],
+          "optional": false,
+          "not_an_ingredient": false
+        },
+        "final": {
+          "groups": [
+            [
+              "spiced rum"
+            ]
+          ],
+          "optional": false,
+          "not_an_ingredient": false
+        },
+        "resolved_by": "owner"
+      },
+      {
+        "id": "wb-456653#8",
+        "text": "1 tablespoon bouillon powder or cube (optional)",
+        "a": {
+          "groups": [
+            [
+              "bouillon"
+            ]
+          ],
+          "optional": true,
+          "not_an_ingredient": false
+        },
+        "b": {
+          "groups": [
+            [
+              "bouillon powder",
+              "bouillon cube"
+            ]
+          ],
+          "optional": true,
+          "not_an_ingredient": false
+        },
+        "final": {
+          "groups": [
+            [
+              "bouillon powder",
+              "bouillon cube"
+            ]
+          ],
+          "optional": true,
+          "not_an_ingredient": false
+        },
+        "resolved_by": "owner"
+      },
+      {
+        "id": "wb-285226#1",
+        "text": "1 can (500 grams) green peas",
+        "a": {
+          "groups": [
+            [
+              "pea"
+            ]
+          ],
+          "optional": false,
+          "not_an_ingredient": false
+        },
+        "b": {
+          "groups": [
+            [
+              "green pea"
+            ]
+          ],
+          "optional": false,
+          "not_an_ingredient": false
+        },
+        "final": {
+          "groups": [
+            [
+              "green pea"
+            ]
+          ],
+          "optional": false,
+          "not_an_ingredient": false
+        },
+        "resolved_by": "owner"
+      },
+      {
+        "id": "wb-132291#3",
+        "text": "\u00be cup (175 ml) white granulated sugar",
+        "a": {
+          "groups": [
+            [
+              "sugar"
+            ]
+          ],
+          "optional": false,
+          "not_an_ingredient": false
+        },
+        "b": {
+          "groups": [
+            [
+              "granulated sugar"
+            ]
+          ],
+          "optional": false,
+          "not_an_ingredient": false
+        },
+        "final": {
+          "groups": [
+            [
+              "granulated sugar"
+            ]
+          ],
+          "optional": false,
+          "not_an_ingredient": false
+        },
+        "resolved_by": "owner"
+      },
+      {
+        "id": "wb-110473#10",
+        "text": "\u00bc teaspoon ground cumin",
+        "a": {
+          "groups": [
+            [
+              "ground cumin"
+            ]
+          ],
+          "optional": false,
+          "not_an_ingredient": false
+        },
+        "b": {
+          "groups": [
+            [
+              "cumin"
+            ]
+          ],
+          "optional": false,
+          "not_an_ingredient": false
+        },
+        "final": {
+          "groups": [
+            [
+              "ground cumin"
+            ]
+          ],
+          "optional": false,
+          "not_an_ingredient": false
+        },
+        "resolved_by": "owner"
+      },
+      {
+        "id": "wb-94944#9",
+        "text": "1 teaspoon (45 ml) red jam (mix with a little water and strain out the seeds if using raspberry or blackberry)",
+        "a": {
+          "groups": [
+            [
+              "jam"
+            ]
+          ],
+          "optional": false,
+          "not_an_ingredient": false
+        },
+        "b": {
+          "groups": [
+            [
+              "red jam"
+            ]
+          ],
+          "optional": false,
+          "not_an_ingredient": false
+        },
+        "final": {
+          "groups": [
+            [
+              "jam"
+            ]
+          ],
+          "optional": false,
+          "not_an_ingredient": false
+        },
+        "resolved_by": "owner"
+      },
+      {
+        "id": "wb-219286#0",
+        "text": "1 large slice of salty, brined white cheese (e.g. feta, sirene)",
+        "a": {
+          "groups": [
+            [
+              "feta cheese",
+              "sirene"
+            ]
+          ],
+          "optional": false,
+          "not_an_ingredient": false
+        },
+        "b": {
+          "groups": [
+            [
+              "feta",
+              "sirene"
+            ]
+          ],
+          "optional": false,
+          "not_an_ingredient": false
+        },
+        "final": {
+          "groups": [
+            [
+              "white cheese"
+            ]
+          ],
+          "optional": false,
+          "not_an_ingredient": false
+        },
+        "resolved_by": "owner"
+      },
+      {
+        "id": "wb-193629#3",
+        "text": "2 teaspoons chat masala",
+        "a": {
+          "groups": [
+            [
+              "chaat masala"
+            ]
+          ],
+          "optional": false,
+          "not_an_ingredient": false
+        },
+        "b": {
+          "groups": [
+            [
+              "chat masala"
+            ]
+          ],
+          "optional": false,
+          "not_an_ingredient": false
+        },
+        "final": {
+          "groups": [
+            [
+              "chaat masala"
+            ]
+          ],
+          "optional": false,
+          "not_an_ingredient": false
+        },
+        "resolved_by": "owner"
+      },
+      {
+        "id": "wb-66140#6",
+        "text": "900 g (2 lb) lean steak, (sirloin or rump), about 12 mm (\u00bd inch) thick",
+        "a": {
+          "groups": [
+            [
+              "sirloin steak",
+              "rump steak"
+            ]
+          ],
+          "optional": false,
+          "not_an_ingredient": false
+        },
+        "b": {
+          "groups": [
+            [
+              "steak"
+            ]
+          ],
+          "optional": false,
+          "not_an_ingredient": false
+        },
+        "final": {
+          "groups": [
+            [
+              "sirloin steak",
+              "rump steak"
+            ]
+          ],
+          "optional": false,
+          "not_an_ingredient": false
+        },
+        "resolved_by": "owner"
+      },
+      {
+        "id": "wb-95892#21",
+        "text": "1 cup (250 ml) grated cheese (e.g. Edam, etc.)",
+        "a": {
+          "groups": [
+            [
+              "cheese"
+            ]
+          ],
+          "optional": false,
+          "not_an_ingredient": false
+        },
+        "b": {
+          "groups": [
+            [
+              "edam cheese"
+            ]
+          ],
+          "optional": false,
+          "not_an_ingredient": false
+        },
+        "final": {
+          "groups": [
+            [
+              "cheese"
+            ]
+          ],
+          "optional": false,
+          "not_an_ingredient": false
+        },
+        "resolved_by": "owner"
+      },
+      {
+        "id": "wb-452014#10",
+        "text": "4 strips of streaky bacon",
+        "a": {
+          "groups": [
+            [
+              "bacon"
+            ]
+          ],
+          "optional": false,
+          "not_an_ingredient": false
+        },
+        "b": {
+          "groups": [
+            [
+              "streaky bacon"
+            ]
+          ],
+          "optional": false,
+          "not_an_ingredient": false
+        },
+        "final": {
+          "groups": [
+            [
+              "streaky bacon"
+            ]
+          ],
+          "optional": false,
+          "not_an_ingredient": false
+        },
+        "resolved_by": "owner"
+      },
+      {
+        "id": "wb-26160#7",
+        "text": "150 ml wheat flour",
+        "a": {
+          "groups": [
+            [
+              "flour"
+            ]
+          ],
+          "optional": false,
+          "not_an_ingredient": false
+        },
+        "b": {
+          "groups": [
+            [
+              "wheat flour"
+            ]
+          ],
+          "optional": false,
+          "not_an_ingredient": false
+        },
+        "final": {
+          "groups": [
+            [
+              "wheat flour"
+            ]
+          ],
+          "optional": false,
+          "not_an_ingredient": false
+        },
+        "resolved_by": "owner"
+      },
+      {
+        "id": "wb-5566#0",
+        "text": "30 oz medium or dark red kidney beans",
+        "a": {
+          "groups": [
+            [
+              "kidney bean"
+            ]
+          ],
+          "optional": false,
+          "not_an_ingredient": false
+        },
+        "b": {
+          "groups": [
+            [
+              "red kidney bean"
+            ]
+          ],
+          "optional": false,
+          "not_an_ingredient": false
+        },
+        "final": {
+          "groups": [
+            [
+              "red kidney bean"
+            ]
+          ],
+          "optional": false,
+          "not_an_ingredient": false
+        },
+        "resolved_by": "owner"
+      },
+      {
+        "id": "wb-155613#0",
+        "text": "3 pounds scrag of fresh mutton neck, cut into several pieces",
+        "a": {
+          "groups": [
+            [
+              "mutton"
+            ]
+          ],
+          "optional": false,
+          "not_an_ingredient": false
+        },
+        "b": {
+          "groups": [
+            [
+              "mutton neck"
+            ]
+          ],
+          "optional": false,
+          "not_an_ingredient": false
+        },
+        "final": {
+          "groups": [
+            [
+              "mutton neck"
+            ]
+          ],
+          "optional": false,
+          "not_an_ingredient": false
+        },
+        "resolved_by": "owner"
+      },
+      {
+        "id": "wb-61441#1",
+        "text": "\u00bd cup (120 g) of white granulated sugar",
+        "a": {
+          "groups": [
+            [
+              "sugar"
+            ]
+          ],
+          "optional": false,
+          "not_an_ingredient": false
+        },
+        "b": {
+          "groups": [
+            [
+              "granulated sugar"
+            ]
+          ],
+          "optional": false,
+          "not_an_ingredient": false
+        },
+        "final": {
+          "groups": [
+            [
+              "granulated sugar"
+            ]
+          ],
+          "optional": false,
+          "not_an_ingredient": false
+        },
+        "resolved_by": "owner"
+      }
+    ]
+  }
+}
