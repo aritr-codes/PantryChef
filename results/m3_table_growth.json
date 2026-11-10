@@ -1,7 +1,7 @@
 {
   "arms": [],
   "command": "uv run python scripts/ingredient_coverage.py data/raw/wikibooks/snapshot.2026-11-03.jsonl.gz --table data/ingredients/ingredients.v2.csv --growth-row results/m3_table_growth.json --id-map data/eval/parser_gold/dev_id_map.v1.json",
-  "commit": "48965d095952b6d01a2a5e14fe88ab9489cce795",
+  "commit": "0b4439ca77eaafbe2b63661bedeeadf87eb92c60",
   "comparisons": [],
   "config": {
     "inputs": {
@@ -10,26 +10,26 @@
       "n": 83
     },
     "parser": {
-      "f1": 0.9097222222222222,
-      "gold_found": 131,
+      "f1": 0.9220338983050849,
+      "gold_found": 136,
       "gold_groups": 152,
       "gold_out_of_table": 10,
       "lines": 150,
-      "mention_accuracy": 0.8618421052631579,
-      "mention_correct": 131,
-      "optional_accuracy": 0.9851851851851852,
-      "optional_n": 135,
-      "precision": 0.9632352941176471,
-      "pred_correct": 131,
-      "pred_groups": 136,
+      "mention_accuracy": 0.8947368421052632,
+      "mention_correct": 136,
+      "optional_accuracy": 0.9859154929577465,
+      "optional_n": 142,
+      "precision": 0.951048951048951,
+      "pred_correct": 136,
+      "pred_groups": 143,
       "random_stratum": {
         "gold_groups": 50,
         "lines": 50,
-        "mention_accuracy": 0.86,
-        "precision": 0.9361702127659575,
-        "pred_groups": 47
+        "mention_accuracy": 0.88,
+        "precision": 0.9183673469387755,
+        "pred_groups": 49
       },
-      "recall": 0.8618421052631579
+      "recall": 0.8947368421052632
     },
     "rows": [
       {
@@ -2825,6 +2825,260 @@
             1
           ]
         ]
+      },
+      {
+        "commit": "0b4439ca77eaafbe2b63661bedeeadf87eb92c60",
+        "dev_scoring": "id_map",
+        "id_map": "data/eval/parser_gold/dev_id_map.v1.json",
+        "input_accuracy_dev": 0.9759036144578314,
+        "lines_read": 29590,
+        "mention_accuracy_dev": 0.8947368421052632,
+        "parser_precision_dev": 0.951048951048951,
+        "recipes_fully_read": 0.7852909482758621,
+        "resolver": "resolve_name",
+        "rows": 891,
+        "top_unread": [
+          [
+            "pepper",
+            253
+          ],
+          [
+            "of pepper",
+            5
+          ],
+          [
+            "",
+            4
+          ],
+          [
+            "fresh pepper",
+            4
+          ],
+          [
+            "fat for deep frying",
+            3
+          ],
+          [
+            "filling as desired",
+            3
+          ],
+          [
+            "hickory chunk",
+            3
+          ],
+          [
+            "large mesquite chunk",
+            3
+          ],
+          [
+            "sarza criolla",
+            2
+          ],
+          [
+            "salt according to taste",
+            2
+          ],
+          [
+            "salad",
+            2
+          ],
+          [
+            "toothpick",
+            2
+          ],
+          [
+            "bag dark chocolate heart",
+            2
+          ],
+          [
+            "soaked mesquite chip",
+            2
+          ],
+          [
+            "dry applewood chunk",
+            2
+          ],
+          [
+            "mesquite wood chip soaked in water 30 minute",
+            2
+          ],
+          [
+            "munich malt",
+            2
+          ],
+          [
+            "medium iguana",
+            2
+          ],
+          [
+            "milk tin of processed cassava flake",
+            2
+          ],
+          [
+            "pepper blended",
+            2
+          ],
+          [
+            "hatxora",
+            2
+          ],
+          [
+            "soda extract",
+            2
+          ],
+          [
+            "in. wide strip of lemon peel cut around the fruit s circumference",
+            2
+          ],
+          [
+            "scoop or 1 part atkin chocolate shake mix",
+            1
+          ],
+          [
+            "rich dark ale",
+            1
+          ],
+          [
+            "other ingredient as necessary",
+            1
+          ],
+          [
+            "shortcrust pastry dough homemade or store bought",
+            1
+          ],
+          [
+            "shortcrust pastry dough either homemade or shop bought",
+            1
+          ],
+          [
+            "dozen raw whole oyster",
+            1
+          ],
+          [
+            "soaked and boiled black pinto kidney or other bean",
+            1
+          ],
+          [
+            "thinly sliced beets.",
+            1
+          ],
+          [
+            "cilantro leaf and stem",
+            1
+          ],
+          [
+            "sliced pork meatloaf",
+            1
+          ],
+          [
+            "sour cream around 40 fat",
+            1
+          ],
+          [
+            "of masala mixture",
+            1
+          ],
+          [
+            "fresh tamarind per chilli used",
+            1
+          ],
+          [
+            "spinach lentil water",
+            1
+          ],
+          [
+            "leftover risotto",
+            1
+          ],
+          [
+            "glass rich sweet wine",
+            1
+          ],
+          [
+            "spek cubed",
+            1
+          ],
+          [
+            "fruit filling of choice",
+            1
+          ],
+          [
+            "ear of corn cut off the cob",
+            1
+          ],
+          [
+            "liquid such as water milk or cream",
+            1
+          ],
+          [
+            "beef suitable for grilling sliced as thin as possible",
+            1
+          ],
+          [
+            "soft fleshy fruit like strawberry peach cherry plum blueberry blackberry raspberry etc.",
+            1
+          ],
+          [
+            "pair of giblet scaled",
+            1
+          ],
+          [
+            "a quantity of oil suitable for the desired cooking method",
+            1
+          ],
+          [
+            "nonfat and low sodium chicken broth or vegetable stock",
+            1
+          ],
+          [
+            "recipe yorkshire pudding batter uncooked",
+            1
+          ],
+          [
+            "dr. pepper soda",
+            1
+          ],
+          [
+            "red and yellow food coloring",
+            1
+          ],
+          [
+            "mar bar or 1 milky way bar",
+            1
+          ],
+          [
+            "finely ground pure cannabis",
+            1
+          ],
+          [
+            "oil to fry the filling possibly including sesame oil",
+            1
+          ],
+          [
+            "oil to fry the finished roll possibly including shortening",
+            1
+          ],
+          [
+            "potato peeled and cut into strip for frying",
+            1
+          ],
+          [
+            "white liquor to taste",
+            1
+          ],
+          [
+            "picadillo",
+            1
+          ],
+          [
+            "dried mackerel flake",
+            1
+          ],
+          [
+            "garlic and herb salt",
+            1
+          ]
+        ]
       }
     ],
     "split": "dev"
@@ -2849,7 +3103,7 @@
       "name": "recipes_fully_read",
       "role": "product",
       "split": "all",
-      "value": 0.7244073275862069
+      "value": 0.7852909482758621
     },
     {
       "arm": null,
@@ -2861,7 +3115,7 @@
       "name": "mention_accuracy",
       "role": "product",
       "split": "dev",
-      "value": 0.8618421052631579
+      "value": 0.8947368421052632
     },
     {
       "arm": null,
@@ -2869,11 +3123,11 @@
         "ingredient_table",
         "parser_rules"
       ],
-      "n": 136,
+      "n": 143,
       "name": "parser_precision",
       "role": "sanity",
       "split": "dev",
-      "value": 0.9632352941176471
+      "value": 0.951048951048951
     },
     {
       "arm": null,
