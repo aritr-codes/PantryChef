@@ -169,10 +169,7 @@ test("the kitchen is saved on this device and comes back after a reload", async 
   // Switch off a staple, and check that the switch also comes back.
   await page.getByText(/Staples assumed/).click();
   await page.getByLabel("Salt").uncheck();
-  // The save runs after the render, so wait for it before the reload.
-  await expect
-    .poll(() => page.evaluate(() => localStorage.getItem("pantrychef.kitchen.v1")))
-    .toContain('"staplesOff":["salt"');
+  // No wait before the reload: the save also runs when the page is hidden or closed.
   await page.reload();
   await expect(word(page, "flour")).toBeVisible();
   await expect(word(page, "egg")).toBeVisible();
@@ -195,10 +192,34 @@ test("Clear all can be undone, and the undo does not steal focus", async ({ page
   await expect(bar).toHaveAttribute("aria-live", "polite");
   await expect(page.getByLabel("Add ingredients")).toBeFocused();
   await page.getByRole("button", { name: "Undo" }).click();
+  // The undo button goes away, so focus must land on the field.
+  await expect(page.getByLabel("Add ingredients")).toBeFocused();
   await expect(word(page, "flour")).toBeVisible();
   await expect(word(page, "egg")).toBeVisible();
   await page.reload();
   await expect(word(page, "egg")).toBeVisible();
+});
+
+test("Undo after Clear all keeps items added since", async ({ page }) => {
+  await page.goto("/");
+  await add(page, "flour", "egg");
+  await page.getByRole("button", { name: "Clear all" }).click();
+  await add(page, "milk");
+  await page.getByRole("button", { name: "Undo" }).click();
+  for (const n of ["flour", "egg", "milk"]) await expect(word(page, n)).toBeVisible();
+  await expect(page.locator(".words .word")).toHaveCount(3);
+});
+
+test("a long paste shows five stamps and a count, and Dismiss all clears them", async ({ page }) => {
+  await page.goto("/");
+  await page.getByRole("button", { name: "Paste a list" }).click();
+  await page.getByLabel("Paste ingredients").fill("aaqx, bbqx, ccqx, ddqx, eeqx, ffqx, ggqx, hhqx");
+  await page.getByRole("button", { name: "Add these" }).click();
+  await expect(page.locator(".stamp[aria-label^=\"Not on the list\"]")).toHaveCount(5);
+  await expect(page.getByText("and 3 more not on the list.")).toBeVisible();
+  await page.getByRole("button", { name: "Dismiss all" }).click();
+  await expect(page.locator(".stamp")).toHaveCount(0);
+  await expect(page.getByLabel("Add ingredients")).toBeFocused();
 });
 
 test("the page works with storage blocked, and says so", async ({ page }) => {
@@ -213,6 +234,8 @@ test("the page works with storage blocked, and says so", async ({ page }) => {
   await add(page, "flour", "egg");
   await expect(word(page, "egg")).toBeVisible();
   await expect(page.getByText("Not saved: this browser blocks storage.")).toBeVisible();
+  await expect(page.locator("footer.page")).toContainText("not saved, because this browser blocks storage");
+  await expect(page.locator("footer.page")).not.toContainText("is saved in this browser");
   await expect(page.getByRole("tablist")).toBeVisible();
 });
 
@@ -230,6 +253,8 @@ test("Buy one thing names recipes, and Try it adds the item with an undo", async
   await expect(bar).toContainText(`Added ${label}.`);
   await bar.getByRole("button", { name: "Undo" }).click();
   await expect(page.locator(".words .word")).toHaveCount(before);
+  // The undo button goes away, so focus must land on the selected tab.
+  await expect(page.getByRole("tab", { selected: true })).toBeFocused();
 });
 
 test("focus moves to the heading when the screen changes", async ({ page }) => {
