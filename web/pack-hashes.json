@@ -3,8 +3,8 @@
   "note": "Expected hashes of the pack files. The Pages workflow refuses any other bytes.",
   "files": {
     "core.v2.json.gz": {
-      "sha256": "af82ad5ee76001990aada0d7d45cb939397c13cd9a7fa2637772a0c627a3d155",
-      "size": 502837
+      "sha256": "1c2bcf5a0ac31813e9e08279c7729830c0658474a4d7fed8c8bfd1a94379a313",
+      "size": 504896
     },
     "text.v2.json.gz": {
       "sha256": "08f3a93422e9f2534a88f3bb278a6deb620da4a88b68f84c7d1db53718779d7b",
