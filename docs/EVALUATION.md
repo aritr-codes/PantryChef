@@ -240,6 +240,32 @@ uv run python scripts/m3_acceptance.py
 
 The run needs `data/eval/m3_gold_id_map.v1.json` and `data/eval/m3_input_gold_id_map.v1.json`. The owner checked the 16 mappings that differ from the table-key lookup before the run and changed none (plan D9). `uv run python scripts/m3_acceptance.py --dry-run-on dev --out PATH` runs the same code on the dev halves and never reads test data.
 
+### Acceptance run 2, fresh held-out lines (MEASURED, second attempt, all scored targets met)
+
+Source: [results/m3_acceptance_fresh.json](../results/m3_acceptance_fresh.json), commit `48c2142`, clean tree, run once on 2026-11-10. This is a **second attempt** at the targets of run 1. Run 1 failed `mention_accuracy`, and its test lines are spent. Then we grew the table and changed the resolver rules F1 to F7 using the dev lines and an error analysis of the spent run 1 test lines. We drew 200 fresh lines (seed 47) that no earlier step had read, and froze their hashes before the changes (commit `c8eaa69`). Two blind labellers labelled them. The owner settled the 30 lines where they disagreed. A blind mapper built the gold-to-id map, and the owner checked 19 mappings and changed one. `scripts/m3_acceptance_fresh.py` scores the lines against the 894-row table.
+
+| Target | Result | Verdict |
+| --- | --- | --- |
+| `mention_accuracy`, random stratum, at least 0.90 | 0.9356 (189 of 202 gold groups, Wilson 95% 0.8930 to 0.9620) | PASS |
+| `parser_precision`, random stratum, at least 0.90 | 0.9692 (189 of 195 predicted groups, Wilson 95% 0.9345 to 0.9858) | PASS |
+| `recipes_fully_read`, at least 0.60 | 0.7818 (2,902 of 3,712). In-sample, copied from the pack result | PASS |
+| Recipes kept, at least 2,500 | 3,712 | PASS |
+
+`input_accuracy` was not scored again, because the test half of the typed inputs is spent. Run 1 measured 0.9639 (80 of 83) on the 872-row table. It has no measurement on the 894-row table, except the dev half (81 of 83, development figure).
+
+Read the result with care:
+
+- The lower Wilson bound of `mention_accuracy` is 0.8930, below the 0.90 target. The point estimate passes. The interval does not exclude a true rate below 0.90.
+- This is the second attempt. The first attempt failed, and the changes between them were chosen after we saw the run 1 miss groups. The fresh lines were never read before the run. A pass here does not support a claim of generalisation beyond Wikibooks lines.
+- 4 of 202 gold groups have no row in the table.
+- The labels come from two model labellers and one owner adjudication, not from independent human labellers.
+
+```bash
+uv run python scripts/m3_acceptance_fresh.py
+```
+
+The run needs `data/eval/m3_fresh_gold_id_map.v1.json`. The script refuses to run twice, on a dirty tree, or with a map the owner did not check.
+
 ### Graph spike result (MEASURED)
 
 Source: [results/m3_graph_spike.json](../results/m3_graph_spike.json), commit `7983baf`. The spike inputs were frozen in commit `e33e630`. The command was `uv run python scripts/graph_spike.py sheet`, which took the empty-pool path.

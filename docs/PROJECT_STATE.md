@@ -268,11 +268,12 @@ Results files (each one links commit, config and command):
 | Pack v2 | 3,712 recipes, `recipes_fully_read` 0.7818 (2,902 of 3,712), `core.v2.json.gz` 504,896 bytes, 894 ingredients. In-sample. The build gates in the file pass. The Task 7 build had 0.7244 and 872 ingredients | MEASURED ([results/m3_pack_v2.json](../results/m3_pack_v2.json)) |
 | Bare pepper | 56 of 80 labelled lines are black pepper (0.700, Wilson 95% 0.5923 to 0.7894). The rule stays `staple_cue_or_taste` | MEASURED, one blind model labeller, no owner adjudication |
 | Acceptance run | Ran once on 2026-11-10 at `ca4fa8b`. Random-stratum `mention_accuracy` 0.8205 (target 0.90): **FAIL**. `parser_precision` 0.9209, `input_accuracy` 0.9639 (M1 0.8675, McNemar p 0.0078), `recipes_fully_read` 0.7244 and 3,712 recipes: PASS | MEASURED ([results/m3_acceptance.json](../results/m3_acceptance.json)). Stopped and reported, target not lowered |
+| Acceptance run 2 (second attempt) | Ran once on 2026-11-10 at `48c2142` on 200 fresh held-out lines. `mention_accuracy` 0.9356 (189 of 202, Wilson 0.8930 to 0.9620), `parser_precision` 0.9692, `recipes_fully_read` 0.7818 and 3,712 recipes: all PASS. `input_accuracy` not scored again (run 1: 0.9639 on the 872-row table). The lower Wilson bound of `mention_accuracy` is below 0.90 | MEASURED ([results/m3_acceptance_fresh.json](../results/m3_acceptance_fresh.json)). Second attempt after run 1 failed. Target not lowered |
 | Graph spike (ADR 0006) | Verdict `rejected`, reason `no_new_recipes`. Edge option b: 17 of 157 edges usable (16 `is_a`, 1 `form_of`), longest chain 1. Pool of new items 0. Edge-source hits 0 of 40 pantries. Decoy candidates 733 (make now) and 1,750 (one away). Nobody rated, so T1 to T3 were not tested. ADR 0006 is Rejected. Narrow: it does not show that traversal fails for pantries that name specific kinds, and it says nothing about multi-hop traversal | MEASURED ([results/m3_graph_spike.json](../results/m3_graph_spike.json)) |
 
 Pending:
 
-- The owner decides what to do about the failed `mention_accuracy` target (0.8205 against 0.90). The test set is spent. Any new claim needs a new held-out set.
+- The owner decides whether run 2 closes M3. Run 1 failed `mention_accuracy` (0.8205). Run 2, a second attempt on fresh lines, passed (0.9356). Both test sets are now spent. Any new claim needs a new held-out set.
 - The release of pack v2. The owner uploads release `pack-v2` and runs the Pages workflow. Nothing is deployed, and the release `pack-v2` does not exist.
 
-This section makes no claim that an M3 target is met or missed. The acceptance run decides that.
+The acceptance runs decide whether an M3 target is met. Run 1 failed one target. Run 2 met all scored targets as a second attempt (see the table).
