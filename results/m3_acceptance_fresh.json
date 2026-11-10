@@ -1,0 +1,181 @@
+{
+  "arms": [],
+  "command": "uv run python scripts/m3_acceptance_fresh.py",
+  "commit": "48c2142e35e11dcd8f538a678c35485e1aee9d4a",
+  "comparisons": [],
+  "config": {
+    "all_targets_met": true,
+    "attempt": 2,
+    "failed": [],
+    "files_sha256": {
+      "data/eval/m3_fresh_gold_id_map.v1.json": "9aa8924664641d087c3ae5da435cac887f580219d92ee42d7ca78ecd4322a95f",
+      "data/eval/parser_gold/fresh.v1.json": "94ecb9f043ce6d7111c40c729c7cda1b00e4d5dc605be0b236063dd8171cfaba",
+      "data/eval/parser_gold/labels.fresh.v1.json": "dfff7a601e0f97288b7d370073ea3e64b76bfef20b955bd973e503005b2b9449",
+      "data/ingredients/ingredients.v2.csv": "307f580c9fb26850ae1fb840c66b13f2a3548932b4548bedea06c0baa7f05fe6",
+      "data/ingredients/words.v1.json": "357f3735ea543d3b7def5349dc6d980f9b12d96b3858fba5fd3dc15ef2822836",
+      "results/m3_pack_v2.json": "5fc183b046e0a976e059c432fbc6bfc487d243ed874d58a75c4ab45e0c37aa82"
+    },
+    "gold_to_id": "frozen blind id map (D9), owner checked",
+    "ignored_untracked": [
+      ".claude",
+      ".codegraph",
+      "CODEX_HANDOFF.md",
+      "TestRun.md",
+      "scratch_codex_audit_prompt.md",
+      "temp_pytest",
+      "data/interim"
+    ],
+    "note": "Second attempt at the M3 targets. Run 1 is results/m3_acceptance.json. input_accuracy is not scored again: its test half is spent. Run 1 measured it on the 872-row table.",
+    "pack": {
+      "core_bytes": 504896,
+      "recipes": 3712,
+      "recipes_fully_read": 0.7817887931034483,
+      "recipes_fully_read_count": 2902
+    },
+    "parser": {
+      "random": {
+        "f1": 0.9546977189344392,
+        "gold_found": 190,
+        "gold_groups": 202,
+        "gold_out_of_table": 4,
+        "lines": 200,
+        "mention_accuracy": 0.9356435643564357,
+        "mention_correct": 189,
+        "optional_accuracy": 0.9738219895287958,
+        "optional_n": 191,
+        "precision": 0.9692307692307692,
+        "pred_correct": 189,
+        "pred_groups": 195,
+        "recall": 0.9405940594059405
+      }
+    },
+    "split": "fresh",
+    "stop_and_report": false,
+    "tables": {
+      "v2_rows": 894
+    },
+    "targets": [
+      {
+        "k": 189,
+        "metric": "mention_accuracy",
+        "n": 202,
+        "name": "mention_accuracy_random",
+        "status": "PASS",
+        "target": 0.9,
+        "value": 0.9356435643564357,
+        "wilson_hi": 0.9620078783142922,
+        "wilson_lo": 0.8930185109092662
+      },
+      {
+        "k": 189,
+        "metric": "parser_precision",
+        "n": 195,
+        "name": "parser_precision_random",
+        "status": "PASS",
+        "target": 0.9,
+        "value": 0.9692307692307692,
+        "wilson_hi": 0.9858236209966809,
+        "wilson_lo": 0.9345069335754006
+      },
+      {
+        "k": 2902,
+        "metric": "recipes_fully_read",
+        "n": 3712,
+        "name": "recipes_fully_read",
+        "status": "PASS",
+        "target": 0.6,
+        "value": 0.7817887931034483,
+        "wilson_hi": 0.7947810491439429,
+        "wilson_lo": 0.7682138858392923
+      },
+      {
+        "k": null,
+        "metric": null,
+        "n": 3712,
+        "name": "recipes",
+        "status": "PASS",
+        "target": 2500,
+        "value": 3712,
+        "wilson_hi": null,
+        "wilson_lo": null
+      }
+    ]
+  },
+  "corpus_fingerprint": "a1a076ab0aee385c4e01cdc904342214dfaa6b01dc35d80d32519ea625c597d2",
+  "dirty": false,
+  "dirty_paths": [],
+  "environment": {
+    "numpy": "2.4.6",
+    "platform": "Windows 10 (win32)",
+    "python": "3.11.15"
+  },
+  "label": "MEASURED",
+  "metrics": [
+    {
+      "arm": null,
+      "ci": {
+        "hi": 0.9620078783142922,
+        "level": 0.95,
+        "lo": 0.8930185109092662,
+        "method": "wilson",
+        "n_clusters": 202
+      },
+      "depends_on": [
+        "ingredient_table",
+        "parser_rules"
+      ],
+      "group": {
+        "stratum": "random"
+      },
+      "n": 202,
+      "name": "mention_accuracy",
+      "role": "product",
+      "split": "test",
+      "value": 0.9356435643564357
+    },
+    {
+      "arm": null,
+      "ci": {
+        "hi": 0.9858236209966809,
+        "level": 0.95,
+        "lo": 0.9345069335754006,
+        "method": "wilson",
+        "n_clusters": 195
+      },
+      "depends_on": [
+        "ingredient_table",
+        "parser_rules"
+      ],
+      "group": {
+        "stratum": "random"
+      },
+      "n": 195,
+      "name": "parser_precision",
+      "role": "sanity",
+      "split": "test",
+      "value": 0.9692307692307692
+    },
+    {
+      "arm": null,
+      "ci": {
+        "hi": 0.7947810491439429,
+        "level": 0.95,
+        "lo": 0.7682138858392923,
+        "method": "wilson",
+        "n_clusters": 3712
+      },
+      "depends_on": [
+        "ingredient_table",
+        "pack_rules"
+      ],
+      "n": 3712,
+      "name": "recipes_fully_read",
+      "role": "product",
+      "split": "all",
+      "value": 0.7817887931034483
+    }
+  ],
+  "schema": 1,
+  "seed": 46,
+  "what": "M3 acceptance run 2 on the 200 fresh held-out lines (all random stratum), scored against the frozen blind id map. Pack counts are copied from results/m3_pack_v2.json. Second attempt at the run 1 targets."
+}
