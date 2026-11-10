@@ -1,0 +1,716 @@
+{
+  "arms": [],
+  "command": "node web/scripts/latency-ui.mjs --url http://127.0.0.1:4175/ --rate 6 --runs 15 --seed 1 --out latency_ui.json",
+  "commit": "f7be8451b276535fd1c94be46c58baec97c3fb19",
+  "comparisons": [],
+  "config": {
+    "cache": "disabled",
+    "cpu_throttle_rate": 6,
+    "goal_p95_ms": 100,
+    "pass_p95_ms": 200,
+    "paste_start_sizes": [
+      0,
+      8
+    ],
+    "pool": [
+      "egg",
+      "flour",
+      "milk",
+      "butter",
+      "sugar",
+      "onion",
+      "garlic",
+      "tomato",
+      "chicken",
+      "rice",
+      "potato",
+      "cheese",
+      "carrot",
+      "lemon",
+      "beef",
+      "pasta",
+      "apple",
+      "honey",
+      "spinach",
+      "basil"
+    ],
+    "runs_per_cell": 15,
+    "start_sizes": [
+      3,
+      8,
+      15
+    ],
+    "typed": [
+      "mushroom",
+      "cinnamon",
+      "yogurt",
+      "bread",
+      "pork",
+      "lime"
+    ],
+    "warmup_runs": 2
+  },
+  "corpus_fingerprint": "core.v2.json.gz sha256 1c2bcf5a0ac31813e9e08279c7729830c0658474a4d7fed8c8bfd1a94379a313",
+  "dirty": false,
+  "dirty_paths": [],
+  "environment": {
+    "node": "v24.14.0",
+    "platform": "Windows_NT 10.0.19045 (win32)"
+  },
+  "label": "MEASURED",
+  "metrics": [
+    {
+      "arm": null,
+      "depends_on": [],
+      "group": {
+        "action": "chip",
+        "start_size": 3
+      },
+      "n": 13,
+      "name": "latency_p50_ms",
+      "role": "latency",
+      "split": "all",
+      "value": 297
+    },
+    {
+      "arm": null,
+      "depends_on": [],
+      "group": {
+        "action": "chip",
+        "start_size": 3
+      },
+      "n": 13,
+      "name": "latency_p95_ms",
+      "role": "latency",
+      "split": "all",
+      "value": 416.09999999403954
+    },
+    {
+      "arm": null,
+      "depends_on": [],
+      "group": {
+        "action": "chip",
+        "start_size": 3
+      },
+      "n": 13,
+      "name": "latency_max_ms",
+      "role": "latency",
+      "split": "all",
+      "value": 416.09999999403954
+    },
+    {
+      "arm": null,
+      "depends_on": [],
+      "group": {
+        "action": "enter",
+        "start_size": 3
+      },
+      "n": 13,
+      "name": "latency_p50_ms",
+      "role": "latency",
+      "split": "all",
+      "value": 282.2000000178814
+    },
+    {
+      "arm": null,
+      "depends_on": [],
+      "group": {
+        "action": "enter",
+        "start_size": 3
+      },
+      "n": 13,
+      "name": "latency_p95_ms",
+      "role": "latency",
+      "split": "all",
+      "value": 329.10000002384186
+    },
+    {
+      "arm": null,
+      "depends_on": [],
+      "group": {
+        "action": "enter",
+        "start_size": 3
+      },
+      "n": 13,
+      "name": "latency_max_ms",
+      "role": "latency",
+      "split": "all",
+      "value": 329.10000002384186
+    },
+    {
+      "arm": null,
+      "depends_on": [],
+      "group": {
+        "action": "ticket",
+        "start_size": 3
+      },
+      "n": 13,
+      "name": "latency_p50_ms",
+      "role": "latency",
+      "split": "all",
+      "value": 376.80000001192093
+    },
+    {
+      "arm": null,
+      "depends_on": [],
+      "group": {
+        "action": "ticket",
+        "start_size": 3
+      },
+      "n": 13,
+      "name": "latency_p95_ms",
+      "role": "latency",
+      "split": "all",
+      "value": 485.19999998807907
+    },
+    {
+      "arm": null,
+      "depends_on": [],
+      "group": {
+        "action": "ticket",
+        "start_size": 3
+      },
+      "n": 13,
+      "name": "latency_max_ms",
+      "role": "latency",
+      "split": "all",
+      "value": 485.19999998807907
+    },
+    {
+      "arm": null,
+      "depends_on": [],
+      "group": {
+        "action": "chip",
+        "start_size": 8
+      },
+      "n": 13,
+      "name": "latency_p50_ms",
+      "role": "latency",
+      "split": "all",
+      "value": 316.90000000596046
+    },
+    {
+      "arm": null,
+      "depends_on": [],
+      "group": {
+        "action": "chip",
+        "start_size": 8
+      },
+      "n": 13,
+      "name": "latency_p95_ms",
+      "role": "latency",
+      "split": "all",
+      "value": 559.5
+    },
+    {
+      "arm": null,
+      "depends_on": [],
+      "group": {
+        "action": "chip",
+        "start_size": 8
+      },
+      "n": 13,
+      "name": "latency_max_ms",
+      "role": "latency",
+      "split": "all",
+      "value": 559.5
+    },
+    {
+      "arm": null,
+      "depends_on": [],
+      "group": {
+        "action": "enter",
+        "start_size": 8
+      },
+      "n": 13,
+      "name": "latency_p50_ms",
+      "role": "latency",
+      "split": "all",
+      "value": 265.40000000596046
+    },
+    {
+      "arm": null,
+      "depends_on": [],
+      "group": {
+        "action": "enter",
+        "start_size": 8
+      },
+      "n": 13,
+      "name": "latency_p95_ms",
+      "role": "latency",
+      "split": "all",
+      "value": 353.59999999403954
+    },
+    {
+      "arm": null,
+      "depends_on": [],
+      "group": {
+        "action": "enter",
+        "start_size": 8
+      },
+      "n": 13,
+      "name": "latency_max_ms",
+      "role": "latency",
+      "split": "all",
+      "value": 353.59999999403954
+    },
+    {
+      "arm": null,
+      "depends_on": [],
+      "group": {
+        "action": "ticket",
+        "start_size": 8
+      },
+      "n": 13,
+      "name": "latency_p50_ms",
+      "role": "latency",
+      "split": "all",
+      "value": 389.19999998807907
+    },
+    {
+      "arm": null,
+      "depends_on": [],
+      "group": {
+        "action": "ticket",
+        "start_size": 8
+      },
+      "n": 13,
+      "name": "latency_p95_ms",
+      "role": "latency",
+      "split": "all",
+      "value": 466.09999999403954
+    },
+    {
+      "arm": null,
+      "depends_on": [],
+      "group": {
+        "action": "ticket",
+        "start_size": 8
+      },
+      "n": 13,
+      "name": "latency_max_ms",
+      "role": "latency",
+      "split": "all",
+      "value": 466.09999999403954
+    },
+    {
+      "arm": null,
+      "depends_on": [],
+      "group": {
+        "action": "chip",
+        "start_size": 15
+      },
+      "n": 13,
+      "name": "latency_p50_ms",
+      "role": "latency",
+      "split": "all",
+      "value": 334.30000001192093
+    },
+    {
+      "arm": null,
+      "depends_on": [],
+      "group": {
+        "action": "chip",
+        "start_size": 15
+      },
+      "n": 13,
+      "name": "latency_p95_ms",
+      "role": "latency",
+      "split": "all",
+      "value": 482.09999999403954
+    },
+    {
+      "arm": null,
+      "depends_on": [],
+      "group": {
+        "action": "chip",
+        "start_size": 15
+      },
+      "n": 13,
+      "name": "latency_max_ms",
+      "role": "latency",
+      "split": "all",
+      "value": 482.09999999403954
+    },
+    {
+      "arm": null,
+      "depends_on": [],
+      "group": {
+        "action": "enter",
+        "start_size": 15
+      },
+      "n": 13,
+      "name": "latency_p50_ms",
+      "role": "latency",
+      "split": "all",
+      "value": 253.69999998807907
+    },
+    {
+      "arm": null,
+      "depends_on": [],
+      "group": {
+        "action": "enter",
+        "start_size": 15
+      },
+      "n": 13,
+      "name": "latency_p95_ms",
+      "role": "latency",
+      "split": "all",
+      "value": 318.59999999403954
+    },
+    {
+      "arm": null,
+      "depends_on": [],
+      "group": {
+        "action": "enter",
+        "start_size": 15
+      },
+      "n": 13,
+      "name": "latency_max_ms",
+      "role": "latency",
+      "split": "all",
+      "value": 318.59999999403954
+    },
+    {
+      "arm": null,
+      "depends_on": [],
+      "group": {
+        "action": "ticket",
+        "start_size": 15
+      },
+      "n": 13,
+      "name": "latency_p50_ms",
+      "role": "latency",
+      "split": "all",
+      "value": 372.69999998807907
+    },
+    {
+      "arm": null,
+      "depends_on": [],
+      "group": {
+        "action": "ticket",
+        "start_size": 15
+      },
+      "n": 13,
+      "name": "latency_p95_ms",
+      "role": "latency",
+      "split": "all",
+      "value": 474.2999999821186
+    },
+    {
+      "arm": null,
+      "depends_on": [],
+      "group": {
+        "action": "ticket",
+        "start_size": 15
+      },
+      "n": 13,
+      "name": "latency_max_ms",
+      "role": "latency",
+      "split": "all",
+      "value": 474.2999999821186
+    },
+    {
+      "arm": null,
+      "depends_on": [],
+      "group": {
+        "action": "paste",
+        "start_size": 0
+      },
+      "n": 13,
+      "name": "latency_p50_ms",
+      "role": "latency",
+      "split": "all",
+      "value": 2286.0999999940395
+    },
+    {
+      "arm": null,
+      "depends_on": [],
+      "group": {
+        "action": "paste",
+        "start_size": 0
+      },
+      "n": 13,
+      "name": "latency_p95_ms",
+      "role": "latency",
+      "split": "all",
+      "value": 2468.5
+    },
+    {
+      "arm": null,
+      "depends_on": [],
+      "group": {
+        "action": "paste",
+        "start_size": 0
+      },
+      "n": 13,
+      "name": "latency_max_ms",
+      "role": "latency",
+      "split": "all",
+      "value": 2468.5
+    },
+    {
+      "arm": null,
+      "depends_on": [],
+      "group": {
+        "action": "paste",
+        "start_size": 8
+      },
+      "n": 13,
+      "name": "latency_p50_ms",
+      "role": "latency",
+      "split": "all",
+      "value": 673.4000000059605
+    },
+    {
+      "arm": null,
+      "depends_on": [],
+      "group": {
+        "action": "paste",
+        "start_size": 8
+      },
+      "n": 13,
+      "name": "latency_p95_ms",
+      "role": "latency",
+      "split": "all",
+      "value": 887.1000000238419
+    },
+    {
+      "arm": null,
+      "depends_on": [],
+      "group": {
+        "action": "paste",
+        "start_size": 8
+      },
+      "n": 13,
+      "name": "latency_max_ms",
+      "role": "latency",
+      "split": "all",
+      "value": 887.1000000238419
+    }
+  ],
+  "raw": {
+    "by_cell": {
+      "chip@15": {
+        "max": 482.09999999403954,
+        "n": 13,
+        "p50": 334.30000001192093,
+        "p95": 482.09999999403954
+      },
+      "chip@3": {
+        "max": 416.09999999403954,
+        "n": 13,
+        "p50": 297,
+        "p95": 416.09999999403954
+      },
+      "chip@8": {
+        "max": 559.5,
+        "n": 13,
+        "p50": 316.90000000596046,
+        "p95": 559.5
+      },
+      "enter@15": {
+        "max": 318.59999999403954,
+        "n": 13,
+        "p50": 253.69999998807907,
+        "p95": 318.59999999403954
+      },
+      "enter@3": {
+        "max": 329.10000002384186,
+        "n": 13,
+        "p50": 282.2000000178814,
+        "p95": 329.10000002384186
+      },
+      "enter@8": {
+        "max": 353.59999999403954,
+        "n": 13,
+        "p50": 265.40000000596046,
+        "p95": 353.59999999403954
+      },
+      "paste@0": {
+        "max": 2468.5,
+        "n": 13,
+        "p50": 2286.0999999940395,
+        "p95": 2468.5
+      },
+      "paste@8": {
+        "max": 887.1000000238419,
+        "n": 13,
+        "p50": 673.4000000059605,
+        "p95": 887.1000000238419
+      },
+      "ticket@15": {
+        "max": 474.2999999821186,
+        "n": 13,
+        "p50": 372.69999998807907,
+        "p95": 474.2999999821186
+      },
+      "ticket@3": {
+        "max": 485.19999998807907,
+        "n": 13,
+        "p50": 376.80000001192093,
+        "p95": 485.19999998807907
+      },
+      "ticket@8": {
+        "max": 466.09999999403954,
+        "n": 13,
+        "p50": 389.19999998807907,
+        "p95": 466.09999999403954
+      }
+    },
+    "cells_over_goal": [
+      "chip@3",
+      "enter@3",
+      "ticket@3",
+      "chip@8",
+      "enter@8",
+      "ticket@8",
+      "chip@15",
+      "enter@15",
+      "ticket@15",
+      "paste@0",
+      "paste@8"
+    ],
+    "cells_over_pass_line": [
+      "chip@3",
+      "enter@3",
+      "ticket@3",
+      "chip@8",
+      "enter@8",
+      "ticket@8",
+      "chip@15",
+      "enter@15",
+      "ticket@15",
+      "paste@0",
+      "paste@8"
+    ],
+    "commit_by_cell": {
+      "chip@15": {
+        "max": 230.2999999821186,
+        "n": 13,
+        "p50": 179.59999999403954,
+        "p95": 230.2999999821186
+      },
+      "chip@3": {
+        "max": 210.2999999821186,
+        "n": 13,
+        "p50": 150.90000000596046,
+        "p95": 210.2999999821186
+      },
+      "chip@8": {
+        "max": 292.2999999821186,
+        "n": 13,
+        "p50": 142.19999998807907,
+        "p95": 292.2999999821186
+      },
+      "enter@15": {
+        "max": 179.09999999403954,
+        "n": 13,
+        "p50": 141.69999998807907,
+        "p95": 179.09999999403954
+      },
+      "enter@3": {
+        "max": 205.59999999403954,
+        "n": 13,
+        "p50": 147.2000000178814,
+        "p95": 205.59999999403954
+      },
+      "enter@8": {
+        "max": 178.5,
+        "n": 13,
+        "p50": 137,
+        "p95": 178.5
+      },
+      "paste@0": {
+        "max": 847.8000000119209,
+        "n": 13,
+        "p50": 668.0999999940395,
+        "p95": 847.8000000119209
+      },
+      "paste@8": {
+        "max": 464.30000001192093,
+        "n": 13,
+        "p50": 332.89999997615814,
+        "p95": 464.30000001192093
+      },
+      "ticket@15": {
+        "max": 271.39999997615814,
+        "n": 13,
+        "p50": 169.39999997615814,
+        "p95": 271.39999997615814
+      },
+      "ticket@3": {
+        "max": 201.2999999821186,
+        "n": 13,
+        "p50": 142.40000000596046,
+        "p95": 201.2999999821186
+      },
+      "ticket@8": {
+        "max": 198.39999997615814,
+        "n": 13,
+        "p50": 162.19999998807907,
+        "p95": 198.39999997615814
+      }
+    },
+    "config": {
+      "cache": "disabled",
+      "cpu_throttle_rate": 6,
+      "goal_p95_ms": 100,
+      "pass_p95_ms": 200,
+      "paste_start_sizes": [
+        0,
+        8
+      ],
+      "pool": [
+        "egg",
+        "flour",
+        "milk",
+        "butter",
+        "sugar",
+        "onion",
+        "garlic",
+        "tomato",
+        "chicken",
+        "rice",
+        "potato",
+        "cheese",
+        "carrot",
+        "lemon",
+        "beef",
+        "pasta",
+        "apple",
+        "honey",
+        "spinach",
+        "basil"
+      ],
+      "runs_per_cell": 15,
+      "start_sizes": [
+        3,
+        8,
+        15
+      ],
+      "typed": [
+        "mushroom",
+        "cinnamon",
+        "yogurt",
+        "bread",
+        "pork",
+        "lime"
+      ],
+      "warmup_runs": 2
+    },
+    "limits": "Headless Chromium on a development laptop, local preview server, CPU throttle only. Page-ready time is unthrottled. The end of each timing is two animation frames after the kitchen grows, so it is more than the engine call alone. One run, no real phone.",
+    "load_retries": 0,
+    "page_ready_ms": {
+      "max": 1035,
+      "n": 75,
+      "p50": 326,
+      "p95": 390
+    },
+    "skipped_runs": {},
+    "url": "http://127.0.0.1:4175/"
+  },
+  "schema": 1,
+  "seed": 1,
+  "what": "Action to painted frame on the one-screen page: chip tap, Enter on a typed item, paste of about 20 items, 'Add' on the ticket. Production build, real pack v2, headless Chromium, CPU throttled"
+}
