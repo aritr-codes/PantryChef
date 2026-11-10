@@ -5,7 +5,7 @@ import { readFileSync } from "node:fs";
 import { resolve as resolvePath } from "node:path";
 import { describe, expect, it } from "vitest";
 import { Engine } from "../src/engine";
-import { resolveList, splitList, stripLead } from "../src/list";
+import { mergeRestore, resolveList, splitList, stripLead } from "../src/list";
 import { recipeSlots } from "../src/slots";
 import { load, save, storageWorks } from "../src/store";
 import { ticket, ticketText } from "../src/ticket";
@@ -51,9 +51,20 @@ describe("stripLead", () => {
   it("removes a leading quantity and article", () => {
     expect(stripLead("2 onions")).toBe("onions");
     expect(stripLead("1/2 cup")).toBe("cup");
+    expect(stripLead("1/2 cup flour")).toBe("flour");
+    expect(stripLead("2 cloves of garlic")).toBe("garlic");
+    expect(stripLead("2 cloves")).toBe("cloves");
+    expect(stripLead("cloves")).toBe("cloves");
     expect(stripLead("a lemon")).toBe("lemon");
     expect(stripLead("some rice")).toBe("rice");
     expect(stripLead("onion")).toBe("onion");
+  });
+});
+
+describe("mergeRestore", () => {
+  it("puts the snapshot back and keeps what was added since, without repeats", () => {
+    expect(mergeRestore(["a", "b"], ["c", "a"])).toEqual(["a", "b", "c"]);
+    expect(mergeRestore(["a"], [])).toEqual(["a"]);
   });
 });
 

@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useRef, useState } from "preact/hooks";
 import type { Engine } from "./engine";
-import { resolveList } from "./list";
+import { mergeRestore, resolveList } from "./list";
 import { UndoBar, type Undo } from "./UndoBar";
 
 interface Props {
@@ -12,8 +12,8 @@ interface Props {
   open: boolean; // phone only: the full kitchen is shown
   undo: Undo | null;
   setOpen: (open: boolean) => void;
-  setIds: (ids: string[]) => void;
-  setUnknown: (names: string[]) => void;
+  setIds: (ids: string[] | ((cur: string[]) => string[])) => void;
+  setUnknown: (names: string[] | ((cur: string[]) => string[])) => void;
   setStaples: (ids: string[]) => void;
   say: (message: string) => void;
   notify: (undo: Undo) => void;
@@ -21,6 +21,7 @@ interface Props {
 }
 
 const QUICK = 10;
+const STAMPS = 5; // more stamps than this are summarised, so a big paste stays fast
 const LIST_BREAK = /[,;\n\r]|\sand\s/i;
 
 export function Kitchen(p: Props) {
@@ -38,6 +39,9 @@ export function Kitchen(p: Props) {
     pending.current = null;
   });
 
+  const stamps = p.unknown.slice(0, STAMPS);
+  // Suggestions for each stamp, worked out once per list and not on every keystroke.
+  const stampHints = useMemo(() => stamps.map((n) => p.engine.suggest(n, 3)), [p.engine, stamps.join("\n")]);
   const suggestions = text.trim() ? p.engine.suggest(text) : [];
   const count = p.ids.length;
   const empty = count === 0;
@@ -134,8 +138,8 @@ export function Kitchen(p: Props) {
       where: "kitchen",
       msg: "Kitchen cleared.",
       run: () => {
-        p.setIds(before.ids);
-        p.setUnknown(before.unknown);
+        p.setIds((cur) => mergeRestore(before.ids, cur));
+        p.setUnknown((cur) => mergeRestore(before.unknown, cur));
         p.say("Kitchen restored.");
       },
     });
@@ -238,12 +242,12 @@ export function Kitchen(p: Props) {
               </ul>
             )}
 
-            {p.unknown.map((name) => (
+            {stamps.map((name, n) => (
               <div key={name} class="stamp" role="group" aria-label={`Not on the list: ${name}`}>
                 <p>
                   Not on the list: “{name}”. It is not used for matching.
                 </p>
-                {p.engine.suggest(name, 3).map((s) => (
+                {(stampHints[n] ?? []).map((s) => (
                   <button
                     key={s.id}
                     type="button"
@@ -261,6 +265,23 @@ export function Kitchen(p: Props) {
                 </button>
               </div>
             ))}
+            {p.unknown.length > STAMPS && (
+              <div class="stamp" role="group" aria-label="More words not on the list">
+                <p>
+                  and {p.unknown.length - STAMPS} more not on the list. They are not used for matching.
+                </p>
+                <button
+                  type="button"
+                  class="btn"
+                  onClick={() => {
+                    p.setUnknown([]);
+                    pending.current = () => input.current?.focus();
+                  }}
+                >
+                  Dismiss all
+                </button>
+              </div>
+            )}
 
             {quick.length > 0 && (
               <>

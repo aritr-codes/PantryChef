@@ -19,12 +19,22 @@ export function splitList(text: string): string[] {
     .filter(Boolean);
 }
 
-/** Remove a leading quantity or article: "2 onions" becomes "onions". */
+const UNIT =
+  /^(?:cups?|tbsps?|tsps?|tablespoons?|teaspoons?|g|kg|ml|l|oz|lbs?|pounds?|cloves?|cans?|pinch(?:es)?|bunch(?:es)?|slices?)\b\s+(?:of\s+)?(?=\S)/i;
+
+/**
+ * Remove a leading quantity, a unit that follows a quantity, or an article:
+ * "2 onions" becomes "onions", "1/2 cup flour" becomes "flour". A unit with nothing after it stays.
+ */
 export function stripLead(name: string): string {
-  return name
-    .replace(/^[\d\s/.]+/, "")
-    .replace(/^(a|an|some|the)\s+/i, "")
-    .trim();
+  const qty = /^[\d\s/.]+/.exec(name);
+  const rest = qty ? name.slice(qty[0].length).replace(UNIT, "") : name;
+  return rest.replace(/^(a|an|some|the)\s+/i, "").trim();
+}
+
+/** Undo for "Clear all": the snapshot comes back, and items added since are kept. */
+export function mergeRestore(before: string[], current: string[]): string[] {
+  return [...before, ...current.filter((x) => !before.includes(x))];
 }
 
 function same(list: string[], name: string): boolean {
