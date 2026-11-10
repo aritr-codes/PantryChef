@@ -211,15 +211,29 @@ This is the command that the results file stores for its last row. The tool appe
 
 The file stores the command of its last write only. It stores the table size of each row and not the table path, so step 2 uses the table that sits in the checked-out tree. I did not re-run rows 0 to 7 for this section. The values come from the results file.
 
-### Acceptance run (NOT RUN YET)
+### Acceptance run (MEASURED, one target FAILED)
 
-`scripts/m3_acceptance.py` scores the held-out test lines (the test half of the sheet plus the extra lines) and the test typed inputs once, on a clean tree, against two blind gold-to-id maps. It compares the M1 resolver and the M3 resolver on the typed inputs. It writes `results/m3_acceptance.json`. That file does not exist. No number is quoted here.
+Source: [results/m3_acceptance.json](../results/m3_acceptance.json), commit `ca4fa8b`, clean tree, run once on 2026-11-10. `scripts/m3_acceptance.py` scores the held-out test lines (the test half of the sheet plus the extra lines) and the test typed inputs against two blind gold-to-id maps. It compares the M1 resolver and the M3 resolver on the typed inputs.
+
+| Target | Result | Verdict |
+| --- | --- | --- |
+| `mention_accuracy`, random stratum, at least 0.90 | 0.8205 (128 of 156 gold groups, Wilson 95% 0.7528 to 0.8728) | **FAIL** |
+| `parser_precision`, random stratum, at least 0.90 | 0.9209 (128 of 139 predicted groups, Wilson 95% 0.8638 to 0.9552) | PASS |
+| `input_accuracy`, M3, at least 0.90 | 0.9639 (80 of 83, Wilson 95% 0.8990 to 0.9876) | PASS |
+| `recipes_fully_read`, at least 0.60 | 0.7244 (2,689 of 3,712). In-sample, copied from the pack result | PASS |
+| Recipes kept, at least 2,500 | 3,712 | PASS |
+
+The hard stratum scored `mention_accuracy` 0.84 and the rare stratum 0.8824. Both are reported apart and gate nothing (D2). On the random stratum, 10 of 156 gold groups have no row in the table, and 26 gold groups were not found by the parser in total.
+
+On the typed inputs, M1 read 72 of 83 and M3 read 80 of 83. M3 was right and M1 wrong on 8 inputs. M1 was right and M3 wrong on none. McNemar exact p 0.0078. Paired difference +0.0964, bootstrap 95% interval +0.0361 to +0.1687 (seed 46, 10,000 resamples).
+
+The M3 plan says to stop and report when a target fails. The target stays at 0.90. The test set is spent: nobody tuned on it and nobody scored again. A new claim of 0.90 needs a new held-out set.
 
 ```bash
 uv run python scripts/m3_acceptance.py
 ```
 
-The run needs `data/eval/m3_gold_id_map.v1.json` and `data/eval/m3_input_gold_id_map.v1.json`. Neither file exists yet. The owner checks the mappings that differ from the table-key lookup before the run (plan D9). `uv run python scripts/m3_acceptance.py --dry-run-on dev --out PATH` runs the same code on the dev halves and never reads test data.
+The run needs `data/eval/m3_gold_id_map.v1.json` and `data/eval/m3_input_gold_id_map.v1.json`. The owner checked the 16 mappings that differ from the table-key lookup before the run and changed none (plan D9). `uv run python scripts/m3_acceptance.py --dry-run-on dev --out PATH` runs the same code on the dev halves and never reads test data.
 
 ### Graph spike result (MEASURED)
 

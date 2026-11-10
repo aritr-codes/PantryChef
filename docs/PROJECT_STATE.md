@@ -241,7 +241,7 @@ Results files (each one links commit, config and command):
 - [results/m3_bare_pepper.json](../results/m3_bare_pepper.json): the bare pepper decision.
 - [results/m3_pack_v2.json](../results/m3_pack_v2.json): pack v2 counts and build gates.
 - [results/m3_graph_spike.json](../results/m3_graph_spike.json): the ADR 0006 spike result (empty pool).
-- Not written yet: `results/m3_acceptance.json`.
+- [results/m3_acceptance.json](../results/m3_acceptance.json): the M3 acceptance run. One target failed.
 
 | Item | Result | Label |
 | --- | --- | --- |
@@ -250,12 +250,12 @@ Results files (each one links commit, config and command):
 | Dev baseline, M1 resolver | `mention_accuracy` 0.8026, `parser_precision` 0.8905, `input_accuracy` 0.8916 (74 of 83) | MEASURED ([results/m3_m1_dev_baseline.json](../results/m3_m1_dev_baseline.json)) |
 | Pack v2 | 3,712 recipes, `recipes_fully_read` 0.7244 (2,689 of 3,712), `core.v2.json.gz` 502,837 bytes, 872 ingredients. In-sample. The build gates in the file pass | MEASURED ([results/m3_pack_v2.json](../results/m3_pack_v2.json)) |
 | Bare pepper | 56 of 80 labelled lines are black pepper (0.700, Wilson 95% 0.5923 to 0.7894). The rule stays `staple_cue_or_taste` | MEASURED, one blind model labeller, no owner adjudication |
-| Acceptance run | `scripts/m3_acceptance.py` exists and has not run on the test data | NOT RUN YET |
+| Acceptance run | Ran once on 2026-11-10 at `ca4fa8b`. Random-stratum `mention_accuracy` 0.8205 (target 0.90): **FAIL**. `parser_precision` 0.9209, `input_accuracy` 0.9639 (M1 0.8675, McNemar p 0.0078), `recipes_fully_read` 0.7244 and 3,712 recipes: PASS | MEASURED ([results/m3_acceptance.json](../results/m3_acceptance.json)). Stopped and reported, target not lowered |
 | Graph spike (ADR 0006) | Verdict `rejected`, reason `no_new_recipes`. Edge option b: 17 of 157 edges usable (16 `is_a`, 1 `form_of`), longest chain 1. Pool of new items 0. Edge-source hits 0 of 40 pantries. Decoy candidates 733 (make now) and 1,750 (one away). Nobody rated, so T1 to T3 were not tested. ADR 0006 is Rejected. Narrow: it does not show that traversal fails for pantries that name specific kinds, and it says nothing about multi-hop traversal | MEASURED ([results/m3_graph_spike.json](../results/m3_graph_spike.json)) |
 
 Pending:
 
-- The acceptance run, once, on a clean tree. If a target fails, stop and report. Do not lower it.
+- The owner decides what to do about the failed `mention_accuracy` target (0.8205 against 0.90). The test set is spent. Any new claim needs a new held-out set.
 - The release of pack v2. The owner uploads release `pack-v2` and runs the Pages workflow. Nothing is deployed, and the release `pack-v2` does not exist.
 
 This section makes no claim that an M3 target is met or missed. The acceptance run decides that.

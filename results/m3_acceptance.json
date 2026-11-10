@@ -1,0 +1,392 @@
+{
+  "arms": [],
+  "command": "uv run python scripts/m3_acceptance.py",
+  "commit": "ca4fa8bbb27ac881c70440cffc47906e2ff97810",
+  "comparisons": [],
+  "config": {
+    "all_targets_met": false,
+    "dry_run": false,
+    "failed": [
+      "mention_accuracy_random"
+    ],
+    "files_sha256": {
+      "data/eval/m3_gold_id_map.v1.json": "c8d3e145c7b3a61b53d1a77d2a02f1a5c3895b60f4f861d99e36d92be5b2a635",
+      "data/eval/m3_input_gold_id_map.v1.json": "4374291ed5b3965f2f41ce15167c0407a98c4672b8572604b1752a0bf55a4b47",
+      "data/eval/parser_gold/extra.v1.json": "fad36c5c944b8652b6acb6d5bf5c3d6344bccc880b0a0291e846342bc945512e",
+      "data/eval/parser_gold/labels.extra.v1.json": "06df01983502fc55774fb0d5e38b655503331bd983616640356b99d78a1bb58f",
+      "data/eval/parser_gold/labels.test.v2.json": "1baf01596849855eba246ce96c75e0d55f959c789173a0945de8b5109344254a",
+      "data/eval/parser_gold/sheet.v1.json": "2214589d05274ad4371e809b2e869a99c59314931961e59408b2673c766f5cbd",
+      "data/eval/realistic_inputs.labels.v1.json": "18081102949d9cbca0d9e88bbbb9523348aeb58117672e7219c1c45b28fc5fb9",
+      "data/eval/realistic_inputs.split.v1.json": "c590f06c66b57374a1fad2d5e18b3fae1ec9d6bc075cae87a251e79e82e63929",
+      "data/ingredients/ingredients.csv": "a896631e5b1f3bd738e15aff1460f8874347006307d8ea1270fdb709bb95ed01",
+      "data/ingredients/ingredients.v2.csv": "a03baecd93238cc3e60ea44e033f0fbcb9c6ababca7ed0aba5b7fbe89bbd761e",
+      "data/ingredients/words.v1.json": "357f3735ea543d3b7def5349dc6d980f9b12d96b3858fba5fd3dc15ef2822836",
+      "results/m3_pack_v2.json": "62dfe25e9e9aebb3eee6f4e0820d9cbd5bdf30ba52949f9ed87e2cb73fa0676c"
+    },
+    "gold_to_id": "frozen blind id map (D9)",
+    "ignored_untracked": [
+      ".claude",
+      ".codegraph",
+      "CODEX_HANDOFF.md",
+      "TestRun.md",
+      "scratch_codex_audit_prompt.md",
+      "temp_pytest",
+      "data/interim"
+    ],
+    "inputs": {
+      "bootstrap": {
+        "hi": 0.1686746987951807,
+        "level": 0.95,
+        "lo": 0.03614457831325301,
+        "method": "cluster-bootstrap-percentile",
+        "n_clusters": 83,
+        "resamples": 10000,
+        "seed": 46
+      },
+      "diff": 0.0963855421686747,
+      "m1": {
+        "correct": 72,
+        "input_accuracy": 0.8674698795180723,
+        "n": 83
+      },
+      "m1_only_correct": 0,
+      "m3": {
+        "correct": 80,
+        "input_accuracy": 0.963855421686747,
+        "n": 83
+      },
+      "m3_only_correct": 8,
+      "mcnemar_p": 0.0078125,
+      "n": 83
+    },
+    "pack": {
+      "core_bytes": 502837,
+      "recipes": 3712,
+      "recipes_fully_read": 0.7244073275862069,
+      "recipes_fully_read_count": 2689
+    },
+    "parser": {
+      "hard": {
+        "f1": 0.895167286245353,
+        "gold_found": 43,
+        "gold_groups": 50,
+        "gold_out_of_table": 2,
+        "lines": 50,
+        "mention_accuracy": 0.84,
+        "mention_correct": 42,
+        "optional_accuracy": 1.0,
+        "optional_n": 45,
+        "precision": 0.9333333333333333,
+        "pred_correct": 42,
+        "pred_groups": 45,
+        "recall": 0.86
+      },
+      "random": {
+        "f1": 0.8749145591250854,
+        "gold_found": 130,
+        "gold_groups": 156,
+        "gold_out_of_table": 10,
+        "lines": 150,
+        "mention_accuracy": 0.8205128205128205,
+        "mention_correct": 128,
+        "optional_accuracy": 0.9927007299270073,
+        "optional_n": 137,
+        "precision": 0.920863309352518,
+        "pred_correct": 128,
+        "pred_groups": 139,
+        "recall": 0.8333333333333334
+      },
+      "rare": {
+        "f1": 0.8910891089108911,
+        "gold_found": 45,
+        "gold_groups": 51,
+        "gold_out_of_table": 3,
+        "lines": 50,
+        "mention_accuracy": 0.8823529411764706,
+        "mention_correct": 45,
+        "optional_accuracy": 0.9375,
+        "optional_n": 48,
+        "precision": 0.9,
+        "pred_correct": 45,
+        "pred_groups": 50,
+        "recall": 0.8823529411764706
+      }
+    },
+    "resolvers": {
+      "m1": "shipped M1 resolver: one exact key lookup in the v1 table, old tokens canonicalize(fold(x)).split(), as resolve_names on main",
+      "m3": "pantrychef.ingredients.names.resolve_name on the v2 table, current tokens"
+    },
+    "split": "test",
+    "stop_and_report": true,
+    "tables": {
+      "v1_rows": 337,
+      "v2_rows": 872
+    },
+    "targets": [
+      {
+        "k": 128,
+        "metric": "mention_accuracy",
+        "n": 156,
+        "name": "mention_accuracy_random",
+        "status": "FAIL",
+        "target": 0.9,
+        "value": 0.8205128205128205,
+        "wilson_hi": 0.8727999468666725,
+        "wilson_lo": 0.7528194163028652
+      },
+      {
+        "k": 128,
+        "metric": "parser_precision",
+        "n": 139,
+        "name": "parser_precision_random",
+        "status": "PASS",
+        "target": 0.9,
+        "value": 0.920863309352518,
+        "wilson_hi": 0.9552391826267332,
+        "wilson_lo": 0.863849934269185
+      },
+      {
+        "k": 80,
+        "metric": "input_accuracy",
+        "n": 83,
+        "name": "input_accuracy_m3",
+        "status": "PASS",
+        "target": 0.9,
+        "value": 0.963855421686747,
+        "wilson_hi": 0.987632420875107,
+        "wilson_lo": 0.8990394046094535
+      },
+      {
+        "k": 2689,
+        "metric": "recipes_fully_read",
+        "n": 3712,
+        "name": "recipes_fully_read",
+        "status": "PASS",
+        "target": 0.6,
+        "value": 0.7244073275862069,
+        "wilson_hi": 0.7385437564369383,
+        "wilson_lo": 0.7098068944627125
+      },
+      {
+        "k": null,
+        "metric": null,
+        "n": 3712,
+        "name": "recipes",
+        "status": "PASS",
+        "target": 2500,
+        "value": 3712,
+        "wilson_hi": null,
+        "wilson_lo": null
+      }
+    ]
+  },
+  "corpus_fingerprint": "a1a076ab0aee385c4e01cdc904342214dfaa6b01dc35d80d32519ea625c597d2",
+  "dirty": false,
+  "dirty_paths": [],
+  "environment": {
+    "numpy": "2.4.6",
+    "platform": "Windows 10 (win32)",
+    "python": "3.11.15"
+  },
+  "label": "MEASURED",
+  "metrics": [
+    {
+      "arm": null,
+      "ci": {
+        "hi": 0.8727999468666725,
+        "level": 0.95,
+        "lo": 0.7528194163028652,
+        "method": "wilson",
+        "n_clusters": 156
+      },
+      "depends_on": [
+        "ingredient_table",
+        "parser_rules"
+      ],
+      "group": {
+        "stratum": "random"
+      },
+      "n": 156,
+      "name": "mention_accuracy",
+      "role": "product",
+      "split": "test",
+      "value": 0.8205128205128205
+    },
+    {
+      "arm": null,
+      "ci": {
+        "hi": 0.9552391826267332,
+        "level": 0.95,
+        "lo": 0.863849934269185,
+        "method": "wilson",
+        "n_clusters": 139
+      },
+      "depends_on": [
+        "ingredient_table",
+        "parser_rules"
+      ],
+      "group": {
+        "stratum": "random"
+      },
+      "n": 139,
+      "name": "parser_precision",
+      "role": "sanity",
+      "split": "test",
+      "value": 0.920863309352518
+    },
+    {
+      "arm": null,
+      "ci": {
+        "hi": 0.9166267863791231,
+        "level": 0.95,
+        "lo": 0.7148551903823401,
+        "method": "wilson",
+        "n_clusters": 50
+      },
+      "depends_on": [
+        "ingredient_table",
+        "parser_rules"
+      ],
+      "group": {
+        "stratum": "hard"
+      },
+      "n": 50,
+      "name": "mention_accuracy",
+      "role": "product",
+      "split": "test",
+      "value": 0.84
+    },
+    {
+      "arm": null,
+      "ci": {
+        "hi": 0.977068383537853,
+        "level": 0.95,
+        "lo": 0.8214312561135918,
+        "method": "wilson",
+        "n_clusters": 45
+      },
+      "depends_on": [
+        "ingredient_table",
+        "parser_rules"
+      ],
+      "group": {
+        "stratum": "hard"
+      },
+      "n": 45,
+      "name": "parser_precision",
+      "role": "sanity",
+      "split": "test",
+      "value": 0.9333333333333333
+    },
+    {
+      "arm": null,
+      "ci": {
+        "hi": 0.9449500123582723,
+        "level": 0.95,
+        "lo": 0.766188977022052,
+        "method": "wilson",
+        "n_clusters": 51
+      },
+      "depends_on": [
+        "ingredient_table",
+        "parser_rules"
+      ],
+      "group": {
+        "stratum": "rare"
+      },
+      "n": 51,
+      "name": "mention_accuracy",
+      "role": "product",
+      "split": "test",
+      "value": 0.8823529411764706
+    },
+    {
+      "arm": null,
+      "ci": {
+        "hi": 0.9565248760084288,
+        "level": 0.95,
+        "lo": 0.7863950966521162,
+        "method": "wilson",
+        "n_clusters": 50
+      },
+      "depends_on": [
+        "ingredient_table",
+        "parser_rules"
+      ],
+      "group": {
+        "stratum": "rare"
+      },
+      "n": 50,
+      "name": "parser_precision",
+      "role": "sanity",
+      "split": "test",
+      "value": 0.9
+    },
+    {
+      "arm": null,
+      "ci": {
+        "hi": 0.9243577121212803,
+        "level": 0.95,
+        "lo": 0.7780706171586962,
+        "method": "wilson",
+        "n_clusters": 83
+      },
+      "depends_on": [
+        "ingredient_table",
+        "name_resolver"
+      ],
+      "group": {
+        "resolver": "m1"
+      },
+      "n": 83,
+      "name": "input_accuracy",
+      "role": "product",
+      "split": "test",
+      "value": 0.8674698795180723
+    },
+    {
+      "arm": null,
+      "ci": {
+        "hi": 0.987632420875107,
+        "level": 0.95,
+        "lo": 0.8990394046094535,
+        "method": "wilson",
+        "n_clusters": 83
+      },
+      "depends_on": [
+        "ingredient_table",
+        "name_resolver"
+      ],
+      "group": {
+        "resolver": "m3"
+      },
+      "n": 83,
+      "name": "input_accuracy",
+      "role": "product",
+      "split": "test",
+      "value": 0.963855421686747
+    },
+    {
+      "arm": null,
+      "ci": {
+        "hi": 0.7385437564369383,
+        "level": 0.95,
+        "lo": 0.7098068944627125,
+        "method": "wilson",
+        "n_clusters": 3712
+      },
+      "depends_on": [
+        "ingredient_table",
+        "pack_rules"
+      ],
+      "n": 3712,
+      "name": "recipes_fully_read",
+      "role": "product",
+      "split": "all",
+      "value": 0.7244073275862069
+    }
+  ],
+  "schema": 1,
+  "seed": 46,
+  "what": "M3 acceptance. Parser lines (random stratum is the D2 gate; hard and rare are reported apart) and typed inputs (M1 against M3, paired), scored against the frozen blind id maps. Pack counts are copied from results/m3_pack_v2.json. "
+}

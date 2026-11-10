@@ -124,8 +124,7 @@ Done (code and tests exist, and the numbers are in [EVALUATION.md](EVALUATION.md
 
 Pending:
 
-- The acceptance run (`scripts/m3_acceptance.py`). It needs the two blind gold-to-id maps for the test data. It has not run, so no acceptance number exists.
-- The owner check of the mappings that differ from the table-key lookup (plan D9).
+- The owner decision on the acceptance result. The run happened once on 2026-11-10 ([results/m3_acceptance.json](../results/m3_acceptance.json)). Random-stratum `mention_accuracy` was 0.8205 against the 0.90 target, so M3 is not accepted. The other four targets pass.
 - The release of pack v2. The owner uploads release `pack-v2` and runs the Pages workflow.
 
 **Objective:** one trusted ingredient table.
