@@ -179,7 +179,7 @@ Source: [results/m3_pack_v2.json](../results/m3_pack_v2.json), build commit `fe8
 | Pack lines, unread pack lines | 32,782, 988 | none |
 | Required lines read | 29,583 of 30,571 (0.9677) | none |
 
-Pack v2 is built locally. Nothing is uploaded. The owner uploads release `pack-v2` and runs the Pages workflow (plan D7). The core hash depends on the build commit. The release must hold the exact files that commit `fe847bf` built. `web/pack-hashes.json` now holds their hashes (`core.v2.json.gz` sha256 `1c2bcf5a…`, 504,896 bytes, and `text.v2.json.gz` sha256 `08f3a934…`, 870,411 bytes). `node web/scripts/verify-pack.mjs` passes with those two local files (MEASURED).
+Pack v2 was built locally. The owner had release `pack-v2` uploaded and the Pages workflow run on 2026-11-10 (plan D7). The core hash depends on the build commit. The release must hold the exact files that commit `fe847bf` built. `web/pack-hashes.json` now holds their hashes (`core.v2.json.gz` sha256 `1c2bcf5a…`, 504,896 bytes, and `text.v2.json.gz` sha256 `08f3a934…`, 870,411 bytes). `node web/scripts/verify-pack.mjs` passes with those two local files (MEASURED).
 
 Reproduce: `uv run python scripts/build_pack.py --out build/pack && uv run python scripts/m3_pack_result.py --pack build/pack`.
 

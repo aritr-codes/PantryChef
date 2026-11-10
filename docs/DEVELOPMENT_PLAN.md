@@ -125,7 +125,7 @@ Done (code and tests exist, and the numbers are in [EVALUATION.md](EVALUATION.md
 Pending:
 
 - The owner decision on the acceptance result. Run 1 happened once on 2026-11-10 ([results/m3_acceptance.json](../results/m3_acceptance.json)). Random-stratum `mention_accuracy` was 0.8205 against the 0.90 target, so it failed. Run 2 was a second attempt on 200 fresh lines ([results/m3_acceptance_fresh.json](../results/m3_acceptance_fresh.json)). It scored 0.9356 (Wilson 95% 0.8930 to 0.9620), and `parser_precision` 0.9692, `recipes_fully_read` 0.7818 and 3,712 recipes also pass. `input_accuracy` was not scored again. The owner accepted M3 with caveats on 2026-11-10 (see PROJECT_STATE).
-- The release of pack v2. The hashes in `web/pack-hashes.json` match the final build. Upload release `pack-v2` when the M3 branch merges, then run the Pages workflow.
+- The release of pack v2. The hashes in `web/pack-hashes.json` match the final build. Done on 2026-11-10: release `pack-v2` is uploaded, `main` is pushed and the Pages workflow succeeded.
 
 **Objective:** one trusted ingredient table.
 
