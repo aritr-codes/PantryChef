@@ -46,6 +46,29 @@ describe("recipe text is rendered as text", () => {
   });
 });
 
+describe("the stylesheet", () => {
+  const css = readFileSync(join(src, "style.css"), "utf8");
+
+  it("is one light look: no dark-mode query, no dark colour scheme", () => {
+    expect(css).not.toMatch(/prefers-color-scheme/);
+    expect(css).toMatch(/color-scheme:\s*light\b/);
+  });
+
+  it("loads nothing from outside: no url(), @import or @font-face", () => {
+    expect(css).not.toMatch(/url\s*\(|@import|@font-face|https?:\/\//);
+  });
+
+  it("starts every animation, transition and keyframe use inside the no-preference query", () => {
+    // Cut the sheet at the motion block. Nothing before it may move.
+    const at = css.indexOf("@media (prefers-reduced-motion: no-preference)");
+    expect(at).toBeGreaterThan(0);
+    expect(css.slice(0, at)).not.toMatch(/\banimation(-\w+)?\s*:|\btransition(-\w+)?\s*:/);
+    // Only keyframes may follow the block, and the block uses no other query.
+    const after = css.slice(css.indexOf("@keyframes"));
+    expect(after.replace(/@keyframes[^{]+\{(?:[^{}]|\{[^{}]*\})*\}/g, "").trim()).toBe("");
+  });
+});
+
 describe("source links", () => {
   it("accept only https://en.wikibooks.org/", () => {
     expect(safeWikibooksUrl("https://en.wikibooks.org/wiki/Cookbook:Apple_Cobbler")).toContain(
