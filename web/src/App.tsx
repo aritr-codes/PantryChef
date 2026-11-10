@@ -5,7 +5,7 @@ import { Kitchen } from "./Kitchen";
 import { RecipeScreen } from "./RecipeScreen";
 import type { Undo } from "./UndoBar";
 import { type Engine, ready } from "./engine";
-import { load, save, storageWorks } from "./store";
+import { type Saved, load, save, storageWorks } from "./store";
 
 type Screen = { name: "board" } | { name: "recipe"; id: string };
 
@@ -40,6 +40,7 @@ export function App() {
   const [undo, setUndo] = useState<Undo | null>(null);
   const [announce, setAnnounce] = useState("");
   const first = useRef(true);
+  const latest = useRef<Saved | null>(null); // what to save if the page closes before the effect runs
   const screenName = screen.name === "recipe" ? `recipe:${screen.id}` : screen.name;
 
   // Move focus to the answer heading when the person comes back from a recipe. The recipe screen
@@ -73,6 +74,22 @@ export function App() {
     setSaved(save({ ids, staplesOff: engine.defaultStaples.filter((id) => !staples.includes(id)) }));
   }, [engine, ids, staples]);
 
+  // Also save when the page is hidden or closed, so a quick reload cannot lose the last change.
+  useEffect(() => {
+    const flush = () => {
+      if (latest.current) save(latest.current);
+    };
+    const onVisibility = () => {
+      if (document.visibilityState === "hidden") flush();
+    };
+    window.addEventListener("pagehide", flush);
+    document.addEventListener("visibilitychange", onVisibility);
+    return () => {
+      window.removeEventListener("pagehide", flush);
+      document.removeEventListener("visibilitychange", onVisibility);
+    };
+  }, []);
+
   useEffect(() => {
     if (ids.length === 0) setOpen(true);
   }, [ids.length]);
@@ -93,6 +110,10 @@ export function App() {
       engine?.answer({ pantry: ids, staples, diet: null, limit: shown, unknown_names: unknown }),
     [engine, ids, staples, shown, unknown],
   );
+
+  latest.current = engine
+    ? { ids, staplesOff: engine.defaultStaples.filter((id) => !staples.includes(id)) }
+    : null;
 
   if (error) {
     return (
@@ -171,8 +192,7 @@ export function App() {
       <div class="sr" role="status" aria-live="polite">{announce}</div>
       <footer class="page">
         <p>
-          Nothing you type leaves this device. Your kitchen is saved in this browser only, and you can clear it at
-          any time. Recipes come from the Wikibooks Cookbook, with their licence.
+          Nothing you type leaves this device. {saved ? "Your kitchen is saved in this browser only, and you can clear it at any time." : "Your kitchen is not saved, because this browser blocks storage."} Recipes come from the Wikibooks Cookbook, with their licence.
         </p>
       </footer>
     </Frame>
