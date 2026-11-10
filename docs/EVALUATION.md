@@ -372,8 +372,9 @@ What this says:
 | `results/m2_baseline_wikibooks.json` | `uv run python -m pantrychef.eval.baseline_main --pack build/pack --out results/m2_baseline_wikibooks.json` (about 8 minutes on the laptop, after `uv run python scripts/build_pack.py --out build/pack`) |
 | `results/m2_parser_gold_dev.json` | `uv run python scripts/parser_gold.py score --split dev --out results/m2_parser_gold_dev.json` |
 | `results/m2_judging_pilot.json` | `uv run python scripts/judging_pilot_result.py --judge NAME=ANSWERS.csv ...` (the key file is private, so only the owner can rerun it) |
-| `results/m1_latency_device.json`, `results/m2_latency_device_saver_off.json` | `node web/scripts/latency-device.mjs --out FILE` (a phone on USB) |
-| `results/m2_device_ui_probe.json` | `node web/scripts/probe-device-ui.mjs` (a phone on USB) |
+| `results/m1_latency_device.json`, `results/m2_latency_device_saver_off.json` | `node web/scripts/latency-device.mjs --out FILE` (a phone on USB). Removed on 2026-11-10 with the old two-screen page. Older commits hold the script. |
+| `results/m2_device_ui_probe.json` | `node web/scripts/probe-device-ui.mjs` (a phone on USB). Removed on 2026-11-10 with the old page. Older commits hold the script. |
+| `results/latency_ui.json` | `node web/scripts/latency-ui.mjs` (production build and real pack v2; see the script header) |
 | Table block below | `uv run python scripts/eval_tables.py` |
 | CI floors | `uv run python scripts/make_floors.py` (only for a reviewed change) |
 
