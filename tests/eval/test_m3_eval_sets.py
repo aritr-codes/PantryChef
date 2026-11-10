@@ -55,8 +55,10 @@ def test_frozen_lines_cover_test_and_extra() -> None:
     want |= {line_hash(r["text"]) for r in extra}
     assert len(want) == 250
     frozen = load_frozen()
-    assert len(frozen) == 250
-    assert frozen == want
+    fresh = {line_hash(r["text"]) for r in _read(GOLD / "fresh.v1.json")["lines"]}
+    assert len(fresh) == 200
+    assert frozen == want | fresh
+    assert len(frozen) == 450
     dev = {line_hash(r["text"]) for r in sheet if r["split"] == "dev"}
     assert len(dev & frozen) == 0
 
@@ -71,3 +73,26 @@ def test_notice_describes_extra_lines() -> None:
     notice = (GOLD / "NOTICE.md").read_text(encoding="utf8")
     for word in ("extra.v1.json", "seed 43", "labels.extra.v1.json", "CC BY-SA 4.0"):
         assert word in notice, word
+
+
+def test_fresh_lines_are_random_and_disjoint_from_earlier_sets() -> None:
+    fresh = _read(GOLD / "fresh.v1.json")
+    earlier = _read(GOLD / "sheet.v1.json")["lines"] + _read(GOLD / "extra.v1.json")["lines"]
+    texts = [_key(r["text"]) for r in fresh["lines"]]
+    assert fresh["seed"] == 47
+    assert fresh["n"] == len(texts) == 200
+    assert len(set(texts)) == 200
+    assert len(set(texts) & {_key(r["text"]) for r in earlier}) == 0  # a count, never a line
+    assert len({r["id"] for r in fresh["lines"]} & {r["id"] for r in earlier}) == 0
+    bad = [r["id"] for r in fresh["lines"] if (r["stratum"], r["split"]) != ("random", "fresh")]
+    assert len(bad) == 0
+
+
+@pytest.mark.skipif(not SNAPSHOT.exists(), reason="Wikibooks snapshot is not in this checkout")
+def test_fresh_redraw_equals_committed_file() -> None:
+    from scripts.make_m3_fresh_lines import draw_fresh
+    from scripts.make_parser_gold_sheet import collect_lines
+
+    taken = _read(GOLD / "sheet.v1.json")["lines"] + _read(GOLD / "extra.v1.json")["lines"]
+    same = draw_fresh(collect_lines(), taken) == _read(GOLD / "fresh.v1.json")["lines"]
+    assert same

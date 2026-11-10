@@ -32,6 +32,16 @@ of the sheet: `data/eval/m3_frozen_lines.v1.json` holds the sha256 of each of th
 labels are in `labels.extra.v1.json`, written after M3 Task 1 by two models and settled by the
 owner (`adjudication.m3.v1.json`). They are model-labelled and owner-adjudicated.
 
+## Fresh lines (M3 acceptance round 2)
+
+`fresh.v1.json` holds 200 single ingredient lines from the same snapshot (seed 47). The first
+acceptance run failed one target, so its test lines are spent. These lines are a new held-out set.
+They are a uniform random draw of distinct lines that are in neither `sheet.v1.json` nor
+`extra.v1.json` (see `scripts/make_m3_fresh_lines.py`). The text is available under CC BY-SA 4.0, like
+the sheet. Each record has the page title and the revision id, and the revision link is built as
+above. `data/eval/m3_frozen_lines.v2.json` holds the sha256 of each line. The draw happened before
+any table change that followed acceptance run 1. Nobody reads the file until the second run.
+
 ## Bare pepper labels (M3 Task 6)
 
 `data/eval/m3_bare_pepper_labels.v1.json` holds 80 single ingredient lines from the same snapshot (seed 45),

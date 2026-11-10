@@ -35,6 +35,7 @@ from pantrychef.ingredients.table import IngredientTable, tokens
 
 ROOT = Path(__file__).resolve().parents[2]
 FROZEN = ROOT / "data/eval/m3_frozen_lines.v1.json"
+FROZEN_FRESH = ROOT / "data/eval/m3_frozen_lines.v2.json"  # fresh lines, drawn after acceptance 1
 
 
 class LabelError(ValueError):
@@ -112,8 +113,12 @@ def line_hash(text: str) -> str:
 
 
 def load_frozen() -> frozenset[str]:
-    """Hashes of every test and extra line. Table growth must not read these lines."""
-    return frozenset(json.loads(FROZEN.read_text(encoding="utf8"))["hashes"])
+    """Hashes of every test, extra and fresh line. Table growth must not read these lines."""
+    out: set[str] = set()
+    for path in (FROZEN, FROZEN_FRESH):
+        if path.exists():
+            out |= set(json.loads(path.read_text(encoding="utf8"))["hashes"])
+    return frozenset(out)
 
 
 def to_ids(
