@@ -24,7 +24,7 @@ import argparse
 from dataclasses import dataclass
 from pathlib import Path
 
-from pantrychef.eval.parser_gold import Label, score
+from pantrychef.eval.parser_gold import FROZEN_FRESH, Label, line_hash, score
 from pantrychef.eval.results import git_facts, write_result
 from pantrychef.ingredients.table import DEFAULT_WORDS_PATH, TABLE_V2_PATH, IngredientTable
 from scripts.m3_acceptance import (
@@ -53,6 +53,7 @@ EXPECTED_LINES = 200
 class Config:
     root: Path = ROOT
     fresh: Path = GOLD / "fresh.v1.json"
+    frozen: Path = FROZEN_FRESH
     labels: Path = GOLD / "labels.fresh.v1.json"
     id_map: Path = ROOT / "data/eval/m3_fresh_gold_id_map.v1.json"
     table: Path = TABLE_V2_PATH
@@ -98,6 +99,11 @@ def _run(cfg: Config) -> int:
         raise Refuse(f"unexpected line count: {len(lines)}")
     if any(r.get("stratum") != "random" for r in lines):
         raise Refuse("a fresh line is not in the random stratum")
+    if len({r["id"] for r in lines}) != len(lines):
+        raise Refuse("the fresh line ids are not unique")
+    sealed = set(_json(cfg.frozen, "frozen fresh hashes")["hashes"])
+    if {line_hash(r["text"]) for r in lines} != sealed:
+        raise Refuse("the fresh lines do not match the sealed hashes")
     labels: dict[str, Label] = _labels(cfg.labels, "fresh labels")
     missing = sorted(r["id"] for r in lines if r["id"] not in labels)
     if missing:

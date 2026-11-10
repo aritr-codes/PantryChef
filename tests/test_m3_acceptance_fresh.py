@@ -12,6 +12,7 @@ from pathlib import Path
 
 import pytest
 
+from pantrychef.eval.parser_gold import line_hash
 from pantrychef.eval.results import load_result
 from pantrychef.ingredients.table import DEFAULT_WORDS_PATH
 from scripts import m3_acceptance_fresh as fresh
@@ -66,6 +67,7 @@ def cfg(tmp_path) -> fresh.Config:
     (d / "t.csv").write_text(TABLE, encoding="utf8")
     lines = [{"id": k, "text": v, "stratum": "random", "split": "fresh"} for k, v in LINES.items()]
     _write(d / "fresh.json", {"snapshot_sha256": "ab" * 32, "lines": lines})
+    _write(d / "frozen.json", {"hashes": sorted(line_hash(v) for v in LINES.values())})
     _write(d / "labels.json", {"labels": {k: _label(n) for k, n in NAMES.items()}})
     _write(
         d / "map.json",
@@ -91,6 +93,7 @@ def cfg(tmp_path) -> fresh.Config:
     return fresh.Config(
         root=root,
         fresh=d / "fresh.json",
+        frozen=d / "frozen.json",
         labels=d / "labels.json",
         id_map=d / "map.json",
         table=d / "t.csv",
@@ -198,3 +201,43 @@ def test_stale_pack_hash_refused(cfg):
     _commit(cfg.root)
     assert fresh.run(cfg) == 1
     assert not cfg.out.exists()
+
+
+def test_lines_not_matching_sealed_hashes_refused(cfg):
+    doc = json.loads(cfg.fresh.read_text(encoding="utf8"))
+    doc["lines"][0]["text"] = "2 cups flour, sifted"
+    cfg.fresh.write_text(json.dumps(doc), encoding="utf8")
+    _commit(cfg.root)
+    assert fresh.run(cfg) == 1
+    assert not cfg.out.exists()
+
+
+def test_duplicate_line_ids_refused(cfg):
+    doc = json.loads(cfg.fresh.read_text(encoding="utf8"))
+    doc["lines"][1]["id"] = doc["lines"][0]["id"]
+    cfg.fresh.write_text(json.dumps(doc), encoding="utf8")
+    _commit(cfg.root)
+    assert fresh.run(cfg) == 1
+    assert not cfg.out.exists()
+
+
+def test_modified_tracked_input_refused(cfg):
+    cfg.labels.write_text(cfg.labels.read_text(encoding="utf8") + " ", encoding="utf8")
+    assert fresh.run(cfg) == 1
+    assert not cfg.out.exists()
+
+
+def test_pack_built_dirty_refused(cfg):
+    pack = json.loads(cfg.pack_result.read_text(encoding="utf8"))
+    pack["config"]["build_dirty"] = True
+    cfg.pack_result.write_text(json.dumps(pack), encoding="utf8")
+    _commit(cfg.root)
+    assert fresh.run(cfg) == 1
+    assert not cfg.out.exists()
+
+
+def test_metric_rows_carry_test_split_and_random_stratum(cfg):
+    assert fresh.run(cfg) == 0
+    rows = {m["name"]: m for m in load_result(cfg.out)["metrics"]}
+    assert rows["mention_accuracy"]["split"] == "test"
+    assert rows["mention_accuracy"]["group"] == {"stratum": "random"}
