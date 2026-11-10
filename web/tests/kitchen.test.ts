@@ -6,6 +6,7 @@ import { resolve as resolvePath } from "node:path";
 import { describe, expect, it } from "vitest";
 import { Engine } from "../src/engine";
 import { resolveList, splitList, stripLead } from "../src/list";
+import { recipeSlots } from "../src/slots";
 import { load, save, storageWorks } from "../src/store";
 import { ticket, ticketText } from "../src/ticket";
 import type { Core } from "../src/types";
@@ -127,6 +128,21 @@ describe("Buy one thing ticket", () => {
       expect(item.missing[0]!.options).toContain(top.ingredient_id);
     }
     expect(t!.more).toBe(top.recipes - t!.titles.length);
+  });
+});
+
+describe("recipeSlots", () => {
+  const ln = (o: string[], opt = false, r = true) => ({ t: "x", o, opt, r });
+  const name = (id: string) => id.toUpperCase();
+  it("makes have, need and assumed slots and counts unread lines", () => {
+    const lines = [ln(["a"]), ln(["b", "c"]), ln(["s"]), ln(["a"]), ln(["z"], true), ln([], false, false)];
+    const out = recipeSlots(lines, name, new Set(["a"]), new Set(["s"]));
+    expect(out.slots).toEqual([
+      { kind: "have", name: "A" },
+      { kind: "need", name: "B or C" },
+      { kind: "assumed", name: "S" },
+    ]);
+    expect(out.check).toBe(1);
   });
 });
 
