@@ -20,10 +20,28 @@ describe("recipe text is rendered as text", () => {
     }
   });
 
-  it("has no analytics, trackers or storage writes", () => {
+  it("has no analytics, trackers, cookies or network calls outside the engine", () => {
     for (const f of readdirSync(src).filter((x) => /\.tsx?$/.test(x))) {
       const text = readFileSync(join(src, f), "utf8");
-      expect(text, f).not.toMatch(/localStorage|sessionStorage|document\.cookie|sendBeacon|gtag|analytics/);
+      expect(text, f).not.toMatch(/sessionStorage|indexedDB|document\.cookie|sendBeacon|gtag|analytics/);
+      if (f !== "engine.ts") expect(text, f).not.toMatch(/\bfetch\(|XMLHttpRequest|WebSocket/);
+    }
+  });
+
+  it("uses localStorage only in store.ts, which saves ids and never free text", () => {
+    for (const f of readdirSync(src).filter((x) => /\.tsx?$/.test(x))) {
+      const text = readFileSync(join(src, f), "utf8");
+      if (f === "store.ts") expect(text).toMatch(/localStorage/);
+      else expect(text, f).not.toMatch(/localStorage/);
+    }
+    // The saved shape has only these keys.
+    const store = readFileSync(join(src, "store.ts"), "utf8");
+    expect(store).toMatch(/JSON\.stringify\(\{ v: 1, ids: s\.ids, staplesOff: s\.staplesOff \}\)/);
+  });
+
+  it("sets no inline style attributes (the policy allows only style files)", () => {
+    for (const f of readdirSync(src).filter((x) => /\.tsx$/.test(x))) {
+      expect(readFileSync(join(src, f), "utf8"), f).not.toMatch(/\bstyle=/);
     }
   });
 });
