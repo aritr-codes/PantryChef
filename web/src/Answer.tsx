@@ -4,7 +4,7 @@ import { UndoBar, type Undo } from "./UndoBar";
 import type { Engine } from "./engine";
 import { useRecent } from "./recent";
 import { recipeSlots } from "./slots";
-import { ticket, ticketText } from "./ticket";
+import { readyAfter, ticket, ticketText } from "./ticket";
 import type { Answer as AnswerData, RecipeResult } from "./types";
 
 export type Tab = "make_now" | "one_away" | "two_away";
@@ -97,7 +97,13 @@ export function AnswerPanel(p: Props) {
   const pantry = useMemo(() => new Set(p.ids), [p.ids]);
   const staples = useMemo(() => new Set(p.staples), [p.staples]);
   const group = answer.groups[p.tab];
-  const t = ticket(answer);
+  // One more scan with the top item added, so the ticket shows the real count that opens.
+  const topId = answer.unlocks[0]?.ingredient_id;
+  const after = useMemo(
+    () => (topId && n > 0 ? readyAfter(p.engine, p.ids, p.staples, topId) : 0),
+    [p.engine, p.ids, p.staples, topId, n],
+  );
+  const t = ticket(answer, after);
   const now = answer.groups.make_now.count;
   const none = answer.groups.make_now.count + answer.groups.one_away.count + answer.groups.two_away.count === 0;
   const showTicket = n > 0 && t && p.tab !== "two_away";

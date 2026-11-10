@@ -8,7 +8,7 @@ import { Engine } from "../src/engine";
 import { mergeRestore, resolveList, splitList, stripLead } from "../src/list";
 import { recipeSlots } from "../src/slots";
 import { load, save, storageWorks } from "../src/store";
-import { ticket, ticketText } from "../src/ticket";
+import { readyAfter, ticket, ticketText } from "../src/ticket";
 import type { Core } from "../src/types";
 
 const root = resolvePath(__dirname, "..", "..");
@@ -123,22 +123,39 @@ describe("saved kitchen", () => {
 describe("Buy one thing ticket", () => {
   const req = (pantry: string[]) => ({ pantry, staples: [], diet: null, limit: 10, unknown_names: [] });
   it("is absent when nothing is one item away", () => {
-    expect(ticket(engine.answer(req([])))).toBeNull();
+    expect(ticket(engine.answer(req([])), 0)).toBeNull();
   });
   it("names recipes from the returned one-away items that miss exactly that item", () => {
-    const answer = engine.answer(req(["flour", "egg", "milk"]));
-    const t = ticket(answer);
-    expect(t).not.toBeNull();
+    const pantry = ["flour", "egg", "milk"];
+    const answer = engine.answer(req(pantry));
     const top = answer.unlocks[0]!;
+    const after = readyAfter(engine, pantry, [], top.ingredient_id);
+    const t = ticket(answer, after);
+    expect(t).not.toBeNull();
     expect(t!.id).toBe(top.ingredient_id);
-    expect(t!.recipes).toBe(top.recipes);
+    expect(t!.recipes).toBe(after - answer.groups.make_now.count);
     expect(t!.titles.length).toBeLessThanOrEqual(3);
     for (const title of t!.titles) {
       const item = answer.groups.one_away.items.find((i) => i.title === title)!;
       expect(item.missing).toHaveLength(1);
       expect(item.missing[0]!.options).toContain(top.ingredient_id);
     }
-    expect(t!.more).toBe(top.recipes - t!.titles.length);
+    expect(t!.more).toBe(t!.recipes - t!.titles.length);
+  });
+  it("counts a recipe whose only needed line is the item, which the engine's unlock count misses", () => {
+    // "Flour Paste" and "Salt Dough" need only flour (the rest is staples). The engine skips a recipe
+    // when nothing in it is in the kitchen, so the unlock count leaves them out.
+    const pantry = ["egg", "milk", "banana"];
+    const staples = engine.defaultStaples;
+    const answer = engine.answer({ ...req(pantry), staples });
+    const top = answer.unlocks[0]!;
+    expect(top.ingredient_id).toBe("flour");
+    const after = readyAfter(engine, pantry, staples, "flour");
+    const real = engine.answer({ ...req([...pantry, "flour"]), staples }).groups.make_now.count;
+    expect(after).toBe(real);
+    const t = ticket(answer, after)!;
+    expect(t.recipes).toBeGreaterThan(top.recipes);
+    expect(after).toBe(answer.groups.make_now.count + t.recipes);
   });
 });
 
