@@ -6,6 +6,11 @@ type Resolve = (names: string[]) => { ids: string[]; unknown: string[] };
 const BREAK = /[,;\n\r]+/;
 const AND = /\s+and\s+/i;
 
+/** Upper-case the first letter, for a name at the start of a sentence ("Banana added."). */
+export function cap(text: string): string {
+  return text.charAt(0).toUpperCase() + text.slice(1);
+}
+
 function clean(part: string): string {
   return part.replace(/^\s*[-*•]\s+/, "").trim();
 }

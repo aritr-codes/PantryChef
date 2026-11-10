@@ -7,6 +7,7 @@ import type { Undo } from "./UndoBar";
 import { burst } from "./burst";
 import { type Engine, ready } from "./engine";
 import { type Example, resolveExamples } from "./examples";
+import { cap } from "./list";
 import { type Saved, load, save, storageWorks } from "./store";
 
 type Screen = { name: "board" } | { name: "recipe"; id: string };
@@ -169,7 +170,7 @@ export function App() {
     celebrate.current = true;
     setUndo({
       where: "ticket",
-      msg: `${name} added.${gain > 0 ? ` ${gain} more ${gain === 1 ? "recipe is" : "recipes are"} ready now.` : ""}`,
+      msg: `${cap(name)} added.${gain > 0 ? ` ${gain} more ${gain === 1 ? "recipe is" : "recipes are"} ready now.` : ""}`,
       run: () => {
         setIds((cur) => cur.filter((x) => x !== id));
       },
@@ -178,6 +179,7 @@ export function App() {
 
   const pickExample = (ex: Example) => {
     setIds(ex.ids);
+    setUndo(null); // an old undo would bring back a kitchen that the example has just replaced
     setPicked("make_now");
     setOpen(false);
     focusFirstTab.current = true;
@@ -195,7 +197,6 @@ export function App() {
             staples={staples}
             examples={examples}
             onExample={pickExample}
-            saved={saved}
             open={open}
             undo={undo}
             setOpen={setOpen}

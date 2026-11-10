@@ -125,7 +125,6 @@ ul, ol { padding: 0; list-style: none; }
 
 .acts { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 4px 12px; margin-top: 14px; }
 .link { min-height: 44px; padding: 0 4px; background: none; border: 0; text-decoration: underline; text-underline-offset: 4px; font-weight: 650; }
-.saved { margin-top: 6px; font-size: 0.88rem; color: var(--ink2); }
 .paste textarea { display: block; width: 100%; margin: 6px 0 8px; padding: 10px 12px; border: 2px solid var(--ink); border-radius: 12px; background: #fff; }
 .paste textarea::placeholder { color: #6f6457; opacity: 1; }
 .undo { display: flex; align-items: center; gap: 10px; margin-top: 12px; padding: 4px 6px 4px 14px; background: var(--ink); color: var(--paper); border-radius: 12px; }

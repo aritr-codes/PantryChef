@@ -3,7 +3,7 @@ import { Icon } from "./Icon";
 import { UndoBar, type Undo } from "./UndoBar";
 import type { Engine } from "./engine";
 import type { Example } from "./examples";
-import { mergeRestore, resolveList } from "./list";
+import { cap, mergeRestore, resolveList } from "./list";
 import { useRecent } from "./recent";
 
 interface Props {
@@ -12,7 +12,6 @@ interface Props {
   unknown: string[];
   staples: string[];
   examples: Example[];
-  saved: boolean;
   open: boolean; // phone only: the full kitchen is shown
   undo: Undo | null;
   setOpen: (open: boolean) => void;
@@ -65,7 +64,7 @@ export function Kitchen(p: Props) {
   const addId = (id: string) => {
     if (!p.ids.includes(id)) {
       p.setIds([...p.ids, id]);
-      p.say(`${p.engine.name(id)} added.`);
+      p.say(`${cap(p.engine.name(id))} added.`);
     }
     reset();
   };
@@ -77,7 +76,7 @@ export function Kitchen(p: Props) {
     const newWords = unknown.filter((u) => !p.unknown.some((x) => x.toLowerCase() === u.toLowerCase()));
     if (newWords.length) p.setUnknown([...p.unknown, ...newWords]);
     const said = [
-      added.length ? `${added.map((id) => p.engine.name(id)).join(", ")} added.` : "",
+      added.length ? `${cap(added.map((id) => p.engine.name(id)).join(", "))} added.` : "",
       newWords.length ? `Not on the list: ${newWords.join(", ")}.` : "",
     ].filter(Boolean);
     if (said.length) p.say(said.join(" "));
@@ -124,7 +123,7 @@ export function Kitchen(p: Props) {
 
   const remove = (id: string, index: number) => {
     p.setIds(p.ids.filter((x) => x !== id));
-    p.say(`${p.engine.name(id)} removed.`);
+    p.say(`${cap(p.engine.name(id))} removed.`);
     pending.current = () => {
       const left = chips.current?.querySelectorAll<HTMLElement>("button");
       (left?.[index] ?? left?.[left.length - 1] ?? input.current)?.focus();
@@ -383,11 +382,6 @@ export function Kitchen(p: Props) {
                 </button>
               </div>
             )}
-            <p class="saved">
-              {p.saved
-                ? "Saved on this device. We send nothing to a server."
-                : "Not saved: this browser blocks storage. We send nothing to a server."}
-            </p>
             {!empty && (
               <button
                 type="button"
