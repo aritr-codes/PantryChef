@@ -25,7 +25,7 @@ PantryChef is meant to be a pantry-first recipe app. A user lists what they have
 | Production recommender bundle | Does not exist | Disk bundle holds 1,000 recipes. M0 corrected the docs that said otherwise |
 | Static web app with browser engine (ADR 0004) | Built, merged (PR #7) and live at <https://aritr-codes.github.io/PantryChef/> | `web/`; Vitest parity on golden cases; Playwright smoke test on the fixture pack (section 10) |
 | Wikibooks display pack (ADR 0003) | Built (M1) | 3,712 recipes; `build/pack` is not in git (section 10). Open Recipes statistics: planned |
-| Rebuilt ingredient table | Built. M1: 337 rows. M3: table v2, 891 rows (section 12) | `data/ingredients/ingredients.csv` (M1) and `data/ingredients/ingredients.v2.csv` (M3). The old `vocab.json` still comes from RecipeNLG and the new tables never read it |
+| Rebuilt ingredient table | Built. M1: 337 rows. M3: table v2, 894 rows (section 12) | `data/ingredients/ingredients.csv` (M1) and `data/ingredients/ingredients.v2.csv` (M3). The old `vocab.json` still comes from RecipeNLG and the new tables never read it |
 | New evaluation with hand-judged pantries (ADR 0005) | Planned | Not started |
 
 ## 3. Git state
@@ -201,22 +201,22 @@ Not done:
   The shipped pack-v1 was built by the old resolver. The next pack build changes what lines read. For example, "1 tsp chile oil" was
   `chili_pepper` and is now unread.
   M3 Task 11 (after acceptance run 1 failed one target) changed the resolver and the table again. The resolver has seven new rules, F1 to F7
-  (`pantrychef/ingredients/resolve.py`, module docstring): F1 skips an unknown "and" part in a later comma chunk, F2 drops a match after "with"
-  inside one "or" part, F3 merges two adjacent matches into a longer key ("dry marsala" + "wine" is "marsala wine"), F4 explains a trailing word that is
-  already in the row name, F5 retries an unread line with the parentheses opened, F6 reads "powdered" or "ground" plus a food as the "<food> powder"
-  row when that key exists, and F7 drops matches after a clause word in a later chunk ("of", "such" and "as" do not count). The bare pepper `always`
-  rule was measured by the analyst (no gain, two more wrong groups) and was not built. Table round 3 added 19 rows (herb, spice and seasoning as generic
-  class rows that are not staples; sorghum and millet flours; orange blossom water; bagel chips; bitter melon; vegetarian oyster sauce; doenjang; vanilla sugar;
-  egg substitute; wine yeast; yeast nutrient; powdered drink mix; pate; pork stomach; seafood) and 16 synonyms. A bare "roll" key was not added: it would read
+  (`pantrychef/ingredients/resolve.py`, module docstring). F1 skips an unknown "and" part in a later comma chunk. F2 drops a match after "with"
+  inside one "or" part. F3 merges two adjacent matches into a longer key ("dry marsala" + "wine" is "marsala wine"). F4 explains a trailing word that is
+  already in the row name. F5 retries an unread line with the parentheses opened and keeps the retry only when it reads one line. F6 reads "powdered" or
+  "ground" plus a food as the "<food> powder" row when that key exists. F7 drops matches after a clause word in a later chunk; "with", "in", "of", "such"
+  and "as" do not count, because they name real foods ("soaked in milk"). The bare pepper `always` rule was measured by the analyst (no gain, two more
+  wrong groups) and was not built. Table round 3 added 22 rows and 18 synonyms: herb, spice and seasoning as generic class rows that are not staples;
+  sorghum, millet, mung bean and urad flours; orange blossom water; bagel chips; bitter melon; vegetarian oyster sauce; doenjang; vanilla sugar; egg substitute;
+  wine yeast; yeast nutrient; powdered drink mix; pate; pork stomach; seafood; maggi seasoning. A bare "roll" key was not added: it would read
   "egg roll", "spring roll" and "cinnamon roll" as bread rolls (probed). **These rules and rows were found by reading the spent test sets and the dev set, so every dev
-  gain below is in-sample.** MEASURED, dev halves, growth row 8 against row 7 (`results/m3_table_growth.json`): `mention_accuracy` 0.8618 to 0.8947,
-  `parser_precision` 0.9632 to 0.9510, `input_accuracy` 0.9759 (81 of 83, unchanged), lines read 29,212 to 29,590 (96.8%), `recipes_fully_read` 0.7244 to 0.7853.
-  The rules alone (table of row 7, resolver of this task) moved dev `mention_accuracy` to 0.8882 and `parser_precision` to 0.9712 (MEASURED). No rule lowered
-  dev precision. The table round then lowered it to 0.9510: five dev gold names (powdered drink mix, vanilla sugar, seasoning, wine yeast, yeast nutrient) map to
-  `null` in the frozen dev id map, and they now read their new rows, which the frozen map counts as wrong. The frozen map was not edited. With those five names mapped to the
-  new ids in a scratch copy, dev scores would be `mention_accuracy` 0.9211 and `parser_precision` 0.9790 (MEASURED on the patched copy; not a reported number, and in-sample).
-  The pack v2 result was rewritten for the new rules and table: 891 ingredients, `recipes_fully_read` 0.7853, `core.v2.json.gz` 504,815 bytes (build commit `4ad56b5`).
-  `web/pack-hashes.json` still holds the hashes of the Task 7 build and must change before a release.
+  gain below is in-sample.** MEASURED, dev halves, growth row 9 against row 7 (`results/m3_table_growth.json`): `mention_accuracy` 0.8618 to 0.8947,
+  `parser_precision` 0.9632 to 0.9510, `input_accuracy` 0.9759 (81 of 83, unchanged), lines read 29,212 to 29,583 (96.8%), `recipes_fully_read` 0.7244 to 0.7818.
+  The precision fall comes from five dev gold names (powdered drink mix, vanilla sugar, seasoning, wine yeast, yeast nutrient) that map to
+  `null` in the frozen dev id map. They now read their new rows, and the frozen map counts those readings as wrong. The frozen map was not edited.
+  Known side effects: F5 can read a food from a note in parentheses. F6 reads "ground garlic" as `garlic_powder`. F7 still drops a food that follows "to"
+  in the same chunk ("beaten to stiff peaks with cream of tartar"). The pack v2 result was rewritten: 894 ingredients, `recipes_fully_read` 0.7818,
+  `core.v2.json.gz` 504,896 bytes (build commit `fe847bf`). `web/pack-hashes.json` still holds the hashes of the Task 7 build and must change before a release.
   M3 Task 7 built pack v2 locally (pack format 2, table `ingredients.v2.csv`, word file in the core). MEASURED, [results/m3_pack_v2.json](../results/m3_pack_v2.json): 3,712 recipes (gate 2,500), `recipes_fully_read` 0.7244 (2,689 of 3,712; gate 0.60), `core.v2.json.gz` 502,837 bytes (limit 3,145,728), `text.v2.json.gz` 870,411 bytes, 872 ingredients, 32,771 pack lines, 1,352 unread required lines (required lines read over the whole snapshot: 95.6%). `web/pack-hashes.json` holds these hashes for release `pack-v2`. The core hash depends on the build commit (`4482764`), so a release build must come from that commit or the hashes must change. Nothing is uploaded or deployed (D7). The owner uploads the pack and runs the Pages workflow.
 
 ## 11. M2 evaluation baseline (2026-11-03, branch `feat/m2-eval-baseline`, not merged)
@@ -254,7 +254,7 @@ Plan: [docs/plans/2026-11-05-m3-ingredient-foundation.md](plans/2026-11-05-m3-in
 Results files (each one links commit, config and command):
 
 - [results/m3_m1_dev_baseline.json](../results/m3_m1_dev_baseline.json): the M1 resolver on the dev halves, before any M3 change.
-- [results/m3_table_growth.json](../results/m3_table_growth.json): 12 growth rows on dev and in-sample data.
+- [results/m3_table_growth.json](../results/m3_table_growth.json): 13 growth rows on dev and in-sample data.
 - [results/m3_bare_pepper.json](../results/m3_bare_pepper.json): the bare pepper decision.
 - [results/m3_pack_v2.json](../results/m3_pack_v2.json): pack v2 counts and build gates.
 - [results/m3_graph_spike.json](../results/m3_graph_spike.json): the ADR 0006 spike result (empty pool).
@@ -262,10 +262,10 @@ Results files (each one links commit, config and command):
 
 | Item | Result | Label |
 | --- | --- | --- |
-| Table v2 | 891 rows. 493 `hand` and 398 `wikibooks-rule`. 83 rows with `is_a` and 77 with `form_of`. The resolver does not read the two edge columns | MEASURED (counted from `data/ingredients/ingredients.v2.csv`) |
-| Dev scores, last growth row (row 8) | `mention_accuracy` 0.8947, `parser_precision` 0.9510, `input_accuracy` 0.9759 (81 of 83). Row 7 had 0.8618, 0.9632 and 0.9759. Dev halves only, scored through the frozen dev id map. The dev labels were visible while the table grew | MEASURED, development figures ([results/m3_table_growth.json](../results/m3_table_growth.json)) |
+| Table v2 | 894 rows. 493 `hand` and 401 `wikibooks-rule`. 83 rows with `is_a` and 78 with `form_of`. The resolver does not read the two edge columns | MEASURED (counted from `data/ingredients/ingredients.v2.csv`) |
+| Dev scores, last growth row (row 9) | `mention_accuracy` 0.8947, `parser_precision` 0.9510, `input_accuracy` 0.9759 (81 of 83). Row 7 had 0.8618, 0.9632 and 0.9759. Dev halves only, scored through the frozen dev id map. The dev labels were visible while the table grew | MEASURED, development figures ([results/m3_table_growth.json](../results/m3_table_growth.json)) |
 | Dev baseline, M1 resolver | `mention_accuracy` 0.8026, `parser_precision` 0.8905, `input_accuracy` 0.8916 (74 of 83) | MEASURED ([results/m3_m1_dev_baseline.json](../results/m3_m1_dev_baseline.json)) |
-| Pack v2 | 3,712 recipes, `recipes_fully_read` 0.7853 (2,915 of 3,712), `core.v2.json.gz` 504,815 bytes, 891 ingredients. In-sample. The build gates in the file pass. The Task 7 build had 0.7244 and 872 ingredients | MEASURED ([results/m3_pack_v2.json](../results/m3_pack_v2.json)) |
+| Pack v2 | 3,712 recipes, `recipes_fully_read` 0.7818 (2,902 of 3,712), `core.v2.json.gz` 504,896 bytes, 894 ingredients. In-sample. The build gates in the file pass. The Task 7 build had 0.7244 and 872 ingredients | MEASURED ([results/m3_pack_v2.json](../results/m3_pack_v2.json)) |
 | Bare pepper | 56 of 80 labelled lines are black pepper (0.700, Wilson 95% 0.5923 to 0.7894). The rule stays `staple_cue_or_taste` | MEASURED, one blind model labeller, no owner adjudication |
 | Acceptance run | Ran once on 2026-11-10 at `ca4fa8b`. Random-stratum `mention_accuracy` 0.8205 (target 0.90): **FAIL**. `parser_precision` 0.9209, `input_accuracy` 0.9639 (M1 0.8675, McNemar p 0.0078), `recipes_fully_read` 0.7244 and 3,712 recipes: PASS | MEASURED ([results/m3_acceptance.json](../results/m3_acceptance.json)). Stopped and reported, target not lowered |
 | Graph spike (ADR 0006) | Verdict `rejected`, reason `no_new_recipes`. Edge option b: 17 of 157 edges usable (16 `is_a`, 1 `form_of`), longest chain 1. Pool of new items 0. Edge-source hits 0 of 40 pantries. Decoy candidates 733 (make now) and 1,750 (one away). Nobody rated, so T1 to T3 were not tested. ADR 0006 is Rejected. Narrow: it does not show that traversal fails for pantries that name specific kinds, and it says nothing about multi-hop traversal | MEASURED ([results/m3_graph_spike.json](../results/m3_graph_spike.json)) |

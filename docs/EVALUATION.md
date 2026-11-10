@@ -120,7 +120,7 @@ The gold-to-id mapping for the held-out data is a separate step (plan D9). The t
 
 ### Growth rows (MEASURED)
 
-Source: [results/m3_table_growth.json](../results/m3_table_growth.json), `config.rows`. The file holds 12 rows. The commit messages name them rows 0, 1, 1b, 2, 2b, 3, 4, 4b, 5, 6, 7 and 8. The columns below follow the file. `lines_read` is the count of required lines read over the 3,713 pages of the snapshot. The number of required lines can move with the resolver rules, so compare the counts with care. `recipes_fully_read` is in-sample. The three dev columns use the dev halves: 150 gold lines (152 gold groups) and 83 typed inputs. `input_accuracy_dev` scores through the typed-name resolver `resolve_name` in all rows.
+Source: [results/m3_table_growth.json](../results/m3_table_growth.json), `config.rows`. The file holds 13 rows. The commit messages name them rows 0, 1, 1b, 2, 2b, 3, 4, 4b, 5, 6, 7, 8 and 9. The columns below follow the file. `lines_read` is the count of required lines read over the 3,713 pages of the snapshot. The number of required lines can move with the resolver rules, so compare the counts with care. `recipes_fully_read` is in-sample. The three dev columns use the dev halves: 150 gold lines (152 gold groups) and 83 typed inputs. `input_accuracy_dev` scores through the typed-name resolver `resolve_name` in all rows.
 
 | Row | Commit | Stored in | Change | Table rows | lines_read | recipes_fully_read | mention_accuracy (dev) | parser_precision (dev) | input_accuracy (dev) | Dev scoring |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
@@ -136,6 +136,7 @@ Source: [results/m3_table_growth.json](../results/m3_table_growth.json), `config
 | 6 | `b90d54b` | `9445568` | Same table as row 5, dev id map | 872 | 29,212 | 0.7244 | 0.8618 | 0.9632 | 0.9759 | `id_map` |
 | 7 | `48965d0` | `f22c107` | Chili garlic sauce fix | 872 | 29,212 | 0.7244 | 0.8618 | 0.9632 | 0.9759 | `id_map` |
 | 8 | `0b4439c` | `4ad56b5` | Resolver rules F1 to F7 and table round 3 (M3 Task 11) | 891 | 29,590 | 0.7853 | 0.8947 | 0.9510 | 0.9759 | `id_map` |
+| 9 | `41d1a8f` | `fe847bf` | Narrow F7 and F5, flour and seasoning rows (fix round 1) | 894 | 29,583 | 0.7818 | 0.8947 | 0.9510 | 0.9759 | `id_map` |
 
 `Commit` is the commit that the row recorded. `Stored in` is the `results:` commit that added the row. The change text comes from the nearest commit subject in `git log` and from the plan. It is not a field of the file.
 
@@ -145,9 +146,9 @@ Observations on the numbers:
 - MEASURED: row 0 matches the M1 baseline on the parser lines (`mention_accuracy` 0.8026, `parser_precision` 0.8905), as expected: no resolver rule had changed yet.
 - MEASURED: the head-noun check and the stricter `trailing_ok` list (rows 2 and 2b) raise `parser_precision` from 0.8881 to 0.9478 and lower `recipes_fully_read` from 0.7338 to 0.6377. The check leaves some lines unread that the M1 rules read (see [PROJECT_STATE section 10](PROJECT_STATE.md)). Table round 2 (rows 4 to 5) wins part of the read share back.
 - MEASURED, row 7 dev random stratum (50 lines, 50 gold groups, 47 predicted groups): `mention_accuracy` 0.86 and `parser_precision` 0.9362. The dev labels were visible while the table grew, so these are development figures.
-- MEASURED, row 8 (M3 Task 11), dev random stratum (50 lines, 49 predicted groups): `mention_accuracy` 0.88 and `parser_precision` 0.9184.
-- Row 8 is in-sample. The resolver rules F1 to F7 and the 19 new rows were found by reading acceptance run 1's spent test lines and the dev set (the analysis report). The gain on dev is not evidence for the fresh set. Only the sealed fresh lines can score the rules (acceptance run 2).
-- MEASURED, row 8 against row 7: `mention_accuracy` +0.0329 (136 of 152 gold groups found, from 131), `parser_precision` -0.0122 (0.9632 to 0.9510), `input_accuracy` unchanged. With the rules alone on the row 7 table the dev scores are 0.8882 and 0.9712 (no rule lowered precision). The precision fall comes from five dev gold names that the frozen dev id map sets to `null` and that now have rows (powdered drink mix, vanilla sugar, seasoning, wine yeast, yeast nutrient): the new readings are counted wrong by the frozen map. I did not edit the frozen map.
+- MEASURED, row 9 (M3 Task 11 and fix round 1), dev random stratum (50 lines, 49 predicted groups): `mention_accuracy` 0.88 and `parser_precision` 0.9184.
+- Rows 8 and 9 are in-sample. The resolver rules F1 to F7 and the new rows were found by reading acceptance run 1's spent test lines and the dev set (the analysis report). The gain on dev is not evidence for the fresh set. Only the sealed fresh lines can score the rules (acceptance run 2).
+- MEASURED, row 9 against row 7: `mention_accuracy` +0.0329 (136 of 152 gold groups found, from 131), `parser_precision` -0.0122 (0.9632 to 0.9510), `input_accuracy` unchanged. The precision fall comes from five dev gold names that the frozen dev id map sets to `null` and that now have rows (powdered drink mix, vanilla sugar, seasoning, wine yeast, yeast nutrient). The frozen map counts the new readings as wrong. The frozen map was not edited. The fresh run needs its own map.
 - The file keeps one `dirty` flag for the last write (false). It does not keep a flag for each row.
 
 ### Bare pepper (MEASURED)
@@ -166,19 +167,19 @@ Reproduce: `uv run python scripts/m3_bare_pepper.py score data/eval/m3_bare_pepp
 
 ### Pack v2 (MEASURED)
 
-Source: [results/m3_pack_v2.json](../results/m3_pack_v2.json), build commit `4ad56b5` (clean tree; M3 Task 11 rebuild; the Task 7 build was commit `4482764` with 872 rows, 0.7244 and 502,837 bytes). The file records fixed build gates and `gates_passed: true`. This is the build gate and not the acceptance verdict.
+Source: [results/m3_pack_v2.json](../results/m3_pack_v2.json), build commit `fe847bf` (clean tree; M3 Task 11 fix round 1 rebuild; the Task 7 build was commit `4482764` with 872 rows, 0.7244 and 502,837 bytes). The file records fixed build gates and `gates_passed: true`. This is the build gate and not the acceptance verdict.
 
 | Item | Value | Gate in the file |
 | --- | --- | --- |
 | Recipes in the pack | 3,712 of 3,713 pages (1 page has no required line) | at least 2,500 |
-| `recipes_fully_read` | 0.7853 (2,915 of 3,712) | at least 0.60 |
-| `core.v2.json.gz` | 504,815 bytes | at most 3,145,728 bytes |
+| `recipes_fully_read` | 0.7818 (2,902 of 3,712) | at least 0.60 |
+| `core.v2.json.gz` | 504,896 bytes | at most 3,145,728 bytes |
 | `text.v2.json.gz` | 870,411 bytes | none |
-| Table rows | 891 | none |
-| Pack lines, unread pack lines | 32,773, 966 | none |
-| Required lines read | 29,590 of 30,556 (0.9684) | none |
+| Table rows | 894 | none |
+| Pack lines, unread pack lines | 32,782, 988 | none |
+| Required lines read | 29,583 of 30,571 (0.9677) | none |
 
-Pack v2 is built locally. Nothing is uploaded. The owner uploads release `pack-v2` and runs the Pages workflow (plan D7). The core hash depends on the build commit, so a release build must come from commit `4ad56b5`, or the hashes in `web/pack-hashes.json` must change. That file still holds the Task 7 hashes (commit `4482764`) and is out of date.
+Pack v2 is built locally. Nothing is uploaded. The owner uploads release `pack-v2` and runs the Pages workflow (plan D7). The core hash depends on the build commit, so a release build must come from commit `fe847bf`, or the hashes in `web/pack-hashes.json` must change. That file still holds the Task 7 hashes (commit `4482764`) and is out of date.
 
 Reproduce: `uv run python scripts/build_pack.py --out build/pack && uv run python scripts/m3_pack_result.py --pack build/pack`.
 
@@ -210,7 +211,7 @@ This is the command that the results file stores for its last row. The tool appe
 ### Reproduce a growth row
 
 1. Check out the commit in the `Commit` column.
-2. Run the command above without `--id-map` for rows 0 to 5, and with it for rows 6 to 8. Point `--growth-row` at a new file.
+2. Run the command above without `--id-map` for rows 0 to 5, and with it for rows 6 to 9. Point `--growth-row` at a new file.
 3. Compare the new row with the table above.
 
 The file stores the command of its last write only. It stores the table size of each row and not the table path, so step 2 uses the table that sits in the checked-out tree. I did not re-run rows 0 to 7 for this section. The values come from the results file.

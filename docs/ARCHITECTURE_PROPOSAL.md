@@ -89,7 +89,7 @@ flowchart TB
 | --- | --- | --- | --- | --- |
 | Source adapters | `pantrychef/sources/` | Snapshot file | `SourceRecipe` records with provenance | Built (M1): Wikibooks fetch and parse |
 | Line parser | `pantrychef/ingredients/` | Ingredient line | Quantity, unit, ingredient text | Built; Unicode fractions added in M1 |
-| Ingredient table | `data/ingredients/ingredients.v2.csv` | Hand curation | Ids, names, synonyms, staple flag | Built. `ingredients.csv` is the M1 table (337 rows). `ingredients.v2.csv` is the M3 table (891 rows) and the pack reads it. No diet flags yet |
+| Ingredient table | `data/ingredients/ingredients.v2.csv` | Hand curation | Ids, names, synonyms, staple flag | Built. `ingredients.csv` is the M1 table (337 rows). `ingredients.v2.csv` is the M3 table (894 rows) and the pack reads it. No diet flags yet |
 | Resolver | `pantrychef/ingredients/resolve.py` | Text | Lines with option ids, or "unread" | Built (M1) |
 | Typed-name resolver | `pantrychef/ingredients/names.py`, `web/src/names.ts` | One typed pantry name, the pack keys and word lists | Ids and the step that matched: exact, split, contained, fuzzy or none | Built (M3 task 3): matches Python on the golden name cases. A bare "pepper" stays unknown |
 | Pack builder | `pantrychef/pack/` | Records and table | Recipe pack and manifest | Built (M1): hash allow-list and input guard |

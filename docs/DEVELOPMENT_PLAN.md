@@ -115,10 +115,10 @@ gate.
 
 Done (code and tests exist, and the numbers are in [EVALUATION.md](EVALUATION.md)):
 
-- Table v2 with 891 rows and the `is_a` and `form_of` columns. A word file for units, size, container and preparation words.
+- Table v2 with 894 rows and the `is_a` and `form_of` columns. A word file for units, size, container and preparation words.
 - Singulariser fix, line-resolver rules (head-noun check, chili pepper marker, bare pepper rule), and a typed-name resolver in Python and TypeScript with golden parity cases.
 - The bare pepper decision (`staple_cue_or_taste`). It rests on one model labeller.
-- Evaluation sets, labels and the frozen test hashes. The coverage tool and 11 growth rows, measured on the dev halves and in-sample.
+- Evaluation sets, labels and the frozen test hashes. The coverage tool and 13 growth rows, measured on the dev halves and in-sample.
 - Pack v2, built locally, with its result file. Nothing is uploaded.
 - The ADR 0006 graph spike. It ran on 2026-11-09 and found no newly surfaced recipe (MEASURED, [results/m3_graph_spike.json](../results/m3_graph_spike.json)). The ADR rule counts that as a rejection, so ADR 0006 is Rejected. No person rated anything, and the thresholds T1 to T3 were not tested. The result is narrow: it does not show that traversal fails for pantries that name specific kinds, and it says nothing about multi-hop traversal.
 
