@@ -255,7 +255,6 @@ Results files (each one links commit, config and command):
 
 Pending:
 
-- The owner checks the blind gold-to-id mappings that differ from the table-key lookup (plan D9). The two map files do not exist yet.
 - The acceptance run, once, on a clean tree. If a target fails, stop and report. Do not lower it.
 - The release of pack v2. The owner uploads release `pack-v2` and runs the Pages workflow. Nothing is deployed, and the release `pack-v2` does not exist.
 

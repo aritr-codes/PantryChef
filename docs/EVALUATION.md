@@ -116,7 +116,7 @@ A gold label holds names. To score, each name must become a table id. There are 
 
 Why dev `mention_accuracy` had a table-key artefact (MEASURED, by comparing the map with the table keys of `ingredients.v2.csv`): 8 of the 134 names in the map do not agree with the table keys. 7 of them have no key in the table, and the map gives them an id (for example `angel hair pasta` to `pasta`, `soft tofu` to `tofu`). The 8th, `espagnole sauce`, has a key (`espagnole`) and the map says no id. With `table_keys`, a name with no key has no gold id, so a correct read of that line counts as missed. The same 872-row table scored 0.8487 under `table_keys` (growth row 5) and 0.8618 under `id_map` (growth row 6). That gap is a scoring artefact. It is not a change in the resolver. Rows 0 to 5 use `table_keys` and rows 6 and 7 use `id_map`, so read the `mention_accuracy` column in two parts.
 
-The gold-to-id mapping for the held-out data is a separate step (plan D9). It does not exist yet (see "Acceptance").
+The gold-to-id mapping for the held-out data is a separate step (plan D9). The two frozen map files are `data/eval/m3_gold_id_map.v1.json` and `data/eval/m3_input_gold_id_map.v1.json`. The owner checked them (see "Acceptance").
 
 ### Growth rows (MEASURED)
 
