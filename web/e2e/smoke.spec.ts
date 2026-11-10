@@ -112,6 +112,35 @@ test("the Buy 1 thing numbers are N and N + k, and k matches the sentence", asyn
   await expect(tab(page, /Ready now/).locator(".n")).toHaveText(String(to));
 });
 
+test("the ticket counts a recipe whose only needed line is the item, and Add says one thing", async ({ page }) => {
+  await page.goto("/");
+  // In the fixture, Flour Paste and Salt Dough need only flour. The engine's unlock count misses them.
+  await add(page, "egg", "milk", "banana");
+  const ticket = ticketOf(page);
+  const now = Number(await ticket.locator(".from").textContent());
+  const to = Number(await ticket.locator(".to").textContent());
+  const k = Number(/you can cook (\d+) more/.exec((await ticket.locator(".why").textContent())!)![1]);
+  expect(k).toBeGreaterThan(1);
+  expect(to).toBe(now + k);
+  const label = (await ticket.getByRole("button", { name: /^Add / }).textContent())!.replace("Add ", "");
+  await ticket.getByRole("button", { name: /^Add / }).click();
+  // The count on the tab, the lead line and the undo message all give the same numbers.
+  await expect(tab(page, /Ready now/).locator(".n")).toHaveText(String(to));
+  await expect(page.locator("#answer-h")).toContainText(new RegExp(`^${to} recipes are ready now`));
+  const name = `${label.charAt(0).toUpperCase()}${label.slice(1)}`;
+  await expect(page.locator(".answer .undo")).toHaveText(new RegExp(`^${name} added\\. ${k} more recipes are ready now\\.`));
+});
+
+test("Clear all, then an example, then no undo is left to bring back the old kitchen", async ({ page }) => {
+  await page.goto("/");
+  await add(page, "flour", "egg");
+  await page.getByRole("button", { name: "Clear all" }).click();
+  await expect(page.locator(".kitchen .undo")).toContainText("Kitchen cleared.");
+  await page.locator(".examples .ex").first().click();
+  await expect(page.locator(".kitchen .undo")).toHaveText("");
+  await expect(page.getByRole("button", { name: "Undo" })).toHaveCount(0);
+});
+
 test("the skip link jumps to the recipes, and the combobox names the active option", async ({ page }) => {
   await page.goto("/");
   await add(page, "flour");
@@ -255,7 +284,7 @@ test("the distance tabs are a real tablist with arrow-key support", async ({ pag
 test("the kitchen is saved on this device and comes back after a reload", async ({ page }) => {
   await page.goto("/");
   await add(page, "flour", "egg");
-  await expect(page.locator(".saved")).toHaveText("Saved on this device. We send nothing to a server.");
+  await expect(page.locator("footer.page")).toContainText("Saved on this device. We send nothing to a server.");
   // Switch off a staple, and check that the switch also comes back.
   await page.getByText(/Choose staples/).click();
   await page.getByRole("checkbox", { name: "salt", exact: true }).uncheck();
@@ -323,7 +352,6 @@ test("the page works with storage blocked, and says so", async ({ page }) => {
   await page.goto("/");
   await add(page, "flour", "egg");
   await expect(word(page, "egg")).toBeVisible();
-  await expect(page.locator(".saved")).toContainText("Not saved: this browser blocks storage.");
   await expect(page.locator("footer.page")).toContainText("Not saved: this browser blocks storage.");
   await expect(page.locator("footer.page")).not.toContainText("Saved on this device");
   await expect(page.getByRole("tablist")).toBeVisible();
@@ -342,7 +370,7 @@ test("Buy 1 thing names recipes, and Add adds the item with an undo", async ({ p
   await btn.click();
   await expect(items(page)).toHaveCount(before + 1);
   const bar = page.locator(".answer .undo");
-  await expect(bar).toContainText(`${label} added.`);
+  await expect(bar).toContainText(`${label.charAt(0).toUpperCase()}${label.slice(1)} added.`);
   await bar.getByRole("button", { name: "Undo" }).click();
   await expect(items(page)).toHaveCount(before);
   // The undo button goes away, so focus must land on the selected tab.
