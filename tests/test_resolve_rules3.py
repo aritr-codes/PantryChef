@@ -142,6 +142,12 @@ def test_f5_unread_line_retried_with_parentheses_opened(t):
     assert _ids(t, "(lemon)") == [(("lemon",), True)]
 
 
+def test_f5_retry_must_read_one_group(t):
+    # a parenthesis list would turn into several required items, so the line stays unread
+    assert _ids(t, "1 cup zzzfruit (ginger, lemon)") == [((), False)]
+    assert _ids(t, "1 cup zzzfruit (ginger or lemon)") == [(("ginger", "lemon"), True)]
+
+
 def test_f5_guards(t):
     assert _ids(t, "2 eggs (or lemon)") == [(("egg",), True)]  # already read: unchanged
     assert _ids(t, "3 cups zzzfruit (see note)") == [((), False)]
@@ -167,12 +173,28 @@ def test_f6_guards(t):
 
 
 # --- F7: in a later comma chunk, matches after a clause word are dropped ---
+# "with", "in", "of", "such" and "as" do not start a note there: they name real foods.
 
 
 def test_f7_note_chunk_after_clause_word_is_dropped(t):
-    assert _ids(t, "2 cups garlic, made with onion") == [(("garlic",), True)]
     assert _ids(t, "2 cups garlic, cut into carrot sticks") == [(("garlic",), True)]
-    assert _ids(t, "2 cups garlic, made with onion and parsley") == [(("garlic",), True)]
+    assert _ids(t, "2 cups garlic, for onion sauce") == [(("garlic",), True)]
+    assert _ids(t, "2 cups garlic, cut into carrot sticks and parsley") == [(("garlic",), True)]
+
+
+@pytest.mark.parametrize(
+    ("text", "want"),
+    [
+        ("1 egg, soaked in milk", [("egg",), ("milk",)]),
+        ("1 egg, mixed with milk", [("egg",), ("milk",)]),
+        ("1 egg, with 1 tsp ginger", [("egg",), ("ginger",)]),
+        ("1 egg, 1 loaf of carrot", [("egg",), ("carrot",)]),
+        ("1 egg, such as ginger", [("egg",), ("ginger",)]),
+        ("1 egg, such as ginger, lemon", [("egg",), ("ginger",), ("lemon",)]),
+    ],
+)
+def test_f7_with_in_of_such_as_notes_keep_a_real_food(t, text, want):
+    assert _ids(t, text) == [(ids, True) for ids in want]
 
 
 def test_f7_guards(t):

@@ -172,7 +172,7 @@ white_bean,white bean,cannellini bean|navy bean|great northern bean|haricot bean
 pinto_bean,pinto bean,,0,hand,,
 split_pea,split pea,dried split pea|yellow split pea,0,hand,,
 refried_beans,refried beans,refried bean,0,hand,,
-peanut,peanut,roasted peanut|salted peanut|dry roasted peanut|unsalted peanut|groundnut,0,hand,,
+peanut,peanut,roasted peanut|salted peanut|dry roasted peanut|unsalted peanut|groundnut|ground peanut,0,hand,,
 peanut_butter,peanut butter,creamy peanut butter|crunchy peanut butter|smooth peanut butter|chunky peanut butter|groundnut paste,0,hand,,
 almond,almond,sliced almond|slivered almond|ground almond|almond meal|whole almond|flaked almond|blanched almond|almond flour,0,hand,,
 almond_extract,almond extract,almond essence,0,hand,,
@@ -453,7 +453,7 @@ madeira,madeira,madeira wine,0,wikibooks-rule,wine,
 pimento,pimento,pimiento|diced pimento|jarred pimento|canned pimento,0,wikibooks-rule,,
 meatball,meatball,,0,wikibooks-rule,,
 sumac,sumac,sumak|sumach|sumac powder|soumak,0,wikibooks-rule,,
-baharat,baharat,,0,wikibooks-rule,,
+baharat,baharat,baharat spice,0,wikibooks-rule,,
 tater_tot,tater tot,tater tots|potato tot,0,wikibooks-rule,,potato
 hash_brown,hash brown,hash browns|shredded hash brown|frozen hash brown|hash brown potato,0,wikibooks-rule,,potato
 grits,grits,grit|hominy grit|corn grit|stone ground grit|quick grit,0,wikibooks-rule,,
@@ -890,3 +890,6 @@ drink_mix,drink mix,powdered drink mix|drink powder|instant drink mix|drink crys
 pate,pate,liver pate|pork pate|country pate|chicken liver pate,0,wikibooks-rule,,
 pork_stomach,pork stomach,hog maw|pig stomach,0,wikibooks-rule,,
 seafood,seafood,mixed seafood|assorted seafood,0,wikibooks-rule,,
+mung_bean_flour,mung bean flour,green gram flour|moong flour|moong bean flour,0,wikibooks-rule,,mung_bean
+urad_flour,urad flour,black gram flour|urad dal flour,0,wikibooks-rule,,
+maggi_seasoning,maggi seasoning,maggi liquid seasoning,0,wikibooks-rule,,

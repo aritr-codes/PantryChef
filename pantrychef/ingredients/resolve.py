@@ -23,18 +23,18 @@ Rules (see docs/plans/2026-11-02-m1-thin-slice.md, gap 8):
   before, 0.6377 after). The table rounds win back part of it: table round 2 reads 95.6% of lines
   and recipes_fully_read 0.7244 (MEASURED, growth rows 1b, 2b and 7).
 - Round 3 rules (M3 Task 11; found by reading the spent test and dev sets, so any dev gain is
-  in-sample; MEASURED on dev: mention_accuracy 0.8618 to 0.8882, parser_precision 0.9632 to
-  0.9712):
+  in-sample; the dev scores are in results/m3_table_growth.json):
   F1 an unknown "and" part in a later comma chunk is skipped, not a reason to unread the line
   ("peeled and cut into pieces"). The first chunk stays strict ("salt and X").
   F2 inside one "or" part, a match after "with" is a note when a match comes before it.
   F3 two adjacent matches read as one longer key when the first loses its leading words
   ("dry marsala" + "wine" is "marsala wine").
   F4 a word after the food that is already in the row name is explained ("amchur powder").
-  F5 a line that reads nothing is tried once more with the parenthetical text kept.
+  F5 a line that reads nothing is tried once more with the parenthetical text kept. The retry
+  counts only when it reads one line.
   F6 "powdered" or "ground" before a food reads the "<food> powder" row when that key exists.
-  F7 in a later comma chunk, a match after a clause word is a note ("made with rye flour").
-  "of", "such" and "as" do not start a note there ("loaf of white bread", "such as carrots").
+  F7 in a later comma chunk, a match after a clause word is a note ("cut into fries"). "with",
+  "in", "of", "such" and "as" do not start a note there: they name real foods.
 - A staple never hides a real ingredient when they are not adjacent ("cornstarch mixed with
   water" reads cornstarch).
 - A "pepper" right after a match of a row known as "... pepper" is part of that name ("green
@@ -94,9 +94,9 @@ _CLAUSE = frozenset(
 )
 
 _WITH = frozenset(["with"])
-# Clause words that do not start a note in a later chunk: "loaf of white bread", "such as
-# carrots" (the next chunk of the list is read, so this one must be too).
-_LIST_WORDS = frozenset(["of", "such", "as"])
+# Clause words that do not start a note in a later chunk: they often name a real food ("soaked
+# in milk", "mixed with mayonnaise", "loaf of white bread", "such as carrots").
+_LIST_WORDS = frozenset(["of", "such", "as", "with", "in"])
 # "powdered mustard", "ground chile pepper": the form word may read the "<food> powder" row.
 _FORM = frozenset(["powdered", "ground"])
 
@@ -277,7 +277,7 @@ def resolve_lines(text: str, table: IngredientTable) -> list[ResolvedLine]:
     if lines and not lines[0].read and "(" in text:
         # F5: a line that reads nothing gets one more try with the parenthetical text kept.
         retry = _resolve(text, table, True)
-        if retry[0].read:
+        if len(retry) == 1 and retry[0].read:  # one group: a list in a note is not a requirement
             return retry
     return lines
 

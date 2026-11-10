@@ -29,7 +29,7 @@ NEW_ROWS = {
 
 
 def test_round_3_appends_rows(table):
-    assert len(table.rows) == 891
+    assert len(table.rows) == 894
     assert set(table.by_id) >= NEW_ROWS
 
 
@@ -110,3 +110,20 @@ def test_near_lines_stay_as_they_were(table):
 def test_a_known_spice_name_beats_the_generic_row(table):
     assert _ids(table, "1 tsp mitmita spice") == [(("mitmita",), True)]
     assert _ids(table, "1 tsp accent seasoning") == [(("msg",), True)]
+
+
+@pytest.mark.parametrize(
+    ("text", "ids"),
+    [
+        ("1 cup ground peanuts", "peanut"),
+        ("1 cup peanut powder", "peanut_powder"),
+        ("1 cup green gram flour", "mung_bean_flour"),
+        ("1 cup black gram flour", "urad_flour"),
+        ("1 cup gram flour", "chickpea_flour"),
+        ("1 tsp maggi seasoning", "maggi_seasoning"),
+        ("1 maggi cube", "seasoning_cube"),
+        ("1 tsp baharat spice", "baharat"),
+    ],
+)
+def test_fix_round_1_rows_beat_the_generic_readings(table, text, ids):
+    assert _ids(table, text) == [((ids,), True)]

@@ -7,7 +7,7 @@
     },
     "table": {
       "path": "data/ingredients/ingredients.v2.csv",
-      "sha256": "42a0c0d2e72bd6d8135112ea05de93374bb8828255e08b87161cd0ceb95d5937"
+      "sha256": "307f580c9fb26850ae1fb840c66b13f2a3548932b4548bedea06c0baa7f05fe6"
     },
     "words": {
       "path": "data/ingredients/words.v1.json",
