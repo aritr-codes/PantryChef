@@ -163,7 +163,7 @@ Source: [results/m3_bare_pepper.json](../results/m3_bare_pepper.json), commit `b
 
 `bare_pepper_black_share` is 0.700 (Wilson 95% interval 0.5923 to 0.7894, n = 80). The rule in the result file says to adopt `always` only when the lower bound is at least 0.85. The decision is `staple_cue_or_taste`: a bare "pepper" reads as black pepper only when the line also names salt or says "to taste". `data/ingredients/words.v1.json` holds the rule (`bare_pepper.when`). Under `always`, 45 of the 80 lines would read differently, and 29 of those 45 are black pepper. A person who types "pepper" still gets "Not recognised" and picks the pepper they hold (plan D6). The labeller is one model, so this is a weak basis for a data value.
 
-Reproduce: `uv run python scripts/m3_bare_pepper.py score data/eval/m3_bare_pepper_labels.v1.json`. The result records the sha256 of the final v2 table (`a03baecd…`), the same hash as in the pack v2 result. The first run (commit `250a9cd`) used an older table. The re-run gave the same decision and the same counts.
+Reproduce: `uv run python scripts/m3_bare_pepper.py score data/eval/m3_bare_pepper_labels.v1.json`. The result records the sha256 of the 872-row v2 table (`a03baecd…`). The final table has 894 rows (`307f580c…`), so the hash differs from the one in the pack v2 result. The bare pepper rule reads the pepper lines and not the new rows. I did not re-run the score on the 894-row table (ESTIMATE: the decision does not change). The first run (commit `250a9cd`) used an older table. The re-run on the 872-row table gave the same decision and the same counts.
 
 ### Pack v2 (MEASURED)
 
@@ -256,7 +256,7 @@ Source: [results/m3_acceptance_fresh.json](../results/m3_acceptance_fresh.json),
 Read the result with care:
 
 - The lower Wilson bound of `mention_accuracy` is 0.8930, below the 0.90 target. The point estimate passes. The interval does not exclude a true rate below 0.90.
-- This is the second attempt. The first attempt failed, and the changes between them were chosen after we saw the run 1 miss groups. The fresh lines were never read before the run. A pass here does not support a claim of generalisation beyond Wikibooks lines.
+- This is the second attempt. The first attempt failed, and the changes between them were chosen after we saw the run 1 miss groups. Nobody who changed the table or the resolver read the fresh lines before the run. Two labellers and the owner (30 lines) did read them. The last resolver and table change (`41d1a8f`, narrow F7 and F5) came after the labels were committed. It used a snapshot read through `load_frozen()`, which hides the fresh lines. A pass here does not support a claim of generalisation beyond Wikibooks lines.
 - 4 of 202 gold groups have no row in the table.
 - The labels come from two model labellers and one owner adjudication, not from independent human labellers.
 

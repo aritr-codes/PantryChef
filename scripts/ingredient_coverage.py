@@ -31,7 +31,7 @@ from pantrychef.eval.realistic import score_inputs
 from pantrychef.eval.results import git_facts, write_result
 from pantrychef.ingredients.names import resolve_name
 from pantrychef.ingredients.resolve import _body
-from pantrychef.ingredients.table import IngredientTable, tokens
+from pantrychef.ingredients.table import DEFAULT_TABLE_PATH, IngredientTable, tokens
 from pantrychef.pack.build import coverage
 from pantrychef.sources.wikibooks import parse_page
 
@@ -171,7 +171,7 @@ def main(argv: list[str] | None = None) -> int:
     ap.add_argument("--id-map", type=Path, default=None, metavar="PATH")
     args = ap.parse_args(argv)
 
-    table = IngredientTable.load(args.table)  # None: the default, the v2 table
+    table = IngredientTable.load(args.table or DEFAULT_TABLE_PATH)
     with gzip.open(args.snapshot, "rt", encoding="utf8") as fh:
         records = [json.loads(line) for line in fh]
     recipes = [r for rec in records if (r := parse_page(rec, "x"))]

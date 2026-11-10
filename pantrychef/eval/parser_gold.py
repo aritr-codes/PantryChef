@@ -116,8 +116,7 @@ def load_frozen() -> frozenset[str]:
     """Hashes of every test, extra and fresh line. Table growth must not read these lines."""
     out: set[str] = set()
     for path in (FROZEN, FROZEN_FRESH):
-        if path.exists():
-            out |= set(json.loads(path.read_text(encoding="utf8"))["hashes"])
+        out |= set(json.loads(path.read_text(encoding="utf8"))["hashes"])
     return frozenset(out)
 
 
