@@ -145,12 +145,13 @@ def test_no_new_row_hides_a_bare_product_word(table):
         "puree",
         "concentrate",
     }
-    # "oil" is an old synonym of vegetable_oil (a staple). Round 2 adds no other bare word.
-    assert {" ".join(k) for k in table.keys} & bare == {"oil"}
+    # "oil" is an old synonym of vegetable_oil (a staple). Round 3 (M3 11) adds the generic class
+    # rows "spice" and "seasoning" on purpose (see tests/test_table_round3.py). No other bare word.
+    assert {" ".join(k) for k in table.keys} & bare == {"oil", "spice", "seasoning"}
 
 
-def test_round_2_row_count_and_provenance(table):
-    assert len(table.rows) == 872
+def test_round_2_rows_stay_and_provenance(table):
+    assert len(table.rows) >= 872  # round 3 appends rows (tests/test_table_round3.py)
     assert {r.provenance for r in table.rows} <= {"hand", "wikibooks-rule"}
 
 
