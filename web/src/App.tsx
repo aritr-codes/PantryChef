@@ -55,6 +55,9 @@ export function App() {
   const intro = useRef(true);
   const celebrate = useRef(false); // a colour burst on the "Ready now" tab after an add
   const focusFirstTab = useRef(false); // after an example kitchen is picked
+  const closing = useRef(false); // a second tap before the first Back has finished must not go back twice
+  const boardY = useRef(0); // scroll position of the answer list, kept while a recipe is open
+  const lastOpened = useRef<string | null>(null); // the recipe whose link has focus again on the way back
   const latest = useRef<Saved | null>(null); // what to save if the page closes before the effect runs
   const screenName = screen.name === "recipe" ? `recipe:${screen.id}` : screen.name;
 
@@ -66,9 +69,42 @@ export function App() {
       return;
     }
     intro.current = false; // the slips print in on the first load only
-    window.scrollTo(0, 0);
-    if (screen.name === "board") document.querySelector<HTMLElement>("[data-focus-heading]")?.focus();
+    closing.current = false;
+    if (screen.name === "board") {
+      // Back from a recipe: return to the same place in the list, with focus on the same link.
+      const id = lastOpened.current;
+      const link = id ? document.querySelector<HTMLElement>(`[data-recipe="${CSS.escape(id)}"]`) : null;
+      if (link) {
+        window.scrollTo(0, boardY.current);
+        link.focus({ preventScroll: true });
+        link.scrollIntoView({ block: "nearest" }); // the page above the list may have changed height meanwhile
+      } else {
+        window.scrollTo(0, 0);
+        document.querySelector<HTMLElement>("[data-focus-heading]")?.focus();
+      }
+      lastOpened.current = null;
+    } else {
+      window.scrollTo(0, 0);
+    }
   }, [screenName]);
+
+  // A recipe is a history entry, so the Back button of the phone returns to the list and does not leave the site.
+  useEffect(() => {
+    if (history.state?.recipe) history.replaceState(null, ""); // a reload on a recipe entry shows the board
+    history.scrollRestoration = "manual"; // the page restores its own scroll on the way back
+    const onPop = (e: PopStateEvent) => {
+      if (e.state?.recipe) {
+        // Forward to a recipe: remember the list position again, as openRecipe does.
+        boardY.current = window.scrollY;
+        lastOpened.current = String(e.state.recipe);
+        setScreen({ name: "recipe", id: String(e.state.recipe) });
+      } else {
+        setScreen({ name: "board" });
+      }
+    };
+    window.addEventListener("popstate", onPop);
+    return () => window.removeEventListener("popstate", onPop);
+  }, []);
 
   useEffect(() => {
     ready(PACK_URL)
@@ -177,6 +213,22 @@ export function App() {
     });
   };
 
+  const openRecipe = (id: string) => {
+    boardY.current = window.scrollY;
+    lastOpened.current = id;
+    history.pushState({ recipe: id }, "");
+    setScreen({ name: "recipe", id });
+  };
+  const closeRecipe = () => {
+    if (closing.current) return;
+    if (history.state?.recipe) {
+      closing.current = true;
+      history.back();
+    } else {
+      setScreen({ name: "board" });
+    }
+  };
+
   const pickExample = (ex: Example) => {
     setIds(ex.ids);
     setUndo(null); // an old undo would bring back a kitchen that the example has just replaced
@@ -198,6 +250,7 @@ export function App() {
             examples={examples}
             onExample={pickExample}
             open={open}
+            ready={answer.groups.make_now.count}
             undo={undo}
             setOpen={setOpen}
             setIds={setIds}
@@ -216,7 +269,7 @@ export function App() {
             undo={undo}
             setTab={setPicked}
             onMore={() => setShown(shown + PAGE)}
-            onOpen={(id) => setScreen({ name: "recipe", id })}
+            onOpen={openRecipe}
             onTry={tryItem}
             clearUndo={() => setUndo(null)}
           />
@@ -227,7 +280,7 @@ export function App() {
           recipeId={screen.id}
           pantry={ids}
           staples={staples}
-          onBack={() => setScreen({ name: "board" })}
+          onBack={closeRecipe}
         />
       )}
       <div class="sr" role="status" aria-live="polite">{announce}</div>

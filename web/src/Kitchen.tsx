@@ -13,6 +13,7 @@ interface Props {
   staples: string[];
   examples: Example[];
   open: boolean; // phone only: the full kitchen is shown
+  ready: number; // recipes ready now, shown on the phone's "Done" bar
   undo: Undo | null;
   setOpen: (open: boolean) => void;
   setIds: (ids: string[] | ((cur: string[]) => string[])) => void;
@@ -388,10 +389,11 @@ export function Kitchen(p: Props) {
                 class="btn primary done"
                 onClick={() => {
                   p.setOpen(false);
-                  pending.current = () => document.getElementById("edit-kitchen")?.focus();
+                  // The answer is what the person came for, so focus goes there and the page scrolls to it.
+                  pending.current = () => document.querySelector<HTMLElement>("[data-focus-heading]")?.focus();
                 }}
               >
-                Done
+                Done: {p.ready} {p.ready === 1 ? "recipe" : "recipes"} ready now
               </button>
             )}
           </div>

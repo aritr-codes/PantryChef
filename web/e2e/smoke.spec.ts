@@ -392,10 +392,13 @@ test("Buy 1 thing names recipes, and Add adds the item with an undo", async ({ p
 test("focus moves to the heading when the screen changes", async ({ page }) => {
   await page.goto("/");
   await add(page, "flour");
-  await page.locator(".rec-link").first().click();
+  const link = page.locator(".rec-link").first();
+  const title = await link.textContent();
+  await link.click();
   await expect(page.locator("#recipe-h")).toBeFocused();
   await page.getByRole("button", { name: /Back to results/ }).click();
-  await expect(page.locator("#answer-h")).toBeFocused();
+  // Focus returns to the recipe that was open, so a keyboard user keeps their place.
+  await expect(page.locator(".rec-link").filter({ hasText: title! }).first()).toBeFocused();
   // The pantry and the answer are still there.
   await expect(word(page, "flour")).toBeVisible();
 });
@@ -511,4 +514,56 @@ test("a failed pack download shows a clear error with a reload button", async ({
   await page.goto("/");
   await expect(page.getByRole("alert")).toHaveText("The recipe data did not load. Check your connection and reload.");
   await expect(page.getByRole("button", { name: "Reload" })).toBeVisible();
+});
+
+test("on a phone, Back from a recipe returns to the same place in the list and stays on the site", async ({ page }) => {
+  await page.setViewportSize(PHONE);
+  await page.goto("/");
+  await add(page, "flour", "egg", "milk", "butter");
+  await page.getByRole("button", { name: /^Done/ }).click();
+  const links = page.locator(".rec-link");
+  const last = (await links.count()) - 1;
+  const link = links.nth(last);
+  await link.scrollIntoViewIfNeeded();
+  const before = await page.evaluate(() => Math.round(window.scrollY));
+  expect(before).toBeGreaterThan(100); // the person is down the page, not at the top
+  await link.click();
+  await expect(page.locator("#recipe-h")).toBeFocused();
+  // The phone's Back button (history) returns to the list. It does not leave the site.
+  await page.goBack();
+  await expect(page.locator("#answer-h")).toBeVisible();
+  await expect(links.nth(last)).toBeFocused();
+  const after = await page.evaluate(() => Math.round(window.scrollY));
+  expect(Math.abs(after - before)).toBeLessThan(40);
+  expect(page.url()).toContain("127.0.0.1:4173");
+  // Forward to the recipe and Back again still returns to the same place.
+  await page.goForward();
+  await expect(page.locator("#recipe-h")).toBeVisible();
+  await page.goBack();
+  await expect(links.nth(last)).toBeFocused();
+  expect(Math.abs((await page.evaluate(() => Math.round(window.scrollY))) - before)).toBeLessThan(40);
+  // The "Back to results" button works the same way, and a double tap does not leave the site.
+  await links.nth(last).click();
+  await page.getByRole("button", { name: /Back to results/ }).dblclick();
+  await expect(links.nth(last)).toBeFocused();
+  expect(page.url()).toContain("127.0.0.1:4173");
+});
+
+test("on a phone, the Done bar stays on screen while the kitchen is long, and it leads to the answer", async ({ page }) => {
+  await page.setViewportSize(PHONE);
+  await page.goto("/");
+  // The text field is above the fold in the empty state, so a new person can type at once.
+  const field = await page.getByLabel("Add what you have").boundingBox();
+  expect(field!.y + field!.height).toBeLessThan(PHONE.height);
+  await add(page, "flour", "egg", "milk", "butter");
+  const done = page.getByRole("button", { name: /^Done/ });
+  await expect(done).toContainText("ready now");
+  const box = await done.boundingBox();
+  expect(box!.y + box!.height).toBeLessThanOrEqual(PHONE.height);
+  expect(box!.y).toBeGreaterThan(0);
+  await done.click();
+  await expect(page.locator("#answer-h")).toBeFocused();
+  const top = await page.locator("#answer-h").boundingBox();
+  expect(top!.y).toBeGreaterThanOrEqual(0);
+  expect(top!.y).toBeLessThan(PHONE.height);
 });

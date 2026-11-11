@@ -68,7 +68,7 @@ function Row(p: {
   return (
     <li class={`rec${p.slide ? " slide" : ""}`}>
       <div class="name">
-        <button type="button" class="rec-link" onClick={() => p.onOpen(p.r.recipe_id)}>
+        <button type="button" class="rec-link" data-recipe={p.r.recipe_id} onClick={() => p.onOpen(p.r.recipe_id)}>
           {p.r.title}
         </button>
         <span class="meta">

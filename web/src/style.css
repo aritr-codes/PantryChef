@@ -146,13 +146,18 @@ ul, ol { padding: 0; list-style: none; }
   .kitchen:not(.open) .sum { display: block; }
 }
 @media (min-width: 840px) { .done { display: none; } }
+/* phone: the "Done" bar stays at the bottom of the screen while the kitchen is open, so it is never far away */
+@media (max-width: 839px) {
+  html { scroll-padding-bottom: 72px; } /* a focused item is never left under the Done bar */
+  .done { position: sticky; bottom: max(10px, env(safe-area-inset-bottom)); z-index: 2; width: 100%; margin-top: 16px; box-shadow: 0 8px 20px rgb(34 28 22 / 0.28); }
+  .empty .how { display: none; }
+}
 .sum-text { margin-top: 6px; }
 .sum .btn { margin-top: 10px; }
 .btn { min-height: 44px; padding: 0 16px; border: 2px solid var(--ink); border-radius: 12px; background: var(--paper); font-weight: 750; }
 .btn:hover { background: var(--ink); color: var(--paper); }
 .btn.primary { background: var(--ink); color: var(--paper); }
 .btn.primary:hover { background: #3a3027; }
-.done { margin-top: 14px; }
 .more { margin-top: 14px; }
 main > .btn { margin-top: 8px; }
 
