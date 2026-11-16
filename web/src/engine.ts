@@ -40,6 +40,13 @@ interface TextPack {
   recipes: Record<string, TextEntry>;
 }
 
+/** The lines of one recipe that count for a given set of staples, with the weight of each line. */
+interface Prepared {
+  recipe: CoreRecipe;
+  lines: CoreLine[];
+  w: number[];
+}
+
 export interface Suggestion {
   id: IngredientId;
   name: string;
@@ -54,6 +61,10 @@ export class Engine {
   private readonly names = new Map<IngredientId, string>();
   private readonly byId = new Map<string, CoreRecipe>();
   readonly words: Words;
+  // The needed lines depend on the staples only, and the staples seldom change. Keep the last result.
+  private preparedKey: string | null = null;
+  private preparedFor: Prepared[] = [];
+  private keyList: [string, IngredientId][] | null = null;
 
   constructor(readonly core: Core) {
     this.words = makeWords(core.words);
@@ -99,7 +110,8 @@ export class Engine {
     if (raw === "") return [];
     const found = (q: string): Suggestion[] => {
       const hits = new Map<IngredientId, { rank: number; len: number }>();
-      for (const [key, id] of Object.entries(this.core.keys)) {
+      this.keyList ??= Object.entries(this.core.keys);
+      for (const [key, id] of this.keyList) {
         const rank = key.startsWith(q) ? 0 : key.includes(" " + q) ? 1 : -1;
         if (rank < 0) continue;
         const prev = hits.get(id);
@@ -116,46 +128,83 @@ export class Engine {
     return first.length ? first : found(tokens(text).join(" "));
   }
 
+  /** Per recipe: the lines that count (not optional, not a staple) and the weight of each. */
+  private prepared(staples: ReadonlySet<string>): Prepared[] {
+    const key = [...staples].sort().join("\u0000");
+    if (key === this.preparedKey) return this.preparedFor;
+    const out: Prepared[] = [];
+    for (const recipe of this.core.recipes) {
+      const lines = recipe.lines.filter((ln) => !ln.opt && !ln.o.some((o) => staples.has(o)));
+      if (lines.length === 0) continue;
+      const w = lines.map((ln) => {
+        let best = 0;
+        for (const o of ln.o) best = Math.max(best, this.idf.get(o) ?? 0);
+        return best;
+      });
+      out.push({ recipe, lines, w });
+    }
+    this.preparedKey = key;
+    this.preparedFor = out;
+    return out;
+  }
+
+  /** How many recipes are ready now. It gives the same count as `answer`, and it stops early on each recipe. */
+  readyCount(pantryIds: string[], stapleIds: string[]): number {
+    const staples = new Set(stapleIds);
+    const pantry = new Set(pantryIds.filter((i) => this.idf.has(i) && !staples.has(i)));
+    let ready = 0;
+    recipes: for (const { lines } of this.prepared(staples)) {
+      for (const ln of lines) {
+        if (!ln.o.some((o) => pantry.has(o))) continue recipes;
+      }
+      ready++;
+    }
+    return ready;
+  }
+
   answer(request: AnswerRequest): Answer {
     if (request.diet !== null) throw new Error("diet flags arrive in M5");
     const staples = new Set(request.staples);
     const unknownIds = [...new Set(request.pantry.filter((i) => !this.idf.has(i)))].sort();
     const pantry = new Set(request.pantry.filter((i) => this.idf.has(i) && !staples.has(i)));
+    const prepared = this.prepared(staples);
+    const has = (ln: CoreLine): boolean => {
+      for (const o of ln.o) if (pantry.has(o)) return true;
+      return false;
+    };
 
-    const grouped: RecipeResult[][] = [[], [], []];
+    // Keep a light entry per candidate. Only the entries that are shown become full results.
+    interface Candidate {
+      recipe: CoreRecipe;
+      have: number;
+      total: number;
+      score: number;
+      missing: CoreLine[];
+    }
+    const grouped: Candidate[][] = [[], [], []];
     const oneAwayLines: CoreLine[] = [];
-    const scan: { needed: CoreLine[]; total: number; have: number }[] = [];
 
-    for (const recipe of this.core.recipes) {
-      const needed = recipe.lines.filter((ln) => !ln.opt && !ln.o.some((o) => staples.has(o)));
-      const total = needed.length;
-      if (total === 0) continue;
-      const satisfied = needed.map((ln) => ln.o.some((o) => pantry.has(o)));
-      const have = satisfied.filter(Boolean).length;
-      scan.push({ needed, total, have });
-      if (have === 0 || total - have > 2) continue;
+    for (const { recipe, lines, w } of prepared) {
+      // Count the lines the pantry covers. Stop when a third line is missing: the recipe is out.
+      let have = 0;
+      let miss = 0;
+      for (const ln of lines) {
+        if (has(ln)) have++;
+        else if (++miss > 2) break;
+      }
+      if (miss > 2 || have === 0) continue;
       let num = 0;
       let den = 0;
-      needed.forEach((ln, k) => {
-        let w = 0;
-        for (const o of ln.o) w = Math.max(w, this.idf.get(o) ?? 0);
-        den += w;
-        if (satisfied[k]) num += w;
-      });
+      const missing: CoreLine[] = [];
+      for (let k = 0; k < lines.length; k++) {
+        const ln = lines[k] as CoreLine;
+        den += w[k] as number;
+        if (has(ln)) num += w[k] as number;
+        else missing.push(ln);
+      }
       const score = den > 0 ? num / Math.sqrt(den) : 0;
-      const missingLines = needed.filter((_, k) => !satisfied[k]);
-      if (missingLines.length === 1 && missingLines[0]) oneAwayLines.push(missingLines[0]);
-      grouped[missingLines.length]?.push({
-        recipe_id: recipe.id,
-        title: recipe.title,
-        have,
-        total,
-        score,
-        missing: missingLines.map((ln) => ({ options: [...ln.o], text: ln.t, swap: null })),
-        unread: missingLines.filter((ln) => !ln.r).length,
-        diet_state: null,
-        reasons: [],
-      });
+      if (missing.length === 1 && missing[0]) oneAwayLines.push(missing[0]);
+      grouped[missing.length]?.push({ recipe, have, total: lines.length, score, missing });
     }
 
     const limit = Math.max(request.limit, 0);
@@ -165,9 +214,20 @@ export class Engine {
         (a, b) =>
           b.score - a.score ||
           a.total - b.total ||
-          (a.recipe_id < b.recipe_id ? -1 : a.recipe_id > b.recipe_id ? 1 : 0),
+          (a.recipe.id < b.recipe.id ? -1 : a.recipe.id > b.recipe.id ? 1 : 0),
       );
-      const g: Group = { count: items.length, items: items.slice(0, limit) };
+      const shown: RecipeResult[] = items.slice(0, limit).map((c) => ({
+        recipe_id: c.recipe.id,
+        title: c.recipe.title,
+        have: c.have,
+        total: c.total,
+        score: c.score,
+        missing: c.missing.map((ln) => ({ options: [...ln.o], text: ln.t, swap: null })),
+        unread: c.missing.filter((ln) => !ln.r).length,
+        diet_state: null,
+        reasons: [],
+      }));
+      const g: Group = { count: items.length, items: shown };
       groups[key] = g;
     });
 
@@ -182,10 +242,12 @@ export class Engine {
     const allEmpty = GROUP_KEYS.every((k) => groups[k].count === 0);
     if (allEmpty && pantry.size > 0) {
       const gains = new Map<string, number>();
-      for (const { needed, total, have } of scan) {
+      for (const { lines: needed } of prepared) {
+        const total = needed.length;
+        const have = needed.filter(has).length;
         const perItem = new Map<string, number>();
         for (const ln of needed) {
-          if (ln.o.some((o) => pantry.has(o))) continue;
+          if (has(ln)) continue;
           for (const o of ln.o) {
             if (this.idf.has(o) && !staples.has(o)) perItem.set(o, (perItem.get(o) ?? 0) + 1);
           }

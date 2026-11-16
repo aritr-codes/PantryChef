@@ -45,8 +45,19 @@ const RULES: [IconKey, RegExp][] = [
   ["veg", /\b(spinach|kale|cabbage|broccoli|cauliflower|zucchini|eggplant|lettuce|celery|cucumber|asparagus|pea|corn|pumpkin|okra|fennel|artichoke|bok choy|watercress|arugula|leek|squash)\b/],
 ];
 
+// The page asks for the same few dozen names on every render, and the rules are 24 regular
+// expressions. Keep the answer for each name.
+const seen = new Map<string, IconKey | null>();
+
 export function categoryOf(name: string): IconKey | null {
-  const n = name.toLowerCase().trim();
+  const hit = seen.get(name);
+  if (hit !== undefined) return hit;
+  const found = find(name.toLowerCase().trim());
+  seen.set(name, found);
+  return found;
+}
+
+function find(n: string): IconKey | null {
   if (!n) return null;
   for (const [re, key] of FIRST) if (re.test(n)) return key;
   for (const [key, re] of RULES) if (re.test(n)) return key;

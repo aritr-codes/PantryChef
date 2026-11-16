@@ -471,6 +471,27 @@ test("on a phone the kitchen is a summary until you edit it, and there is no sid
   expect(overflow).toBeLessThanOrEqual(0);
 });
 
+test("on a phone, the quick-add list shows at most 6 items, and a row shows its title with the count under it", async ({ page }) => {
+  await page.setViewportSize(PHONE);
+  await page.goto("/");
+  await add(page, "flour", "egg");
+  const chips = page.locator(".quick li");
+  const shown = await chips.evaluateAll((els) => els.filter((e) => (e as HTMLElement).offsetParent !== null).length);
+  expect(shown).toBeLessThanOrEqual(6);
+  if ((await chips.count()) > 6) expect(shown).toBe(6);
+  // Tapping a shown chip adds it, and focus stays on the list.
+  const first = page.locator(".quick .add").first();
+  const name = ((await first.textContent()) ?? "").replace(/^\s*\+\s*Add\s*/, "").trim();
+  await first.click();
+  await expect(items(page)).toHaveCount(3);
+  expect(name.length).toBeGreaterThan(0);
+  await expect(page.locator(".quick .add").first()).toBeFocused();
+  // The count of a row sits under its title, not beside it.
+  const title = await page.locator(".rec-link").first().boundingBox();
+  const meta = await page.locator(".rec .meta").first().boundingBox();
+  expect(meta!.y).toBeGreaterThanOrEqual(title!.y + title!.height - 1);
+});
+
 test("at 320 px, with text spacing raised, nothing scrolls sideways", async ({ page }) => {
   await page.setViewportSize({ width: 320, height: 700 });
   await page.goto("/");

@@ -42,6 +42,8 @@ main { max-width: 66rem; margin: 0 auto; }
 button, input, textarea, summary { font: inherit; color: inherit; }
 button { cursor: pointer; }
 :focus-visible { outline: 3px solid var(--ink); outline-offset: 2px; }
+/* A heading that code focuses after a move is not a control. A tap must not draw a ring on it. The answer section keeps its ring, because the skip link focuses it. */
+h1[tabindex="-1"]:focus-visible, h2[tabindex="-1"]:focus-visible { outline: none; }
 .sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
 h1, h2, h3, p, ul, ol { margin: 0; }
 ul, ol { padding: 0; list-style: none; }
@@ -151,6 +153,10 @@ ul, ol { padding: 0; list-style: none; }
   html { scroll-padding-bottom: 72px; } /* a focused item is never left under the Done bar */
   .done { position: sticky; bottom: max(10px, env(safe-area-inset-bottom)); z-index: 2; width: 100%; margin-top: 16px; box-shadow: 0 8px 20px rgb(34 28 22 / 0.28); }
   .empty .how { display: none; }
+  /* The ticket is short on a phone, so the first recipe is close. The note stays for screen readers. */
+  .ticket { gap: 6px; padding: 14px 16px 16px; }
+  .gain .big { font-size: 2rem; }
+  .ticket .note { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
 }
 .sum-text { margin-top: 6px; }
 .sum .btn { margin-top: 10px; }
@@ -169,7 +175,7 @@ main > .btn { margin-top: 8px; }
 .count[aria-selected="true"] { border-color: var(--ink); box-shadow: inset 0 -7px 0 var(--lemon); padding-bottom: 20px; }
 .count[aria-selected="true"] .t { color: var(--ink); }
 .count:hover:not([aria-selected="true"]) { border-color: var(--ink); }
-@media (max-width: 460px) { .count { padding-inline: 8px; } .count .n { font-size: 2.3rem; } .count .t { letter-spacing: 0.03em; font-size: 0.66rem; overflow-wrap: anywhere; } }
+@media (max-width: 460px) { .count { padding-inline: 8px; } .count .n { font-size: 2.3rem; } .count .t { letter-spacing: 0.03em; overflow-wrap: anywhere; } }
 
 .slip .lead { margin-top: 18px; font: 800 1.75rem/1.12 var(--sans); letter-spacing: -0.03em; text-wrap: balance; }
 .lead mark { background: linear-gradient(transparent 55%, var(--lemon) 55% 92%, transparent 92%); color: inherit; padding: 0 2px; }
@@ -236,6 +242,19 @@ footer.page { max-width: 66rem; margin: 28px auto 0; padding-top: 14px; border-t
 .src { margin-top: 18px; padding: 12px 14px; background: #fff; border: 2px solid var(--line); border-radius: 12px; font-size: 0.9rem; color: var(--ink2); }
 .src p + p { margin-top: 6px; }
 .src a { color: var(--ink); }
+
+/* phone: a shorter kitchen, a little more room for the text, and type that is easier to read */
+@media (max-width: 839px) {
+  .quick li:nth-child(n + 7) { display: none; } /* six ideas are enough, and the field is above them */
+  .kicker { font-size: 0.8rem; }
+  .meta { font-size: 0.84rem; }
+  .gain .lbl { font-size: 0.8rem; }
+  .rec .name { display: grid; gap: 2px; } /* the title, then "3 of 3" under it, on every row */
+}
+@media (max-width: 460px) {
+  body { padding-inline: max(10px, env(safe-area-inset-left, 0px)) max(10px, env(safe-area-inset-right, 0px)); }
+  .slip { padding-inline: 16px; }
+}
 
 /* motion: short, never looping, and only when the system allows it */
 @media (prefers-reduced-motion: no-preference) {

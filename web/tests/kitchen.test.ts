@@ -159,6 +159,20 @@ describe("Buy one thing ticket", () => {
   });
 });
 
+describe("engine staples cache", () => {
+  const req = (pantry: string[], staples: string[]) => ({ pantry, staples, diet: null, limit: 10, unknown_names: [] });
+  it("gives the same answer on a reused engine as on a new one, whatever staples came before", () => {
+    const pantry = ["egg", "milk", "banana"];
+    const all = engine.defaultStaples;
+    const sets = [all, [], all.slice(0, 1), [...all].reverse(), all];
+    const reused = new Engine(core);
+    for (const staples of sets) {
+      expect(reused.answer(req(pantry, staples))).toEqual(new Engine(core).answer(req(pantry, staples)));
+      expect(reused.readyCount(pantry, staples)).toBe(reused.answer(req(pantry, staples)).groups.make_now.count);
+    }
+  });
+});
+
 describe("recipeSlots", () => {
   const ln = (o: string[], opt = false, r = true) => ({ t: "x", o, opt, r });
   const name = (id: string) => id.toUpperCase();

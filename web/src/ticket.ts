@@ -1,7 +1,7 @@
 // The "Buy one thing" ticket: the engine's top unlock, plus recipe titles to make it concrete.
-// Titles come only from the one-away items the engine already returned. The engine is not changed.
+// Titles come only from the one-away items the engine already returned. The count that opens uses `Engine.readyCount`.
 
-import type { Answer, AnswerRequest } from "./types";
+import type { Answer } from "./types";
 
 const TITLES = 3;
 
@@ -19,13 +19,12 @@ export interface Ticket {
  * misses a recipe whose only needed line is the item, and a recipe that needs the item twice.
  */
 export function readyAfter(
-  engine: { answer(request: AnswerRequest): Answer },
+  engine: { readyCount(pantry: string[], staples: string[]): number },
   pantry: string[],
   staples: string[],
   id: string,
 ): number {
-  const request = { pantry: [...pantry, id], staples, diet: null, limit: 0, unknown_names: [] };
-  return engine.answer(request).groups.make_now.count;
+  return engine.readyCount([...pantry, id], staples);
 }
 
 export function ticket(answer: Answer, after: number): Ticket | null {
