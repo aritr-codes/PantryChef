@@ -42,6 +42,8 @@ main { max-width: 66rem; margin: 0 auto; }
 button, input, textarea, summary { font: inherit; color: inherit; }
 button { cursor: pointer; }
 :focus-visible { outline: 3px solid var(--ink); outline-offset: 2px; }
+/* A heading that code focuses after a move is not a control. A tap must not draw a ring on it. The answer section keeps its ring, because the skip link focuses it. */
+h1[tabindex="-1"]:focus-visible, h2[tabindex="-1"]:focus-visible { outline: none; }
 .sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
 h1, h2, h3, p, ul, ol { margin: 0; }
 ul, ol { padding: 0; list-style: none; }
@@ -151,6 +153,10 @@ ul, ol { padding: 0; list-style: none; }
   html { scroll-padding-bottom: 72px; } /* a focused item is never left under the Done bar */
   .done { position: sticky; bottom: max(10px, env(safe-area-inset-bottom)); z-index: 2; width: 100%; margin-top: 16px; box-shadow: 0 8px 20px rgb(34 28 22 / 0.28); }
   .empty .how { display: none; }
+  /* The ticket is short on a phone, so the first recipe is close. The note stays for screen readers. */
+  .ticket { gap: 6px; padding: 14px 16px 16px; }
+  .gain .big { font-size: 2rem; }
+  .ticket .note { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
 }
 .sum-text { margin-top: 6px; }
 .sum .btn { margin-top: 10px; }
