@@ -1,11 +1,12 @@
 {
   "arms": [],
   "command": "node web/scripts/latency-ui.mjs --url http://127.0.0.1:4175/ --rate 6 --runs 15 --seed 1 --out latency_ui.json",
-  "commit": "b16dd41780a828a5f8e2f678b6e3c85852e1312d",
+  "commit": "def5751ded78bf04626ba5dd295688298756549e",
   "comparisons": [],
   "config": {
     "cache": "disabled",
     "cpu_throttle_rate": 6,
+    "device": null,
     "discarded_first_runs": 2,
     "goal_p95_ms": 100,
     "pass_p95_ms": 200,
@@ -36,7 +37,7 @@
       "basil"
     ],
     "runs_per_cell": 15,
-    "served_bundle": "assets/index-CABc2hvU.js sha256 6eef53e6fdeab4b4b2575257564d4af81eb636bba43a0e36503e64144c9f9ce5",
+    "served_bundle": "assets/index-BggUsi2X.js sha256 e2b51a4fe6307fd8d9e3056c40b93235daa7f784b16f595993036d05faad71f0",
     "start_sizes": [
       3,
       8,
@@ -52,8 +53,15 @@
     ]
   },
   "corpus_fingerprint": "core.v2.json.gz sha256 1c2bcf5a0ac31813e9e08279c7729830c0658474a4d7fed8c8bfd1a94379a313",
-  "dirty": false,
-  "dirty_paths": [],
+  "dirty": true,
+  "dirty_paths": [
+    "web/scripts/latency-ui.mjs",
+    "web/src/category.ts",
+    "web/src/engine.ts",
+    "web/src/style.css",
+    "web/src/ticket.ts",
+    "web/tests/kitchen.test.ts"
+  ],
   "environment": {
     "node": "v24.14.0",
     "platform": "Windows_NT 10.0.19045 (win32)"
@@ -71,7 +79,7 @@
       "name": "latency_p50_ms",
       "role": "latency",
       "split": "all",
-      "value": 305.2000000178814
+      "value": 191.09999999403954
     },
     {
       "arm": null,
@@ -84,7 +92,7 @@
       "name": "latency_p95_ms",
       "role": "latency",
       "split": "all",
-      "value": 421.09999999403954
+      "value": 399.60000002384186
     },
     {
       "arm": null,
@@ -97,7 +105,7 @@
       "name": "latency_max_ms",
       "role": "latency",
       "split": "all",
-      "value": 421.09999999403954
+      "value": 399.60000002384186
     },
     {
       "arm": null,
@@ -110,7 +118,7 @@
       "name": "latency_p50_ms",
       "role": "latency",
       "split": "all",
-      "value": 200.19999998807907
+      "value": 133.40000000596046
     },
     {
       "arm": null,
@@ -123,7 +131,7 @@
       "name": "latency_p95_ms",
       "role": "latency",
       "split": "all",
-      "value": 326.90000000596046
+      "value": 252.80000001192093
     },
     {
       "arm": null,
@@ -136,7 +144,7 @@
       "name": "latency_max_ms",
       "role": "latency",
       "split": "all",
-      "value": 326.90000000596046
+      "value": 252.80000001192093
     },
     {
       "arm": null,
@@ -149,7 +157,7 @@
       "name": "latency_p50_ms",
       "role": "latency",
       "split": "all",
-      "value": 349.59999999403954
+      "value": 271.30000001192093
     },
     {
       "arm": null,
@@ -162,7 +170,7 @@
       "name": "latency_p95_ms",
       "role": "latency",
       "split": "all",
-      "value": 587.1999999880791
+      "value": 334.89999997615814
     },
     {
       "arm": null,
@@ -175,7 +183,7 @@
       "name": "latency_max_ms",
       "role": "latency",
       "split": "all",
-      "value": 587.1999999880791
+      "value": 334.89999997615814
     },
     {
       "arm": null,
@@ -188,7 +196,7 @@
       "name": "latency_p50_ms",
       "role": "latency",
       "split": "all",
-      "value": 339.09999999403954
+      "value": 216.19999998807907
     },
     {
       "arm": null,
@@ -201,7 +209,7 @@
       "name": "latency_p95_ms",
       "role": "latency",
       "split": "all",
-      "value": 428.7999999821186
+      "value": 280.09999999403954
     },
     {
       "arm": null,
@@ -214,7 +222,7 @@
       "name": "latency_max_ms",
       "role": "latency",
       "split": "all",
-      "value": 428.7999999821186
+      "value": 280.09999999403954
     },
     {
       "arm": null,
@@ -227,7 +235,7 @@
       "name": "latency_p50_ms",
       "role": "latency",
       "split": "all",
-      "value": 273.40000000596046
+      "value": 161.59999999403954
     },
     {
       "arm": null,
@@ -240,7 +248,7 @@
       "name": "latency_p95_ms",
       "role": "latency",
       "split": "all",
-      "value": 399.90000000596046
+      "value": 273.90000000596046
     },
     {
       "arm": null,
@@ -253,7 +261,7 @@
       "name": "latency_max_ms",
       "role": "latency",
       "split": "all",
-      "value": 399.90000000596046
+      "value": 273.90000000596046
     },
     {
       "arm": null,
@@ -266,7 +274,7 @@
       "name": "latency_p50_ms",
       "role": "latency",
       "split": "all",
-      "value": 435.90000000596046
+      "value": 257.40000000596046
     },
     {
       "arm": null,
@@ -279,7 +287,7 @@
       "name": "latency_p95_ms",
       "role": "latency",
       "split": "all",
-      "value": 582.4000000059605
+      "value": 422.59999999403954
     },
     {
       "arm": null,
@@ -292,7 +300,7 @@
       "name": "latency_max_ms",
       "role": "latency",
       "split": "all",
-      "value": 582.4000000059605
+      "value": 422.59999999403954
     },
     {
       "arm": null,
@@ -305,7 +313,7 @@
       "name": "latency_p50_ms",
       "role": "latency",
       "split": "all",
-      "value": 378.39999997615814
+      "value": 232.80000001192093
     },
     {
       "arm": null,
@@ -318,7 +326,7 @@
       "name": "latency_p95_ms",
       "role": "latency",
       "split": "all",
-      "value": 550.7000000178814
+      "value": 381.19999998807907
     },
     {
       "arm": null,
@@ -331,7 +339,7 @@
       "name": "latency_max_ms",
       "role": "latency",
       "split": "all",
-      "value": 550.7000000178814
+      "value": 381.19999998807907
     },
     {
       "arm": null,
@@ -344,7 +352,7 @@
       "name": "latency_p50_ms",
       "role": "latency",
       "split": "all",
-      "value": 279.40000000596046
+      "value": 171.19999998807907
     },
     {
       "arm": null,
@@ -357,7 +365,7 @@
       "name": "latency_p95_ms",
       "role": "latency",
       "split": "all",
-      "value": 415.30000001192093
+      "value": 239.40000000596046
     },
     {
       "arm": null,
@@ -370,7 +378,7 @@
       "name": "latency_max_ms",
       "role": "latency",
       "split": "all",
-      "value": 415.30000001192093
+      "value": 239.40000000596046
     },
     {
       "arm": null,
@@ -383,7 +391,7 @@
       "name": "latency_p50_ms",
       "role": "latency",
       "split": "all",
-      "value": 422.19999998807907
+      "value": 278.60000002384186
     },
     {
       "arm": null,
@@ -396,7 +404,7 @@
       "name": "latency_p95_ms",
       "role": "latency",
       "split": "all",
-      "value": 585.5999999940395
+      "value": 389.10000002384186
     },
     {
       "arm": null,
@@ -409,7 +417,7 @@
       "name": "latency_max_ms",
       "role": "latency",
       "split": "all",
-      "value": 585.5999999940395
+      "value": 389.10000002384186
     },
     {
       "arm": null,
@@ -422,7 +430,7 @@
       "name": "latency_p50_ms",
       "role": "latency",
       "split": "all",
-      "value": 2181.2000000178814
+      "value": 1665.5999999940395
     },
     {
       "arm": null,
@@ -435,7 +443,7 @@
       "name": "latency_p95_ms",
       "role": "latency",
       "split": "all",
-      "value": 2508.7999999821186
+      "value": 1784.800000011921
     },
     {
       "arm": null,
@@ -448,7 +456,7 @@
       "name": "latency_max_ms",
       "role": "latency",
       "split": "all",
-      "value": 2508.7999999821186
+      "value": 1784.800000011921
     },
     {
       "arm": null,
@@ -461,7 +469,7 @@
       "name": "latency_p50_ms",
       "role": "latency",
       "split": "all",
-      "value": 901.5
+      "value": 640.9000000059605
     },
     {
       "arm": null,
@@ -474,7 +482,7 @@
       "name": "latency_p95_ms",
       "role": "latency",
       "split": "all",
-      "value": 1010.2999999821186
+      "value": 709.8999999761581
     },
     {
       "arm": null,
@@ -487,76 +495,76 @@
       "name": "latency_max_ms",
       "role": "latency",
       "split": "all",
-      "value": 1010.2999999821186
+      "value": 709.8999999761581
     }
   ],
   "raw": {
     "by_cell": {
       "chip@15": {
-        "max": 550.7000000178814,
+        "max": 381.19999998807907,
         "n": 13,
-        "p50": 378.39999997615814,
-        "p95": 550.7000000178814
+        "p50": 232.80000001192093,
+        "p95": 381.19999998807907
       },
       "chip@3": {
-        "max": 421.09999999403954,
+        "max": 399.60000002384186,
         "n": 13,
-        "p50": 305.2000000178814,
-        "p95": 421.09999999403954
+        "p50": 191.09999999403954,
+        "p95": 399.60000002384186
       },
       "chip@8": {
-        "max": 428.7999999821186,
+        "max": 280.09999999403954,
         "n": 13,
-        "p50": 339.09999999403954,
-        "p95": 428.7999999821186
+        "p50": 216.19999998807907,
+        "p95": 280.09999999403954
       },
       "enter@15": {
-        "max": 415.30000001192093,
+        "max": 239.40000000596046,
         "n": 13,
-        "p50": 279.40000000596046,
-        "p95": 415.30000001192093
+        "p50": 171.19999998807907,
+        "p95": 239.40000000596046
       },
       "enter@3": {
-        "max": 326.90000000596046,
+        "max": 252.80000001192093,
         "n": 13,
-        "p50": 200.19999998807907,
-        "p95": 326.90000000596046
+        "p50": 133.40000000596046,
+        "p95": 252.80000001192093
       },
       "enter@8": {
-        "max": 399.90000000596046,
+        "max": 273.90000000596046,
         "n": 13,
-        "p50": 273.40000000596046,
-        "p95": 399.90000000596046
+        "p50": 161.59999999403954,
+        "p95": 273.90000000596046
       },
       "paste@0": {
-        "max": 2508.7999999821186,
+        "max": 1784.800000011921,
         "n": 13,
-        "p50": 2181.2000000178814,
-        "p95": 2508.7999999821186
+        "p50": 1665.5999999940395,
+        "p95": 1784.800000011921
       },
       "paste@8": {
-        "max": 1010.2999999821186,
+        "max": 709.8999999761581,
         "n": 13,
-        "p50": 901.5,
-        "p95": 1010.2999999821186
+        "p50": 640.9000000059605,
+        "p95": 709.8999999761581
       },
       "ticket@15": {
-        "max": 585.5999999940395,
+        "max": 389.10000002384186,
         "n": 13,
-        "p50": 422.19999998807907,
-        "p95": 585.5999999940395
+        "p50": 278.60000002384186,
+        "p95": 389.10000002384186
       },
       "ticket@3": {
-        "max": 587.1999999880791,
+        "max": 334.89999997615814,
         "n": 13,
-        "p50": 349.59999999403954,
-        "p95": 587.1999999880791
+        "p50": 271.30000001192093,
+        "p95": 334.89999997615814
       },
       "ticket@8": {
-        "max": 582.4000000059605,
+        "max": 422.59999999403954,
         "n": 13,
-        "p50": 435.90000000596046,
-        "p95": 582.4000000059605
+        "p50": 257.40000000596046,
+        "p95": 422.59999999403954
       }
     },
     "cells_over_goal": [
@@ -587,75 +595,76 @@
     ],
     "commit_by_cell": {
       "chip@15": {
-        "max": 267.40000000596046,
+        "max": 128.59999999403954,
         "n": 13,
-        "p50": 172.7999999821186,
-        "p95": 267.40000000596046
+        "p50": 62.20000001788139,
+        "p95": 128.59999999403954
       },
       "chip@3": {
-        "max": 244,
+        "max": 80.09999999403954,
         "n": 13,
-        "p50": 156.90000000596046,
-        "p95": 244
+        "p50": 63.400000005960464,
+        "p95": 80.09999999403954
       },
       "chip@8": {
-        "max": 245.59999999403954,
+        "max": 90.30000001192093,
         "n": 13,
-        "p50": 160.40000000596046,
-        "p95": 245.59999999403954
+        "p50": 58.69999998807907,
+        "p95": 90.30000001192093
       },
       "enter@15": {
-        "max": 210.39999997615814,
+        "max": 79.5,
         "n": 13,
-        "p50": 152.90000000596046,
-        "p95": 210.39999997615814
+        "p50": 57.30000001192093,
+        "p95": 79.5
       },
       "enter@3": {
-        "max": 137.09999999403954,
+        "max": 72.5,
         "n": 13,
-        "p50": 115.80000001192093,
-        "p95": 137.09999999403954
+        "p50": 54.5,
+        "p95": 72.5
       },
       "enter@8": {
-        "max": 220.2000000178814,
+        "max": 87.69999998807907,
         "n": 13,
-        "p50": 167,
-        "p95": 220.2000000178814
+        "p50": 56.400000005960464,
+        "p95": 87.69999998807907
       },
       "paste@0": {
-        "max": 788.8000000119209,
+        "max": 491.30000001192093,
         "n": 13,
-        "p50": 619.5999999940395,
-        "p95": 788.8000000119209
+        "p50": 395.09999999403954,
+        "p95": 491.30000001192093
       },
       "paste@8": {
-        "max": 605.6999999880791,
+        "max": 352.90000000596046,
         "n": 13,
-        "p50": 472.09999999403954,
-        "p95": 605.6999999880791
+        "p50": 288.39999997615814,
+        "p95": 352.90000000596046
       },
       "ticket@15": {
-        "max": 268,
+        "max": 108.40000000596046,
         "n": 13,
-        "p50": 178,
-        "p95": 268
+        "p50": 69.90000000596046,
+        "p95": 108.40000000596046
       },
       "ticket@3": {
-        "max": 222,
+        "max": 110.39999997615814,
         "n": 13,
-        "p50": 141.89999997615814,
-        "p95": 222
+        "p50": 67.80000001192093,
+        "p95": 110.39999997615814
       },
       "ticket@8": {
-        "max": 242.2000000178814,
+        "max": 108.2999999821186,
         "n": 13,
-        "p50": 195.40000000596046,
-        "p95": 242.2000000178814
+        "p50": 77.2999999821186,
+        "p95": 108.2999999821186
       }
     },
     "config": {
       "cache": "disabled",
       "cpu_throttle_rate": 6,
+      "device": null,
       "discarded_first_runs": 2,
       "goal_p95_ms": 100,
       "pass_p95_ms": 200,
@@ -686,7 +695,7 @@
         "basil"
       ],
       "runs_per_cell": 15,
-      "served_bundle": "assets/index-CABc2hvU.js sha256 6eef53e6fdeab4b4b2575257564d4af81eb636bba43a0e36503e64144c9f9ce5",
+      "served_bundle": "assets/index-BggUsi2X.js sha256 e2b51a4fe6307fd8d9e3056c40b93235daa7f784b16f595993036d05faad71f0",
       "start_sizes": [
         3,
         8,
@@ -701,13 +710,13 @@
         "lime"
       ]
     },
-    "limits": "Headless Chromium on a development laptop, local preview server, CPU throttle only. Page-ready time is unthrottled. The end of each timing is two animation frames after the kitchen grows, so it is more than the engine call alone. One run, no real phone.",
+    "limits": "Headless Chromium on a development laptop, local preview server, CPU throttle only. Page-ready time is unthrottled. The end of each timing is two animation frames after the kitchen grows, so it is more than the engine call alone. One run. No real phone.",
     "load_retries": 0,
     "page_ready_ms": {
-      "max": 649,
+      "max": 532,
       "n": 75,
-      "p50": 314,
-      "p95": 349
+      "p50": 313,
+      "p95": 401
     },
     "paste_new_items": {
       "0": 20,
