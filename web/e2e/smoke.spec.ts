@@ -492,6 +492,22 @@ test("on a phone, the quick-add list shows at most 6 items, and a row shows its 
   expect(meta!.y).toBeGreaterThanOrEqual(title!.y + title!.height - 1);
 });
 
+test("the staples row shows an arrow that turns when it opens, and the touch targets stay 44 px high", async ({ page }) => {
+  await page.setViewportSize(PHONE);
+  await page.goto("/");
+  await add(page, "flour");
+  const summary = page.locator(".sw summary");
+  const arrow = () => summary.evaluate((el) => getComputedStyle(el, "::after").content);
+  const closed = await arrow();
+  expect(closed).toMatch(/▾/);
+  await summary.click();
+  expect(await arrow()).toMatch(/▴/);
+  const heights = await page.evaluate(() =>
+    [".sw summary", ".acts .link"].map((q) => Math.round(document.querySelector(q)!.getBoundingClientRect().height)),
+  );
+  for (const h of heights) expect(h).toBeGreaterThanOrEqual(44);
+});
+
 test("at 320 px, with text spacing raised, nothing scrolls sideways", async ({ page }) => {
   await page.setViewportSize({ width: 320, height: 700 });
   await page.goto("/");
