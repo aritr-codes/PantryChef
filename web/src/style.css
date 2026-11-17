@@ -124,6 +124,9 @@ ul, ol { padding: 0; list-style: none; }
 .sw b + * , .sw label span b { color: var(--ink); }
 .sw details { margin-top: 6px; }
 .sw summary { display: flex; align-items: center; min-height: 44px; font-weight: 650; cursor: pointer; }
+/* "display: flex" removes the default marker, so the arrow says that this row opens. The empty alt text keeps it quiet for screen readers. */
+.sw summary::after { content: "\25BE"; content: "\25BE" / ""; margin-left: 8px; }
+.sw details[open] summary::after { content: "\25B4"; content: "\25B4" / ""; }
 
 .acts { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 4px 12px; margin-top: 14px; }
 .link { min-height: 44px; padding: 0 4px; background: none; border: 0; text-decoration: underline; text-underline-offset: 4px; font-weight: 650; }
@@ -250,6 +253,8 @@ footer.page { max-width: 66rem; margin: 28px auto 0; padding-top: 14px; border-t
   .meta { font-size: 0.84rem; }
   .gain .lbl { font-size: 0.8rem; }
   .rec .name { display: grid; gap: 2px; } /* the title, then "3 of 3" under it, on every row */
+  .sw details { margin-top: 2px; }
+  .acts { margin-top: 6px; } /* the touch targets stay 44 px high, so the rows still do not touch */
 }
 @media (max-width: 460px) {
   body { padding-inline: max(10px, env(safe-area-inset-left, 0px)) max(10px, env(safe-area-inset-right, 0px)); }
