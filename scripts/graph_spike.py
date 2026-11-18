@@ -32,6 +32,7 @@ from pathlib import Path
 from types import SimpleNamespace
 
 from pantrychef.eval import graph_spike as gs
+from pantrychef.eval.results import commits as _commits
 from pantrychef.eval.results import write_result
 from pantrychef.ingredients.table import IngredientTable
 
@@ -228,10 +229,6 @@ def cmd_sheet(root: Path) -> int:
 
 def _rel(root: Path, path: Path) -> str:
     return path.relative_to(root).as_posix()
-
-
-def _commits(root: Path, rel: str) -> list[str]:
-    return _git(root, "log", "--format=%H", "--", rel).split()
 
 
 def _require_tracked(root: Path, rels: tuple[str, ...]) -> None:

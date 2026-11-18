@@ -299,7 +299,7 @@ def test_node_sample_loads():
 
 
 def test_registry_contents():
-    assert ARMS == {
+    m3_arms = {
         "random": (),
         "overlap": ("have", "total"),
         "idf_flat": ("idf", "have", "total"),
@@ -307,6 +307,7 @@ def test_registry_contents():
         "table_flat": ("idf", "have", "total", "group"),
         "graph_traversal": ("idf", "have", "total", "group", "is_a", "form_of"),
     }
+    assert {k: ARMS[k] for k in m3_arms} == m3_arms  # M4 adds arms; see test_m4_arms_registered
     assert METRICS["recall_at_10"].role == "sanity"
     assert METRICS["mrr_at_10"].depends_on == ("gold_recipe_lines", "have", "total", "idf")
     assert METRICS["makeable_at_10"].role == "product"
@@ -408,3 +409,70 @@ def test_graph_spike_metrics_and_arms_registered():
             r.assert_selectable(name, ["table_flat"])
     assert r.ARMS["table_flat"] == ("idf", "have", "total", "group")
     assert r.ARMS["graph_traversal"] == ("idf", "have", "total", "group", "is_a", "form_of")
+
+
+def test_m4_arms_registered():
+    shipped = ("idf", "have", "total", "group")
+    assert ARMS["rank_linear"] == ("idf", "have", "total", "unread", "optional")
+    for name in ("idf_smooth", "idf_lucene", "shipped_b0", "shipped_b1", "shipped_missmass"):
+        assert ARMS[name] == shipped, name
+    assert ARMS["grouped_overlap"] == ("have", "total", "group")
+    d = doc()
+    d["arms"] = [{"name": "rank_linear", "features_used": list(ARMS["rank_linear"])}]
+    validate(d)
+
+
+def test_m4_metrics_registered():
+    for name in ("pairwise_win_rate", "would_cook_rate", "cv_pairwise_logloss"):
+        assert METRICS[name].role == "selection", name
+        assert METRICS[name].depends_on == (), name
+        assert METRICS[name].justification.strip(), name
+        assert_selectable(name, list(ARMS))
+    sanity = (
+        "pairwise_net_preference", "pairwise_tie_rate", "judge_repeat_agreement",
+        "judge_arm_guess_accuracy", "cv_pairwise_accuracy", "top5_agreement",
+        "judge_agreement_ac1", "judge_agreement_kappa",
+    )  # fmt: skip
+    for name in sanity:
+        assert METRICS[name].role == "sanity", name
+        with pytest.raises(NotSelectable):
+            assert_selectable(name, ["random"])
+    assert METRICS["top5_agreement"].depends_on == ("idf", "have", "total", "group")
+    assert METRICS["judge_median_seconds"].role == "product"
+    with pytest.raises(NotSelectable):
+        assert_selectable("judge_median_seconds", ["random"])
+
+
+def test_m4_splits_validate():
+    for split in ("pilot", "dev", "futility", "test"):
+        d = doc()
+        d["metrics"][0]["split"] = split
+        validate(d)
+    d = doc()
+    d["metrics"][0]["split"] = "reserve"
+    with pytest.raises(ValueError, match="split"):
+        validate(d)
+
+
+def test_commits_lists_commits_touching_a_path(repo):
+    (repo / "b.txt").write_text("b")
+    git(repo, "add", "b.txt")
+    git(repo, "commit", "-q", "-m", "b1")
+    (repo / "b.txt").write_text("b2")
+    git(repo, "commit", "-q", "-am", "b2")
+    assert len(results.commits(repo, "b.txt")) == 2
+    assert len(results.commits(repo, "a.txt")) == 1
+    assert results.commits(repo, "nope.txt") == []
+
+
+def test_is_ancestor_is_a_real_git_check(repo):
+    first = results.commits(repo, "a.txt")[0]
+    (repo / "c.txt").write_text("c")
+    git(repo, "add", "c.txt")
+    git(repo, "commit", "-q", "-m", "c1")
+    second = results.commits(repo, "c.txt")[0]
+    assert results.is_ancestor(repo, first, second) is True
+    assert results.is_ancestor(repo, second, first) is False
+    assert (
+        results.is_ancestor(repo, first, "0" * 40) is False
+    )  # an unknown commit is not an ancestor
