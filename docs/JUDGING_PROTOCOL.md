@@ -201,6 +201,8 @@ Copy the item ids into a CSV file. The template that `scripts/judging_sheet.py` 
 
 The sheet writes the template to `data/interim/answers_template.m4-NAME.csv`. Commit the answers as `data/eval/m4/answers.NAME.v1.csv`.
 
+To answer without typing a CSV, make the judging page: `uv run python scripts/judging_page.py --sheet data/eval/m4/sheet.NAME.v1.json --session N` (add `--arm-guess` for a test sheet). The script writes one local HTML file under `data/interim/`. Open it with a double-click. The page works offline and holds no key data. It shows one item at a time, times each item while the tab is visible (the Pause button stops the clock), saves each answer in the browser and downloads `answers.NAME.sessionN.csv` with the columns above. The `seconds` column is the on-screen time in whole seconds, 1 or more. Merge the session files by hand into the answers file.
+
 ### Session rules
 
 - A session lasts at most 45 minutes.
