@@ -1,0 +1,2445 @@
+{
+  "version": 1,
+  "items": [
+    {
+      "item_id": "item01",
+      "pantry": [
+        "cayenne",
+        "cinnamon",
+        "coriander",
+        "cumin",
+        "garlic",
+        "garlic powder",
+        "ginger paste",
+        "ground beef",
+        "onion",
+        "parsley",
+        "red pepper flakes",
+        "yogurt"
+      ],
+      "left": [
+        {
+          "title": "Ayran (Turkish Yogurt Drink)",
+          "missing": []
+        },
+        {
+          "title": "Bulgarian Fresh Sausage (Kebapcheta)",
+          "missing": []
+        },
+        {
+          "title": "Chilli Oil",
+          "missing": []
+        },
+        {
+          "title": "Garlic Salt",
+          "missing": []
+        },
+        {
+          "title": "Spicy Feta Burger",
+          "missing": [
+            "About ½ cup feta cheese"
+          ]
+        }
+      ],
+      "right": [
+        {
+          "title": "Bulgarian Fresh Sausage (Kebapcheta)",
+          "missing": []
+        },
+        {
+          "title": "Montreal Steak Seasoning",
+          "missing": [
+            "4 teaspoons dill weed",
+            "4 teaspoons paprika"
+          ]
+        },
+        {
+          "title": "Seasoned Pepper",
+          "missing": [
+            "4 sugar cubes"
+          ]
+        },
+        {
+          "title": "Spicy Feta Burger",
+          "missing": [
+            "About ½ cup feta cheese"
+          ]
+        },
+        {
+          "title": "Steak Rub",
+          "missing": [
+            "½ cup () chili powder",
+            "¼ cup () smoked paprika"
+          ]
+        }
+      ]
+    },
+    {
+      "item_id": "item02",
+      "pantry": [
+        "egusi",
+        "fennel seed",
+        "garlic",
+        "kale",
+        "onion",
+        "pickle",
+        "smoked fish",
+        "soy sauce",
+        "tomato",
+        "tomato paste"
+      ],
+      "left": [
+        {
+          "title": "Friggione (Onion and Tomato Relish)",
+          "missing": [
+            "Olive oil"
+          ]
+        },
+        {
+          "title": "Ikinyomoro n'Ibishyimbo (Rwandan Smoked Fish with Beans)",
+          "missing": [
+            "2 cups cooked beans"
+          ]
+        },
+        {
+          "title": "Shitha",
+          "missing": [
+            "2 tablespoons red chile powder (or fresh red chilies, blended)"
+          ]
+        },
+        {
+          "title": "Tomato Concassé",
+          "missing": []
+        },
+        {
+          "title": "Zambian Tomato and Onion Salad",
+          "missing": [
+            "Juice of 1 lemon"
+          ]
+        }
+      ],
+      "right": [
+        {
+          "title": "Friggione (Onion and Tomato Relish)",
+          "missing": [
+            "Olive oil"
+          ]
+        },
+        {
+          "title": "Ikinyomoro n'Ibishyimbo (Rwandan Smoked Fish with Beans)",
+          "missing": [
+            "2 cups cooked beans"
+          ]
+        },
+        {
+          "title": "Pork Braised with Garlic and Onions of Indonesia (Babi Kecap)",
+          "missing": [
+            "1 kg pork",
+            "Fresh ginger"
+          ]
+        },
+        {
+          "title": "Salsa Fresca",
+          "missing": [
+            "4 jalapeño chilis, sliced in half, seeded, and veined",
+            "¼ cup cilantro leaves"
+          ]
+        },
+        {
+          "title": "Tomato Salad",
+          "missing": [
+            "Pepper",
+            "Olive oil"
+          ]
+        }
+      ]
+    },
+    {
+      "item_id": "item03",
+      "pantry": [
+        "basil",
+        "garlic",
+        "heavy cream",
+        "lemon",
+        "olive oil",
+        "oregano",
+        "parsley",
+        "pasta",
+        "ricotta",
+        "swiss cheese",
+        "tarragon",
+        "tomato",
+        "tomato sauce"
+      ],
+      "left": [
+        {
+          "title": "Basic Lasagna",
+          "missing": [
+            "6 eggs, separated",
+            "¼ tsp freshly-ground white pepper"
+          ]
+        },
+        {
+          "title": "Spaghetti Aglio e Olio",
+          "missing": []
+        },
+        {
+          "title": "Spaghetti Sauce",
+          "missing": []
+        },
+        {
+          "title": "Tomato Pasta",
+          "missing": [
+            "4 tbsp freshly, finely grated Parmesan-style cheese (Parmigiano Reggiano recommended!)"
+          ]
+        },
+        {
+          "title": "Tortilla Canaria",
+          "missing": [
+            "150 grams yellow onions, diced",
+            "6 eggs, scrambled"
+          ]
+        }
+      ],
+      "right": [
+        {
+          "title": "Italian Garlic and Herb Marinade",
+          "missing": [
+            "½ cup red wine, preferably from an Italian region",
+            "3 sprigs rosemary, finely chopped"
+          ]
+        },
+        {
+          "title": "Spaghetti Aglio e Olio",
+          "missing": []
+        },
+        {
+          "title": "Spaghetti with Clams",
+          "missing": [
+            "1 kg (2 lb) live clams",
+            "Peperoncino or, less commonly, black pepper to taste"
+          ]
+        },
+        {
+          "title": "Tomato Pasta",
+          "missing": [
+            "4 tbsp freshly, finely grated Parmesan-style cheese (Parmigiano Reggiano recommended!)"
+          ]
+        },
+        {
+          "title": "Tortilla Canaria",
+          "missing": [
+            "150 grams yellow onions, diced",
+            "6 eggs, scrambled"
+          ]
+        }
+      ]
+    },
+    {
+      "item_id": "item04",
+      "pantry": [
+        "bacon",
+        "butter",
+        "egg",
+        "feta",
+        "green onion",
+        "onion",
+        "spinach"
+      ],
+      "left": [
+        {
+          "title": "Bacon and Egg Pie",
+          "missing": [
+            "225 g (8 oz) shortcrust pastry"
+          ]
+        },
+        {
+          "title": "Bacon Cheese Omelet",
+          "missing": [
+            "2 slices of American cheese"
+          ]
+        },
+        {
+          "title": "Creamed Spinach",
+          "missing": [
+            "1 ½ tbsp flour",
+            "1 dl milk"
+          ]
+        },
+        {
+          "title": "Kugelis (Lithuanian Baked Potato Pudding)",
+          "missing": [
+            "5 lb potatoes, peeled and grated (or ground with a food processor)",
+            "1 large can evaporated milk"
+          ]
+        },
+        {
+          "title": "Pastry Dough (recipe)",
+          "missing": [
+            "2¾ cups (350 g) flour",
+            "1 cup plus 2 tablespoons (220 g) confectioner's sugar"
+          ]
+        }
+      ],
+      "right": [
+        {
+          "title": "Bacon and Egg Pie",
+          "missing": [
+            "225 g (8 oz) shortcrust pastry"
+          ]
+        },
+        {
+          "title": "Creamed Spinach",
+          "missing": [
+            "1 ½ tbsp flour",
+            "1 dl milk"
+          ]
+        },
+        {
+          "title": "Kugelis (Lithuanian Baked Potato Pudding)",
+          "missing": [
+            "5 lb potatoes, peeled and grated (or ground with a food processor)",
+            "1 large can evaporated milk"
+          ]
+        },
+        {
+          "title": "Potatoes Colcannon",
+          "missing": [
+            "Potatoes"
+          ]
+        },
+        {
+          "title": "Stovies",
+          "missing": [
+            "1 kg (2 pounds) potatoes",
+            "125–250 g (4–8 oz) cooked beef or lamb (leftovers from a roast dinner)"
+          ]
+        }
+      ]
+    },
+    {
+      "item_id": "item05",
+      "pantry": [
+        "cheddar",
+        "cottage cheese",
+        "garlic salt",
+        "green onion",
+        "ground beef",
+        "hamburger bun",
+        "mushroom",
+        "onion",
+        "parsley"
+      ],
+      "left": [
+        {
+          "title": "Christmas Mince Pies (Meat-Free)",
+          "missing": [
+            "Shortcrust pastry dough, either homemade or shop bought"
+          ]
+        },
+        {
+          "title": "Deep Fried Pretzels",
+          "missing": [
+            "2+ handfuls of pretzels"
+          ]
+        },
+        {
+          "title": "Double Hamburgers",
+          "missing": []
+        },
+        {
+          "title": "Duxelles (Minced Mushrooms with Herbs)",
+          "missing": [
+            "1–2 tablespoons butter"
+          ]
+        },
+        {
+          "title": "Hamburger",
+          "missing": []
+        }
+      ],
+      "right": [
+        {
+          "title": "Cheese Ravioli Filling",
+          "missing": [
+            "¾ cup freshly-grated Parmigiano Reggiano",
+            "1 egg"
+          ]
+        },
+        {
+          "title": "Double Hamburgers",
+          "missing": []
+        },
+        {
+          "title": "Duxelles (Minced Mushrooms with Herbs)",
+          "missing": [
+            "1–2 tablespoons butter"
+          ]
+        },
+        {
+          "title": "Hamburger",
+          "missing": []
+        },
+        {
+          "title": "Hamburger Skillet Dinner",
+          "missing": [
+            "1 cup uncooked pasta, such as macaroni, elbows, or wagon wheels",
+            "1–2 cans condensed tomato soup"
+          ]
+        }
+      ]
+    },
+    {
+      "item_id": "item06",
+      "pantry": [
+        "bread",
+        "cheese",
+        "ginger paste",
+        "ham",
+        "lemon",
+        "mint"
+      ],
+      "left": [
+        {
+          "title": "Baked Mac N Cheese",
+          "missing": [
+            "3-4 boxes of shell pasta, with liquid cheese",
+            "Breadcrumbs"
+          ]
+        },
+        {
+          "title": "Cheese on Toast",
+          "missing": [
+            "Toppings (e.g. pickles, onion, walnuts, etc.)"
+          ]
+        },
+        {
+          "title": "Garlic Lemon Marinade",
+          "missing": [
+            "8 cloves garlic, smashed and minced"
+          ]
+        },
+        {
+          "title": "Steak Melts",
+          "missing": [
+            "2 ea. (12–16 ounces) boneless strip steaks, cooked to your liking",
+            "Unsalted melted butter"
+          ]
+        },
+        {
+          "title": "Tomato Paste and Ham Sandwiches (Pan Tomaca)",
+          "missing": [
+            "2 ripe red tomatoes",
+            "2 tbsp olive oil"
+          ]
+        }
+      ],
+      "right": [
+        {
+          "title": "Algerian Mint Tea",
+          "missing": []
+        },
+        {
+          "title": "Cheese on Toast",
+          "missing": [
+            "Toppings (e.g. pickles, onion, walnuts, etc.)"
+          ]
+        },
+        {
+          "title": "Mint Tea",
+          "missing": []
+        },
+        {
+          "title": "Preserved Lemon",
+          "missing": []
+        },
+        {
+          "title": "Toast Sandwich",
+          "missing": []
+        }
+      ]
+    },
+    {
+      "item_id": "item07",
+      "pantry": [
+        "brown sugar",
+        "cayenne",
+        "chicken",
+        "jam",
+        "paprika",
+        "pork",
+        "rosemary",
+        "white wine"
+      ],
+      "left": [
+        {
+          "title": "Dry Rub",
+          "missing": [
+            "1 tsp dry mustard",
+            "½ tsp ground cumin"
+          ]
+        },
+        {
+          "title": "Poultry Shake",
+          "missing": [
+            "⅓ cup garlic powder",
+            "⅓ cup lemon pepper"
+          ]
+        },
+        {
+          "title": "Roast Chicken on Salt",
+          "missing": [
+            "1 lemon, quartered",
+            "4 peeled cloves of garlic"
+          ]
+        },
+        {
+          "title": "Spice Rub",
+          "missing": [
+            "½ cup chipotle powder",
+            "¾ cup dehydrated lemon peel"
+          ]
+        },
+        {
+          "title": "Stuffed Grilled Chicken Breasts",
+          "missing": [
+            "Dijon mustard",
+            "1½ cups poultry stuffing (prepared to a somewhat wet and pipeable state)"
+          ]
+        }
+      ],
+      "right": [
+        {
+          "title": "Chicken Cockaigne",
+          "missing": [
+            "Olive oil or butter"
+          ]
+        },
+        {
+          "title": "Jam Sandwich",
+          "missing": [
+            "2 slices of bread"
+          ]
+        },
+        {
+          "title": "Lemon popsicle",
+          "missing": [
+            "1 cup (250 ml/8.5 oz) fresh lemon juice"
+          ]
+        },
+        {
+          "title": "Lemonade",
+          "missing": [
+            "1 cup (250 ml/8.5 oz) fresh lemon juice"
+          ]
+        },
+        {
+          "title": "Rosemary Garlic Oil",
+          "missing": [
+            "20 cloves garlic"
+          ]
+        }
+      ]
+    },
+    {
+      "item_id": "item08",
+      "pantry": [
+        "carrot",
+        "cayenne",
+        "celery",
+        "chickpea",
+        "cinnamon",
+        "coriander",
+        "dill",
+        "garlic",
+        "green onion",
+        "onion",
+        "paprika",
+        "pasta",
+        "pea",
+        "potato",
+        "sugar",
+        "tomato",
+        "tomato paste",
+        "turmeric"
+      ],
+      "left": [
+        {
+          "title": "Bonga Fish Domoda (Gambian Fish in Peanut Sauce)",
+          "missing": [
+            "1 cup peanut butter",
+            "2 pounds bonga fish fillets"
+          ]
+        },
+        {
+          "title": "Chikwanda (Zambian Sweet Potato Stew)",
+          "missing": [
+            "2 large sweet potatoes, peeled and diced",
+            "1 teaspoon ground cumin"
+          ]
+        },
+        {
+          "title": "Cholley (Chickpea Curry)",
+          "missing": [
+            "1 tbsp garam masala"
+          ]
+        },
+        {
+          "title": "Montreal Russian Borscht",
+          "missing": [
+            "5–6 medium beets, peeled and julienned",
+            "½ large white cabbage, shredded"
+          ]
+        },
+        {
+          "title": "Shakshuka II",
+          "missing": [
+            "2 eggs",
+            "Bell pepper (red or green)"
+          ]
+        }
+      ],
+      "right": [
+        {
+          "title": "Fried Pasta",
+          "missing": []
+        },
+        {
+          "title": "Homemade Aquafaba",
+          "missing": []
+        },
+        {
+          "title": "Simple Boiled Chickpeas",
+          "missing": []
+        },
+        {
+          "title": "Simple Spaghetti",
+          "missing": []
+        },
+        {
+          "title": "Sweet Carrot Juice",
+          "missing": []
+        }
+      ]
+    },
+    {
+      "item_id": "item09",
+      "pantry": [
+        "baking mix",
+        "beef",
+        "bell pepper",
+        "coriander",
+        "onion",
+        "potato",
+        "spinach",
+        "worcestershire sauce"
+      ],
+      "left": [
+        {
+          "title": "Buuz (Mongolian Meat Dumplings)",
+          "missing": [
+            "300 g (11 oz) flour"
+          ]
+        },
+        {
+          "title": "Carpetbag Steak",
+          "missing": [
+            "3–4 oysters"
+          ]
+        },
+        {
+          "title": "Gravy Cakes (Hartshorne)",
+          "missing": [
+            "Gravy spices"
+          ]
+        },
+        {
+          "title": "Ratatouille II",
+          "missing": [
+            "1 tin (400 g) baked beans",
+            "1 zucchini (courgettes), finely chopped"
+          ]
+        },
+        {
+          "title": "Stovies",
+          "missing": [
+            "50 g (2 oz) beef drippings or butter",
+            "2–3 tbsp finely chopped parsley, chives, or spring onions"
+          ]
+        }
+      ],
+      "right": [
+        {
+          "title": "Mukimo",
+          "missing": [
+            "2 cups maize kernels (fresh or frozen)",
+            "1 cup green peas"
+          ]
+        },
+        {
+          "title": "Potage Parmentier",
+          "missing": [
+            "White pepper, freshly ground, to taste",
+            "4–6 tbsp heavy (double) cream"
+          ]
+        },
+        {
+          "title": "Potatoes Colcannon",
+          "missing": [
+            "Butter"
+          ]
+        },
+        {
+          "title": "Sindhi Fried Potatoes",
+          "missing": [
+            "2 pinches red chile powder"
+          ]
+        },
+        {
+          "title": "Stovies",
+          "missing": [
+            "50 g (2 oz) beef drippings or butter",
+            "2–3 tbsp finely chopped parsley, chives, or spring onions"
+          ]
+        }
+      ]
+    },
+    {
+      "item_id": "item10",
+      "pantry": [
+        "bell pepper",
+        "heavy cream",
+        "margarine",
+        "olive oil",
+        "onion",
+        "zucchini"
+      ],
+      "left": [
+        {
+          "title": "Air Fried Zucchini",
+          "missing": [
+            "1 pinch of seasoned salt"
+          ]
+        },
+        {
+          "title": "Basic Whipped Cream",
+          "missing": []
+        },
+        {
+          "title": "Fried Eggs",
+          "missing": [
+            "2–3 large eggs, depending on appetite"
+          ]
+        },
+        {
+          "title": "Friggione (Onion and Tomato Relish)",
+          "missing": [
+            "500 g (1 pound) tomatoes"
+          ]
+        },
+        {
+          "title": "Homemade Tomato Paste",
+          "missing": [
+            "1 gallon (4 litres) tomato pulp"
+          ]
+        }
+      ],
+      "right": [
+        {
+          "title": "Air Fried Zucchini",
+          "missing": [
+            "1 pinch of seasoned salt"
+          ]
+        },
+        {
+          "title": "Basic Whipped Cream",
+          "missing": []
+        },
+        {
+          "title": "Homemade Tomato Paste",
+          "missing": [
+            "1 gallon (4 litres) tomato pulp"
+          ]
+        },
+        {
+          "title": "Potage Parmentier",
+          "missing": [
+            "3–4 cups (700–900 g / 2 lb) floury potatoes (e.g. Idaho, Maris Piper), peeled and thickly sliced",
+            "White pepper, freshly ground, to taste"
+          ]
+        },
+        {
+          "title": "Seared Chicken Breast with Brandy Cream Sauce",
+          "missing": [
+            "2 ea. (12–16 oz) boneless skinless chicken breasts",
+            "⅓ cup brandy"
+          ]
+        }
+      ]
+    },
+    {
+      "item_id": "item11",
+      "pantry": [
+        "basil",
+        "garlic",
+        "heavy cream",
+        "lemon",
+        "olive oil",
+        "oregano",
+        "parsley",
+        "pasta",
+        "ricotta",
+        "swiss cheese",
+        "tarragon",
+        "tomato",
+        "tomato sauce"
+      ],
+      "left": [
+        {
+          "title": "Garlic Lemon Marinade",
+          "missing": []
+        },
+        {
+          "title": "Simple Spaghetti",
+          "missing": []
+        },
+        {
+          "title": "Spaghetti Aglio e Olio",
+          "missing": []
+        },
+        {
+          "title": "Spaghetti Sauce",
+          "missing": []
+        },
+        {
+          "title": "Toum (Lebanese Garlic Sauce)",
+          "missing": []
+        }
+      ],
+      "right": [
+        {
+          "title": "Italian Garlic and Herb Marinade",
+          "missing": [
+            "½ cup red wine, preferably from an Italian region",
+            "3 sprigs rosemary, finely chopped"
+          ]
+        },
+        {
+          "title": "Spaghetti Aglio e Olio",
+          "missing": []
+        },
+        {
+          "title": "Spaghetti with Clams",
+          "missing": [
+            "1 kg (2 lb) live clams",
+            "Peperoncino or, less commonly, black pepper to taste"
+          ]
+        },
+        {
+          "title": "Tomato Pasta",
+          "missing": [
+            "4 tbsp freshly, finely grated Parmesan-style cheese (Parmigiano Reggiano recommended!)"
+          ]
+        },
+        {
+          "title": "Tortilla Canaria",
+          "missing": [
+            "150 grams yellow onions, diced",
+            "6 eggs, scrambled"
+          ]
+        }
+      ]
+    },
+    {
+      "item_id": "item12",
+      "pantry": [
+        "bread",
+        "cheese",
+        "ginger paste",
+        "ham",
+        "lemon",
+        "mint"
+      ],
+      "left": [
+        {
+          "title": "Algerian Mint Tea",
+          "missing": []
+        },
+        {
+          "title": "Cheese on Toast",
+          "missing": [
+            "Toppings (e.g. pickles, onion, walnuts, etc.)"
+          ]
+        },
+        {
+          "title": "Mint Tea",
+          "missing": []
+        },
+        {
+          "title": "Preserved Lemon",
+          "missing": []
+        },
+        {
+          "title": "Toast Sandwich",
+          "missing": []
+        }
+      ],
+      "right": [
+        {
+          "title": "Algerian Mint Tea",
+          "missing": []
+        },
+        {
+          "title": "Cheese on Toast",
+          "missing": [
+            "Toppings (e.g. pickles, onion, walnuts, etc.)"
+          ]
+        },
+        {
+          "title": "Chip Butty",
+          "missing": [
+            "Chips from a chip shop or homemade",
+            "Butter"
+          ]
+        },
+        {
+          "title": "Steak Melts",
+          "missing": [
+            "2 ea. (12–16 ounces) boneless strip steaks, cooked to your liking",
+            "Unsalted melted butter"
+          ]
+        },
+        {
+          "title": "Tomato Paste and Ham Sandwiches (Pan Tomaca)",
+          "missing": [
+            "2 ripe red tomatoes",
+            "2 tbsp olive oil"
+          ]
+        }
+      ]
+    },
+    {
+      "item_id": "item13",
+      "pantry": [
+        "bacon",
+        "butter",
+        "egg",
+        "feta",
+        "green onion",
+        "onion",
+        "spinach"
+      ],
+      "left": [
+        {
+          "title": "Bacon and Egg Pie",
+          "missing": [
+            "225 g (8 oz) shortcrust pastry"
+          ]
+        },
+        {
+          "title": "Creamed Spinach",
+          "missing": [
+            "1 ½ tbsp flour",
+            "1 dl milk"
+          ]
+        },
+        {
+          "title": "Kugelis (Lithuanian Baked Potato Pudding)",
+          "missing": [
+            "5 lb potatoes, peeled and grated (or ground with a food processor)",
+            "1 large can evaporated milk"
+          ]
+        },
+        {
+          "title": "Potatoes Colcannon",
+          "missing": [
+            "Potatoes"
+          ]
+        },
+        {
+          "title": "Stovies",
+          "missing": [
+            "1 kg (2 pounds) potatoes",
+            "125–250 g (4–8 oz) cooked beef or lamb (leftovers from a roast dinner)"
+          ]
+        }
+      ],
+      "right": [
+        {
+          "title": "Basic Scrambled Eggs",
+          "missing": []
+        },
+        {
+          "title": "Egg Butter",
+          "missing": []
+        },
+        {
+          "title": "Fried Eggs",
+          "missing": []
+        },
+        {
+          "title": "Microwaved Scrambled Egg",
+          "missing": []
+        },
+        {
+          "title": "Shirred Egg",
+          "missing": []
+        }
+      ]
+    },
+    {
+      "item_id": "item14",
+      "pantry": [
+        "baking mix",
+        "beef",
+        "bell pepper",
+        "coriander",
+        "onion",
+        "potato",
+        "spinach",
+        "worcestershire sauce"
+      ],
+      "left": [
+        {
+          "title": "Mukimo",
+          "missing": [
+            "2 cups maize kernels (fresh or frozen)",
+            "1 cup green peas"
+          ]
+        },
+        {
+          "title": "Potage Parmentier",
+          "missing": [
+            "White pepper, freshly ground, to taste",
+            "4–6 tbsp heavy (double) cream"
+          ]
+        },
+        {
+          "title": "Potatoes Colcannon",
+          "missing": [
+            "Butter"
+          ]
+        },
+        {
+          "title": "Sindhi Fried Potatoes",
+          "missing": [
+            "2 pinches red chile powder"
+          ]
+        },
+        {
+          "title": "Stovies",
+          "missing": [
+            "50 g (2 oz) beef drippings or butter",
+            "2–3 tbsp finely chopped parsley, chives, or spring onions"
+          ]
+        }
+      ],
+      "right": [
+        {
+          "title": "Fast Food French Fries",
+          "missing": []
+        },
+        {
+          "title": "French Fries",
+          "missing": []
+        },
+        {
+          "title": "Glace de Viande (Reduced Beef Sauce)",
+          "missing": []
+        },
+        {
+          "title": "Pan-fried Beef Steak",
+          "missing": []
+        },
+        {
+          "title": "Rosti (Swiss Potato Patties)",
+          "missing": []
+        }
+      ]
+    },
+    {
+      "item_id": "item15",
+      "pantry": [
+        "brown sugar",
+        "cayenne",
+        "chicken",
+        "jam",
+        "paprika",
+        "pork",
+        "rosemary",
+        "white wine"
+      ],
+      "left": [
+        {
+          "title": "Chicken Cockaigne",
+          "missing": [
+            "Olive oil or butter"
+          ]
+        },
+        {
+          "title": "Jam Sandwich",
+          "missing": [
+            "2 slices of bread"
+          ]
+        },
+        {
+          "title": "Lemon popsicle",
+          "missing": [
+            "1 cup (250 ml/8.5 oz) fresh lemon juice"
+          ]
+        },
+        {
+          "title": "Lemonade",
+          "missing": [
+            "1 cup (250 ml/8.5 oz) fresh lemon juice"
+          ]
+        },
+        {
+          "title": "Rosemary Garlic Oil",
+          "missing": [
+            "20 cloves garlic"
+          ]
+        }
+      ],
+      "right": [
+        {
+          "title": "Dry Rub",
+          "missing": [
+            "1 tsp dry mustard",
+            "½ tsp ground cumin"
+          ]
+        },
+        {
+          "title": "Jam Sandwich",
+          "missing": [
+            "2 slices of bread"
+          ]
+        },
+        {
+          "title": "Roast Chicken on Salt",
+          "missing": [
+            "1 lemon, quartered",
+            "4 peeled cloves of garlic"
+          ]
+        },
+        {
+          "title": "Rosemary Garlic Oil",
+          "missing": [
+            "20 cloves garlic"
+          ]
+        },
+        {
+          "title": "Spice Rub",
+          "missing": [
+            "½ cup chipotle powder",
+            "¾ cup dehydrated lemon peel"
+          ]
+        }
+      ]
+    },
+    {
+      "item_id": "item16",
+      "pantry": [
+        "bread",
+        "cheese",
+        "ginger paste",
+        "ham",
+        "lemon",
+        "mint"
+      ],
+      "left": [
+        {
+          "title": "Algerian Mint Tea",
+          "missing": []
+        },
+        {
+          "title": "Cheese on Toast",
+          "missing": [
+            "Toppings (e.g. pickles, onion, walnuts, etc.)"
+          ]
+        },
+        {
+          "title": "Chip Butty",
+          "missing": [
+            "Chips from a chip shop or homemade",
+            "Butter"
+          ]
+        },
+        {
+          "title": "Steak Melts",
+          "missing": [
+            "2 ea. (12–16 ounces) boneless strip steaks, cooked to your liking",
+            "Unsalted melted butter"
+          ]
+        },
+        {
+          "title": "Tomato Paste and Ham Sandwiches (Pan Tomaca)",
+          "missing": [
+            "2 ripe red tomatoes",
+            "2 tbsp olive oil"
+          ]
+        }
+      ],
+      "right": [
+        {
+          "title": "Baked Mac N Cheese",
+          "missing": [
+            "3-4 boxes of shell pasta, with liquid cheese",
+            "Breadcrumbs"
+          ]
+        },
+        {
+          "title": "Cheese on Toast",
+          "missing": [
+            "Toppings (e.g. pickles, onion, walnuts, etc.)"
+          ]
+        },
+        {
+          "title": "Garlic Lemon Marinade",
+          "missing": [
+            "8 cloves garlic, smashed and minced"
+          ]
+        },
+        {
+          "title": "Steak Melts",
+          "missing": [
+            "2 ea. (12–16 ounces) boneless strip steaks, cooked to your liking",
+            "Unsalted melted butter"
+          ]
+        },
+        {
+          "title": "Tomato Paste and Ham Sandwiches (Pan Tomaca)",
+          "missing": [
+            "2 ripe red tomatoes",
+            "2 tbsp olive oil"
+          ]
+        }
+      ]
+    },
+    {
+      "item_id": "item17",
+      "pantry": [
+        "basil",
+        "garlic",
+        "heavy cream",
+        "lemon",
+        "olive oil",
+        "oregano",
+        "parsley",
+        "pasta",
+        "ricotta",
+        "swiss cheese",
+        "tarragon",
+        "tomato",
+        "tomato sauce"
+      ],
+      "left": [
+        {
+          "title": "Garlic Lemon Marinade",
+          "missing": []
+        },
+        {
+          "title": "Simple Spaghetti",
+          "missing": []
+        },
+        {
+          "title": "Spaghetti Aglio e Olio",
+          "missing": []
+        },
+        {
+          "title": "Spaghetti Sauce",
+          "missing": []
+        },
+        {
+          "title": "Toum (Lebanese Garlic Sauce)",
+          "missing": []
+        }
+      ],
+      "right": [
+        {
+          "title": "Basic Lasagna",
+          "missing": [
+            "6 eggs, separated",
+            "¼ tsp freshly-ground white pepper"
+          ]
+        },
+        {
+          "title": "Spaghetti Aglio e Olio",
+          "missing": []
+        },
+        {
+          "title": "Spaghetti Sauce",
+          "missing": []
+        },
+        {
+          "title": "Tomato Pasta",
+          "missing": [
+            "4 tbsp freshly, finely grated Parmesan-style cheese (Parmigiano Reggiano recommended!)"
+          ]
+        },
+        {
+          "title": "Tortilla Canaria",
+          "missing": [
+            "150 grams yellow onions, diced",
+            "6 eggs, scrambled"
+          ]
+        }
+      ]
+    },
+    {
+      "item_id": "item18",
+      "pantry": [
+        "egusi",
+        "fennel seed",
+        "garlic",
+        "kale",
+        "onion",
+        "pickle",
+        "smoked fish",
+        "soy sauce",
+        "tomato",
+        "tomato paste"
+      ],
+      "left": [
+        {
+          "title": "Ikinyomoro n'Ibishyimbo (Rwandan Smoked Fish with Beans)",
+          "missing": [
+            "2 cups cooked beans"
+          ]
+        },
+        {
+          "title": "Isombe (Rwandan Cassava Leaves with Eggplant)",
+          "missing": [
+            "2 bunches of cassava leaves",
+            "1 medium eggplant, diced"
+          ]
+        },
+        {
+          "title": "Pork Braised with Garlic and Onions of Indonesia (Babi Kecap)",
+          "missing": [
+            "1 kg pork",
+            "Fresh ginger"
+          ]
+        },
+        {
+          "title": "Salsa Fresca",
+          "missing": [
+            "4 jalapeño chilis, sliced in half, seeded, and veined",
+            "¼ cup cilantro leaves"
+          ]
+        },
+        {
+          "title": "Zambian Beans and Rice",
+          "missing": [
+            "1 cup rice",
+            "1 cup dried beans (black-eyed peas or kidney beans), soaked overnight"
+          ]
+        }
+      ],
+      "right": [
+        {
+          "title": "Friggione (Onion and Tomato Relish)",
+          "missing": [
+            "Olive oil"
+          ]
+        },
+        {
+          "title": "Ikinyomoro n'Ibishyimbo (Rwandan Smoked Fish with Beans)",
+          "missing": [
+            "2 cups cooked beans"
+          ]
+        },
+        {
+          "title": "Pork Braised with Garlic and Onions of Indonesia (Babi Kecap)",
+          "missing": [
+            "1 kg pork",
+            "Fresh ginger"
+          ]
+        },
+        {
+          "title": "Salsa Fresca",
+          "missing": [
+            "4 jalapeño chilis, sliced in half, seeded, and veined",
+            "¼ cup cilantro leaves"
+          ]
+        },
+        {
+          "title": "Tomato Salad",
+          "missing": [
+            "Pepper",
+            "Olive oil"
+          ]
+        }
+      ]
+    },
+    {
+      "item_id": "item19",
+      "pantry": [
+        "brown sugar",
+        "cayenne",
+        "chicken",
+        "jam",
+        "paprika",
+        "pork",
+        "rosemary",
+        "white wine"
+      ],
+      "left": [
+        {
+          "title": "Chicken Cockaigne",
+          "missing": [
+            "Olive oil or butter"
+          ]
+        },
+        {
+          "title": "Jam Sandwich",
+          "missing": [
+            "2 slices of bread"
+          ]
+        },
+        {
+          "title": "Lemon popsicle",
+          "missing": [
+            "1 cup (250 ml/8.5 oz) fresh lemon juice"
+          ]
+        },
+        {
+          "title": "Lemonade",
+          "missing": [
+            "1 cup (250 ml/8.5 oz) fresh lemon juice"
+          ]
+        },
+        {
+          "title": "Rosemary Garlic Oil",
+          "missing": [
+            "20 cloves garlic"
+          ]
+        }
+      ],
+      "right": [
+        {
+          "title": "Dry Rub",
+          "missing": [
+            "1 tsp dry mustard",
+            "½ tsp ground cumin"
+          ]
+        },
+        {
+          "title": "Poultry Shake",
+          "missing": [
+            "⅓ cup garlic powder",
+            "⅓ cup lemon pepper"
+          ]
+        },
+        {
+          "title": "Roast Chicken on Salt",
+          "missing": [
+            "1 lemon, quartered",
+            "4 peeled cloves of garlic"
+          ]
+        },
+        {
+          "title": "Spice Rub",
+          "missing": [
+            "½ cup chipotle powder",
+            "¾ cup dehydrated lemon peel"
+          ]
+        },
+        {
+          "title": "Stuffed Grilled Chicken Breasts",
+          "missing": [
+            "Dijon mustard",
+            "1½ cups poultry stuffing (prepared to a somewhat wet and pipeable state)"
+          ]
+        }
+      ]
+    },
+    {
+      "item_id": "item20",
+      "pantry": [
+        "cheddar",
+        "cottage cheese",
+        "garlic salt",
+        "green onion",
+        "ground beef",
+        "hamburger bun",
+        "mushroom",
+        "onion",
+        "parsley"
+      ],
+      "left": [
+        {
+          "title": "Christmas Mince Pies (Meat-Free)",
+          "missing": [
+            "Shortcrust pastry dough, either homemade or shop bought"
+          ]
+        },
+        {
+          "title": "Deep Fried Pretzels",
+          "missing": [
+            "2+ handfuls of pretzels"
+          ]
+        },
+        {
+          "title": "Double Hamburgers",
+          "missing": []
+        },
+        {
+          "title": "Duxelles (Minced Mushrooms with Herbs)",
+          "missing": [
+            "1–2 tablespoons butter"
+          ]
+        },
+        {
+          "title": "Hamburger",
+          "missing": []
+        }
+      ],
+      "right": [
+        {
+          "title": "Double Hamburgers",
+          "missing": []
+        },
+        {
+          "title": "Duxelles (Minced Mushrooms with Herbs)",
+          "missing": [
+            "1–2 tablespoons butter"
+          ]
+        },
+        {
+          "title": "Hamburger",
+          "missing": []
+        },
+        {
+          "title": "Hamburger Skillet Dinner",
+          "missing": [
+            "1 cup uncooked pasta, such as macaroni, elbows, or wagon wheels",
+            "1–2 cans condensed tomato soup"
+          ]
+        },
+        {
+          "title": "Potato Skins",
+          "missing": [
+            "8 small baking potatoes",
+            "2 tablespoons chopped fresh chives, divided"
+          ]
+        }
+      ]
+    },
+    {
+      "item_id": "item21",
+      "pantry": [
+        "egusi",
+        "fennel seed",
+        "garlic",
+        "kale",
+        "onion",
+        "pickle",
+        "smoked fish",
+        "soy sauce",
+        "tomato",
+        "tomato paste"
+      ],
+      "left": [
+        {
+          "title": "Friggione (Onion and Tomato Relish)",
+          "missing": [
+            "Olive oil"
+          ]
+        },
+        {
+          "title": "Ikinyomoro n'Ibishyimbo (Rwandan Smoked Fish with Beans)",
+          "missing": [
+            "2 cups cooked beans"
+          ]
+        },
+        {
+          "title": "Pork Braised with Garlic and Onions of Indonesia (Babi Kecap)",
+          "missing": [
+            "1 kg pork",
+            "Fresh ginger"
+          ]
+        },
+        {
+          "title": "Salsa Fresca",
+          "missing": [
+            "4 jalapeño chilis, sliced in half, seeded, and veined",
+            "¼ cup cilantro leaves"
+          ]
+        },
+        {
+          "title": "Tomato Salad",
+          "missing": [
+            "Pepper",
+            "Olive oil"
+          ]
+        }
+      ],
+      "right": [
+        {
+          "title": "Friggione (Onion and Tomato Relish)",
+          "missing": [
+            "Olive oil"
+          ]
+        },
+        {
+          "title": "Ikinyomoro n'Ibishyimbo (Rwandan Smoked Fish with Beans)",
+          "missing": [
+            "2 cups cooked beans"
+          ]
+        },
+        {
+          "title": "Shitha",
+          "missing": [
+            "2 tablespoons red chile powder (or fresh red chilies, blended)"
+          ]
+        },
+        {
+          "title": "Tomato Concassé",
+          "missing": []
+        },
+        {
+          "title": "Zambian Tomato and Onion Salad",
+          "missing": [
+            "Juice of 1 lemon"
+          ]
+        }
+      ]
+    },
+    {
+      "item_id": "item22",
+      "pantry": [
+        "baking mix",
+        "beef",
+        "bell pepper",
+        "coriander",
+        "onion",
+        "potato",
+        "spinach",
+        "worcestershire sauce"
+      ],
+      "left": [
+        {
+          "title": "Fast Food French Fries",
+          "missing": []
+        },
+        {
+          "title": "French Fries",
+          "missing": []
+        },
+        {
+          "title": "Glace de Viande (Reduced Beef Sauce)",
+          "missing": []
+        },
+        {
+          "title": "Pan-fried Beef Steak",
+          "missing": []
+        },
+        {
+          "title": "Rosti (Swiss Potato Patties)",
+          "missing": []
+        }
+      ],
+      "right": [
+        {
+          "title": "Mukimo",
+          "missing": [
+            "2 cups maize kernels (fresh or frozen)",
+            "1 cup green peas"
+          ]
+        },
+        {
+          "title": "Potage Parmentier",
+          "missing": [
+            "White pepper, freshly ground, to taste",
+            "4–6 tbsp heavy (double) cream"
+          ]
+        },
+        {
+          "title": "Potatoes Colcannon",
+          "missing": [
+            "Butter"
+          ]
+        },
+        {
+          "title": "Sindhi Fried Potatoes",
+          "missing": [
+            "2 pinches red chile powder"
+          ]
+        },
+        {
+          "title": "Stovies",
+          "missing": [
+            "50 g (2 oz) beef drippings or butter",
+            "2–3 tbsp finely chopped parsley, chives, or spring onions"
+          ]
+        }
+      ]
+    },
+    {
+      "item_id": "item23",
+      "pantry": [
+        "bell pepper",
+        "heavy cream",
+        "margarine",
+        "olive oil",
+        "onion",
+        "zucchini"
+      ],
+      "left": [
+        {
+          "title": "Air Fried Zucchini",
+          "missing": [
+            "1 pinch of seasoned salt"
+          ]
+        },
+        {
+          "title": "Basic Whipped Cream",
+          "missing": []
+        },
+        {
+          "title": "Homemade Tomato Paste",
+          "missing": [
+            "1 gallon (4 litres) tomato pulp"
+          ]
+        },
+        {
+          "title": "Potage Parmentier",
+          "missing": [
+            "3–4 cups (700–900 g / 2 lb) floury potatoes (e.g. Idaho, Maris Piper), peeled and thickly sliced",
+            "White pepper, freshly ground, to taste"
+          ]
+        },
+        {
+          "title": "Seared Chicken Breast with Brandy Cream Sauce",
+          "missing": [
+            "2 ea. (12–16 oz) boneless skinless chicken breasts",
+            "⅓ cup brandy"
+          ]
+        }
+      ],
+      "right": [
+        {
+          "title": "Air Fried Zucchini",
+          "missing": [
+            "1 pinch of seasoned salt"
+          ]
+        },
+        {
+          "title": "Browned Rice",
+          "missing": [
+            "½ cup (120 g) uncooked rice",
+            "1 can beef consommé"
+          ]
+        },
+        {
+          "title": "Fresh Broadbeans Salad",
+          "missing": [
+            "Tomatoes",
+            "Fresh broad beans"
+          ]
+        },
+        {
+          "title": "Friggione (Onion and Tomato Relish)",
+          "missing": [
+            "500 g (1 pound) tomatoes"
+          ]
+        },
+        {
+          "title": "Habas con Jamon (Broad Beans with Ham)",
+          "missing": [
+            "300 g broad beans (fresh or canned)",
+            "2 strips of ham or bacon (or vegetarian bacon)"
+          ]
+        }
+      ]
+    },
+    {
+      "item_id": "item24",
+      "pantry": [
+        "egusi",
+        "fennel seed",
+        "garlic",
+        "kale",
+        "onion",
+        "pickle",
+        "smoked fish",
+        "soy sauce",
+        "tomato",
+        "tomato paste"
+      ],
+      "left": [
+        {
+          "title": "Friggione (Onion and Tomato Relish)",
+          "missing": [
+            "Olive oil"
+          ]
+        },
+        {
+          "title": "Ikinyomoro n'Ibishyimbo (Rwandan Smoked Fish with Beans)",
+          "missing": [
+            "2 cups cooked beans"
+          ]
+        },
+        {
+          "title": "Shitha",
+          "missing": [
+            "2 tablespoons red chile powder (or fresh red chilies, blended)"
+          ]
+        },
+        {
+          "title": "Tomato Concassé",
+          "missing": []
+        },
+        {
+          "title": "Zambian Tomato and Onion Salad",
+          "missing": [
+            "Juice of 1 lemon"
+          ]
+        }
+      ],
+      "right": [
+        {
+          "title": "Ikinyomoro n'Ibishyimbo (Rwandan Smoked Fish with Beans)",
+          "missing": [
+            "2 cups cooked beans"
+          ]
+        },
+        {
+          "title": "Isombe (Rwandan Cassava Leaves with Eggplant)",
+          "missing": [
+            "2 bunches of cassava leaves",
+            "1 medium eggplant, diced"
+          ]
+        },
+        {
+          "title": "Pork Braised with Garlic and Onions of Indonesia (Babi Kecap)",
+          "missing": [
+            "1 kg pork",
+            "Fresh ginger"
+          ]
+        },
+        {
+          "title": "Salsa Fresca",
+          "missing": [
+            "4 jalapeño chilis, sliced in half, seeded, and veined",
+            "¼ cup cilantro leaves"
+          ]
+        },
+        {
+          "title": "Zambian Beans and Rice",
+          "missing": [
+            "1 cup rice",
+            "1 cup dried beans (black-eyed peas or kidney beans), soaked overnight"
+          ]
+        }
+      ]
+    },
+    {
+      "item_id": "item25",
+      "pantry": [
+        "brown sugar",
+        "cayenne",
+        "chicken",
+        "jam",
+        "paprika",
+        "pork",
+        "rosemary",
+        "white wine"
+      ],
+      "left": [
+        {
+          "title": "Dry Rub",
+          "missing": [
+            "1 tsp dry mustard",
+            "½ tsp ground cumin"
+          ]
+        },
+        {
+          "title": "Jam Sandwich",
+          "missing": [
+            "2 slices of bread"
+          ]
+        },
+        {
+          "title": "Roast Chicken on Salt",
+          "missing": [
+            "1 lemon, quartered",
+            "4 peeled cloves of garlic"
+          ]
+        },
+        {
+          "title": "Rosemary Garlic Oil",
+          "missing": [
+            "20 cloves garlic"
+          ]
+        },
+        {
+          "title": "Spice Rub",
+          "missing": [
+            "½ cup chipotle powder",
+            "¾ cup dehydrated lemon peel"
+          ]
+        }
+      ],
+      "right": [
+        {
+          "title": "Dry Rub",
+          "missing": [
+            "1 tsp dry mustard",
+            "½ tsp ground cumin"
+          ]
+        },
+        {
+          "title": "Poultry Shake",
+          "missing": [
+            "⅓ cup garlic powder",
+            "⅓ cup lemon pepper"
+          ]
+        },
+        {
+          "title": "Roast Chicken on Salt",
+          "missing": [
+            "1 lemon, quartered",
+            "4 peeled cloves of garlic"
+          ]
+        },
+        {
+          "title": "Spice Rub",
+          "missing": [
+            "½ cup chipotle powder",
+            "¾ cup dehydrated lemon peel"
+          ]
+        },
+        {
+          "title": "Stuffed Grilled Chicken Breasts",
+          "missing": [
+            "Dijon mustard",
+            "1½ cups poultry stuffing (prepared to a somewhat wet and pipeable state)"
+          ]
+        }
+      ]
+    },
+    {
+      "item_id": "item26",
+      "pantry": [
+        "baking mix",
+        "beef",
+        "bell pepper",
+        "coriander",
+        "onion",
+        "potato",
+        "spinach",
+        "worcestershire sauce"
+      ],
+      "left": [
+        {
+          "title": "Fast Food French Fries",
+          "missing": []
+        },
+        {
+          "title": "French Fries",
+          "missing": []
+        },
+        {
+          "title": "Glace de Viande (Reduced Beef Sauce)",
+          "missing": []
+        },
+        {
+          "title": "Pan-fried Beef Steak",
+          "missing": []
+        },
+        {
+          "title": "Rosti (Swiss Potato Patties)",
+          "missing": []
+        }
+      ],
+      "right": [
+        {
+          "title": "Buuz (Mongolian Meat Dumplings)",
+          "missing": [
+            "300 g (11 oz) flour"
+          ]
+        },
+        {
+          "title": "Carpetbag Steak",
+          "missing": [
+            "3–4 oysters"
+          ]
+        },
+        {
+          "title": "Gravy Cakes (Hartshorne)",
+          "missing": [
+            "Gravy spices"
+          ]
+        },
+        {
+          "title": "Ratatouille II",
+          "missing": [
+            "1 tin (400 g) baked beans",
+            "1 zucchini (courgettes), finely chopped"
+          ]
+        },
+        {
+          "title": "Stovies",
+          "missing": [
+            "50 g (2 oz) beef drippings or butter",
+            "2–3 tbsp finely chopped parsley, chives, or spring onions"
+          ]
+        }
+      ]
+    },
+    {
+      "item_id": "item27",
+      "pantry": [
+        "cayenne",
+        "cinnamon",
+        "coriander",
+        "cumin",
+        "garlic",
+        "garlic powder",
+        "ginger paste",
+        "ground beef",
+        "onion",
+        "parsley",
+        "red pepper flakes",
+        "yogurt"
+      ],
+      "left": [
+        {
+          "title": "Bulgarian Fresh Sausage (Kebapcheta)",
+          "missing": []
+        },
+        {
+          "title": "Montreal Steak Seasoning",
+          "missing": [
+            "4 teaspoons dill weed",
+            "4 teaspoons paprika"
+          ]
+        },
+        {
+          "title": "Seasoned Pepper",
+          "missing": [
+            "4 sugar cubes"
+          ]
+        },
+        {
+          "title": "Spicy Feta Burger",
+          "missing": [
+            "About ½ cup feta cheese"
+          ]
+        },
+        {
+          "title": "Steak Rub",
+          "missing": [
+            "½ cup () chili powder",
+            "¼ cup () smoked paprika"
+          ]
+        }
+      ],
+      "right": [
+        {
+          "title": "Ayran (Turkish Yogurt Drink)",
+          "missing": []
+        },
+        {
+          "title": "Bulgarian Fresh Sausage (Kebapcheta)",
+          "missing": []
+        },
+        {
+          "title": "Chilli Oil",
+          "missing": []
+        },
+        {
+          "title": "Garlic Salt",
+          "missing": []
+        },
+        {
+          "title": "Spicy Feta Burger",
+          "missing": [
+            "About ½ cup feta cheese"
+          ]
+        }
+      ]
+    },
+    {
+      "item_id": "item28",
+      "pantry": [
+        "bell pepper",
+        "heavy cream",
+        "margarine",
+        "olive oil",
+        "onion",
+        "zucchini"
+      ],
+      "left": [
+        {
+          "title": "Air Fried Zucchini",
+          "missing": [
+            "1 pinch of seasoned salt"
+          ]
+        },
+        {
+          "title": "Browned Rice",
+          "missing": [
+            "½ cup (120 g) uncooked rice",
+            "1 can beef consommé"
+          ]
+        },
+        {
+          "title": "Fresh Broadbeans Salad",
+          "missing": [
+            "Tomatoes",
+            "Fresh broad beans"
+          ]
+        },
+        {
+          "title": "Friggione (Onion and Tomato Relish)",
+          "missing": [
+            "500 g (1 pound) tomatoes"
+          ]
+        },
+        {
+          "title": "Habas con Jamon (Broad Beans with Ham)",
+          "missing": [
+            "300 g broad beans (fresh or canned)",
+            "2 strips of ham or bacon (or vegetarian bacon)"
+          ]
+        }
+      ],
+      "right": [
+        {
+          "title": "Air Fried Zucchini",
+          "missing": [
+            "1 pinch of seasoned salt"
+          ]
+        },
+        {
+          "title": "Basic Whipped Cream",
+          "missing": []
+        },
+        {
+          "title": "Fried Eggs",
+          "missing": [
+            "2–3 large eggs, depending on appetite"
+          ]
+        },
+        {
+          "title": "Friggione (Onion and Tomato Relish)",
+          "missing": [
+            "500 g (1 pound) tomatoes"
+          ]
+        },
+        {
+          "title": "Homemade Tomato Paste",
+          "missing": [
+            "1 gallon (4 litres) tomato pulp"
+          ]
+        }
+      ]
+    },
+    {
+      "item_id": "item29",
+      "pantry": [
+        "cheddar",
+        "cottage cheese",
+        "garlic salt",
+        "green onion",
+        "ground beef",
+        "hamburger bun",
+        "mushroom",
+        "onion",
+        "parsley"
+      ],
+      "left": [
+        {
+          "title": "Double Hamburgers",
+          "missing": []
+        },
+        {
+          "title": "Duxelles (Minced Mushrooms with Herbs)",
+          "missing": [
+            "1–2 tablespoons butter"
+          ]
+        },
+        {
+          "title": "Hamburger",
+          "missing": []
+        },
+        {
+          "title": "Hamburger Skillet Dinner",
+          "missing": [
+            "1 cup uncooked pasta, such as macaroni, elbows, or wagon wheels",
+            "1–2 cans condensed tomato soup"
+          ]
+        },
+        {
+          "title": "Potato Skins",
+          "missing": [
+            "8 small baking potatoes",
+            "2 tablespoons chopped fresh chives, divided"
+          ]
+        }
+      ],
+      "right": [
+        {
+          "title": "Cheese Ravioli Filling",
+          "missing": [
+            "¾ cup freshly-grated Parmigiano Reggiano",
+            "1 egg"
+          ]
+        },
+        {
+          "title": "Double Hamburgers",
+          "missing": []
+        },
+        {
+          "title": "Duxelles (Minced Mushrooms with Herbs)",
+          "missing": [
+            "1–2 tablespoons butter"
+          ]
+        },
+        {
+          "title": "Hamburger",
+          "missing": []
+        },
+        {
+          "title": "Hamburger Skillet Dinner",
+          "missing": [
+            "1 cup uncooked pasta, such as macaroni, elbows, or wagon wheels",
+            "1–2 cans condensed tomato soup"
+          ]
+        }
+      ]
+    },
+    {
+      "item_id": "item30",
+      "pantry": [
+        "carrot",
+        "cayenne",
+        "celery",
+        "chickpea",
+        "cinnamon",
+        "coriander",
+        "dill",
+        "garlic",
+        "green onion",
+        "onion",
+        "paprika",
+        "pasta",
+        "pea",
+        "potato",
+        "sugar",
+        "tomato",
+        "tomato paste",
+        "turmeric"
+      ],
+      "left": [
+        {
+          "title": "Fried Pasta",
+          "missing": []
+        },
+        {
+          "title": "Homemade Aquafaba",
+          "missing": []
+        },
+        {
+          "title": "Simple Boiled Chickpeas",
+          "missing": []
+        },
+        {
+          "title": "Simple Spaghetti",
+          "missing": []
+        },
+        {
+          "title": "Sweet Carrot Juice",
+          "missing": []
+        }
+      ],
+      "right": [
+        {
+          "title": "Bonga Fish Domoda (Gambian Fish in Peanut Sauce)",
+          "missing": [
+            "1 cup peanut butter",
+            "2 pounds bonga fish fillets"
+          ]
+        },
+        {
+          "title": "Chikwanda (Zambian Sweet Potato Stew)",
+          "missing": [
+            "2 large sweet potatoes, peeled and diced",
+            "1 teaspoon ground cumin"
+          ]
+        },
+        {
+          "title": "Cholley (Chickpea Curry)",
+          "missing": [
+            "1 tbsp garam masala"
+          ]
+        },
+        {
+          "title": "Montreal Russian Borscht",
+          "missing": [
+            "5–6 medium beets, peeled and julienned",
+            "½ large white cabbage, shredded"
+          ]
+        },
+        {
+          "title": "Shakshuka II",
+          "missing": [
+            "2 eggs",
+            "Bell pepper (red or green)"
+          ]
+        }
+      ]
+    },
+    {
+      "item_id": "item31",
+      "pantry": [
+        "bacon",
+        "butter",
+        "egg",
+        "feta",
+        "green onion",
+        "onion",
+        "spinach"
+      ],
+      "left": [
+        {
+          "title": "Bacon and Egg Pie",
+          "missing": [
+            "225 g (8 oz) shortcrust pastry"
+          ]
+        },
+        {
+          "title": "Bacon Cheese Omelet",
+          "missing": [
+            "2 slices of American cheese"
+          ]
+        },
+        {
+          "title": "Creamed Spinach",
+          "missing": [
+            "1 ½ tbsp flour",
+            "1 dl milk"
+          ]
+        },
+        {
+          "title": "Kugelis (Lithuanian Baked Potato Pudding)",
+          "missing": [
+            "5 lb potatoes, peeled and grated (or ground with a food processor)",
+            "1 large can evaporated milk"
+          ]
+        },
+        {
+          "title": "Pastry Dough (recipe)",
+          "missing": [
+            "2¾ cups (350 g) flour",
+            "1 cup plus 2 tablespoons (220 g) confectioner's sugar"
+          ]
+        }
+      ],
+      "right": [
+        {
+          "title": "Basic Scrambled Eggs",
+          "missing": []
+        },
+        {
+          "title": "Egg Butter",
+          "missing": []
+        },
+        {
+          "title": "Fried Eggs",
+          "missing": []
+        },
+        {
+          "title": "Microwaved Scrambled Egg",
+          "missing": []
+        },
+        {
+          "title": "Shirred Egg",
+          "missing": []
+        }
+      ]
+    },
+    {
+      "item_id": "item32",
+      "pantry": [
+        "bread",
+        "cheese",
+        "ginger paste",
+        "ham",
+        "lemon",
+        "mint"
+      ],
+      "left": [
+        {
+          "title": "Baked Mac N Cheese",
+          "missing": [
+            "3-4 boxes of shell pasta, with liquid cheese",
+            "Breadcrumbs"
+          ]
+        },
+        {
+          "title": "Cheese on Toast",
+          "missing": [
+            "Toppings (e.g. pickles, onion, walnuts, etc.)"
+          ]
+        },
+        {
+          "title": "Garlic Lemon Marinade",
+          "missing": [
+            "8 cloves garlic, smashed and minced"
+          ]
+        },
+        {
+          "title": "Steak Melts",
+          "missing": [
+            "2 ea. (12–16 ounces) boneless strip steaks, cooked to your liking",
+            "Unsalted melted butter"
+          ]
+        },
+        {
+          "title": "Tomato Paste and Ham Sandwiches (Pan Tomaca)",
+          "missing": [
+            "2 ripe red tomatoes",
+            "2 tbsp olive oil"
+          ]
+        }
+      ],
+      "right": [
+        {
+          "title": "Algerian Mint Tea",
+          "missing": []
+        },
+        {
+          "title": "Cheese on Toast",
+          "missing": [
+            "Toppings (e.g. pickles, onion, walnuts, etc.)"
+          ]
+        },
+        {
+          "title": "Chip Butty",
+          "missing": [
+            "Chips from a chip shop or homemade",
+            "Butter"
+          ]
+        },
+        {
+          "title": "Steak Melts",
+          "missing": [
+            "2 ea. (12–16 ounces) boneless strip steaks, cooked to your liking",
+            "Unsalted melted butter"
+          ]
+        },
+        {
+          "title": "Tomato Paste and Ham Sandwiches (Pan Tomaca)",
+          "missing": [
+            "2 ripe red tomatoes",
+            "2 tbsp olive oil"
+          ]
+        }
+      ]
+    }
+  ]
+}
