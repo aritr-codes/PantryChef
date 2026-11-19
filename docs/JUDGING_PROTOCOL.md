@@ -201,7 +201,7 @@ Copy the item ids into a CSV file. The template that `scripts/judging_sheet.py` 
 
 The sheet writes the template to `data/interim/answers_template.m4-NAME.csv`. Commit the answers as `data/eval/m4/answers.NAME.v1.csv`.
 
-To answer without typing a CSV, make the judging page: `uv run python scripts/judging_page.py --sheet data/eval/m4/sheet.NAME.v1.json --session N` (add `--arm-guess` for a test sheet). The script writes one local HTML file under `data/interim/`. Open it with a double-click. The page works offline and holds no key data. It shows one item at a time, times each item while the tab is visible (the Pause button stops the clock), saves each answer in the browser and downloads `answers.NAME.sessionN.csv` with the columns above. The `seconds` column is the on-screen time in whole seconds, 1 or more. Merge the session files by hand into the answers file.
+To answer without typing a CSV, make the judging page: `uv run python scripts/judging_page.py --sheet data/eval/m4/sheet.NAME.v1.json --session N` (add `--arm-guess` for a test sheet). The script writes one local HTML file under `data/interim/`. Open it with a double-click. The page works offline and holds no key data. It shows one item at a time, times each item while the tab is visible (the Pause button stops the clock), saves each answer in the browser and downloads `answers.NAME.sessionN.csv` with the columns above. The `seconds` column is the on-screen time in whole seconds, 1 or more. For the next session, add `--answered` once for each earlier session CSV: the page then skips the items that have a complete answer and starts at the first item not answered. Its CSV holds only the items you answer in that session. When the sessions are done, join them with `uv run python scripts/judging_merge.py --sheet data/eval/m4/sheet.NAME.v1.json --out data/eval/m4/answers.NAME.v1.csv SESSION1.csv SESSION2.csv` (add `--arm-guess` for a test sheet). The merge writes the rows in sheet order with the columns above and keeps each row's `session`. It stops on a duplicate answer, an unknown item id or a row with a missing field. It prints how many items are still unanswered, and no answers.
 
 ### Session rules
 
@@ -223,6 +223,8 @@ Until the test answers are committed, do not open these files:
 - `web/src/rank_model.v1.json`
 
 The lead tells you only "go" or "stop" after each gate. The lead commits these files. Do not read their diffs.
+
+Result files: you may open `results/m4_timing_pilot.json` (checks, timing, tie rate, repeat agreement, power table, no arm names) and `results/m4_idf_variants.json` (label-free, no judgments). Do not open `results/m4_dev_pairs.json`, `results/m4_arm_*.json`, `results/m4_cv.json`, `results/m4_futility.json` or `results/m4_test.json`. They hold arm names, win counts or rates. The pilot answers join dev, so their numbers exist only in `results/m4_dev_pairs.json` and `results/m4_arm_*.json`, which the lead computes again from the answers with `dev-score`. `pilot-score` and `dev-score` print no number.
 
 ### Timing pilot: four checks
 

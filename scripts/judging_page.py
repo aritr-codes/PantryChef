@@ -17,6 +17,11 @@ import json
 import re
 from pathlib import Path
 
+try:  # as a script the folder is on the path; under pytest the package is
+    from scripts.judging_merge import answered_ids
+except ImportError:
+    from judging_merge import answered_ids
+
 ROOT = Path(__file__).resolve().parent.parent
 # Same list and order as scripts.judging_sheet.TEMPLATE_COLUMNS (a test checks it).
 COLUMNS = ["item_id", "choice", "strength", "would_cook_left", "would_cook_right",
@@ -55,8 +60,14 @@ def _json_for_script(obj: dict) -> str:
     return s.replace("<", "\\u003c").replace(">", "\\u003e").replace("&", "\\u0026")
 
 
-def build_page(sheet: dict, session: int, name: str, arm_guess: bool = False) -> str:
-    items = _clean(sheet)
+def build_page(
+    sheet: dict,
+    session: int,
+    name: str,
+    arm_guess: bool = False,
+    answered: set[str] | frozenset[str] = frozenset(),
+) -> str:
+    items = [it for it in _clean(sheet) if it["item_id"] not in answered]
     digest = hashlib.sha256(
         json.dumps(items, sort_keys=True, ensure_ascii=True).encode("ascii")
     ).hexdigest()[:16]
@@ -82,6 +93,8 @@ def main(argv: list[str] | None = None) -> int:
     ap.add_argument("--session", type=int, required=True)
     ap.add_argument("--out")
     ap.add_argument("--arm-guess", action="store_true", help="test sheet: ask which list is new")
+    ap.add_argument("--answered", action="append", default=[], metavar="CSV",
+                    help="earlier session CSV; its answered items are not shown (repeat the flag)")  # fmt: skip
     args = ap.parse_args(argv)
     sheet_path = Path(args.sheet)
     m = re.match(r"sheet\.(.+?)\.v\d+$", sheet_path.stem)
@@ -90,9 +103,16 @@ def main(argv: list[str] | None = None) -> int:
     arm_guess = args.arm_guess or bool(sheet.get("arm_guess"))
     out = Path(args.out) if args.out else ROOT / f"data/interim/judge.m4-{name}.html"
     out.parent.mkdir(parents=True, exist_ok=True)
-    html = build_page(sheet, args.session, name, arm_guess)
+    done = answered_ids([Path(p) for p in args.answered], arm_guess)
+    unknown = done - {it["item_id"] for it in sheet["items"]}
+    if unknown:
+        raise SystemExit("--answered holds item ids that are not in the sheet. Stop.")
+    html = build_page(sheet, args.session, name, arm_guess, done)
+    left = len(sheet["items"]) - len(done)
+    if left == 0:
+        raise SystemExit("every item is already answered. Nothing to show.")
     out.write_bytes(html.encode("utf-8"))
-    print(f"{len(sheet['items'])} items -> {out} ({out.stat().st_size} bytes)")
+    print(f"{left} items ({len(done)} already answered) -> {out} ({out.stat().st_size} bytes)")
     return 0
 
 
