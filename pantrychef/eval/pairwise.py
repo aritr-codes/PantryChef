@@ -311,8 +311,13 @@ def pantries_sha256(pantry_ids: Iterable[str]) -> str:
     return hashlib.sha256("\n".join(sorted(set(pantry_ids))).encode("utf8")).hexdigest()
 
 
-def write_training_table(path: str | Path, items: Sequence[PairItem]) -> str:
-    """Write ``train_table.v1.json`` (no recipe text). Ties are rows with ``y = null``."""
+def write_training_table(
+    path: str | Path, items: Sequence[PairItem], training_labels: str = "human"
+) -> str:
+    """Write ``train_table.v1.json`` (no recipe text). Ties are rows with ``y = null``.
+
+    ``training_labels`` (``human`` or ``model_judged``) says who made the labels (Amendment 2).
+    """
     rows = [
         {
             "pantry_id": i.pantry_id,
@@ -324,7 +329,15 @@ def write_training_table(path: str | Path, items: Sequence[PairItem]) -> str:
         }
         for i in items
     ]
-    return _write_json(Path(path), {"version": 1, "features": list(FEATURES), "rows": rows})
+    return _write_json(
+        Path(path),
+        {
+            "version": 1,
+            "features": list(FEATURES),
+            "training_labels": training_labels,
+            "rows": rows,
+        },
+    )
 
 
 def read_training_table(path: str | Path) -> list[PairItem]:
@@ -348,6 +361,7 @@ def run_train(
     table_path: str | Path,
     comparator: str,
     commit: str,
+    training_labels: str = "human",
     sets: dict | None = None,
     Cs: Sequence[float] = DEFAULT_CS,
     outer_k: int = 5,
@@ -363,7 +377,7 @@ def run_train(
     sets = sets or DEFAULT_SETS
     cv = nested_cv(items, sets, Cs, outer_k, inner_k, seed)
     check1 = check_futility_1(cv["outer_logloss"])
-    table_sha = write_training_table(table_path, items)
+    table_sha = write_training_table(table_path, items, training_labels)
     decided = [i for i in items if i.y is not None]
     name, C, cells = inner_select(decided, sets, Cs, inner_k, seed + 1)
     fit = fit_weights(decided, sets[name], C)
@@ -385,6 +399,7 @@ def run_train(
             "trained_on": {
                 "pantries_sha256": pantries_sha256(i.pantry_id for i in items),
                 "train_table_sha256": table_sha,
+                "training_labels": training_labels,
                 "n_pantries": len({i.pantry_id for i in items}),
                 "n_items": len(items),
                 "n_decided": len(decided),
@@ -482,6 +497,7 @@ def build_freeze(
     test_pool_file: str = TEST_POOL_FILE,
     generated: Sequence[str] = (),
     git: Callable = _git,
+    extra: dict | None = None,
 ) -> dict:
     """Plan step 12. Refuse unless the tree is clean, every file is tracked and the pack matches.
 
@@ -513,6 +529,7 @@ def build_freeze(
         "n_test": n_test,
         "seed": seed,
         "commit": git(root, "rev-parse", "HEAD").strip(),
+        **(extra or {}),
     }
 
 

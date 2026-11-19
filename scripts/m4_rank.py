@@ -4,7 +4,7 @@
     uv run python scripts/m4_rank.py variants [--pack build/pack]
     uv run python scripts/m4_rank.py pilot-score [--name pilot] [--allow-model-judge]
     uv run python scripts/m4_rank.py dev-score [--name pilot dev] [--allow-model-judge]
-    uv run python scripts/m4_rank.py train [--name pilot dev] [--allow-model-judge]
+    uv run python scripts/m4_rank.py train [--name pilot dev] [--allow-model-labels]
     uv run python scripts/m4_rank.py futility [--name futility] [--allow-model-judge]
     uv run python scripts/m4_rank.py freeze [--dry-run] [--n-test 100]
     uv run python scripts/m4_rank.py score [--name test]
@@ -107,12 +107,12 @@ def _fingerprint(args: argparse.Namespace) -> str:
     return load_pack(args.pack).info.corpus_fingerprint
 
 
-def _dev_pairs(root: Path, allow: bool) -> dict:
+def _dev_pairs(root: Path, allow: bool, flag: str = "--allow-model-judge") -> dict:
     """The ``config`` of results/m4_dev_pairs.json (the comparator and the judge flag)."""
     path = _need(root / DEV_PAIRS, "run dev-score first")
     cfg = json.loads(path.read_text(encoding="utf-8"))["config"]
     if cfg.get("model_judged") and not allow:
-        raise SystemExit(f"{path.name} is model-judged. Use --allow-model-judge for a dry run.")
+        raise SystemExit(f"{path.name} is model-judged. Use {flag}.")
     return cfg
 
 
@@ -126,11 +126,23 @@ def _ordered(root: Path, name: str, args: argparse.Namespace) -> bool:
     )
 
 
-def _load_sheets(root: Path, names: list[str], doc: dict, args: argparse.Namespace):
+def _load_sheets(
+    root: Path,
+    names: list[str],
+    doc: dict,
+    args: argparse.Namespace,
+    flag: str = "--allow-model-judge",
+):
     """For each dev sheet: check the key hash, the flags, the pools and the commit order, then
-    read the answers. Return the sheets, whether any answer was model-judged, and whether the
-    commit order was checked."""
-    out, judged, checked = [], False, True
+    read the answers. Return the sheets, whether the answers are model-judged, and whether the
+    commit order was checked.
+
+    ``flag`` is the flag that lets model-judged answers through: ``--allow-model-judge`` for
+    dev-score, ``--allow-model-labels`` for train (Amendment 2). All sheets must have the same
+    label source: human pilot rows never mix with model rows in one table.
+    """
+    allow = getattr(args, flag.lstrip("-").replace("-", "_"))
+    out, judged, checked, seen = [], False, True, set()
     for name in names:
         key_path = _need(_key(root, name), "build the sheet first")
         m4_run.check_key_hash(key_path, _key_sha(root, name))
@@ -138,9 +150,15 @@ def _load_sheets(root: Path, names: list[str], doc: dict, args: argparse.Namespa
         m4_run.check_key_flags(key, name)
         m4_run.check_pool(key, doc, m4_run.DEV_POOLS, "dev")
         rows = m4_run.read_answers(_need(_answers(root, name), "no answers yet"))
-        judged |= m4_run.check_judge(rows, args.allow_model_judge, "dev")
+        here = m4_run.check_judge(rows, allow, "dev", flag)
+        seen.add(here)
+        judged |= here
         checked &= _ordered(root, name, args)
         out.append((name, key, rows))
+    if len(seen) > 1:
+        raise SystemExit(
+            "the sheets mix human and model-judged answers: use one label source. Stop."
+        )
     return out, judged, checked
 
 
@@ -252,7 +270,7 @@ def cmd_dev_score(args: argparse.Namespace) -> int:
     merged = m4_run.merge_scored([js.score(key, rows) for _, key, rows in sheets])
     docs = m4_run.dev_docs(
         merged,
-        m4_run.choose_rule(merged["pairs"]),
+        m4_run.choose_rule(merged["pairs"], model_judged=judged),
         names=names,
         pack_sha=doc["pack_core_sha256"],
         corpus_fingerprint=_fingerprint(args),
@@ -268,11 +286,12 @@ def cmd_dev_score(args: argparse.Namespace) -> int:
 def cmd_train(args: argparse.Namespace) -> int:
     root, names = args.root, args.name or ["dev"]
     doc = _pantries(root)
-    pairs = _dev_pairs(root, args.allow_model_judge)
+    pairs = _dev_pairs(root, args.allow_model_labels, "--allow-model-labels")
     comparator = pairs["comparator"]
     sheet.check_pack_hash(Path(args.pack), doc["pack_core_sha256"])
     pack = load_pack(args.pack)
-    sheets, judged, checked = _load_sheets(root, names, doc, args)
+    sheets, judged, checked = _load_sheets(root, names, doc, args, "--allow-model-labels")
+    labels = "model_judged" if judged else "human"
     if judged != pairs["model_judged"]:
         raise SystemExit("the answers and results/m4_dev_pairs.json disagree on the judge. Stop.")
     items = m4_run.training_items(pack, doc, sheets)
@@ -290,6 +309,7 @@ def cmd_train(args: argparse.Namespace) -> int:
         table_path=root / TABLE,
         comparator=comparator,
         commit=results.git_facts(ROOT)[0],
+        training_labels=labels,
     )
     wrote = [TABLE]
     if out["weights_written"]:  # the weights name the table: check the bytes on disk (RF6c)
@@ -314,6 +334,7 @@ def cmd_train(args: argparse.Namespace) -> int:
         n_items=len(items),
         commit_order_checked=checked,
         model_judged=judged,
+        training_labels=labels,
     )
     wrote.append(_write(root, CV, cv))
     if out["weights_written"]:
@@ -334,6 +355,7 @@ def cmd_train(args: argparse.Namespace) -> int:
                 "trained_on": weights["trained_on"],
                 "pack_core_sha256": pack_sha,
                 "model_judged": judged,
+                "training_labels": labels,
                 "commit_order_checked": checked,
             },
             "seed": 42,
@@ -357,9 +379,11 @@ def cmd_futility(args: argparse.Namespace) -> int:
     root = args.root
     name = (args.name or ["futility"])[0]
     doc = _pantries(root)
-    comparator = _dev_pairs(root, args.allow_model_judge)["comparator"]
     weights = _need(root / WEIGHTS, "run train first")
-    if json.loads(weights.read_text(encoding="utf-8")).get("comparator") != comparator:
+    weights_doc = json.loads(weights.read_text(encoding="utf-8"))
+    labelled = weights_doc.get("trained_on", {}).get("training_labels") == "model_judged"
+    comparator = _dev_pairs(root, args.allow_model_judge or labelled)["comparator"]
+    if weights_doc.get("comparator") != comparator:
         raise SystemExit("the weights and results/m4_dev_pairs.json name different comparators.")
     key_path = _need(_key(root, name), "build the futility sheet first")
     m4_run.check_key_hash(key_path, _key_sha(root, name))
@@ -372,6 +396,11 @@ def cmd_futility(args: argparse.Namespace) -> int:
     if arms != {"rank_linear", comparator}:
         raise SystemExit(f"the futility sheet must compare rank_linear with {comparator}")
     rows = m4_run.read_answers(_need(_answers(root, name), "no answers yet"))
+    if root.resolve() == ROOT.resolve() and m4_run.is_model_judged(rows):
+        raise SystemExit(
+            "model-judged futility answers are refused on the repo root: the futility check "
+            "stays human (Amendment 2). Stop."
+        )
     judged = m4_run.check_judge(rows, args.allow_model_judge, "futility")
     checked = _ordered(root, name, args)
     scored = js.score(key, rows, model_arm="rank_linear")
@@ -458,9 +487,10 @@ def cmd_freeze(args: argparse.Namespace) -> int:
     (root / PLAN_COPY).write_bytes(text.encode("utf-8"))
     freeze = pw.build_freeze(
         root,
-        comparator=_dev_pairs(root, False)["comparator"],
+        comparator=_dev_pairs(root, True)["comparator"],  # the gates checked the label chain
         n_test=args.n_test,
         seed=42,
+        extra=m4_run.freeze_facts(root, weights_rel=WEIGHTS, dev_pairs_rel=DEV_PAIRS),
         **kw,
     )
     pw.write_freeze(root / pw.FREEZE_REL, freeze)
@@ -565,6 +595,11 @@ def main(argv: list[str] | None = None) -> int:
     ap.add_argument("--name", nargs="+", help="sheet name(s); default pilot, dev, futility or test")
     ap.add_argument("--dev-name", default="dev", help="score: the dev sheet for the drift probes")
     ap.add_argument("--allow-model-judge", action="store_true", help="dry runs only")
+    ap.add_argument(
+        "--allow-model-labels",
+        action="store_true",
+        help="train: use model-judged dev answers as labels (Amendment 2). Not the dry-run flag",
+    )
     ap.add_argument(
         "--allow-uncommitted",
         action="store_true",

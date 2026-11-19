@@ -701,3 +701,33 @@ def test_key_before_answers_fails_on_a_shared_reversed_or_missing_commit(tmp_pat
 def test_key_before_answers_outside_git_is_a_problem_not_a_crash(tmp_path):
     problems = pw.key_order_problems(tmp_path, key_hash_rel="k.txt", answers_rel="a.csv")
     assert problems and any("git" in p for p in problems)
+
+
+def test_run_train_records_the_label_source_in_the_weights_and_the_table(tmp_path):
+    """Amendment 2: ``training_labels`` is ``human`` by default, ``model_judged`` when asked."""
+    items = synthetic(n_pantries=30)
+    for labels in ("human", "model_judged"):
+        kw = {
+            "sets": SETS, "Cs": (0.1, 1.0), "seed": 0,
+            "weights_path": tmp_path / f"w-{labels}.json",
+            "table_path": tmp_path / f"t-{labels}.json", "comparator": "shipped", "commit": "abc",
+        }  # fmt: skip
+        if labels != "human":
+            kw["training_labels"] = labels
+        pw.run_train(items, **kw)
+        weights = json.loads((tmp_path / f"w-{labels}.json").read_text(encoding="utf8"))
+        table = json.loads((tmp_path / f"t-{labels}.json").read_text(encoding="utf8"))
+        assert weights["trained_on"]["training_labels"] == labels
+        assert table["training_labels"] == labels
+    assert len(pw.read_training_table(tmp_path / "t-model_judged.json")) == len(items)
+
+
+def test_build_freeze_records_extra_facts(tmp_path):
+    pack, pack_sha = repo(tmp_path)
+    fr = pw.build_freeze(
+        tmp_path, files=("a.txt", "b.txt"), test_pool_file="pool.txt", pack_core=pack,
+        pinned_pack_sha256=pack_sha, comparator="shipped", n_test=100, seed=42,
+        git=FakeGit(), extra={"training_labels": "model_judged", "comparator_source": "default"},
+    )  # fmt: skip
+    assert fr["training_labels"] == "model_judged" and fr["comparator_source"] == "default"
+    assert fr["comparator"] == "shipped"

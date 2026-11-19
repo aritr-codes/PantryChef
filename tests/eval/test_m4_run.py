@@ -446,10 +446,12 @@ def test_train_refuses_model_judged_work_without_the_flag(env, tmp_path):
     synth_answers(e, "dev", label="judge_model")
     synth_answers(e, "pilot", label="judge_model")
     run("dev-score", e, "--name", "pilot", "dev", "--allow-model-judge")
-    with pytest.raises(SystemExit, match="model"):
+    with pytest.raises(SystemExit, match="allow-model-labels"):
         run("train", e, "--name", "pilot", "dev")
+    with pytest.raises(SystemExit, match="allow-model-labels"):  # the dry-run flag is not enough
+        run("train", e, "--name", "pilot", "dev", "--allow-model-judge")
     assert not (e.root / "web/src/rank_model.v1.json").exists()
-    assert run("train", e, "--name", "pilot", "dev", "--allow-model-judge") == 0
+    assert run("train", e, "--name", "pilot", "dev", "--allow-model-labels") == 0
 
 
 def test_train_refuses_when_the_answers_changed_judge_since_dev_score(scored, tmp_path):
@@ -457,7 +459,7 @@ def test_train_refuses_when_the_answers_changed_judge_since_dev_score(scored, tm
     synth_answers(e, "dev", label="judge_model")
     synth_answers(e, "pilot", label="judge_model")
     with pytest.raises(SystemExit, match="disagree"):
-        run("train", e, "--name", "pilot", "dev", "--allow-model-judge")
+        run("train", e, "--name", "pilot", "dev", "--allow-model-labels")
     assert not (e.root / "web/src/rank_model.v1.json").exists()
 
 
@@ -466,7 +468,7 @@ def test_model_judged_train_says_so_in_its_result_files(env, tmp_path):
     synth_answers(e, "dev", label="judge_model")
     synth_answers(e, "pilot", label="judge_model")
     run("dev-score", e, "--name", "pilot", "dev", "--allow-model-judge")
-    assert run("train", e, "--name", "pilot", "dev", "--allow-model-judge") == 0
+    assert run("train", e, "--name", "pilot", "dev", "--allow-model-labels") == 0
     for stem in ("m4_cv", "m4_arm_rank_linear"):
         doc = json.loads((e.root / f"results/{stem}.json").read_text())
         assert doc["config"]["model_judged"] is True and "model-judged" in doc["what"]
@@ -840,6 +842,165 @@ def test_futility_result_records_the_weights_hash_the_freeze_checks(trained, tmp
     doc = json.loads((e.root / "results/m4_futility.json").read_text())
     assert doc["config"]["weights_sha256"] == sha(e.root / "web/src/rank_model.v1.json")
     assert doc["corpus_fingerprint"] == e.pack.info.corpus_fingerprint
+
+
+# ---------------------------------------------------------------- Amendment 2: model labels
+
+SOURCE_MODEL = "default (dev answers are model-judged)"
+
+
+@pytest.fixture(scope="module")
+def mtrained(env, tmp_path_factory):
+    """A world whose pilot and dev answers are model-judged: dev-score, then train with labels."""
+    e = fresh(env, tmp_path_factory.mktemp("mtrained"))
+    synth_answers(e, "dev", label="judge_model")
+    synth_answers(e, "pilot", label="judge_model")
+    assert run("dev-score", e, "--name", "pilot", "dev", "--allow-model-judge") == 0
+    assert run("train", e, "--name", "pilot", "dev", "--allow-model-labels") == 0
+    return e
+
+
+def label_places(e) -> dict:
+    """Where the label source is written: the weights, the table, the cv file and the arm file."""
+    r = e.root
+    load = lambda rel: json.loads((r / rel).read_text())  # noqa: E731
+    return {
+        "weights": load("web/src/rank_model.v1.json")["trained_on"]["training_labels"],
+        "table": load("data/eval/m4/train_table.v1.json")["training_labels"],
+        "cv": load("results/m4_cv.json")["config"]["training_labels"],
+        "arm": load("results/m4_arm_rank_linear.json")["config"]["training_labels"],
+    }
+
+
+def test_train_with_the_flag_writes_the_label_source_in_all_four_places(mtrained):
+    assert label_places(mtrained) == dict.fromkeys(
+        ("weights", "table", "cv", "arm"), "model_judged"
+    )
+
+
+def test_human_train_says_human_in_all_four_places(trained):
+    assert label_places(trained) == dict.fromkeys(("weights", "table", "cv", "arm"), "human")
+
+
+def test_train_refuses_a_table_that_mixes_human_and_model_rows(scored, tmp_path):
+    """The pilot answers are human. They never join model rows in one table (Amendment 2)."""
+    e = fresh(scored, tmp_path)
+    synth_answers(e, "dev", label="judge_model")  # the pilot answers stay human
+    with pytest.raises(SystemExit, match="mix"):
+        run("train", e, "--name", "pilot", "dev", "--allow-model-labels")
+    assert not (e.root / "web/src/rank_model.v1.json").exists()
+    with pytest.raises(SystemExit, match="mix"):
+        run("dev-score", e, "--name", "pilot", "dev", "--allow-model-judge")
+
+
+def test_dev_score_does_not_let_model_labels_choose_the_comparator(mtrained):
+    cfg = json.loads((mtrained.root / "results/m4_dev_pairs.json").read_text())["config"]
+    assert cfg["comparator"] == "shipped" and cfg["comparator_source"] == SOURCE_MODEL
+    assert cfg["model_judged"] is True and "idf_rule_selection" in cfg  # still reported
+
+
+def test_dev_score_with_human_answers_keeps_the_rule_and_names_its_source(scored):
+    cfg = json.loads((scored.root / "results/m4_dev_pairs.json").read_text())["config"]
+    assert cfg["comparator_source"] == "dev_judgments"
+    assert cfg["comparator"] in ("shipped", "idf_flat")
+
+
+def test_choose_rule_with_model_judged_data_returns_shipped_whatever_the_counts():
+    pairs = {  # model judge: idf_flat wins 24 to 2, which would choose idf_flat if a human said so
+        "idf_flat_vs_shipped": stats("idf_flat", "shipped", 24, 2),
+        "overlap_vs_shipped": stats("overlap", "shipped", 22, 2),
+        "idf_flat_vs_overlap": stats("idf_flat", "overlap", 5, 5),
+    }
+    assert m4_run.choose_rule(pairs)["rule"] == "idf_flat"
+    r = m4_run.choose_rule(pairs, model_judged=True)
+    assert r["rule"] == "shipped" and r["overlap_beats_rule"] is True  # reported against shipped
+
+
+def test_futility_refuses_model_answers_on_the_repo_root_even_with_the_dry_run_flag(
+    trained, tmp_path, monkeypatch
+):
+    e = futility_world(trained, tmp_path, flip=False)
+    orderers = {
+        "rank_linear": model_orderer(e.pack, load_model(e.root / "web/src/rank_model.v1.json"))
+    }
+    synth_answers(e, "futility", label="judge_model", orderers=orderers)
+    monkeypatch.setattr(m4, "ROOT", e.root)  # this temp folder now plays the repo root
+    with pytest.raises(SystemExit, match="repo root"):
+        run("futility", e, "--allow-model-judge")
+    assert not (e.root / "results/m4_futility.json").exists()
+
+
+def test_score_refuses_model_judged_test_answers(trained, tmp_path):
+    e = git_world(trained, tmp_path)
+    committed_test_sheet(e)
+    path = e.root / "data/eval/m4/answers.test.v1.csv"
+    with open(path, newline="", encoding="utf-8") as f:
+        rows = list(csv.DictReader(f))
+    with open(path, "w", newline="", encoding="utf-8") as f:
+        w = csv.DictWriter(f, fieldnames=[*rows[0], "judge"], lineterminator="\n")
+        w.writeheader()
+        w.writerows({**r, "judge": "judge_model"} for r in rows)
+    git(e.root, "add", "data/eval/m4/answers.test.v1.csv")
+    git(e.root, "commit", "-q", "-m", "answers")
+    with pytest.raises(SystemExit, match="never enter the test"):
+        run("score", e)
+    assert not (e.root / "results/m4_test.json").exists()
+
+
+# ---- the freeze with model labels
+
+
+def test_freeze_accepts_a_consistent_model_labelled_chain_and_records_it(mtrained, tmp_path):
+    e = git_world(mtrained, tmp_path)
+    assert run("freeze", e, "--dry-run") == 0
+    assert run("freeze", e) == 0
+    fr = json.loads((e.root / "data/eval/m4/freeze.v1.json").read_text())
+    assert fr["training_labels"] == "model_judged" and fr["comparator"] == "shipped"
+    assert fr["comparator_source"] == SOURCE_MODEL
+
+
+def test_freeze_records_human_labels_for_a_human_chain(trained, tmp_path):
+    e = git_world(trained, tmp_path)
+    assert run("freeze", e) == 0
+    fr = json.loads((e.root / "data/eval/m4/freeze.v1.json").read_text())
+    assert (fr["training_labels"], fr["comparator_source"]) == ("human", "dev_judgments")
+
+
+def test_freeze_refuses_model_labels_with_a_comparator_other_than_shipped(mtrained, tmp_path):
+    e = git_world(mtrained, tmp_path)
+    edit_json(e, "results/m4_dev_pairs.json", lambda d: d["config"].update(comparator="idf_flat"))
+    edit_json(e, "web/src/rank_model.v1.json", lambda d: d.update(comparator="idf_flat"))
+    edit_json(e, "results/m4_futility.json", lambda d: d["config"].update(comparator="idf_flat"))
+    edit_json(
+        e,
+        "results/m4_futility.json",
+        lambda d: d["config"]["futility"].update(comparator="idf_flat"),
+    )
+    refused(e, "shipped")
+
+
+def test_freeze_refuses_a_label_chain_that_disagrees(mtrained, tmp_path):
+    e = git_world(mtrained, tmp_path)
+    edit_json(e, "results/m4_cv.json", lambda d: d["config"].update(model_judged=False))
+    refused(e, "label")
+    e2 = git_world(mtrained, tmp_path / "two")
+    edit_json(e2, "results/m4_dev_pairs.json", lambda d: d["config"].update(model_judged=False))
+    with pytest.raises(SystemExit, match="label"):
+        run("freeze", e2)
+
+
+def test_freeze_refuses_model_judged_dev_pairs_when_the_weights_say_human(trained, tmp_path):
+    e = git_world(trained, tmp_path)
+    edit_json(e, "results/m4_dev_pairs.json", lambda d: d["config"].update(model_judged=True))
+    refused(e, "model-judged")
+
+
+def test_freeze_still_refuses_a_model_judged_futility_result_in_a_model_labelled_chain(
+    mtrained, tmp_path
+):
+    e = git_world(mtrained, tmp_path)
+    edit_json(e, "results/m4_futility.json", lambda d: d["config"].update(model_judged=True))
+    refused(e, "futility.*model-judged|model-judged")
 
 
 # ---------------------------------------------------------------- futility

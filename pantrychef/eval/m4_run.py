@@ -25,6 +25,8 @@ from pantrychef.eval.pantries import _group_key
 from pantrychef.eval.stats import clopper_pearson, sign_test
 
 JUDGE_MODEL = "judge_model"
+SOURCE_HUMAN = "dev_judgments"  # the plan 4.3 rule chose the comparator from hand judgments
+SOURCE_MODEL = "default (dev answers are model-judged)"  # Amendment 2: shipped, not chosen
 DEV_POOLS = ("pilot", "dev", "reserve")  # pools whose pantries may be judged for dev
 DEV_ARMS = ("overlap", "shipped", "idf_flat")
 LEVEL = 0.95
@@ -47,11 +49,14 @@ def is_model_judged(rows: Iterable[dict]) -> bool:
     return any((r.get("judge") or "").strip() == JUDGE_MODEL for r in rows)
 
 
-def check_judge(rows: Sequence[dict], allow: bool, stage: str) -> bool:
+def check_judge(
+    rows: Sequence[dict], allow: bool, stage: str, flag: str = "--allow-model-judge"
+) -> bool:
     """Refuse model-judge rows (``judge`` column = ``judge_model``). Return True when allowed.
 
     Model answers never enter the test, whatever the flag says. For dev and futility the flag
-    ``--allow-model-judge`` lets a dry run through, and the result files say so.
+    ``--allow-model-judge`` lets a dry run through, and the result files say so. ``train`` passes
+    ``--allow-model-labels`` instead (Amendment 2): the dry-run flag does not let it train.
     """
     if not is_model_judged(rows):
         return False
@@ -59,7 +64,12 @@ def check_judge(rows: Sequence[dict], allow: bool, stage: str) -> bool:
         raise SystemExit("model-judge answers never enter the test. Stop.")
     if not allow:
         raise SystemExit(
-            f"the {stage} answers are model-judged. Use --allow-model-judge for a dry run only."
+            f"the {stage} answers are model-judged. Use {flag} "
+            + (
+                "to train on model labels (Amendment 2)."
+                if "labels" in flag
+                else "for a dry run only."
+            )
         )
     return True
 
@@ -175,8 +185,11 @@ def _wlt(w: int, lose: int, t: int) -> dict:
     }
 
 
-def choose_rule(pairs: dict) -> dict:
+def choose_rule(pairs: dict, model_judged: bool = False) -> dict:
     """The pre-registered IDF-rule choice (plan 4.3). Ties drop out of W and L.
+
+    Model-judged answers cannot choose the rule (Amendment 2): the rule is then ``shipped``, the
+    counts are still reported and ``source`` says why.
 
     ``idf_flat`` is the rule only when the CP 95% lower bound of ``W / (W + L)`` of ``idf_flat``
     against ``shipped`` is above 0.5. Otherwise it is ``shipped``. If ``overlap`` beats the
@@ -184,10 +197,11 @@ def choose_rule(pairs: dict) -> dict:
     """
     results.assert_selectable("pairwise_win_rate", ["idf_flat", "shipped", "overlap"])
     w, lose, t = _wl(pairs, "idf_flat", "shipped")
-    rule = "idf_flat" if _lower(w, lose) > 0.5 else "shipped"
+    rule = "idf_flat" if _lower(w, lose) > 0.5 and not model_judged else "shipped"
     ow, ol, ot = _wl(pairs, "overlap", rule)
     return {
         "rule": rule,
+        "source": SOURCE_MODEL if model_judged else SOURCE_HUMAN,
         "idf_flat_vs_shipped": _wlt(w, lose, t),
         "overlap_vs_rule": {"rule": rule, **_wlt(ow, ol, ot)},
         "overlap_beats_rule": _lower(ow, ol) > 0.5,
@@ -239,6 +253,7 @@ def dev_docs(
         "judge": who,
         "pairs": merged["pairs"],
         "comparator": rule["rule"],
+        "comparator_source": rule["source"],
         "idf_rule_selection": rule["idf_flat_vs_shipped"],
         "overlap_vs_rule": rule["overlap_vs_rule"],
         "overlap_beats_rule": rule["overlap_beats_rule"],
@@ -322,6 +337,7 @@ def dev_docs(
                     "overlap_vs_rule",
                     "overlap_beats_rule",
                     "comparator",
+                    "comparator_source",
                     "rule",
                 )
             },  # fmt: skip
@@ -342,6 +358,7 @@ def cv_doc(
     n_items: int,
     commit_order_checked: bool,
     model_judged: bool = False,
+    training_labels: str = "human",
 ) -> dict:
     """``results/m4_cv.json`` (plan 7.4). ESTIMATE: held-out log-loss of the whole procedure."""
     results.assert_selectable("cv_pairwise_logloss", ["rank_linear"])
@@ -369,6 +386,7 @@ def cv_doc(
             "n_items": n_items,
             "model_judged": model_judged,
             "commit_order_checked": commit_order_checked,
+            "training_labels": training_labels,
             "weights_written": out["weights_written"],
             "train_table_sha256": out["train_table_sha256"],
         },
@@ -588,8 +606,13 @@ def freeze_gates(
     """What must hold before the freeze (plan 7.5, 8.1). Return the problems, empty for none.
 
     The UI decision is yes. Futility check 1 passed (``results/m4_cv.json``) and check 2 said GO
-    (``results/m4_futility.json``). None of these files is model-judged. The weights, the table
-    and the three results agree: one comparator, one table hash, the same weights file.
+    (``results/m4_futility.json``), and the futility file is never model-judged. The weights, the
+    table and the three results agree: one comparator, one table hash, the same weights file.
+
+    A model-judged training table is allowed only when every part says so (Amendment 2): the
+    weights, the table and the cv file say ``training_labels: model_judged``, the dev pairs and
+    the cv file are model-judged, and the comparator is ``shipped``. Otherwise a model-judged
+    file stops the freeze.
     """
     root = Path(root)
     problems: list[str] = []
@@ -606,9 +629,10 @@ def freeze_gates(
     if None in docs.values():
         return problems
     weights, pairs, cv, fut = (docs[r] for r in (weights_rel, dev_pairs_rel, cv_rel, futility_rel))
-    for rel in (dev_pairs_rel, cv_rel, futility_rel):
-        if docs[rel]["config"].get("model_judged"):
-            problems.append(f"{rel} is model-judged: a dry run cannot be frozen")
+    labels = weights["trained_on"].get("training_labels", "human")
+    problems += _label_chain_problems(
+        labels, weights, pairs, cv, fut, root / table_rel, dev_pairs_rel, cv_rel, futility_rel
+    )
     if not cv["config"].get("check1", {}).get("pass"):
         problems.append("futility check 1 did not pass (results/m4_cv.json)")
     futility = fut["config"].get("futility", {})
@@ -620,6 +644,8 @@ def freeze_gates(
         fut["config"].get("comparator"),
         futility.get("comparator"),
     }
+    if labels == "model_judged" and names != {"shipped"}:
+        problems.append("model-judged training labels need the comparator shipped (Amendment 2)")
     if len(names) != 1:
         problems.append(
             "the comparator differs between the dev pairs, the weights and the futility result: "
@@ -634,3 +660,45 @@ def freeze_gates(
     if cv["config"].get("train_table_sha256") != table_sha:
         problems.append("results/m4_cv.json names another training table than the file on disk")
     return problems
+
+
+def _label_chain_problems(labels, weights, pairs, cv, fut, table_path, dev_rel, cv_rel, fut_rel):
+    """One label source in the weights, the table, the cv file and the dev pairs."""
+    problems: list[str] = []
+    if labels not in ("human", "model_judged"):
+        return [f"the weights name an unknown training label source: {labels!r}"]
+    if fut["config"].get("model_judged"):
+        problems.append(f"{fut_rel} is model-judged: the futility check stays human")
+    model = labels == "model_judged"
+    for rel, doc in ((dev_rel, pairs), (cv_rel, cv)):
+        flag = bool(doc["config"].get("model_judged"))
+        if flag and not model:
+            problems.append(f"{rel} is model-judged but the weights say human training labels")
+        elif model and not flag:
+            problems.append(
+                f"the training labels disagree: the weights say model_judged, {rel} does not"
+            )
+    table = _json(table_path) or {}
+    cv_labels = cv["config"].get("training_labels", "human")
+    sources = (
+        ("the table", table.get("training_labels", "human")),
+        ("results/m4_cv.json", cv_labels),
+    )
+    for who, got in sources:
+        if got != labels:
+            problems.append(
+                f"the training labels disagree: the weights say {labels}, {who} says {got}"
+            )
+    if model and not str(pairs["config"].get("comparator_source", "")).startswith("default"):
+        problems.append(f"{dev_rel} did not take the default comparator for model-judged answers")
+    return problems
+
+
+def freeze_facts(root: Path, *, weights_rel: str, dev_pairs_rel: str) -> dict:
+    """The label source and the comparator source, for ``freeze.v1.json`` (Amendment 2)."""
+    root = Path(root)
+    weights, pairs = _json(root / weights_rel) or {}, _json(root / dev_pairs_rel) or {}
+    return {
+        "training_labels": weights.get("trained_on", {}).get("training_labels", "human"),
+        "comparator_source": pairs.get("config", {}).get("comparator_source", SOURCE_HUMAN),
+    }

@@ -158,6 +158,8 @@ M4 asks one question. Does a learned ranker (the model) pick 5 recipes that the 
 - Model judges may dry-run the tools. Their answers carry the label `judge_model` and the metric `pilot_pairwise_win_rate` (role `sanity`).
 - Model-judge answers never enter training, comparator choice, futility checks or the test.
 
+Amendment 2 (2026-11-19) changes the last bullet for training only. The owner chose to train the model on the model-judged dev answers. `train` then needs the flag `--allow-model-labels`. The dry-run flag `--allow-model-judge` is not enough. The weights file, the training table, `results/m4_cv.json` and the freeze say `training_labels: model_judged`. One table never mixes human and model rows, so `train --name dev` uses the dev sheet alone and leaves out the human pilot. Model-judged answers still cannot choose the comparator: it is `shipped`. They still never enter the futility check or the test, which the owner judges.
+
 ### What the judge sees
 
 One item shows a pantry and two lists. Each list has 5 recipe titles. Under each title, the lines you still need to buy.
