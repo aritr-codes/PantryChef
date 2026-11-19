@@ -209,6 +209,7 @@ To answer without typing a CSV, make the judging page: `uv run python scripts/ju
 - Sessions run on different days.
 - Test sessions start at least 2 days after the last dev session.
 - The test needs at least 4 sessions (110 items at about 80 s is about 147 minutes, ESTIMATE).
+- The dev set has 100 pantries (the owner chose this on 2026-11-19). That gives about 300 items (100 pantries times 3 pairs, less the pairs skipped as identical) plus 30 repeats, which is 10% of the items: about 330 items. The timing pilot gave a median of 30 s per item (MEASURED: one session, 28 usable items). At 30 s per item, 330 items take about 2.8 hours (ESTIMATE). Plan about 4 sessions of at most 45 minutes. The 10 pilot pantries join dev when the pilot passes, so the dev sheet adds 100 new pantries.
 - Do not look back at earlier answers.
 
 ### Keep-blind rule
@@ -280,8 +281,8 @@ Run from the repo root. `planned` means the command is not in the code yet. Chec
 1. `uv run python scripts/m4_rank.py pantries` builds the committed pantry pools.
 2. `uv run python scripts/m4_rank.py variants` runs the label-free IDF variants.
 3. Pilot sheet: `uv run python scripts/judging_sheet.py --pantries data/eval/m4/pantries.v1.json --pool pilot --take 10 --repeats 4 --name pilot`. Check the arm flags against the plan.
-4. Judge the pilot. Then score it: `uv run python scripts/m4_rank.py pilot-score` (planned). Until then, use `uv run python scripts/judging_score.py --answers PATH --key data/interim/judging_key.m4-pilot.v1.json`.
-5. Dev sheet: as step 3, with `--pool dev --take 60 --repeats 18 --name dev`. Judge it in sessions.
+4. Judge the pilot. Then score it: `uv run python scripts/m4_rank.py pilot-score --name pilot`. It prints the four checks and PASS or FAIL, and no other number.
+5. Dev sheet: as step 3, with `--pool dev --take 100 --repeats 30 --name dev`. Judge it in sessions.
 6. `uv run python scripts/m4_rank.py dev-score` scores the dev answers.
 7. `uv run python scripts/m4_rank.py train` trains the model on dev answers.
 8. Futility sheet (`--pool futility --take 20 --model web/src/rank_model.v1.json --name futility`), then `uv run python scripts/m4_rank.py futility`.
@@ -289,7 +290,7 @@ Run from the repo root. `planned` means the command is not in the code yet. Chec
 10. Test sheet: `--pool test --take 100 --arm-guess --probes 4 --repeats 6 --model web/src/rank_model.v1.json --name test`. The script refuses without the committed freeze.
 11. Judge the test in at least 4 sessions. Then run `uv run python scripts/m4_rank.py score`.
 
-All commands except `pilot-score` exist in the scripts today. That does not show that each step works end to end. Tests must show it.
+All commands exist in the scripts today. That does not show that each step works end to end. Tests must show it.
 
 ### Licence note (M4)
 

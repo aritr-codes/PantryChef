@@ -7,7 +7,7 @@ Old M2 pilot (draws its own pantries; the defaults keep the committed key hash v
 M4 sheets (pantries come from the committed pool file; neutral order and gold-out are on):
 
     uv run python scripts/judging_sheet.py --pantries data/eval/m4/pantries.v1.json \\
-        --pool dev --take 60 --arms shipped overlap idf_flat --name dev [--repeats 4]
+        --pool dev --take 100 --arms shipped overlap idf_flat --name dev [--repeats 4]
 
 A sheet shows what the judge sees (no arm names). The private key goes to
 ``data/interim/judging_key.m4-NAME.v1.json`` (git ignores it) and its hash to

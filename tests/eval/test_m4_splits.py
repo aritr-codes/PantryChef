@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import hashlib
 import json
+import os
 from pathlib import Path
 
 import pytest
@@ -11,6 +12,7 @@ import pytest
 from pantrychef.engine import load_pack
 from pantrychef.eval.arms import order
 from pantrychef.eval.m4_pools import (
+    POOL_SIZES,
     VARIANTS,
     VariantScorer,
     build_pools,
@@ -129,6 +131,89 @@ def test_pack_hash_is_pinned(built):
         doc["pack_core_sha256"]
         == hashlib.sha256((FIXTURE / "core.v2.json").read_bytes()).hexdigest()
     )
+
+
+def test_pool_sizes_are_one_named_constant_set():
+    """The owner chose 100 dev pantries on 2026-11-19 (the timing pilot gave 30 s per item)."""
+    assert POOL_SIZES == (("pilot", 10), ("dev", 100), ("futility", 20), ("reserve", 10))
+
+
+def test_the_pilot_pool_does_not_depend_on_the_later_pool_sizes(pack, built):
+    """The pilot items are the first of the fixed order, so a bigger dev pool leaves them as is."""
+    _, _, _, spike = built
+    small, _ = build_pools(pack, pack_core_sha256(FIXTURE), spike, (("pilot", 2), ("dev", 1)))
+    big, _ = build_pools(pack, pack_core_sha256(FIXTURE), spike, (("pilot", 2), ("dev", 9)))
+    assert canonical(small["pools"]["pilot"]) == canonical(big["pools"]["pilot"])
+    assert small["pools"]["dev"] == big["pools"]["dev"][:1]  # dev starts at the same place
+    assert canonical(small["pools"]["test"]) == canonical(big["pools"]["test"])
+
+
+# What the committed draw must keep when the dev pool grows (2026-11-19). The pilot sheet, its
+# key hash and its answers are committed and bound to these pilot pantries. MEASURED values of
+# the draw as committed at HEAD 328733e.
+PILOT_POOL_SHA = "6fa082b2939d3779c5d3882bec8852254552673a98242c2129e65e6321958049"
+TEST_POOL_SHA = "3e6ec4ed1ab4fed6df538ad1e3f1e6bcbd9adf55bad35a47ed968cb72461fcce"
+PACK_SHA = "1c2bcf5a0ac31813e9e08279c7729830c0658474a4d7fed8c8bfd1a94379a313"
+
+
+@pytest.mark.skipif(not PANTRIES.exists(), reason="the pantry draw is not in this checkout")
+def test_committed_draw_keeps_pilot_test_pack_and_has_the_new_sizes():
+    doc = json.loads(PANTRIES.read_text(encoding="utf-8"))
+    pools = doc["pools"]
+    assert {k: len(v) for k, v in pools.items() if k != "test"} == dict(POOL_SIZES)
+    assert hashlib.sha256(canonical(pools["pilot"])).hexdigest() == PILOT_POOL_SHA
+    assert hashlib.sha256(canonical(pools["test"])).hexdigest() == TEST_POOL_SHA
+    assert doc["pack_core_sha256"] == PACK_SHA
+    sha_file = (M4 / "test_pantries_sha256.txt").read_text(encoding="utf-8").strip()
+    assert sha_file == TEST_POOL_SHA
+    rows = [r for v in pools.values() for r in v]
+    assert len({r["content_sha256"] for r in rows}) == len(rows)  # no duplicate content
+    assert len({r["gold_id"] for r in rows}) == len(rows)
+    dev = {r["title_group"] for k in POOL_NAMES_DEV for r in pools[k]}
+    assert not dev & {r["title_group"] for r in pools["test"]}
+    assert not set(doc["excluded"]["gold_ids"]) & {r["gold_id"] for r in rows}
+    assert not set(doc["excluded"]["title_groups"]) & {r["title_group"] for r in rows}
+
+
+POOL_NAMES_DEV = ("pilot", "dev", "futility", "reserve")
+
+
+@pytest.mark.skipif(
+    not (ROOT / "data/interim/judging_key.m4-pilot.v1.json").exists() or not PANTRIES.exists(),
+    reason="the private pilot key is not in this checkout",
+)
+def test_the_committed_pilot_key_still_sits_inside_the_pilot_pool():
+    key = json.loads((ROOT / "data/interim/judging_key.m4-pilot.v1.json").read_text("utf-8"))
+    doc = json.loads(PANTRIES.read_text(encoding="utf-8"))
+    pilot_ids = {r["pantry_id"] for r in doc["pools"]["pilot"]}
+    assert {v["pantry_id"] for v in key["items"].values()} <= pilot_ids
+    assert key["pack_core_sha256"] == doc["pack_core_sha256"]
+
+
+REAL_PACK = os.environ.get("PANTRYCHEF_REAL_PACK")
+
+
+@pytest.mark.skipif(
+    not REAL_PACK
+    or not (Path(REAL_PACK) / "core.v2.json.gz").exists()
+    or not (M4 / "key_sha256.pilot.txt").exists(),
+    reason="set PANTRYCHEF_REAL_PACK and keep the committed pilot key hash",
+)
+def test_the_committed_pilot_key_hash_still_reproduces_from_the_committed_draw():
+    """CRUCIAL (2026-11-19): the dev pool grew from 60 to 100. The pilot sheet, its key hash and
+    its answers are committed, so the new draw must rebuild the very same pilot key."""
+    from scripts import judging_sheet as sj
+
+    doc = json.loads(PANTRIES.read_text(encoding="utf-8"))
+    pack = load_pack(REAL_PACK)
+    arms = ("overlap", "shipped", "idf_flat")  # the order of the committed key
+    _, key = sj.build_pool_sheet(
+        pack, doc["pools"]["pilot"], arms, seed=42, name="pilot", take=10, repeats=4,
+        config={"pool": "pilot", "pack_core_sha256": doc["pack_core_sha256"],
+                "model_sha256": None, "arm_guess": False},
+    )  # fmt: skip
+    got = hashlib.sha256((json.dumps(key, indent=2, sort_keys=True) + "\n").encode()).hexdigest()
+    assert got == (M4 / "key_sha256.pilot.txt").read_text(encoding="utf-8").strip()
 
 
 def test_variants_shipped_matches_arm_order_and_agreement_is_valid(pack):

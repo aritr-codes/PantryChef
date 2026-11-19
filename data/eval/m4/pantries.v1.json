@@ -1042,9 +1042,7 @@
         ],
         "pantry_id": "m4-dev-wb-484018",
         "title_group": "algerian white chicken vermicelli soup"
-      }
-    ],
-    "futility": [
+      },
       {
         "content_sha256": "bff42e88d6b9ce1032b5c87fc5e22dc7059b59bfaecd689f36db80ae944182c9",
         "gold_id": "wb-488",
@@ -1361,6 +1359,662 @@
         ],
         "pantry_id": "m4-dev-wb-207192",
         "title_group": "brioche stuffing"
+      },
+      {
+        "content_sha256": "ff748c19aeedec4ebbd3d7a891884af963c264b04b928365d3f98fe27b4b5c16",
+        "gold_id": "wb-461090",
+        "pantry": [
+          "butter",
+          "cream",
+          "self_rising_flour",
+          "sugar"
+        ],
+        "pantry_id": "m4-dev-wb-461090",
+        "title_group": "classic puff pastry"
+      },
+      {
+        "content_sha256": "c7752ca3acc7f81b9c903fd5dd33f494a12ff91cebddeb8c61a7ce0aff4e517b",
+        "gold_id": "wb-56362",
+        "pantry": [
+          "breadcrumbs",
+          "cumin",
+          "date",
+          "flour",
+          "lemon",
+          "onion_powder",
+          "savory"
+        ],
+        "pantry_id": "m4-dev-wb-56362",
+        "title_group": "seitan burger"
+      },
+      {
+        "content_sha256": "09a43b00d6040ce8e9a72c485b1a0c9c83fa19e2f227f3a300afeee35dcb7623",
+        "gold_id": "wb-201199",
+        "pantry": [
+          "apple_cider_vinegar",
+          "brown_sugar",
+          "cayenne",
+          "cheese",
+          "chicken",
+          "chicken_stock",
+          "garlic",
+          "honey",
+          "lemon",
+          "onion",
+          "pear",
+          "thyme",
+          "tomato_paste"
+        ],
+        "pantry_id": "m4-dev-wb-201199",
+        "title_group": "barbecue chicken"
+      },
+      {
+        "content_sha256": "cca2632658d7ab7cf69910fbd766c67c07a9fda99049ced063a595d87680e2ce",
+        "gold_id": "wb-15221",
+        "pantry": [
+          "butter",
+          "ground_beef",
+          "potato",
+          "red_wine",
+          "sugar",
+          "vanilla"
+        ],
+        "pantry_id": "m4-dev-wb-15221",
+        "title_group": "shepherd s pie ii"
+      },
+      {
+        "content_sha256": "a4228388eb56655efdf81df71bd7f91dbca73051d53eecc44f38e419a63ab1d0",
+        "gold_id": "wb-295837",
+        "pantry": [
+          "bread",
+          "butter",
+          "chicken_stock",
+          "cracker",
+          "evaporated_milk",
+          "meat",
+          "milk",
+          "tofu"
+        ],
+        "pantry_id": "m4-dev-wb-295837",
+        "title_group": "chicken mull"
+      },
+      {
+        "content_sha256": "a2b43cd19bf4ac4811fdbd1b0485307cb9c01b30bf4b45925b9e87f5b6379c9e",
+        "gold_id": "wb-471903",
+        "pantry": [
+          "bay_leaf",
+          "chili_pepper",
+          "coriander",
+          "kecap_manis",
+          "plum_sauce",
+          "shallot",
+          "tamarind",
+          "tofu"
+        ],
+        "pantry_id": "m4-dev-wb-471903",
+        "title_group": "tahu gejrot"
+      },
+      {
+        "content_sha256": "cc95152d61f07deb07f4fc9856663cc3e581e6e064b4d1cd6048c6dff38d1703",
+        "gold_id": "wb-108460",
+        "pantry": [
+          "apple",
+          "brownie_mix",
+          "cocoa",
+          "egg",
+          "sugar"
+        ],
+        "pantry_id": "m4-dev-wb-108460",
+        "title_group": "tarte tatin"
+      },
+      {
+        "content_sha256": "22e3bb27fd9372f9c9c3fe1a39850457204389c7a22c9603e6ff1a09d8d2aba7",
+        "gold_id": "wb-174890",
+        "pantry": [
+          "balsamic_vinegar",
+          "chicken",
+          "chili_pepper",
+          "coriander",
+          "cumin",
+          "garlic",
+          "lard",
+          "lime",
+          "olive_oil",
+          "onion",
+          "rice",
+          "tomato",
+          "yogurt"
+        ],
+        "pantry_id": "m4-dev-wb-174890",
+        "title_group": "bangladesh curry"
+      },
+      {
+        "content_sha256": "8564aedf24610b23285a3b6c1b051f2c1c045ac457e3050382d37bf264831133",
+        "gold_id": "wb-456968",
+        "pantry": [
+          "almond",
+          "bread",
+          "cumin",
+          "garlic",
+          "ground_beef",
+          "lard",
+          "olive_oil",
+          "onion",
+          "parsley"
+        ],
+        "pantry_id": "m4-dev-wb-456968",
+        "title_group": "egyptian meatballs"
+      },
+      {
+        "content_sha256": "b2fa23cb3bc17640da090d6a102ef5350114f7e586f45ab839962c3fbc1ac181",
+        "gold_id": "wb-22046",
+        "pantry": [
+          "baking_powder",
+          "garlic",
+          "olive",
+          "sugar",
+          "tomato_paste",
+          "turkey"
+        ],
+        "pantry_id": "m4-dev-wb-22046",
+        "title_group": "turkey wrap"
+      },
+      {
+        "content_sha256": "57fcb5b2b431d5befc0d50e7b1b60e0d6a200a7205af5a5f09be5e949d09e920",
+        "gold_id": "wb-159962",
+        "pantry": [
+          "cream",
+          "egg",
+          "flour",
+          "lemon",
+          "onion",
+          "sugar",
+          "walnut"
+        ],
+        "pantry_id": "m4-dev-wb-159962",
+        "title_group": "salzburger nockerl"
+      },
+      {
+        "content_sha256": "6d00ef880d9137459df2304c2c480b9f0fcbae2e2418a2eab817e577f6bd43c6",
+        "gold_id": "wb-110180",
+        "pantry": [
+          "basil",
+          "char_siu_sauce",
+          "garlic",
+          "potato",
+          "sugar"
+        ],
+        "pantry_id": "m4-dev-wb-110180",
+        "title_group": "char sui"
+      },
+      {
+        "content_sha256": "85a3a4fec1fc3474e8ffdc62d4e05ca9ea192978e2580a597f77ae3ecfadc17b",
+        "gold_id": "wb-11687",
+        "pantry": [
+          "allspice",
+          "beef",
+          "cloves",
+          "honey",
+          "mutton",
+          "nutmeg",
+          "onion",
+          "puff_pastry",
+          "veal"
+        ],
+        "pantry_id": "m4-dev-wb-11687",
+        "title_group": "boerewors"
+      },
+      {
+        "content_sha256": "8ad9f9d5516a096d9236e7f0bb99b3fd8ea7620ae3d591c450c2b99b69dafce4",
+        "gold_id": "wb-133204",
+        "pantry": [
+          "brown_sugar",
+          "candied_peel",
+          "cherry",
+          "egg",
+          "flour",
+          "mint",
+          "mixed_spice",
+          "molasses",
+          "onion",
+          "raisin",
+          "rosemary",
+          "self_rising_flour",
+          "sherry"
+        ],
+        "pantry_id": "m4-dev-wb-133204",
+        "title_group": "christmas cake"
+      },
+      {
+        "content_sha256": "443b3fb4f7edb26613ece350442860294e254e9d4825e1906d5055c19ece418a",
+        "gold_id": "wb-457283",
+        "pantry": [
+          "baking_powder",
+          "brown_sugar",
+          "cayenne",
+          "cinnamon",
+          "coriander",
+          "cumin",
+          "garlic_powder",
+          "ginger",
+          "onion_powder",
+          "paprika"
+        ],
+        "pantry_id": "m4-dev-wb-457283",
+        "title_group": "dabo kolo"
+      },
+      {
+        "content_sha256": "073439b3bbad05168ba71556994c9f97e950cfdb45ce72d91698dcf639eb7452",
+        "gold_id": "wb-222569",
+        "pantry": [
+          "butter",
+          "cornstarch",
+          "green_onion",
+          "ground_beef",
+          "peanut",
+          "potato"
+        ],
+        "pantry_id": "m4-dev-wb-222569",
+        "title_group": "champ"
+      },
+      {
+        "content_sha256": "30411848b901d78d1e80255aa9bfa931d6cbb97290c0f8c53bfa32399b9dc62d",
+        "gold_id": "wb-454164",
+        "pantry": [
+          "basil",
+          "bouquet_garni",
+          "butter",
+          "garlic",
+          "mirepoix",
+          "roux",
+          "tomato_paste"
+        ],
+        "pantry_id": "m4-dev-wb-454164",
+        "title_group": "espagnole sauce"
+      },
+      {
+        "content_sha256": "db1a29dd629000a1403cd0b54c514550a88e18643ffa7107bab1847f61a291d9",
+        "gold_id": "wb-106262",
+        "pantry": [
+          "beef",
+          "cayenne",
+          "chicken_stock",
+          "chili_powder",
+          "cumin",
+          "garlic",
+          "leek",
+          "oregano",
+          "suet"
+        ],
+        "pantry_id": "m4-dev-wb-106262",
+        "title_group": "original texas style chili"
+      },
+      {
+        "content_sha256": "4f7eb269e8685e23b71cd534624b65160ec0faabde9d12bc1e8fdba0b8243019",
+        "gold_id": "wb-455556",
+        "pantry": [
+          "bay_leaf",
+          "beef",
+          "cinnamon",
+          "red_wine",
+          "stock",
+          "strawberry",
+          "sugar",
+          "whiskey"
+        ],
+        "pantry_id": "m4-dev-wb-455556",
+        "title_group": "hartshorne sweet sauce"
+      },
+      {
+        "content_sha256": "4b4e28a82848fe75963d9342807bc0e549c2d45e1110aedd9e06081a284a487f",
+        "gold_id": "wb-205023",
+        "pantry": [
+          "allspice",
+          "butter",
+          "cayenne",
+          "coconut",
+          "egg",
+          "olive_oil",
+          "white_fish"
+        ],
+        "pantry_id": "m4-dev-wb-205023",
+        "title_group": "parmesan encrusted tilapia"
+      }
+    ],
+    "futility": [
+      {
+        "content_sha256": "99124a28689b4890086463ec1c58fb82f1dc0587ddd61df189ac6c22aa08889d",
+        "gold_id": "wb-124457",
+        "pantry": [
+          "arborio_rice",
+          "butter",
+          "dill",
+          "habanero",
+          "onion",
+          "potato",
+          "stock"
+        ],
+        "pantry_id": "m4-dev-wb-124457",
+        "title_group": "risotto"
+      },
+      {
+        "content_sha256": "01502ba9446aa30eb78c72354cfd56fddcc772f1e1367632d29b3f6723bcaaf9",
+        "gold_id": "wb-360622",
+        "pantry": [
+          "breadcrumbs",
+          "butter",
+          "carrot",
+          "egg",
+          "olive_oil",
+          "parmesan",
+          "thyme",
+          "tomato"
+        ],
+        "pantry_id": "m4-dev-wb-360622",
+        "title_group": "fresh tomato galette"
+      },
+      {
+        "content_sha256": "ad741de98dbd39cbff552d177830664036f83caa144b848176a986e1cd3997fa",
+        "gold_id": "wb-18947",
+        "pantry": [
+          "bacon",
+          "bell_pepper",
+          "cornmeal",
+          "egg",
+          "flour",
+          "milk",
+          "onion",
+          "potato"
+        ],
+        "pantry_id": "m4-dev-wb-18947",
+        "title_group": "kroppkakor"
+      },
+      {
+        "content_sha256": "9c4c00f29477a43a60202e51ededa03905600752813a0a01102469df10acd887",
+        "gold_id": "wb-381706",
+        "pantry": [
+          "berbere",
+          "chili_pepper",
+          "coconut_milk",
+          "doenjang",
+          "egg",
+          "perilla_leaf",
+          "rice"
+        ],
+        "pantry_id": "m4-dev-wb-381706",
+        "title_group": "euneo juk"
+      },
+      {
+        "content_sha256": "1fb7361cb9787377ff6c6d628819bb4a05555b6a6dcbed816829df4539e7467f",
+        "gold_id": "wb-95893",
+        "pantry": [
+          "bread",
+          "flour",
+          "olive_oil",
+          "rosemary",
+          "sugar",
+          "tomato"
+        ],
+        "pantry_id": "m4-dev-wb-95893",
+        "title_group": "rosemary garlic fish"
+      },
+      {
+        "content_sha256": "d762df053f83d2cb75efca343d4c171bae01a58535436640d6cede219957f666",
+        "gold_id": "wb-77719",
+        "pantry": [
+          "bell_pepper",
+          "bread",
+          "cherry",
+          "chickpea",
+          "cilantro",
+          "ginger_garlic_paste",
+          "marshmallow",
+          "onion",
+          "shortening",
+          "tomato_paste",
+          "turmeric"
+        ],
+        "pantry_id": "m4-dev-wb-77719",
+        "title_group": "qabuli"
+      },
+      {
+        "content_sha256": "3a198964df0cb35a900a0a0748163f5c1308f5b72c3ac900f5b63ca53b34cc44",
+        "gold_id": "wb-114970",
+        "pantry": [
+          "beef_stock",
+          "butter",
+          "cayenne",
+          "cooking_spray",
+          "flour",
+          "sugar",
+          "water_chestnut"
+        ],
+        "pantry_id": "m4-dev-wb-114970",
+        "title_group": "peas supreme"
+      },
+      {
+        "content_sha256": "114fbaa21d1a3a1c310442aabef33fb175fd887802be781b008f177cfc79c458",
+        "gold_id": "wb-104173",
+        "pantry": [
+          "carrot",
+          "corned_beef",
+          "flour",
+          "nutmeg",
+          "sugar"
+        ],
+        "pantry_id": "m4-dev-wb-104173",
+        "title_group": "fruit crumble"
+      },
+      {
+        "content_sha256": "940b48ed80bc22231d06848fe7a8304e12fec79df72483cc8cf5e63178262054",
+        "gold_id": "wb-24395",
+        "pantry": [
+          "chili_pepper",
+          "egg",
+          "flour",
+          "garlic",
+          "garlic_paste",
+          "kerupuk",
+          "lime",
+          "paprika",
+          "peanut",
+          "shallot",
+          "shrimp_paste",
+          "tempeh"
+        ],
+        "pantry_id": "m4-dev-wb-24395",
+        "title_group": "gado gado"
+      },
+      {
+        "content_sha256": "bec9389335df16344558fd5f513c7e17241897c2c87356638850df74c101c3a7",
+        "gold_id": "wb-132729",
+        "pantry": [
+          "beef_stock",
+          "butter",
+          "celery",
+          "chicken_stock",
+          "cornstarch",
+          "egg",
+          "garlic",
+          "mushroom",
+          "peanut",
+          "soy_sauce"
+        ],
+        "pantry_id": "m4-dev-wb-132729",
+        "title_group": "peanut chicken stir fry"
+      },
+      {
+        "content_sha256": "90ed6826d5932cd2a932ace1c91ed28643c6f308d804bfcabde5ed5ac6e61faa",
+        "gold_id": "wb-190711",
+        "pantry": [
+          "basmati_rice",
+          "chickpea",
+          "cumin",
+          "egg",
+          "lentil",
+          "olive_oil",
+          "pasta",
+          "red_pepper_flakes",
+          "tomato_paste",
+          "worcestershire_sauce"
+        ],
+        "pantry_id": "m4-dev-wb-190711",
+        "title_group": "koshary"
+      },
+      {
+        "content_sha256": "f8fb898974316af8cd92293dcb40c3ad432d727904b35cc2b15788faa36875c6",
+        "gold_id": "wb-199273",
+        "pantry": [
+          "brown_sugar",
+          "cayenne",
+          "chili_pepper",
+          "cinnamon",
+          "cloves",
+          "garlic_powder",
+          "rosemary",
+          "stock"
+        ],
+        "pantry_id": "m4-dev-wb-199273",
+        "title_group": "rib rub"
+      },
+      {
+        "content_sha256": "e9e35369138728cc63d13fda1a2e818d9d32b1a1fce7e8af455d3c58d40e43c9",
+        "gold_id": "wb-102282",
+        "pantry": [
+          "bell_pepper",
+          "brown_rice",
+          "butter",
+          "chili_pepper",
+          "cilantro",
+          "flour",
+          "garlic",
+          "olive_oil",
+          "tomato",
+          "white_fish"
+        ],
+        "pantry_id": "m4-dev-wb-102282",
+        "title_group": "chraime"
+      },
+      {
+        "content_sha256": "f33f010d0c7784744c290bb7e90020265233c878ca45d173c1db9c21270ebee7",
+        "gold_id": "wb-100090",
+        "pantry": [
+          "brown_sugar",
+          "butter",
+          "chicken",
+          "cocoa",
+          "flour",
+          "half_and_half",
+          "mascarpone",
+          "powdered_sugar",
+          "rock_sugar",
+          "shrimp",
+          "vanilla"
+        ],
+        "pantry_id": "m4-dev-wb-100090",
+        "title_group": "chocolate noodles with vanilla sauce"
+      },
+      {
+        "content_sha256": "a17a682dead5e9743c6d930f4058438905f7e2b4d1a8f139ff019889765a8eb5",
+        "gold_id": "wb-448148",
+        "pantry": [
+          "almond",
+          "breadcrumbs",
+          "broccoli",
+          "gravy",
+          "nutmeg",
+          "tofu"
+        ],
+        "pantry_id": "m4-dev-wb-448148",
+        "title_group": "queen s sauce"
+      },
+      {
+        "content_sha256": "4af5c39b0d7ca9045bfb5b9aff289c91777a82c4dcb8611b8cae17122bd8e68a",
+        "gold_id": "wb-38993",
+        "pantry": [
+          "allspice",
+          "butter",
+          "coffee",
+          "garlic",
+          "honey",
+          "powdered_sugar",
+          "vanilla"
+        ],
+        "pantry_id": "m4-dev-wb-38993",
+        "title_group": "mocha icing"
+      },
+      {
+        "content_sha256": "30d67c0824667568e9684b7babaf005f0d64f1e9c594595ff6d53f9f7447580f",
+        "gold_id": "wb-369818",
+        "pantry": [
+          "anchovy",
+          "baking_powder",
+          "banana",
+          "basil",
+          "cheese",
+          "crayfish",
+          "garlic",
+          "olive_oil",
+          "pasta",
+          "tomato"
+        ],
+        "pantry_id": "m4-dev-wb-369818",
+        "title_group": "spaghetti a la monegasque"
+      },
+      {
+        "content_sha256": "c575982ca6447e92b7694434d495e4ef92e7186009a219c3eda17acc73bb0a53",
+        "gold_id": "wb-138211",
+        "pantry": [
+          "baking_soda",
+          "basil",
+          "butter",
+          "chicken",
+          "cornmeal",
+          "egg",
+          "milk",
+          "tortilla",
+          "yogurt"
+        ],
+        "pantry_id": "m4-dev-wb-138211",
+        "title_group": "super moist corn bread"
+      },
+      {
+        "content_sha256": "590fe0dd6f19214cef56ea9a61de465dc5320151989f4c6597918ca24da9a203",
+        "gold_id": "wb-299311",
+        "pantry": [
+          "garlic",
+          "habanero",
+          "marjoram",
+          "parsley",
+          "potato",
+          "rice",
+          "sugar",
+          "tomato_paste",
+          "turnip",
+          "white_pepper"
+        ],
+        "pantry_id": "m4-dev-wb-299311",
+        "title_group": "chicken soup with rice and potatoes"
+      },
+      {
+        "content_sha256": "75a6c7d0005e3aa94d5ebc68581b6fad8fbad19a82c3bf2c369da041103cb980",
+        "gold_id": "wb-456852",
+        "pantry": [
+          "bell_pepper",
+          "crayfish",
+          "dried_fish",
+          "ewedu",
+          "green_onion",
+          "leek",
+          "meat",
+          "mixed_spice",
+          "onion",
+          "palm_oil",
+          "stock",
+          "tomato"
+        ],
+        "pantry_id": "m4-dev-wb-456852",
+        "title_group": "abula"
       }
     ],
     "pilot": [
@@ -1544,163 +2198,159 @@
     ],
     "reserve": [
       {
-        "content_sha256": "ff748c19aeedec4ebbd3d7a891884af963c264b04b928365d3f98fe27b4b5c16",
-        "gold_id": "wb-461090",
-        "pantry": [
-          "butter",
-          "cream",
-          "self_rising_flour",
-          "sugar"
-        ],
-        "pantry_id": "m4-dev-wb-461090",
-        "title_group": "classic puff pastry"
-      },
-      {
-        "content_sha256": "c7752ca3acc7f81b9c903fd5dd33f494a12ff91cebddeb8c61a7ce0aff4e517b",
-        "gold_id": "wb-56362",
-        "pantry": [
-          "breadcrumbs",
-          "cumin",
-          "date",
-          "flour",
-          "lemon",
-          "onion_powder",
-          "savory"
-        ],
-        "pantry_id": "m4-dev-wb-56362",
-        "title_group": "seitan burger"
-      },
-      {
-        "content_sha256": "09a43b00d6040ce8e9a72c485b1a0c9c83fa19e2f227f3a300afeee35dcb7623",
-        "gold_id": "wb-201199",
-        "pantry": [
-          "apple_cider_vinegar",
-          "brown_sugar",
-          "cayenne",
-          "cheese",
-          "chicken",
-          "chicken_stock",
-          "garlic",
-          "honey",
-          "lemon",
-          "onion",
-          "pear",
-          "thyme",
-          "tomato_paste"
-        ],
-        "pantry_id": "m4-dev-wb-201199",
-        "title_group": "barbecue chicken"
-      },
-      {
-        "content_sha256": "cca2632658d7ab7cf69910fbd766c67c07a9fda99049ced063a595d87680e2ce",
-        "gold_id": "wb-15221",
-        "pantry": [
-          "butter",
-          "ground_beef",
-          "potato",
-          "red_wine",
-          "sugar",
-          "vanilla"
-        ],
-        "pantry_id": "m4-dev-wb-15221",
-        "title_group": "shepherd s pie ii"
-      },
-      {
-        "content_sha256": "a4228388eb56655efdf81df71bd7f91dbca73051d53eecc44f38e419a63ab1d0",
-        "gold_id": "wb-295837",
-        "pantry": [
-          "bread",
-          "butter",
-          "chicken_stock",
-          "cracker",
-          "evaporated_milk",
-          "meat",
-          "milk",
-          "tofu"
-        ],
-        "pantry_id": "m4-dev-wb-295837",
-        "title_group": "chicken mull"
-      },
-      {
-        "content_sha256": "a2b43cd19bf4ac4811fdbd1b0485307cb9c01b30bf4b45925b9e87f5b6379c9e",
-        "gold_id": "wb-471903",
-        "pantry": [
-          "bay_leaf",
-          "chili_pepper",
-          "coriander",
-          "kecap_manis",
-          "plum_sauce",
-          "shallot",
-          "tamarind",
-          "tofu"
-        ],
-        "pantry_id": "m4-dev-wb-471903",
-        "title_group": "tahu gejrot"
-      },
-      {
-        "content_sha256": "cc95152d61f07deb07f4fc9856663cc3e581e6e064b4d1cd6048c6dff38d1703",
-        "gold_id": "wb-108460",
-        "pantry": [
-          "apple",
-          "brownie_mix",
-          "cocoa",
-          "egg",
-          "sugar"
-        ],
-        "pantry_id": "m4-dev-wb-108460",
-        "title_group": "tarte tatin"
-      },
-      {
-        "content_sha256": "22e3bb27fd9372f9c9c3fe1a39850457204389c7a22c9603e6ff1a09d8d2aba7",
-        "gold_id": "wb-174890",
-        "pantry": [
-          "balsamic_vinegar",
-          "chicken",
-          "chili_pepper",
-          "coriander",
-          "cumin",
-          "garlic",
-          "lard",
-          "lime",
-          "olive_oil",
-          "onion",
-          "rice",
-          "tomato",
-          "yogurt"
-        ],
-        "pantry_id": "m4-dev-wb-174890",
-        "title_group": "bangladesh curry"
-      },
-      {
-        "content_sha256": "8564aedf24610b23285a3b6c1b051f2c1c045ac457e3050382d37bf264831133",
-        "gold_id": "wb-456968",
-        "pantry": [
-          "almond",
-          "bread",
-          "cumin",
-          "garlic",
-          "ground_beef",
-          "lard",
-          "olive_oil",
-          "onion",
-          "parsley"
-        ],
-        "pantry_id": "m4-dev-wb-456968",
-        "title_group": "egyptian meatballs"
-      },
-      {
-        "content_sha256": "b2fa23cb3bc17640da090d6a102ef5350114f7e586f45ab839962c3fbc1ac181",
-        "gold_id": "wb-22046",
+        "content_sha256": "e0ae0e0992c82f0b80d59dd8422de1c7a617bcc6a6848010abb1aa2e9b521189",
+        "gold_id": "wb-96175",
         "pantry": [
           "baking_powder",
-          "garlic",
-          "olive",
-          "sugar",
-          "tomato_paste",
-          "turkey"
+          "butter",
+          "buttermilk",
+          "egg",
+          "horseradish",
+          "onion",
+          "semolina",
+          "sugar"
         ],
-        "pantry_id": "m4-dev-wb-22046",
-        "title_group": "turkey wrap"
+        "pantry_id": "m4-dev-wb-96175",
+        "title_group": "irish soda bread"
+      },
+      {
+        "content_sha256": "5747a5afda46857f93c9734397e634970b7e87ff6bb45f1304ee4eac294a7af6",
+        "gold_id": "wb-457200",
+        "pantry": [
+          "barbecue_rub",
+          "beef",
+          "berbere",
+          "chickpea",
+          "coriander",
+          "cumin",
+          "garlic",
+          "ginger",
+          "olive_oil",
+          "vinegar"
+        ],
+        "pantry_id": "m4-dev-wb-457200",
+        "title_group": "alicha wot"
+      },
+      {
+        "content_sha256": "607681b74be96438b15fe032c822dfd1494b1cec57954e4a0089009ee07b1ec4",
+        "gold_id": "wb-477276",
+        "pantry": [
+          "carrot",
+          "coconut",
+          "ham_hock",
+          "parsley",
+          "pork",
+          "split_pea",
+          "thyme",
+          "tomato"
+        ],
+        "pantry_id": "m4-dev-wb-477276",
+        "title_group": "pea soup"
+      },
+      {
+        "content_sha256": "fa49420bda9894653280d08be02bffd529143ae9bd3a0b0de84d1a551f18e527",
+        "gold_id": "wb-283010",
+        "pantry": [
+          "artificial_sweetener",
+          "cocoa",
+          "cream",
+          "garlic",
+          "paneer",
+          "sumac",
+          "turmeric"
+        ],
+        "pantry_id": "m4-dev-wb-283010",
+        "title_group": "chocolate sandesh"
+      },
+      {
+        "content_sha256": "5d8557cfd7d7e61aea447dd40f8561a1413fb2745819ebfa3965a519442ba364",
+        "gold_id": "wb-462082",
+        "pantry": [
+          "chicken",
+          "cloves",
+          "condensed_soup",
+          "honey",
+          "lime",
+          "paprika",
+          "soy_sauce"
+        ],
+        "pantry_id": "m4-dev-wb-462082",
+        "title_group": "thai grilled chicken ii"
+      },
+      {
+        "content_sha256": "76f0f038a4bb1a2e3fe9377eb6ba9149c26a7005ef4c7086dcaff11f6a2470d1",
+        "gold_id": "wb-452676",
+        "pantry": [
+          "cilantro",
+          "egg",
+          "flour",
+          "oats",
+          "semolina",
+          "sugar",
+          "tomato"
+        ],
+        "pantry_id": "m4-dev-wb-452676",
+        "title_group": "algerian baghrir"
+      },
+      {
+        "content_sha256": "75cdcf04b74655c98b4c2ef0a097d43bc8377a32dbd55b653b3c9b937788a469",
+        "gold_id": "wb-164154",
+        "pantry": [
+          "baking_soda",
+          "flour",
+          "milk",
+          "olive_oil",
+          "rice"
+        ],
+        "pantry_id": "m4-dev-wb-164154",
+        "title_group": "whole wheat irish soda bread"
+      },
+      {
+        "content_sha256": "ed697a0ca7426783975923c981a3ae4228626cfb5954279ca1ef5413dfdf1203",
+        "gold_id": "wb-457388",
+        "pantry": [
+          "bean",
+          "flour",
+          "habanero",
+          "onion",
+          "red_onion",
+          "seitan",
+          "vanilla",
+          "vegetable_stock"
+        ],
+        "pantry_id": "m4-dev-wb-457388",
+        "title_group": "liberian country beans torborgee"
+      },
+      {
+        "content_sha256": "b39592115a4592723fe415990960ed8d7c8c567a95e0934dffd9d6b8b59d1742",
+        "gold_id": "wb-141106",
+        "pantry": [
+          "bay_leaf",
+          "broccoli",
+          "chicken_stock",
+          "cream",
+          "cumin",
+          "curry_powder",
+          "nutmeg",
+          "olive_oil",
+          "thyme"
+        ],
+        "pantry_id": "m4-dev-wb-141106",
+        "title_group": "pumpkin soup with curry"
+      },
+      {
+        "content_sha256": "866e783ef7d945ff4f09a336b613a869d893d71c072de3c7c2bc5251184fbcc6",
+        "gold_id": "wb-416638",
+        "pantry": [
+          "butter",
+          "egg",
+          "flour",
+          "honey",
+          "lemon",
+          "scotch_bonnet"
+        ],
+        "pantry_id": "m4-dev-wb-416638",
+        "title_group": "thin waffles"
       }
     ],
     "test": [

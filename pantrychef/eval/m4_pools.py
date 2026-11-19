@@ -17,7 +17,16 @@ SEED = 42
 SALT = "m4"
 TOP = 5
 MAX_MISSING = 2
-POOL_SIZES = (("pilot", 10), ("dev", 60), ("futility", 20), ("reserve", 10))
+# Dev-side pool sizes, taken in this order from the fixed sha256 order of the dev split. The
+# pilot is first, so growing a later pool never changes it. The owner chose 100 dev pantries on
+# 2026-11-19, after the timing pilot gave a median of 30 s per item (the plan said 60).
+PILOT_N, DEV_N, FUTILITY_N, RESERVE_N = 10, 100, 20, 10
+POOL_SIZES = (
+    ("pilot", PILOT_N),
+    ("dev", DEV_N),
+    ("futility", FUTILITY_N),
+    ("reserve", RESERVE_N),
+)
 VARIANTS = (
     "idf_smooth",
     "idf_lucene",

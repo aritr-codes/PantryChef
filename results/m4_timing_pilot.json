@@ -1,7 +1,7 @@
 {
   "arms": [],
   "command": "uv run python scripts/m4_rank.py pilot-score --name pilot",
-  "commit": "328733e3e614df9e4fff4a1931297998fa943ffa",
+  "commit": "1f941638f2e7a7048280d02d4bfeeb903c50f302",
   "comparisons": [],
   "config": {
     "analysis": {
@@ -65,12 +65,10 @@
   "corpus_fingerprint": "a1a076ab0aee385c4e01cdc904342214dfaa6b01dc35d80d32519ea625c597d2",
   "dirty": true,
   "dirty_paths": [
-    "docs/JUDGING_PROTOCOL.md",
-    "pantrychef/eval/m4_run.py",
-    "scripts/judging_page.py",
-    "tests/eval/test_m4_run.py",
-    "scripts/judging_merge.py",
-    "tests/test_judging_sessions.py"
+    "data/eval/m4/pantries.v1.json",
+    "pantrychef/eval/m4_pools.py",
+    "scripts/judging_sheet.py",
+    "tests/eval/test_m4_splits.py"
   ],
   "environment": {
     "numpy": "2.4.6",

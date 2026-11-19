@@ -722,3 +722,14 @@ Independent Opus reviewer, 2026-11-18. Verdict: GO WITH FIXES. Owner answers for
 | 9 | Honesty wording; gold count | Recommended | Yes | 3, 5.1 (HYPOTHESIS), 5.3 (title group), section 2 and 5.2 (gold count re-run) |
 | 10 | Golden files, `asdict`, tolerance | Recommended | Yes | Section 2, 11.1, 11.2, 15, task E |
 | 11 | Variants on all dev; shared variant file; vocabulary; descriptive numbers; MDW rounding; sawtooth | Recommended | Yes | 4.2, 6, 6.1, 13.1, 15 |
+
+## 19. Amendment 1 (2026-11-19)
+
+The timing pilot ran on 2026-11-19. It passed all four protocol checks. The numbers are in `results/m4_timing_pilot.json` (MEASURED, one session, 28 usable items): median 30 s per item, tie rate 0.036, 4 of 4 repeats the same.
+
+Changes made after the pilot, on the owner's choice:
+
+- **More dev pantries.** The dev pool grows from 60 to 100 new pantries. Dev then holds 110 pantries, because the 10 pilot pantries join dev (D7). The futility pool (20) and the reserve pool (10) follow the dev pool in the same fixed order. The pilot pool, the test pool (1,622), the pack hash and the exclusions stay byte-identical. No dev pantry was judged before the change.
+- **Hours.** The plan assumed 75 s per item. The pilot median is 30 s (MEASURED, one session). The dev block is about 330 items. At 30 s per item that is about 2.8 h in about 4 sessions (ESTIMATE). The hours in section 9.1 are out of date. The test block stays at least 4 sessions, because the plan does not allow more than 45 minutes per session. Re-estimate the test hours after the dev sessions.
+- **Power.** The observed tie rate is 0.036 on 28 items (ESTIMATE; one session). The no-tie rows of section 6 are the closest rows. 100 test pantries need 61 of 100 decided wins (win rate 0.61) with no ties. Do not quote this as a result. The tie rate on model-versus-rule items may be higher, because their lists may share more recipes.
+- **Hours table and D3.** Read D3 as "60 dev / 100 test" replaced by "100 dev / 100 test". All other decisions stand.
