@@ -11,7 +11,7 @@
     }
   ],
   "command": "uv run python scripts/m4_rank.py dev-score --name dev --allow-model-judge",
-  "commit": "a39559c56cd78a8cd4b2d1406b626155adfbedd4",
+  "commit": "47cca68fba0186df754836d591fab50fa2390370",
   "comparisons": [],
   "config": {
     "commit_order_checked": true,
@@ -28,8 +28,16 @@
     ]
   },
   "corpus_fingerprint": "a1a076ab0aee385c4e01cdc904342214dfaa6b01dc35d80d32519ea625c597d2",
-  "dirty": false,
-  "dirty_paths": [],
+  "dirty": true,
+  "dirty_paths": [
+    "docs/JUDGING_PROTOCOL.md",
+    "docs/plans/2026-11-18-m4-search-ranking.md",
+    "pantrychef/eval/m4_run.py",
+    "pantrychef/eval/pairwise.py",
+    "scripts/m4_rank.py",
+    "tests/eval/test_m4_run.py",
+    "tests/eval/test_pairwise.py"
+  ],
   "environment": {
     "numpy": "2.4.6",
     "platform": "Windows 10 (win32)",

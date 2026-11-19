@@ -1,0 +1,68 @@
+{
+  "arms": [
+    {
+      "features_used": [
+        "idf",
+        "have",
+        "total",
+        "unread",
+        "optional"
+      ],
+      "name": "rank_linear"
+    }
+  ],
+  "command": "uv run python scripts/m4_rank.py train --name dev --allow-model-labels",
+  "commit": "47cca68fba0186df754836d591fab50fa2390370",
+  "comparisons": [],
+  "config": {
+    "C": 0.01,
+    "commit_order_checked": true,
+    "comparator": "shipped",
+    "feature_set": "F3",
+    "features": [
+      "score",
+      "missing",
+      "miss_frac",
+      "unread_missing",
+      "total_c",
+      "short",
+      "optional_c",
+      "mean_w"
+    ],
+    "model_judged": true,
+    "pack_core_sha256": "1c2bcf5a0ac31813e9e08279c7729830c0658474a4d7fed8c8bfd1a94379a313",
+    "trained_on": {
+      "n_decided": 171,
+      "n_items": 299,
+      "n_pantries": 100,
+      "pantries_sha256": "48f59d7cb802a54c2bab37da7353ba780cc30bca559f43dfa138a23f790306a4",
+      "train_table_sha256": "933bd925ec76447435672002a0eef7f04526ab56064fb9096d6952b1d6dbe210",
+      "training_labels": "model_judged"
+    },
+    "training_labels": "model_judged",
+    "weights_sha256": "08323b2f22d6d9b1ae33904e3c02db690b8f3eb157ca58131126a66031fb9826"
+  },
+  "corpus_fingerprint": "a1a076ab0aee385c4e01cdc904342214dfaa6b01dc35d80d32519ea625c597d2",
+  "dirty": true,
+  "dirty_paths": [
+    "docs/JUDGING_PROTOCOL.md",
+    "docs/plans/2026-11-18-m4-search-ranking.md",
+    "pantrychef/eval/m4_run.py",
+    "pantrychef/eval/pairwise.py",
+    "scripts/m4_rank.py",
+    "tests/eval/test_m4_run.py",
+    "tests/eval/test_pairwise.py",
+    "data/eval/m4/train_table.v1.json",
+    "web/src/rank_model.v1.json"
+  ],
+  "environment": {
+    "numpy": "2.4.6",
+    "platform": "Windows 10 (win32)",
+    "python": "3.11.15"
+  },
+  "label": "HYPOTHESIS",
+  "metrics": [],
+  "schema": 1,
+  "seed": 42,
+  "what": "Dry run, model-judged. The linear ranking model rank_linear: its configuration. It has no judgments yet. The futility check and the test come later."
+}

@@ -26,7 +26,7 @@
     }
   ],
   "command": "uv run python scripts/m4_rank.py dev-score --name dev --allow-model-judge",
-  "commit": "a39559c56cd78a8cd4b2d1406b626155adfbedd4",
+  "commit": "47cca68fba0186df754836d591fab50fa2390370",
   "comparisons": [
     {
       "a": "idf_flat",
@@ -76,7 +76,8 @@
   ],
   "config": {
     "commit_order_checked": true,
-    "comparator": "idf_flat",
+    "comparator": "shipped",
+    "comparator_source": "default (dev answers are model-judged)",
     "d": 3,
     "gold_out": true,
     "idf_rule_selection": {
@@ -95,15 +96,15 @@
     "neutral_order": true,
     "overlap_beats_rule": false,
     "overlap_vs_rule": {
-      "L": 29,
-      "T": 53,
-      "W": 18,
+      "L": 24,
+      "T": 38,
+      "W": 38,
       "cp": [
-        0.24506816901291972,
-        0.5362006171083615
+        0.4806525956197869,
+        0.7339914913710985
       ],
-      "cp_lo": 0.24506816901291972,
-      "rule": "idf_flat"
+      "cp_lo": 0.4806525956197869,
+      "rule": "shipped"
     },
     "pack_core_sha256": "1c2bcf5a0ac31813e9e08279c7729830c0658474a4d7fed8c8bfd1a94379a313",
     "pairs": {
@@ -163,8 +164,16 @@
     ]
   },
   "corpus_fingerprint": "a1a076ab0aee385c4e01cdc904342214dfaa6b01dc35d80d32519ea625c597d2",
-  "dirty": false,
-  "dirty_paths": [],
+  "dirty": true,
+  "dirty_paths": [
+    "docs/JUDGING_PROTOCOL.md",
+    "docs/plans/2026-11-18-m4-search-ranking.md",
+    "pantrychef/eval/m4_run.py",
+    "pantrychef/eval/pairwise.py",
+    "scripts/m4_rank.py",
+    "tests/eval/test_m4_run.py",
+    "tests/eval/test_pairwise.py"
+  ],
   "environment": {
     "numpy": "2.4.6",
     "platform": "Windows 10 (win32)",
