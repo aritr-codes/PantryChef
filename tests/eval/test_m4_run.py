@@ -581,6 +581,52 @@ def test_pilot_score_writes_the_result_file_with_the_checks_and_the_power_table(
     assert [r["n"] for r in power] == [40, 60, 80, 100]
 
 
+FORBIDDEN_KEYS = {
+    "a_wins", "b_wins", "win_rate", "cp", "net_preference", "strength", "pairs", "would_cook",
+    "probes", "sessions", "ties", "p_exact", "win_rate_a", "win_rate_ties_as_half",
+}  # fmt: skip
+
+
+def json_keys(x):
+    if isinstance(x, dict):
+        for k, v in x.items():
+            yield k
+            yield from json_keys(v)
+    elif isinstance(x, list):
+        for v in x:
+            yield from json_keys(v)
+
+
+def test_pilot_result_file_keeps_the_owner_blind(env, tmp_path):
+    """The pilot answers join dev (D7). The file the owner may open holds no arm, no pair count,
+    no win rate, no interval, no preference and no strength (plan 8.1)."""
+    e = pilot_world(env, tmp_path)
+    assert run("pilot-score", e, "--name", "pilot") == 0
+    text = (e.root / "results/m4_timing_pilot.json").read_text(encoding="utf-8")
+    for arm in ("overlap", "shipped", "idf_flat", "rank_linear"):
+        assert arm not in text, arm
+    assert FORBIDDEN_KEYS.isdisjoint(json_keys(json.loads(text)))
+    doc = json.loads(text)
+    assert doc["config"]["checks"]["overall"] is True
+    assert {"power", "n_base", "tie_rate", "repeats_same", "repeats_total"} <= set(
+        doc["config"]["analysis"]
+    )
+    assert doc["arms"] == []
+
+
+def test_dev_score_recomputes_the_pilot_numbers_from_the_answers_not_the_timing_file(env, tmp_path):
+    e = pilot_world(env, tmp_path)
+    assert run("dev-score", e, "--name", "pilot", "dev") == 0
+    first = json.loads((e.root / "results/m4_dev_pairs.json").read_text())["config"]["pairs"]
+    (e.root / "results/m4_timing_pilot.json").write_text("not json at all")  # must not be read
+    assert run("dev-score", e, "--name", "pilot", "dev") == 0
+    again = json.loads((e.root / "results/m4_dev_pairs.json").read_text())["config"]["pairs"]
+    assert again == first
+    n_pilot = len([v for v in sheet_key(e, "pilot")["items"].values() if not v["repeat_of"]])
+    n_dev = len([v for v in sheet_key(e, "dev")["items"].values() if not v["repeat_of"]])
+    assert sum(p["n"] for p in again.values()) == n_pilot + n_dev  # the pilot items are counted
+
+
 def test_pilot_score_fails_check_2_when_every_item_is_a_tie(env, tmp_path, capsys):
     e = pilot_world(env, tmp_path)
 

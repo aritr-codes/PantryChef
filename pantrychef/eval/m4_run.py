@@ -496,6 +496,19 @@ def pilot_checks(scored: dict, model_judged: bool) -> dict:
     return checks
 
 
+# The only parts of the scored pilot that go to the file the owner may open. Everything else
+# (pairs, would-cook, strength, probes, sessions) names an arm or counts a win, and the pilot
+# answers join dev (D7). Plan 8.1.
+PILOT_ANALYSIS_KEYS = (
+    "n_base",
+    "tie_rate",
+    "repeats_same",
+    "repeats_total",
+    "median_seconds",
+    "power",
+)
+
+
 def pilot_doc(
     key: dict,
     scored: dict,
@@ -507,7 +520,8 @@ def pilot_doc(
     command: str,
     commit_order_checked: bool,
 ) -> dict:
-    """``results/m4_timing_pilot.json``: the pilot numbers, the four checks and the power table."""
+    """``results/m4_timing_pilot.json``: the four checks, timing, tie rate, repeat agreement and the
+    power table. No arm and no per-pair count (the owner may open this file)."""
     n = scored["n_base"]
     metrics = [
         {"name": "pairwise_tie_rate", "arm": None, "split": "pilot", "n": n,
@@ -539,11 +553,11 @@ def pilot_doc(
             "pack_core_sha256": pack_sha,
             "model_judged": model_judged,
             "commit_order_checked": commit_order_checked,
-            "analysis": scored,
+            "analysis": {k: scored[k] for k in PILOT_ANALYSIS_KEYS},
         },
         "seed": 42,
         "corpus_fingerprint": corpus_fingerprint,
-        "arms": [{"name": a} for a in key.get("arms", DEV_ARMS)],
+        "arms": [],  # no arm: the pilot answers join dev, so the owner must not see per-arm data
         "metrics": metrics,
         "comparisons": [],
         "environment": {},
