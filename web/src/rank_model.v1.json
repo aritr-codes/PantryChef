@@ -57,6 +57,7 @@
   "outer_accuracy": 0.6549707602339181
  },
  "comparator": "shipped",
- "commit": "47cca68fba0186df754836d591fab50fa2390370",
- "licence": "MIT (derived from the owner's judgments and pack-v2 numbers)"
+ "commit": "571f8e741188bd8fa5e7ec9722562eb18d555afc",
+ "dirty": false,
+ "licence": "MIT (derived from labels made by an LLM annotation pass, run offline once and reviewed by the owner, and from pack-v2 numbers; no LLM runs at run time)"
 }

@@ -12,7 +12,7 @@
     }
   ],
   "command": "uv run python scripts/m4_rank.py train --name dev --allow-model-labels",
-  "commit": "47cca68fba0186df754836d591fab50fa2390370",
+  "commit": "571f8e741188bd8fa5e7ec9722562eb18d555afc",
   "comparisons": [],
   "config": {
     "C": 0.01,
@@ -40,19 +40,11 @@
       "training_labels": "model_judged"
     },
     "training_labels": "model_judged",
-    "weights_sha256": "08323b2f22d6d9b1ae33904e3c02db690b8f3eb157ca58131126a66031fb9826"
+    "weights_sha256": "5959d01795e4e150e3b9e43116adc0486309883a1836f87b9e125b61c2225847"
   },
   "corpus_fingerprint": "a1a076ab0aee385c4e01cdc904342214dfaa6b01dc35d80d32519ea625c597d2",
   "dirty": true,
   "dirty_paths": [
-    "docs/JUDGING_PROTOCOL.md",
-    "docs/plans/2026-11-18-m4-search-ranking.md",
-    "pantrychef/eval/m4_run.py",
-    "pantrychef/eval/pairwise.py",
-    "scripts/m4_rank.py",
-    "tests/eval/test_m4_run.py",
-    "tests/eval/test_pairwise.py",
-    "data/eval/m4/train_table.v1.json",
     "web/src/rank_model.v1.json"
   ],
   "environment": {
@@ -64,5 +56,5 @@
   "metrics": [],
   "schema": 1,
   "seed": 42,
-  "what": "Dry run, model-judged. The linear ranking model rank_linear: its configuration. It has no judgments yet. The futility check and the test come later."
+  "what": "Model-labelled training (Amendment 2): labels are model-judged; the human futility check and test decide. The linear ranking model rank_linear: its configuration. It has no judgments yet. The futility check and the test come later."
 }
