@@ -1,0 +1,245 @@
+{
+  "arms": [
+    {
+      "features_used": [
+        "have",
+        "total"
+      ],
+      "name": "overlap"
+    },
+    {
+      "features_used": [
+        "idf",
+        "have",
+        "total",
+        "group"
+      ],
+      "name": "shipped"
+    },
+    {
+      "features_used": [
+        "idf",
+        "have",
+        "total"
+      ],
+      "name": "idf_flat"
+    }
+  ],
+  "command": "uv run python scripts/m4_rank.py dev-score --name dev --allow-model-judge",
+  "commit": "a39559c56cd78a8cd4b2d1406b626155adfbedd4",
+  "comparisons": [
+    {
+      "a": "idf_flat",
+      "b": "overlap",
+      "ci": {
+        "hi": 0.2549318309870803,
+        "level": 0.95,
+        "lo": -0.036200617108361755,
+        "method": "clopper-pearson-exact",
+        "n_clusters": 47
+      },
+      "diff": 0.11702127659574468,
+      "metric": "pilot_pairwise_win_rate",
+      "role": "sanity",
+      "split": "dev"
+    },
+    {
+      "a": "idf_flat",
+      "b": "shipped",
+      "ci": {
+        "hi": 0.2906049173571421,
+        "level": 0.95,
+        "lo": 0.046639848224032665,
+        "method": "clopper-pearson-exact",
+        "n_clusters": 62
+      },
+      "diff": 0.17741935483870963,
+      "metric": "pilot_pairwise_win_rate",
+      "role": "sanity",
+      "split": "dev"
+    },
+    {
+      "a": "overlap",
+      "b": "shipped",
+      "ci": {
+        "hi": 0.23399149137109854,
+        "level": 0.95,
+        "lo": -0.019347404380213096,
+        "method": "clopper-pearson-exact",
+        "n_clusters": 62
+      },
+      "diff": 0.11290322580645162,
+      "metric": "pilot_pairwise_win_rate",
+      "role": "sanity",
+      "split": "dev"
+    }
+  ],
+  "config": {
+    "commit_order_checked": true,
+    "comparator": "idf_flat",
+    "d": 3,
+    "gold_out": true,
+    "idf_rule_selection": {
+      "L": 20,
+      "T": 37,
+      "W": 42,
+      "cp": [
+        0.5466398482240327,
+        0.7906049173571421
+      ],
+      "cp_lo": 0.5466398482240327
+    },
+    "judge": "model-judged (dry run, never selects)",
+    "max_missing": 2,
+    "model_judged": true,
+    "neutral_order": true,
+    "overlap_beats_rule": false,
+    "overlap_vs_rule": {
+      "L": 29,
+      "T": 53,
+      "W": 18,
+      "cp": [
+        0.24506816901291972,
+        0.5362006171083615
+      ],
+      "cp_lo": 0.24506816901291972,
+      "rule": "idf_flat"
+    },
+    "pack_core_sha256": "1c2bcf5a0ac31813e9e08279c7729830c0658474a4d7fed8c8bfd1a94379a313",
+    "pairs": {
+      "idf_flat_vs_overlap": {
+        "a": "idf_flat",
+        "a_wins": 29,
+        "b": "overlap",
+        "b_wins": 18,
+        "cp": [
+          0.46379938289163825,
+          0.7549318309870803
+        ],
+        "n": 100,
+        "net_preference": 0.11,
+        "p_exact": 0.14386508844054902,
+        "ties": 53,
+        "win_rate_a": 0.6170212765957447,
+        "win_rate_ties_as_half": 0.555
+      },
+      "idf_flat_vs_shipped": {
+        "a": "idf_flat",
+        "a_wins": 42,
+        "b": "shipped",
+        "b_wins": 20,
+        "cp": [
+          0.5466398482240327,
+          0.7906049173571421
+        ],
+        "n": 99,
+        "net_preference": 0.2222222222222222,
+        "p_exact": 0.007148733833163067,
+        "ties": 37,
+        "win_rate_a": 0.6774193548387096,
+        "win_rate_ties_as_half": 0.6111111111111112
+      },
+      "overlap_vs_shipped": {
+        "a": "overlap",
+        "a_wins": 38,
+        "b": "shipped",
+        "b_wins": 24,
+        "cp": [
+          0.4806525956197869,
+          0.7339914913710985
+        ],
+        "n": 100,
+        "net_preference": 0.14,
+        "p_exact": 0.09795444051950737,
+        "ties": 38,
+        "win_rate_a": 0.6129032258064516,
+        "win_rate_ties_as_half": 0.57
+      }
+    },
+    "rule": "plan 4.3: idf_flat only if the CP 95% lower bound of W/(W+L) beats 0.5",
+    "sampler": "popularity",
+    "sheets": [
+      "dev"
+    ]
+  },
+  "corpus_fingerprint": "a1a076ab0aee385c4e01cdc904342214dfaa6b01dc35d80d32519ea625c597d2",
+  "dirty": false,
+  "dirty_paths": [],
+  "environment": {
+    "numpy": "2.4.6",
+    "platform": "Windows 10 (win32)",
+    "python": "3.11.15"
+  },
+  "label": "MEASURED",
+  "metrics": [
+    {
+      "arm": "idf_flat",
+      "ci": {
+        "hi": 0.7549318309870803,
+        "level": 0.95,
+        "lo": 0.46379938289163825,
+        "method": "clopper-pearson-exact",
+        "n_clusters": 47
+      },
+      "depends_on": [
+        "judge_model"
+      ],
+      "group": {
+        "ties": 53,
+        "versus": "overlap"
+      },
+      "n": 47,
+      "name": "pilot_pairwise_win_rate",
+      "role": "sanity",
+      "split": "dev",
+      "value": 0.6170212765957447
+    },
+    {
+      "arm": "idf_flat",
+      "ci": {
+        "hi": 0.7906049173571421,
+        "level": 0.95,
+        "lo": 0.5466398482240327,
+        "method": "clopper-pearson-exact",
+        "n_clusters": 62
+      },
+      "depends_on": [
+        "judge_model"
+      ],
+      "group": {
+        "ties": 37,
+        "versus": "shipped"
+      },
+      "n": 62,
+      "name": "pilot_pairwise_win_rate",
+      "role": "sanity",
+      "split": "dev",
+      "value": 0.6774193548387096
+    },
+    {
+      "arm": "overlap",
+      "ci": {
+        "hi": 0.7339914913710985,
+        "level": 0.95,
+        "lo": 0.4806525956197869,
+        "method": "clopper-pearson-exact",
+        "n_clusters": 62
+      },
+      "depends_on": [
+        "judge_model"
+      ],
+      "group": {
+        "ties": 38,
+        "versus": "shipped"
+      },
+      "n": 62,
+      "name": "pilot_pairwise_win_rate",
+      "role": "sanity",
+      "split": "dev",
+      "value": 0.6129032258064516
+    }
+  ],
+  "schema": 1,
+  "seed": 42,
+  "what": "Dev pairs, model-judged (dry run, never selects): win counts of the three systems on the dev pantries (sheets dev), and the IDF-rule choice of plan 4.3."
+}
