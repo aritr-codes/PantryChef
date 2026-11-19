@@ -241,6 +241,39 @@ def test_weights_file_round_trips(tmp_path):
     assert all(w == 0.0 for f, w in zip(FEATURES, data["weights"], strict=True) if f not in names)
 
 
+def _train_labels(tmp_path, **kw):
+    pw.run_train(
+        synthetic(n_pantries=30),
+        sets=SETS,
+        Cs=(1.0,),
+        seed=0,
+        weights_path=tmp_path / "w.json",
+        table_path=tmp_path / "t.json",
+        comparator="shipped",
+        commit="abc",
+        **kw,
+    )
+    return json.loads((tmp_path / "w.json").read_text(encoding="utf8"))
+
+
+def test_weights_licence_follows_the_label_source(tmp_path):
+    human = _train_labels(tmp_path, training_labels="human")["licence"]
+    model = _train_labels(tmp_path, training_labels="model_judged")["licence"]
+    assert "owner's judgments" in human and "LLM" not in human
+    assert "LLM annotation pass" in model and "reviewed by the owner" in model
+    assert "offline" in model and "no LLM runs at run time" in model
+    assert "owner's judgments" not in model
+    assert human.startswith("MIT") and model.startswith("MIT")
+
+
+def test_weights_record_the_head_commit_and_a_dirty_flag(tmp_path):
+    clean = _train_labels(tmp_path, dirty=False)
+    assert (clean["commit"], clean["dirty"]) == ("abc", False)
+    dirty = _train_labels(tmp_path, dirty=True)
+    assert (dirty["commit"], dirty["dirty"]) == ("abc", True)
+    assert _train_labels(tmp_path)["dirty"] is True  # not stated: not claimed clean
+
+
 def test_run_train_writes_no_weights_when_check1_fails(tmp_path):
     rng = np.random.default_rng(1)
     items = [

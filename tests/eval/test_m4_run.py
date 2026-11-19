@@ -893,6 +893,59 @@ def test_train_refuses_a_table_that_mixes_human_and_model_rows(scored, tmp_path)
         run("dev-score", e, "--name", "pilot", "dev", "--allow-model-judge")
 
 
+LABELLED_WHAT = (
+    "Model-labelled training (Amendment 2): labels are model-judged; "
+    "the human futility check and test decide"
+)
+
+
+def test_model_labelled_training_is_not_called_a_dry_run(mtrained):
+    r = mtrained.root
+    for rel in ("results/m4_cv.json", "results/m4_arm_rank_linear.json"):
+        what = json.loads((r / rel).read_text())["what"]
+        assert what.startswith(LABELLED_WHAT), rel
+        assert "Dry run" not in what, rel
+
+
+def test_train_records_the_head_commit_and_a_dirty_flag_in_the_weights(trained):
+    w = json.loads((trained.root / "web/src/rank_model.v1.json").read_text())
+    assert re.fullmatch(r"[0-9a-f]{40}", w["commit"]) and isinstance(w["dirty"], bool)
+    assert w["commit"] == results.git_facts(m4.ROOT)[0]
+
+
+def test_human_training_has_no_label_or_dry_run_prefix(trained):
+    r = trained.root
+    for rel in ("results/m4_cv.json", "results/m4_arm_rank_linear.json"):
+        what = json.loads((r / rel).read_text())["what"]
+        assert "Dry run" not in what and "Model-labelled" not in what, rel
+
+
+def test_cv_doc_says_dry_run_only_for_a_model_judged_dry_run():
+    out = {
+        "cv": {
+            "n_decided": 1, "outer_logloss": 0.5, "outer_accuracy": 0.5, "f1_logloss": 0.6,
+            "f1_accuracy": 0.5, "chance_logloss": 0.69,
+        },
+        "check1": {}, "choice": {}, "weights_written": True, "train_table_sha256": "x",
+    }  # fmt: skip
+    kw = {
+        "pack_sha": "p", "corpus_fingerprint": "f", "comparator": "shipped", "command": "c",
+        "n_items": 1, "commit_order_checked": True,
+    }  # fmt: skip
+    dry = m4_run.cv_doc(out, model_judged=True, **kw)["what"]
+    assert dry.startswith("Dry run, model-judged.")
+    both = m4_run.cv_doc(out, model_judged=True, training_labels="model_judged", **kw)["what"]
+    assert both.startswith(LABELLED_WHAT) and "Dry run" not in both
+    assert m4_run.cv_doc(out, **kw)["what"].startswith("Nested grouped")
+
+
+def test_the_dev_answers_note_matches_amendment_2():
+    note = (m4.ROOT / "data/eval/m4/answers.dev.NOTE.md").read_text(encoding="utf-8")
+    assert "Do not train" not in note and "never enter training" not in note
+    for phrase in ("--allow-model-labels", "training_labels", "shipped", "human"):
+        assert phrase in note
+
+
 def test_dev_score_does_not_let_model_labels_choose_the_comparator(mtrained):
     cfg = json.loads((mtrained.root / "results/m4_dev_pairs.json").read_text())["config"]
     assert cfg["comparator"] == "shipped" and cfg["comparator_source"] == SOURCE_MODEL

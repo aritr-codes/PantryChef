@@ -303,12 +303,14 @@ def cmd_train(args: argparse.Namespace) -> int:
     )
     if bad:
         raise SystemExit("leak check failed, nothing written: " + "; ".join(bad))
+    commit, dirty, _ = results.git_facts(ROOT)
     out = pw.run_train(
         items,
         weights_path=root / WEIGHTS,
         table_path=root / TABLE,
         comparator=comparator,
-        commit=results.git_facts(ROOT)[0],
+        commit=commit,
+        dirty=dirty,
         training_labels=labels,
     )
     wrote = [TABLE]
@@ -342,7 +344,7 @@ def cmd_train(args: argparse.Namespace) -> int:
         weights = json.loads((root / WEIGHTS).read_text(encoding="utf-8"))
         arm = {
             "label": "HYPOTHESIS",
-            "what": ("Dry run, model-judged. " if judged else "")
+            "what": m4_run.train_what_prefix(judged, labels)
             + "The linear ranking model rank_linear: its configuration. It has no "
             "judgments yet. The futility check and the test come later.",
             "command": cmd,

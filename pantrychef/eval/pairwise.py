@@ -39,7 +39,20 @@ DEFAULT_SETS: dict[str, tuple[str, ...]] = {
 }
 DEFAULT_CS = (0.01, 0.03, 0.1, 0.3, 1.0)
 CR = chr(13).encode()  # a carriage return in a frozen file would change its hash
-LICENCE = "MIT (derived from the owner's judgments and pack-v2 numbers)"
+_LICENCE_BY_LABELS = {
+    "human": "MIT (derived from the owner's judgments and pack-v2 numbers)",
+    "model_judged": (
+        "MIT (derived from labels made by an LLM annotation pass, run offline once and "
+        "reviewed by the owner, and from pack-v2 numbers; no LLM runs at run time)"
+    ),
+}
+
+
+def licence_for(training_labels: str) -> str:
+    """The weights file licence and provenance text. It follows the label source."""
+    return _LICENCE_BY_LABELS[training_labels]
+
+
 WEIGHTS_REL = "web/src/rank_model.v1.json"
 PANTRIES_REL = "data/eval/m4/pantries.v1.json"
 # Plan step 12 lists the first 16. The last 7 are the modules the three scripts import that
@@ -361,6 +374,7 @@ def run_train(
     table_path: str | Path,
     comparator: str,
     commit: str,
+    dirty: bool = True,
     training_labels: str = "human",
     sets: dict | None = None,
     Cs: Sequence[float] = DEFAULT_CS,
@@ -407,7 +421,8 @@ def run_train(
             "cv": {"outer_logloss": cv["outer_logloss"], "outer_accuracy": cv["outer_accuracy"]},
             "comparator": comparator,
             "commit": commit,
-            "licence": LICENCE,
+            "dirty": dirty,  # recorded, never refused: the freeze needs a clean tree anyway
+            "licence": licence_for(training_labels),
         }
         _write_json(Path(weights_path), payload)
         out["weights_written"] = True

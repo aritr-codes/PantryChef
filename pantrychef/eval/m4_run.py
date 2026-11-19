@@ -348,6 +348,16 @@ def dev_docs(
     return docs
 
 
+def train_what_prefix(model_judged: bool, training_labels: str) -> str:
+    """Opening words of ``what`` for a training result. Real model labels are not a dry run."""
+    if training_labels == "model_judged":
+        return (
+            "Model-labelled training (Amendment 2): labels are model-judged; "
+            "the human futility check and test decide. "
+        )
+    return "Dry run, model-judged. " if model_judged else ""
+
+
 def cv_doc(
     out: dict,
     *,
@@ -372,7 +382,7 @@ def cv_doc(
     }
     return {
         "label": "ESTIMATE",
-        "what": ("Dry run, model-judged. " if model_judged else "")
+        "what": train_what_prefix(model_judged, training_labels)
         + "Nested grouped cross-validation on dev: held-out log-loss and accuracy of the "
         "whole procedure (feature set and C chosen inside each fold, one-SE rule). It is not a "
         "test result.",
