@@ -158,6 +158,8 @@ Pending:
 
 ## M4: Search and ranking (about 2 weeks)
 
+**Status, 2026-11-25: done. Outcome: IDF rule kept.** The learned model was stopped by the pre-registered futility check 2 (10 wins, 10 losses, model-judged, MEASURED, [results/m4_futility.json](../results/m4_futility.json)). The human test did not run, so the ship rule was not met. No browser change. No human preference result exists. The decision is in [ADR 0007](decisions/0007-keep-the-idf-rule-after-m4.md). Details: section 13 of [PROJECT_STATE.md](PROJECT_STATE.md) and the M4 section of [EVALUATION.md](EVALUATION.md).
+
 **Objective:** the best honest ranking, and the recommender deliverable.
 
 - M1 builds staples, grouping and IDF ordering. Refine them here, and run the IDF variants.
