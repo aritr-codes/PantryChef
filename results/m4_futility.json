@@ -1,0 +1,309 @@
+{
+  "arms": [
+    {
+      "features_used": [
+        "idf",
+        "have",
+        "total",
+        "unread",
+        "optional"
+      ],
+      "name": "rank_linear"
+    },
+    {
+      "features_used": [
+        "idf",
+        "have",
+        "total",
+        "group"
+      ],
+      "name": "shipped"
+    }
+  ],
+  "command": "uv run python scripts/m4_rank.py futility --allow-model-judge",
+  "commit": "ac0e0f4b1ba8c31a840556188f66a0fbedb328be",
+  "comparisons": [
+    {
+      "a": "rank_linear",
+      "b": "shipped",
+      "ci": {
+        "hi": 0.22804215043920784,
+        "level": 0.95,
+        "lo": -0.22804215043920817,
+        "method": "clopper-pearson-exact",
+        "n_clusters": 20
+      },
+      "diff": 0.0,
+      "metric": "pilot_pairwise_win_rate",
+      "role": "sanity",
+      "split": "futility"
+    }
+  ],
+  "config": {
+    "analysis": {
+      "arms": [
+        "rank_linear",
+        "shipped"
+      ],
+      "median_seconds": null,
+      "n_base": 20,
+      "pairs": {
+        "rank_linear_vs_shipped": {
+          "a": "rank_linear",
+          "a_wins": 10,
+          "b": "shipped",
+          "b_wins": 10,
+          "cp": [
+            0.27195784956079183,
+            0.7280421504392078
+          ],
+          "n": 20,
+          "net_preference": 0.0,
+          "p_exact": 1.0,
+          "ties": 0,
+          "win_rate_a": 0.5,
+          "win_rate_ties_as_half": 0.5
+        }
+      },
+      "power": [
+        {
+          "decided": 40,
+          "mdw": 0.725,
+          "n": 40,
+          "power_065": 0.4407661666936872,
+          "power_070": 0.7032490665962635,
+          "power_075": 0.8967682759402061,
+          "wins_needed": 27
+        },
+        {
+          "decided": 60,
+          "mdw": 0.695,
+          "n": 60,
+          "power_065": 0.5590321392949311,
+          "power_070": 0.8381821162018508,
+          "power_075": 0.9701991299851517,
+          "wins_needed": 39
+        },
+        {
+          "decided": 80,
+          "mdw": 0.665,
+          "n": 80,
+          "power_065": 0.7235277577745802,
+          "power_070": 0.941251886408827,
+          "power_075": 0.9954180144318203,
+          "wins_needed": 50
+        },
+        {
+          "decided": 100,
+          "mdw": 0.65,
+          "n": 100,
+          "power_065": 0.8275849957487509,
+          "power_070": 0.9790114239960754,
+          "power_075": 0.9993134077920371,
+          "wins_needed": 61
+        }
+      ],
+      "primary": {
+        "L": 10,
+        "T": 0,
+        "W": 10,
+        "cp": [
+          0.27195784956079183,
+          0.7280421504392078
+        ],
+        "cp_lo_above_half": false,
+        "gain": 0.0,
+        "gain_ci": [
+          -0.22804215043920817,
+          0.22804215043920784
+        ],
+        "model": "rank_linear",
+        "n": 20,
+        "net_preference": 0.0,
+        "p_exact": 1.0,
+        "rule": "shipped",
+        "sessions": {
+          "1": {
+            "L": 10,
+            "W": 10,
+            "win_rate": 0.5
+          }
+        },
+        "strength": {
+          "mean": 0.0,
+          "n_missing": 0,
+          "scores": [
+            -1,
+            -2,
+            1,
+            -1,
+            2,
+            -1,
+            1,
+            -1,
+            1,
+            2,
+            -2,
+            1,
+            2,
+            -1,
+            1,
+            1,
+            -1,
+            -2,
+            -1,
+            1
+          ],
+          "toward": "rank_linear",
+          "wilcoxon_p": 1.0
+        },
+        "tie_rate": 0.0,
+        "win_rate": 0.5,
+        "win_rate_ties_as_half": 0.5,
+        "worst_case_win_rate": 0.5
+      },
+      "probes": [],
+      "repeats_same": 0,
+      "repeats_total": 0,
+      "secondary": {
+        "would_cook": {
+          "b": 4,
+          "c": 2,
+          "cp": [
+            0.22277809550351219,
+            0.9567281317072582
+          ],
+          "mean_diff": 0.1,
+          "p_mcnemar": 0.6875
+        }
+      },
+      "sessions": {
+        "1": {
+          "rank_linear_vs_shipped": {
+            "a": "rank_linear",
+            "a_wins": 10,
+            "b": "shipped",
+            "b_wins": 10,
+            "cp": [
+              0.27195784956079183,
+              0.7280421504392078
+            ],
+            "n": 20,
+            "net_preference": 0.0,
+            "p_exact": 1.0,
+            "ties": 0,
+            "win_rate_a": 0.5,
+            "win_rate_ties_as_half": 0.5
+          }
+        }
+      },
+      "strength": {
+        "rank_linear_vs_shipped": {
+          "n_missing": 0,
+          "scores": [
+            -1,
+            -2,
+            1,
+            -1,
+            2,
+            -1,
+            1,
+            -1,
+            1,
+            2,
+            -2,
+            1,
+            2,
+            -1,
+            1,
+            1,
+            -1,
+            -2,
+            -1,
+            1
+          ],
+          "wilcoxon_p": 1.0
+        }
+      },
+      "tie_rate": 0.0,
+      "would_cook": {
+        "rank_linear": 0.9,
+        "shipped": 0.8
+      }
+    },
+    "arms": [
+      "rank_linear",
+      "shipped"
+    ],
+    "commit_order_checked": true,
+    "comparator": "shipped",
+    "futility": {
+      "L": 10,
+      "T": 0,
+      "W": 10,
+      "comparator": "shipped",
+      "n": 20,
+      "rule": "stop when W <= L",
+      "stop": true
+    },
+    "futility_judge": "model_judged",
+    "gold_out": true,
+    "model_judged": true,
+    "model_sha256": "5959d01795e4e150e3b9e43116adc0486309883a1836f87b9e125b61c2225847",
+    "n_test": 20,
+    "neutral_order": true,
+    "pack_core_sha256": "1c2bcf5a0ac31813e9e08279c7729830c0658474a4d7fed8c8bfd1a94379a313",
+    "pool": "futility",
+    "weights_sha256": "5959d01795e4e150e3b9e43116adc0486309883a1836f87b9e125b61c2225847"
+  },
+  "corpus_fingerprint": "a1a076ab0aee385c4e01cdc904342214dfaa6b01dc35d80d32519ea625c597d2",
+  "dirty": false,
+  "dirty_paths": [],
+  "environment": {
+    "numpy": "2.4.6",
+    "platform": "Windows 10 (win32)",
+    "python": "3.11.15"
+  },
+  "label": "MEASURED",
+  "metrics": [
+    {
+      "arm": "rank_linear",
+      "ci": {
+        "hi": 0.7280421504392078,
+        "level": 0.95,
+        "lo": 0.27195784956079183,
+        "method": "clopper-pearson-exact",
+        "n_clusters": 20
+      },
+      "depends_on": [
+        "judge_model"
+      ],
+      "n": 20,
+      "name": "pilot_pairwise_win_rate",
+      "role": "sanity",
+      "split": "futility",
+      "value": 0.5
+    },
+    {
+      "arm": null,
+      "depends_on": [],
+      "n": 20,
+      "name": "pairwise_tie_rate",
+      "role": "sanity",
+      "split": "futility",
+      "value": 0.0
+    },
+    {
+      "arm": null,
+      "depends_on": [],
+      "n": 20,
+      "name": "pairwise_net_preference",
+      "role": "sanity",
+      "split": "futility",
+      "value": 0.0
+    }
+  ],
+  "schema": 1,
+  "seed": 42,
+  "what": "Model-judged futility check (Amendment 3): a model, not the owner, judged the 20 items. It is weak evidence and can only stop the test. Futility check 2 (plan 7.5): the model against the IDF rule on the 20 dev spares. It can stop the test. It never proves a gain and never changes the weights."
+}
