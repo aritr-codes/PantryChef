@@ -1,0 +1,63 @@
+{
+ "version": 1,
+ "features": [
+  "score",
+  "missing",
+  "miss_frac",
+  "unread_missing",
+  "total_c",
+  "short",
+  "optional_c",
+  "mean_w"
+ ],
+ "weights": [
+  0.4346127911738913,
+  0.04936530792273648,
+  0.11030581810035149,
+  0.2976138472811908,
+  0.03426809124747284,
+  -0.027709501954293086,
+  0.5682293020215852,
+  -0.019671702557191105
+ ],
+ "feature_set": "F3",
+ "C": 0.01,
+ "standardisation": {
+  "mean": [
+   0.0,
+   0.0,
+   0.0,
+   0.0,
+   0.0,
+   0.0,
+   0.0,
+   0.0
+  ],
+  "sd": [
+   0.42758015554588436,
+   1.103105663689186,
+   0.2571095007783379,
+   0.16113631583445662,
+   2.333483704427869,
+   0.6261363937879117,
+   0.5689839101929683,
+   0.7414199446096769
+  ]
+ },
+ "trained_on": {
+  "pantries_sha256": "48f59d7cb802a54c2bab37da7353ba780cc30bca559f43dfa138a23f790306a4",
+  "train_table_sha256": "933bd925ec76447435672002a0eef7f04526ab56064fb9096d6952b1d6dbe210",
+  "training_labels": "model_judged",
+  "n_pantries": 100,
+  "n_items": 299,
+  "n_decided": 171
+ },
+ "cv": {
+  "outer_logloss": 0.6552819728557604,
+  "outer_accuracy": 0.6549707602339181
+ },
+ "comparator": "shipped",
+ "commit": "571f8e741188bd8fa5e7ec9722562eb18d555afc",
+ "dirty": false,
+ "licence": "MIT (derived from labels made by an LLM annotation pass, run offline once and reviewed by the owner, and from pack-v2 numbers; no LLM runs at run time)"
+}

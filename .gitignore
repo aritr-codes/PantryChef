@@ -35,6 +35,8 @@ datasets/
 !data/ingredients/*.csv
 # Graph spike inputs and the owner's answers are evidence, not data (frozen table, answers file)
 !data/eval/graph_spike/*.csv
+# M4 answers files (plan 8.3)
+!data/eval/m4/*.csv
 *.parquet
 *.jsonl
 *.npy

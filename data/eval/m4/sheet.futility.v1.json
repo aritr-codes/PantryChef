@@ -1,0 +1,1395 @@
+{
+  "version": 1,
+  "items": [
+    {
+      "item_id": "item01",
+      "pantry": [
+        "bell pepper",
+        "crayfish",
+        "dried fish",
+        "ewedu",
+        "green onion",
+        "leek",
+        "meat",
+        "mixed spice",
+        "onion",
+        "palm oil",
+        "stock",
+        "tomato"
+      ],
+      "left": [
+        {
+          "title": "Banga Soup",
+          "missing": [
+            "4 cups raw palm nuts or 800 ml canned palm nut extract",
+            "Scent leaves (or substitute with basil)"
+          ]
+        },
+        {
+          "title": "Ewedu Soup (Yoruba Style)",
+          "missing": []
+        },
+        {
+          "title": "Obe Ata",
+          "missing": [
+            "2–6 scotch bonnet peppers (ata rodo)",
+            "2–3 seasoning cubes"
+          ]
+        },
+        {
+          "title": "Sese Plaintains (Cameroonian Plantain Stew)",
+          "missing": [
+            "5 pounds unripe plantains",
+            "1 bunch of fresh kale leaves, chopped"
+          ]
+        },
+        {
+          "title": "Ukazi Soup",
+          "missing": [
+            "2 ea. \"cameroon peppers\" or yellow habanero chiles, chopped",
+            "40 g okazi leaf"
+          ]
+        }
+      ],
+      "right": [
+        {
+          "title": "Asun (Goat in Pepper Sauce)",
+          "missing": [
+            "Fresh habanero pepper"
+          ]
+        },
+        {
+          "title": "Balangu (Nigerian Spiced Ram Meat)",
+          "missing": [
+            "2 large chunks of mutton"
+          ]
+        },
+        {
+          "title": "Ewedu Soup (Yoruba Style)",
+          "missing": []
+        },
+        {
+          "title": "Glace de Viande (Reduced Beef Sauce)",
+          "missing": []
+        },
+        {
+          "title": "Tomato Concassé",
+          "missing": []
+        }
+      ]
+    },
+    {
+      "item_id": "item02",
+      "pantry": [
+        "arborio rice",
+        "butter",
+        "dill",
+        "habanero",
+        "onion",
+        "potato",
+        "stock"
+      ],
+      "left": [
+        {
+          "title": "Fast Food French Fries",
+          "missing": []
+        },
+        {
+          "title": "French Fries",
+          "missing": []
+        },
+        {
+          "title": "Glace de Viande (Reduced Beef Sauce)",
+          "missing": []
+        },
+        {
+          "title": "Potatoes Anna",
+          "missing": []
+        },
+        {
+          "title": "Rosti (Swiss Potato Patties)",
+          "missing": []
+        }
+      ],
+      "right": [
+        {
+          "title": "Buttery Noodles with Cheese",
+          "missing": [
+            "Dry linguine or Spaghetti (enough for 2 people)",
+            "Goat cheese (2 pats of butter worth)—Parmesan is an acceptable substitute"
+          ]
+        },
+        {
+          "title": "Lancashire Corned Beef Hash",
+          "missing": [
+            "1 can corned beef",
+            "White pepper to taste"
+          ]
+        },
+        {
+          "title": "Latkes",
+          "missing": [
+            "1 egg, beaten",
+            "2 tablespoons matzo meal, cornmeal, or flour"
+          ]
+        },
+        {
+          "title": "Shepherd's Pie II",
+          "missing": [
+            "1 pound (450 g) lean ground hamburger meat",
+            "12 oz (341 ml or 1 can) creamed corn"
+          ]
+        },
+        {
+          "title": "Stovies",
+          "missing": [
+            "125–250 g (4–8 oz) cooked beef or lamb (leftovers from a roast dinner)",
+            "2–3 tbsp finely chopped parsley, chives, or spring onions"
+          ]
+        }
+      ]
+    },
+    {
+      "item_id": "item03",
+      "pantry": [
+        "berbere",
+        "chili pepper",
+        "coconut milk",
+        "doenjang",
+        "egg",
+        "perilla leaf",
+        "rice"
+      ],
+      "left": [
+        {
+          "title": "Rice Milk",
+          "missing": []
+        },
+        {
+          "title": "Soso (Coconut Rice)",
+          "missing": []
+        },
+        {
+          "title": "Steamed Rice",
+          "missing": []
+        },
+        {
+          "title": "Sylheti Fried Rice",
+          "missing": []
+        },
+        {
+          "title": "Tuwo Shinkafa (Nigerian Mashed Rice)",
+          "missing": []
+        }
+      ],
+      "right": [
+        {
+          "title": "Appam (Fermented Rice Pancake)",
+          "missing": [
+            "1½ cups fresh grated coconut",
+            "1 tablespoon sugar"
+          ]
+        },
+        {
+          "title": "Basic Scrambled Eggs",
+          "missing": [
+            "2 tbsp butter"
+          ]
+        },
+        {
+          "title": "Rice Wheat Spread",
+          "missing": [
+            "150 g wheat flour",
+            "Seasoning mix (corn flour, salt, chili, onion, garlic, paprika; e.g. Mexican taco seasoning mix)"
+          ]
+        },
+        {
+          "title": "Soso (Coconut Rice)",
+          "missing": []
+        },
+        {
+          "title": "Sylheti Fried Rice",
+          "missing": []
+        }
+      ]
+    },
+    {
+      "item_id": "item04",
+      "pantry": [
+        "bread",
+        "flour",
+        "olive oil",
+        "rosemary",
+        "sugar",
+        "tomato"
+      ],
+      "left": [
+        {
+          "title": "Genfo (Ethiopian Porridge)",
+          "missing": []
+        },
+        {
+          "title": "Pain au Levain Naturel",
+          "missing": []
+        },
+        {
+          "title": "Prata",
+          "missing": []
+        },
+        {
+          "title": "Toast Sandwich",
+          "missing": []
+        },
+        {
+          "title": "Tomato Concassé",
+          "missing": []
+        }
+      ],
+      "right": [
+        {
+          "title": "Dambun Masara",
+          "missing": [
+            "1 small onion, finely chopped"
+          ]
+        },
+        {
+          "title": "Danwake",
+          "missing": [
+            "½ teaspoon potash"
+          ]
+        },
+        {
+          "title": "Genfo (Ethiopian Porridge)",
+          "missing": []
+        },
+        {
+          "title": "Rice Wheat Spread",
+          "missing": [
+            "400 g cooked rice",
+            "Seasoning mix (corn flour, salt, chili, onion, garlic, paprika; e.g. Mexican taco seasoning mix)"
+          ]
+        },
+        {
+          "title": "Zambian Tomato and Onion Salad",
+          "missing": [
+            "1 onion, thinly sliced",
+            "Juice of 1 lemon"
+          ]
+        }
+      ]
+    },
+    {
+      "item_id": "item05",
+      "pantry": [
+        "beef stock",
+        "butter",
+        "celery",
+        "chicken stock",
+        "cornstarch",
+        "egg",
+        "garlic",
+        "mushroom",
+        "peanut",
+        "soy sauce"
+      ],
+      "left": [
+        {
+          "title": "Basic Scrambled Eggs",
+          "missing": []
+        },
+        {
+          "title": "Homemade Peanut Butter",
+          "missing": []
+        },
+        {
+          "title": "Kuli-kuli",
+          "missing": [
+            "2 tablespoons sugar"
+          ]
+        },
+        {
+          "title": "Stracciatella I",
+          "missing": [
+            "½ cup shredded parmesan cheese",
+            "~¼ cup fresh chopped parsley"
+          ]
+        },
+        {
+          "title": "Telur Dadar",
+          "missing": [
+            "1 spring onion, chopped",
+            "½ can corned beef"
+          ]
+        }
+      ],
+      "right": [
+        {
+          "title": "Cornstarch Slurry",
+          "missing": []
+        },
+        {
+          "title": "Homemade Peanut Butter",
+          "missing": []
+        },
+        {
+          "title": "Nigerian Toasted Groundnuts",
+          "missing": []
+        },
+        {
+          "title": "Peanut Milk",
+          "missing": []
+        },
+        {
+          "title": "Tuwo Masara (Nigerian Corn Fufu)",
+          "missing": []
+        }
+      ]
+    },
+    {
+      "item_id": "item06",
+      "pantry": [
+        "carrot",
+        "corned beef",
+        "flour",
+        "nutmeg",
+        "sugar"
+      ],
+      "left": [
+        {
+          "title": "Dambun Masara",
+          "missing": [
+            "1 small onion, finely chopped"
+          ]
+        },
+        {
+          "title": "Danwake",
+          "missing": [
+            "½ teaspoon potash"
+          ]
+        },
+        {
+          "title": "Genfo (Ethiopian Porridge)",
+          "missing": []
+        },
+        {
+          "title": "Kuli-kuli",
+          "missing": [
+            "6 cups (750 g) peanuts"
+          ]
+        },
+        {
+          "title": "Rice Wheat Spread",
+          "missing": [
+            "400 g cooked rice",
+            "Seasoning mix (corn flour, salt, chili, onion, garlic, paprika; e.g. Mexican taco seasoning mix)"
+          ]
+        }
+      ],
+      "right": [
+        {
+          "title": "Genfo (Ethiopian Porridge)",
+          "missing": []
+        },
+        {
+          "title": "Homemade Phyllo Dough",
+          "missing": []
+        },
+        {
+          "title": "Pain au Levain Naturel",
+          "missing": []
+        },
+        {
+          "title": "Prata",
+          "missing": []
+        },
+        {
+          "title": "Sweet Carrot Juice",
+          "missing": []
+        }
+      ]
+    },
+    {
+      "item_id": "item07",
+      "pantry": [
+        "beef stock",
+        "butter",
+        "cayenne",
+        "cooking spray",
+        "flour",
+        "sugar",
+        "water chestnut"
+      ],
+      "left": [
+        {
+          "title": "Basic Scrambled Eggs",
+          "missing": [
+            "3 eggs"
+          ]
+        },
+        {
+          "title": "Corn Soup",
+          "missing": [
+            "4 cups corn off the cob",
+            "1 large egg"
+          ]
+        },
+        {
+          "title": "Dambun Masara",
+          "missing": [
+            "1 small onion, finely chopped"
+          ]
+        },
+        {
+          "title": "Danwake",
+          "missing": [
+            "½ teaspoon potash"
+          ]
+        },
+        {
+          "title": "Genfo (Ethiopian Porridge)",
+          "missing": []
+        }
+      ],
+      "right": [
+        {
+          "title": "Filo Puff Pastry",
+          "missing": []
+        },
+        {
+          "title": "Genfo (Ethiopian Porridge)",
+          "missing": []
+        },
+        {
+          "title": "Halva (Wheat-based)",
+          "missing": []
+        },
+        {
+          "title": "Pain au Levain Naturel",
+          "missing": []
+        },
+        {
+          "title": "Panocha (Sprouted Wheat Pudding)",
+          "missing": []
+        }
+      ]
+    },
+    {
+      "item_id": "item08",
+      "pantry": [
+        "anchovy",
+        "baking powder",
+        "banana",
+        "basil",
+        "cheese",
+        "crayfish",
+        "garlic",
+        "olive oil",
+        "pasta",
+        "tomato"
+      ],
+      "left": [
+        {
+          "title": "Beef Carpaccio II",
+          "missing": [
+            "1 center cut beef tenderloin roast"
+          ]
+        },
+        {
+          "title": "Gyuveche (Bulgarian Casserole) II",
+          "missing": [
+            "Various chopped herbs",
+            "1 egg"
+          ]
+        },
+        {
+          "title": "Pesto I",
+          "missing": []
+        },
+        {
+          "title": "Simple Spaghetti",
+          "missing": []
+        },
+        {
+          "title": "Tomato Pasta",
+          "missing": []
+        }
+      ],
+      "right": [
+        {
+          "title": "Akarubi (Rwandan Grilled Banana)",
+          "missing": []
+        },
+        {
+          "title": "Pesto I",
+          "missing": []
+        },
+        {
+          "title": "Simple Spaghetti",
+          "missing": []
+        },
+        {
+          "title": "Tomato Concassé",
+          "missing": []
+        },
+        {
+          "title": "Tomato Pasta",
+          "missing": []
+        }
+      ]
+    },
+    {
+      "item_id": "item09",
+      "pantry": [
+        "garlic",
+        "habanero",
+        "marjoram",
+        "parsley",
+        "potato",
+        "rice",
+        "sugar",
+        "tomato paste",
+        "turnip",
+        "white pepper"
+      ],
+      "left": [
+        {
+          "title": "Omo tuo",
+          "missing": []
+        },
+        {
+          "title": "Rice Milk",
+          "missing": []
+        },
+        {
+          "title": "Steamed Rice",
+          "missing": []
+        },
+        {
+          "title": "Sylheti Fried Rice",
+          "missing": []
+        },
+        {
+          "title": "Tuwo Shinkafa (Nigerian Mashed Rice)",
+          "missing": []
+        }
+      ],
+      "right": [
+        {
+          "title": "Appam (Fermented Rice Pancake)",
+          "missing": [
+            "1½ cups fresh grated coconut"
+          ]
+        },
+        {
+          "title": "Chipsi mayai",
+          "missing": [
+            "4 large eggs"
+          ]
+        },
+        {
+          "title": "Genfo (Ethiopian Porridge)",
+          "missing": [
+            "1 cup roasted barley flour"
+          ]
+        },
+        {
+          "title": "Lancashire Corned Beef Hash",
+          "missing": [
+            "1 large onion, chopped",
+            "1 can corned beef"
+          ]
+        },
+        {
+          "title": "Sylheti Fried Rice",
+          "missing": []
+        }
+      ]
+    },
+    {
+      "item_id": "item10",
+      "pantry": [
+        "allspice",
+        "butter",
+        "coffee",
+        "garlic",
+        "honey",
+        "powdered sugar",
+        "vanilla"
+      ],
+      "left": [
+        {
+          "title": "Basic Scrambled Eggs",
+          "missing": [
+            "3 eggs"
+          ]
+        },
+        {
+          "title": "Frappé Coffee",
+          "missing": []
+        },
+        {
+          "title": "Genfo (Ethiopian Porridge)",
+          "missing": [
+            "1 cup roasted barley flour"
+          ]
+        },
+        {
+          "title": "Potato Candy Pinwheel",
+          "missing": [
+            "½ medium-sized potato, preferably russet or sweet",
+            "⅓ cup peanut butter or hazelnut spread"
+          ]
+        },
+        {
+          "title": "Shirred Egg",
+          "missing": [
+            "Eggs"
+          ]
+        }
+      ],
+      "right": [
+        {
+          "title": "Crème Chantilly",
+          "missing": [
+            "1 cup (250 ml) heavy cream"
+          ]
+        },
+        {
+          "title": "Frappé Coffee",
+          "missing": []
+        },
+        {
+          "title": "Ghee I",
+          "missing": []
+        },
+        {
+          "title": "Mocha Buttercream",
+          "missing": [
+            "½ cup unsweetened cocoa powder"
+          ]
+        },
+        {
+          "title": "Simple Buttercream",
+          "missing": [
+            "30 ml (2 tbsp) milk"
+          ]
+        }
+      ]
+    },
+    {
+      "item_id": "item11",
+      "pantry": [
+        "brown sugar",
+        "butter",
+        "chicken",
+        "cocoa",
+        "flour",
+        "half and half",
+        "mascarpone",
+        "powdered sugar",
+        "rock sugar",
+        "shrimp",
+        "vanilla"
+      ],
+      "left": [
+        {
+          "title": "Chicken Cockaigne",
+          "missing": []
+        },
+        {
+          "title": "Drawn Butter",
+          "missing": []
+        },
+        {
+          "title": "Filo Puff Pastry",
+          "missing": []
+        },
+        {
+          "title": "Flaky Pie Crust",
+          "missing": []
+        },
+        {
+          "title": "Pain au Levain Naturel",
+          "missing": []
+        }
+      ],
+      "right": [
+        {
+          "title": "Basic Scrambled Eggs",
+          "missing": [
+            "3 eggs"
+          ]
+        },
+        {
+          "title": "Corn Soup",
+          "missing": [
+            "4 cups corn off the cob",
+            "1 large egg"
+          ]
+        },
+        {
+          "title": "Dambun Masara",
+          "missing": [
+            "1 small onion, finely chopped"
+          ]
+        },
+        {
+          "title": "Danwake",
+          "missing": [
+            "½ teaspoon potash"
+          ]
+        },
+        {
+          "title": "Potato Candy Pinwheel",
+          "missing": [
+            "½ medium-sized potato, preferably russet or sweet",
+            "⅓ cup peanut butter or hazelnut spread"
+          ]
+        }
+      ]
+    },
+    {
+      "item_id": "item12",
+      "pantry": [
+        "almond",
+        "breadcrumbs",
+        "broccoli",
+        "gravy",
+        "nutmeg",
+        "tofu"
+      ],
+      "left": [
+        {
+          "title": "Almond Milk I",
+          "missing": []
+        },
+        {
+          "title": "Candied Almonds (Brända mandlar)",
+          "missing": [
+            "100 g icing sugar"
+          ]
+        },
+        {
+          "title": "Polish Cauliflower with Breadcrumbs",
+          "missing": [
+            "1 head of cauliflower",
+            "50 ml butter"
+          ]
+        },
+        {
+          "title": "Sharbat bil Loz",
+          "missing": [
+            "¼ cup orange blossom water (or rosewater)"
+          ]
+        },
+        {
+          "title": "Tofu Bacon (Vegan)",
+          "missing": [
+            "3 Tbsp soy sauce or tamari",
+            "3 Tbsp nutritional yeast flakes"
+          ]
+        }
+      ],
+      "right": [
+        {
+          "title": "Almond Milk I",
+          "missing": []
+        },
+        {
+          "title": "Candied Almonds (Brända mandlar)",
+          "missing": [
+            "100 g icing sugar"
+          ]
+        },
+        {
+          "title": "Mayonnaise (Vegan)",
+          "missing": [
+            "3 tablespoons olive oil"
+          ]
+        },
+        {
+          "title": "Pralin",
+          "missing": [
+            "½ cup white sugar"
+          ]
+        },
+        {
+          "title": "Tofu Chocolate Mousse",
+          "missing": [
+            "340 g (12 oz) semi-sweet chocolate, chopped, or dark chocolate chips (see Note)"
+          ]
+        }
+      ]
+    },
+    {
+      "item_id": "item13",
+      "pantry": [
+        "bell pepper",
+        "brown rice",
+        "butter",
+        "chili pepper",
+        "cilantro",
+        "flour",
+        "garlic",
+        "olive oil",
+        "tomato",
+        "white fish"
+      ],
+      "left": [
+        {
+          "title": "Filo Puff Pastry",
+          "missing": []
+        },
+        {
+          "title": "Flaky Pie Crust",
+          "missing": []
+        },
+        {
+          "title": "Pain au Levain Naturel",
+          "missing": []
+        },
+        {
+          "title": "Roasted Brown Rice Mochi",
+          "missing": []
+        },
+        {
+          "title": "Spicy Garlic Oil",
+          "missing": []
+        }
+      ],
+      "right": [
+        {
+          "title": "Danwake",
+          "missing": [
+            "½ teaspoon potash"
+          ]
+        },
+        {
+          "title": "Kachumbari",
+          "missing": [
+            "1 large red onion, thinly sliced",
+            "Juice of 1 lemon or lime"
+          ]
+        },
+        {
+          "title": "Le Tourin (Garlic Soup)",
+          "missing": [
+            "1 egg, separated",
+            "1 teaspoon vinegar"
+          ]
+        },
+        {
+          "title": "Pesto I",
+          "missing": [
+            "4 oz (100 g) fresh basil",
+            "⅓ cup freshly grated Pecorino Romano or Parmigiano-Reggiano cheese or a 1:1 mixture."
+          ]
+        },
+        {
+          "title": "Tirana Fërgesë with Peppers",
+          "missing": [
+            "½ lb salted cottage cheese or Greek feta cheese"
+          ]
+        }
+      ]
+    },
+    {
+      "item_id": "item14",
+      "pantry": [
+        "basmati rice",
+        "chickpea",
+        "cumin",
+        "egg",
+        "lentil",
+        "olive oil",
+        "pasta",
+        "red pepper flakes",
+        "tomato paste",
+        "worcestershire sauce"
+      ],
+      "left": [
+        {
+          "title": "Basic Scrambled Eggs",
+          "missing": [
+            "2 tbsp butter"
+          ]
+        },
+        {
+          "title": "Carpetbag Steak",
+          "missing": [
+            "1 Scotch fillet steak (thickly-cut)",
+            "3–4 oysters"
+          ]
+        },
+        {
+          "title": "Lentils and Rice (Mjeddrah)",
+          "missing": [
+            "½ cup onion, sliced",
+            "½ cup long grain brown rice, rinsed"
+          ]
+        },
+        {
+          "title": "Shirred Egg",
+          "missing": [
+            "Butter"
+          ]
+        },
+        {
+          "title": "Simple Spaghetti",
+          "missing": []
+        }
+      ],
+      "right": [
+        {
+          "title": "Chilli Oil",
+          "missing": []
+        },
+        {
+          "title": "Fried Eggs",
+          "missing": []
+        },
+        {
+          "title": "Homemade Aquafaba",
+          "missing": []
+        },
+        {
+          "title": "Microwaved Basmati Rice",
+          "missing": []
+        },
+        {
+          "title": "Simple Spaghetti",
+          "missing": []
+        }
+      ]
+    },
+    {
+      "item_id": "item15",
+      "pantry": [
+        "bell pepper",
+        "bread",
+        "cherry",
+        "chickpea",
+        "cilantro",
+        "ginger garlic paste",
+        "marshmallow",
+        "onion",
+        "shortening",
+        "tomato paste",
+        "turmeric"
+      ],
+      "left": [
+        {
+          "title": "Balangu (Nigerian Spiced Ram Meat)",
+          "missing": [
+            "2 large chunks of mutton",
+            "1 small stock cube"
+          ]
+        },
+        {
+          "title": "Chip Butty",
+          "missing": [
+            "Chips from a chip shop or homemade",
+            "Butter"
+          ]
+        },
+        {
+          "title": "Dambun Masara",
+          "missing": [
+            "2 cups maize (corn) flour"
+          ]
+        },
+        {
+          "title": "Salza Criolla (South American Onion Relish)",
+          "missing": [
+            "1 lime"
+          ]
+        },
+        {
+          "title": "Zambian Tomato and Onion Salad",
+          "missing": [
+            "4 ripe tomatoes, diced",
+            "Juice of 1 lemon"
+          ]
+        }
+      ],
+      "right": [
+        {
+          "title": "Homemade Aquafaba",
+          "missing": []
+        },
+        {
+          "title": "Homemade Pie Crust",
+          "missing": [
+            "225 grams (1 cup) all-purpose flour"
+          ]
+        },
+        {
+          "title": "Homemade Tomato Paste",
+          "missing": [
+            "1 gallon (4 litres) tomato pulp"
+          ]
+        },
+        {
+          "title": "Homemade Wheat Tortillas",
+          "missing": [
+            "4 cups (950 ml) unbleached all-purpose flour"
+          ]
+        },
+        {
+          "title": "Toast Sandwich",
+          "missing": []
+        }
+      ]
+    },
+    {
+      "item_id": "item16",
+      "pantry": [
+        "breadcrumbs",
+        "butter",
+        "carrot",
+        "egg",
+        "olive oil",
+        "parmesan",
+        "thyme",
+        "tomato"
+      ],
+      "left": [
+        {
+          "title": "Basic Scrambled Eggs",
+          "missing": []
+        },
+        {
+          "title": "Egg Butter",
+          "missing": []
+        },
+        {
+          "title": "Fried Eggs",
+          "missing": []
+        },
+        {
+          "title": "Microwaved Scrambled Egg",
+          "missing": []
+        },
+        {
+          "title": "Shirred Egg",
+          "missing": []
+        }
+      ],
+      "right": [
+        {
+          "title": "Basic Scrambled Eggs",
+          "missing": []
+        },
+        {
+          "title": "Buttery Noodles with Cheese",
+          "missing": [
+            "Dry linguine or Spaghetti (enough for 2 people)",
+            "1 vegetarian bouillon cube"
+          ]
+        },
+        {
+          "title": "Pesto I",
+          "missing": [
+            "4 oz (100 g) fresh basil",
+            "4 cloves garlic"
+          ]
+        },
+        {
+          "title": "Shirred Egg",
+          "missing": []
+        },
+        {
+          "title": "Stracciatella I",
+          "missing": [
+            "4 cups chicken broth",
+            "~¼ cup fresh chopped parsley"
+          ]
+        }
+      ]
+    },
+    {
+      "item_id": "item17",
+      "pantry": [
+        "chili pepper",
+        "egg",
+        "flour",
+        "garlic",
+        "garlic paste",
+        "kerupuk",
+        "lime",
+        "paprika",
+        "peanut",
+        "shallot",
+        "shrimp paste",
+        "tempeh"
+      ],
+      "left": [
+        {
+          "title": "Danwake",
+          "missing": [
+            "½ teaspoon potash"
+          ]
+        },
+        {
+          "title": "Kuli-kuli",
+          "missing": [
+            "2 tablespoons sugar"
+          ]
+        },
+        {
+          "title": "Latkes",
+          "missing": [
+            "4 large potatoes, peeled",
+            "1 medium onion, peeled"
+          ]
+        },
+        {
+          "title": "Le Tourin (Garlic Soup)",
+          "missing": [
+            "1 tablespoon olive oil",
+            "1 teaspoon vinegar"
+          ]
+        },
+        {
+          "title": "Yorkshire Pudding",
+          "missing": [
+            "200 ml milk",
+            "¼ teaspoon pepper"
+          ]
+        }
+      ],
+      "right": [
+        {
+          "title": "Egg Noodles IV",
+          "missing": []
+        },
+        {
+          "title": "Nigerian Toasted Groundnuts",
+          "missing": []
+        },
+        {
+          "title": "Pain au Levain Naturel",
+          "missing": []
+        },
+        {
+          "title": "Peanut Milk",
+          "missing": []
+        },
+        {
+          "title": "Spicy Garlic Oil",
+          "missing": []
+        }
+      ]
+    },
+    {
+      "item_id": "item18",
+      "pantry": [
+        "brown sugar",
+        "cayenne",
+        "chili pepper",
+        "cinnamon",
+        "garlic powder",
+        "rosemary",
+        "stock",
+        "whole cloves"
+      ],
+      "left": [
+        {
+          "title": "Eve's Apple (Cinnamon Raisin-stuffed Apple)",
+          "missing": [
+            "1 small baking apple",
+            "1 tbsp raisins"
+          ]
+        },
+        {
+          "title": "Firecracker Rub",
+          "missing": [
+            "1 cup smoked paprika",
+            "¼ cup ground coriander"
+          ]
+        },
+        {
+          "title": "Fried Bananas",
+          "missing": [
+            "4 ripe bananas, peeled and sliced",
+            "2 tablespoons butter"
+          ]
+        },
+        {
+          "title": "Hot Peach Drink",
+          "missing": [
+            "1 bottle (40 ounces) pure peach drink"
+          ]
+        },
+        {
+          "title": "Quick Finnish Lemon Mead (Sima)",
+          "missing": [
+            "1 lemon, juiced",
+            "Small amount of dry yeast"
+          ]
+        }
+      ],
+      "right": [
+        {
+          "title": "Garlic Salt",
+          "missing": []
+        },
+        {
+          "title": "Glace de Viande (Reduced Beef Sauce)",
+          "missing": []
+        },
+        {
+          "title": "Hot Peach Drink",
+          "missing": [
+            "1 bottle (40 ounces) pure peach drink"
+          ]
+        },
+        {
+          "title": "Rosemary Garlic Oil",
+          "missing": [
+            "20 cloves garlic"
+          ]
+        },
+        {
+          "title": "Stracciatella II",
+          "missing": [
+            "Eggs"
+          ]
+        }
+      ]
+    },
+    {
+      "item_id": "item19",
+      "pantry": [
+        "baking soda",
+        "basil",
+        "butter",
+        "chicken",
+        "cornmeal",
+        "egg",
+        "milk",
+        "tortilla",
+        "yogurt"
+      ],
+      "left": [
+        {
+          "title": "Boiled Custard",
+          "missing": [
+            "¼–½ cup (55–110 g / 1.9–3.9 oz) white granulated sugar",
+            "1 teaspoon vanilla extract"
+          ]
+        },
+        {
+          "title": "Latkes",
+          "missing": [
+            "4 large potatoes, peeled",
+            "1 medium onion, peeled"
+          ]
+        },
+        {
+          "title": "Leben (Middle Eastern Sour Milk)",
+          "missing": []
+        },
+        {
+          "title": "Racuszki (Polish Pancakes)",
+          "missing": [
+            "1 cup white flour"
+          ]
+        },
+        {
+          "title": "Yorkshire Pudding",
+          "missing": [
+            "140 g plain flour",
+            "¼ teaspoon pepper"
+          ]
+        }
+      ],
+      "right": [
+        {
+          "title": "Corn Pone",
+          "missing": []
+        },
+        {
+          "title": "Leben (Middle Eastern Sour Milk)",
+          "missing": []
+        },
+        {
+          "title": "Makki di Roti (Indian Cornmeal Flatbread)",
+          "missing": []
+        },
+        {
+          "title": "Obuwunga (Ugandan Traditional Bread)",
+          "missing": []
+        },
+        {
+          "title": "Southern Cornbread",
+          "missing": []
+        }
+      ]
+    },
+    {
+      "item_id": "item20",
+      "pantry": [
+        "bacon",
+        "bell pepper",
+        "cornmeal",
+        "egg",
+        "flour",
+        "milk",
+        "onion",
+        "potato"
+      ],
+      "left": [
+        {
+          "title": "Chipsi mayai",
+          "missing": []
+        },
+        {
+          "title": "Cornbread I",
+          "missing": [
+            "4 tsp baking powder",
+            "¼ cup (60 g / 2.1 oz) shortening, melted"
+          ]
+        },
+        {
+          "title": "Latkes",
+          "missing": []
+        },
+        {
+          "title": "Racuszki (Polish Pancakes)",
+          "missing": [
+            "1½ tsp baking soda"
+          ]
+        },
+        {
+          "title": "Yorkshire Pudding",
+          "missing": [
+            "¼ teaspoon pepper"
+          ]
+        }
+      ],
+      "right": [
+        {
+          "title": "Latkes",
+          "missing": []
+        },
+        {
+          "title": "Obuwunga (Ugandan Traditional Bread)",
+          "missing": []
+        },
+        {
+          "title": "Pain au Levain Naturel",
+          "missing": []
+        },
+        {
+          "title": "Palatschinken (Czech/Austrian Crepes)",
+          "missing": []
+        },
+        {
+          "title": "Southern Cornbread",
+          "missing": []
+        }
+      ]
+    }
+  ]
+}

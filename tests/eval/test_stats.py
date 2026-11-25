@@ -87,3 +87,65 @@ def test_mcnemar_exact_symmetric():
     assert mcnemar_exact(5, 5) == 1.0
     assert mcnemar_exact(0, 0) == 1.0
     assert mcnemar_exact(0, 10) == pytest.approx(2 / 1024)
+
+
+def test_clopper_pearson_hand_values():
+    from pantrychef.eval.stats import clopper_pearson
+
+    lo, hi = clopper_pearson(27, 40)
+    assert (round(lo, 4), round(hi, 4)) == (0.5087, 0.8143)
+    assert round(clopper_pearson(20, 30)[0], 4) == 0.4719
+    # Edges: no successes gives lo 0; all successes gives hi 1. n = 1, k = 0: hi = 1 - 0.025.
+    assert clopper_pearson(0, 10)[0] == 0.0
+    assert clopper_pearson(10, 10)[1] == 1.0
+    assert clopper_pearson(0, 1)[1] == pytest.approx(0.975)
+    # A 90% interval is narrower than a 95% interval.
+    lo90, hi90 = clopper_pearson(27, 40, level=0.90)
+    assert lo90 > clopper_pearson(27, 40)[0] and hi90 < clopper_pearson(27, 40)[1]
+    for k, n in ((0, 0), (-1, 5), (6, 5)):
+        with pytest.raises(ValueError):
+            clopper_pearson(k, n)
+
+
+def test_sign_test_hand_values():
+    from pantrychef.eval.stats import sign_test
+
+    # n = 12, P(X <= 3) = 299 / 4096; two-sided doubles it.
+    assert sign_test(3, 12) == pytest.approx(2 * 299 / 4096)
+    assert sign_test(9, 12) == sign_test(3, 12)
+    assert sign_test(6, 12) == 1.0
+    assert sign_test(0, 0) == 1.0
+    assert sign_test(10, 10) == pytest.approx(2 / 1024)
+    with pytest.raises(ValueError):
+        sign_test(11, 10)
+
+
+def test_wins_needed_and_power_table():
+    """Three rows of plan section 6, rebuilt with pure Python (ESTIMATE, exact binomial)."""
+    from pantrychef.eval.stats import min_detectable_rate, power_at, wins_needed
+
+    # 40 pantries, no ties: 27 of 40 wins. CP lower bound of 27/40 is 0.5087 > 0.5; 26/40 is not.
+    assert wins_needed(40) == 27
+    assert [round(power_at(40, 0.0, p), 2) for p in (0.65, 0.70, 0.75)] == [0.44, 0.70, 0.90]
+    assert min_detectable_rate(40, 0.0) == 0.725
+    # 40 pantries, 25% ties: 21 of 30 decided.
+    assert wins_needed(30) == 21
+    assert [round(power_at(40, 0.25, p), 2) for p in (0.65, 0.70, 0.75)] == [0.30, 0.52, 0.75]
+    assert min_detectable_rate(40, 0.25) == 0.765
+    # 100 pantries, 25% ties: 47 of 75 decided.
+    assert wins_needed(75) == 47
+    assert [round(power_at(100, 0.25, p), 2) for p in (0.65, 0.70, 0.75)] == [0.71, 0.93, 0.99]
+    assert min_detectable_rate(100, 0.25) == 0.670
+    assert wins_needed(2) is None  # even 2 of 2 cannot reach p <= 0.025
+
+
+def test_wilcoxon_signed_rank_hand_case():
+    from pantrychef.eval.stats import wilcoxon_signed_rank
+
+    # d = +2 +1 -1 +2. Ranks of |d| with ties averaged: 3.5 1.5 1.5 3.5. W+ = 8.5, mean 5,
+    # variance 4*5*9/24 - (6 + 6)/48 = 7.25, z = (3.5 - 0.5) / sqrt(7.25) = 1.1142.
+    p = wilcoxon_signed_rank([2, 1, -1, 2])
+    assert p == pytest.approx(0.2652, abs=1e-3)
+    assert wilcoxon_signed_rank([0, 0]) == 1.0  # zeros drop out; nothing left
+    assert wilcoxon_signed_rank([]) == 1.0
+    assert wilcoxon_signed_rank([1, 2, 1, 2, 1, 2, 1, 2]) < 0.05

@@ -53,7 +53,7 @@ Every arm ranks the same candidate set: all recipes with at least one required l
 The table block at the end of this file is generated. Do not edit it by hand. Run `uv run python scripts/eval_tables.py` to rebuild it, and `--check` to test it. The raw file is [results/m2_baseline_wikibooks.json](../results/m2_baseline_wikibooks.json).
 
 - MEASURED: `idf_flat` beats `overlap`, and `overlap` beats `random`, in all five (sampler, distractor) groups. Every paired 95% interval excludes 0. On the test half, the MRR gain of `idf_flat` over `overlap` runs from +0.227 to +0.375.
-- MEASURED: `shipped` ranks the masked gold recipe low (MRR@10 from 0.014 to 0.098). This is a property of the task. The masked gold always misses at least one line, and `shipped` lists recipes you can make now first. The task does not measure what the product promises. The judged pilot is the test that can. The M2 pilot used model judges and found no preference for the shipped order (see [PROJECT_STATE section 11](PROJECT_STATE.md)). M4 needs a person.
+- MEASURED: `shipped` ranks the masked gold recipe low (MRR@10 from 0.014 to 0.098). This is a property of the task. The masked gold always misses at least one line, and `shipped` lists recipes you can make now first. The task does not measure what the product promises. The judged pilot is the test that can. The M2 pilot used model judges and found no preference for the shipped order (see [PROJECT_STATE section 11](PROJECT_STATE.md)). M4 needs a person. M4 ran a timing pilot with a person, but its dev labels and its futility check were model-made (see "M4 search and ranking").
 - MEASURED: `answer()` would show the masked gold recipe for about half of the pantries (`visible_rate` 0.50 to 0.53). The other half has more than 2 missing lines or falls outside the 10 shown per group.
 - HYPOTHESIS: the `popularity` sampler hurts `overlap` more than `idf_flat` because it draws common ingredients, and IDF gives them little weight. The sampler and the rule share one quantity (document frequency). So read the `overlap` versus `idf_flat` gap for each sampler. Do not read it as one number.
 - Not a quality claim: nothing here says a person prefers one list. That needs the hand-judged pairs.
@@ -335,6 +335,49 @@ Rules:
   hash in the committed `key_sha256.txt`.
 
 The 40 pantries are dev pantries. They never enter the M4 test split.
+
+## M4 search and ranking (2026-11-25)
+
+Plan: [docs/plans/2026-11-18-m4-search-ranking.md](plans/2026-11-18-m4-search-ranking.md) (Amendments 1 to 3). Judging protocol: [JUDGING_PROTOCOL.md](JUDGING_PROTOCOL.md). Decision: [ADR 0007](decisions/0007-keep-the-idf-rule-after-m4.md).
+
+Status: **the model did not go to the test. The shipped order stays.** The pre-registered futility check 2 said STOP. No person has judged any model list. The human preference for the model over the rule is UNKNOWN.
+
+### Question and set-up
+
+Question: does a small learned pairwise ranking model pick 5 recipes that the owner prefers to the 5 of the shipped order? IDF means inverse document frequency (rare ingredients weigh more). The shipped order is the engine order: make-now group, then one-away, then two-away. Inside a group, it sorts by score, total and id. It stays the product order.
+
+- Pack: pack-v2, 3,712 Wikibooks recipes. Core sha256 `1c2bcf5a0ac31813e9e08279c7729830c0658474a4d7fed8c8bfd1a94379a313`.
+- Candidate set: recipes with at least 1 line held and at most 2 missing lines. The gold recipe and its same-title group are removed ("gold-out"). The judge sees each list in neutral order (by title).
+- Draw, `data/eval/m4/pantries.v1.json`: pilot 10, dev 100, futility 20, reserve 10, test pool 1,622. The test was never run.
+
+### Results
+
+| Step | Result | Label |
+| --- | --- | --- |
+| Timing pilot, the owner, 28 usable items, one session | Median 30 s per item (the plan assumed 75 s). Tie rate 0.036. Repeats consistent: 4 of 4. All four protocol checks pass ([results/m4_timing_pilot.json](../results/m4_timing_pilot.json)) | MEASURED |
+| Dev labels | 299 usable dev items. A model made them in an offline annotation pass that the owner ran and reviewed. The owner did not judge them. Plan Amendment 2 allowed training on them (`training_labels: model_judged`). Files: `data/eval/m4/answers.dev.v1.csv`, `data/eval/m4/answers.dev.NOTE.md` | MEASURED (count), model-made labels |
+| Dev comparison of three systems, dry run, never selects | `idf_flat` vs shipped: 42 wins, 20 losses, 37 ties. Win rate among decided items 0.677 (n=62), 95% Clopper-Pearson interval 0.547 to 0.791. `overlap` vs shipped: 38 wins, 24 losses, 38 ties. Win rate 0.613, interval 0.481 to 0.734. `idf_flat` vs `overlap`: win rate 0.617, interval 0.464 to 0.755 (n=47) ([results/m4_dev_pairs.json](../results/m4_dev_pairs.json)) | MEASURED, model-judged |
+| Cross-validation of the model | Held-out log-loss 0.655 against chance 0.693 (ln 2). Held-out accuracy 0.655 on 171 decided items. Futility check 1 passed. The simplest feature set F1 had log-loss 0.674 ([results/m4_cv.json](../results/m4_cv.json)) | ESTIMATE, on model-made labels |
+| Futility check 2: model vs shipped order, 20 spare dev pantries | 10 wins, 10 losses, 0 ties. Win rate 0.5, interval 0.272 to 0.728. Rule: stop when wins <= losses. 10 <= 10, so **STOP** ([results/m4_futility.json](../results/m4_futility.json)) | MEASURED, model-judged (Amendment 3) |
+
+`idf_flat` is the same score as the shipped order, without the "fewest missing lines first" key. The comparator stayed `shipped`. Plan 4.3 lets only hand judgments pick `idf_flat`, and these labels are model-made.
+
+### The model
+
+The model is a pairwise Bradley-Terry linear model. It is a logistic regression on the feature differences of two top-5 lists, with 8 features and an L2 penalty. Nested cross-validation grouped by pantry chose it (5 outer folds, 4 inner folds, one-standard-error rule). The chosen feature set is F3 and C = 0.01. Weights: `web/src/rank_model.v1.json` (commit `571f8e7`, clean tree). The browser order did not change.
+
+MEASURED, from `web/src/rank_model.v1.json`: `missing` (+0.049), `miss_frac` (+0.110), `unread_missing` (+0.298) and `optional_c` (+0.568) all have a positive sign. A higher feature value raises the score. So the model leans toward lists with more missing or unread lines. The plan calls these features costs. Nobody tuned the weights by hand. HYPOTHESIS: the model learned the rule of the model labeller, and not a preference of the owner.
+
+### What the evidence does not show
+
+- Futility check 2 is weak evidence. The judge was a separate Opus agent, not the owner. It could read a protocol file that names the arms (it says it did not use it). The sheet had no repeats and no timing.
+- The dev labels are model-made. Every number above that comes from them says nothing about what a person prefers.
+- HYPOTHESIS for a later study: a person may prefer `idf_flat` to the shipped order. Nobody tested this on a person.
+- The ship rule (a paired interval that excludes zero, from hand judgments on the test pantries) was not met. The test did not run. This is why the shipped order stays. It is not a result that the rule is better for people.
+
+### Tools and tests
+
+New code: `pantrychef/eval/stats.py`, `m4_pools.py`, `m4_lists.py`, `m4_run.py`, `pairwise.py`, `pantrychef/rank.py`, `scripts/m4_rank.py`, `scripts/judging_page.py` and `scripts/judging_merge.py`. A label-free study of IDF variants is in [results/m4_idf_variants.json](../results/m4_idf_variants.json) (top-5 agreement of each variant with the shipped order, MEASURED). The golden file `tests/golden/rank_pinned.json` pins the first 5 ids of the shipped order for 5 fixture pantries (CI) and 5 real-pack pantries (local, skipped without a build). `tests/test_rank_pinned.py` and `web/tests/rank-pinned.test.ts` check it.
 
 ## RecipeNLG rule baselines (MEASURED, research only)
 

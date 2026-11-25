@@ -1,6 +1,6 @@
 # PantryChef: project state
 
-Date: 2026-10-30. Audited commit: `d49f02c`. Updated for M0, merged in PR #6 (section 3), and for M1, merged in PR #7 and deployed (section 10, 2026-11-03), and for M3 in progress (section 12).
+Date: 2026-10-30. Audited commit: `d49f02c`. Updated for M0, merged in PR #6 (section 3), and for M1, merged in PR #7 and deployed (section 10, 2026-11-03), for M3 (section 12), and for M4 (section 13, 2026-11-25).
 Sources: ADRs [0003](decisions/0003-licence-clean-recipe-corpus.md), [0004](decisions/0004-static-first-browser-engine.md), [0005](decisions/0005-honest-claims-and-eval-reset.md); the [Stage 1 synthesis](research/2026-10-stage1/README.md) and its [review](research/2026-10-stage1/REVIEW.md); the repo itself. For findings and fixes, read [TECHNICAL_AUDIT.md](TECHNICAL_AUDIT.md).
 
 Labels: MEASURED (a run or a log shows it), ESTIMATE (a calculation), HYPOTHESIS (a test must confirm it).
@@ -26,7 +26,8 @@ PantryChef is meant to be a pantry-first recipe app. A user lists what they have
 | Static web app with browser engine (ADR 0004) | Built, merged (PR #7) and live at <https://aritr-codes.github.io/PantryChef/> | `web/`; Vitest parity on golden cases; Playwright smoke test on the fixture pack (section 10) |
 | Wikibooks display pack (ADR 0003) | Built (M1) | 3,712 recipes; `build/pack` is not in git (section 10). Open Recipes statistics: planned |
 | Rebuilt ingredient table | Built. M1: 337 rows. M3: table v2, 894 rows (section 12) | `data/ingredients/ingredients.csv` (M1) and `data/ingredients/ingredients.v2.csv` (M3). The old `vocab.json` still comes from RecipeNLG and the new tables never read it |
-| New evaluation with hand-judged pantries (ADR 0005) | Planned | Not started |
+| New evaluation with hand-judged pantries (ADR 0005) | M4 ran a timing pilot with a person. Its dev labels and futility check were model-made. The human test did not run (section 13) | [results/m4_timing_pilot.json](../results/m4_timing_pilot.json), [results/m4_futility.json](../results/m4_futility.json) |
+| Search ranking: shipped IDF order versus a small learned model | M4 done. The model was stopped by futility check 2. The IDF rule stays ([ADR 0007](decisions/0007-keep-the-idf-rule-after-m4.md)) | Section 13 |
 
 ## 3. Git state
 
@@ -285,3 +286,29 @@ Pending:
 - Done on 2026-11-10: release `pack-v2` is uploaded (`core.v2.json.gz`, `text.v2.json.gz` and `manifest.v2.json`). The uploaded hashes match `web/pack-hashes.json` (MEASURED with `sha256sum`). `main` is pushed. The Pages workflow ran and succeeded. A scripted visit to the live page showed 3 starter kitchens, 3 added items, tabs with 41, 84 and 102 recipes and the ticket, with no console errors (MEASURED, one visit).
 
 The acceptance runs decide whether an M3 target is met. Run 1 failed one target. Run 2 met all scored targets as a second attempt (see the table).
+
+## 13. M4 search and ranking (branch `feat/m4-search-ranking`)
+
+Status: **done. The learned model was stopped by futility check 2. The IDF rule (the shipped order) stays. The browser did not change.**
+
+Plan: [docs/plans/2026-11-18-m4-search-ranking.md](plans/2026-11-18-m4-search-ranking.md) (Amendments 1 to 3). Protocol: [JUDGING_PROTOCOL.md](JUDGING_PROTOCOL.md). Method and tables: [EVALUATION.md](EVALUATION.md) (section "M4 search and ranking"). Decision: [ADR 0007](decisions/0007-keep-the-idf-rule-after-m4.md).
+
+Question: does a small learned pairwise model pick 5 recipes that the owner prefers to the 5 of the shipped order? The test (100 pantries, a person judges) never ran. The human preference for the model over the rule is UNKNOWN. The owner never judged a model list.
+
+| Item | Result | Label |
+| --- | --- | --- |
+| Timing pilot (the owner, 28 usable items) | Median 30 s per item (plan: 75 s). Tie rate 0.036. 4 of 4 repeats consistent. All four protocol checks pass | MEASURED ([results/m4_timing_pilot.json](../results/m4_timing_pilot.json)) |
+| Dev labels | 299 usable items. A model made them (an offline annotation pass that the owner ran and reviewed), not the owner. Plan Amendment 2 allowed training on them | MEASURED (count), model-made labels (`data/eval/m4/answers.dev.v1.csv`) |
+| Dev comparison, dry run, never selects | `idf_flat` vs shipped: 42 wins, 20 losses, 37 ties (win rate 0.677, 95% interval 0.547 to 0.791). `overlap` vs shipped: 38 wins, 24 losses, 38 ties (0.613, 0.481 to 0.734). The comparator stayed `shipped` because the labels are model-made | MEASURED, model-judged ([results/m4_dev_pairs.json](../results/m4_dev_pairs.json)) |
+| Model and cross-validation | Pairwise linear model, 8 features, feature set F3, C = 0.01. Held-out log-loss 0.655 (chance 0.693). Held-out accuracy 0.655 on 171 decided items. Futility check 1 passed. Weights: `web/src/rank_model.v1.json` | ESTIMATE, on model-made labels ([results/m4_cv.json](../results/m4_cv.json)) |
+| Odd weights | `missing`, `miss_frac`, `unread_missing` and `optional_c` have a positive sign. The model leans toward lists with more missing or unread lines. Nobody tuned the weights by hand. HYPOTHESIS: it learned the labelling rule of the model, not an owner preference | MEASURED (signs), HYPOTHESIS (reason) |
+| Futility check 2: model vs shipped, 20 spare dev pantries | 10 wins, 10 losses, 0 ties. Win rate 0.5, 95% interval 0.272 to 0.728. Rule: stop when wins <= losses. 10 <= 10, so STOP. A separate Opus agent judged, not the owner. It could read a protocol file that names the arms (it says it did not use it). No repeats, no timing. Weak evidence | MEASURED, model-judged (Amendment 3) ([results/m4_futility.json](../results/m4_futility.json)) |
+| Pinned order test | `tests/golden/rank_pinned.json` pins the first 5 ids of the shipped order for 5 fixture pantries (CI) and 5 real-pack pantries (local, skipped without a build). Checked by `tests/test_rank_pinned.py` and `web/tests/rank-pinned.test.ts` | Tests exist. This section does not record a test run |
+
+Why the shipped order stays: the ship rule needs a paired interval that excludes zero on the hand-judged test pantries. That test did not run. This does not show that the rule is better for people.
+
+Open:
+
+- The human test and the human preference for the model are not done. HYPOTHESIS for a later study: a person may prefer `idf_flat` to the shipped order. Nobody tested this on a person.
+- The ADR 0002 reading "no LLM at run time, and one offline LLM labelling pass for development data" appears in the plan. The owner has not confirmed it.
+- Outside M4: the 6x throttle against a real phone, iOS Safari and 320 px are not checked. M5 has not started.

@@ -1,0 +1,111 @@
+{
+  "arms": [],
+  "command": "uv run python scripts/m4_rank.py pilot-score --name pilot",
+  "commit": "1f941638f2e7a7048280d02d4bfeeb903c50f302",
+  "comparisons": [],
+  "config": {
+    "analysis": {
+      "median_seconds": 30.0,
+      "n_base": 28,
+      "power": [
+        {
+          "decided": 39,
+          "mdw": 0.735,
+          "n": 40,
+          "power_065": 0.3972320334045461,
+          "power_070": 0.6573628321339082,
+          "power_075": 0.8677648275090343,
+          "wins_needed": 27
+        },
+        {
+          "decided": 58,
+          "mdw": 0.69,
+          "n": 60,
+          "power_065": 0.5939038424110975,
+          "power_070": 0.855263053468834,
+          "power_075": 0.973650542547758,
+          "wins_needed": 37
+        },
+        {
+          "decided": 77,
+          "mdw": 0.665,
+          "n": 80,
+          "power_065": 0.7161847098770499,
+          "power_070": 0.936126503135022,
+          "power_075": 0.9944639395380649,
+          "wins_needed": 48
+        },
+        {
+          "decided": 96,
+          "mdw": 0.65,
+          "n": 100,
+          "power_065": 0.8214826943180795,
+          "power_070": 0.9765934593378967,
+          "power_075": 0.9991252841733694,
+          "wins_needed": 59
+        }
+      ],
+      "repeats_same": 4,
+      "repeats_total": 4,
+      "tie_rate": 0.03571428571428571
+    },
+    "checks": {
+      "check1_self_consistency": true,
+      "check2_discrimination": true,
+      "check3_cost": true,
+      "check4_power": true,
+      "overall": true
+    },
+    "commit_order_checked": true,
+    "model_judged": false,
+    "pack_core_sha256": "1c2bcf5a0ac31813e9e08279c7729830c0658474a4d7fed8c8bfd1a94379a313",
+    "pool": "pilot",
+    "sheet": "pilot"
+  },
+  "corpus_fingerprint": "a1a076ab0aee385c4e01cdc904342214dfaa6b01dc35d80d32519ea625c597d2",
+  "dirty": true,
+  "dirty_paths": [
+    "data/eval/m4/pantries.v1.json",
+    "pantrychef/eval/m4_pools.py",
+    "scripts/judging_sheet.py",
+    "tests/eval/test_m4_splits.py"
+  ],
+  "environment": {
+    "numpy": "2.4.6",
+    "platform": "Windows 10 (win32)",
+    "python": "3.11.15"
+  },
+  "label": "MEASURED",
+  "metrics": [
+    {
+      "arm": null,
+      "depends_on": [],
+      "n": 28,
+      "name": "pairwise_tie_rate",
+      "role": "sanity",
+      "split": "pilot",
+      "value": 0.03571428571428571
+    },
+    {
+      "arm": null,
+      "depends_on": [],
+      "n": 4,
+      "name": "judge_repeat_agreement",
+      "role": "sanity",
+      "split": "pilot",
+      "value": 1.0
+    },
+    {
+      "arm": null,
+      "depends_on": [],
+      "n": 28,
+      "name": "judge_median_seconds",
+      "role": "product",
+      "split": "pilot",
+      "value": 30.0
+    }
+  ],
+  "schema": 1,
+  "seed": 42,
+  "what": "Timing pilot of the judging protocol: the four checks, the tie rate and the exact power table for the observed tie rate."
+}

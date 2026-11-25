@@ -1,7 +1,8 @@
 # Judging protocol
 
-Status: 2026-11-04. The M2 pilot of 20 pantries ran with two model judges (Sonnet and Opus), each in two sessions. See [results/m2_judging_pilot.json](../results/m2_judging_pilot.json). A model judge cannot time itself, so check 3 (time) is untested. A person still has to judge the M4 set. This file defines the pilot.
-M4 uses the same protocol on about 100 pantries, if the pilot passes.
+Status: 2026-11-18. The M4 protocol (section "M4 protocol" below) is the live one. The owner approved the M4 rubric on 2026-11-18, and it is now fixed. Nothing in it is MEASURED yet. The older sections are the M2 pilot and are historical. The M2 pilot of 20 pantries ran with two model judges (Sonnet and Opus), each in two sessions. See [results/m2_judging_pilot.json](../results/m2_judging_pilot.json). A model judge cannot time itself, so check 3 (time) was untested there.
+
+**M2 pilot sections (historical).** Everything from "Source" to "Licence note" describes the M2 pilot. Where the M4 section differs, the M4 section wins.
 
 Source: [plan](plans/2026-11-03-m2-eval-baseline.md), decision D3, Task 7.
 Rules: [ADR 0005](decisions/0005-honest-claims-and-eval-reset.md). Labels: MEASURED, ESTIMATE, HYPOTHESIS.
@@ -143,3 +144,156 @@ Open limits:
 
 The sheet shows recipe titles and ingredient lines from the Wikibooks Cookbook (CC BY-SA 4.0).
 Do not commit the sheet until the licence notice for it exists (plan risk R7). The sheet is rebuilt from the same pack with the command above. The committed key hash shows that the draw and the sides did not change. It does not hash the sheet text.
+
+## M4 protocol
+
+Source: [M4 plan](plans/2026-11-18-m4-search-ranking.md), sections 6, 8 and 9. The plan wins if this text and the plan differ.
+Labels: MEASURED, ESTIMATE, HYPOTHESIS. A number here is MEASURED only when the plan says so.
+
+### Purpose and judge
+
+M4 asks one question. Does a learned ranker (the model) pick 5 recipes that the owner prefers to the 5 of the IDF rule? IDF means inverse document frequency.
+
+- One person judges: the owner. The claim is one person's preference. It is not what people prefer.
+- Model judges may dry-run the tools. Their answers carry the label `judge_model` and the metric `pilot_pairwise_win_rate` (role `sanity`).
+- Model-judge answers never enter training, comparator choice or the test. Futility check 2 may use them (Amendment 3).
+
+Amendment 2 (2026-11-19) changes the last bullet for training only. The owner chose to train the model on the model-judged dev answers. `train` then needs the flag `--allow-model-labels`. The dry-run flag `--allow-model-judge` is not enough. The weights file, the training table, `results/m4_cv.json` and the freeze say `training_labels: model_judged`. One table never mixes human and model rows, so `train --name dev` uses the dev sheet alone and leaves out the human pilot. Model-judged answers still cannot choose the comparator: it is `shipped`. They still never enter the test, which the owner judges. Amendment 3 (2026-11-25) lets a model judge futility check 2: `futility` then needs the flag `--allow-model-judge`, and the result and the freeze say `futility_judge: model_judged`. Model answers are still refused for the test.
+
+### What the judge sees
+
+One item shows a pantry and two lists. Each list has 5 recipe titles. Under each title, the lines you still need to buy.
+
+- Each list shows its titles in neutral order: by title (case-folded), then by recipe id. The arm decides which 5 recipes are in the list. The arm never decides their order.
+- Left and right are random. No sheet shows an arm name.
+- Each dev pantry gives 3 items (the 3 pairs of the 3 dev systems). The 3 items sit at least 3 places apart.
+- The script skips a pair when the two lists hold the same 5 recipes. Some pantries therefore give fewer than 3 items.
+- A repeat is the same item shown again. Nothing marks it.
+
+### Rubric (approved by the owner on 2026-11-18)
+
+The owner approved this text on 2026-11-18, before the first pair. Nobody changes it after that. If you change it, the pilot starts again.
+
+> Imagine you own exactly these ingredients, plus the usual staples (salt, oil, water and similar).
+> You may make one trip to the shop for the missing lines shown under a title.
+> Which list gives you the better choice for tonight?
+> A list is better when it holds a dish you would actually cook and eat tonight, and the trip is short.
+> Do not judge a recipe in general. Judge the list for this pantry.
+> Choose A (left list), B (right list), or tie. Choose tie only when you cannot prefer one list.
+> If you chose A or B, give a strength: 1 means a slight preference. 2 means a clear preference. For a tie, leave strength blank.
+> Then answer for each list: "Would I cook any dish from this list tonight?" yes or no.
+> Test sheets only: "Which list do you think the new model made?" left, right or unsure.
+
+Read the rubric again at the start of each session.
+
+### Answer file
+
+Copy the item ids into a CSV file. The template that `scripts/judging_sheet.py` writes has these columns, in this order:
+
+| Column | Values |
+| --- | --- |
+| `item_id` | for example `item07` |
+| `choice` | `A` (left list), `B` (right list) or `tie` |
+| `strength` | `1` or `2`. Blank for a tie. A strength on a tie fails the scorer |
+| `would_cook_left` | `yes` or `no` |
+| `would_cook_right` | `yes` or `no` |
+| `seconds` | time you spent on the item |
+| `session` | any label, for example `dev3` |
+| `arm_guess` | test sheets only: `left`, `right` or `unsure` |
+
+The sheet writes the template to `data/interim/answers_template.m4-NAME.csv`. Commit the answers as `data/eval/m4/answers.NAME.v1.csv`.
+
+To answer without typing a CSV, make the judging page: `uv run python scripts/judging_page.py --sheet data/eval/m4/sheet.NAME.v1.json --session N` (add `--arm-guess` for a test sheet). The script writes one local HTML file under `data/interim/`. Open it with a double-click. The page works offline and holds no key data. It shows one item at a time, times each item while the tab is visible (the Pause button stops the clock), saves each answer in the browser and downloads `answers.NAME.sessionN.csv` with the columns above. The `seconds` column is the on-screen time in whole seconds, 1 or more. For the next session, add `--answered` once for each earlier session CSV: the page then skips the items that have a complete answer and starts at the first item not answered. Its CSV holds only the items you answer in that session. When the sessions are done, join them with `uv run python scripts/judging_merge.py --sheet data/eval/m4/sheet.NAME.v1.json --out data/eval/m4/answers.NAME.v1.csv SESSION1.csv SESSION2.csv` (add `--arm-guess` for a test sheet). The merge writes the rows in sheet order with the columns above and keeps each row's `session`. It stops on a duplicate answer, an unknown item id or a row with a missing field. It prints how many items are still unanswered, and no answers.
+
+### Session rules
+
+- A session lasts at most 45 minutes.
+- Sessions run on different days.
+- Test sessions start at least 2 days after the last dev session.
+- The test needs at least 4 sessions (110 items at about 80 s is about 147 minutes, ESTIMATE).
+- The dev set has 100 pantries (the owner chose this on 2026-11-19). That gives about 300 items (100 pantries times 3 pairs, less the pairs skipped as identical) plus 30 repeats, which is 10% of the items: about 330 items. The timing pilot gave a median of 30 s per item (MEASURED: one session, 28 usable items). At 30 s per item, 330 items take about 2.8 hours (ESTIMATE). Plan about 4 sessions of at most 45 minutes. The 10 pilot pantries join dev when the pilot passes, so the dev sheet adds 100 new pantries.
+- Do not look back at earlier answers.
+
+### Keep-blind rule
+
+Until the test answers are committed, do not open these files:
+
+- `data/interim/judging_key.m4-*.json`
+- `results/m4_dev_pairs.json`
+- `results/m4_cv.json`
+- `results/m4_futility.json`
+- `data/eval/m4/train_table.v1.json`
+- `web/src/rank_model.v1.json`
+
+The lead tells you only "go" or "stop" after each gate. The lead commits these files. Do not read their diffs.
+
+Result files: you may open `results/m4_timing_pilot.json` (checks, timing, tie rate, repeat agreement, power table, no arm names) and `results/m4_idf_variants.json` (label-free, no judgments). Do not open `results/m4_dev_pairs.json`, `results/m4_arm_*.json`, `results/m4_cv.json`, `results/m4_futility.json` or `results/m4_test.json`. They hold arm names, win counts or rates. The pilot answers join dev, so their numbers exist only in `results/m4_dev_pairs.json` and `results/m4_arm_*.json`, which the lead computes again from the answers with `dev-score`. `pilot-score` and `dev-score` print no number.
+
+### Timing pilot: four checks
+
+The pilot has 10 dev pantries with 3 items each, plus 4 unmarked repeats: 34 items, one session. The owner judges. A model cannot time itself.
+
+| # | Check | Pass when |
+| --- | --- | --- |
+| 1 | Self-consistency | at least 3 of the 4 repeats give the same outcome |
+| 2 | Discrimination | tie rate is 60% or lower |
+| 3 | Cost | median time is below 90 seconds |
+| 4 | Power | the scorer prints the exact power table for the observed tie rate, and we write it down |
+
+- Pass: all four checks pass. If the rubric and the list length did not change, the 10 pilot pantries join dev.
+- Fail: change the rubric or the list length. Then pilot the 10 reserve pantries. The failed pilot answers never join dev. Do not go on to dev judging after a failed pilot.
+- With 4 repeats, check 1 is weak. A judge who answers at random still passes it sometimes. Read it as a warning sign.
+
+### Power method (ESTIMATE)
+
+- Method: exact binomial. Count decided items only. Drop ties.
+- Interval: Clopper-Pearson (CP), two-sided 95%, on the win rate `p = W / (W + L)`.
+- The test passes when the CP lower bound is above 0.5. This equals a one-sided exact binomial `p <= 0.025`.
+- Power uses a random number of decided items, `Binomial(n, 1 - tie_rate)`. You cannot know the tie count in advance.
+- The M2 normal approximation (section "Power estimate" above) is historical. Do not use it for M4.
+
+Table copied from plan section 6. Every row is an ESTIMATE. The tie rates (0 and 0.25) come from the M2 model-judge pilot, so they are guesses for a person. MDW means minimum detectable win rate at 80% power, rounded up to the next 0.005.
+
+| Test pantries | Tie rate | Wins needed (at expected decided) | Power at true 0.65 | 0.70 | 0.75 | MDW (80%) |
+| --- | --- | --- | --- | --- | --- | --- |
+| 40 | 0 | 27/40 | 0.44 | 0.70 | 0.90 | 0.725 |
+| 40 | 0.25 | 21/30 | 0.30 | 0.52 | 0.75 | 0.765 |
+| 40 | 0.40 | 18/24 | 0.24 | 0.42 | 0.64 | 0.795 |
+| 60 | 0.25 | 30/45 | 0.47 | 0.74 | 0.92 | 0.715 |
+| 80 | 0.25 | 39/60 | 0.60 | 0.86 | 0.98 | 0.685 |
+| 100 (decided) | 0 | 61/100 | 0.83 | 0.98 | 1.00 | 0.650 |
+| 100 (decided) | 0.25 | 47/75 | 0.71 | 0.93 | 0.99 | 0.670 |
+| 100 (decided) | 0.40 | 39/60 | 0.60 | 0.86 | 0.98 | 0.690 |
+
+Plain statement: 40 test pantries could not show a win rate below about 0.73 to 0.80. With ties, only about 24 to 40 items decide the result. That is too few to separate a moderate gain from chance. The plan uses 100 test pantries, which detect a true win rate of 0.65 to 0.69. Below about 0.65, a null result means "no gain of that size". It does not mean "no gain".
+
+### Bias limits
+
+- One judge. The result says what this person prefers. It does not say what people prefer.
+- Neutral order hides the order of the lists. It does not hide how many make-now recipes a list holds. A `shipped` list holds about 4 make-now recipes on average (`overlap` 0.84, `idf_flat` 1.31, MEASURED by the plan reviewer on 1,685 dev pantries). You can see "nothing to buy" under most titles. The blinding is reduced, not removed.
+- The test judges which 5 recipes the model picks. It does not judge their order. A passed test supports the model's top-5 set. It says nothing about the order inside the top 5.
+- Arm guess: each test item asks which list the model made. We report guess accuracy with a CP interval, the share of `unsure`, and the model win rate among right, wrong and `unsure` guesses. If accuracy is high and the win rate differs by guess, we say the blinding was weak. The ship rule does not change.
+- The owner built the product and may recognise its style.
+- A second judge is not in use. Agreement with a second judge is a HYPOTHESIS until measured.
+
+### Commands, in order
+
+Run from the repo root. `planned` means the command is not in the code yet. Check before you run.
+
+1. `uv run python scripts/m4_rank.py pantries` builds the committed pantry pools.
+2. `uv run python scripts/m4_rank.py variants` runs the label-free IDF variants.
+3. Pilot sheet: `uv run python scripts/judging_sheet.py --pantries data/eval/m4/pantries.v1.json --pool pilot --take 10 --repeats 4 --name pilot`. Check the arm flags against the plan.
+4. Judge the pilot. Then score it: `uv run python scripts/m4_rank.py pilot-score --name pilot`. It prints the four checks and PASS or FAIL, and no other number.
+5. Dev sheet: as step 3, with `--pool dev --take 100 --repeats 30 --name dev`. Judge it in sessions.
+6. `uv run python scripts/m4_rank.py dev-score` scores the dev answers.
+7. `uv run python scripts/m4_rank.py train` trains the model on dev answers.
+8. Futility sheet (`--pool futility --take 20 --model web/src/rank_model.v1.json --name futility`), then `uv run python scripts/m4_rank.py futility`.
+9. `uv run python scripts/m4_rank.py freeze` writes `data/eval/m4/freeze.v1.json`. The lead commits it with a clean tree.
+10. Test sheet: `--pool test --take 100 --arm-guess --probes 4 --repeats 6 --model web/src/rank_model.v1.json --name test`. The script refuses without the committed freeze.
+11. Judge the test in at least 4 sessions. Then run `uv run python scripts/m4_rank.py score`.
+
+All commands exist in the scripts today. That does not show that each step works end to end. Tests must show it.
+
+### Licence note (M4)
+
+Each M4 sheet shows recipe titles and ingredient lines from the Wikibooks Cookbook (CC BY-SA 4.0). Do not commit a sheet until [data/eval/m4/NOTICE.md](../data/eval/m4/NOTICE.md) exists. The key hashes show that the sides did not change. They do not hash the sheet text.

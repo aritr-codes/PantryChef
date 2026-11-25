@@ -1,0 +1,94 @@
+{
+  "arms": [
+    {
+      "features_used": [
+        "have",
+        "total"
+      ],
+      "name": "overlap"
+    }
+  ],
+  "command": "uv run python scripts/m4_rank.py dev-score --name dev --allow-model-judge",
+  "commit": "47cca68fba0186df754836d591fab50fa2390370",
+  "comparisons": [],
+  "config": {
+    "commit_order_checked": true,
+    "d": 3,
+    "gold_out": true,
+    "judge": "model-judged (dry run, never selects)",
+    "max_missing": 2,
+    "model_judged": true,
+    "neutral_order": true,
+    "pack_core_sha256": "1c2bcf5a0ac31813e9e08279c7729830c0658474a4d7fed8c8bfd1a94379a313",
+    "sampler": "popularity",
+    "sheets": [
+      "dev"
+    ]
+  },
+  "corpus_fingerprint": "a1a076ab0aee385c4e01cdc904342214dfaa6b01dc35d80d32519ea625c597d2",
+  "dirty": true,
+  "dirty_paths": [
+    "docs/JUDGING_PROTOCOL.md",
+    "docs/plans/2026-11-18-m4-search-ranking.md",
+    "pantrychef/eval/m4_run.py",
+    "pantrychef/eval/pairwise.py",
+    "scripts/m4_rank.py",
+    "tests/eval/test_m4_run.py",
+    "tests/eval/test_pairwise.py"
+  ],
+  "environment": {
+    "numpy": "2.4.6",
+    "platform": "Windows 10 (win32)",
+    "python": "3.11.15"
+  },
+  "label": "MEASURED",
+  "metrics": [
+    {
+      "arm": "overlap",
+      "ci": {
+        "hi": 0.5362006171083615,
+        "level": 0.95,
+        "lo": 0.24506816901291972,
+        "method": "clopper-pearson-exact",
+        "n_clusters": 47
+      },
+      "depends_on": [
+        "judge_model"
+      ],
+      "group": {
+        "ties": 53,
+        "versus": "idf_flat"
+      },
+      "n": 47,
+      "name": "pilot_pairwise_win_rate",
+      "role": "sanity",
+      "split": "dev",
+      "value": 0.3829787234042553
+    },
+    {
+      "arm": "overlap",
+      "ci": {
+        "hi": 0.7339914913710985,
+        "level": 0.95,
+        "lo": 0.4806525956197869,
+        "method": "clopper-pearson-exact",
+        "n_clusters": 62
+      },
+      "depends_on": [
+        "judge_model"
+      ],
+      "group": {
+        "ties": 38,
+        "versus": "shipped"
+      },
+      "n": 62,
+      "name": "pilot_pairwise_win_rate",
+      "role": "sanity",
+      "split": "dev",
+      "value": 0.6129032258064516
+    }
+  ],
+  "schema": 1,
+  "seed": 42,
+  "what": "Arm overlap on dev, model-judged (dry run, never selects): win rate against each other system, ties out."
+}

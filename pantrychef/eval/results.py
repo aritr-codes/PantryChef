@@ -22,7 +22,7 @@ from typing import Any
 SCHEMA_VERSION = 1
 LABELS = ("MEASURED", "ESTIMATE", "HYPOTHESIS")
 ROLES = ("selection", "sanity", "product", "latency")
-SPLITS = ("dev", "test", "all")
+SPLITS = ("pilot", "dev", "futility", "test", "all")
 MAX_DIRTY_PATHS = 20
 CODE_DIRS = (
     "pantrychef/",
@@ -100,6 +100,25 @@ METRICS: dict[str, MetricSpec] = {
     ),
     "graph_decoy_precision": MetricSpec("sanity", ()),
     "graph_rater_repeat_agreement": MetricSpec("sanity", ()),
+    # M4 (plan section 13.1). Hand judgements read no model feature, so they may select.
+    # ``pairwise_win_rate`` above is reused for dev, futility and test through ``split``.
+    "would_cook_rate": MetricSpec(
+        "selection", (), "hand judgement, uses no model feature; secondary endpoint"
+    ),
+    "pairwise_net_preference": MetricSpec("sanity", ()),  # descriptive (W - L) / n
+    "pairwise_tie_rate": MetricSpec("sanity", ()),
+    "judge_repeat_agreement": MetricSpec("sanity", ()),
+    "judge_arm_guess_accuracy": MetricSpec("sanity", ()),  # blinding check
+    "judge_median_seconds": MetricSpec("product", ()),  # protocol cost check; never selects
+    "cv_pairwise_logloss": MetricSpec(
+        "selection",
+        (),
+        "held-out hand labels, grouped by pantry; selects C and the feature set inside dev only",
+    ),
+    "cv_pairwise_accuracy": MetricSpec("sanity", ()),
+    "top5_agreement": MetricSpec("sanity", ("idf", "have", "total", "group")),  # describes only
+    "judge_agreement_ac1": MetricSpec("sanity", ()),  # second judge; not in use (D4)
+    "judge_agreement_kappa": MetricSpec("sanity", ()),
     "latency_p50_ms": MetricSpec("latency", ()),
     "latency_p95_ms": MetricSpec("latency", ()),
     "latency_max_ms": MetricSpec("latency", ()),
@@ -114,6 +133,14 @@ ARMS: dict[str, tuple[str, ...]] = {
     # records the edge option and the edges in use.
     "table_flat": ("idf", "have", "total", "group"),
     "graph_traversal": ("idf", "have", "total", "group", "is_a", "form_of"),
+    # M4: the linear model, the label-free IDF variants and the grouped no-IDF rule.
+    "rank_linear": ("idf", "have", "total", "unread", "optional"),
+    "idf_smooth": ("idf", "have", "total", "group"),
+    "idf_lucene": ("idf", "have", "total", "group"),
+    "shipped_b0": ("idf", "have", "total", "group"),
+    "shipped_b1": ("idf", "have", "total", "group"),
+    "shipped_missmass": ("idf", "have", "total", "group"),
+    "grouped_overlap": ("have", "total", "group"),
 }
 
 
@@ -133,6 +160,21 @@ def _git(root: Path, *args: str) -> str:
     return subprocess.run(
         ["git", *args], cwd=root, check=True, capture_output=True, text=True, encoding="utf-8"
     ).stdout
+
+
+def commits(root: Path, rel: str) -> list[str]:
+    """Commits that touch ``rel``, newest first. Empty when git has none (or the path is new)."""
+    return _git(Path(root), "log", "--format=%H", "--", rel).split()
+
+
+def is_ancestor(root: Path, older: str, newer: str) -> bool:
+    """True when commit ``older`` is an ancestor of ``newer``. An unknown commit gives False."""
+    done = subprocess.run(
+        ["git", "merge-base", "--is-ancestor", older, newer],
+        cwd=Path(root),
+        capture_output=True,
+    )
+    return done.returncode == 0
 
 
 def git_facts(root: Path, exclude: tuple[Path, ...] = ()) -> tuple[str, bool, list[str]]:
