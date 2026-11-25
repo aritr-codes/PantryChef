@@ -57,6 +57,8 @@ def check_judge(
     Model answers never enter the test, whatever the flag says. For dev and futility the flag
     ``--allow-model-judge`` lets a dry run through, and the result files say so. ``train`` passes
     ``--allow-model-labels`` instead (Amendment 2): the dry-run flag does not let it train.
+    Amendment 3 lets ``futility`` take model answers with the flag: that is a real run, and the
+    result file says model-judged.
     """
     if not is_model_judged(rows):
         return False
@@ -68,7 +70,7 @@ def check_judge(
             + (
                 "to train on model labels (Amendment 2)."
                 if "labels" in flag
-                else "for a dry run only."
+                else "(dry run, or futility under Amendment 3)."
             )
         )
     return True
@@ -353,7 +355,7 @@ def train_what_prefix(model_judged: bool, training_labels: str) -> str:
     if training_labels == "model_judged":
         return (
             "Model-labelled training (Amendment 2): labels are model-judged; "
-            "the human futility check and test decide. "
+            "the human test decides (Amendment 3 lets a model judge futility). "
         )
     return "Dry run, model-judged. " if model_judged else ""
 
@@ -616,8 +618,10 @@ def freeze_gates(
     """What must hold before the freeze (plan 7.5, 8.1). Return the problems, empty for none.
 
     The UI decision is yes. Futility check 1 passed (``results/m4_cv.json``) and check 2 said GO
-    (``results/m4_futility.json``), and the futility file is never model-judged. The weights, the
-    table and the three results agree: one comparator, one table hash, the same weights file.
+    (``results/m4_futility.json``). Since Amendment 3 the futility file may be model-judged: it
+    then says so and the freeze records ``futility_judge``. The test is never model-judged. The
+    weights, the table and the three results agree: one comparator, one table hash, the same
+    weights file.
 
     A model-judged training table is allowed only when every part says so (Amendment 2): the
     weights, the table and the cv file say ``training_labels: model_judged``, the dev pairs and
@@ -641,8 +645,13 @@ def freeze_gates(
     weights, pairs, cv, fut = (docs[r] for r in (weights_rel, dev_pairs_rel, cv_rel, futility_rel))
     labels = weights["trained_on"].get("training_labels", "human")
     problems += _label_chain_problems(
-        labels, weights, pairs, cv, fut, root / table_rel, dev_pairs_rel, cv_rel, futility_rel
+        labels, weights, pairs, cv, root / table_rel, dev_pairs_rel, cv_rel
     )
+    if fut["config"].get("commit_order_checked") is not True:
+        problems.append(
+            "the futility result skipped the commit-order check (--allow-uncommitted): "
+            "run futility again on committed answers"
+        )
     if not cv["config"].get("check1", {}).get("pass"):
         problems.append("futility check 1 did not pass (results/m4_cv.json)")
     futility = fut["config"].get("futility", {})
@@ -672,13 +681,11 @@ def freeze_gates(
     return problems
 
 
-def _label_chain_problems(labels, weights, pairs, cv, fut, table_path, dev_rel, cv_rel, fut_rel):
+def _label_chain_problems(labels, weights, pairs, cv, table_path, dev_rel, cv_rel):
     """One label source in the weights, the table, the cv file and the dev pairs."""
     problems: list[str] = []
     if labels not in ("human", "model_judged"):
         return [f"the weights name an unknown training label source: {labels!r}"]
-    if fut["config"].get("model_judged"):
-        problems.append(f"{fut_rel} is model-judged: the futility check stays human")
     model = labels == "model_judged"
     for rel, doc in ((dev_rel, pairs), (cv_rel, cv)):
         flag = bool(doc["config"].get("model_judged"))
@@ -704,11 +711,19 @@ def _label_chain_problems(labels, weights, pairs, cv, fut, table_path, dev_rel, 
     return problems
 
 
-def freeze_facts(root: Path, *, weights_rel: str, dev_pairs_rel: str) -> dict:
-    """The label source and the comparator source, for ``freeze.v1.json`` (Amendment 2)."""
+def freeze_facts(
+    root: Path, *, weights_rel: str, dev_pairs_rel: str, futility_rel: str | None = None
+) -> dict:
+    """The label source, the comparator source and who judged futility, for ``freeze.v1.json``.
+
+    Amendment 2 added the first two. Amendment 3 adds ``futility_judge`` (``human`` or
+    ``model_judged``).
+    """
     root = Path(root)
     weights, pairs = _json(root / weights_rel) or {}, _json(root / dev_pairs_rel) or {}
+    fut = (_json(root / futility_rel) if futility_rel else None) or {}
     return {
+        "futility_judge": "model_judged" if fut.get("config", {}).get("model_judged") else "human",
         "training_labels": weights.get("trained_on", {}).get("training_labels", "human"),
         "comparator_source": pairs.get("config", {}).get("comparator_source", SOURCE_HUMAN),
     }

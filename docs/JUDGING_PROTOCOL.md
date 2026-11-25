@@ -156,9 +156,9 @@ M4 asks one question. Does a learned ranker (the model) pick 5 recipes that the 
 
 - One person judges: the owner. The claim is one person's preference. It is not what people prefer.
 - Model judges may dry-run the tools. Their answers carry the label `judge_model` and the metric `pilot_pairwise_win_rate` (role `sanity`).
-- Model-judge answers never enter training, comparator choice, futility checks or the test.
+- Model-judge answers never enter training, comparator choice or the test. Futility check 2 may use them (Amendment 3).
 
-Amendment 2 (2026-11-19) changes the last bullet for training only. The owner chose to train the model on the model-judged dev answers. `train` then needs the flag `--allow-model-labels`. The dry-run flag `--allow-model-judge` is not enough. The weights file, the training table, `results/m4_cv.json` and the freeze say `training_labels: model_judged`. One table never mixes human and model rows, so `train --name dev` uses the dev sheet alone and leaves out the human pilot. Model-judged answers still cannot choose the comparator: it is `shipped`. They still never enter the futility check or the test, which the owner judges.
+Amendment 2 (2026-11-19) changes the last bullet for training only. The owner chose to train the model on the model-judged dev answers. `train` then needs the flag `--allow-model-labels`. The dry-run flag `--allow-model-judge` is not enough. The weights file, the training table, `results/m4_cv.json` and the freeze say `training_labels: model_judged`. One table never mixes human and model rows, so `train --name dev` uses the dev sheet alone and leaves out the human pilot. Model-judged answers still cannot choose the comparator: it is `shipped`. They still never enter the test, which the owner judges. Amendment 3 (2026-11-25) lets a model judge futility check 2: `futility` then needs the flag `--allow-model-judge`, and the result and the freeze say `futility_judge: model_judged`. Model answers are still refused for the test.
 
 ### What the judge sees
 

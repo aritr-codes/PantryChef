@@ -12,7 +12,7 @@ Rules that follow (Amendment 2):
 
 - Training on these rows is allowed. The `train` command needs `--allow-model-labels`. The flag `--allow-model-judge` is not enough. Every file that comes from the training says `training_labels: model_judged`: the weights, the training table, `results/m4_cv.json` and the freeze.
 - The comparator is `shipped`. `dev-score` records `comparator_source: default (dev answers are model-judged)`. Do not choose the IDF rule from these rows.
-- The futility check and the test must be human. The commands refuse model-judged futility and test answers. The freeze refuses a model-judged futility or test file.
+- The test must be human. The commands refuse model-judged test answers. Amendment 3 (2026-11-25) lets a model judge futility check 2: the flag `--allow-model-judge` is then needed and every result says model-judged. The freeze still refuses a model-judged test file.
 - Do not quote these rows as a human preference.
 
-The scoring rule of that pass uses recipe role and shopping burden. Those are close to the model's own features (missing count, mean weight, optional lines). The model may learn the LLM rule and nothing else. The human futility check and the human test decide whether the owner prefers that rule.
+The scoring rule of that pass uses recipe role and shopping burden. Those are close to the model's own features (missing count, mean weight, optional lines). The model may learn the LLM rule and nothing else. The human test decides whether the owner prefers that rule. A model judged futility check 2 (Amendment 3), so that check says little about the owner's taste.

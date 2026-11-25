@@ -398,11 +398,7 @@ def cmd_futility(args: argparse.Namespace) -> int:
     if arms != {"rank_linear", comparator}:
         raise SystemExit(f"the futility sheet must compare rank_linear with {comparator}")
     rows = m4_run.read_answers(_need(_answers(root, name), "no answers yet"))
-    if root.resolve() == ROOT.resolve() and m4_run.is_model_judged(rows):
-        raise SystemExit(
-            "model-judged futility answers are refused on the repo root: the futility check "
-            "stays human (Amendment 2). Stop."
-        )
+    # Amendment 3: model-judged futility answers are allowed with the explicit flag only.
     judged = m4_run.check_judge(rows, args.allow_model_judge, "futility")
     checked = _ordered(root, name, args)
     scored = js.score(key, rows, model_arm="rank_linear")
@@ -417,10 +413,14 @@ def cmd_futility(args: argparse.Namespace) -> int:
     )
     out["config"]["futility"] = {**verdict, "T": p["T"], "n": p["n"], "comparator": comparator}
     out["config"]["model_judged"] = judged
+    out["config"]["futility_judge"] = "model_judged" if judged else "human"
     out["config"]["commit_order_checked"] = checked
     out["config"]["weights_sha256"] = m4_run.sha256_file(weights)
     if judged:
-        out["what"] = "Dry run, model-judged. " + out["what"]
+        out["what"] = (
+            "Model-judged futility check (Amendment 3): a model, not the owner, judged the 20 "
+            "items. It is weak evidence and can only stop the test. " + out["what"]
+        )
         out["metrics"] = [
             {**m, "name": "pilot_pairwise_win_rate"} if m["name"] == "pairwise_win_rate" else m
             for m in out["metrics"]
@@ -492,7 +492,9 @@ def cmd_freeze(args: argparse.Namespace) -> int:
         comparator=_dev_pairs(root, True)["comparator"],  # the gates checked the label chain
         n_test=args.n_test,
         seed=42,
-        extra=m4_run.freeze_facts(root, weights_rel=WEIGHTS, dev_pairs_rel=DEV_PAIRS),
+        extra=m4_run.freeze_facts(
+            root, weights_rel=WEIGHTS, dev_pairs_rel=DEV_PAIRS, futility_rel=FUTILITY
+        ),
         **kw,
     )
     pw.write_freeze(root / pw.FREEZE_REL, freeze)

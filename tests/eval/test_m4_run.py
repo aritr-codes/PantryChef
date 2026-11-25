@@ -895,7 +895,7 @@ def test_train_refuses_a_table_that_mixes_human_and_model_rows(scored, tmp_path)
 
 LABELLED_WHAT = (
     "Model-labelled training (Amendment 2): labels are model-judged; "
-    "the human futility check and test decide"
+    "the human test decides (Amendment 3 lets a model judge futility)"
 )
 
 
@@ -969,18 +969,24 @@ def test_choose_rule_with_model_judged_data_returns_shipped_whatever_the_counts(
     assert r["rule"] == "shipped" and r["overlap_beats_rule"] is True  # reported against shipped
 
 
-def test_futility_refuses_model_answers_on_the_repo_root_even_with_the_dry_run_flag(
+def test_futility_takes_model_answers_only_with_the_flag_and_labels_the_result(
     trained, tmp_path, monkeypatch
 ):
+    """Amendment 3: a model may judge futility. The flag is explicit and the file says so."""
     e = futility_world(trained, tmp_path, flip=False)
     orderers = {
         "rank_linear": model_orderer(e.pack, load_model(e.root / "web/src/rank_model.v1.json"))
     }
     synth_answers(e, "futility", label="judge_model", orderers=orderers)
     monkeypatch.setattr(m4, "ROOT", e.root)  # this temp folder now plays the repo root
-    with pytest.raises(SystemExit, match="repo root"):
-        run("futility", e, "--allow-model-judge")
+    with pytest.raises(SystemExit, match="model-judged"):
+        run("futility", e)  # no flag: refused, on the repo root or anywhere else
     assert not (e.root / "results/m4_futility.json").exists()
+    run("futility", e, "--allow-model-judge")
+    doc = json.loads((e.root / "results/m4_futility.json").read_text(encoding="utf-8"))
+    assert doc["config"]["model_judged"] is True
+    assert doc["config"]["futility_judge"] == "model_judged"
+    assert doc["what"].startswith("Model-judged futility check (Amendment 3)")
 
 
 def test_score_refuses_model_judged_test_answers(trained, tmp_path):
@@ -997,6 +1003,8 @@ def test_score_refuses_model_judged_test_answers(trained, tmp_path):
     git(e.root, "commit", "-q", "-m", "answers")
     with pytest.raises(SystemExit, match="never enter the test"):
         run("score", e)
+    with pytest.raises(SystemExit, match="never enter the test"):
+        run("score", e, "--allow-model-judge")  # the futility flag does not open the test
     assert not (e.root / "results/m4_test.json").exists()
 
 
@@ -1010,6 +1018,7 @@ def test_freeze_accepts_a_consistent_model_labelled_chain_and_records_it(mtraine
     fr = json.loads((e.root / "data/eval/m4/freeze.v1.json").read_text())
     assert fr["training_labels"] == "model_judged" and fr["comparator"] == "shipped"
     assert fr["comparator_source"] == SOURCE_MODEL
+    assert fr["futility_judge"] == "human"  # the synthetic futility file is not model-judged
 
 
 def test_freeze_records_human_labels_for_a_human_chain(trained, tmp_path):
@@ -1048,12 +1057,26 @@ def test_freeze_refuses_model_judged_dev_pairs_when_the_weights_say_human(traine
     refused(e, "model-judged")
 
 
-def test_freeze_still_refuses_a_model_judged_futility_result_in_a_model_labelled_chain(
-    mtrained, tmp_path
-):
+def test_freeze_refuses_a_futility_result_that_skipped_the_commit_order_check(trained, tmp_path):
+    e = git_world(trained, tmp_path)
+    edit_json(
+        e, "results/m4_futility.json", lambda d: d["config"].update(commit_order_checked=False)
+    )
+    refused(e, "commit-order")
+
+
+def test_one_model_row_marks_the_whole_answer_file_model_judged():
+    rows = [{"judge": ""}, {"judge": "judge_model"}, {"judge": ""}]
+    assert m4_run.is_model_judged(rows) and not m4_run.is_model_judged(rows[:1])
+
+
+def test_freeze_accepts_a_model_judged_futility_result_and_records_it(mtrained, tmp_path):
+    """Amendment 3: the futility file may be model-judged. The freeze records who judged it."""
     e = git_world(mtrained, tmp_path)
     edit_json(e, "results/m4_futility.json", lambda d: d["config"].update(model_judged=True))
-    refused(e, "futility.*model-judged|model-judged")
+    assert run("freeze", e) == 0
+    fr = json.loads((e.root / "data/eval/m4/freeze.v1.json").read_text())
+    assert fr["futility_judge"] == "model_judged"
 
 
 # ---------------------------------------------------------------- futility
@@ -1121,7 +1144,7 @@ def test_futility_refuses_model_judge_answers_unless_allowed(trained, tmp_path):
         run("futility", e)
     assert run("futility", e, "--allow-model-judge") in (0, 3)
     doc = json.loads((e.root / "results/m4_futility.json").read_text())
-    assert "model-judged" in doc["what"]
+    assert "Model-judged" in doc["what"]
 
 
 # ---------------------------------------------------------------- freeze and score (real git)
@@ -1155,6 +1178,7 @@ def git_world(trained, tmp_path) -> SimpleNamespace:
                 "futility": {"W": 3, "L": 1, "stop": False, "comparator": comparator},
                 "comparator": comparator,
                 "model_judged": False,
+                "commit_order_checked": True,
                 "weights_sha256": sha(weights),
             }
         },
@@ -1304,10 +1328,12 @@ def test_freeze_needs_the_futility_result_at_all(trained, tmp_path):
     refused(e, "m4_futility")
 
 
-def test_freeze_refuses_model_judged_results(trained, tmp_path):
+def test_freeze_accepts_a_model_judged_futility_result_with_human_labels_too(trained, tmp_path):
     e = git_world(trained, tmp_path)
     edit_json(e, "results/m4_futility.json", lambda d: d["config"].update(model_judged=True))
-    refused(e, "model-judged")
+    assert run("freeze", e) == 0
+    fr = json.loads((e.root / "data/eval/m4/freeze.v1.json").read_text())
+    assert fr["futility_judge"] == "model_judged"
 
 
 def test_freeze_cross_checks_the_comparator_between_weights_and_results(trained, tmp_path):
